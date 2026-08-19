@@ -421,6 +421,21 @@ const SHEETS = [
   note:'No-calculator drill sheet with ruled working space. Handed out in class.', file:null}
 ];
 
+const SUBJECTS = {
+  maths:{label:'Maths', colour:'var(--maths)', tint:'var(--maths-t)'},
+  physics:{label:'Physics', colour:'var(--physics)', tint:'var(--physics-t)'},
+  biology:{label:'Biology', colour:'var(--biology)', tint:'var(--biology-t)'},
+  chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'}
+};
+
+const BANDS = [
+ {min:85, name:'Top band',   note:'the questions stop being about luck'},
+ {min:70, name:'Strong',     note:'first-pass target on every page'},
+ {min:60, name:'Solid',      note:'10 out of 15 lives here'},
+ {min:40, name:'Building',   note:'the method is there, the details are not'},
+ {min:0,  name:'Cold start', note:'nothing banked on this topic yet'}
+];
+
 /* ---------------- puzzles ---------------- */
 const PUZZLES = [
  {subject:'maths',
