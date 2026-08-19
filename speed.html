@@ -204,7 +204,8 @@ textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:1
 .trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
 
 .papers{display:grid;gap:11px}
-.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
 .paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
 .paper .pn.hard{background:var(--pc)}
 .paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
@@ -456,14 +457,14 @@ select{font-family:var(--mono);font-size:14px;padding:7px 9px;border:1px solid v
   <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
   <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
   <div class="papers">
-    <div class="paper"><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
-      <p class="pd">Straight substitution into the formula in all three directions, simple unit conversions, and reading speeds off a distance–time graph.</p></div>
-    <div class="paper"><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
-      <p class="pd">Drawing a distance–time graph from a written journey, describing a journey from a graph in sentences, and two average-speed calculations.</p></div>
-    <div class="paper"><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
-      <p class="pd">Two-part journeys, mixed units within one question, and the "what speed must the second half be" style of reverse problem.</p></div>
-    <div class="paper"><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
-      <p class="pd">Multi-step problems where the method is hidden: overtaking, sound and light timing, and questions built to punish every trap listed above.</p></div>
+    <a class="paper" href="sheets/physics-speed-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Straight substitution into the formula in all three directions, simple unit conversions, and reading speeds off a distance–time graph.</p></a>
+    <a class="paper" href="sheets/physics-speed-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Drawing a distance–time graph from a written journey, describing a journey from a graph in sentences, and two average-speed calculations.</p></a>
+    <a class="paper" href="sheets/physics-speed-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Two-part journeys, mixed units within one question, and the "what speed must the second half be" style of reverse problem.</p></a>
+    <a class="paper" href="sheets/physics-speed-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Multi-step problems where the method is hidden: overtaking, sound and light timing, and questions built to punish every trap listed above.</p></a>
   </div>
 </section>
 

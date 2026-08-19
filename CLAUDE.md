@@ -38,13 +38,13 @@ Subjects: Maths, Physics, Biology, Chemistry.
 ## Layout
 
 ```
-index.html              the hub — climb ladder, topic cards, sheets, weekly puzzle
+index.html              the hub — climb ladder, topic cards, paper signposts, weekly puzzle
 fdp.html                Maths     · fractions, decimals, percentages
 moments.html            Physics   · the turning effect
 speed.html              Physics   · speed, distance, time
 respiration.html        Biology   · gas exchange
 particles.html          Chemistry · the particle model
-sheets/*.pdf            16 test papers + 4 mark schemes (generated)
+sheets/*.pdf            20 test papers + 5 mark schemes (generated)
 .nojekyll               stops GitHub Pages hiding underscore paths
 tools/
   smoke.js              runtime check — the one that matters

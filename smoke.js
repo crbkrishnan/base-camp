@@ -35,7 +35,8 @@ const files = process.argv[3] ? [process.argv[3]] : fs.readdirSync(dir).filter(f
       broken: [...d.querySelectorAll('a[href]')]
         .map(a => a.getAttribute('href'))
         .filter(h => h && !h.startsWith('#') && !h.startsWith('http'))
-        .filter(h => !fs.existsSync(path.join(dir, h))),
+        // a link may carry a fragment — fdp.html#papers is the file fdp.html
+        .filter(h => !fs.existsSync(path.join(dir, h.split('#')[0]))),
     };
     const summary = Object.entries(counts)
       .filter(([k, v]) => (Array.isArray(v) ? v.length : v))

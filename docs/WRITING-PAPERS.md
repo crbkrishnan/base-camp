@@ -67,16 +67,19 @@ Also choose numbers that make wrong methods *visibly* wrong. Examples worth reus
 
 And avoid accidental ties: an ordering question where two of the four values are equal has no answer. Check for that explicitly.
 
-## Registering papers in the hub
+## Linking the papers
 
-Add four entries to `SHEETS` in `index.html` — papers only, never the mark scheme:
+Papers are linked from the topic page they belong to, never from the hub. Two steps.
 
-```js
-{title:'The particle model — Paper A', subject:'chemistry',
- note:'Medium · non-calculator · 35 minutes · 30 marks. What the paper covers.',
- file:'sheets/chemistry-particles-paper-a.pdf'},
+**1. The topic page's `#papers` section.** Each of the four cards is an `<a>`, not a `<div>`, and the description already there is a contract with the paper you just generated — if they disagree, one of them is wrong:
+
+```html
+<a class="paper" href="sheets/chemistry-particles-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+  <p class="pd">What the paper covers.</p></a>
 ```
 
-Use `str_replace` on a unique anchor. The last time this array was edited by string index, the splice ate the two arrays that followed it and the homepage went blank.
+Papers C and D take `class="pn hard"`, which tints the badge with the page's warning accent.
 
-Sheets with `file:null` render as "In class · paper only" rather than a dead download link.
+**2. The hub.** Set `papers:4` on that topic's entry in `TOPICS` in `index.html`. The hub's Practice sheets section derives itself from that field and links to `<topic>.html#papers` — there is no list of individual PDFs to maintain. Use `str_replace` on a unique anchor; the last time an array here was edited by string index, the splice ate the two arrays that followed it and the homepage went blank.
+
+The mark-scheme booklet is linked from nowhere at all. It sits in `sheets/` for the tutor, and that is deliberate.

@@ -12,7 +12,17 @@ from reportlab.platypus import (BaseDocTemplate, PageTemplate, Frame, Paragraph,
                                 Spacer, Table, TableStyle, Flowable, KeepTogether)
 from reportlab.pdfgen import canvas as pdfcanvas
 
-FDIR = '/usr/share/fonts/truetype/dejavu/'
+_FONT_DIRS = ('/usr/share/fonts/truetype/dejavu/',          # debian, ubuntu
+              os.path.expanduser('~/Library/Fonts/'),        # macos, brew --cask font-dejavu
+              '/Library/Fonts/', '/opt/homebrew/share/fonts/')
+try:
+    FDIR = next(d for d in _FONT_DIRS if os.path.exists(d + 'DejaVuSerif.ttf'))
+except StopIteration:
+    raise SystemExit('DejaVu fonts not found. Install them:\n'
+                     '  linux: apt-get install fonts-dejavu\n'
+                     '  macos: brew install --cask font-dejavu\n'
+                     'Searched: ' + ', '.join(_FONT_DIRS))
+
 for name, fn in [('Body', 'DejaVuSerif.ttf'), ('Body-Bold', 'DejaVuSerif-Bold.ttf'),
                  ('Body-Italic', 'DejaVuSerif-Italic.ttf'),
                  ('UI', 'DejaVuSans.ttf'), ('UI-Bold', 'DejaVuSans-Bold.ttf'),
@@ -149,7 +159,7 @@ def _header(spec):
     return out
 
 
-def _qrow(num, text, marks, style=S_Q, indent=0, numw=18):
+def _qrow(num, text, marks, style=S_Q, indent=0, numw=24):
     mkw = 24
     cells = [Paragraph(num, S_NUM) if num else '',
              Paragraph(text, style),

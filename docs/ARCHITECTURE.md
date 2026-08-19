@@ -47,7 +47,7 @@ Every page follows the same order, and the shared CSS class names are identical 
 7. **Hero tool 2** — second interactive
 8. `#quick` (5 MCQ), `#short` (5 × 2 marks), `#word` (5 × 3 marks)
 9. `#traps` — five exam traps
-10. `#papers` — the four printed papers
+10. `#papers` — the four printed papers, each card an `<a … download>` to its PDF in `sheets/`
 11. Footer with reset
 
 Data lives in `VIDEOS`, `LESSONS`, `MCQS`, `SHORTS`, `WORDS` arrays; a shared engine renders them and handles self-marking, staged hints and persistence. Copy the engine verbatim from an existing page.
@@ -67,7 +67,9 @@ This lets the stylesheet be copied unchanged between pages while the content use
 
 ## The hub
 
-`index.html` is driven by four arrays near the top of its script: `TOPICS`, `SHEETS`, `SUBJECTS`, `BANDS`, plus `PUZZLES`. Adding content means adding an entry, not editing render code.
+`index.html` is driven by three arrays near the top of its script: `TOPICS`, `SUBJECTS`, `BANDS`, plus `PUZZLES`. Adding content means adding an entry, not editing render code.
+
+The hub links no PDF directly. Its Practice sheets section is derived from the `papers` count on each ready `TOPICS` entry and points at `<topic>.html#papers`, so a paper is only ever one click from the page that teaches it.
 
 The signature element is the **climb ladder**: five bands from Cold start to Top band, with a marker on the band the student's banked marks put him in, and a line computing how many more marks reach the next rung. It reads only topics that have actually been opened, so an untouched library does not display a demoralising 0%.
 

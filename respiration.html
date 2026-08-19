@@ -182,6 +182,14 @@ textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:1
 .trap h4{margin:0 0 5px;font-size:16.5px}
 .trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
 
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
 footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
 
 @media (max-width:600px){
@@ -248,6 +256,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
   <a href="#short">Short answers</a>
   <a href="#word">Word problems</a>
   <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
 </nav>
 
 <!-- ============ HERO: THE LUNG MACHINE ============ -->
@@ -389,6 +398,21 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
     <div class="trap"><h4>Making muscles do the work of pressure</h4><p>Muscles never push air out or suck air in directly. Muscles change the <strong>volume</strong> of the thorax; the volume change causes a <strong>pressure</strong> change; air then moves from high to low pressure. Examiners want that chain in that order.</p></div>
     <div class="trap"><h4>Thinking oxygen "turns into" carbon dioxide</h4><p>It doesn't. Glucose is broken down, its carbon ends up in carbon dioxide and its hydrogen in water. Oxygen is a reactant, not a raw material that gets converted.</p></div>
     <div class="trap"><h4>Mixing cm³ and dm³ halfway through</h4><p><span class="num">1000 cm³ = 1 dm³</span>. Tidal volumes are usually quoted in cm³ and ventilation rates in dm³ per minute. Convert once, at the start, and write the unit on every line.</p></div>
+  </div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/biology-respiration-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">The pathway of air, the ventilation table, naming the structures, alveolar adaptations, the word equation, and the limewater test.</p></a>
+    <a class="paper" href="sheets/biology-respiration-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Inspired against expired air, goblet and ciliated cells, cartilage rings, and breathing volumes converted from cm³ to dm³.</p></a>
+    <a class="paper" href="sheets/biology-respiration-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Surface area in standard form, a spirometer trace and a bell-jar model you have not seen before, anaerobic respiration and the oxygen debt.</p></a>
+    <a class="paper" href="sheets/biology-respiration-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Emphysema and carbon monoxide, breathing at altitude, a six-mark journey from the nose to a mitochondrion, and two wrong answers to diagnose.</p></a>
   </div>
 </section>
 

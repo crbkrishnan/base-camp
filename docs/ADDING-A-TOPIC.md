@@ -57,20 +57,20 @@ Fixed: 5 MCQ × 1, 5 short × 2, 5 word × 3. Levels `warm-up`, `standard`, `tra
 
 Traps are the specific wrong sentences students write. Name the sentence, say why it is wrong, give the correct version.
 
-The `#papers` section lists Papers A–D with one-line descriptions. Those descriptions are a contract — the papers you generate later must match them.
+The `#papers` section lists Papers A–D with one-line descriptions. Those descriptions are a contract — the papers you generate later must match them. Each card is an `<a … download>` pointing into `sheets/`; until the PDFs exist the section stays out of the page, because a card that downloads nothing is worse than no card.
 
 ## 7. Register it in the hub
 
 In `index.html`, find `TOPICS` and change the placeholder entry (or add one):
 
 ```js
-{id:'ratio', file:'ratio.html', subject:'maths', status:'ready',
+{id:'ratio', file:'ratio.html', subject:'maths', status:'ready', papers:4,
  title:'…', sub:'…',
  blurb:'One or two sentences on what the page actually does.',
  meta:['30 marks','6 lessons','live tool name']},
 ```
 
-`status` is `ready`, `next` or `planned`. `subject` must be one of `maths`, `physics`, `biology`, `chemistry`. **`id` must match the bridge `ID`** or the progress bar stays empty forever.
+`status` is `ready`, `next` or `planned`. `subject` must be one of `maths`, `physics`, `biology`, `chemistry`. **`id` must match the bridge `ID`** or the progress bar stays empty forever. `papers` is how many PDFs the page's `#papers` section links; it drives the hub's Practice sheets row, so leave it off until the papers actually exist.
 
 Use `str_replace` on a unique anchor. Do not splice by string index — see `CLAUDE.md` non-negotiable 2.
 

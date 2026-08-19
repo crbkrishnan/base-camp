@@ -196,6 +196,16 @@ textarea{
 .trap h4{margin:0 0 5px;font-size:16.5px}
 .trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
 
+/* ---------- papers ---------- */
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--cw)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
 footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;
   display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
 
@@ -258,6 +268,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;
   <a href="#short">Short answers</a>
   <a href="#word">Word problems</a>
   <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
 </nav>
 
 <!-- ============ HERO: BALANCE BENCH ============ -->
@@ -369,6 +380,21 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;
     <div class="trap"><h4>Centimetres sneaking into newton-metres</h4><p>If the question gives 40 cm and you want an answer in N m, convert first: 40 cm = 0.40 m. Every year, correct physics loses marks here.</p></div>
     <div class="trap"><h4>The slant distance instead of the perpendicular one</h4><p><em>d</em> is the perpendicular distance from the pivot to the <strong>line of action</strong> of the force — not the distance to the spot where your hand sits.</p></div>
     <div class="trap"><h4>Forgetting the beam has weight</h4><p>A uniform plank, rule or bar has its own weight acting at its centre. If the pivot is not at the centre, that weight makes a moment and must go into the equation.</p></div>
+  </div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/physics-moments-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">Defining a moment, the formula, centimetres converted to metres, and single moments calculated in all three directions.</p></a>
+    <a class="paper" href="sheets/physics-moments-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">The principle of moments applied to see-saws and levers, including balances with several forces acting at once.</p></a>
+    <a class="paper" href="sheets/physics-moments-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">Beams that carry their own weight, non-uniform planks, and working backwards to an unknown load or an unknown distance.</p></a>
+    <a class="paper" href="sheets/physics-moments-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">Four-force balances, wheelbarrows, stability and toppling, and a claim to judge from the numbers alone.</p></a>
   </div>
 </section>
 
