@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base Camp — Grade 7 IGCSE study library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#191A1F;
+  --ink-soft:#585B66;
+  --paper:#E9E7E2;
+  --card:#FFFFFF;
+  --line:#D6D1C8;
+  --line-soft:#E6E2DB;
+  --maths:#6B3FA0;   --maths-t:#F0EAF7;
+  --physics:#0B6E75; --physics-t:#E3F1F2;
+  --biology:#17693F; --biology-t:#E6F1EA;
+  --chemistry:#B4560B; --chemistry-t:#FBEFE3;
+  --ok:#1B7F4B;  --ok-t:#E6F3EC;
+  --no:#98241B;  --no-t:#FBEAE8;
+  --steel:#9A968D;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--physics)}
+:focus-visible{outline:3px solid var(--physics);outline-offset:2px;border-radius:4px}
+button{font-family:var(--display)}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 4px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(38px,8vw,68px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--maths)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:56ch;margin:0}
+
+/* ---------- the climb ---------- */
+.climb{margin:30px 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.climb-top{padding:15px 18px 12px;border-bottom:1px solid var(--line-soft);display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.climb-top h2{margin:0;font-size:19px}
+.climb-top p{margin:0;font-size:14.5px;color:var(--ink-soft);flex:1 1 220px}
+.rungs{display:flex;flex-direction:column}
+.rung{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;
+  padding:11px 18px;border-bottom:1px dashed var(--line-soft);position:relative}
+.rung:last-child{border-bottom:0}
+.rung .alt{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--steel);text-align:right}
+.rung .alt i{font-style:normal;font-size:10px;letter-spacing:.08em}
+.rung .band{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.rung .band b{font-family:var(--display);font-size:17px}
+.rung .band span{font-size:14.5px;color:var(--ink-soft)}
+.rung.here{background:var(--ok-t)}
+.rung.here .alt{color:var(--ok)}
+.rung.here::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--ok)}
+.youare{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--ok);color:#fff;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.rung.past .alt,.rung.past .band b{opacity:.55}
+.climb-foot{padding:12px 18px;background:var(--paper);font-size:14.5px;color:var(--ink-soft)}
+.climb-foot b{color:var(--ink)}
+
+/* ---------- stats ---------- */
+.strip{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 8px}
+.stat{flex:1 1 160px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 15px;
+  display:flex;flex-direction:column;gap:3px}
+.stat b{font-size:26px;font-family:var(--mono);font-variant-numeric:tabular-nums;line-height:1}
+.stat span{font-family:var(--display);font-size:12.5px;letter-spacing:.03em;color:var(--ink-soft)}
+.bar{height:5px;background:var(--paper);border-radius:99px;overflow:hidden;margin-top:7px}
+.bar i{display:block;height:100%;width:0;background:var(--ok);border-radius:99px;transition:width .4s ease}
+
+/* ---------- nav ---------- */
+nav.jump{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 34px}
+nav.jump a{font-family:var(--mono);font-size:12.5px;text-decoration:none;color:var(--ink-soft);
+  border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--ink);color:var(--ink)}
+
+section{margin-bottom:44px;scroll-margin-top:16px}
+.shead{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:14px}
+.shead h2{margin:0;font-size:clamp(23px,4vw,29px)}
+.shead p{margin:0;font-size:15px;color:var(--ink-soft);flex:1 1 240px}
+
+/* ---------- filters ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.chip{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);background:var(--card);
+  color:var(--ink-soft);border-radius:99px;padding:7px 14px;cursor:pointer}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip .dot{display:inline-block;width:8px;height:8px;border-radius:99px;margin-right:7px;vertical-align:1px}
+
+/* ---------- topic cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px 15px;
+  display:flex;flex-direction:column;gap:9px;border-top:3px solid var(--steel)}
+.card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;display:flex;gap:9px;align-items:center}
+.card .tag .status{margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px;color:var(--ink-soft)}
+.card h3{margin:0;font-size:20px}
+.card .sub{margin:-5px 0 0;font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.card p.blurb{margin:0;font-size:15.5px;color:var(--ink-soft)}
+.card .meta{font-family:var(--mono);font-size:12px;color:var(--steel);display:flex;flex-wrap:wrap;gap:10px}
+.card .prog{margin-top:auto}
+.card .prog .pl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-bottom:5px}
+.open{display:inline-block;text-align:center;text-decoration:none;font-family:var(--display);font-weight:700;
+  font-size:15px;border-radius:10px;padding:10px 14px;background:var(--ink);color:#fff;margin-top:4px}
+.open:hover{opacity:.88}
+.card.soon{background:transparent;border-style:dashed;box-shadow:none}
+.card.soon h3{color:var(--ink-soft);font-size:18px}
+.locked{font-family:var(--display);font-size:14px;color:var(--steel);border-top:1px dashed var(--line);padding-top:9px;margin-top:auto}
+
+/* ---------- sheets ---------- */
+.sheets{display:grid;gap:9px}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 16px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-left:4px solid var(--steel)}
+.sheet .st{flex:1 1 260px}
+.sheet h4{margin:0 0 2px;font-size:17px}
+.sheet p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+.sheet .badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:99px;padding:4px 11px;color:var(--ink-soft);white-space:nowrap}
+.sheet a.badge{text-decoration:none;background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* ---------- puzzle ---------- */
+.puz{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.puz-top{padding:14px 18px;border-bottom:1px solid var(--line-soft);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.puz-top .who{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  border-radius:99px;padding:3px 11px}
+.puz-top .cnt{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);margin-left:auto}
+.puz-body{padding:17px 18px 18px}
+.puz-body .q{font-size:18px;margin:0 0 4px}
+.puz-body .why{font-size:14.5px;color:var(--ink-soft);font-style:italic;margin:8px 0 0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.btn{font-size:14px;font-weight:700;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:9px;padding:9px 14px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.dark:hover{opacity:.88}
+.reveal{display:none;margin-top:12px;padding:12px 14px;border-radius:10px;font-size:15.5px}
+.reveal.on{display:block}
+.reveal.nudge{background:var(--physics-t)}
+.reveal.ans{background:var(--paper);border:1px solid var(--line)}
+.reveal.ans b{display:block;font-family:var(--display);margin-bottom:4px}
+.selfmark{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:13px;border-top:1px dashed var(--line);padding-top:12px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13px;border-radius:8px;border:1px solid var(--line);
+  background:var(--paper);cursor:pointer;color:var(--ink);padding:7px 12px}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+
+/* ---------- rules ---------- */
+.rules{display:grid;gap:11px}
+.rule{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--maths);
+  border-radius:0 var(--r) var(--r) 0;padding:14px 16px;display:grid;grid-template-columns:34px 1fr;gap:12px}
+.rule .n{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--maths);padding-top:2px}
+.rule h4{margin:0 0 4px;font-size:16.5px}
+.rule p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;
+  align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+footer button{font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+  border-radius:8px;padding:7px 12px;cursor:pointer}
+footer button:hover{border-color:var(--no);color:var(--no)}
+
+@media (max-width:560px){
+  body{font-size:16.5px}
+  .rung{grid-template-columns:44px 1fr;gap:10px;padding:10px 14px}
+  .climb-top,.climb-foot{padding-left:14px;padding-right:14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">IGCSE · Grade 7 · Maths · Physics · Biology · Chemistry</div>
+  <h1>Base <em>Camp</em></h1>
+  <p class="lede">Every topic page, practice sheet and answer scheme lives here. Nothing on this site is meant to be read — it is meant to be attempted, marked, and returned to a week later.</p>
+
+  <!-- ============ THE CLIMB ============ -->
+  <div class="climb">
+    <div class="climb-top">
+      <h2>The climb</h2>
+      <p>Your marker sits on the band your banked marks put you in, across every topic you have opened.</p>
+    </div>
+    <div class="rungs" id="rungs"></div>
+    <div class="climb-foot" id="climbfoot">Open a topic and the marker starts climbing.</div>
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/0</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-topics">0<span style="font-size:15px;color:var(--ink-soft)">/3</span></b><span>topics opened</span><div class="bar"><i id="bar-topics"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>puzzles cracked</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#topics">Topic pages</a>
+  <a href="#sheets">Practice sheets</a>
+  <a href="#puzzle">Puzzle</a>
+  <a href="#rules">How to use this</a>
+</nav>
+
+<!-- ============ TOPICS ============ -->
+<section id="topics">
+  <div class="shead">
+    <h2>Topic pages</h2>
+    <p id="resume">Each finished page carries six lessons, an interactive tool, six videos with written tasks, and 15 questions worth 30 marks.</p>
+  </div>
+  <div class="filters" id="filters"></div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<!-- ============ SHEETS ============ -->
+<section id="sheets">
+  <div class="shead">
+    <h2>Practice sheets</h2>
+    <p>Paper versions, for when a screen is the wrong tool. No calculator unless the sheet says so.</p>
+  </div>
+  <div class="sheets" id="sheetlist"></div>
+</section>
+
+<!-- ============ PUZZLE ============ -->
+<section id="puzzle">
+  <div class="shead">
+    <h2>Puzzle</h2>
+    <p>One a week. Two minutes of thinking beats twenty minutes of reading — and every one of these is a question someone drops marks on in the real paper.</p>
+  </div>
+  <div class="puz">
+    <div class="puz-top">
+      <span class="who" id="p-who">Maths</span>
+      <span class="ui" id="p-week" style="font-size:14px;color:var(--ink-soft)">Puzzle 1 of 6</span>
+      <span class="cnt" id="p-cnt">0 cracked</span>
+    </div>
+    <div class="puz-body">
+      <p class="q" id="p-q"></p>
+      <div class="row">
+        <button class="btn" id="p-nudge">Show a nudge</button>
+        <button class="btn dark" id="p-ans">Show the answer</button>
+        <button class="btn" id="p-next">Another one</button>
+      </div>
+      <div class="reveal nudge" id="p-nudgebox"></div>
+      <div class="reveal ans" id="p-ansbox"></div>
+      <div class="selfmark">
+        <span class="q">Did you get it before you looked?</span>
+        <button class="mbtn" data-mark="1">Got it</button>
+        <button class="mbtn" data-mark="0">Not this time</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RULES ============ -->
+<section id="rules">
+  <div class="shead">
+    <h2>How to use this</h2>
+    <p>Four rules. They exist because the difference between 10 out of 15 and 13 out of 15 is almost never new knowledge.</p>
+  </div>
+  <div class="rules">
+    <div class="rule"><div class="n">01</div><div>
+      <h4>Write the answer before you open the mark scheme</h4>
+      <p>Reading a worked solution feels exactly like understanding it. The only way to tell the difference is to have committed to an answer first, even a wrong one. A wrong answer you wrote down teaches you more than a right one you read.</p>
+    </div></div>
+    <div class="rule"><div class="n">02</div><div>
+      <h4>One topic per sitting, and count marks — not minutes</h4>
+      <p>A session is over when you have banked marks, not when the clock says so. Ten honest marks in twenty minutes is a good session. Forty minutes of scrolling is not a session at all.</p>
+    </div></div>
+    <div class="rule"><div class="n">03</div><div>
+      <h4>Every video comes with a written task — do the task or skip the video</h4>
+      <p>Watching is passive; the task is the part that sticks. If you are not going to write the three lines underneath, close the video and go straight to the questions instead. That is a legitimate choice.</p>
+    </div></div>
+    <div class="rule"><div class="n">04</div><div>
+      <h4>Come back a week later for the second pass</h4>
+      <p>First pass finds out what you know. Second pass, a week later with the page reset, is the one that moves your score. Targets on each page are set in pairs for exactly this reason: 21 first, 26 second.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <span>Built for Grade 7 IGCSE · your progress is stored in this browser only.</span>
+  <button id="reset">Reset hub progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage: works inside Claude and on a plain web server ---------------- */
+(function(){
+  if(window.storage) return;
+  var mem={}, ls=null;
+  try{ ls=window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls=null; }
+  window.storage={
+    get:function(k){ var v = ls?ls.getItem(k):(k in mem?mem[k]:null);
+      return Promise.resolve(v===null||v===undefined?null:{key:k,value:v}); },
+    set:function(k,v){ try{ ls?ls.setItem(k,v):(mem[k]=v); }catch(e){} return Promise.resolve({key:k,value:v}); },
+    delete:function(k){ try{ ls?ls.removeItem(k):delete mem[k]; }catch(e){} return Promise.resolve({key:k,deleted:true}); },
+    list:function(p){ return Promise.resolve({keys:[],prefix:p||''}); }
+  };
+})();
+
+const PROG_KEY = 'hub-progress-v1';   /* written by each topic page */
+const HUB_KEY  = 'hub-state-v1';      /* this page: puzzles, filter  */
+
+let PROG = {};
+let S = { puzzles:{}, filter:'all', pIdx:null };
+
+/* ---------------- the library ----------------
+   To add a topic: copy a row, set status to 'ready' and point file at the new html.
+   To add a sheet: add a row to SHEETS with a file path inside sheets/           */
+const TOPICS = [
+ {id:'fdp', file:'fdp.html', subject:'maths', status:'ready',
+  title:'One Number, Three Disguises', sub:'Fractions, decimals and percentages',
+  blurb:'Switching between the three forms so the arithmetic gets easy, plus the multiplier method that turns two-step percentage questions into one step.',
+  meta:['30 marks','6 lessons','no calculator']},
+
+ {id:'moments', file:'moments.html', subject:'physics', status:'ready',
+  title:'The Turning Effect', sub:'Moments, pivots and balance',
+  blurb:'Why where you push matters as much as how hard. Drag a live balance beam until the principle of moments stops being a formula you memorised.',
+  meta:['30 marks','6 lessons','live beam']},
+
+ {id:'respiration', file:'respiration.html', subject:'biology', status:'ready',
+  title:'Breathing In, Breathing Out', sub:'Gas exchange in humans',
+  blurb:'Breathing is a pump; respiration is a reaction. Work the diaphragm yourself, then take the alveoli apart to see why lungs are shaped the way they are.',
+  meta:['30 marks','6 lessons','lung machine']},
+
+ {id:'particles', subject:'chemistry', status:'next',
+  title:'The Particle Model', sub:'States of matter, changes of state',
+  blurb:'Solids, liquids, gases and the diagrams examiners actually want. Includes the melting-and-boiling graph that has a flat bit nobody can explain.'},
+
+ {id:'acids', subject:'chemistry', status:'next',
+  title:'Acids and Alkalis', sub:'pH, indicators, neutralisation',
+  blurb:'The pH scale, what indicators really tell you, and writing neutralisation in words without losing marks on the salt name.'},
+
+ {id:'speed', subject:'physics', status:'next',
+  title:'Speed, Distance, Time', sub:'Motion and travel graphs',
+  blurb:'The triangle, the units trap, and reading a distance-time graph well enough to describe a journey in sentences.'},
+
+ {id:'ratio', subject:'maths', status:'planned',
+  title:'Ratio and Proportion', sub:'Sharing, scaling, recipes'},
+ {id:'algebra', subject:'maths', status:'planned',
+  title:'Letters as Numbers', sub:'Expressions and solving equations'},
+ {id:'geometry', subject:'maths', status:'planned',
+  title:'Angles and Polygons', sub:'Angle rules and reasons'},
+ {id:'averages', subject:'maths', status:'planned',
+  title:'Mean, Median, Mode', sub:'Data handling and misleading graphs'},
+ {id:'density', subject:'physics', status:'planned',
+  title:'Density and Pressure', sub:'Why steel ships float'},
+ {id:'energy', subject:'physics', status:'planned',
+  title:'Energy Stores and Transfers', sub:'Sankey diagrams and efficiency'},
+ {id:'cells', subject:'biology', status:'planned',
+  title:'Cells and Organisation', sub:'From organelle to organ system'},
+ {id:'digestion', subject:'biology', status:'planned',
+  title:'The Digestive System', sub:'Enzymes and absorption'},
+ {id:'photosynthesis', subject:'biology', status:'planned',
+  title:'Photosynthesis', sub:'The reaction, the leaf, the experiments'},
+ {id:'separation', subject:'chemistry', status:'planned',
+  title:'Mixtures and Separation', sub:'Filtration, distillation, chromatography'},
+ {id:'reactions', subject:'chemistry', status:'planned',
+  title:'Chemical Reactions', sub:'Word equations and conservation of mass'}
+];
+
+const SHEETS = [
+ {title:'Squares, cubes and roots', subject:'maths',
+  note:'No-calculator drill sheet with ruled working space. Handed out in class.', file:null},
+ {title:'Moments — mixed calculation set', subject:'physics',
+  note:'Twelve balance problems, answers on the back page.', file:null},
+ {title:'Percentage change — multiplier method', subject:'maths',
+  note:'Increase, decrease and reverse percentage in one page.', file:null}
+];
+
+const SUBJECTS = {
+  maths:{label:'Maths', colour:'var(--maths)', tint:'var(--maths-t)'},
+  physics:{label:'Physics', colour:'var(--physics)', tint:'var(--physics-t)'},
+  biology:{label:'Biology', colour:'var(--biology)', tint:'var(--biology-t)'},
+  chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'}
+};
+
+const BANDS = [
+ {min:85, name:'Top band',   note:'the questions stop being about luck'},
+ {min:70, name:'Strong',     note:'first-pass target on every page'},
+ {min:60, name:'Solid',      note:'10 out of 15 lives here'},
+ {min:40, name:'Building',   note:'the method is there, the details are not'},
+ {min:0,  name:'Cold start', note:'nothing banked on this topic yet'}
+];
+
+/* ---------------- puzzles ---------------- */
+const PUZZLES = [
+ {subject:'maths',
+  q:'A jacket costs 2000 rupees. The shop raises the price by 20% for the new season, then two weeks later takes 20% off in the sale. Is it back to 2000 rupees? If not, what is it — and why?',
+  nudge:'Write each change as a multiplier instead of an amount. What are the two multipliers, and what happens when you multiply them together?',
+  ans:'No — it is 1920 rupees. Up 20% is ×1.2, down 20% is ×0.8, and 1.2 × 0.8 = 0.96, so the jacket ends up at 96% of where it started. The second 20% is taken off a bigger number than the first 20% was added to, so the two never cancel. This is the single most common percentage trap in the paper.'},
+
+ {subject:'physics',
+  q:'A metre ruler is pivoted at the 40 cm mark. A 2 N weight hangs at the 10 cm mark. Where must you hang a 3 N weight to balance the ruler? (Ignore the weight of the ruler itself.)',
+  nudge:'Distances in the moment formula are measured from the pivot, not from the end of the ruler. How far is the 2 N weight from the 40 cm mark?',
+  ans:'At the 60 cm mark. The 2 N weight is 0.30 m from the pivot, so its anticlockwise moment is 2 × 0.30 = 0.6 N m. For balance the 3 N weight needs 3 × d = 0.6, so d = 0.2 m — that is 20 cm on the other side of the pivot, at the 60 cm mark. Most lost marks here come from using 10 cm and 40 cm as the distances instead of subtracting.'},
+
+ {subject:'biology',
+  q:'Air holds roughly twenty times more oxygen than the same volume of water. So why does a fish taken out of water suffocate?',
+  nudge:'The problem is not how much oxygen is available. It is what happens to the shape of the gills once the water is gone.',
+  ans:'Water holds the gill filaments apart. In air they stick together and collapse into a clump, so the huge surface area the fish depends on almost disappears, and the gas exchange surface also dries out — oxygen can only diffuse across a moist membrane. Plenty of oxygen, no working surface to absorb it through. The same three ideas — large surface area, thin moist surface, good blood supply — are what every gas exchange answer is built from.'},
+
+ {subject:'chemistry',
+  q:'Steel wool is sealed inside a flask and weighed. It is left for a week to rust, then weighed again: the mass is unchanged. The flask is then opened, and weighed once more — now the mass has gone up. Explain both results.',
+  nudge:'Rusting is iron reacting with oxygen. While the flask is sealed, where does that oxygen have to come from?',
+  ans:'Sealed, nothing can get in or out, so the total mass cannot change — the oxygen that joined the iron simply came from the air already inside the flask. Mass is conserved; it just moved from the air to the solid. Opening the flask lets fresh air rush in to replace the oxygen that was used up, and that extra air has mass, so the reading rises. The flask is the classic "closed system" demonstration of conservation of mass.'},
+
+ {subject:'maths',
+  q:'The mean of five numbers is 12. One of the numbers is removed, and the mean of the four that remain is 13. Which number was removed?',
+  nudge:'A mean is a total shared out. Work out both totals first, and the missing number is the gap between them.',
+  ans:'8. Five numbers with mean 12 have a total of 5 × 12 = 60. Four numbers with mean 13 have a total of 4 × 13 = 52. The number removed is 60 − 52 = 8. Notice that removing a number smaller than the mean pulls the mean up — worth checking your answer against that.'},
+
+ {subject:'physics',
+  q:'A boat is floating in a small pond, loaded with heavy rocks. The rocks are thrown overboard and sink to the bottom. Does the water level in the pond rise, fall, or stay the same?',
+  nudge:'A floating object pushes aside its own weight in water. A sunken object pushes aside only its own volume.',
+  ans:'It falls. While the rocks are in the boat, they float — so they displace their own weight of water, which for dense rock is a much larger volume than the rocks themselves. On the bottom they displace only their own volume. Less water pushed aside means the level drops. This is the whole floating-and-sinking idea in one question, and almost everyone guesses "rise" first.'}
+];
+
+/* ---------------- load ---------------- */
+async function load(){
+  try{ const r = await window.storage.get(PROG_KEY); if(r&&r.value) PROG = JSON.parse(r.value); }catch(e){}
+  try{ const r = await window.storage.get(HUB_KEY);  if(r&&r.value) S = Object.assign(S, JSON.parse(r.value)); }catch(e){}
+}
+let saveTimer=null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{ try{ await window.storage.set(HUB_KEY, JSON.stringify(S)); }catch(e){} }, 300);
+}
+
+/* ---------------- topic cards ---------------- */
+function readyTopics(){ return TOPICS.filter(t=>t.status==='ready'); }
+
+function renderFilters(){
+  const box = document.getElementById('filters');
+  const list = [['all','Everything']].concat(Object.keys(SUBJECTS).map(k=>[k,SUBJECTS[k].label]));
+  box.innerHTML = '';
+  list.forEach(([key,label])=>{
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.setAttribute('aria-pressed', String(S.filter===key));
+    b.innerHTML = key==='all' ? label
+      : '<span class="dot" style="background:'+SUBJECTS[key].colour+'"></span>'+label;
+    b.addEventListener('click', ()=>{ S.filter=key; save(); renderFilters(); renderCards(); });
+    box.appendChild(b);
+  });
+}
+
+function renderCards(){
+  const box = document.getElementById('cards');
+  box.innerHTML = '';
+  const order = {ready:0, next:1, planned:2};
+  const list = TOPICS
+    .filter(t => S.filter==='all' || t.subject===S.filter)
+    .slice().sort((a,b)=> order[a.status]-order[b.status]);
+
+  list.forEach(t=>{
+    const sub = SUBJECTS[t.subject];
+    const card = document.createElement('div');
+    card.className = 'card' + (t.status==='ready' ? '' : ' soon');
+    card.style.borderTopColor = t.status==='ready' ? sub.colour : 'var(--line)';
+
+    const statusLabel = t.status==='ready' ? 'Ready' : (t.status==='next' ? 'Next up' : 'Planned');
+    let html = '<div class="tag"><span style="color:'+sub.colour+'">'+sub.label+'</span>'
+             + '<span class="status">'+statusLabel+'</span></div>'
+             + '<h3>'+t.title+'</h3><p class="sub">'+t.sub+'</p>';
+    if(t.blurb) html += '<p class="blurb">'+t.blurb+'</p>';
+
+    if(t.status==='ready'){
+      if(t.meta) html += '<div class="meta">'+t.meta.map(m=>'<span>'+m+'</span>').join('')+'</div>';
+      const p = PROG[t.id];
+      const marks = p ? (p.marks||0) : 0;
+      const total = p ? (p.marksTotal||30) : 30;
+      const pct = Math.max(0, Math.min(100, Math.round(marks/total*100)));
+      html += '<div class="prog"><div class="pl"><span>'
+            + (p ? marks+' / '+total+' marks' : 'not opened yet')
+            + '</span><span>'+(p ? (p.lessons||0)+'/'+(p.lessonsTotal||6)+' lessons' : '')+'</span></div>'
+            + '<div class="bar"><i style="width:'+pct+'%;background:'+sub.colour+'"></i></div></div>'
+            + '<a class="open" href="'+t.file+'" style="background:'+sub.colour+'">'
+            + (marks>0 ? 'Carry on' : 'Open the page')+'</a>';
+    } else {
+      html += '<div class="locked">'
+            + (t.status==='next' ? 'Being built next — ask Bala to jump the queue.'
+                                 : 'On the list. Say the word and it moves up.')
+            + '</div>';
+    }
+    card.innerHTML = html;
+    box.appendChild(card);
+  });
+
+  if(!list.length){
+    box.innerHTML = '<div class="card soon"><h3>Nothing here yet</h3>'
+      + '<p class="blurb">No topics for that subject so far. Pick another filter, or ask for this one to be built first.</p></div>';
+  }
+}
+
+/* ---------------- sheets ---------------- */
+function renderSheets(){
+  const box = document.getElementById('sheetlist');
+  box.innerHTML = '';
+  SHEETS.forEach(sh=>{
+    const sub = SUBJECTS[sh.subject];
+    const row = document.createElement('div');
+    row.className = 'sheet';
+    row.style.borderLeftColor = sub.colour;
+    row.innerHTML = '<div class="st"><h4>'+sh.title+'</h4><p>'+sh.note+'</p></div>'
+      + (sh.file ? '<a class="badge" href="'+sh.file+'" download>Download PDF</a>'
+                 : '<span class="badge">In class · paper only</span>');
+    box.appendChild(row);
+  });
+}
+
+/* ---------------- the climb ---------------- */
+function totals(){
+  let marks=0, total=0, opened=0, lessons=0;
+  readyTopics().forEach(t=>{
+    const p = PROG[t.id];
+    if(!p) return;
+    opened++;
+    marks  += (p.marks||0);
+    total  += (p.marksTotal||30);
+    lessons+= (p.lessons||0);
+  });
+  return {marks, total, opened, lessons};
+}
+
+function renderClimb(){
+  const T = totals();
+  const pct = T.total ? Math.round(T.marks/T.total*100) : null;
+  const box = document.getElementById('rungs');
+  box.innerHTML = '';
+
+  let hereIdx = -1;
+  if(pct !== null) hereIdx = BANDS.findIndex(b => pct >= b.min);
+
+  BANDS.forEach((b,i)=>{
+    const r = document.createElement('div');
+    r.className = 'rung' + (i===hereIdx ? ' here' : '') + (hereIdx>-1 && i>hereIdx ? ' past' : '');
+    r.innerHTML = '<div class="alt">'+b.min+'<i>%</i></div>'
+      + '<div class="band"><b>'+b.name+'</b><span>'+b.note+'</span>'
+      + (i===hereIdx ? '<span class="youare" style="margin-left:auto">you are here</span>' : '')
+      + '</div>';
+    box.appendChild(r);
+  });
+
+  const foot = document.getElementById('climbfoot');
+  if(pct === null){
+    foot.textContent = 'Open a topic and the marker starts climbing.';
+  } else {
+    const band = BANDS[hereIdx];
+    const up = BANDS[hereIdx-1];
+    let msg = '<b>'+T.marks+' of '+T.total+' marks</b> banked across '+T.opened+' topic'+(T.opened===1?'':'s')+' — that is '+pct+'%, sitting in <b>'+band.name+'</b>. ';
+    if(up){
+      const need = Math.ceil(up.min/100*T.total) - T.marks;
+      msg += need>0 ? '<b>'+need+' more mark'+(need===1?'':'s')+'</b> on work already open moves you up to '+up.name+'.'
+                    : 'Next rung is within reach on the marks already open.';
+    } else {
+      msg += 'There is no rung above this one. Keep the second passes honest.';
+    }
+    foot.innerHTML = msg;
+  }
+
+  /* stats */
+  const small = 'font-size:15px;color:var(--ink-soft)';
+  const ready = readyTopics().length;
+  const solved = Object.values(S.puzzles||{}).filter(Boolean).length;
+  document.getElementById('s-marks').innerHTML = T.marks + '<span style="'+small+'">/'+(T.total||ready*30)+'</span>';
+  document.getElementById('s-topics').innerHTML = T.opened + '<span style="'+small+'">/'+ready+'</span>';
+  document.getElementById('s-puzzles').textContent = solved;
+  document.getElementById('bar-marks').style.width  = ((T.total? T.marks/T.total : 0)*100)+'%';
+  document.getElementById('bar-topics').style.width = (T.opened/ready*100)+'%';
+  document.getElementById('bar-puzzles').style.width= (solved/PUZZLES.length*100)+'%';
+
+  /* resume line */
+  let lastId=null, lastSeen=0;
+  Object.keys(PROG).forEach(id=>{ if((PROG[id].seen||0) > lastSeen){ lastSeen=PROG[id].seen; lastId=id; } });
+  const t = lastId ? TOPICS.find(x=>x.id===lastId) : null;
+  if(t && t.file){
+    document.getElementById('resume').innerHTML =
+      'Last time you were on <a href="'+t.file+'">'+t.title+'</a>. '
+      + 'Each finished page carries six lessons, an interactive tool, six videos with written tasks, and 15 questions worth 30 marks.';
+  }
+}
+
+/* ---------------- puzzle ---------------- */
+function weekIndex(){
+  const week = Math.floor(Date.now()/(1000*60*60*24*7));
+  return week % PUZZLES.length;
+}
+let pIdx = 0;
+
+function renderPuzzle(){
+  const p = PUZZLES[pIdx];
+  const sub = SUBJECTS[p.subject];
+  const who = document.getElementById('p-who');
+  who.textContent = sub.label;
+  who.style.background = sub.tint;
+  who.style.color = sub.colour;
+  document.getElementById('p-week').textContent = 'Puzzle '+(pIdx+1)+' of '+PUZZLES.length;
+  document.getElementById('p-q').textContent = p.q;
+  document.getElementById('p-nudgebox').textContent = p.nudge;
+  document.getElementById('p-ansbox').innerHTML = '<b>Answer</b>'+p.ans;
+  document.getElementById('p-nudgebox').classList.remove('on');
+  document.getElementById('p-ansbox').classList.remove('on');
+  const solved = Object.values(S.puzzles||{}).filter(Boolean).length;
+  document.getElementById('p-cnt').textContent = solved+' cracked';
+  document.querySelectorAll('[data-mark]').forEach(b=>{
+    const v = b.dataset.mark==='1';
+    const rec = S.puzzles ? S.puzzles[pIdx] : undefined;
+    b.classList.toggle('sel', rec!==undefined && rec===v);
+  });
+}
+
+document.getElementById('p-nudge').addEventListener('click', ()=>{
+  document.getElementById('p-nudgebox').classList.add('on');
+});
+document.getElementById('p-ans').addEventListener('click', ()=>{
+  document.getElementById('p-ansbox').classList.add('on');
+});
+document.getElementById('p-next').addEventListener('click', ()=>{
+  pIdx = (pIdx+1) % PUZZLES.length;
+  S.pIdx = pIdx; save(); renderPuzzle();
+});
+document.querySelectorAll('[data-mark]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    S.puzzles = S.puzzles || {};
+    S.puzzles[pIdx] = b.dataset.mark==='1';
+    save(); renderPuzzle(); renderClimb();
+  });
+});
+
+/* ---------------- reset ---------------- */
+document.getElementById('reset').addEventListener('click', async ()=>{
+  if(!confirm('Clear the hub dashboard and puzzle record?\n\nAnswers inside each topic page are kept — reset those on the page itself.')) return;
+  S = { puzzles:{}, filter:'all', pIdx:null };
+  try{ await window.storage.delete(HUB_KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- boot ---------------- */
+(async function(){
+  await load();
+  pIdx = (typeof S.pIdx === 'number') ? S.pIdx : weekIndex();
+  renderFilters();
+  renderCards();
+  renderSheets();
+  renderClimb();
+  renderPuzzle();
+})();
+
+/* refresh the dashboard when coming back from a topic page */
+document.addEventListener('visibilitychange', async ()=>{
+  if(document.hidden) return;
+  try{ const r = await window.storage.get(PROG_KEY); if(r&&r.value) PROG = JSON.parse(r.value); }catch(e){}
+  renderCards(); renderClimb();
+});
+</script>
+</body>
+</html>

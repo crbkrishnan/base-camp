@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Number, Three Disguises — Grade 7 IGCSE Maths</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1B1726;
+  --ink-soft:#5A5470;
+  --paper:#ECE9F1;
+  --card:#FFFFFF;
+  --line:#D5CFE0;
+  --line-soft:#E7E2EE;
+  --fr:#6B3FA0;          /* fractions — always violet */
+  --fr-tint:#F0EAF7;
+  --de:#0E6E75;          /* decimals — always teal */
+  --de-tint:#E3F1F2;
+  --pc:#B4560B;          /* percentages — always amber */
+  --pc-tint:#FBEFE3;
+  --steel:#9A93AB;
+  --steel-dark:#6C6580;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#98241B;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--fr)}
+:focus-visible{outline:3px solid var(--fr);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(34px,7.2vw,62px);font-weight:800;margin:12px 0 6px}
+.mast h1 i{font-style:normal;color:var(--fr)}
+.mast h1 em{font-style:normal;color:var(--de)}
+.mast h1 b{font-weight:800;color:var(--pc)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--fr);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(236,233,241,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--fr);color:var(--fr)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--pc);min-width:150px}
+input[type=number]{font-family:var(--mono);font-size:15px;width:110px;padding:7px 9px;border:1px solid var(--line);
+  border-radius:9px;background:var(--paper);color:var(--ink)}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn.on{background:var(--fr);border-color:var(--fr);color:#fff}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line-soft)}
+.rows.two{grid-template-columns:1fr 1fr}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--mono);font-weight:700;font-size:19px;margin-top:3px}
+.cell .sub{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+.cell.f .lab{color:var(--fr)} .cell.f .val{color:var(--fr)}
+.cell.d .lab{color:var(--de)} .cell.d .val{color:var(--de)}
+.cell.p .lab{color:var(--pc)} .cell.p .val{color:var(--pc)}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.pill.go{background:var(--fr-tint);color:var(--fr)}
+.pill.up{background:var(--pc-tint);color:var(--pc)}
+.pill.down{background:var(--de-tint);color:var(--de)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--fr-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+
+/* ---------- hundred grid ---------- */
+#gridWrap{padding:16px}
+.hgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;max-width:400px;margin:0 auto;touch-action:none}
+.hcell{aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line);border-radius:3px;cursor:pointer}
+.hcell.on{background:var(--fr);border-color:var(--fr)}
+.gtools{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--fr);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--fr-tint)}
+.vid h3 a:hover{border-bottom-color:var(--fr)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--pc);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--fr)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--de);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--pc);background:var(--pc-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.frtxt{color:var(--fr);font-weight:700}
+.detxt{color:var(--de);font-weight:700}
+.pctxt{color:var(--pc);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--pc-tint);color:var(--pc)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--de-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--pc)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows,.rows.two{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Mathematics · Grade 7 · Number</div>
+  <h1>One Number,<br>Three <i>Dis</i><em>gui</em><b>ses</b></h1>
+  <p class="lede">A fraction, a decimal and a percentage are not three topics. They are three ways of writing the same thing — and almost every mark in this unit comes from choosing the disguise that makes the arithmetic easiest. Learn to switch, and the hard questions stop being hard.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> You've been landing around <span class="num">10 out of 15</span>. This page is out of <span class="num">30</span>, so the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. No calculator anywhere on this page — that is deliberate, because the exam questions you drop marks on are the ones where a calculator would have saved you and you didn't have it.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#grid">Converter grid</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#machine">Multiplier machine</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
+</nav>
+
+<!-- ============ HERO 1: THE HUNDRED GRID ============ -->
+<section id="grid">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The converter grid</h2>
+      <p>Click squares, or press and drag across several. The three readouts underneath are always describing the same shaded amount — watch all three change together, and notice which one you find easiest to read.</p>
+    </div>
+
+    <div id="gridWrap">
+      <div class="hgrid" id="hgrid" role="group" aria-label="A ten by ten grid of squares you can shade"></div>
+      <div class="gtools">
+        <button class="btn ghost small" type="button" data-set="0">Clear</button>
+        <button class="btn ghost small" type="button" data-set="25">25</button>
+        <button class="btn ghost small" type="button" data-set="50">50</button>
+        <button class="btn ghost small" type="button" data-set="75">75</button>
+        <button class="btn ghost small" type="button" data-set="100">100</button>
+      </div>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">As a fraction</div><div class="val" id="g-f">0</div><div class="sub" id="g-fw">nothing shaded yet</div></div>
+      <div class="cell d"><div class="lab">As a decimal</div><div class="val" id="g-d">0</div><div class="sub" id="g-dw">hundredths place</div></div>
+      <div class="cell p"><div class="lab">As a percentage</div><div class="val" id="g-p">0%</div><div class="sub" id="g-pw">per cent = per hundred</div></div>
+      <div class="phasebar">
+        <span class="pill bal" id="g-pill">Same number, three ways</span>
+        <span id="g-note">Shade some squares and read all three lines at once.</span>
+        <span class="push"><button class="btn ghost" type="button" id="gridPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="gridQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~45 min total</span></div>
+  <p class="snote">Each video comes with one small written job. Do the job, or the video was a screensaver with maths on it. Pause and write as you go — don't tell yourself you'll rewind at the end, because you won't.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~35 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: MULTIPLIER MACHINE ============ -->
+<section id="machine">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The multiplier machine</h2>
+      <p>Every percentage increase or decrease is one multiplication. Set the change, and watch the multiplier that does it. Then flip the switch: given the <em>answer</em>, the machine works backwards to the original — that is the whole of reverse percentages, and it is where Q14 lives.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 700 220" role="img" aria-label="Two bars comparing an original amount with the amount after a percentage change">
+      <text x="26" y="42" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)" id="m-lab1">ORIGINAL</text>
+      <rect x="26" y="52" width="500" height="38" rx="6" fill="var(--steel)" opacity="0.35" id="m-bar1"/>
+      <text x="36" y="77" font-family="var(--mono)" font-size="16" font-weight="700" fill="var(--ink)" id="m-txt1">100</text>
+
+      <path id="m-arrow" d="M340 104 L340 132" stroke="var(--pc)" stroke-width="3" fill="none"/>
+      <polygon id="m-arrowhead" points="340,140 333,124 347,124" fill="var(--pc)"/>
+      <text x="356" y="126" font-family="var(--mono)" font-size="14" font-weight="700" fill="var(--pc)" id="m-mult">× 1.00</text>
+
+      <text x="26" y="164" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)" id="m-lab2">AFTER THE CHANGE</text>
+      <rect x="26" y="174" width="500" height="38" rx="6" fill="var(--pc)" opacity="0.30" id="m-bar2"/>
+      <rect x="26" y="174" width="500" height="38" rx="6" fill="none" stroke="var(--pc)" stroke-width="2" id="m-bar2o"/>
+      <text x="36" y="199" font-family="var(--mono)" font-size="16" font-weight="700" fill="var(--ink)" id="m-txt2">100</text>
+    </svg>
+
+    <div class="ctrl">
+      <label for="mamt" id="m-amtlab">Starting amount</label>
+      <input id="mamt" type="number" value="100" min="1" step="1" aria-label="Amount to change">
+      <button class="btn ghost small" type="button" id="mflip">Switch to: find the original</button>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="mpct">Change</label>
+      <input id="mpct" type="range" min="-90" max="90" value="0" step="1" aria-label="Percentage change, negative for a decrease">
+      <span class="num" id="m-pctval" style="min-width:64px;text-align:right">0%</span>
+    </div>
+
+    <div class="rows two">
+      <div class="cell p"><div class="lab">The multiplier</div><div class="val" id="m-mrow">1.00</div><div class="sub" id="m-msub">no change at all</div></div>
+      <div class="cell d"><div class="lab">The calculation</div><div class="val" id="m-calc">100 × 1.00 = 100</div><div class="sub" id="m-csub">one multiplication, not two steps</div></div>
+      <div class="phasebar">
+        <span class="pill go" id="m-pill">No change</span>
+        <span id="m-note">Drag the change slider. A rise gives a multiplier above 1; a fall gives one below 1.</span>
+        <span class="push"><button class="btn ghost" type="button" id="machinePuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="machineQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No calculator, no notes. These are the five marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Adding the tops and adding the bottoms</h4><p><span class="num">1/2 + 1/3</span> is not <span class="num">2/5</span>. Two halves of a pizza is a whole pizza, and 1/2 + 1/3 must be bigger than 1/2 — but 2/5 is smaller than 1/2, so the answer is wrong before you check anything. Common denominator first, every time.</p></div>
+    <div class="trap"><h4>Comparing decimals by counting digits</h4><p><span class="num">0.9</span> is bigger than <span class="num">0.15</span>, even though 15 looks bigger than 9. Line up the decimal points and pad with zeros: 0.90 against 0.15. Longer is not larger.</p></div>
+    <div class="trap"><h4>Percentage change measured against the wrong number</h4><p>Percentage change is always <span class="num">(change ÷ ORIGINAL) × 100</span>. Not the new value, not the bigger one — the value you started from. Swap them and you get a plausible-looking wrong answer, which is the worst kind.</p></div>
+    <div class="trap"><h4>Adding a percentage back on to undo it</h4><p>Take 20% off 100 and you get 80. Put 20% back on 80 and you get 96, not 100. To undo a percentage change you <strong>divide</strong> by the multiplier — you never subtract the same percentage.</p></div>
+    <div class="trap"><h4>Losing the unit or the sign</h4><p>"Decreased by 16%" and "16%" are not the same answer. If the question asks for a percentage change, say whether it is an increase or a decrease. That word is frequently the second mark.</p></div>
+  </div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">Non-calculator · 30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Medium ones first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <div class="paper"><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">Conversions in all six directions, fraction arithmetic, straightforward percentage of an amount, two short word problems.</p></div>
+    <div class="paper"><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">Same level, different questions. Ordering, mixed numbers, percentage increase and decrease, simple percentage change.</p></div>
+    <div class="paper"><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">Reverse percentages, successive changes, recurring decimals, fraction of a fraction, and a "which deal is better" comparison.</p></div>
+    <div class="paper"><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">Multi-step problems where the method is hidden: profit and loss, mixed fractions of remainders, and two questions that punish the traps above.</p></div>
+  </div>
+</section>
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'fdp-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"What Are Percentages?", ch:"Math Antics", url:"https://www.youtube.com/watch?v=JeVSmq1Nrpw",
+  why:"Starts from why the idea exists at all: a percentage is a fraction whose denominator has been forced to be 100 so that any two of them can be compared instantly.",
+  task:"Write one sentence finishing this: \"Percentages are useful because…\" Then write down three percentages you've seen in real life this week."},
+
+ {t:"Percents and Equivalent Fractions", ch:"Math Antics", url:"https://www.youtube.com/watch?v=kmVfZ9o-2gg",
+  why:"How to get from any fraction to a percentage, including the ones where the denominator refuses to become 100 neatly. This is the video for Q2 and Q6.",
+  task:"Build your own conversion table for 1/2, 1/4, 3/4, 1/5, 2/5, 1/8, 3/8, 1/3 and 2/3. Learn it. These nine come up more than everything else combined."},
+
+ {t:"Fractions, Decimals and Percentages", ch:"Corbettmaths", url:"https://www.youtube.com/watch?v=Iq-6CjlEUW4",
+  why:"Worked examples going in every direction between the three forms. Short, dense, exam-shaped.",
+  task:"Also watch the key equivalents video: https://www.youtube.com/watch?v=7VAFBHatBJY — then close both and write the nine conversions from memory. Check, and mark only the ones you got right."},
+
+ {t:"Adding and Subtracting Fractions", ch:"Math Antics", url:"https://www.youtube.com/watch?v=5juto2ze8Lg",
+  why:"Common denominators done properly, including why you multiply the numerator by the same thing you multiplied the denominator by.",
+  task:"Do 3/4 + 2/5 and 5/6 − 3/8 on paper while the video is paused, then restart and check your method against his. Q8 is exactly this."},
+
+ {t:"All Things Decimal", ch:"Math Antics", url:"https://www.youtube.com/watch?v=kwh4SD1ToFc",
+  why:"Place value, ordering, and the four operations with decimals — including the two shifts that make dividing by a decimal easy.",
+  task:"Write down why 0.9 > 0.15. If your explanation uses the word \"hundredths\", you understand it. If it uses the word \"obviously\", watch the first two minutes again."},
+
+ {t:"Increasing and Decreasing by a Percentage", ch:"Corbettmaths", url:"https://www.youtube.com/watch?v=tUtgC7ZrsRc",
+  why:"The multiplier method, which turns a two-step question into a one-step one. Everything from Q3 onwards leans on this.",
+  task:"Then watch reverse percentages: https://www.youtube.com/watch?v=qg7pYqeFRig — and write down, in your own words, the one sentence that explains why you divide instead of multiplying."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"The same number wearing a different coat", len:"5 min",
+  body:`<p>Half a cake. <span class="frtxt">1/2</span> of the cake. <span class="detxt">0.5</span> of the cake. <span class="pctxt">50%</span> of the cake. Four sentences, one amount of cake.</p>
+        <p>The word <strong>per cent</strong> literally means <em>per hundred</em>. So a percentage is just a fraction that has been forced to have 100 on the bottom:</p>
+        <div class="eqline"><span class="pctxt">37%</span> = <span class="frtxt">37/100</span> = <span class="detxt">0.37</span></div>
+        <p>And a decimal is a fraction too — the digits after the point are tenths, hundredths, thousandths. That is why 0.37 and 37/100 are the same object with different handwriting.</p>
+        <p>The three routes you actually need:</p>
+        <ul>
+          <li><strong>Fraction → decimal:</strong> divide the top by the bottom. <span class="num">3 ÷ 8 = 0.375</span>.</li>
+          <li><strong>Decimal → percentage:</strong> multiply by 100 (move the point two places right). <span class="num">0.375 → 37.5%</span>.</li>
+          <li><strong>Percentage → fraction:</strong> put it over 100 and simplify. <span class="num">37.5% = 375/1000 = 3/8</span>.</li>
+        </ul>
+        <p>Nine equivalents are worth memorising outright, because they turn up constantly and cost you nothing to recall:</p>
+        <table class="data">
+          <tr><th>Fraction</th><td>1/2</td><td>1/4</td><td>3/4</td><td>1/5</td><td>2/5</td><td>1/8</td><td>3/8</td><td>1/3</td><td>2/3</td></tr>
+          <tr><th>Decimal</th><td>0.5</td><td>0.25</td><td>0.75</td><td>0.2</td><td>0.4</td><td>0.125</td><td>0.375</td><td>0.333…</td><td>0.666…</td></tr>
+          <tr><th>Percent</th><td>50%</td><td>25%</td><td>75%</td><td>20%</td><td>40%</td><td>12.5%</td><td>37.5%</td><td>33.3%</td><td>66.7%</td></tr>
+        </table>`,
+  demo:`<strong>Do this:</strong> cover the bottom two rows of that table with your hand and write them out. Then cover the top row and go the other way. Two minutes a day for a week and these become free marks for the rest of your school life.`,
+  cliff:`If a percentage is always out of 100, how do you compare 5/8 with 63% without a calculator? Lesson 2.`},
+
+ {t:"Making fractions comparable", len:"6 min",
+  body:`<p>You cannot compare, add or subtract fractions until the pieces are the same size. Same size means <strong>same denominator</strong>.</p>
+        <p><strong>Equivalent fractions.</strong> Multiply top and bottom by the same number and you have not changed the value, only the handwriting:</p>
+        <div class="eqline">3/4 = 6/8 = 9/12 = 75/100 &nbsp;&nbsp;(×2, ×3, ×25)</div>
+        <p><strong>Simplifying</strong> is the same move in reverse: divide top and bottom by their highest common factor. <span class="num">45/100</span>: both divide by 5, giving <span class="num">9/20</span>. Nothing divides 9 and 20 together, so you are done.</p>
+        <p><strong>Comparing.</strong> Two reliable methods, and you should own both:</p>
+        <ol>
+          <li><em>Common denominator.</em> To compare 5/8 and 3/5, use 40: 25/40 against 24/40. So 5/8 is bigger.</li>
+          <li><em>Turn everything into decimals.</em> 5/8 = 0.625, 3/5 = 0.6. Same conclusion, less writing.</li>
+        </ol>
+        <p>For an ordering question mixing all three forms, decimals win every time. Convert the lot to decimals, order them, then write your final answer <strong>in the original forms the question used</strong> — students lose the last mark by answering in decimals when the question gave fractions.</p>`,
+  demo:`<strong>Do this:</strong> put 0.62, 5/8, 63% and 3/5 in order, smallest first, on paper. Then check: 0.6, 0.62, 0.625, 0.63. Did you write your final answer as 3/5, 0.62, 5/8, 63%?`,
+  cliff:`Common denominators let you add. But what happens to the denominators when you multiply — and why is division the strangest rule in the whole topic?`},
+
+ {t:"The four operations, without the fear", len:"7 min",
+  body:`<p><strong>Adding and subtracting.</strong> Common denominator, then add the numerators only. The denominator names the piece size; it does not get added.</p>
+        <div class="eqline">3/4 + 2/5 = 15/20 + 8/20 = 23/20 = 1 3/20</div>
+        <p><strong>Multiplying.</strong> Straight across, top times top and bottom times bottom. No common denominator needed — this is the easy one, and students who fear fractions often make it harder than it is.</p>
+        <div class="eqline">3/4 × 2/5 = 6/20 = 3/10</div>
+        <p>The word <strong>"of" means multiply</strong>. Two-thirds <em>of</em> 240 is 2/3 × 240 = 160. This one phrase unlocks half the word problems in the topic.</p>
+        <p><strong>Dividing.</strong> Flip the second fraction and multiply. Why? Because dividing by 1/2 asks "how many halves fit in?" — and there are always more of them, so the answer grows.</p>
+        <div class="eqline">2 1/4 ÷ 3/8 = 9/4 × 8/3 = 72/12 = 6</div>
+        <p><strong>Mixed numbers</strong> get converted to improper fractions <em>before</em> you do anything. <span class="num">2 1/4</span> is <span class="num">(2×4+1)/4 = 9/4</span>. Convert back at the end if the question started in mixed numbers.</p>`,
+  demo:`<strong>Do this:</strong> work out 5/6 − 3/8 and 1 1/2 × 2/3 on paper. Answers: 11/24 and 1. If you got 1 for the second one, notice that multiplying made the number <em>smaller</em> than 1 1/2 — because you took a fraction of it.`,
+  cliff:`Every fraction can be written as a decimal by dividing. But 1/3 never finishes. Which fractions terminate, and which run forever?`},
+
+ {t:"Decimals: place value does all the work", len:"5 min",
+  body:`<p>The digits after the point are <strong>tenths, hundredths, thousandths</strong>. That single fact settles most decimal questions.</p>
+        <p><strong>Ordering.</strong> Line up the points and pad with zeros so every number has the same number of decimal places. 0.9 becomes 0.90, and 0.90 against 0.15 is obvious. Never compare by counting digits.</p>
+        <p><strong>Multiplying and dividing by powers of ten</strong> moves the digits, not the point: ×10 shifts one place left, ÷100 shifts two places right. <span class="num">0.375 × 100 = 37.5</span>.</p>
+        <p><strong>Fraction → decimal</strong> is a division. Short-divide the numerator by the denominator, adding zeros after the point as needed:</p>
+        <div class="eqline">7/8 → 8)7.000 → 0.875</div>
+        <p><strong>Terminating or recurring?</strong> A fraction in simplest form terminates only if its denominator's prime factors are 2s and 5s alone. Denominators 2, 4, 5, 8, 10, 20, 25, 40, 50 terminate. Anything carrying a 3, 7, 9, 11 or 13 recurs: <span class="num">1/3 = 0.333…</span>, <span class="num">1/7 = 0.142857…</span>, <span class="num">1/11 = 0.0909…</span></p>
+        <p>Recurring decimals get a dot over the repeating digit, or dots over the first and last digits of the repeating block.</p>`,
+  demo:`<strong>Do this:</strong> without dividing, predict which of 3/16, 7/20, 5/12 and 9/40 recur. Then check by dividing. (Only 5/12 recurs — 12 has a factor of 3.)`,
+  cliff:`You can now convert anything into anything. Time to actually use it: how do you take 17.5% of a number in your head?`},
+
+ {t:"Percentages without a calculator", len:"6 min",
+  body:`<p>Two methods. Use whichever the numbers prefer.</p>
+        <p><strong>Method 1 — building blocks.</strong> Find the easy percentages and add them:</p>
+        <ul>
+          <li><strong>10%</strong> — divide by 10.</li>
+          <li><strong>1%</strong> — divide by 100.</li>
+          <li><strong>5%</strong> — half of 10%.</li>
+          <li><strong>50%, 25%</strong> — halve, then halve again.</li>
+        </ul>
+        <div class="eqline">17.5% of 240 = 24 <span class="pctxt">(10%)</span> + 12 <span class="pctxt">(5%)</span> + 6 <span class="pctxt">(2.5%)</span> = <b>42</b></div>
+        <p><strong>Method 2 — the multiplier.</strong> Turn the percentage into a decimal and do one multiplication. This is the professional method and you should switch to it as your default:</p>
+        <table class="data">
+          <tr><th>In words</th><th>Multiplier</th></tr>
+          <tr><td>Find 35% of it</td><td>× 0.35</td></tr>
+          <tr><td>Increase by 35%</td><td>× 1.35</td></tr>
+          <tr><td>Decrease by 35%</td><td>× 0.65</td></tr>
+          <tr><td>Increase by 8%</td><td>× 1.08 &nbsp;(not 1.8)</td></tr>
+        </table>
+        <p>Watch that last row. <span class="num">8%</span> is <span class="num">0.08</span>, so the multiplier is <span class="num">1.08</span>. Writing 1.8 turns an 8% pay rise into an 80% one, and the marker will notice.</p>
+        <p><strong>Successive changes multiply.</strong> Up 20% then down 25% is <span class="num">× 1.2 × 0.75 = × 0.9</span> — an overall <strong>10% decrease</strong>. You never add or subtract the percentages.</p>`,
+  demo:`<strong>Do this:</strong> open the multiplier machine above. Set 12% and read the multiplier. Then set −12% and read it again. Write down why the two multipliers do not add up to 2.`,
+  cliff:`A jacket costs 6120 rupees after a 15% discount. What did it cost before? Careful — the answer is not 6120 + 15%.`},
+
+ {t:"Reverse percentages and percentage change", len:"6 min",
+  body:`<p>Two question types that look similar and are not. Read the question twice before choosing.</p>
+        <p><strong>Percentage change</strong> — you know both amounts and want the percentage:</p>
+        <div class="eqline">percentage change = (change ÷ <b>original</b>) × 100</div>
+        <p>The denominator is always the value you started from. A price going 40 → 50 is a 25% increase (10/40); going 50 → 40 is a 20% decrease (10/50). Same 10 rupees, different percentages, because the starting point changed.</p>
+        <p><strong>Reverse percentage</strong> — you know the amount <em>after</em> the change and want what it was before. The multiplier already happened, so you undo it by <strong>dividing</strong>:</p>
+        <div class="eqline">6120 = original × 0.85 &nbsp;→&nbsp; original = 6120 ÷ 0.85 = <b>7200</b></div>
+        <p>The wrong instinct is to add 15% back on to 6120, giving 7038. That is wrong because the 15% was taken off the <em>bigger</em> number, so 15% of the original is more than 15% of the sale price.</p>
+        <p>How to spot a reverse question in one read: the amount you are given is described as being <em>after</em> something happened — "after a 15% discount", "including 18% tax", "this is 20% more than last year". If the given number already contains the change, you divide.</p>`,
+  demo:`<strong>Do this:</strong> check the answer above. If 7200 is right, then 15% of 7200 is 1080, and 7200 − 1080 = 6120. It matches. Always check a reverse percentage by going forwards again — it takes ten seconds and catches every error.`,
+  cliff:`That's the lessons. Now go and lose to Q14 and Q15 — then come back tomorrow and take them apart.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which of these is the <strong>largest</strong>?",
+  o:["0.6","3/5","58%","0.61"], a:3,
+  why:"Convert everything to decimals: 0.6, 0.6, 0.58, 0.61. Notice 3/5 and 0.6 are the same number, so neither can be the largest — 0.61 wins."},
+ {n:2, lvl:"medium", q:"Written as a decimal, <span class='num'>7/8</span> is:",
+  o:["0.78","0.875","0.87","1.142"], a:1,
+  why:"7 ÷ 8 = 0.875. Option A is just the digits rearranged; option D is 8 ÷ 7, which is what you get from dividing the wrong way round."},
+ {n:3, lvl:"medium", q:"To increase an amount by 15%, you multiply it by:",
+  o:["0.15","0.85","1.15","1.5"], a:2,
+  why:"The original is 100% of itself, and you are adding 15% more, so you want 115% = 1.15. Option A finds 15% of it, option B decreases it by 15%, and option D is a 50% increase."},
+ {n:4, lvl:"medium", q:"<span class='num'>0.45</span> written as a fraction in its simplest form is:",
+  o:["45/100","9/20","4/5","1/45"], a:1,
+  why:"0.45 is 45 hundredths, so 45/100. Both parts divide by 5, giving 9/20. Option A is correct but not simplified, which loses the mark in an exam."},
+ {n:5, lvl:"trap", q:"A shirt's price is increased by 10%, and the new price is then reduced by 10%. Compared with the start, the final price is:",
+  o:["the same","1% lower","1% higher","10% lower"], a:1,
+  why:"Multipliers: 1.10 × 0.90 = 0.99, so the final price is 99% of the original — 1% lower. The 10% off was taken from a bigger number than the 10% that was added on. Percentages never simply cancel."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"Write <span class='num'>3/8</span> as (a) a decimal and (b) a percentage.",
+  scheme:["(a) 3 ÷ 8 = <strong>0.375</strong> <span class='num'>[1]</span>",
+          "(b) 0.375 × 100 = <strong>37.5%</strong> <span class='num'>[1]</span>"],
+  tip:"Going fraction → decimal → percentage in that order means you only ever do one division and one shift. Trying to jump straight to a percentage is where students invent 3/8 = 38%."},
+ {n:7, m:2, lvl:"medium", q:"Put these four numbers in order, smallest first: <span class='num'>0.62 &nbsp; 5/8 &nbsp; 63% &nbsp; 3/5</span>. You must show the values you compared.",
+  scheme:["Converted to decimals: 0.62, 0.625, 0.63, 0.6 <span class='num'>[1]</span>",
+          "Order: <strong>3/5, 0.62, 5/8, 63%</strong> <span class='num'>[1]</span>"],
+  tip:"Give the final answer in the forms the question used, not in your working decimals. That is a real mark, lost by students who had the maths completely right."},
+ {n:8, m:2, lvl:"medium", q:"Work out <span class='num'>3/4 + 2/5</span>, giving your answer as a mixed number in its simplest form.",
+  scheme:["Common denominator 20: 15/20 + 8/20 = 23/20 <span class='num'>[1]</span>",
+          "= <strong>1 3/20</strong> <span class='num'>[1]</span>"],
+  tip:"An improper-fraction answer usually gets the first mark only. If the question says 'mixed number', the conversion is the second mark — don't stop one line early."},
+ {n:9, m:2, lvl:"medium", q:"Without a calculator, find <span class='num'>17.5%</span> of <span class='num'>240</span>. Show the building blocks you used.",
+  scheme:["10% = 24, 5% = 12, 2.5% = 6 <span class='num'>[1]</span>",
+          "24 + 12 + 6 = <strong>42</strong> <span class='num'>[1]</span>"],
+  tip:"Halving is your friend: 10%, then half it, then half it again. Any percentage ending in .5 can be built this way in under fifteen seconds."},
+ {n:10, m:2, lvl:"medium", q:"Work out <span class='num'>2 1/4 ÷ 3/8</span>, giving your answer in its simplest form.",
+  scheme:["Convert to improper and flip: 9/4 × 8/3 <span class='num'>[1]</span>",
+          "= 72/12 = <strong>6</strong> <span class='num'>[1]</span>"],
+  tip:"Flip the second fraction, never the first. And convert mixed numbers to improper fractions before you flip anything — flipping 2 1/4 directly is meaningless."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"medium", q:"A shop has 720 students' worth of orders to deliver. <span class='num'>5/12</span> of the students live within walking distance, <span class='num'>30%</span> cycle, and the rest need the bus.<br><br><strong>(a)</strong> How many students walk? <span class='num'>[1]</span><br><strong>(b)</strong> How many cycle? <span class='num'>[1]</span><br><strong>(c)</strong> What fraction of the students need the bus? Give your answer in its simplest form. <span class='num'>[1]</span>",
+  hints:["'Of' means multiply. For (a), 5/12 of 720 — divide by 12 first, then multiply by 5, because the numbers stay small that way.",
+         "For (c), find the number who take the bus first, then write that over 720 and simplify. Don't try to subtract a fraction from a percentage."],
+  sol:["(a) 720 ÷ 12 = 60, so 5/12 of 720 = 5 × 60 = <strong>300 students walk</strong>.",
+       "(b) 10% of 720 = 72, so 30% = <strong>216 students cycle</strong>.",
+       "(c) Bus = 720 − 300 − 216 = 204 students. As a fraction: 204/720. Divide both by 12: <strong>17/60</strong>.",
+       "Sense-check: 17/60 is a bit over a quarter, and the walkers and cyclists together were about three-quarters. That fits."]},
+
+ {n:12, m:3, lvl:"medium", q:"A phone is priced at <span class='num'>18 000</span> rupees. In March the price rises by <span class='num'>12%</span>. In October the shop takes <span class='num'>25%</span> off the March price for a festival sale.<br><br><strong>(a)</strong> Find the March price. <span class='num'>[1]</span><br><strong>(b)</strong> Find the festival price. <span class='num'>[1]</span><br><strong>(c)</strong> Find the overall percentage change from the original 18 000, and state clearly whether it is an increase or a decrease. <span class='num'>[1]</span>",
+  hints:["Multipliers: a 12% rise is × 1.12; a 25% fall is × 0.75. Do them one at a time, and keep the intermediate value.",
+         "For (c), you can either compare the final price with 18 000, or notice that 1.12 × 0.75 is a single multiplier — and read the overall change straight off it."],
+  sol:["(a) 18 000 × 1.12 = <strong>20 160 rupees</strong>.",
+       "(b) 20 160 × 0.75 = <strong>15 120 rupees</strong>.",
+       "(c) Overall multiplier = 1.12 × 0.75 = 0.84, so the final price is 84% of the original — a <strong>16% decrease</strong>.",
+       "Check the long way: change = 18 000 − 15 120 = 2880, and (2880 ÷ 18 000) × 100 = 16%. Same answer, and the word 'decrease' is part of it."]},
+
+ {n:13, m:3, lvl:"medium", q:"A recipe uses <span class='num'>2 3/4</span> cups of flour to serve 6 people.<br><br><strong>(a)</strong> How much flour is needed to serve 15 people? Give your answer as a mixed number. <span class='num'>[2]</span><br><strong>(b)</strong> The only measure in the kitchen is a <span class='num'>1/4</span>-cup scoop. How many full scoops must be used, and how much flour is left over in the last scoop? <span class='num'>[1]</span>",
+  hints:["Find the flour for one person first: 2 3/4 ÷ 6. Convert the mixed number to an improper fraction before dividing.",
+         "For (b), asking how many quarter-cups fit into your answer is a division by 1/4 — which is the same as multiplying by 4."],
+  sol:["(a) 2 3/4 = 11/4 cups for 6 people, so one person needs 11/4 ÷ 6 = 11/24 cups.",
+       "For 15 people: 11/24 × 15 = 165/24 = 55/8 = <strong>6 7/8 cups</strong>.",
+       "(b) 55/8 ÷ 1/4 = 55/8 × 4 = 55/2 = 27.5 scoops. So <strong>27 full scoops plus a half-full one</strong> — the last scoop holds 1/8 of a cup.",
+       "Sense-check: 15 people is 2.5 times 6 people, and 2.5 × 2.75 = 6.875 cups. Matches 6 7/8."]},
+
+ {n:14, m:3, lvl:"hard", q:"After a <span class='num'>15%</span> discount, a bicycle costs <span class='num'>6120</span> rupees.<br><br><strong>(a)</strong> Calculate the price before the discount. <span class='num'>[1]</span><br><strong>(b)</strong> At the till, <span class='num'>18%</span> tax is added to the discounted price. Calculate the amount actually paid. <span class='num'>[1]</span><br><strong>(c)</strong> The customer says: \"I've paid more than the original price, so the discount was worthless.\" Is she right that she paid more, and explain what the 15% discount actually saved her. <span class='num'>[1]</span>",
+  hints:["For (a), the 6120 is what's left after the discount, so it already contains the multiplier. 6120 = original × 0.85. Undo a multiplication by dividing.",
+         "For (b) start from 6120, not from your answer to (a). The tax is charged on what she was billed.",
+         "For (c), work out what the tax would have been on the undiscounted price, and compare the two totals rather than comparing a total with a pre-tax price."]  ,
+  sol:["(a) 6120 ÷ 0.85 = <strong>7200 rupees</strong>. Check by going forwards: 15% of 7200 = 1080, and 7200 − 1080 = 6120. Correct.",
+       "(b) 6120 × 1.18 = <strong>7221.60 rupees</strong>.",
+       "(c) She is right that 7221.60 is more than 7200, but that is not the right comparison — the 7200 had no tax in it. Without the discount she would have paid 7200 × 1.18 = 8496 rupees. The discount saved her 8496 − 7221.60 = <strong>1274.40 rupees</strong>.",
+       "The lesson: only compare two amounts that have had the same things done to them."]},
+
+ {n:15, m:3, lvl:"hard", q:"A jacket has a marked price of <span class='num'>2400</span> rupees. Two shops sell it.<br><br><strong>Shop A:</strong> a straight <span class='num'>30%</span> off.<br><strong>Shop B:</strong> <span class='num'>1/4</span> off the marked price, then a further <span class='num'>10%</span> off that reduced price.<br><br><strong>(a)</strong> Find the price at each shop. <span class='num'>[1]</span><br><strong>(b)</strong> State which is cheaper and by how much. <span class='num'>[1]</span><br><strong>(c)</strong> Shop B advertises \"35% off!\". Show by calculation that this claim is wrong, and give the correct single percentage discount. <span class='num'>[1]</span>",
+  hints:["1/4 off means you keep 3/4, so Shop B's first multiplier is 0.75. A further 10% off means × 0.9 on top of that.",
+         "For (c), multiply Shop B's two multipliers together to get one overall multiplier, then read the discount off it. Resist the urge to add 25% and 10%.",
+         "Remember the trap: successive percentage changes multiply, they never add. That is exactly the mistake Shop B's advertisement is making."],
+  sol:["(a) Shop A: 2400 × 0.70 = <strong>1680 rupees</strong>. Shop B: 2400 × 0.75 = 1800, then 1800 × 0.90 = <strong>1620 rupees</strong>.",
+       "(b) <strong>Shop B is cheaper, by 60 rupees</strong> (1680 − 1620).",
+       "(c) Shop B's overall multiplier is 0.75 × 0.90 = 0.675, so the customer pays 67.5% of the marked price. That is a discount of 100% − 67.5% = <strong>32.5%</strong>, not 35%.",
+       "The advertisement added 25% and 10%. Successive percentage changes multiply instead, and the second 10% was taken off an already-reduced price, so it was worth less than 10% of the original."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const st = e.target.closest('[data-set]');
+  if(st){ setGrid(+st.dataset.set); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*10)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the converter grid ---------------- */
+const hgrid = document.getElementById('hgrid');
+let shaded = new Array(100).fill(false);
+let painting = false, paintTo = true;
+let gridTarget = null;
+
+for(let i=0;i<100;i++){
+  const b = document.createElement('div');
+  b.className='hcell'; b.dataset.i = i;
+  b.setAttribute('role','button');
+  b.setAttribute('aria-label','square '+(i+1));
+  hgrid.appendChild(b);
+}
+function gcd(a,b){ return b===0?a:gcd(b,a%b); }
+function countOn(){ return shaded.filter(Boolean).length; }
+
+function paintCell(el, on){
+  const i = +el.dataset.i;
+  if(shaded[i]===on) return;
+  shaded[i] = on;
+  el.classList.toggle('on', on);
+  renderGrid();
+}
+hgrid.addEventListener('pointerdown', e=>{
+  const c = e.target.closest('.hcell'); if(!c) return;
+  e.preventDefault();
+  painting = true; paintTo = !shaded[+c.dataset.i];
+  paintCell(c, paintTo);
+});
+hgrid.addEventListener('pointermove', e=>{
+  if(!painting) return;
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  const c = el && el.closest ? el.closest('.hcell') : null;
+  if(c) paintCell(c, paintTo);
+});
+['pointerup','pointercancel','pointerleave'].forEach(t=>
+  window.addEventListener(t, ()=>{ painting=false; }));
+
+function setGrid(n){
+  for(let i=0;i<100;i++) shaded[i] = i<n;
+  hgrid.querySelectorAll('.hcell').forEach((c,i)=>c.classList.toggle('on', shaded[i]));
+  renderGrid();
+}
+
+function renderGrid(){
+  const n = countOn();
+  const g = n===0 ? 1 : gcd(n,100);
+  const fnum = n/g, fden = 100/g;
+  const dec = n/100;
+
+  document.getElementById('g-f').textContent = n===0 ? '0' : (fden===1 ? String(fnum) : fnum+'/'+fden);
+  document.getElementById('g-fw').textContent = n===0 ? 'nothing shaded yet'
+      : (g===1 ? n+'/100 is already simplest' : n+'/100, both ÷'+g);
+  document.getElementById('g-d').textContent = String(+dec.toFixed(2));
+  document.getElementById('g-dw').textContent = n===0 ? 'hundredths place'
+      : (n%10===0 ? (n/10)+' tenths' : n+' hundredths');
+  document.getElementById('g-p').textContent = n+'%';
+  document.getElementById('g-pw').textContent = n+' squares out of 100';
+
+  const pill = document.getElementById('g-pill'), note = document.getElementById('g-note');
+  if(gridTarget){
+    if(n === gridTarget.n){
+      gridTarget = null;
+      S.puzzles = (S.puzzles||0)+1; save(); refresh();
+      const box = document.getElementById('gridQuiz');
+      box.classList.add('on');
+      box.innerHTML = `<strong>That's it.</strong> ${n} squares. And notice the other two readouts moved into place at the same time — you didn't have to convert anything by hand. Puzzles solved: ${S.puzzles}.
+        <div class="qrow"><button class="btn ghost small" type="button" id="gridAgain">Another one</button></div>`;
+      document.getElementById('gridAgain').addEventListener('click', ()=>document.getElementById('gridPuzzle').click());
+      pill.className='pill bal'; pill.textContent='Solved';
+      note.textContent = 'Same number, three ways — that is the whole idea of this topic.';
+      return;
+    }
+    pill.className='pill go'; pill.textContent='Puzzle running';
+    note.textContent = `You have shaded ${n}. Keep going until the readouts match the target.`;
+    return;
+  }
+  pill.className='pill bal'; pill.textContent='Same number, three ways';
+  note.textContent = n===0 ? 'Shade some squares and read all three lines at once.'
+    : `${fnum}/${fden} and ${+dec.toFixed(2)} and ${n}% are three ways of writing one amount.`;
+}
+
+const GRID_TARGETS = [
+  {label:'3/4', n:75}, {label:'0.4', n:40}, {label:'65%', n:65}, {label:'7/20', n:35},
+  {label:'0.08', n:8},  {label:'2/5', n:40}, {label:'0.85', n:85}, {label:'9/25', n:36},
+  {label:'12%', n:12},  {label:'0.5', n:50}, {label:'11/20', n:55}, {label:'0.96', n:96},
+  {label:'3/50', n:6},  {label:'0.72', n:72}, {label:'1/4', n:25}
+];
+document.getElementById('gridPuzzle').addEventListener('click', ()=>{
+  let T;
+  do { T = GRID_TARGETS[Math.floor(Math.random()*GRID_TARGETS.length)]; }
+  while(T.n === countOn());
+  gridTarget = T;
+  const box = document.getElementById('gridQuiz');
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> Shade exactly <span class="num" style="font-size:17px">${T.label}</span> of the grid. Work out how many squares that is <em>before</em> you start clicking — then check yourself against the readouts.`;
+  renderGrid();
+});
+
+/* ---------------- the multiplier machine ---------------- */
+let mReverse = false, mAmt = 100, mPct = 0, machineTarget = null;
+const mAmtEl = document.getElementById('mamt'), mPctEl = document.getElementById('mpct');
+
+function round2(x){ return Math.round(x*100)/100; }
+function money(x){
+  const r = round2(x);
+  return Number.isInteger(r) ? String(r) : r.toFixed(2);
+}
+
+function drawMachine(){
+  const mult = 1 + mPct/100;
+  const other = mReverse ? mAmt/mult : mAmt*mult;
+  const before = mReverse ? other : mAmt;
+  const after  = mReverse ? mAmt  : other;
+  const big = Math.max(before, after, 1);
+  const W = 500;
+
+  document.getElementById('m-bar1').setAttribute('width', Math.max(6, W*before/big));
+  document.getElementById('m-bar2').setAttribute('width', Math.max(6, W*after/big));
+  document.getElementById('m-bar2o').setAttribute('width', Math.max(6, W*after/big));
+  document.getElementById('m-txt1').textContent = money(before);
+  document.getElementById('m-txt2').textContent = money(after);
+  document.getElementById('m-mult').textContent = (mReverse?'÷ ':'× ') + mult.toFixed(2);
+
+  const col = mPct>0 ? 'var(--pc)' : (mPct<0 ? 'var(--de)' : 'var(--steel-dark)');
+  ['m-arrow','m-arrowhead','m-mult','m-bar2','m-bar2o'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(id==='m-arrow') el.setAttribute('stroke',col);
+    else if(id==='m-bar2o') el.setAttribute('stroke',col);
+    else el.setAttribute('fill',col);
+  });
+
+  document.getElementById('m-pctval').textContent = (mPct>0?'+':'') + mPct + '%';
+  document.getElementById('m-mrow').textContent = mult.toFixed(2);
+  document.getElementById('m-msub').textContent = mPct===0 ? 'no change at all'
+    : (mPct>0 ? `100% + ${mPct}% = ${100+mPct}% of the original`
+              : `100% − ${-mPct}% = ${100+mPct}% of the original`);
+
+  document.getElementById('m-calc').textContent = mReverse
+    ? `${money(mAmt)} ÷ ${mult.toFixed(2)} = ${money(other)}`
+    : `${money(mAmt)} × ${mult.toFixed(2)} = ${money(other)}`;
+  document.getElementById('m-csub').textContent = mReverse
+    ? 'undo a multiplication by dividing'
+    : 'one multiplication, not two steps';
+
+  const pill = document.getElementById('m-pill'), note = document.getElementById('m-note');
+  if(mPct===0){ pill.className='pill go'; pill.textContent='No change'; }
+  else if(mPct>0){ pill.className='pill up'; pill.textContent='Increase'; }
+  else { pill.className='pill down'; pill.textContent='Decrease'; }
+
+  if(machineTarget){
+    note.textContent = 'Puzzle running — work it out on paper, then set the machine to check.';
+  }else if(mReverse){
+    note.textContent = `The ${money(mAmt)} already had the change applied to it, so divide it back out. Adding ${Math.abs(mPct)}% on would give the wrong answer.`;
+  }else if(mPct===0){
+    note.textContent = 'Drag the change slider. A rise gives a multiplier above 1; a fall gives one below 1.';
+  }else{
+    note.textContent = `A ${Math.abs(mPct)}% ${mPct>0?'increase':'decrease'} in one step: multiply by ${mult.toFixed(2)}.`;
+  }
+
+  document.getElementById('m-lab1').textContent = mReverse ? 'ORIGINAL (what you are finding)' : 'ORIGINAL';
+  document.getElementById('m-lab2').textContent = mReverse ? 'AFTER THE CHANGE (what you were given)' : 'AFTER THE CHANGE';
+  document.getElementById('m-amtlab').textContent = mReverse ? 'Amount after the change' : 'Starting amount';
+}
+
+mAmtEl.addEventListener('input', ()=>{ mAmt = Math.max(1, +mAmtEl.value||1); drawMachine(); });
+mPctEl.addEventListener('input', ()=>{ mPct = +mPctEl.value; drawMachine(); });
+document.getElementById('mflip').addEventListener('click', ()=>{
+  mReverse = !mReverse;
+  document.getElementById('mflip').textContent = mReverse
+    ? 'Switch to: find the new amount' : 'Switch to: find the original';
+  document.getElementById('mflip').classList.toggle('on', mReverse);
+  drawMachine();
+});
+
+const MACHINE_PUZZLES = [
+ {q:"A price is increased by 8%. What is the multiplier?", o:["1.8","1.08","0.92"], a:1,
+  why:"8% is 0.08, so the multiplier is 1 + 0.08 = 1.08. Writing 1.8 turns an 8% rise into an 80% one."},
+ {q:"A price is decreased by 35%. What is the multiplier?", o:["0.35","1.35","0.65"], a:2,
+  why:"You keep 100% − 35% = 65% of it, so the multiplier is 0.65. Multiplying by 0.35 would give you the discount, not the new price."},
+ {q:"Up 20%, then down 20%. Overall, the amount is:", o:["unchanged","4% smaller","4% bigger"], a:1,
+  why:"1.2 × 0.8 = 0.96, so 96% of the original — 4% smaller. The 20% taken off was 20% of a bigger number."},
+ {q:"An amount is 6120 after a 15% discount. To find the original you:", o:["multiply by 1.15","divide by 0.85","add 15% to 6120"], a:1,
+  why:"The 6120 is the result of × 0.85, so undo it by dividing by 0.85. Adding 15% back on to the smaller number always undershoots."},
+ {q:"A price goes from 40 to 50. The percentage increase is:", o:["20%","25%","10%"], a:1,
+  why:"Change is 10, and the original was 40, so (10 ÷ 40) × 100 = 25%. Dividing by 50 instead gives 20% — that is the classic wrong answer."},
+ {q:"Up 50%, then down 50%. The amount ends up:", o:["the same","25% smaller","50% smaller"], a:1,
+  why:"1.5 × 0.5 = 0.75, so three-quarters of the original. Big percentages make this asymmetry very obvious."},
+ {q:"Which single multiplier does 'increase by 25%, then increase by 4%'?", o:["1.29","1.30","1.25"], a:1,
+  why:"1.25 × 1.04 = 1.30, an overall 30% increase. Adding 25 and 4 gives 29% — close enough to look right, which is what makes it dangerous."},
+ {q:"A number is 20% more than last year and is now 96. Last year it was:", o:["80","76.8","115.2"], a:0,
+  why:"96 ÷ 1.2 = 80. Check forwards: 20% of 80 is 16, and 80 + 16 = 96. Taking 20% off 96 would give 76.8, which is wrong."},
+ {q:"To find 12.5% of a number without a calculator, the quickest route is:", o:["divide by 8","divide by 12.5","multiply by 8"], a:0,
+  why:"12.5% is 1/8, so divide by 8. Recognising the fraction behind a percentage is the fastest non-calculator method there is."},
+ {q:"A shop takes 1/5 off, then 10% off the reduced price. The single multiplier is:", o:["0.70","0.72","0.68"], a:1,
+  why:"1/5 off means × 0.8, then × 0.9 gives 0.72 — a 28% discount overall, not 30%."}
+];
+let curMPuzzle = null;
+document.getElementById('machinePuzzle').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*MACHINE_PUZZLES.length);
+  if(curMPuzzle===i) i = (i+1)%MACHINE_PUZZLES.length;
+  curMPuzzle = i;
+  const P = MACHINE_PUZZLES[i], box = document.getElementById('machineQuiz');
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+    <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-mz="${j}">${o}</button>`).join('')}</div>`;
+  box.querySelectorAll('[data-mz]').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const ok = +b.dataset.mz === P.a;
+      if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+      box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+        <div class="qrow"><button class="btn ghost small" type="button" id="mAgain">Another one</button></div>`;
+      document.getElementById('mAgain').addEventListener('click', ()=>document.getElementById('machinePuzzle').click());
+    });
+  });
+});
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  renderGrid();
+  drawMachine();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='fdp', SUBJECT='maths', TITLE='One Number, Three Disguises', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>
