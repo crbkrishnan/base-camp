@@ -1,0 +1,10 @@
+{
+  "name": "base-camp",
+  "private": true,
+  "description": "Grade 7 IGCSE study site — static pages plus generated test papers",
+  "scripts": {
+    "check": "node tools/smoke.js",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": { "jsdom": "^24.0.0" }
+}
