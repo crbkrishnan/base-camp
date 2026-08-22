@@ -32,6 +32,7 @@ const files = process.argv[3] ? [process.argv[3]] : fs.readdirSync(dir).filter(f
       videos: d.querySelectorAll('.vid').length,
       lessons: d.querySelectorAll('.lesson').length,
       qcards: d.querySelectorAll('.qcard').length,
+      techs: d.querySelectorAll('.tech-card').length,
       broken: [...d.querySelectorAll('a[href]')]
         .map(a => a.getAttribute('href'))
         .filter(h => h && !h.startsWith('#') && !h.startsWith('http'))

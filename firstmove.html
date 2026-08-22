@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Move — Grade 7 IGCSE drill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#191A1F; --ink-soft:#585B66; --paper:#E9E7E2; --card:#FFFFFF;
+  --line:#D6D1C8; --line-soft:#E6E2DB; --steel:#9A968D;
+  --maths:#6B3FA0; --maths-t:#F0EAF7;
+  --physics:#0B6E75; --physics-t:#E3F1F2;
+  --biology:#17693F; --biology-t:#E6F1EA;
+  --chemistry:#B4560B; --chemistry-t:#FBEFE3;
+  --ok:#1B7F4B; --ok-t:#E6F3EC;
+  --no:#98241B; --no-t:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--physics)}
+:focus-visible{outline:3px solid var(--physics);outline-offset:2px;border-radius:4px}
+button{font-family:var(--display)}
+
+.back{display:inline-block;margin:22px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  text-transform:uppercase;text-decoration:none;color:var(--ink-soft);border:1px solid var(--line);
+  border-radius:99px;padding:6px 14px;background:var(--card)}
+.mast{padding:26px 0 4px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.5vw,60px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--maths)}
+.lede{font-size:19px;color:var(--ink-soft);margin:0 0 18px}
+.target{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--maths);
+  border-radius:0 var(--r) var(--r) 0;padding:14px 16px;font-size:16px;margin-bottom:16px}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 8px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:13px 15px;display:flex;flex-direction:column;gap:3px}
+.stat b{font-size:26px;font-family:var(--mono);line-height:1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft)}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:22px 0}
+.panel-top{padding:15px 18px 13px;border-bottom:1px solid var(--line-soft)}
+.panel-top h2{margin:0 0 4px;font-size:20px}
+.panel-top p{margin:0;font-size:15px;color:var(--ink-soft)}
+.pbody{padding:17px 18px 18px}
+
+.dots{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.dot{width:22px;height:5px;border-radius:99px;background:var(--line)}
+.dot.right{background:var(--ok)} .dot.wrong{background:var(--no)} .dot.now{background:var(--ink)}
+
+.qtag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  border-radius:99px;padding:3px 11px;display:inline-block;margin-bottom:10px}
+.stem{font-size:18.5px;margin:0 0 4px}
+.ask{font-family:var(--display);font-size:14px;color:var(--ink-soft);margin:12px 0 10px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;
+  background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px 14px;
+  font-family:var(--body);font-size:16px;color:var(--ink);cursor:pointer;line-height:1.45}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt .k{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--steel);
+  border:1px solid var(--line);border-radius:6px;padding:1px 6px;flex:none;margin-top:2px}
+.opt.right{background:var(--ok-t);border-color:var(--ok)}
+.opt.right .k{color:var(--ok);border-color:var(--ok)}
+.opt.wrong{background:var(--no-t);border-color:var(--no)}
+.opt.wrong .k{color:var(--no);border-color:var(--no)}
+
+.fb{display:none;margin-top:13px;padding:13px 15px;border-radius:11px;font-size:16px}
+.fb.on{display:block}
+.fb.good{background:var(--ok-t)} .fb.bad{background:var(--no-t)}
+.fb .tech{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  display:inline-block;background:var(--card);border-radius:99px;padding:3px 10px;margin-bottom:7px}
+.fb p{margin:0 0 7px} .fb p:last-child{margin:0}
+.fb .then{font-size:14.5px;color:var(--ink-soft);font-style:italic}
+
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.btn{font-size:15px;font-weight:700;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:10px;padding:10px 16px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.dark:hover{opacity:.88}
+.push{margin-left:auto}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:4px}
+.chip{font-family:var(--mono);font-size:12.5px;border:1px solid var(--line);background:var(--paper);
+  color:var(--ink-soft);border-radius:99px;padding:7px 13px;cursor:pointer}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+
+.result h3{margin:0 0 4px;font-size:26px}
+.result .sub{color:var(--ink-soft);margin:0 0 16px}
+.tbars{display:grid;gap:9px;margin-top:6px}
+.tbar{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.tbar .nm{font-family:var(--display);font-size:14.5px}
+.tbar .sc{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft)}
+.tbar .track{grid-column:1/-1;height:6px;background:var(--paper);border-radius:99px;overflow:hidden}
+.tbar .track i{display:block;height:100%;background:var(--ok);border-radius:99px}
+.tbar.weak .track i{background:var(--no)}
+.verdict{background:var(--paper);border-radius:11px;padding:13px 15px;margin-top:16px;font-size:16px}
+
+.techlist{display:grid;gap:10px}
+.tech-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:13px 15px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.tech-card .no{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--steel);padding-top:3px}
+.tech-card h4{margin:0 0 3px;font-size:16.5px}
+.tech-card p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+.tech-card .when{font-size:14px;color:var(--steel);margin-top:4px;font-style:italic}
+
+.shead{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin:34px 0 14px}
+.shead h2{margin:0;font-size:clamp(22px,4vw,28px)}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;
+  flex-wrap:wrap;align-items:center;font-size:14px;color:var(--ink-soft)}
+footer button{font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+  border-radius:8px;padding:7px 12px;cursor:pointer}
+footer button:hover{border-color:var(--no);color:var(--no)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<script>
+/* ---- storage shim: works inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem={}, ls=null;
+  try{ ls=window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls=null; }
+  window.storage={
+    get:function(k){ var v = ls?ls.getItem(k):(k in mem?mem[k]:null);
+      return Promise.resolve(v===null||v===undefined?null:{key:k,value:v}); },
+    set:function(k,v){ try{ ls?ls.setItem(k,v):(mem[k]=v); }catch(e){} return Promise.resolve({key:k,value:v}); },
+    delete:function(k){ try{ ls?ls.removeItem(k):delete mem[k]; }catch(e){} return Promise.resolve({key:k,deleted:true}); },
+    list:function(p){ return Promise.resolve({keys:[],prefix:p||''}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back" href="index.html">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">Drill · all four subjects · two minutes</div>
+  <h1>The <em>First</em> Move</h1>
+  <p class="lede">Ten questions. You never solve any of them — you only say what the first line of your working would be. That is the part you actually get wrong.</p>
+
+  <div class="target">
+    <strong>Why this drill exists.</strong> When you drop marks, it is almost never because you didn't know the topic. It is because you didn't know what to write first, so you wrote nothing, or you wrote the wrong opening and everything after it was doomed. Ten first moves takes two minutes. Ten full solutions takes an hour. This is the cheap version, and it trains the expensive skill.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-acc">—</b><span>accuracy, all time</span></div>
+    <div class="stat"><b class="num" id="s-sessions">0</b><span>sessions finished</span></div>
+    <div class="stat"><b class="num" id="s-streak">0</b><span>best streak</span></div>
+  </div>
+</header>
+
+<!-- ============ THE DRILL ============ -->
+<div class="panel" id="drill">
+  <div class="panel-top">
+    <h2 id="p-title">Start a session</h2>
+    <p id="p-sub">Ten questions, drawn from everything you have covered. Questions you got wrong before come round more often.</p>
+  </div>
+  <div class="pbody" id="p-body"></div>
+</div>
+
+<!-- ============ THE TECHNIQUES ============ -->
+<section>
+  <div class="shead"><h2>The eight first moves</h2><span class="tag">the whole list</span></div>
+  <p style="margin:0 0 14px;color:var(--ink-soft);font-size:16px">Almost every question at this level opens with one of these. You are not memorising eight methods — you are learning to recognise which of eight doors a question is standing in front of.</p>
+  <div class="techlist" id="techlist"></div>
+</section>
+
+<footer>
+  <span>Your record is saved on this device only.</span>
+  <button type="button" id="reset">Reset my record</button>
+</footer>
+
+</div>
+
+<script>
+const KEY = 'firstmove-progress-v1';
+let S = { seen:{}, tech:{}, sessions:0, bestStreak:0, right:0, wrong:0, lastScore:null };
+let saveTimer = null;
+
+async function loadState(){
+  try{ const r = await window.storage.get(KEY); if(r && r.value) S = Object.assign(S, JSON.parse(r.value)); }catch(e){}
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{ try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){} }, 300);
+}
+
+const SUBJECTS = {
+  maths:{label:'Maths', colour:'var(--maths)', tint:'var(--maths-t)'},
+  physics:{label:'Physics', colour:'var(--physics)', tint:'var(--physics-t)'},
+  biology:{label:'Biology', colour:'var(--biology)', tint:'var(--biology-t)'},
+  chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'}
+};
+
+const TECHS = {
+  convert:  {name:'Units first',
+             blurb:'Get every quantity into the units the answer is wanted in, before you multiply or divide anything.',
+             when:'Whenever the question mixes cm with m, minutes with hours, or km/h with m/s.'},
+  formula:  {name:'Formula, then substitute',
+             blurb:'Write the formula on its own line. Then write it again with the numbers in. Then answer, with a unit.',
+             when:'Any calculation in physics, even one you could do in your head.'},
+  backwards:{name:'Start at the target',
+             blurb:'When the question tells you where you must end up, begin there and work back to what is missing.',
+             when:'Target averages, reverse percentages, "what must the rest be" questions.'},
+  hundred:  {name:'Take 100',
+             blurb:'When no starting amount is given, invent one — and make it 100, because percentages of 100 are free.',
+             when:'Percentage change questions with no actual money in them.'},
+  table:    {name:'Split it into a table',
+             blurb:'Give each leg, each person or each group its own row. Fill in what you know, then fill the gaps.',
+             when:'Journeys in parts, several forces at once, groups within groups.'},
+  common:   {name:'Put them in the same form',
+             blurb:'You cannot compare a fraction with a percentage, or m/s with km/h. Convert everything to one form first, then compare.',
+             when:'Ordering questions, and any "which is bigger" question.'},
+  marks:    {name:'Count the marks',
+             blurb:'The mark count tells you how many separate points to make. Three marks means three sentences, not one long one.',
+             when:'Every "explain", "describe" or "give two differences" question.'},
+  language: {name:'Translate into the subject',
+             blurb:'Rewrite the question in the language that earns marks: particles and forces between them, moments about a pivot, surface area and diffusion.',
+             when:'Any science "explain why" question.'}
+};
+
+/* ---------------- the questions ---------------- */
+const QS = [
+ /* --- units first --- */
+ {id:'c1', subject:'physics', tech:'convert',
+  q:'A train travels 30 km in 20 minutes. Calculate its average speed in km/h.',
+  o:['Divide 30 by 20','Turn 20 minutes into hours, then divide','Multiply 30 by 20','Turn 30 km into metres'],
+  a:1,
+  why:'The answer is wanted in km per <em>hour</em>, so the time has to be in hours before you divide. 20 minutes is a third of an hour.',
+  then:'Then 30 ÷ (1/3) = 90 km/h. Dividing 30 by 20 gives 1.5, which is kilometres per minute.'},
+
+ {id:'c2', subject:'physics', tech:'convert',
+  q:'A force of 40 N acts at a perpendicular distance of 25 cm from a pivot. Calculate the moment.',
+  o:['Multiply 40 by 25','Change 25 cm into metres, then multiply','Divide 40 by 25','Add 40 and 25'],
+  a:1,
+  why:'Moments are measured in newton metres, so the distance must be in metres. 25 cm is 0.25 m.',
+  then:'Then 40 × 0.25 = 10 N m. Multiplying by 25 gives 1000, which is a hundred times too big.'},
+
+ {id:'c3', subject:'physics', tech:'convert',
+  q:'A car travels at 72 km/h for 90 seconds. Calculate the distance it covers, in metres.',
+  o:['Multiply 72 by 90','Convert 72 km/h into m/s first','Convert 90 seconds into hours first','Divide 72 by 90'],
+  a:1,
+  why:'The answer is wanted in metres and the time is in seconds, so getting the speed into m/s makes everything match.',
+  then:'72 ÷ 3.6 = 20 m/s, then 20 × 90 = 1800 m. Converting the time to hours also works, but leaves you in kilometres.'},
+
+ {id:'c4', subject:'maths', tech:'convert',
+  q:'A film lasts 2 hours 30 minutes. An advert break takes 8% of it. How many minutes is the break?',
+  o:['Work out 8% of 2.30','Turn 2 hours 30 minutes into minutes','Work out 8% of 2.5, then convert','Divide 150 by 8'],
+  a:1,
+  why:'The answer is wanted in minutes, so put the whole film into minutes first. 2 h 30 min is 150 minutes — not 2.30 of anything.',
+  then:'Then 8% of 150 = 12 minutes. Writing 2.30 treats minutes as decimals, which they are not.'},
+
+ /* --- formula --- */
+ {id:'f1', subject:'physics', tech:'formula',
+  q:'A child of weight 300 N sits 2 m from the pivot of a see-saw. Calculate the moment of his weight.',
+  o:['Write: moment = force × perpendicular distance','Write down 300 × 2 = 600','Draw the see-saw','Divide 300 by 2'],
+  a:0,
+  why:'You can do this one in your head, and you should still write the formula. If you slip on the arithmetic, a visible formula and substitution still earn the method marks. A bare wrong answer earns nothing.',
+  then:'Then moment = 300 × 2 = 600 N m.'},
+
+ {id:'f2', subject:'physics', tech:'formula',
+  q:'A see-saw balances. On the left, a 320 N child sits 1.6 m from the pivot. On the right sits a 400 N child. How far from the pivot is she?',
+  o:['Divide 400 by 320','Write: clockwise moment = anticlockwise moment','Guess and check distances','Subtract 320 from 400'],
+  a:1,
+  why:'The word "balances" is the instruction. Writing the principle of moments as an equation turns the sentence into something you can solve.',
+  then:'400 × d = 320 × 1.6 = 512, so d = 1.28 m. Heavier child, shorter distance — check your answer against that.'},
+
+ {id:'f3', subject:'physics', tech:'formula',
+  q:'How long does a coach take to travel 150 km at an average speed of 50 km/h?',
+  o:['Write: time = distance ÷ speed','Multiply 150 by 50','Write: speed = distance ÷ time','Convert 150 km into metres'],
+  a:0,
+  why:'You are looking for time, so start from the arrangement that has time on its own. Cover time on the triangle and you are left with distance over speed.',
+  then:'150 ÷ 50 = 3 hours. Units are already consistent, so no conversion is needed.'},
+
+ {id:'f4', subject:'physics', tech:'formula',
+  q:'A nut needs a moment of 30 N m to loosen it. What force is needed on a spanner 0.25 m long?',
+  o:['Multiply 30 by 0.25','Write: moment = force × distance, then rearrange for force','Divide 0.25 by 30','Convert 0.25 m into cm'],
+  a:1,
+  why:'The unknown is the force, so write the relationship and rearrange it before any numbers appear. Rearranging on the page is safer than rearranging in your head.',
+  then:'force = 30 ÷ 0.25 = 120 N.'},
+
+ /* --- start at the target --- */
+ {id:'b1', subject:'physics', tech:'backwards',
+  q:'A runner wants to average 5 m/s over 1000 m. She runs the first 400 m at 4 m/s. How fast must she run the rest?',
+  o:['Average 5 and 4','Work out the total time she is allowed for the whole race','Work out how long the first 400 m took','Subtract 400 from 1000'],
+  a:1,
+  why:'The target average gives you a time budget for the whole race, and everything else is subtraction from it. Without the budget you have nothing to compare against.',
+  then:'1000 ÷ 5 = 200 s allowed. The first 400 m took 100 s, leaving 600 m in 100 s — so 6 m/s.'},
+
+ {id:'b2', subject:'maths', tech:'backwards',
+  q:'After a 20% increase, the price of a book is 96 rupees. Find the price before the increase.',
+  o:['Take 20% off 96','Work out what multiplier a 20% increase is, then divide by it','Add 20% to 96','Divide 96 by 20'],
+  a:1,
+  why:'The 96 is the <em>end</em> of the story, not the start. A 20% rise is ×1.2, so undoing it means dividing by 1.2, not subtracting.',
+  then:'96 ÷ 1.2 = 80 rupees. Taking 20% off 96 gives 76.80, which is wrong — the 20% was of the smaller original.'},
+
+ {id:'b3', subject:'maths', tech:'backwards',
+  q:'A tank is 3/5 full. After 240 litres are removed, it is 1/3 full. Find the capacity of the tank.',
+  o:['Work out what fraction of the tank the 240 litres is','Multiply 240 by 3/5','Add 3/5 and 1/3','Divide 240 by 2'],
+  a:0,
+  why:'The 240 litres corresponds to the drop from 3/5 to 1/3. Find that fraction and you have a bridge between litres and the whole tank.',
+  then:'3/5 − 1/3 = 4/15, so 4/15 of the tank is 240 litres, and the capacity is 900 litres.'},
+
+ {id:'b4', subject:'maths', tech:'backwards',
+  q:'Anil spends 1/3 of his money on books, then 1/4 of what is left on food. He has 900 rupees remaining. How much did he start with?',
+  o:['Add 1/3 and 1/4','Work out what fraction of the original the 900 rupees is','Multiply 900 by 3','Divide 900 by 4'],
+  a:1,
+  why:'Work back to a single fraction of the original, then the 900 tells you the whole. Adding the fractions fails because the second one is of the remainder, not of the original.',
+  then:'He keeps 2/3, then 3/4 of that, so 3/4 × 2/3 = 1/2 remains. Half is 900, so he started with 1800 rupees.'},
+
+ /* --- take 100 --- */
+ {id:'h1', subject:'maths', tech:'hundred',
+  q:'The price of an item rises by 25%. By what percentage must it now fall to return to the original price?',
+  o:['Say 25%, because it went up by 25%','Start from a price of 100 and follow it through','Add 25% and 25%','Divide 100 by 25'],
+  a:1,
+  why:'No actual price is given, so invent one — and 100 makes every percentage trivial. The rise and the fall are percentages of different numbers, which is exactly what the invented value exposes.',
+  then:'100 becomes 125. Falling back to 100 is a drop of 25 out of 125, which is 20%.'},
+
+ {id:'h2', subject:'maths', tech:'hundred',
+  q:'A sum is increased by 10%, and the result is then decreased by 10%. Show that the final amount is not the original.',
+  o:['Say 10% up and 10% down cancel out','Start from 100 and do the two steps in order','Add 10% and 10% to get 20%','Divide by 10 twice'],
+  a:1,
+  why:'The question says "show", so you need a worked case, not an assertion. Starting at 100 makes both steps one line each.',
+  then:'100 → 110 → 99. The second 10% is taken off a bigger number than the first was added to, so it is worth more.'},
+
+ {id:'h3', subject:'maths', tech:'hundred',
+  q:'A shop takes 35% off a coat, then a further 10% off at the till. A sign says "45% off everything". Is the sign right?',
+  o:['Yes, because 35 + 10 = 45','Start from 100 and apply the two reductions in turn','Work out 45% of 100','Subtract 10 from 35'],
+  a:1,
+  why:'Successive percentages never add. Following 100 through both steps shows exactly what the customer really pays.',
+  then:'100 → 65 → 58.50, so the real discount is 41.5%, not 45%. The sign overstates it.'},
+
+ {id:'h4', subject:'maths', tech:'hundred',
+  q:'A shopkeeper adds 20% tax to an item, then offers 20% off the new price. Does the customer pay the original price?',
+  o:['Yes, the two 20%s cancel','Start from 100 and follow both steps','Add 20% and subtract 20% from the answer','Work out 40% of the price'],
+  a:1,
+  why:'Same shape as any up-then-down question, and the invented 100 settles it in two lines rather than an argument.',
+  then:'100 → 120 → 96. The customer pays 4% less than the original — the two changes are percentages of different amounts.'},
+
+ /* --- table it --- */
+ {id:'t1', subject:'physics', tech:'table',
+  q:'A cyclist rides 12 km in 40 minutes, rests for 20 minutes, then rides 8 km in 20 minutes. Find her average speed for the whole journey.',
+  o:['Average the speeds of the two riding sections','Make a row for each leg, including the rest, with distance and time','Divide 20 km by 20 minutes','Ignore the rest and use the riding time only'],
+  a:1,
+  why:'Three legs means three rows. The rest gets its own row with zero distance — that is the whole reason it drags the average down.',
+  then:'Totals are 20 km and 80 minutes, so 20 ÷ (4/3) = 15 km/h.'},
+
+ {id:'t2', subject:'physics', tech:'table',
+  q:'A car travels 60 km at 60 km/h, then another 60 km at 120 km/h. Find its average speed.',
+  o:['Average 60 and 120 to get 90','Make a row per leg and work out the time for each','Add 60 and 120','Divide 120 km by 2 hours'],
+  a:1,
+  why:'The two legs take different times, and until you have both times written down you cannot add them. Averaging the speeds assumes equal times, which is false here.',
+  then:'1 h and 0.5 h, so 120 km in 1.5 h = 80 km/h, not 90.'},
+
+ {id:'t3', subject:'physics', tech:'table',
+  q:'On a see-saw, a 250 N child sits 1.2 m to the left of the pivot and a 150 N child sits 2.0 m to the left. Where must a 400 N child sit on the right to balance it?',
+  o:['List each force with its distance and work out each moment','Add 250, 150 and 400','Divide 400 by 2','Assume the 400 N child sits in the middle'],
+  a:0,
+  why:'More than two forces means you cannot hold it in your head. One row per child, moment worked out for each, then total each side.',
+  then:'300 + 300 = 600 N m anticlockwise, so 400 × d = 600 and d = 1.5 m.'},
+
+ {id:'t4', subject:'maths', tech:'table',
+  q:'In a school of 500 students, 3/5 are girls. 25% of the girls and 40% of the boys walk to school. How many students walk in total?',
+  o:['Work out 32.5% of 500','Split the 500 into girls and boys first','Add 25% and 40%','Divide 500 by 2'],
+  a:1,
+  why:'Two groups of different sizes with different rates. You must handle them separately, so the first move is to find how many are in each group.',
+  then:'300 girls and 200 boys, so 75 + 80 = 155 walk. Averaging the two percentages ignores that the groups are unequal.'},
+
+ /* --- same form --- */
+ {id:'m1', subject:'maths', tech:'common',
+  q:'Put these in order, smallest first: 0.46, 4/9, 43%, 9/20.',
+  o:['Compare the numerators','Turn all four into decimals','Turn all four into fractions with denominator 100','Order them by how big the numbers look'],
+  a:1,
+  why:'Four different forms cannot be compared as they stand. Decimals are the quickest common form, and a calculator is not needed for any of these.',
+  then:'0.46, 0.444, 0.43, 0.45 — so the order is 43%, 4/9, 9/20, 0.46.'},
+
+ {id:'m2', subject:'physics', tech:'common',
+  q:'Which is faster: 12 m/s, or 40 km/h?',
+  o:['12 m/s, because 12 is smaller so it must be per second','Convert one of them so both are in the same unit','40 km/h, because 40 is bigger','Add them together'],
+  a:1,
+  why:'You cannot compare quantities in different units, and the raw numbers actively mislead here. Convert one, then compare.',
+  then:'12 × 3.6 = 43.2 km/h, so 12 m/s is faster.'},
+
+ {id:'m3', subject:'maths', tech:'common',
+  q:'Which is larger: 5/8 of 400, or 60% of 420?',
+  o:['5/8, because 5/8 is more than 60%','Work out both as actual numbers','Compare 400 and 420','Convert 5/8 into a percentage and stop there'],
+  a:1,
+  why:'The fractions are of different amounts, so comparing the fractions alone tells you nothing. Turn both into plain numbers and the comparison becomes trivial.',
+  then:'250 against 252, so 60% of 420 is larger — by only 2, which is why guessing fails.'},
+
+ {id:'m4', subject:'physics', tech:'common',
+  q:'Put these in order, slowest first: 15 m/s, 50 km/h, 840 m/min.',
+  o:['Order them by the size of the numbers','Convert all three into the same unit','Convert all three into m/s and guess the rest','Compare the units alphabetically'],
+  a:1,
+  why:'Three different units, and two of them turn out to be very close, so this cannot be settled by eye at all.',
+  then:'54 km/h, 50 km/h and 50.4 km/h — so 50 km/h, then 840 m/min, then 15 m/s.'},
+
+ /* --- count the marks --- */
+ {id:'k1', subject:'biology', tech:'marks',
+  q:'Explain why the alveoli are well suited to gas exchange. [3]',
+  o:['Write one long sentence about the lungs','Plan three separate points before writing','Draw a diagram of the lungs','Describe how breathing works'],
+  a:1,
+  why:'Three marks means three distinct points, and the marker is looking for three separate things — not one idea explained three ways.',
+  then:'Large surface area; thin walls, so a short diffusion distance; a good blood supply keeping the concentration gradient steep.'},
+
+ {id:'k2', subject:'chemistry', tech:'marks',
+  q:'Give two differences between evaporation and boiling. [2]',
+  o:['Write everything you know about both','Plan two comparisons, each mentioning both processes','Define evaporation only','Draw a heating curve'],
+  a:1,
+  why:'A difference needs both halves. "Evaporation happens at the surface" is only half an answer and usually scores nothing on its own.',
+  then:'Boiling happens only at the boiling point, evaporation at any temperature; boiling happens throughout the liquid, evaporation only at the surface.'},
+
+ {id:'k3', subject:'chemistry', tech:'marks',
+  q:'A sealed tin of air is heated. Explain why the pressure inside increases. [2]',
+  o:['Say the air expands','Plan two points: what happens to the particles, and what that does to the collisions','Say the tin gets hot','Say the pressure just rises with temperature'],
+  a:1,
+  why:'Two marks, two ideas. The particles gain energy and move faster is one; that they hit the walls harder <em>and</em> more often is the second.',
+  then:'Students who give only one half of the collisions point lose the most commonly dropped mark in the topic.'},
+
+ {id:'k4', subject:'biology', tech:'marks',
+  q:'Describe the changes that take place in the chest when you breathe in. [4]',
+  o:['Say the lungs get bigger','Plan four separate changes in order','Draw the diaphragm','Explain what oxygen does in the body'],
+  a:1,
+  why:'Four marks means four changes, and a "describe" question wants them in a sensible order rather than as a list of facts.',
+  then:'Diaphragm contracts and flattens; ribs move up and out; chest volume increases; pressure inside falls, so air flows in.'},
+
+ /* --- translate into the subject --- */
+ {id:'l1', subject:'chemistry', tech:'language',
+  q:'Explain why a gas can be compressed easily but a liquid can hardly be compressed at all.',
+  o:['Say gases are lighter than liquids','Rewrite it as a question about the spaces between particles','Say liquids are denser','Say gases are hot'],
+  a:1,
+  why:'Compression is entirely about the space between particles, never about the particles themselves being squashed. Translating the question into that language gives you the answer almost immediately.',
+  then:'A gas has large spaces to remove; in a liquid the particles are already touching, so there is nothing left to remove.'},
+
+ {id:'l2', subject:'chemistry', tech:'language',
+  q:'A pure substance is melting. Explain why its temperature does not rise even though the heater is still on.',
+  o:['Say the heater is not strong enough','Ask where the energy is going, if not into speed','Say melting always takes time','Say the thermometer is wrong'],
+  a:1,
+  why:'Temperature measures how fast particles move. If the temperature is not rising, the energy must be doing something else — and naming that something is the answer.',
+  then:'It is breaking the forces holding the particles in their fixed positions, rather than making them move faster.'},
+
+ {id:'l3', subject:'biology', tech:'language',
+  q:'Air holds about twenty times more oxygen than water. Explain why a fish still suffocates out of water.',
+  o:['Say fish need water to live','Rewrite it as a question about surface area and the gas exchange surface','Say there is no oxygen in air','Say fish cannot swim in air'],
+  a:1,
+  why:'The amount of oxygen available is a red herring — the question planted it deliberately. What changes out of water is the surface, not the supply.',
+  then:'The gill filaments stick together and collapse, so the surface area is lost, and the surface dries out — gases can only diffuse across a moist membrane.'},
+
+ {id:'l4', subject:'biology', tech:'language',
+  q:'Explain why your breathing rate increases during exercise.',
+  o:['Say you get tired','Rewrite it in terms of what the muscles need and produce','Say your heart beats faster','Say you are out of breath'],
+  a:1,
+  why:'"Explain why" in biology means give the mechanism. Translate the everyday observation into oxygen, respiration and carbon dioxide, and the marks follow.',
+  then:'Muscles respire faster, so they need more oxygen delivered and more carbon dioxide removed — faster breathing does both.'}
+];
+
+/* ---------------- session logic ---------------- */
+const SESSION_LEN = 10;
+let session = null;
+
+function pickQuestions(n){
+  const scored = QS.map(q=>{
+    const rec = S.seen[q.id] || {right:0, wrong:0};
+    /* unseen first, then previously wrong, then everything else; jitter breaks ties */
+    let weight = 0;
+    if(rec.right === 0 && rec.wrong === 0) weight = 3;
+    else if(rec.wrong > rec.right) weight = 2;
+    else if(rec.wrong > 0) weight = 1;
+    return {q, k: weight + Math.random()};
+  });
+  scored.sort((a,b)=> b.k - a.k);
+  return scored.slice(0, n).map(x=>x.q).sort(()=> Math.random() - 0.5);
+}
+
+function startSession(){
+  session = { qs: pickQuestions(SESSION_LEN), i: 0, right: 0, results: [], streak: 0 };
+  document.getElementById('p-title').textContent = 'First move';
+  document.getElementById('p-sub').textContent = 'Say what you would write first. Do not solve it.';
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = session.qs[session.i];
+  const sub = SUBJECTS[q.subject];
+  const body = document.getElementById('p-body');
+
+  let dots = '';
+  for(let i=0;i<session.qs.length;i++){
+    const r = session.results[i];
+    const cls = r === undefined ? (i === session.i ? 'now' : '') : (r ? 'right' : 'wrong');
+    dots += '<span class="dot '+cls+'"></span>';
+  }
+
+  body.innerHTML = '<div class="dots">'+dots+'</div>'
+    + '<span class="qtag" style="background:'+sub.tint+';color:'+sub.colour+'">'+sub.label
+    + ' &nbsp;·&nbsp; '+(session.i+1)+' of '+session.qs.length+'</span>'
+    + '<p class="stem">'+q.q+'</p>'
+    + '<p class="ask">What is your first move?</p>'
+    + '<div class="opts" id="opts">'
+    + q.o.map((o,j)=>'<button class="opt" type="button" data-i="'+j+'">'
+        + '<span class="k">'+'ABCD'[j]+'</span><span>'+o+'</span></button>').join('')
+    + '</div><div class="fb" id="fb"></div><div id="after"></div>';
+
+  body.querySelectorAll('.opt').forEach(b=>{
+    b.addEventListener('click', ()=> answer(+b.dataset.i));
+  });
+}
+
+function answer(choice){
+  const q = session.qs[session.i];
+  const correct = choice === q.a;
+
+  document.querySelectorAll('#opts .opt').forEach(b=>{
+    b.disabled = true;
+    const j = +b.dataset.i;
+    if(j === q.a) b.classList.add('right');
+    else if(j === choice) b.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('fb');
+  fb.className = 'fb on ' + (correct ? 'good' : 'bad');
+  fb.innerHTML = '<span class="tech">'+TECHS[q.tech].name+'</span>'
+    + '<p><strong>'+(correct ? 'Yes.' : 'Not this one.')+'</strong> '+q.why+'</p>'
+    + '<p class="then">'+q.then+'</p>';
+
+  /* record */
+  S.seen[q.id] = S.seen[q.id] || {right:0, wrong:0};
+  S.seen[q.id][correct ? 'right' : 'wrong']++;
+  S.tech[q.tech] = S.tech[q.tech] || {right:0, wrong:0};
+  S.tech[q.tech][correct ? 'right' : 'wrong']++;
+  S[correct ? 'right' : 'wrong']++;
+  session.results[session.i] = correct;
+  if(correct){ session.right++; session.streak++; if(session.streak > S.bestStreak) S.bestStreak = session.streak; }
+  else session.streak = 0;
+  save(); paintStats();
+
+  const last = session.i === session.qs.length - 1;
+  document.getElementById('after').innerHTML =
+    '<div class="row"><button class="btn dark" type="button" id="next">'
+    + (last ? 'See how you did' : 'Next question') + '</button></div>';
+  document.getElementById('next').addEventListener('click', ()=>{
+    if(last) finish(); else { session.i++; renderQuestion(); }
+  });
+}
+
+function finish(){
+  S.sessions++;
+  S.lastScore = session.right;
+  save(); paintStats();
+
+  const counts = {};
+  session.qs.forEach((q,i)=>{
+    counts[q.tech] = counts[q.tech] || {right:0, total:0};
+    counts[q.tech].total++;
+    if(session.results[i]) counts[q.tech].right++;
+  });
+
+  /* weakest technique across the whole record, not just this session */
+  let weakest = null, weakestRate = 2;
+  Object.keys(S.tech).forEach(t=>{
+    const r = S.tech[t], tot = r.right + r.wrong;
+    if(tot < 2) return;
+    const rate = r.right / tot;
+    if(rate < weakestRate){ weakestRate = rate; weakest = t; }
+  });
+
+  const bars = Object.keys(counts).map(t=>{
+    const c = counts[t], pct = Math.round(c.right / c.total * 100);
+    return '<div class="tbar'+(pct < 60 ? ' weak' : '')+'">'
+      + '<span class="nm">'+TECHS[t].name+'</span>'
+      + '<span class="sc">'+c.right+'/'+c.total+'</span>'
+      + '<span class="track"><i style="width:'+pct+'%"></i></span></div>';
+  }).join('');
+
+  let verdict;
+  if(session.right === session.qs.length)
+    verdict = 'Ten out of ten. Do a session with a subject you have been avoiding.';
+  else if(session.right >= 8)
+    verdict = 'Strong. The openings are becoming automatic, which is the whole point — you are spending your thinking on the actual problem now.';
+  else if(session.right >= 5)
+    verdict = 'Middling, and that is useful information: the gaps are in recognising which door the question is standing in front of, not in the maths.';
+  else
+    verdict = 'Low, and worth doing again today rather than tomorrow. These questions are short enough that a second run costs you two minutes.';
+
+  if(weakest && weakestRate < 0.7){
+    verdict += ' Across everything you have done, <strong>' + TECHS[weakest].name.toLowerCase()
+      + '</strong> is the one letting you down — ' + TECHS[weakest].when.toLowerCase();
+  }
+
+  document.getElementById('p-title').textContent = 'Session finished';
+  document.getElementById('p-sub').textContent = 'Ten first moves, about two minutes.';
+  document.getElementById('p-body').innerHTML =
+    '<div class="result"><h3>'+session.right+' out of '+session.qs.length+'</h3>'
+    + '<p class="sub">Best streak this session: '+session.qs.length+' questions attempted.</p>'
+    + '<div class="tbars">'+bars+'</div>'
+    + '<div class="verdict">'+verdict+'</div>'
+    + '<div class="row"><button class="btn dark" type="button" id="again">Another ten</button>'
+    + '<a class="btn push" href="index.html">Back to base camp</a></div></div>';
+  document.getElementById('again').addEventListener('click', startSession);
+}
+
+/* ---------------- chrome ---------------- */
+function paintStats(){
+  const tot = S.right + S.wrong;
+  document.getElementById('s-acc').textContent = tot ? Math.round(S.right / tot * 100) + '%' : '—';
+  document.getElementById('s-sessions').textContent = S.sessions;
+  document.getElementById('s-streak').textContent = S.bestStreak;
+}
+
+function renderTechs(){
+  document.getElementById('techlist').innerHTML = Object.keys(TECHS).map((t,i)=>{
+    const rec = S.tech[t], tot = rec ? rec.right + rec.wrong : 0;
+    const score = tot ? '<span class="sc num" style="font-size:12px;color:var(--ink-soft)"> · '
+      + Math.round(rec.right / tot * 100) + '% so far</span>' : '';
+    return '<div class="tech-card"><div class="no">'+String(i+1).padStart(2,'0')+'</div><div>'
+      + '<h4>'+TECHS[t].name+score+'</h4><p>'+TECHS[t].blurb+'</p>'
+      + '<p class="when">'+TECHS[t].when+'</p></div></div>';
+  }).join('');
+}
+
+function renderStart(){
+  const tot = S.right + S.wrong;
+  const line = tot
+    ? 'You have answered ' + tot + ' first moves so far, with ' + S.right + ' right.'
+    : 'You have not done one of these yet. It takes about two minutes.';
+  document.getElementById('p-body').innerHTML =
+    '<p style="margin:0 0 6px;font-size:16.5px;color:var(--ink-soft)">'+line+'</p>'
+    + '<div class="row"><button class="btn dark" type="button" id="start">Start ten questions</button></div>';
+  document.getElementById('start').addEventListener('click', startSession);
+}
+
+document.getElementById('reset').addEventListener('click', async ()=>{
+  if(!confirm('Clear your whole First Move record?')) return;
+  S = { seen:{}, tech:{}, sessions:0, bestStreak:0, right:0, wrong:0, lastScore:null };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+(async function(){
+  await loadState();
+  paintStats();
+  renderTechs();
+  renderStart();
+})();
+</script>
+</body>
+</html>

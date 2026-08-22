@@ -1,6 +1,6 @@
 # Architecture
 
-No framework, no build step, no backend. Six HTML files that link to each other by relative path, plus generated PDFs. That is the whole system, and the constraint is deliberate: a student can be emailed a single file and it still works.
+No framework, no build step, no backend. Eight HTML files — the hub, six topic pages and one drill — that link to each other by relative path, plus generated PDFs. That is the whole system, and the constraint is deliberate: a student can be emailed a single file and it still works.
 
 ## Storage: why `window.storage` and not `localStorage`
 
@@ -19,8 +19,10 @@ Keys in use:
 | `speed-progress-v1` | speed.html | same shape |
 | `respiration-progress-v1` | respiration.html | same shape |
 | `particles-progress-v1` | particles.html | same shape |
+| `ratio-progress-v1` | ratio.html | same shape |
 | `hub-progress-v1` | every topic page | per-topic summary the hub reads |
 | `hub-state-v1` | index.html | puzzle record, subject filter |
+| `firstmove-progress-v1` | firstmove.html | `{seen, tech, sessions, bestStreak, right, wrong, lastScore}` |
 
 Progress is per-browser, per-device. No accounts, no sync, nothing collected. Adding sync would need a backend and is not worth it for one student.
 
@@ -33,6 +35,12 @@ Each topic page ends with a second block marked `hub bridge (2/2)`. Rather than 
 ```
 
 The hub reads that map to draw the climb ladder and per-topic progress bars. So a new page gets hub integration for free **provided it has a progress strip with those three element ids**. Change the ids and the hub goes quiet without erroring — that is the failure mode to watch for.
+
+## Drill pages are not topic pages
+
+`firstmove.html` is the first of a second kind of page: a short drill with no marks, no lessons and no papers. It therefore has no hub bridge and writes nothing to `hub-progress-v1`, which keeps it out of the climb ladder — a 30-mark scale would be meaningless for it. Instead it keeps its own record under its own key, and the hub's `renderDrills()` reads that key directly to fill in the accuracy line on the card.
+
+Drills live in the `DRILLS` array in `index.html`, beside `TOPICS`, and render into the `#drill` section above Topic pages. Each row carries the storage key of the page it points at, so a second drill is one row plus one file. They are deliberately outside the subject filter, being cross-subject.
 
 ## Anatomy of a topic page
 

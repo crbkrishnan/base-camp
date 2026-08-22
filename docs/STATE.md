@@ -15,6 +15,8 @@ Last updated: August 2026.
 
 All six topics now carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries all six, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing twenty-four PDFs.
 
+**`firstmove.html` — the two-minute drill.** Not a topic page: 32 cross-subject questions where he picks the opening line of working rather than solving anything, graded against eight named techniques. No marks, no lessons, no papers, so it stays out of the climb and keeps its own record. The hub surfaces it in a Two-minute drill section above Topic pages, driven by the `DRILLS` array. See the drill-pages note in `ARCHITECTURE.md`.
+
 ## Next
 
 1. **`moments.html` has no videos section.** It predates the format. Add six videos with written tasks, matching the other five pages.
