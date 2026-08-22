@@ -200,11 +200,32 @@ footer button:hover{border-color:var(--no);color:var(--no)}
 </header>
 
 <nav class="jump" aria-label="Sections">
+  <a href="#drill">Two-minute drill</a>
   <a href="#topics">Topic pages</a>
   <a href="#sheets">Practice sheets</a>
   <a href="#puzzle">Puzzle</a>
   <a href="#rules">How to use this</a>
 </nav>
+
+<!-- ============ DRILL ============ -->
+<section id="drill">
+  <div class="shead">
+    <h2>Two-minute drill</h2>
+    <p>Short, and the one worth doing on a day you have no intention of working.</p>
+  </div>
+  <div class="cards">
+    <div class="card" style="border-top-color:var(--ink)">
+      <div class="tag"><span style="color:var(--ink-soft)">All four subjects</span><span class="status">Ready</span></div>
+      <h3>The First Move</h3>
+      <p class="sub">Opening-move drill &middot; 32 questions</p>
+      <p class="blurb">Ten questions, and you never solve any of them &mdash; you only say what the first line of your working would be. That is the part that actually goes wrong when you drop marks.</p>
+      <div class="meta"><span>~2 minutes</span><span>8 techniques</span><span>self-marking</span></div>
+      <div class="prog"><div class="pl"><span id="fm-line">not tried yet</span><span id="fm-sess"></span></div>
+        <div class="bar"><i id="fm-bar" style="background:var(--ink)"></i></div></div>
+      <a class="open" href="firstmove.html" style="background:var(--ink)">Start a session</a>
+    </div>
+  </div>
+</section>
 
 <!-- ============ TOPICS ============ -->
 <section id="topics">
@@ -220,7 +241,7 @@ footer button:hover{border-color:var(--no);color:var(--no)}
 <section id="sheets">
   <div class="shead">
     <h2>Practice sheets</h2>
-    <p>Four per topic, waiting at the bottom of that topic's page. Paper versions, for when a screen is the wrong tool.</p>
+    <p>Paper versions, for when a screen is the wrong tool. No calculator unless the sheet says so.</p>
   </div>
   <div class="sheets" id="sheetlist"></div>
 </section>
@@ -311,30 +332,29 @@ let S = { puzzles:{}, filter:'all', pIdx:null };
 
 /* ---------------- the library ----------------
    To add a topic: copy a row, set status to 'ready' and point file at the new html.
-   The printed papers live on each topic page, in its #papers section — set papers
-   to how many that page links, and this hub signposts them.                      */
+   To add a sheet: add a row to SHEETS with a file path inside sheets/           */
 const TOPICS = [
- {id:'fdp', file:'fdp.html', subject:'maths', status:'ready', papers:4,
+ {id:'fdp', file:'fdp.html', subject:'maths', status:'ready',
   title:'One Number, Three Disguises', sub:'Fractions, decimals and percentages',
   blurb:'Switching between the three forms so the arithmetic gets easy, plus the multiplier method that turns two-step percentage questions into one step.',
   meta:['30 marks','6 lessons','no calculator']},
 
- {id:'moments', file:'moments.html', subject:'physics', status:'ready', papers:4,
+ {id:'moments', file:'moments.html', subject:'physics', status:'ready',
   title:'The Turning Effect', sub:'Moments, pivots and balance',
   blurb:'Why where you push matters as much as how hard. Drag a live balance beam until the principle of moments stops being a formula you memorised.',
   meta:['30 marks','6 lessons','live beam']},
 
- {id:'respiration', file:'respiration.html', subject:'biology', status:'ready', papers:4,
+ {id:'respiration', file:'respiration.html', subject:'biology', status:'ready',
   title:'Breathing In, Breathing Out', sub:'Gas exchange in humans',
   blurb:'Breathing is a pump; respiration is a reaction. Work the diaphragm yourself, then take the alveoli apart to see why lungs are shaped the way they are.',
   meta:['30 marks','6 lessons','lung machine']},
 
- {id:'particles', file:'particles.html', subject:'chemistry', status:'ready', papers:4,
+ {id:'particles', file:'particles.html', subject:'chemistry', status:'ready',
   title:'Small Bits, Always Moving', sub:'The particle model and changes of state',
   blurb:'Drag one temperature dial and watch 36 particles rearrange themselves, then meet the heating curve drawn with real energies — so the flat bit is honestly as long as it really is.',
   meta:['30 marks','6 lessons','live particle box']},
 
- {id:'speed', file:'speed.html', subject:'physics', status:'ready', papers:4,
+ {id:'speed', file:'speed.html', subject:'physics', status:'ready',
   title:'How Fast, How Far, How Long', sub:'Speed, distance, time and travel graphs',
   blurb:'A car on a road with its distance–time graph drawing itself underneath, so the gradient stops being an abstract picture. Plus a solver that shows the working the way the exam wants it.',
   meta:['30 marks','6 lessons','live journey graph']},
@@ -343,10 +363,9 @@ const TOPICS = [
   title:'Acids and Alkalis', sub:'pH, indicators, neutralisation',
   blurb:'The pH scale, what indicators really tell you, and writing neutralisation in words without losing marks on the salt name.'},
 
- {id:'ratio', file:'ratio.html', subject:'maths', status:'ready', papers:4,
-  title:'Shares, Not Amounts', sub:'Ratio, proportion and scaling',
-  blurb:'A ratio tells you how many parts each person gets, never how much — and almost every dropped mark comes from forgetting that. Cut a total into equal blocks and watch the shares assemble themselves.',
-  meta:['30 marks','6 lessons','live share bar']},
+ {id:'ratio', subject:'maths', status:'next',
+  title:'Ratio and Proportion', sub:'Sharing, scaling, recipes',
+  blurb:'Splitting a quantity in a given ratio, scaling recipes up and down, and the direct-proportion questions that follow straight on from percentages.'},
 
  {id:'algebra', subject:'maths', status:'planned',
   title:'Letters as Numbers', sub:'Expressions and solving equations'},
@@ -368,6 +387,59 @@ const TOPICS = [
   title:'Mixtures and Separation', sub:'Filtration, distillation, chromatography'},
  {id:'reactions', subject:'chemistry', status:'planned',
   title:'Chemical Reactions', sub:'Word equations and conservation of mass'}
+];
+
+const SHEETS = [
+ {title:'Fractions, decimals, percentages — Paper A', subject:'maths',
+  note:'Medium · non-calculator · 40 minutes · 30 marks. Conversions, fraction arithmetic, percentage of an amount.',
+  file:'sheets/maths-fdp-paper-a.pdf'},
+ {title:'Fractions, decimals, percentages — Paper B', subject:'maths',
+  note:'Medium · non-calculator · 40 minutes · 30 marks. Mixed numbers, ordering, percentage increase, decrease and change.',
+  file:'sheets/maths-fdp-paper-b.pdf'},
+ {title:'Fractions, decimals, percentages — Paper C', subject:'maths',
+  note:'Hard · non-calculator · 50 minutes · 30 marks. Reverse percentages, successive change, recurring decimals, best deal.',
+  file:'sheets/maths-fdp-paper-c.pdf'},
+ {title:'Fractions, decimals, percentages — Paper D', subject:'maths',
+  note:'Hard · non-calculator · 50 minutes · 30 marks. Profit and loss, fractions of a remainder, and every trap on the page.',
+  file:'sheets/maths-fdp-paper-d.pdf'},
+ {title:'The turning effect — Paper A', subject:'physics',
+  note:'Medium · 40 minutes · 30 marks. Definitions, the formula, cm to m conversions, single moments.',
+  file:'sheets/physics-moments-paper-a.pdf'},
+ {title:'The turning effect — Paper B', subject:'physics',
+  note:'Medium · 40 minutes · 30 marks. The principle of moments, see-saws, levers, several forces at once.',
+  file:'sheets/physics-moments-paper-b.pdf'},
+ {title:'The turning effect — Paper C', subject:'physics',
+  note:'Hard · 50 minutes · 30 marks. Beams with their own weight, non-uniform planks, unknown loads.',
+  file:'sheets/physics-moments-paper-c.pdf'},
+ {title:'The turning effect — Paper D', subject:'physics',
+  note:'Hard · 50 minutes · 30 marks. Four-force balances, wheelbarrows, stability, and judging a claim.',
+  file:'sheets/physics-moments-paper-d.pdf'},
+ {title:'Speed, distance and time — Paper A', subject:'physics',
+  note:'Medium · 40 minutes · 30 marks. Substitution in all three directions, unit conversions, reading a journey.',
+  file:'sheets/physics-speed-paper-a.pdf'},
+ {title:'Speed, distance and time — Paper B', subject:'physics',
+  note:'Medium · 40 minutes · 30 marks. Sketching and describing distance–time graphs, average speed with a rest.',
+  file:'sheets/physics-speed-paper-b.pdf'},
+ {title:'Speed, distance and time — Paper C', subject:'physics',
+  note:'Hard · 50 minutes · 30 marks. Two-part journeys, mixed units, working backwards from a time budget.',
+  file:'sheets/physics-speed-paper-c.pdf'},
+ {title:'Speed, distance and time — Paper D', subject:'physics',
+  note:'Hard · 50 minutes · 30 marks. Target averages, overtaking, echoes, and two wrong answers to diagnose.',
+  file:'sheets/physics-speed-paper-d.pdf'},
+ {title:'The particle model — Paper A', subject:'chemistry',
+  note:'Medium · non-calculator · 35 minutes · 30 marks. The three states, changes of state, particle diagrams, conservation of mass.',
+  file:'sheets/chemistry-particles-paper-a.pdf'},
+ {title:'The particle model — Paper B', subject:'chemistry',
+  note:'Medium · non-calculator · 35 minutes · 30 marks. Heating curves, melting and boiling points, diffusion, Brownian motion.',
+  file:'sheets/chemistry-particles-paper-b.pdf'},
+ {title:'The particle model — Paper C', subject:'chemistry',
+  note:'Hard · non-calculator · 45 minutes · 30 marks. Evaporation against boiling, cooling by evaporation, gas pressure, bromine.',
+  file:'sheets/chemistry-particles-paper-c.pdf'},
+ {title:'The particle model — Paper D', subject:'chemistry',
+  note:'Hard · non-calculator · 45 minutes · 30 marks. Cooling curves, the diffusion tube, and a six-mark particle explanation.',
+  file:'sheets/chemistry-particles-paper-d.pdf'},
+ {title:'Squares, cubes and roots', subject:'maths',
+  note:'No-calculator drill sheet with ruled working space. Handed out in class.', file:null}
 ];
 
 const SUBJECTS = {
@@ -499,14 +571,14 @@ function renderCards(){
 function renderSheets(){
   const box = document.getElementById('sheetlist');
   box.innerHTML = '';
-  readyTopics().filter(t=>t.papers).forEach(t=>{
-    const sub = SUBJECTS[t.subject];
+  SHEETS.forEach(sh=>{
+    const sub = SUBJECTS[sh.subject];
     const row = document.createElement('div');
     row.className = 'sheet';
     row.style.borderLeftColor = sub.colour;
-    row.innerHTML = '<div class="st"><h4>'+t.title+'</h4><p>'+t.sub
-      + ' — '+t.papers+' printed papers, two medium and two hard, 30 marks each.</p></div>'
-      + '<a class="badge" href="'+t.file+'#papers">'+t.papers+' papers</a>';
+    row.innerHTML = '<div class="st"><h4>'+sh.title+'</h4><p>'+sh.note+'</p></div>'
+      + (sh.file ? '<a class="badge" href="'+sh.file+'" download>Download PDF</a>'
+                 : '<span class="badge">In class · paper only</span>');
     box.appendChild(row);
   });
 }
@@ -639,8 +711,22 @@ document.getElementById('reset').addEventListener('click', async ()=>{
 });
 
 /* ---------------- boot ---------------- */
+async function paintDrill(){
+  let R = null;
+  try{ const r = await window.storage.get('firstmove-progress-v1'); if(r && r.value) R = JSON.parse(r.value); }catch(e){}
+  const line = document.getElementById('fm-line');
+  const sess = document.getElementById('fm-sess');
+  const bar  = document.getElementById('fm-bar');
+  if(!R || !(R.right + R.wrong)) return;
+  const tot = R.right + R.wrong, pct = Math.round(R.right / tot * 100);
+  line.textContent = pct + '% of first moves right';
+  sess.textContent = R.sessions + (R.sessions === 1 ? ' session' : ' sessions');
+  bar.style.width = pct + '%';
+}
+
 (async function(){
   await load();
+  paintDrill();
   pIdx = (typeof S.pIdx === 'number') ? S.pIdx : weekIndex();
   renderFilters();
   renderCards();
@@ -653,7 +739,7 @@ document.getElementById('reset').addEventListener('click', async ()=>{
 document.addEventListener('visibilitychange', async ()=>{
   if(document.hidden) return;
   try{ const r = await window.storage.get(PROG_KEY); if(r&&r.value) PROG = JSON.parse(r.value); }catch(e){}
-  renderCards(); renderClimb();
+  renderCards(); renderClimb(); paintDrill();
 });
 </script>
 </body>
