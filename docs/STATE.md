@@ -12,8 +12,11 @@ Last updated: August 2026.
 | Gas exchange | Biology | `respiration.html` | lung machine, alveoli lab | A–D + scheme |
 | The particle model | Chemistry | `particles.html` | particle box, heating curve | A–D + scheme |
 | Ratio and proportion | Maths | `ratio.html` | share bar, best-buy comparer | A–D + scheme |
+| Laws of indices | Maths | `indices.html` | factor counter, pattern ladder | A–D + scheme |
 
-All six topics now carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries all six, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing twenty-four PDFs.
+All seven topics now carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries all seven, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing twenty-eight PDFs.
+
+`indices.html` arrived as a finished page rather than being built in place, so it was registered with `python3 tools/register_topic.py indices.html` — see `ADDING-A-TOPIC.md` step 7. Its papers were written afterwards, against the four descriptions the page already carried in `#papers`; those descriptions are the contract the papers had to match.
 
 **`firstmove.html` — the two-minute drill.** Not a topic page: 32 cross-subject questions where he picks the opening line of working rather than solving anything, graded against eight named techniques. No marks, no lessons, no papers, so it stays out of the climb and keeps its own record. The hub surfaces it in a Two-minute drill section above Topic pages, driven by the `DRILLS` array. See the drill-pages note in `ARCHITECTURE.md`.
 
@@ -29,7 +32,9 @@ Eleven further topics are listed as `planned` in `TOPICS` in `index.html`; that 
 - **Puzzle overlap.** The hub's weekly puzzle rotation includes a metre-rule balance problem close to Q11 on `moments.html`. Swap one out when convenient.
 - **No cross-device sync.** Progress is per-browser by design. Only revisit if the student count grows past a handful, since it needs a backend.
 - **The six `sheets/*-answers.pdf` mark schemes are not linked anywhere**, deliberately. If a future tutor-facing page is added, link them there rather than from a topic page.
-- **`<b>` inside mark-scheme text does not render bold.** `paper_lib.py` registers `Body-Bold` but never calls `registerFontFamily`, so reportlab silently drops the tag — the booklets read fine because the `[1]` splits carry the structure. Affects every booklet equally. Fixing it means re-rendering all six.
+- **`<b>` inside mark-scheme text does not render bold.** `paper_lib.py` registers `Body-Bold` but never calls `registerFontFamily`, so reportlab silently drops the tag — the booklets read fine because the `[1]` splits carry the structure. Affects every booklet equally. Fixing it means re-rendering all seven.
+
+- **The paper generators need reportlab and pypdf, which the system Python usually does not have.** On the machine this was last built on they live in a gitignored `.venv` at the repo root: run `.venv/bin/python tools/papers/<topic>.py`, not `python3 tools/papers/<topic>.py`. `CLAUDE.md`, `README.md` and `WRITING-PAPERS.md` all still document the bare form.
 - **`node tools/smoke.js` fails with no argument.** It defaults to `/home/claude/hub`, a path from the environment the project started in. Pass the directory: `node tools/smoke.js .`. `CLAUDE.md`, `README.md` and `package.json`'s `check` script all still document the bare form.
 
 ## Decisions already made — don't relitigate without reason

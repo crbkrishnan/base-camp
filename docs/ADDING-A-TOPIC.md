@@ -61,18 +61,34 @@ The `#papers` section lists Papers A–D with one-line descriptions. Those descr
 
 ## 7. Register it in the hub
 
-In `index.html`, find `TOPICS` and change the placeholder entry (or add one):
+Do not hand-edit the `TOPICS` array. Put a manifest in the new page's `<head>`, before `</head>`:
 
-```js
-{id:'ratio', file:'ratio.html', subject:'maths', status:'ready', papers:4,
- title:'…', sub:'…',
- blurb:'One or two sentences on what the page actually does.',
- meta:['30 marks','6 lessons','live tool name']},
+```html
+<script type="application/json" id="hub-card">
+{
+  "id": "ratio",
+  "file": "ratio.html",
+  "subject": "maths",
+  "status": "ready",
+  "title": "…",
+  "sub": "…",
+  "blurb": "One or two sentences on what the page actually does.",
+  "meta": ["30 marks", "6 lessons", "live tool name"]
+}
+</script>
 ```
 
-`status` is `ready`, `next` or `planned`. `subject` must be one of `maths`, `physics`, `biology`, `chemistry`. **`id` must match the bridge `ID`** or the progress bar stays empty forever. `papers` is how many PDFs the page's `#papers` section links; it drives the hub's Practice sheets row, so leave it off until the papers actually exist.
+then run:
 
-Use `str_replace` on a unique anchor. Do not splice by string index — see `CLAUDE.md` non-negotiable 2.
+```
+python3 tools/register_topic.py ratio.html    # no third-party imports; system python is fine
+```
+
+It locates `TOPICS` by brace matching that understands quoted strings, so it cannot run past the end of the array — which is exactly how the blank-homepage outage happened (`CLAUDE.md` non-negotiable 2). It is idempotent: a second run updates the entry instead of duplicating it, and replaces a `planned` or `next` placeholder with the same `id` in place. It refuses to write if the subject or status is invalid, if `file` is not in the repo root, or if the manifest `id` disagrees with the bridge `ID` in the page — the mistake that fails silently in the browser, leaving a card whose progress bar never fills.
+
+`status` is `ready`, `next` or `planned`. `subject` must be one of `maths`, `physics`, `biology`, `chemistry`.
+
+**`papers` is the one field the script does not write.** It is how many PDFs the page's `#papers` section links, and it drives the hub's Practice sheets row, so add it by hand — `str_replace` on the entry, never a string-index splice — only once the PDFs actually exist.
 
 ## 8. Verify
 
