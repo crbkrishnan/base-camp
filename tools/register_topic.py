@@ -104,9 +104,14 @@ def render(card):
     parts = ["{id:%s, " % js_str(card['id'])]
     if card.get('file'):
         parts.append("file:%s, " % js_str(card['file']))
-    parts.append("subject:%s, status:%s,\n  title:%s, sub:%s"
-                 % (js_str(card['subject']), js_str(card['status']),
-                    js_str(card['title']), js_str(card['sub'])))
+    parts.append("subject:%s, status:%s"
+                 % (js_str(card['subject']), js_str(card['status'])))
+    # the hub's Practice sheets section is driven by readyTopics().filter(t=>t.papers),
+    # so a page whose PDFs exist must carry the count or its signpost never renders
+    if card.get('papers'):
+        parts.append(", papers:%d" % int(card['papers']))
+    parts.append(",\n  title:%s, sub:%s"
+                 % (js_str(card['title']), js_str(card['sub'])))
     if card.get('blurb'):
         parts.append(",\n  blurb:%s" % js_str(card['blurb']))
     if card.get('meta'):

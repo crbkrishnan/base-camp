@@ -324,6 +324,22 @@ let S = { puzzles:{}, filter:'all', pIdx:null };
    The printed papers live on each topic page, in its #papers section — set papers
    to how many that page links, and this hub signposts them.                      */
 const TOPICS = [
+ {id:'placevalue', file:'placevalue.html', subject:'maths', status:'ready', papers:4,
+  title:'The Point Never Moves', sub:'Place value, rounding and estimating',
+  blurb:'Multiplying by 0.1 makes a number smaller and dividing by it makes one bigger, which feels wrong until you watch the digits slide across a place-value board while the point stays nailed down. Then round on a number line where the midpoint decides, and estimate well enough to catch your own errors.',
+  meta:['30 marks', '6 lessons', 'live place-value board']},
+ {id:'equations', file:'equations.html', subject:'maths', status:'ready', papers:4,
+  title:'Do It To Both Sides', sub:'Constructing and solving equations',
+  blurb:'An equation is a claim that two things weigh the same, and solving one is just unpacking the pans without ever tipping the beam. Break the balance on purpose to see why the rule exists, then drive a solver one chosen step at a time instead of watching someone else\'s working.',
+  meta:['30 marks', '6 lessons', 'live balance scales']},
+ {id:'expressions', file:'expressions.html', subject:'maths', status:'ready', papers:4,
+  title:'Letters Are Just Numbers', sub:'Expressions, formulae, brackets and factorising',
+  blurb:'A letter is a number you have not been told yet, and every rule of algebra is a rule of arithmetic you already use. Build expressions out of tiles until collecting like terms is obvious, then run one area grid forwards to expand and backwards to factorise.',
+  meta:['30 marks', '6 lessons', 'live tile mat']},
+ {id:'integers', file:'integers.html', subject:'maths', status:'ready', papers:4,
+  title:'Every Number Breaks Down', sub:'Factors, primes, negatives and roots',
+  blurb:'Every whole number is built from primes and only one set of primes will do. Split two numbers apart on live factor trees and read the HCF and LCM straight off the wreckage, then build numbers back up into squares and cubes.',
+  meta:['30 marks', '6 lessons', 'live factor trees']},
  {id:'indices', file:'indices.html', subject:'maths', status:'ready', papers:4,
   title:'Small Number, Big Consequences', sub:'Laws of indices',
   blurb:'Every law of indices is really about counting factors. Watch them written out chip by chip, then walk a ladder down past the power zero into negative indices and see why they have to mean what they mean.',
@@ -362,8 +378,6 @@ const TOPICS = [
   blurb:'A ratio tells you how many parts each person gets, never how much — and almost every dropped mark comes from forgetting that. Cut a total into equal blocks and watch the shares assemble themselves.',
   meta:['30 marks','6 lessons','live share bar']},
 
- {id:'algebra', subject:'maths', status:'planned',
-  title:'Letters as Numbers', sub:'Expressions and solving equations'},
  {id:'geometry', subject:'maths', status:'planned',
   title:'Angles and Polygons', sub:'Angle rules and reasons'},
  {id:'averages', subject:'maths', status:'planned',

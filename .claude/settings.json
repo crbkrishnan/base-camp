@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(python3 /tmp/ratio_check.py)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(node tools/smoke.js .)",
+      "Bash(.venv/bin/python -c \"import reportlab, pypdf; print\\('reportlab+pypdf ok'\\)\")",
+      "Bash(.venv/bin/python -c ' *)",
+      "Bash(node tools/smoke.js . fdp.html)",
+      "WebFetch(domain:www.youtube.com)",
+      "Bash(node tools/smoke.js . integers.html)",
+      "Bash(awk '/PAPER D/,/mark scheme/' tools/papers/maths_fdp.py)",
+      "Bash(sips -s format png --out /tmp/intC.png sheets/maths-integers-paper-c.pdf)",
+      "Read(//tmp/**)"
     ],
     "additionalDirectories": [
       "/tmp",

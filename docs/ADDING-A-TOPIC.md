@@ -70,6 +70,7 @@ Do not hand-edit the `TOPICS` array. Put a manifest in the new page's `<head>`, 
   "file": "ratio.html",
   "subject": "maths",
   "status": "ready",
+  "papers": 4,
   "title": "…",
   "sub": "…",
   "blurb": "One or two sentences on what the page actually does.",
@@ -88,7 +89,7 @@ It locates `TOPICS` by brace matching that understands quoted strings, so it can
 
 `status` is `ready`, `next` or `planned`. `subject` must be one of `maths`, `physics`, `biology`, `chemistry`.
 
-**`papers` is the one field the script does not write.** It is how many PDFs the page's `#papers` section links, and it drives the hub's Practice sheets row, so add it by hand — `str_replace` on the entry, never a string-index splice — only once the PDFs actually exist.
+**`papers`** is how many PDFs the page's `#papers` section links, and it drives the hub's Practice sheets row — `readyTopics().filter(t=>t.papers)` in `index.html`. The script writes it through from the manifest, so **omit it until the PDFs actually exist**, then add it and re-run the script; the second run updates the entry in place. Leave it out and the topic card appears but its practice-sheet signpost silently does not.
 
 ## 8. Verify
 

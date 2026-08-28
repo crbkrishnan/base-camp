@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do It To Both Sides — Grade 7 IGCSE Maths</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "equations",
+  "file": "equations.html",
+  "subject": "maths",
+  "status": "ready",
+  "papers": 4,
+  "title": "Do It To Both Sides",
+  "sub": "Constructing and solving equations",
+  "blurb": "An equation is a claim that two things weigh the same, and solving one is just unpacking the pans without ever tipping the beam. Break the balance on purpose to see why the rule exists, then drive a solver one chosen step at a time instead of watching someone else's working.",
+  "meta": ["30 marks", "6 lessons", "live balance scales"]
+}
+</script>
+
+<style>
+:root{
+  --ink:#1A211F;
+  --ink-soft:#4E5A56;
+  --paper:#E7EFEC;
+  --card:#FFFFFF;
+  --line:#CEDCD7;
+  --line-soft:#DCE8E4;
+  --lh:#37477E;          /* the left side — always indigo */
+  --lh-tint:#E8EBF4;
+  --rh:#A4442A;          /* the right side — always terracotta */
+  --rh-tint:#F9EBE6;
+  --sl:#7A3E7E;          /* the solution — always purple */
+  --sl-tint:#F3EAF4;
+  --fr:var(--lh); --fr-tint:var(--lh-tint);
+  --de:var(--rh); --de-tint:var(--rh-tint);
+  --pc:var(--sl); --pc-tint:var(--sl-tint);
+  --steel:#94A5A0;
+  --steel-dark:#63736E;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#98241B;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--fr)}
+:focus-visible{outline:3px solid var(--fr);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(34px,7.2vw,62px);font-weight:800;margin:12px 0 6px}
+.mast h1 i{font-style:normal;color:var(--fr)}
+.mast h1 em{font-style:normal;color:var(--de)}
+.mast h1 b{font-weight:800;color:var(--pc)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--fr);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(231,239,236,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--fr);color:var(--fr)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 160px;accent-color:var(--pc);min-width:130px}
+input[type=number]{font-family:var(--mono);font-size:15px;width:110px;padding:7px 9px;border:1px solid var(--line);
+  border-radius:9px;background:var(--paper);color:var(--ink)}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover:not([disabled]){background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn.on{background:var(--fr);border-color:var(--fr);color:#fff}
+.btn[disabled]{opacity:.35;cursor:default}
+.btn.lhs{border-color:var(--lh);color:var(--lh)}
+.btn.lhs:hover{background:var(--lh);color:#fff}
+.btn.rhs{border-color:var(--rh);color:var(--rh)}
+.btn.rhs:hover{background:var(--rh);color:#fff}
+.btn.step{font-family:var(--mono);font-size:12.5px;padding:7px 12px;border-color:var(--line);color:var(--ink);text-align:left}
+.btn.step:hover:not([disabled]){background:var(--pc);border-color:var(--pc);color:#fff}
+.steps{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 14px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line-soft)}
+.rows.two{grid-template-columns:1fr 1fr}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--mono);font-weight:700;font-size:19px;margin-top:3px}
+.cell .sub{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+.cell.f .lab{color:var(--fr)} .cell.f .val{color:var(--fr)}
+.cell.d .lab{color:var(--de)} .cell.d .val{color:var(--de)}
+.cell.p .lab{color:var(--pc)} .cell.p .val{color:var(--pc)}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.pill.go{background:var(--fr-tint);color:var(--fr)}
+.pill.up{background:var(--pc-tint);color:var(--pc)}
+.pill.down{background:var(--no-tint);color:var(--no)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--fr-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+.transcript{font-family:var(--mono);font-size:13.5px;background:var(--paper);border-top:1px solid var(--line);
+  padding:12px 16px;min-height:52px}
+.transcript div{padding:1px 0}
+.transcript .op{color:var(--ink-soft);font-size:11.5px}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--fr);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--fr-tint)}
+.vid h3 a:hover{border-bottom-color:var(--fr)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--pc);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--fr)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--de);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--pc);background:var(--pc-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.frtxt{color:var(--fr);font-weight:700}
+.detxt{color:var(--de);font-weight:700}
+.pctxt{color:var(--pc);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--pc-tint);color:var(--pc)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--de-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--pc)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows,.rows.two{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Mathematics · Grade 7 · Algebra</div>
+  <h1>Do It To<br><i>Both</i> <em>Sides</em></h1>
+  <p class="lede">An equation says two things weigh exactly the same. Everything you are allowed to do follows from that one sentence: whatever you do to one pan, you must do to the other, or the claim stops being true. Solving is not a set of tricks. It is taking the scales apart without ever tipping them.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> You've been landing around <span class="num">10 out of 15</span>. This page is out of <span class="num">30</span>, so the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Every single answer on this page can be checked by putting it back into the original equation. If you do that every time, you should never hand in a wrong answer again — you will only ever hand in an unfinished one.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#scales">Balance scales</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#machine">Step machine</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
+</nav>
+
+<!-- ============ HERO 1: THE BALANCE SCALES ============ -->
+<section id="scales">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The balance scales</h2>
+      <p>Each pan holds the two sides of the equation. The beam is level because the equation is <em>true</em> — and it stays level only while both pans are treated identically. Take something off one pan alone and watch it tip. That tip is the whole reason for the rule.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 700 270" role="img" aria-label="A pair of balance scales holding the two sides of an equation">
+      <g id="sc-beam"></g>
+      <g id="sc-pans"></g>
+      <polygon points="350,96 332,180 368,180" fill="var(--steel-dark)"/>
+      <rect x="310" y="180" width="80" height="9" rx="4" fill="var(--steel-dark)"/>
+    </svg>
+
+    <div class="ctrl">
+      <label style="color:var(--lh)">Left pan</label>
+      <button class="btn ghost small lhs" type="button" data-sc="Lx+">+ x</button>
+      <button class="btn ghost small lhs" type="button" data-sc="Lx-">&minus; x</button>
+      <button class="btn ghost small lhs" type="button" data-sc="L1+">+ 1</button>
+      <button class="btn ghost small lhs" type="button" data-sc="L1-">&minus; 1</button>
+      <label style="color:var(--rh)">Right pan</label>
+      <button class="btn ghost small rhs" type="button" data-sc="Rx+">+ x</button>
+      <button class="btn ghost small rhs" type="button" data-sc="Rx-">&minus; x</button>
+      <button class="btn ghost small rhs" type="button" data-sc="R1+">+ 1</button>
+      <button class="btn ghost small rhs" type="button" data-sc="R1-">&minus; 1</button>
+      <button class="btn ghost small" type="button" data-sc="reset">Start again</button>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">The equation now</div><div class="val" id="sc-eq">3x + 4 = 19</div><div class="sub" id="sc-eqs">the starting equation</div></div>
+      <div class="cell p"><div class="lab">Is the beam level?</div><div class="val" id="sc-lev">level</div><div class="sub" id="sc-levs">both pans weigh the same at x = 5</div></div>
+      <div class="cell d"><div class="lab">What x would have to be</div><div class="val" id="sc-sol">x = 5</div><div class="sub" id="sc-sols">the solution of the equation shown</div></div>
+      <div class="phasebar">
+        <span class="pill bal" id="sc-pill">Balanced</span>
+        <span id="sc-note">Try taking one thing off the left pan only. The beam will tip, and the equation stops being true.</span>
+        <span class="push"><button class="btn ghost" type="button" id="scPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="scQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~45 min total</span></div>
+  <p class="snote">Each video comes with one small written job. Do the job, or the video was a screensaver with maths on it. Pause and write as you go — don't tell yourself you'll rewind at the end, because you won't.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~35 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: THE STEP MACHINE ============ -->
+<section id="machine">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The step machine</h2>
+      <p>You do not solve this one. You choose the <em>next move</em>, and the machine carries it out on both sides and writes the new line. Every move offered is legal — but only some of them get you closer. Choosing well is the actual skill, and it is the one exams test.</p>
+    </div>
+
+    <div class="transcript" id="sm-log"></div>
+
+    <div class="steps" id="sm-steps"></div>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="smReset">Start this one again</button>
+      <button class="btn ghost small" type="button" id="smNew">Give me a different equation</button>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">Where you are</div><div class="val" id="sm-now">3x + 4 = 19</div><div class="sub" id="sm-nows">choose a move below</div></div>
+      <div class="cell p"><div class="lab">Moves used</div><div class="val" id="sm-count">0</div><div class="sub" id="sm-counts">this one needs two</div></div>
+      <div class="cell d"><div class="lab">Check</div><div class="val" id="sm-chk">—</div><div class="sub" id="sm-chks">substitute back when you finish</div></div>
+      <div class="phasebar">
+        <span class="pill go" id="sm-pill">Not solved yet</span>
+        <span id="sm-note">Get x on its own. Strip the numbers off the x first, and divide last.</span>
+        <span class="push"><button class="btn ghost" type="button" id="smPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="smQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No calculator, no notes. These are the five marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Doing it to one side only</h4><p>Taking 4 off the left and leaving the right alone turns a true statement into a false one. Once the beam has tipped, every line after it is wrong, however neat the working looks. Write the operation down the side of your page — <span class="num">&minus; 4</span> — so you can see at a glance that it happened twice.</p></div>
+    <div class="trap"><h4>Moving a term across without changing its sign</h4><p>From <span class="num">3x + 4 = 19</span>, the 4 becomes <span class="num">&minus;4</span> on the other side, giving <span class="num">3x = 15</span>. Writing <span class="num">3x = 23</span> means you added it instead of subtracting. If you find "moving across" slippery, don't move anything — just subtract 4 from both sides and let the 4 disappear on its own.</p></div>
+    <div class="trap"><h4>Dividing only part of a side</h4><p><span class="num">3x + 6 = 18</span> does not become <span class="num">x + 6 = 6</span>. Dividing by 3 divides <em>everything</em> on both sides, giving <span class="num">x + 2 = 6</span>. This is why you strip the numbers off first and divide last — then there is only ever one term left to divide.</p></div>
+    <div class="trap"><h4>Not expanding the bracket before you start</h4><p><span class="num">4(x + 3) = 20</span> is not <span class="num">4x + 3 = 20</span>. Either expand properly to <span class="num">4x + 12 = 20</span>, or divide both sides by 4 first to get <span class="num">x + 3 = 5</span>. Both give x = 2. What you cannot do is half-expand and carry on.</p></div>
+    <div class="trap"><h4>Not checking, when checking is free</h4><p>Every answer here can be tested in ten seconds by putting it back into the <strong>original</strong> equation — not into your own second line, which may already be wrong. If both sides come out the same number, you are right. There is no other topic in mathematics where the marking scheme is this available to you, and skipping it is simply choosing to lose marks.</p></div>
+  </div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">Non-calculator · 30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Medium ones first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/maths-equations-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">One-step and two-step equations, a first look at unknowns on both sides, forming an equation from a sentence, and checking answers by substitution.</p></a>
+    <a class="paper" href="sheets/maths-equations-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">Same level, different questions. Equations with brackets, equations with a division, a perimeter equation and an ages problem.</p></a>
+    <a class="paper" href="sheets/maths-equations-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">Brackets on both sides, negative coefficients, fractional equations, and two comparison problems where the equation has to be built before it can be solved.</p></a>
+    <a class="paper" href="sheets/maths-equations-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">Multi-step equations, a geometry problem solved by equation, a case where a wrong method reaches the right answer, and two students' wrong working to diagnose.</p></a>
+  </div>
+</section>
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'equations-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"Algebra Basics: Solving Basic Equations Part 1", ch:"Math Antics", url:"https://www.youtube.com/watch?v=OepkTCOGJYU",
+  why:"Starts from the balance idea rather than from a procedure, which is exactly the right order. If you only understand one thing on this page, make it the sentence \"whatever I do to one side I must do to the other\".",
+  task:"Write down, in your own words, why you are allowed to subtract 4 from both sides but not from one. Then solve x + 7 = 12 and x − 3 = 9 on paper, showing the operation beside each line."},
+
+ {t:"Algebra Basics: Solving Basic Equations Part 2", ch:"Math Antics", url:"https://www.youtube.com/watch?v=Qyd_v3DGzTM",
+  why:"The multiplying and dividing half of the same idea. Together with Part 1 this covers every one-step equation there is.",
+  task:"Solve 6x = 42 and x/5 = 8 on paper. Answers: 7 and 40. For each one, write down which operation undid which — you are always applying the inverse."},
+
+ {t:"Solving Equations", ch:"Corbettmaths", url:"https://www.youtube.com/watch?v=30S7WxKcPwg",
+  why:"Exam-shaped two-step equations, including the ones with brackets. This is the video that matches Q7 and Q9.",
+  task:"Solve 3x + 7 = 22, 4x − 9 = 19 and 3(x − 2) = 18. Answers: 5, 7 and 8. Check every one by substituting back into the original — that habit is worth more than the three answers."},
+
+ {t:"Solving equations with letters on both sides", ch:"Corbettmaths", url:"https://www.youtube.com/watch?v=85ZM3ZKqRhY",
+  why:"What to do when x appears twice. The move is always the same: get all the x terms onto one side by subtracting the smaller one.",
+  task:"Solve 5x − 3 = 2x + 12 and 4x + 9 = x + 27. Answers: 5 and 6. In each case write down which side you moved the x terms to, and why that choice avoided a negative."},
+
+ {t:"Forming equations", ch:"Corbettmaths", url:"https://www.youtube.com/watch?v=Lz3VkLrDmhE",
+  why:"Turning a situation into an equation, which is the part of Q11 to Q14 that actually carries the marks. The solving afterwards is the easy half.",
+  task:"For each of these, write the equation but do not solve it: \"I think of a number, multiply by 4, add 7, and get 39\"; \"a rectangle of width x and length x + 4 has perimeter 36\". Check against 4n + 7 = 39 and 4x + 8 = 36."},
+
+ {t:"Solving Equations Answers", ch:"Corbettmaths", url:"https://www.youtube.com/watch?v=XKvKLQtYqow",
+  why:"Worked solutions to a full practice set. Use it as a marker, not as a lesson — the point is to attempt first and check second.",
+  task:"Print the Corbettmaths Solving Equations practice questions, do the whole sheet cold, and only then play this video. Mark yourself honestly and write down the type of any question you got wrong, not just the number."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"What an equation actually claims", len:"5 min",
+  body:`<p>An <strong>expression</strong> is a recipe: <span class="num">3x + 4</span>. It has no answer. An <strong>equation</strong> is a claim that two recipes produce the same number:</p>
+        <div class="eqline"><span class="frtxt">3x + 4</span> = <span class="detxt">19</span></div>
+        <p>That is a statement about one particular value of x. For most values of x it is simply false — at x = 2 the left is 10 and the right is 19. <strong>Solving</strong> means finding the value that makes the claim true. Here it is 5, and only 5.</p>
+        <p><strong>Picture a pair of scales.</strong> The left pan holds 3x + 4, the right pan holds 19, and the beam is level because they weigh the same. Now the one rule that generates everything else:</p>
+        <div class="eqline">whatever you do to one pan, do to the other — or the beam tips</div>
+        <p>Subtract 4 from the left only, and the left is now lighter. The statement is no longer true and everything after it is worthless. Subtract 4 from <em>both</em>, and the beam stays level: a new, simpler, equally true equation.</p>
+        <p><strong>The four legal moves</strong> are add, subtract, multiply and divide — always to both sides, always by the same thing. That is the entire toolkit. There is nothing else, and there are no special cases to memorise.</p>
+        <p><strong>Every answer can be checked.</strong> Put your value back into the original equation and work out both sides separately. If they match, you are right — not "probably right". This is the only topic where you can mark your own work with certainty, so there is no excuse for handing in a wrong answer.</p>`,
+  demo:`<strong>Do this:</strong> take 3x + 4 = 19 and try x = 3, x = 5 and x = 6, working out both sides each time. You get 13 against 19, then 19 against 19, then 22 against 19. Only one value makes the claim true, and that is what "the solution" means.`,
+  cliff:`If the rule is just "do it to both sides", the only question left is: do <em>what</em> to both sides?`},
+
+ {t:"One step: undo with the opposite", len:"5 min",
+  body:`<p>Look at what has been done to x, and do the opposite to both sides.</p>
+        <table class="data">
+          <tr><th>equation</th><th>what was done to x</th><th>so do this to both sides</th><th>answer</th></tr>
+          <tr><td>x + 7 = 12</td><td>added 7</td><td>subtract 7</td><td>x = 5</td></tr>
+          <tr><td>x &minus; 9 = 4</td><td>subtracted 9</td><td>add 9</td><td>x = 13</td></tr>
+          <tr><td>6x = 42</td><td>multiplied by 6</td><td>divide by 6</td><td>x = 7</td></tr>
+          <tr><td>x/5 = 8</td><td>divided by 5</td><td>multiply by 5</td><td>x = 40</td></tr>
+        </table>
+        <p><strong>Write the operation down the side of your working.</strong> Like this:</p>
+        <div class="eqline">6x = 42<br>&nbsp;&nbsp; ÷6 &nbsp;&nbsp;&nbsp;&nbsp; ÷6<br>&nbsp; x = 7</div>
+        <p>It looks childish. It is also the single most effective habit for stopping one-sided operations, because you can see with your eyes that the operation appears twice.</p>
+        <p><strong>One awkward case.</strong> <span class="num">4 &minus; x = 10</span> has the x being subtracted. Add x to both sides to make it positive:</p>
+        <div class="eqline">4 &minus; x = 10 &nbsp;→&nbsp; 4 = 10 + x &nbsp;→&nbsp; &minus;6 = x &nbsp;→&nbsp; <span class="pctxt">x = &minus;6</span></div>
+        <p>Check: 4 &minus; (&minus;6) = 4 + 6 = 10 ✓. A negative solution is a perfectly ordinary answer, not a signal that you went wrong.</p>`,
+  demo:`<strong>Do this:</strong> solve x + 15 = 8, 7x = 56, x/4 = 9 and 5 − x = 12 on paper, writing the operation beside each line. Answers: −7, 8, 36, −7. Check all four by substituting back.`,
+  cliff:`Two things have been done to the x in 3x + 4 = 19. Which one do you undo first — and does the order matter?`},
+
+ {t:"Two steps, and why the order is fixed", len:"6 min",
+  body:`<p>In <span class="num">3x + 4 = 19</span> the x was multiplied by 3, <em>then</em> 4 was added. To unwind it you go backwards, undoing the <strong>last</strong> thing first:</p>
+        <div class="eqline">3x + 4 = 19<br>&nbsp;&nbsp; &minus;4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &minus;4<br>&nbsp;&nbsp;&nbsp; 3x = 15<br>&nbsp;&nbsp; ÷3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ÷3<br>&nbsp;&nbsp;&nbsp;&nbsp; x = <span class="frtxt">5</span></div>
+        <p><strong>Always: strip the numbers off first, divide last.</strong> Think of getting dressed — socks then shoes; to undo it you take the shoes off first.</p>
+        <p><strong>What happens if you divide first?</strong> Nothing illegal, but you make life harder, because dividing hits <em>every</em> term:</p>
+        <div class="eqline">3x + 4 = 19 &nbsp;→&nbsp; (÷3) &nbsp;→&nbsp; x + 4/3 = 19/3</div>
+        <p>That is still true and still solvable, and it still gives x = 5 — but you are now doing fractions for no reason. What you must <strong>not</strong> do is divide only part of a side and write <span class="num">x + 4 = 19/3</span>. That is the trap, and it is why "divide last" is the safe habit.</p>
+        <p><strong>The mark scheme rewards the middle line.</strong> A two-step equation is usually two marks: one for a correct first operation, one for the answer. If you write only "x = 5" and it is wrong, you get nothing. If you show <span class="num">3x = 15</span> and then slip, you still get one. Showing working is not politeness — it is worth real marks.</p>`,
+  demo:`<strong>Do this:</strong> solve 4x − 9 = 19, 5x + 12 = 47 and 2x − 7 = −1 on paper, showing both lines. Answers: 7, 7 and 3. Then substitute each answer back into its original equation.`,
+  cliff:`So far x has lived on one side only. What do you do when it turns up in both pans at once?`},
+
+ {t:"When x is on both sides", len:"6 min",
+  body:`<p>The scales have x-boxes in both pans. Take the same number of boxes off both pans, and one side loses its x entirely.</p>
+        <div class="eqline">5x &minus; 3 = 2x + 12<br>&nbsp;&nbsp; &minus;2x &nbsp;&nbsp;&nbsp;&nbsp; &minus;2x<br>&nbsp;&nbsp;&nbsp;&nbsp; 3x &minus; 3 = 12<br>&nbsp;&nbsp; +3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +3<br>&nbsp;&nbsp;&nbsp;&nbsp; 3x = 15 &nbsp;→&nbsp; x = <span class="frtxt">5</span></div>
+        <p>Check: 5(5) &minus; 3 = 22 and 2(5) + 12 = 22 ✓.</p>
+        <p><strong>Which side should the x go to?</strong> Move the <em>smaller</em> x term. In the example, 2x is smaller than 5x, so subtracting 2x leaves a positive 3x. Subtracting 5x instead would have given <span class="num">&minus;3 = &minus;3x + 12</span>, which is still correct but now you are carrying a negative for no reason.</p>
+        <p>The rule in one line: <strong>move the x terms towards the bigger one, and the numbers away from it.</strong></p>
+        <p><strong>Negatives are survivable.</strong> If you do end up with <span class="num">&minus;2x + 6 = &minus;2</span>, just carry on: subtract 6 from both sides to get <span class="num">&minus;2x = &minus;8</span>, then divide by &minus;2 to get <span class="num">x = 4</span>. Dividing a negative by a negative gives a positive, exactly as it always does.</p>
+        <p><strong>Two odd endings you should recognise.</strong> If every x cancels and you are left with something true like <span class="num">6 = 6</span>, then <em>every</em> value of x works. If you are left with something false like <span class="num">6 = 9</span>, then no value works. Both are legitimate answers, and both come up occasionally.</p>`,
+  demo:`<strong>Do this:</strong> solve 4x + 9 = x + 27 and 2x + 6 = 4x − 2 on paper. Answers: 6 and 4. For the second one, try it twice — once moving the 2x and once moving the 4x — and see that both routes land on 4, but one of them stays positive throughout.`,
+  cliff:`Now put a bracket in front of the x, or a division underneath it. The rule does not change, but you need one extra move before you can use it.`},
+
+ {t:"Brackets and fractions in equations", len:"6 min",
+  body:`<p><strong>Brackets: two ways, both correct.</strong> Take <span class="num">3(x &minus; 2) = 18</span>.</p>
+        <div class="eqline">Expand first: 3x &minus; 6 = 18 &nbsp;→&nbsp; 3x = 24 &nbsp;→&nbsp; x = 8<br>Divide first: &nbsp;x &minus; 2 = 6 &nbsp;→&nbsp; x = <span class="frtxt">8</span></div>
+        <p>Dividing first is quicker <em>when the number outside divides the other side neatly</em>, as it does here. Expanding always works. Pick whichever you can do without hesitating.</p>
+        <p>What you cannot do is write <span class="num">3x &minus; 2 = 18</span>. The 3 multiplies everything inside, so the 2 becomes 6.</p>
+        <p><strong>Brackets on both sides</strong> — expand both, then proceed as normal:</p>
+        <div class="eqline">2(x + 5) = 3x + 4 &nbsp;→&nbsp; 2x + 10 = 3x + 4 &nbsp;→&nbsp; 10 &minus; 4 = 3x &minus; 2x &nbsp;→&nbsp; x = <span class="frtxt">6</span></div>
+        <p><strong>Fractions: multiply them away.</strong> If x is divided by something, multiply both sides by that thing — and remember it hits every term.</p>
+        <div class="eqline">x/3 + 4 = 9 &nbsp;→&nbsp; x/3 = 5 &nbsp;→&nbsp; x = <span class="frtxt">15</span></div>
+        <p>Here the +4 came off first, which left a single term to multiply. Compare with a fraction that wraps the whole side:</p>
+        <div class="eqline">(x + 1)/4 = 3 &nbsp;→&nbsp; ×4 both sides &nbsp;→&nbsp; x + 1 = 12 &nbsp;→&nbsp; x = <span class="frtxt">11</span></div>
+        <p>The bracket in the numerator tells you the whole of <span class="num">x + 1</span> was divided by 4, so multiplying by 4 undoes it in one move. Missing that bracket — treating it as <span class="num">x/4 + 1</span> — gives 8 instead, and is the standard error here.</p>`,
+  demo:`<strong>Do this:</strong> solve 4(x + 3) = 20 both ways — expanding, and dividing by 4 first. Both give x = 2. Then solve x/2 − 3 = 5 and (x − 4)/3 = 2. Answers: 16 and 10.`,
+  cliff:`Every equation so far arrived already written. In an exam, most of them arrive as a sentence — and writing the equation is where the marks are.`},
+
+ {t:"Building the equation from the words", len:"6 min",
+  body:`<p>This is the half of the topic that actually gets tested, and the half students skip. The solving is mechanical; the <em>forming</em> is the thinking.</p>
+        <p><strong>Three steps, in this order:</strong></p>
+        <ol>
+          <li><strong>Name the letter, in writing.</strong> "Let n be the number I thought of." This is worth a mark and it stops you losing track.</li>
+          <li><strong>Write what the situation says</strong>, using that letter, and put in the equals sign where the words say "is", "gives", "comes to" or "the total is".</li>
+          <li><strong>Solve it, then answer the actual question</strong> — in words, with units.</li>
+        </ol>
+        <p><strong>Worked example.</strong> "I think of a number, multiply it by 4, add 7, and the result is 39."</p>
+        <div class="eqline">let n = the number<br>4n + 7 = 39 &nbsp;→&nbsp; 4n = 32 &nbsp;→&nbsp; n = <span class="frtxt">8</span><br>check: 4(8) + 7 = 39 ✓</div>
+        <p><strong>A shape example.</strong> A rectangle has width x and length x + 4, and its perimeter is 36 cm.</p>
+        <div class="eqline">2(x + x + 4) = 36 &nbsp;→&nbsp; 4x + 8 = 36 &nbsp;→&nbsp; 4x = 28 &nbsp;→&nbsp; x = 7<br>so the rectangle is <span class="frtxt">7 cm by 11 cm</span>, and 2(7 + 11) = 36 ✓</div>
+        <p>Notice the last line. The question asked about a rectangle, so "x = 7" on its own is an incomplete answer — you were asked for the dimensions.</p>
+        <p><strong>Comparison problems</strong> are the hardest shape, and always work the same way: write an expression for each option, then set them equal to find where they agree. Two taxi firms, one charging 50 + 10d and the other 20 + 15d, cost the same when <span class="num">50 + 10d = 20 + 15d</span>, which gives d = 6 km. Below 6 km one is cheaper; above 6 km the other is. That single equation tells you the whole story.</p>
+        <p>If you can form the equation, you already know how to solve it — everything before this lesson was that. Related pages: expressions come from <a href="expressions.html">Letters Are Just Numbers</a>.</p>`,
+  demo:`<strong>Do this:</strong> form and solve an equation for each. (i) "Three times a number, minus 5, is 22." (ii) "A brother is 3 times his sister's age and their ages total 32." Answers: 3n − 5 = 22 giving n = 9; and s + 3s = 32 giving s = 8, so the ages are 8 and 24.`,
+  cliff:`That's the lessons. Now go and lose to Q14 and Q15 — then come back tomorrow and take them apart.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Solve <span class='num'>3x + 4 = 19</span>.",
+  o:["x = 5","x = 15","x = 7 2/3","x = 23"], a:0,
+  why:"Subtract 4 from both sides to get 3x = 15, then divide by 3. Option B stopped one step early. Option D added the 4 instead of subtracting it, and option C is what happens if you then divide 23 by 3. Check: 3(5) + 4 = 19 ✓"},
+ {n:2, lvl:"medium", q:"Solve <span class='num'>5x &minus; 3 = 2x + 12</span>.",
+  o:["x = 5","x = 3","x = 15/7","x = 9"], a:0,
+  why:"Subtract 2x from both sides: 3x − 3 = 12, so 3x = 15 and x = 5. Option C comes from adding 2x instead of subtracting it. Check: 5(5) − 3 = 22 and 2(5) + 12 = 22 ✓"},
+ {n:3, lvl:"medium", q:"Solve <span class='num'>2(x + 3) = 14</span>.",
+  o:["x = 4","x = 11","x = 5.5","x = 7"], a:0,
+  why:"Divide both sides by 2 to get x + 3 = 7, so x = 4. (Expanding first gives 2x + 6 = 14, same answer.) Option B divided only the left side; option C expanded to 2x + 3 = 14, forgetting to multiply the 3."},
+ {n:4, lvl:"medium", q:"Solve <span class='num'>4 &minus; x = 10</span>.",
+  o:["x = &minus;6","x = 6","x = 14","x = &minus;14"], a:0,
+  why:"Add x to both sides: 4 = 10 + x, so x = −6. Check: 4 − (−6) = 4 + 6 = 10 ✓. Option B ignores the sign; option C subtracts the wrong way round. A negative solution is an ordinary answer here, not a mistake."},
+ {n:5, lvl:"trap", q:"A student solving <span class='num'>2x + 6 = 4x &minus; 2</span> subtracts <span class='num'>4x</span> from both sides and gets <span class='num'>&minus;2x + 6 = &minus;2</span>. What is <span class='num'>x</span>?",
+  o:["x = 4","x = &minus;4","x = 2","x = &minus;2"], a:0,
+  why:"Carry on: subtract 6 from both sides to get −2x = −8, then divide by −2. A negative divided by a negative is positive, so x = 4. Option B is what you get by forgetting that. The student's route was legal — just harder than subtracting 2x would have been."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"Solve:<br><strong>(a)</strong> <span class='num'>6x = 42</span> <span class='num'>[1]</span><br><strong>(b)</strong> <span class='num'>x/5 = 8</span> <span class='num'>[1]</span>",
+  scheme:["(a) Divide both sides by 6: <strong>x = 7</strong> <span class='num'>[1]</span>",
+          "(b) Multiply both sides by 5: <strong>x = 40</strong> <span class='num'>[1]</span>"],
+  tip:"These two are each other's opposites, and that is the point: you always apply the inverse of whatever was done to x. Write the operation beside each line even here, while it is easy."},
+ {n:7, m:2, lvl:"medium", q:"Solve:<br><strong>(a)</strong> <span class='num'>3x + 7 = 22</span> <span class='num'>[1]</span><br><strong>(b)</strong> <span class='num'>4x &minus; 9 = 19</span> <span class='num'>[1]</span>",
+  scheme:["(a) 3x = 15, so <strong>x = 5</strong> <span class='num'>[1]</span>",
+          "(b) 4x = 28, so <strong>x = 7</strong> <span class='num'>[1]</span>"],
+  tip:"Strip the number off first, divide last. Show the middle line in both — in a two-mark question that line is the method mark, and you keep it even if the division then goes wrong."},
+ {n:8, m:2, lvl:"medium", q:"Solve <span class='num'>4x + 9 = x + 27</span>, showing each step.",
+  scheme:["Subtract x from both sides: 3x + 9 = 27 <span class='num'>[1]</span>",
+          "Subtract 9: 3x = 18, so <strong>x = 6</strong> <span class='num'>[1]</span>"],
+  tip:"Move the smaller x term, so subtract x rather than 4x — that keeps everything positive. Check: 4(6) + 9 = 33 and 6 + 27 = 33 ✓"},
+ {n:9, m:2, lvl:"medium", q:"Solve:<br><strong>(a)</strong> <span class='num'>3(x &minus; 2) = 18</span> <span class='num'>[1]</span><br><strong>(b)</strong> <span class='num'>2(x + 5) = 3x + 4</span> <span class='num'>[1]</span>",
+  scheme:["(a) Divide by 3: x − 2 = 6, so <strong>x = 8</strong> (or expand: 3x − 6 = 18) <span class='num'>[1]</span>",
+          "(b) Expand: 2x + 10 = 3x + 4, so 10 − 4 = 3x − 2x, giving <strong>x = 6</strong> <span class='num'>[1]</span>"],
+  tip:"In (a) dividing first is quicker because 18 ÷ 3 is exact. In (b) you must expand, because the right-hand side is not a multiple of 2. Check (b): 2(11) = 22 and 3(6) + 4 = 22 ✓"},
+ {n:10, m:2, lvl:"medium", q:"Solve:<br><strong>(a)</strong> <span class='num'>x/3 + 4 = 9</span> <span class='num'>[1]</span><br><strong>(b)</strong> <span class='num'>(x + 1)/4 = 3</span> <span class='num'>[1]</span>",
+  scheme:["(a) Subtract 4: x/3 = 5, then multiply by 3: <strong>x = 15</strong> <span class='num'>[1]</span>",
+          "(b) Multiply both sides by 4: x + 1 = 12, so <strong>x = 11</strong> <span class='num'>[1]</span>"],
+  tip:"The two look alike and are not. In (a) only the x is divided by 3; in (b) the whole of (x + 1) is divided by 4. Reading (b) as x/4 + 1 gives 8 and is the standard error."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"medium", q:"I think of a number, multiply it by 4, then add 7. The result is 39.<br><br><strong>(a)</strong> Using <span class='num'>n</span> for the number, form an equation. <span class='num'>[1]</span><br><strong>(b)</strong> Solve your equation. <span class='num'>[1]</span><br><strong>(c)</strong> Check your answer by working through the original instructions. <span class='num'>[1]</span>",
+  hints:["Follow the sentence in order: start with n, multiply by 4, then add 7. The words \"the result is\" are where the equals sign goes.",
+         "To solve, undo the last thing first — the 7 was added last, so subtract it first.",
+         "For (c), do not substitute into your own working. Go back to the words: take your number, multiply by 4, add 7, and see whether you get 39."],
+  sol:["(a) Let n be the number. Then <strong>4n + 7 = 39</strong>.",
+       "(b) Subtract 7: 4n = 32. Divide by 4: <strong>n = 8</strong>.",
+       "(c) Check: 8 × 4 = 32, and 32 + 7 = 39 ✓",
+       "Writing \"let n be the number\" is worth a mark on its own in most schemes. It costs four words and it is the cheapest mark on any algebra paper."]},
+
+ {n:12, m:3, lvl:"medium", q:"A rectangle has width <span class='num'>x</span> cm and length <span class='num'>(x + 4)</span> cm. Its perimeter is <span class='num'>36</span> cm.<br><br><strong>(a)</strong> Form an equation in <span class='num'>x</span>. <span class='num'>[1]</span><br><strong>(b)</strong> Solve it. <span class='num'>[1]</span><br><strong>(c)</strong> Write down the length and width of the rectangle, and check the perimeter. <span class='num'>[1]</span>",
+  hints:["The perimeter is twice the width plus twice the length, or equally 2 × (width + length). Set that equal to 36.",
+         "Simplify inside the bracket before you double, and you will be left with an ordinary two-step equation.",
+         "For (c), remember the question asked about a rectangle, not about x. Give both side lengths with units."],
+  sol:["(a) Perimeter = 2(x + x + 4) = 36, which simplifies to <strong>4x + 8 = 36</strong>.",
+       "(b) 4x = 28, so <strong>x = 7</strong>.",
+       "(c) Width = <strong>7 cm</strong>, length = 7 + 4 = <strong>11 cm</strong>. Check: 2(7 + 11) = 2(18) = 36 ✓",
+       "Stopping at x = 7 is the commonest way to lose the last mark here. The value of x was a means to an end; the question wanted the rectangle."]},
+
+ {n:13, m:3, lvl:"medium", q:"Rahul is three times as old as his sister. The sum of their ages is <span class='num'>32</span>.<br><br><strong>(a)</strong> Let <span class='num'>s</span> be the sister's age. Write an expression for Rahul's age, then form an equation. <span class='num'>[1]</span><br><strong>(b)</strong> Solve it. <span class='num'>[1]</span><br><strong>(c)</strong> State both ages and check that they fit both facts in the question. <span class='num'>[1]</span>",
+  hints:["Everything is measured against the sister, so write Rahul's age in terms of s. \"Three times as old\" means 3s.",
+         "\"The sum of their ages is 32\" means the two ages added together equal 32. Write that as an equation and collect like terms.",
+         "For (c) there are two facts to check, not one: is one age three times the other, and do they add to 32?"],
+  sol:["(a) Rahul is <strong>3s</strong>. The sum is 32, so <strong>s + 3s = 32</strong>, that is 4s = 32.",
+       "(b) <strong>s = 8</strong>.",
+       "(c) Sister is <strong>8</strong>, Rahul is 3 × 8 = <strong>24</strong>. Check: 24 is three times 8 ✓, and 8 + 24 = 32 ✓",
+       "Letting s be the <em>younger</em> age is what keeps the algebra clean. Choosing Rahul's age instead gives r + r/3 = 32, which is correct but drags a fraction through the whole question."]},
+
+ {n:14, m:3, lvl:"hard", q:"Two taxi companies charge differently.<br><br><strong>Company A:</strong> a fixed <span class='num'>50</span> rupees, plus <span class='num'>10</span> rupees per km.<br><strong>Company B:</strong> a fixed <span class='num'>20</span> rupees, plus <span class='num'>15</span> rupees per km.<br><br><strong>(a)</strong> Write an expression for each company's charge for a journey of <span class='num'>d</span> km. <span class='num'>[1]</span><br><strong>(b)</strong> Form and solve an equation to find the distance at which the two companies charge the same. <span class='num'>[1]</span><br><strong>(c)</strong> Which company is cheaper for a 10 km journey, and by how much? <span class='num'>[1]</span>",
+  hints:["Each charge has a fixed part with no letter and a running part with a d attached. Write them as two separate expressions before you do anything else.",
+         "\"Charge the same\" means the two expressions are equal. Set them equal to each other — that is your equation.",
+         "For (c) do not reason from the answer to (b) alone; just substitute d = 10 into both expressions and compare the two numbers."],
+  sol:["(a) Company A: <strong>50 + 10d</strong>. Company B: <strong>20 + 15d</strong>.",
+       "(b) 50 + 10d = 20 + 15d. Subtract 10d: 50 = 20 + 5d. Subtract 20: 30 = 5d, so <strong>d = 6 km</strong>. Check: A gives 50 + 60 = 110, B gives 20 + 90 = 110 ✓",
+       "(c) At d = 10: A costs 50 + 100 = 150 rupees; B costs 20 + 150 = 170 rupees. <strong>Company A is cheaper, by 20 rupees</strong>.",
+       "The equation in (b) found the crossover. Below 6 km, B's smaller fixed charge wins; above 6 km, A's cheaper rate per kilometre wins. One equation describes the whole comparison."]},
+
+ {n:15, m:3, lvl:"hard", q:"<strong>(a)</strong> Solve <span class='num'>4(x + 3) = 2(x + 9)</span>. <span class='num'>[1]</span><br><strong>(b)</strong> Solve <span class='num'>5(2x &minus; 1) &minus; 3(x + 4) = 11</span>. <span class='num'>[1]</span><br><strong>(c)</strong> A student solved part (a) by writing <em>&ldquo;4x + 3 = 2x + 9, so 2x = 6, so x = 3&rdquo;</em>. Their answer is correct. Explain why their method is nevertheless wrong, and why it happened to work here. <span class='num'>[1]</span>",
+  hints:["In (a) expand both brackets before doing anything else. In (b) be careful: the second bracket is being subtracted, so the −3 multiplies both terms inside it.",
+         "For (c), expand the brackets properly yourself and compare your second line with the student's second line. They are different equations.",
+         "Then ask what those two different equations have in common. Look at what happens when you subtract 2x from each of them."],
+  sol:["(a) 4x + 12 = 2x + 18. Subtract 2x: 2x + 12 = 18. Subtract 12: 2x = 6, so <strong>x = 3</strong>. Check: 4(6) = 24 and 2(12) = 24 ✓",
+       "(b) 10x − 5 − 3x − 12 = 11, so 7x − 17 = 11, so 7x = 28 and <strong>x = 4</strong>. Check: 5(7) − 3(8) = 35 − 24 = 11 ✓",
+       "(c) The method is wrong because the student did not multiply the constants: 4(x + 3) is 4x + 12, not 4x + 3, and 2(x + 9) is 2x + 18, not 2x + 9. Both brackets were half-expanded.",
+       "It worked by luck. The correct equation gives 2x = 18 − 12 = 6; the student's gives 2x = 9 − 3 = 6. The two errors were in the same direction and cancelled out. Change the 9 to a 10 and the student gets x = 3.5 while the truth is x = 4 — so the method fails the moment the numbers change. A right answer is not evidence of a right method."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const sc = e.target.closest('[data-sc]');
+  if(sc){ scaleAction(sc.dataset.sc); return; }
+  const sm = e.target.closest('[data-move]');
+  if(sm && !sm.disabled){ stepMove(JSON.parse(sm.dataset.move)); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*10)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- shared: writing one side of an equation ---------------- */
+function sideText(a, b){
+  if(a===0 && b===0) return '0';
+  let s = '';
+  if(a !== 0) s = (a===1 ? 'x' : (a===-1 ? '−x' : a + 'x'));
+  if(b !== 0){
+    if(s === '') s = String(b);
+    else s += (b > 0 ? ' + ' + b : ' − ' + Math.abs(b));
+  }
+  return s;
+}
+function eqText(a,b,c,d){ return sideText(a,b) + ' = ' + sideText(c,d); }
+
+/* ---------------- the balance scales ---------------- */
+const SC_START = {aL:3, bL:4, aR:0, bR:19, x0:5};
+let sc = Object.assign({}, SC_START);
+let scTarget = null;
+
+function scaleAction(what){
+  if(what === 'reset'){ sc = Object.assign({}, SC_START); drawScales(); return; }
+  const lim = v => Math.max(-12, Math.min(20, v));
+  if(what === 'Lx+') sc.aL = lim(sc.aL+1);
+  else if(what === 'Lx-') sc.aL = lim(sc.aL-1);
+  else if(what === 'L1+') sc.bL = lim(sc.bL+1);
+  else if(what === 'L1-') sc.bL = lim(sc.bL-1);
+  else if(what === 'Rx+') sc.aR = lim(sc.aR+1);
+  else if(what === 'Rx-') sc.aR = lim(sc.aR-1);
+  else if(what === 'R1+') sc.bR = lim(sc.bR+1);
+  else if(what === 'R1-') sc.bR = lim(sc.bR-1);
+  drawScales();
+}
+
+function panContents(cx, cy, a, b){
+  let s = '';
+  const n = Math.min(Math.abs(a), 8), m = Math.min(Math.abs(b), 12);
+  const negA = a < 0, negB = b < 0;
+  const w0 = n*20;
+  for(let i=0;i<n;i++){
+    s += `<rect x="${cx - w0/2 + i*20}" y="${cy}" width="16" height="26" rx="3" `
+      +  `fill="${negA?'var(--no-tint)':'var(--lh-tint)'}" stroke="${negA?'var(--no)':'var(--lh)'}" stroke-width="1.5"/>`
+      +  `<text x="${cx - w0/2 + i*20 + 8}" y="${cy+17}" text-anchor="middle" font-family="var(--mono)" `
+      +  `font-size="9.5" font-weight="700" fill="${negA?'var(--no)':'var(--lh)'}">${negA?'-x':'x'}</text>`;
+  }
+  const w1 = m*15;
+  for(let i=0;i<m;i++){
+    s += `<circle cx="${cx - w1/2 + i*15 + 6}" cy="${cy+40}" r="6" `
+      +  `fill="${negB?'var(--no-tint)':'var(--rh-tint)'}" stroke="${negB?'var(--no)':'var(--rh)'}" stroke-width="1.4"/>`;
+  }
+  if(b !== 0){
+    s += `<text x="${cx}" y="${cy+62}" text-anchor="middle" font-family="var(--mono)" font-size="10.5" `
+      +  `fill="${negB?'var(--no)':'var(--rh)'}">${b>0?'+':'−'}${Math.abs(b)}</text>`;
+  }
+  if(a===0 && b===0){
+    s += `<text x="${cx}" y="${cy+22}" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--steel-dark)">empty</text>`;
+  }
+  return s;
+}
+
+function drawScales(){
+  const L = sc.aL*sc.x0 + sc.bL, R = sc.aR*sc.x0 + sc.bR;
+  const level = (L === R);
+  let deg = Math.max(-11, Math.min(11, (R - L) * 1.6));
+  const rad = deg * Math.PI / 180, HL = 205, PX = 350, PY = 96;
+  const lx = PX - HL*Math.cos(rad), ly = PY - HL*Math.sin(rad);
+  const rx = PX + HL*Math.cos(rad), ry = PY + HL*Math.sin(rad);
+
+  document.getElementById('sc-beam').innerHTML =
+      `<line x1="${lx.toFixed(1)}" y1="${ly.toFixed(1)}" x2="${rx.toFixed(1)}" y2="${ry.toFixed(1)}" `
+    + `stroke="${level?'var(--ok)':'var(--no)'}" stroke-width="6" stroke-linecap="round"/>`
+    + `<circle cx="${PX}" cy="${PY}" r="7" fill="var(--steel-dark)"/>`
+    + `<line x1="${lx.toFixed(1)}" y1="${ly.toFixed(1)}" x2="${lx.toFixed(1)}" y2="${(ly+24).toFixed(1)}" stroke="var(--steel)" stroke-width="2"/>`
+    + `<line x1="${rx.toFixed(1)}" y1="${ry.toFixed(1)}" x2="${rx.toFixed(1)}" y2="${(ry+24).toFixed(1)}" stroke="var(--steel)" stroke-width="2"/>`
+    + `<rect x="${(lx-72).toFixed(1)}" y="${(ly+24).toFixed(1)}" width="144" height="4" rx="2" fill="var(--steel-dark)"/>`
+    + `<rect x="${(rx-72).toFixed(1)}" y="${(ry+24).toFixed(1)}" width="144" height="4" rx="2" fill="var(--steel-dark)"/>`;
+
+  document.getElementById('sc-pans').innerHTML =
+      panContents(lx, ly+34, sc.aL, sc.bL) + panContents(rx, ry+34, sc.aR, sc.bR);
+
+  const eq = eqText(sc.aL, sc.bL, sc.aR, sc.bR);
+  document.getElementById('sc-eq').textContent = eq;
+  document.getElementById('sc-eqs').textContent =
+    (sc.aL===SC_START.aL && sc.bL===SC_START.bL && sc.aR===SC_START.aR && sc.bR===SC_START.bR)
+      ? 'the starting equation' : 'left pan weighs ' + L + ', right pan weighs ' + R;
+
+  document.getElementById('sc-lev').textContent = level ? 'level' : 'tipped';
+  document.getElementById('sc-levs').textContent = level
+    ? 'both pans weigh the same at x = ' + sc.x0
+    : (L > R ? 'the left pan is heavier by ' + (L-R) : 'the right pan is heavier by ' + (R-L));
+
+  const solEl = document.getElementById('sc-sol'), solSub = document.getElementById('sc-sols');
+  const da = sc.aL - sc.aR, db = sc.bR - sc.bL;
+  if(da === 0){
+    solEl.textContent = (db === 0) ? 'any x' : 'no solution';
+    solSub.textContent = (db === 0) ? 'both sides are identical' : 'the x terms cancel and the numbers disagree';
+  }else{
+    const v = db / da;
+    solEl.textContent = 'x = ' + (Number.isInteger(v) ? v : (Math.round(v*100)/100));
+    solSub.textContent = (v === sc.x0)
+      ? 'still the same solution as the original'
+      : 'this is no longer the original equation';
+  }
+
+  const pill = document.getElementById('sc-pill'), note = document.getElementById('sc-note');
+
+  if(scTarget){
+    const done = level && sc.bL === 0 && sc.aR === 0 && sc.aL > 0;
+    if(done){
+      scTarget = null;
+      S.puzzles = (S.puzzles||0)+1; save(); refresh();
+      const box = document.getElementById('scQuiz');
+      box.classList.add('on');
+      box.innerHTML = `<strong>That's it.</strong> ${eq} — the x boxes are alone on the left, the numbers alone on the right,
+        and the beam never tipped. One division away from the answer. Puzzles solved: ${S.puzzles}.
+        <div class="qrow"><button class="btn ghost small" type="button" id="scAgain">Another one</button></div>`;
+      document.getElementById('scAgain').addEventListener('click', ()=>document.getElementById('scPuzzle').click());
+      pill.className='pill bal'; pill.textContent='Solved';
+      note.textContent = 'That is what every solution looks like: strip the numbers off, keep the beam level, divide last.';
+      return;
+    }
+    pill.className = level ? 'pill up' : 'pill down';
+    pill.textContent = level ? 'Puzzle running' : 'You tipped it';
+    note.textContent = level
+      ? 'Still level. Keep going until the left pan holds only x boxes and the right holds only units.'
+      : 'The beam has tipped — undo that, or do the same thing to the other pan to restore it.';
+    return;
+  }
+
+  if(level){
+    pill.className='pill bal'; pill.textContent='Balanced';
+    note.textContent = 'Try taking one thing off the left pan only. The beam will tip, and the equation stops being true.';
+  }else{
+    pill.className='pill down'; pill.textContent='Tipped';
+    note.textContent = 'You changed one pan without changing the other, so the two sides no longer weigh the same. Every line you write from here would be wrong.';
+  }
+}
+
+document.getElementById('scPuzzle').addEventListener('click', ()=>{
+  sc = Object.assign({}, SC_START);
+  scTarget = true;
+  const box = document.getElementById('scQuiz');
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> Starting from <span class="num">3x + 4 = 19</span>, get the x boxes
+    <em>alone</em> on the left pan and the units alone on the right — <strong>without ever letting the beam tip</strong>.
+    Every move you make on one pan must be matched on the other. You should end at
+    <span class="num">3x = 15</span>, which is one division away from the answer.`;
+  drawScales();
+});
+
+/* ---------------- the step machine ---------------- */
+const STEP_PUZZLES = [
+ {a:3, b:4,  c:0, d:19, need:2}, {a:2, b:9,  c:0, d:25, need:2},
+ {a:6, b:2,  c:4, d:14, need:3}, {a:5, b:2,  c:3, d:16, need:3},
+ {a:7, b:-5, c:3, d:11, need:3}, {a:4, b:13, c:2, d:31, need:3}
+];
+let sm = null, smLog = [], curStep = null;
+
+function smSet(i){
+  curStep = i;
+  const P = STEP_PUZZLES[i];
+  sm = {a:P.a, b:P.b, c:P.c, d:P.d, need:P.need, start:eqText(P.a,P.b,P.c,P.d), x0:(P.d-P.b)/(P.a-P.c)};
+  smLog = [{op:'', line:sm.start}];
+  drawStep();
+}
+
+function smMoves(){
+  const m = [];
+  if(sm.b !== 0) m.push({k:'const', v:sm.b,
+    lab:(sm.b>0 ? 'subtract '+sm.b+' from both sides' : 'add '+Math.abs(sm.b)+' to both sides')});
+  if(sm.d !== 0 && sm.d !== sm.b) m.push({k:'const', v:sm.d,
+    lab:(sm.d>0 ? 'subtract '+sm.d+' from both sides' : 'add '+Math.abs(sm.d)+' to both sides')});
+  if(sm.c !== 0) m.push({k:'xterm', v:sm.c,
+    lab:(sm.c>0 ? 'subtract '+sm.c+'x from both sides' : 'add '+Math.abs(sm.c)+'x to both sides')});
+  if(sm.a !== 0 && sm.c !== 0) m.push({k:'xterm', v:sm.a,
+    lab:(sm.a>0 ? 'subtract '+sm.a+'x from both sides' : 'add '+Math.abs(sm.a)+'x to both sides')});
+  if(sm.b === 0 && sm.c === 0 && sm.a !== 0 && sm.a !== 1 && sm.d % sm.a === 0)
+    m.push({k:'div', v:sm.a, lab:'divide both sides by ' + sm.a});
+  return m;
+}
+
+function stepMove(mv){
+  if(mv.k === 'const'){ sm.b -= mv.v; sm.d -= mv.v; }
+  else if(mv.k === 'xterm'){ sm.a -= mv.v; sm.c -= mv.v; }
+  else if(mv.k === 'div'){ sm.a /= mv.v; sm.b /= mv.v; sm.c /= mv.v; sm.d /= mv.v; }
+  smLog.push({op: mv.lab, line: eqText(sm.a, sm.b, sm.c, sm.d)});
+  drawStep();
+}
+
+function drawStep(){
+  document.getElementById('sm-log').innerHTML = smLog.map(L =>
+    (L.op ? `<div class="op">${L.op}</div>` : '') + `<div>${L.line}</div>`).join('');
+
+  const solved = (sm.a === 1 && sm.b === 0 && sm.c === 0);
+  const moves = solved ? [] : smMoves();
+  document.getElementById('sm-steps').innerHTML = moves.length
+    ? moves.map(m => `<button class="btn step" type="button" data-move='${JSON.stringify(m)}'>${m.lab}</button>`).join('')
+    : (solved ? '' : '<span style="font-family:var(--mono);font-size:12.5px;color:var(--ink-soft)">No moves left — start this one again.</span>');
+
+  document.getElementById('sm-now').textContent = eqText(sm.a, sm.b, sm.c, sm.d);
+  document.getElementById('sm-nows').textContent = solved ? 'solved' : 'choose a move below';
+  const used = smLog.length - 1;
+  document.getElementById('sm-count').textContent = used;
+  document.getElementById('sm-counts').textContent = 'this one needs ' + sm.need;
+
+  const pill = document.getElementById('sm-pill'), note = document.getElementById('sm-note');
+  const chk = document.getElementById('sm-chk'), chks = document.getElementById('sm-chks');
+
+  if(solved){
+    const v = sm.d;
+    const P = STEP_PUZZLES[curStep];
+    const lhs = P.a*v + P.b, rhs = P.c*v + P.d;
+    chk.textContent = lhs + ' = ' + rhs;
+    chks.textContent = 'both sides of ' + sm.start + ' at x = ' + v;
+    pill.className = 'pill bal'; pill.textContent = 'Solved';
+    note.textContent = `x = ${v}, and substituting it back into ${sm.start} gives ${lhs} on both sides. That is a proof, not a hope.`;
+    if(!sm.counted){
+      sm.counted = true;
+      S.puzzles = (S.puzzles||0)+1; save(); refresh();
+      const box = document.getElementById('smQuiz');
+      box.classList.add('on');
+      box.innerHTML = `<strong>Solved in ${used} move${used===1?'':'s'}</strong>${used>sm.need ? ` — the shortest route was ${sm.need}. Every move you made was legal; some just did not get you closer.` : ' — the shortest route there is.'}
+        Puzzles solved: ${S.puzzles}.
+        <div class="qrow"><button class="btn ghost small" type="button" id="smAgain">Another equation</button></div>`;
+      document.getElementById('smAgain').addEventListener('click', ()=>document.getElementById('smNew').click());
+    }
+    return;
+  }
+
+  chk.textContent = '—';
+  chks.textContent = 'substitute back when you finish';
+  pill.className = 'pill go'; pill.textContent = 'Not solved yet';
+  note.textContent = (sm.c !== 0)
+    ? 'x is on both sides. Clear the smaller x term first, then treat it as an ordinary two-step equation.'
+    : 'Get x on its own. Strip the numbers off the x first, and divide last.';
+}
+
+document.getElementById('smReset').addEventListener('click', ()=>smSet(curStep));
+document.getElementById('smNew').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*STEP_PUZZLES.length);
+  if(i === curStep) i = (i+1) % STEP_PUZZLES.length;
+  smSet(i);
+});
+document.getElementById('smPuzzle').addEventListener('click', ()=>{
+  document.getElementById('smNew').click();
+  const box = document.getElementById('smQuiz');
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> Solve <span class="num" style="font-size:17px">${sm.start}</span>
+    using as few moves as possible. The shortest route takes <strong>${sm.need}</strong>.
+    Work out on paper which move you want <em>before</em> you look at the buttons — the buttons will happily
+    let you make a legal move that gets you nowhere.`;
+});
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  drawScales();
+  smSet(0);
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='equations', SUBJECT='maths', TITLE='Do It To Both Sides', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>
