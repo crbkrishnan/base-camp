@@ -1,6 +1,6 @@
 # State and roadmap
 
-Last updated: 28 August 2026.
+Last updated: 30 August 2026.
 
 ## Done
 
@@ -17,8 +17,12 @@ Last updated: 28 August 2026.
 | Expressions and formulae | Maths | `expressions.html` | tile mat, bracket grid | A–D + scheme |
 | Constructing and solving equations | Maths | `equations.html` | balance scales, step machine | A–D + scheme |
 | Place value, rounding, estimating | Maths | `placevalue.html` | place-value board, rounding line | A–D + scheme |
+| Characteristics of forces | Physics | `forces.html` | tug-of-war rig, weighing bay | A–D + scheme |
+| Pressure in solids and liquids | Physics | `pressure.html` | pressure pad, depth tank | A–D + scheme |
+| Gas pressure and diffusion | Physics | `gaspressure.html` | gas box, diffusion tube | A–D + scheme |
+| Magnets and magnetic fields | Physics | `magnetism.html` | field plotter, two-magnet bench | A–D + scheme |
 
-All eleven topics carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries all eleven, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing forty-four PDFs.
+All fifteen topics carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries all fifteen, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing sixty PDFs.
 
 ## Grade 7 maths syllabus coverage
 
@@ -58,12 +62,33 @@ Two notes on how this was closed:
 
 **`firstmove.html` — the two-minute drill.** Not a topic page: 32 cross-subject questions where he picks the opening line of working rather than solving anything, graded against eight named techniques. No marks, no lessons, no papers, so it stays out of the climb and keeps its own record. The hub surfaces it in a Two-minute drill section above Topic pages, driven by the `DRILLS` array. See the drill-pages note in `ARCHITECTURE.md`.
 
+## Grade 7 physics syllabus coverage
+
+Checked against the Grade 7 portions in August 2026. Four pages were added on 30 August to close Units 8, 9 and 11.
+
+| Unit | Subtopic | Page |
+|---|---|---|
+| 8.1–8.2 | Speed, distance, time and travel graphs | `speed.html` |
+| 8.3 | Characteristics of forces | `forces.html` |
+| 8.4 | Turning effect / moment of a force | `moments.html` |
+| 9.1 | Pressure | `pressure.html` |
+| 9.2 | Pressure in liquids | `pressure.html` |
+| 9.3 | Gas pressure | `gaspressure.html` |
+| 9.4 | The particle model and pressure | `gaspressure.html` |
+| 9.5 | Diffusion | `gaspressure.html` |
+| 11.1 | Magnetic fields | `magnetism.html` |
+
+Two notes on how this was split:
+
+- **Unit 9 was split across two pages, not one.** `pressure.html` takes the calculation half (`p = F/A` and `p = ρgh`); `gaspressure.html` takes the explanation half, where the marks go to the wording about collisions per unit area per second rather than to arithmetic. One page covering all five subtopics would have had to drop one of those two skills.
+- **The old `density` roadmap entry was retitled** from "Density and Pressure" to "Density and Floating", because `pressure.html` now teaches the pressure half. Do not re-add pressure to it.
+
 ## Next
 
 1. **`moments.html` has no videos section.** It predates the format. Add six videos with written tasks, matching the other five pages.
 2. **Acids and alkalis** (Chemistry) — flagged `next`.
 
-Grade 7 maths is complete, so the roadmap is now science-led. Ten further topics are listed as `planned` in `TOPICS` in `index.html`; that array is the roadmap. The two remaining maths entries there (`geometry`, `averages`) are beyond the Grade 7 portions above and are not blocking anything.
+Grade 7 maths is complete and the Grade 7 physics units above are complete, so the roadmap is now biology- and chemistry-led. Ten further topics are listed as `planned` in `TOPICS` in `index.html`; that array is the roadmap. The two remaining maths entries there (`geometry`, `averages`) are beyond the Grade 7 portions above and are not blocking anything.
 
 ## Known issues
 

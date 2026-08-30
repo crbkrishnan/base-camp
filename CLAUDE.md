@@ -21,7 +21,8 @@ Subjects: Maths, Physics, Biology, Chemistry.
    npm install          # first time only
    node tools/smoke.js  # loads every page in jsdom, runs the scripts, reports errors
    ```
-   It must print `ok` for all six pages and show non-zero counts. Zero cards or zero questions means something threw.
+   It must print `ok` for every page and show non-zero counts. Zero cards or zero questions means something threw.
+   Note: `smoke.js` needs the directory as an argument — `node tools/smoke.js .` — and the paper generators need a Python with `reportlab` and `pypdf`, which may mean a virtualenv. See `docs/STATE.md`.
 
 2. **Never edit HTML with index-based string splicing.** Use `str_replace` on a unique, generously sized anchor, or a proper parser. The blank-homepage bug came from `h.index('];', start)` matching the end of a *later* array.
 
@@ -40,11 +41,16 @@ Subjects: Maths, Physics, Biology, Chemistry.
 ```
 index.html              the hub — climb ladder, topic cards, paper signposts, weekly puzzle
 fdp.html                Maths     · fractions, decimals, percentages
+                        (plus ratio, indices, integers, expressions, equations, placevalue)
 moments.html            Physics   · the turning effect
 speed.html              Physics   · speed, distance, time
+forces.html             Physics   · characteristics of forces
+pressure.html           Physics   · pressure in solids and liquids
+gaspressure.html        Physics   · gas pressure, particle model, diffusion
+magnetism.html          Physics   · magnets and magnetic fields
 respiration.html        Biology   · gas exchange
 particles.html          Chemistry · the particle model
-sheets/*.pdf            20 test papers + 5 mark schemes (generated)
+sheets/*.pdf            60 test papers + 15 mark schemes (generated)
 .nojekyll               stops GitHub Pages hiding underscore paths
 tools/
   smoke.js              runtime check — the one that matters
