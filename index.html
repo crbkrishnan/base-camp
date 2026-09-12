@@ -202,6 +202,7 @@ footer button:hover{border-color:var(--no);color:var(--no)}
 <nav class="jump" aria-label="Sections">
   <a href="#drill">Two-minute drill</a>
   <a href="#topics">Topic pages</a>
+  <a href="#mock">Mock exam</a>
   <a href="#sheets">Practice sheets</a>
   <a href="#puzzle">Puzzle</a>
   <a href="#rules">How to use this</a>
@@ -224,6 +225,34 @@ footer button:hover{border-color:var(--no);color:var(--no)}
   </div>
   <div class="filters" id="filters"></div>
   <div class="cards" id="cards"></div>
+</section>
+
+<!-- ============ MOCK ============ -->
+<!-- Hand-written, not derived from TOPICS. These are 80 marks and belong to no single
+     topic page, so renderSheets() cannot carry them — it hardcodes "30 marks each". -->
+<section id="mock">
+  <div class="shead">
+    <h2>Mock exam</h2>
+    <p>Seven units in one sitting, 80 marks in 75 minutes, nothing telling you which topic a question came from. No formula is printed anywhere — remembering it is part of the test. Do one, mark it, then do the next.</p>
+  </div>
+  <div class="sheets">
+    <div class="sheet" style="border-left-color:var(--maths)">
+      <div class="st"><h4>Paper A &mdash; Medium</h4><p>Units 1, 2, 3, 4, 7, 10 and 12. Quick fire, short answers, multi-step, then six problems that each need two topics at once.</p></div>
+      <a class="badge" href="sheets/maths-mock-paper-a.pdf" download>80 marks</a>
+    </div>
+    <div class="sheet" style="border-left-color:var(--maths)">
+      <div class="st"><h4>Paper B &mdash; Medium</h4><p>Same shape as A, different numbers. Closes with a 20% rise and a 20% fall that do not cancel.</p></div>
+      <a class="badge" href="sheets/maths-mock-paper-b.pdf" download>80 marks</a>
+    </div>
+    <div class="sheet" style="border-left-color:var(--maths)">
+      <div class="st"><h4>Paper C &mdash; Hard</h4><p>Unfamiliar contexts and reverse questions: find the width from the perimeter, find the angle from the triangle, find the best value where the biggest bottle loses.</p></div>
+      <a class="badge" href="sheets/maths-mock-paper-c.pdf" download>80 marks</a>
+    </div>
+    <div class="sheet" style="border-left-color:var(--maths)">
+      <div class="st"><h4>Paper D &mdash; Hard</h4><p>The hardest of the four, and it ends the way every Paper D ends &mdash; two wrong answers in someone else's handwriting, for you to diagnose.</p></div>
+      <a class="badge" href="sheets/maths-mock-paper-d.pdf" download>80 marks</a>
+    </div>
+  </div>
 </section>
 
 <!-- ============ SHEETS ============ -->

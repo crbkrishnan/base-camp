@@ -11,7 +11,10 @@
       "Bash(node tools/smoke.js . integers.html)",
       "Bash(awk '/PAPER D/,/mark scheme/' tools/papers/maths_fdp.py)",
       "Bash(sips -s format png --out /tmp/intC.png sheets/maths-integers-paper-c.pdf)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(python3 /tmp/mock_check.py)",
+      "Bash(.venv/bin/python -)",
+      "Bash(.venv/bin/python tools/papers/maths_mock.py)"
     ],
     "additionalDirectories": [
       "/tmp",

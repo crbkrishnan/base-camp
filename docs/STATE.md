@@ -60,6 +60,16 @@ Two notes on how this was closed:
 
 `indices.html` arrived as a finished page rather than being built in place, so it was registered with `python3 tools/register_topic.py indices.html` — see `ADDING-A-TOPIC.md` step 7. Its papers were written afterwards, against the four descriptions the page already carried in `#papers`; those descriptions are the contract the papers had to match.
 
+**The maths mock exam — four cross-topic papers, 80 marks each.** `tools/papers/maths_mock.py` → `sheets/maths-mock-paper-a..d.pdf` plus `maths-mock-answers.pdf`. A and B medium, C and D hard, 75 minutes, eight pages each, spanning all 24 subtopics of Units 1, 2, 3, 4, 7, 10 and 12 in every paper. Every topic paper examines one unit in isolation; nothing else on the site makes him face seven at once with no heading telling him which method a question wants.
+
+Three deliberate departures, recorded here so they are not "fixed" back:
+
+- **80 marks, not 30.** `CLAUDE.md` non-negotiable #5 fixes 30 marks per paper. That rule is about *topic* papers, where 30 mirrors the 30 on-screen marks of the page that teaches it. A mock is a different artefact and the tutor set 80. The assert was not removed — it asserts 80, alongside a section-balance assert of 10 / 16 / 24 / 30. **Do not change #5**; this is an exception, not a new rule.
+- **No formula or method reminder on any of the four.** `WRITING-PAPERS.md` says medium papers print the formula and only hard papers withhold it. Overridden on the tutor's instruction — recall is part of what a mock is for — so A and B carry the same bare instruction box as C and D. Difficulty separates the pairs through the questions alone.
+- **The hub carries them in a hand-written `<section id="mock">`**, not through `TOPICS`. `renderSheets()` derives the Practice sheets list from `TOPICS` and hardcodes "30 marks each", so it cannot carry these, and a mock belongs to no topic page. The section is static HTML reusing the existing `.sheet` / `.badge` classes, so no render function can break on it. The mark-scheme booklet is linked from nowhere, like the other seven.
+
+`maths_mock.py` runs `_verify()` on every build, recomputing all four papers' answers from scratch, and `coverage_check()`, which fails the build if an edit ever drops one of the 24 subtopics. The ordering questions assert that no two values tie.
+
 **`firstmove.html` — the two-minute drill.** Not a topic page: 32 cross-subject questions where he picks the opening line of working rather than solving anything, graded against eight named techniques. No marks, no lessons, no papers, so it stays out of the climb and keeps its own record. The hub surfaces it in a Two-minute drill section above Topic pages, driven by the `DRILLS` array. See the drill-pages note in `ARCHITECTURE.md`.
 
 ## Grade 7 physics syllabus coverage
