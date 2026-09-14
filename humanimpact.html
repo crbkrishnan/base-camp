@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What We Take, What We Leave &mdash; Grade 7 IGCSE Biology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "humanimpact",
+  "file": "humanimpact.html",
+  "subject": "biology",
+  "status": "ready",
+  "papers": 2,
+  "title": "What We Take, What We Leave",
+  "sub": "Biology · human impact on ecosystems",
+  "blurb": "Three dials — forest cleared, fuel burned, fertiliser spread — and a landscape that answers back. Then walk the six steps from a bag of fertiliser to a dead river, one step at a time, and see which one actually kills the fish.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "impact dials"
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#141C26;
+  --ink-soft:#4F5D6E;
+  --paper:#EDE9E1;
+  --card:#FFFFFF;
+  --line:#D9D1C2;
+  --line-soft:#E9E4D9;
+  /* the two semantic accents for this page; the shared CSS calls them --o2 / --co2 */
+  --o2:#B0491F;          /* damage and pollution · always burnt orange */
+  --o2-tint:#FBEDE5;
+  --co2:#1F6B62;         /* the living system and what protects it · always teal */
+  --co2-tint:#E6F2F0;
+  --muscle:#7A6A4F;
+  --steel:#9AA7B1;
+  --steel-dark:#6E7E8B;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--co2)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(230,235,231,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--o2);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--o2);font-weight:700}
+.co2txt{color:var(--co2);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+nav.jump{background:rgba(237,233,225,.93)}
+
+.spbtns{display:flex;gap:8px;flex-wrap:wrap}
+.station{font-family:var(--mono);font-size:10.5px;fill:var(--ink-soft)}
+.steplab{font-family:var(--display);font-size:13px;font-weight:700}
+.onwater{fill:#F0EDE4}
+
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Biology &middot; Grade 7 &middot; Human impact on ecosystems</div>
+  <h1>What We <em>Take</em>, What We <b>Leave</b></h1>
+  <p class="lede">Almost every item on this syllabus is one of two things: we <strong>removed</strong> something an ecosystem was relying on, or we <strong>added</strong> something it cannot process. And the damage is almost always <em>indirect</em> &mdash; nobody poisons the fish, they feed the algae. Follow the chain and the marks follow you.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of <span class="num">30</span>, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme &mdash; otherwise you're just reading, and reading feels like learning without being learning.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>impact puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#dials">Impact dials</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#tank">Eutrophication tank</a>
+  <a href="#papers">Mock papers</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+
+<!-- ============ HERO: THE IMPACT DIALS ============ -->
+<section id="dials">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>Three dials and one landscape</h2>
+      <p>Clear the forest, burn the fuel, spread the fertiliser. Nothing here is a guess: carbon dioxide rises at a fixed rate per unit burnt, and the temperature figure comes from the standard rule that <strong>each doubling of carbon dioxide warms the planet by about 3&nbsp;&deg;C</strong>. Try the presets first, then find a setting that keeps the fish alive.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 700 300" role="img" aria-label="A landscape with trees, a factory and a river that change as the three impact sliders move">
+      <rect id="sky" x="0" y="0" width="700" height="215" fill="#D7E8F2"/>
+      <circle id="sun" cx="598" cy="52" r="26" fill="#E8B33C" opacity="0.9"/>
+      <rect x="0" y="212" width="700" height="88" fill="#CDBE9C"/>
+      <g id="trees"></g>
+
+      <!-- factory -->
+      <g id="factory">
+        <rect x="470" y="150" width="96" height="64" fill="#8C8579"/>
+        <rect x="486" y="112" width="18" height="42" fill="#8C8579"/>
+        <rect x="524" y="122" width="18" height="32" fill="#8C8579"/>
+        <g id="smoke"></g>
+      </g>
+
+      <!-- river -->
+      <rect id="river" x="0" y="252" width="700" height="48" fill="#5C93B8"/>
+      <g id="fish"></g>
+      <text x="14" y="246" class="station">river</text>
+    </svg>
+
+    <div class="ctrl">
+      <label for="dfor">Forest cleared</label>
+      <input id="dfor" type="range" min="0" max="100" value="35" aria-label="Percentage of the forest cleared">
+      <span class="num" id="v-for" style="font-size:13px;color:var(--ink-soft)">35%</span>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="dfos">Fossil fuel burned</label>
+      <input id="dfos" type="range" min="0" max="100" value="62" aria-label="Amount of fossil fuel burned, as a relative index">
+      <span class="num" id="v-fos" style="font-size:13px;color:var(--ink-soft)">62</span>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="dfer">Fertiliser on the fields</label>
+      <input id="dfer" type="range" min="0" max="100" value="45" aria-label="Amount of fertiliser used, as a relative index">
+      <span class="num" id="v-fer" style="font-size:13px;color:var(--ink-soft)">45</span>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <div class="spbtns">
+        <button class="btn ghost small" type="button" data-preset="0,0,0">1750</button>
+        <button class="btn ghost small" type="button" data-preset="35,62,45">Today</button>
+        <button class="btn ghost small" type="button" data-preset="85,95,90">If nothing changes</button>
+      </div>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">Carbon dioxide in the air</div><div class="val mono" id="d-co2">419 ppm</div></div>
+      <div class="cell"><div class="lab">Long-term warming this commits us to</div><div class="val mono" id="d-temp">+1.7 &deg;C</div></div>
+      <div class="cell"><div class="lab">Oxygen dissolved in the river</div><div class="val mono" id="d-o2">6.6 mg/dm&sup3;</div></div>
+      <div class="cell"><div class="lab">Biodiversity left</div><div class="val mono" id="d-bio">60 out of 100</div></div>
+      <div class="phasebar">
+        <span class="pill hold" id="d-pill">Under pressure</span>
+        <span id="d-note">Fish need more than <span class="num">5 mg/dm&sup3;</span> of dissolved oxygen. Below that they suffocate &mdash; and nothing in the fertiliser is poisonous.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~34 min total</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was just a screensaver. Pause and write &mdash; don't rewind at the end.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~30 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+
+<!-- ============ THE EUTROPHICATION TANK ============ -->
+<section id="tank">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>Six steps to a dead river</h2>
+      <p>Press Next step and go one link at a time. The examiner's mark scheme <em>is</em> this sequence, in this order, and the mark is usually lost by jumping from step&nbsp;1 straight to step&nbsp;6. Watch which step the oxygen actually falls at.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 700 260" role="img" aria-label="A cross-section of a river showing fertiliser run-off, an algal bloom, dying plants, bacteria and fish">
+      <rect x="0" y="0" width="700" height="46" fill="#CDBE9C"/>
+      <text x="16" y="28" class="station">field</text>
+      <rect id="t-water" x="0" y="46" width="700" height="214" fill="#5C93B8"/>
+      <g id="t-runoff"></g>
+      <rect id="t-algae" x="0" y="46" width="700" height="0" fill="#4E7D2A" opacity="0.85"/>
+      <g id="t-light"></g>
+      <g id="t-plants"></g>
+      <g id="t-bacteria"></g>
+      <g id="t-fish"></g>
+      <rect x="0" y="238" width="700" height="22" fill="#8C7B5C"/>
+    </svg>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="stepBack">&larr; Back</button>
+      <button class="btn" type="button" id="stepNext">Next step</button>
+      <button class="btn ghost small" type="button" id="stepReset">Start again</button>
+      <span class="num" id="t-count" style="margin-left:auto;font-size:13px;color:var(--ink-soft)">step 0 of 6</span>
+    </div>
+
+    <div class="rows">
+      <div class="cell" style="grid-column:1/-1"><div class="lab">What has just happened</div><div class="val" id="t-what">A clean river. Plants on the bed, fish in the water, plenty of dissolved oxygen.</div></div>
+      <div class="cell"><div class="lab">Oxygen dissolved in the water</div><div class="val mono" id="t-o2">9.2 mg/dm&sup3;</div></div>
+      <div class="cell"><div class="lab">Still alive here</div><div class="val" id="t-alive">plants, fish, insects</div></div>
+      <div class="phasebar">
+        <span class="pill bal" id="t-pill">Healthy</span>
+        <span id="t-note">The word the mark scheme wants at every step is a <em>cause</em>, not a list. Each box below is caused by the one before it.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox2"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes open. These are the marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>&ldquo;The greenhouse effect is bad and should be stopped&rdquo;</h4><p>The greenhouse effect is <strong>natural and necessary</strong> &mdash; without it the Earth would average about <span class="num">&minus;18 &deg;C</span>. The problem is the <strong>enhanced</strong> greenhouse effect: extra carbon dioxide, methane and nitrous oxide trapping more heat than before. Use the word &ldquo;enhanced&rdquo; and the mark is safe.</p></div>
+    <div class="trap"><h4>&ldquo;The fertiliser poisons the fish&rdquo;</h4><p>Nothing in eutrophication is a poison. Nitrate feeds algae &rarr; algae block light &rarr; plants die &rarr; decomposer bacteria multiply &rarr; their <strong>aerobic respiration</strong> uses up the dissolved oxygen &rarr; fish suffocate. Six links, and the two most often dropped are the word <em>light</em> and the word <em>aerobic</em>.</p></div>
+    <div class="trap"><h4>&ldquo;Deforestation is bad because trees give us oxygen&rdquo;</h4><p>True but weak, and rarely the mark being looked for. The rewarded answers are: less carbon dioxide <strong>removed</strong> by photosynthesis, carbon <strong>released</strong> from the felled wood, <strong>habitats</strong> destroyed, <strong>soil eroded</strong> once the roots have gone, and less <strong>transpiration</strong> so less local rainfall.</p></div>
+    <div class="trap"><h4>&ldquo;Global warming just means everywhere gets slightly warmer&rdquo;</h4><p>A couple of degrees on a mean hides everything that matters. Sea level rises as ice melts and seawater expands; rainfall belts move, so some regions flood and others dry out; extreme events become more frequent; and species shift towards the poles and up mountains, with the ones that cannot move fast enough dying out.</p></div>
+    <div class="trap"><h4>Confusing the enhanced greenhouse effect, ozone depletion and acid rain</h4><p>Three different problems, three different causes. <strong>Enhanced greenhouse effect:</strong> carbon dioxide and methane trapping heat. <strong>Ozone depletion:</strong> CFCs destroying the ozone layer, which lets more ultraviolet through. <strong>Acid rain:</strong> sulfur dioxide and nitrogen oxides from burning fuels dissolving in rain, killing trees and acidifying lakes. Mentioning the ozone hole in a global-warming answer costs you the mark you were about to earn.</p></div>
+  </div>
+</section>
+
+
+<section id="papers">
+  <div class="shead"><h2>The two biology mocks</h2><span class="tag">80 marks each</span></div>
+  <p class="snote">These are full mock papers, not topic drills: each one covers gas exchange, circulation, ecosystems and human impact together. Do them on paper, timed, with your phone in another room. Only sit Mock&nbsp;2 once you have marked Mock&nbsp;1 and gone back over what you dropped.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/biology-mock-1.pdf" download><span class="pn">1</span><span class="pt">Mock 1 &mdash; 80 marks</span><span class="num" style="color:var(--ink-soft);font-size:13px">90 min</span>
+      <p class="pd">Ventilation and alveoli, the heart and vessels, food webs and the 10% rule, deforestation and the greenhouse effect. Section&nbsp;3 ends on a eutrophication data table.</p></a>
+    <a class="paper" href="sheets/biology-mock-2.pdf" download><span class="pn hard">2</span><span class="pt">Mock 2 &mdash; 80 marks</span><span class="num" style="color:var(--ink-soft);font-size:13px">90 min</span>
+      <p class="pd">Exhalation and smoking, valves and double circulation, pyramids and transects, sea level and eutrophication control. Ends with three wrong answers to diagnose and correct.</p></a>
+  </div>
+</section>
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'humanimpact-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"Human Impact", ch:"FuseSchool · Environment", url:"https://www.youtube.com/watch?v=Um-bo2MWDsQ",
+  why:"The whole topic in one sweep, so you can see how the separate problems fit together before you learn any of them properly.",
+  task:"Make two lists as you watch: things humans <em>remove</em> from ecosystems, and things humans <em>add</em>. Every item on this syllabus goes in one column or the other."},
+ {t:"How Deforestation Impacts Life", ch:"FuseSchool · Environment", url:"https://www.youtube.com/watch?v=PJdz4gCG6pA",
+  why:"Four separate consequences of clearing forest, not just the obvious one. Q7 and Q13 come straight out of this.",
+  task:"Write down four consequences of deforestation and, next to each, the reason it happens. &ldquo;Animals lose their homes&rdquo; without a mechanism is half an answer."},
+ {t:"Global Warming | Greenhouse Effect Explained", ch:"Cognito", url:"https://www.youtube.com/watch?v=rqWzK_DehcY",
+  why:"How the greenhouse effect actually works, which gases do it, and what the enhanced version changes. This is the video for Q5 and Q11.",
+  task:"Draw the greenhouse diagram from memory: sunlight in, heat radiated back, some of it absorbed by gases. Then write one sentence on the difference between the greenhouse effect and the <em>enhanced</em> greenhouse effect."},
+ {t:"What Is Eutrophication", ch:"FuseSchool · Agriculture", url:"https://www.youtube.com/watch?v=6LAT1gLMPu4",
+  why:"The six-step chain from fertiliser to dead fish, in order. Q8 and Q12 are this sequence and nothing else.",
+  task:"Write the six steps as six short numbered sentences, each starting with &ldquo;so&rdquo; or &ldquo;because&rdquo;. Then run the tank below and check that your order matches."},
+ {t:"Human Impacts on Biodiversity", ch:"FuseSchool · Ecology and Environment", url:"https://www.youtube.com/watch?v=wXJiHr8jWBs",
+  why:"Why biodiversity is worth protecting in practical terms, not sentimental ones &mdash; and what conservation actually involves.",
+  task:"List three reasons to protect biodiversity that would convince someone who does not care about animals. Food security, medicine and ecosystem stability are the ones examiners reward."},
+ {t:"How Plastic Pollution Impacts Our Oceans", ch:"FuseSchool · Environment", url:"https://www.youtube.com/watch?v=23VfPD5yR8s",
+  why:"A pollutant that is neither a gas nor a fertiliser, and a clear example of something accumulating up a food chain. Sets up Q14.",
+  task:"Write one sentence explaining why a substance that is harmless in seawater can be lethal to a seabird. If the sentence does not include the idea of building up along a food chain, it is not the answer."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"Two mechanisms, a dozen problems", len:"4 min",
+  body:`<p>This unit looks like a long list of unrelated disasters. It is not. Almost every item is one of two things:</p>
+        <ul>
+          <li>We <strong>removed</strong> something the ecosystem was relying on &mdash; trees, hedgerows, a predator, a whole habitat.</li>
+          <li>We <strong>added</strong> something it cannot process fast enough &mdash; carbon dioxide, nitrates, sewage, pesticides, plastic.</li>
+        </ul>
+        <p>The second idea is the one that earns marks: the damage is nearly always <strong>indirect</strong>. Fertiliser does not poison fish. Carbon dioxide does not burn anything. In both cases the harmful thing happens three or four steps down a chain, and the marks are in the chain, not in the outcome.</p>
+        <p>So when a question says &ldquo;explain how&rdquo;, it is asking for the links. Write &ldquo;the fertiliser kills the fish&rdquo; and you have named the first box and the last one and skipped everything the question was actually about.</p>`,
+  demo:`<strong>Do this:</strong> take the three dials at the top of this page to their &ldquo;If nothing changes&rdquo; preset, then move them back one at a time until the fish come back. Note which dial did it. It is not the one most people try first.`,
+  cliff:`Start with the simplest removal: a tree. Work out, before lesson 2, how many separate jobs a tree was doing.`},
+
+ {t:"Deforestation: what a tree was doing", len:"5 min",
+  body:`<p>Forests are cleared for timber, for farmland, for grazing, for roads and for building. Four things follow, and a full-mark answer names more than one.</p>
+        <ol>
+          <li><strong>Carbon dioxide rises, twice over.</strong> Photosynthesis that used to <em>remove</em> carbon dioxide stops; and the carbon stored in the wood is <em>released</em> when the timber burns or rots. Two separate effects, and most answers give only the first.</li>
+          <li><strong>Habitats are destroyed.</strong> Species that live nowhere else lose everything at once, so biodiversity falls and extinctions follow.</li>
+          <li><strong>Soil erosion and leaching.</strong> Roots were holding the soil together and taking up water. Without them, rain washes soil into rivers and washes mineral ions down out of reach.</li>
+          <li><strong>Less rainfall.</strong> Trees return water to the air by transpiration. Remove enough of them and the local rainfall drops, which makes it harder for the forest to grow back.</li>
+        </ol>
+        <p>Point 4 is the one that turns a good answer into a top one, because it explains why deforestation is so hard to reverse: the conditions that grew the forest go with it.</p>`,
+  demo:`<strong>Do this:</strong> set the forest slider to 100% and watch the carbon dioxide number, with the other two dials at zero. Trees alone move it by <span class="num">60 ppm</span>. Say out loud which two mechanisms that number contains.`,
+  cliff:`Extra carbon dioxide warms the planet. But the greenhouse effect has been running for billions of years without any help from us &mdash; so what exactly did we change?`},
+
+ {t:"The greenhouse effect, natural and enhanced", len:"6 min",
+  body:`<p>Get this order right and the whole topic is straightforward.</p>
+        <ol>
+          <li>Short-wave radiation from the Sun passes through the atmosphere and warms the Earth's surface.</li>
+          <li>The warm surface radiates energy back out as longer-wave infrared.</li>
+          <li><strong>Greenhouse gases</strong> in the atmosphere absorb some of that infrared and re-radiate it in all directions, including back down.</li>
+          <li>So less heat escapes to space, and the surface stays warmer than it otherwise would.</li>
+        </ol>
+        <p>This is <strong>natural and necessary</strong>. Without any greenhouse effect the Earth would average about <span class="num">&minus;18 &deg;C</span> and would be uninhabitable. What humans have created is the <strong>enhanced</strong> greenhouse effect: more of those gases, so more heat retained.</p>
+        <table class="data">
+          <tr><th>Gas</th><th>Human activity that increases it</th></tr>
+          <tr><td>Carbon dioxide</td><td>burning fossil fuels; deforestation</td></tr>
+          <tr><td>Methane</td><td>cattle farming; rice paddies; landfill and rotting waste</td></tr>
+          <tr><td>Nitrous oxide</td><td>nitrogen fertilisers; vehicle exhausts</td></tr>
+        </table>
+        <p>Nitrogen and oxygen make up 99% of the air and are <em>not</em> greenhouse gases &mdash; a favourite multiple-choice distractor.</p>
+        <p>The consequences are not simply &ldquo;a bit warmer&rdquo;. Ice melts and seawater expands, so <strong>sea level rises</strong> and low-lying land floods. Rainfall belts shift, so some regions flood and others become drought-prone. Species that cannot move or adapt fast enough die out, and those that can move shift towards the poles and up mountains.</p>`,
+  demo:`<strong>Do this:</strong> set the dials until the carbon dioxide readout says 560 ppm &mdash; exactly double the pre-industrial 280. Read the temperature. That is the number scientists mean when they talk about climate sensitivity, and you just measured it.`,
+  cliff:`Now for the opposite kind of pollution &mdash; one where nothing is toxic, nothing burns, and the river still ends up dead.`},
+
+ {t:"Water pollution and the six-step chain", len:"6 min",
+  body:`<p><strong>Eutrophication</strong> is worth learning as a sequence, because that is exactly how it is marked. Nitrate fertiliser is the usual cause; untreated sewage does the same thing by the same route.</p>
+        <ol>
+          <li>Fertiliser is spread on fields. Rain washes soluble <strong>nitrates</strong> into the river &mdash; <strong>leaching</strong>.</li>
+          <li>The extra nitrate makes <strong>algae</strong> grow and multiply rapidly: an <strong>algal bloom</strong>.</li>
+          <li>The mat of algae at the surface <strong>blocks the light</strong>.</li>
+          <li>Plants on the river bed cannot photosynthesise, so they <strong>die</strong>.</li>
+          <li><strong>Decomposer bacteria</strong> feed on the dead material and multiply enormously.</li>
+          <li>The bacteria <strong>respire aerobically</strong>, using up the dissolved oxygen, and the fish <strong>suffocate</strong>.</li>
+        </ol>
+        <p>Six links, and no poison anywhere in the chain. The two steps most often missed are number 3 (say the word <em>light</em>) and the word <em>aerobic</em> in step 6 &mdash; a decomposer that did not need oxygen would kill nothing.</p>
+        <p>Prevention follows from the chain: use less fertiliser, do not spread it just before heavy rain, leave an unfertilised buffer strip of vegetation along the bank to catch run-off, and treat sewage before it is discharged.</p>`,
+  demo:`<strong>Do this:</strong> open the tank below and press Next step six times, reading the oxygen figure each time. Note which step it barely moves at and which step it collapses at. Then close the page and write the six steps from memory.`,
+  cliff:`Some pollutants do not kill anything where they land. They wait, and they build up. Where do they end up?`},
+
+ {t:"Biodiversity, and why it is not just about nice animals", len:"5 min",
+  body:`<p><strong>Biodiversity</strong> is the range of different species in an ecosystem. It falls when habitats are destroyed, when pollution kills sensitive species, when climate moves faster than species can, and when we over-harvest &mdash; overfishing being the clearest example.</p>
+        <p>Three practical reasons to protect it, none of them sentimental:</p>
+        <ul>
+          <li><strong>Stability.</strong> A diverse ecosystem has alternative routes for energy, so it survives the loss of one species. A monoculture has none.</li>
+          <li><strong>Food security.</strong> Wild relatives of crops carry the genes for disease resistance that plant breeders need. Lose them and you cannot get them back.</li>
+          <li><strong>Medicine.</strong> A large share of medicines originated in wild organisms, and most species have never been examined.</li>
+        </ul>
+        <p>Then there is a subtler kind of harm: <strong>bioaccumulation</strong>. A pesticide that is harmless at the concentration found in water is stored in body fat rather than broken down or excreted. Each organism eats many of the level below, so the concentration <strong>multiplies at every trophic level</strong> &mdash; a process called biomagnification. The top predator may carry thousands of times the concentration in the water, which is why fish-eating birds were the first casualties of pesticides that had been tested as safe.</p>`,
+  demo:`<strong>Do this:</strong> write the numbers 0.002, 0.04, 0.6, 3.0, 25 down a page as five trophic levels. Work out, for each step, how many times the concentration multiplied. It is not the same factor each time &mdash; and Q14 asks you about the total.`,
+  cliff:`So what actually works? Not everything that sounds green does, and one very popular answer does not survive arithmetic.`},
+
+ {t:"What actually works", len:"4 min",
+  body:`<p>Worth knowing the real measures, and the limits of each:</p>
+        <ul>
+          <li><strong>Conservation:</strong> national parks and reserves, captive breeding and reintroduction, seed banks, protecting habitats rather than individual species.</li>
+          <li><strong>Quotas and controls:</strong> fishing quotas, minimum net mesh sizes and closed seasons, so that populations can breed and recover.</li>
+          <li><strong>Reforestation and sustainable forestry:</strong> replanting, and felling no faster than the forest regrows.</li>
+          <li><strong>Reducing emissions:</strong> renewable energy, better insulation, public transport &mdash; and this is the only measure that addresses the cause rather than the symptom.</li>
+          <li><strong>Recycling and waste treatment:</strong> less landfill and less methane, and sewage treated before discharge.</li>
+          <li><strong>Legislation and international agreements,</strong> because pollution does not stop at borders.</li>
+        </ul>
+        <p>One warning. &ldquo;Plant trees to cancel out the emissions&rdquo; is a popular answer that does not survive arithmetic &mdash; Q15 makes you do that arithmetic. Trees are worth planting, but the numbers say they cannot substitute for burning less.</p>`,
+  demo:`<strong>Do this:</strong> find one thing in the room you are sitting in that was made from a renewable resource and one from a non-renewable resource. Then say which of the six measures above applies to each.`,
+  cliff:`You're through the lessons. Now go and lose to Q14 and Q15, then come back tomorrow and take them apart.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which pair of human activities is most responsible for the rise in atmospheric carbon dioxide?",
+  o:["Burning fossil fuels and deforestation",
+     "Using fertilisers and dumping sewage",
+     "Overfishing and building roads",
+     "Mining metals and making plastics"], a:0,
+  why:"Burning fossil fuels releases carbon that was locked underground for millions of years, and deforestation both stops carbon dioxide being removed and releases the carbon stored in wood. The activities in the other options cause real damage, but not primarily through carbon dioxide."},
+ {n:2, lvl:"medium", q:"Which of these gases is <em>not</em> a greenhouse gas?",
+  o:["Carbon dioxide","Methane","Nitrogen","Nitrous oxide"], a:2,
+  why:"Nitrogen makes up about 78% of the atmosphere and does not absorb infrared radiation, so it plays no part in the greenhouse effect at all. Do not be misled by the similar name of nitrous oxide, which is a powerful greenhouse gas and comes largely from fertiliser use."},
+ {n:3, lvl:"medium", q:"Fertiliser runs off a field into a river and the fish die. The immediate cause of death is:",
+  o:["the nitrate in the fertiliser poisoning them",
+     "bacteria using up the dissolved oxygen as they decompose dead plants and algae",
+     "the algae eating the fish eggs",
+     "the water becoming too acidic"], a:1,
+  why:"Nothing in the chain is toxic. The nitrate feeds algae, the algae block the light, the plants below die, decomposer bacteria multiply on the dead material, and their aerobic respiration strips the oxygen out of the water. The fish suffocate."},
+ {n:4, lvl:"medium", q:"Which of these is <em>not</em> a consequence of deforestation?",
+  o:["Increased soil erosion","Reduced local rainfall","Loss of habitats and biodiversity","Increased removal of carbon dioxide from the air"], a:3,
+  why:"Removal of carbon dioxide <em>decreases</em> — that is the point. Fewer trees means less photosynthesis taking carbon dioxide out of the air, and the carbon in the felled wood goes back into it. The other three all follow from losing the roots and the canopy."},
+ {n:5, lvl:"trap", q:"A student writes: &ldquo;The greenhouse effect is damaging the planet and we should stop it.&rdquo; The best correction is:",
+  o:["The greenhouse effect is natural and keeps the Earth warm enough to live on; the problem is the <em>enhanced</em> greenhouse effect caused by extra gases.",
+     "The greenhouse effect only happens over cities, so it cannot damage the whole planet.",
+     "The greenhouse effect is caused by the hole in the ozone layer.",
+     "The statement is correct — without the greenhouse effect the Earth would be a better place."], a:0,
+  why:"Without any greenhouse effect the Earth would average about &minus;18 °C. The trouble is that we have strengthened it. Option C is a different mistake worth knowing: ozone depletion, acid rain and the enhanced greenhouse effect are three separate problems with three different causes, and examiners love to see them confused."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"Name <em>two</em> greenhouse gases other than water vapour, and for each one state a human activity that increases its concentration.",
+  scheme:["Carbon dioxide — increased by burning fossil fuels, or by deforestation. <span class='num'>[1]</span>",
+          "Methane — increased by cattle farming, rice paddies or rotting waste in landfill. (Accept nitrous oxide, from nitrogen fertilisers or vehicle exhausts.) <span class='num'>[1]</span>"],
+  tip:"One mark per gas, and each mark needs both halves — the gas <em>and</em> the activity. A named gas on its own scores nothing."},
+ {n:7, m:2, lvl:"medium", q:"Explain how cutting down a forest increases the amount of carbon dioxide in the atmosphere. Give <em>two</em> separate reasons.",
+  scheme:["There are fewer trees photosynthesising, so less carbon dioxide is removed from the atmosphere. <span class='num'>[1]</span>",
+          "The carbon stored in the wood is released as carbon dioxide when the timber is burned or when it decays. <span class='num'>[1]</span>"],
+  tip:"The question says two reasons because almost everybody gives one. Removal stops <em>and</em> release starts — they are genuinely different mechanisms."},
+ {n:8, m:2, lvl:"medium", q:"Fertiliser is washed from a field into a river. Explain why the fish downstream die.",
+  scheme:["The nitrates cause an algal bloom, which blocks light so the plants below die; decomposer bacteria then feed on the dead plants and algae and multiply rapidly. <span class='num'>[1]</span>",
+          "These bacteria respire aerobically and use up the dissolved oxygen in the water, so the fish cannot respire and suffocate. <span class='num'>[1]</span>"],
+  tip:"Two marks, but the chain has six links — put as many as you can in the right order. &ldquo;The fertiliser poisons the fish&rdquo; scores zero, because nothing in this chain is a poison."},
+ {n:9, m:2, lvl:"medium", q:"Describe <em>two</em> effects that a rise in global temperature has on living organisms.",
+  scheme:["Ice melts and seawater expands, so sea level rises and low-lying habitats are flooded and lost. <span class='num'>[1]</span>",
+          "Rainfall patterns shift, causing drought or flooding, and species migrate towards the poles or up mountains — those that cannot move or adapt fast enough become extinct. <span class='num'>[1]</span>"],
+  tip:"&ldquo;It gets hotter&rdquo; is the thing that happened, not an effect on organisms. Name what the organism actually experiences: habitat lost, range shifted, extinction."},
+ {n:10, m:2, lvl:"medium", q:"Give <em>two</em> practical reasons, other than their appearance or appeal, why loss of biodiversity matters.",
+  scheme:["A diverse ecosystem is more stable, because energy has alternative routes and the loss of one species can be absorbed. <span class='num'>[1]</span>",
+          "Wild species are a source of genes for crop breeding (disease resistance, drought tolerance) and of substances used as medicines — once extinct they cannot be recovered. <span class='num'>[1]</span>"],
+  tip:"Examiners reward stability, food security and medicine. &ldquo;Animals are nice&rdquo; and &ldquo;it is our duty&rdquo; are opinions, and opinions are not marked here."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"medium", q:"The concentration of carbon dioxide in the atmosphere was about 280 ppm in 1750. In 2024 it was 424 ppm, and it is currently rising by about 2.4 ppm each year.<br><br><strong>(a)</strong> Calculate the percentage increase since 1750, to one decimal place. <span class='num'>[1]</span><br><strong>(b)</strong> If the rate of increase stays the same, calculate the year in which the concentration would reach 500 ppm. <span class='num'>[1]</span><br><strong>(c)</strong> Name the two human activities most responsible, and for each say what it does to the carbon. <span class='num'>[1]</span>",
+  hints:["Percentage increase = (increase ÷ original) × 100. The original is the 1750 figure.",
+         "For (b), work out how many ppm still have to be added, then divide by the yearly rise. Round the number of years <em>up</em> — a part year does not get you there.",
+         "For (c), two activities, and each needs a mechanism. Deforestation has two mechanisms of its own."],
+  sol:["(a) Increase = 424 − 280 = 144 ppm, so (144 ÷ 280) × 100 = <strong>51.4%</strong>.",
+       "(b) 500 − 424 = 76 ppm still to be added; 76 ÷ 2.4 = 31.7, so 32 more years: <strong>2056</strong>.",
+       "(c) <strong>Burning fossil fuels</strong> releases carbon that had been locked underground for millions of years. <strong>Deforestation</strong> both stops carbon dioxide being removed by photosynthesis and releases the carbon stored in the wood when it is burned or rots.",
+       "Note that 2.4 ppm per year is the <em>current</em> rate, and it has been climbing. A straight-line answer of 2056 is what the question asks for, but it is the optimistic version."]},
+
+ {n:12, m:3, lvl:"medium", q:"Fertiliser enters a river from a field. The dissolved oxygen was measured at points downstream of the outflow. Fish need more than 5 mg/dm³ to survive.<br><br><table class='data'><tr><th>Distance downstream / m</th><td>0</td><td>200</td><td>400</td><td>800</td><td>1600</td></tr><tr><th>Dissolved oxygen / mg dm&#8315;&sup3;</th><td>9.2</td><td>3.1</td><td>1.8</td><td>5.4</td><td>8.6</td></tr></table><strong>(a)</strong> State the range of distances over which fish cannot survive. <span class='num'>[1]</span><br><strong>(b)</strong> Calculate the percentage decrease in dissolved oxygen between 0 m and 400 m. <span class='num'>[1]</span><br><strong>(c)</strong> Explain why the oxygen concentration recovers further downstream. <span class='num'>[1]</span>",
+  hints:["For (a), find every reading below 5 mg/dm³ and give the range they cover. The boundaries are between measured points, so an approximate range is fine.",
+         "Percentage decrease = (decrease ÷ original) × 100, and the original is the reading at 0 m.",
+         "For (c), ask two things: what has happened to the nitrate by now, and what has happened to the dead material the bacteria were feeding on."],
+  sol:["(a) The readings at 200 m and 400 m are below 5 mg/dm³, so fish cannot survive between roughly <strong>200 m and 800 m</strong> downstream (the water is back above 5 mg/dm³ by 800 m).",
+       "(b) Decrease = 9.2 − 1.8 = 7.4 mg/dm³, so (7.4 ÷ 9.2) × 100 = <strong>80.4%</strong>.",
+       "(c) The nitrate has been diluted and used up, so the algal bloom dies back; the dead material has largely been decomposed, so the bacteria decline and stop consuming oxygen; and oxygen dissolves back into the water from the air as the river flows and is churned up.",
+       "The shape of this graph is worth recognising: a sharp crash just downstream of the source and a slow recovery. If a question gives you that shape, it is asking about eutrophication whether it says so or not."]},
+
+ {n:13, m:3, lvl:"medium", q:"An area of rainforest covers 2 400 000 hectares. It is being cleared at a rate of 18 000 hectares per year.<br><br><strong>(a)</strong> Calculate the percentage of the forest cleared each year. <span class='num'>[1]</span><br><strong>(b)</strong> At this rate, calculate how many years it would take for half the forest to be cleared. <span class='num'>[1]</span><br><strong>(c)</strong> State <em>two</em> consequences for the local ecosystem, other than the loss of the trees themselves. <span class='num'>[1]</span>",
+  hints:["Percentage = (part ÷ whole) × 100. Cancel the zeros before you divide and it becomes 18 ÷ 2400.",
+         "Half of 2 400 000 is the amount that has to go. Divide by the yearly rate.",
+         "For (c), think about what the roots were holding and what the leaves were returning to the air."],
+  sol:["(a) (18 000 ÷ 2 400 000) × 100 = <strong>0.75% per year</strong>.",
+       "(b) Half the forest is 1 200 000 hectares, so 1 200 000 ÷ 18 000 = 66.7, about <strong>67 years</strong>.",
+       "(c) Any two: habitats are destroyed so species are lost and biodiversity falls; without roots to hold it the soil is eroded and mineral ions are leached away; less transpiration means less local rainfall, making regrowth harder; less photosynthesis and the decay of felled wood together raise atmospheric carbon dioxide.",
+       "0.75% a year sounds small, which is exactly why it is dangerous. Small annual percentages of very large areas are how a forest disappears inside one person's lifetime."]},
+
+ {n:14, m:3, lvl:"hard", q:"A pesticide is sprayed near a lake. It is not broken down in the body and is stored in fat. Its concentration was measured at each level of a food chain:<br><br><table class='data'><tr><th>Water</th><th>Algae</th><th>Small fish</th><th>Large fish</th><th>Fish-eating birds</th></tr><tr><td>0.002 ppm</td><td>0.04 ppm</td><td>0.6 ppm</td><td>3.0 ppm</td><td>25 ppm</td></tr></table><strong>(a)</strong> Calculate how many times more concentrated the pesticide is in the birds than in the water. <span class='num'>[1]</span><br><strong>(b)</strong> Explain why the concentration rises at each step of the chain. <span class='num'>[1]</span><br><strong>(c)</strong> The pesticide was tested and found harmless to fish at the concentration present in the water. Suggest why the birds died anyway. <span class='num'>[1]</span>",
+  hints:["For (a), divide the bird figure by the water figure. Dividing by 0.002 is the same as multiplying by 500.",
+         "For (b) there are two ideas working together: how much of the level below each organism eats, and what happens to the pesticide once it is inside.",
+         "For (c), compare the concentration that was tested with the concentration the bird actually experiences."],
+  sol:["(a) 25 ÷ 0.002 = <strong>12 500 times</strong>.",
+       "(b) Each organism eats a large number of organisms from the level below, and the pesticide is neither broken down nor excreted — it is stored in fat. So each predator takes in all the pesticide that was in all its prey and keeps it, and the concentration multiplies at every trophic level. This is bioaccumulation, and the multiplying up the chain is biomagnification.",
+       "(c) The safety test used the concentration in the <em>water</em>, which was genuinely harmless. The birds are at the top of the chain and carry 12 500 times that concentration, which is far above the harmless level. A substance can therefore pass a safety test and still wipe out top predators.",
+       "This is the real history of DDT: harmless in the water, catastrophic for birds of prey, and the effect took years to appear because it had to work its way up the chain first."]},
+
+ {n:15, m:3, lvl:"hard", q:"Burning 1 kg of coal releases about 2.4 kg of carbon dioxide. A power station burns 8000 tonnes of coal a day. A mature tree absorbs about 22 kg of carbon dioxide a year.<br><br><strong>(a)</strong> Calculate the mass of carbon dioxide the power station releases in one day, in tonnes. <span class='num'>[1]</span><br><strong>(b)</strong> Calculate how many trees would be needed to absorb <em>one day's</em> emissions over a year. <span class='num'>[1]</span><br><strong>(c)</strong> A student concludes: &ldquo;So we should plant trees and carry on burning coal.&rdquo; Give <em>two</em> reasons this does not work. <span class='num'>[1]</span>",
+  hints:["For (a) the ratio is per kilogram, but it works just as well per tonne — 1 kg of coal to 2.4 kg of carbon dioxide is the same as 1 tonne to 2.4 tonnes.",
+         "For (b), convert your tonnes to kilograms before dividing by 22. 1 tonne = 1000 kg.",
+         "For (c), start by asking how many days there are in a year, then multiply your answer to (b) by that."],
+  sol:["(a) 8000 × 2.4 = <strong>19 200 tonnes of carbon dioxide per day</strong>.",
+       "(b) 19 200 tonnes = 19 200 000 kg. 19 200 000 ÷ 22 = <strong>about 873 000 trees</strong> — to absorb a single day's output.",
+       "(c) Any two: a full year of burning needs 365 times that number, about <strong>320 million trees</strong>, and there is nowhere near enough land; a newly planted tree takes decades to reach that rate of absorption, while the carbon dioxide is released today; and the carbon in a tree is returned to the air when it dies, burns or is felled, whereas the fossil carbon had been locked away for millions of years — so planting delays the problem rather than reversing it.",
+       "Work part (b) out before you form an opinion on part (c). Almost nobody guesses 873 000 for one day, and the arithmetic makes the argument far better than indignation does."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const pre = e.target.closest('[data-preset]');
+  if(pre && typeof window.setPreset==='function'){ window.setPreset(pre.dataset.preset); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the puzzle engine (shared by both tools) ---------------- */
+function mkPuzzles(btnId, boxId, list){
+  let cur = null;
+  const btn = document.getElementById(btnId), box = document.getElementById(boxId);
+  if(!btn || !box) return;
+  btn.addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*list.length);
+    if(cur===i) i = (i+1)%list.length;
+    cur = i;
+    const P = list[i];
+    box.classList.add('on');
+    box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+      <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-pz="${j}">${o}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-pz]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ok = +b.dataset.pz === P.a;
+        if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+        box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+          <div class="qrow"><button class="btn ghost small" type="button" class="again">Another one</button></div>`;
+        box.querySelector('button').addEventListener('click', ()=>btn.click());
+      });
+    });
+  });
+}
+
+
+/* ---------------- tool 1: the impact dials ---------------- */
+const dFor = document.getElementById('dfor'),
+      dFos = document.getElementById('dfos'),
+      dFer = document.getElementById('dfer');
+const NS = 'http://www.w3.org/2000/svg';
+
+function mix(c1, c2, f){          /* blend two #rrggbb colours */
+  const p = h => [parseInt(h.substr(1,2),16), parseInt(h.substr(3,2),16), parseInt(h.substr(5,2),16)];
+  const a = p(c1), b = p(c2);
+  return '#' + a.map((v,i)=>Math.round(v + (b[i]-v)*f).toString(16).padStart(2,'0')).join('');
+}
+
+function model(){
+  const fo = +dFor.value, fs = +dFos.value, fe = +dFer.value;
+  const co2  = 280 + 1.9*fs + 0.6*fo;                 /* ppm */
+  const temp = 3.0 * Math.log2(co2/280);              /* °C at equilibrium, 3 °C per doubling */
+  const o2   = Math.max(0.4, 10 - 0.075*fe);          /* mg/dm³ dissolved in the river */
+  const bio  = Math.max(4, 100 - 0.55*fo - 0.25*fe - 0.15*fs);
+  return {fo, fs, fe, co2, temp, o2, bio};
+}
+
+function drawLand(m){
+  /* sky darkens and yellows as carbon dioxide climbs */
+  const murk = Math.min(1, (m.co2 - 280) / 420);
+  document.getElementById('sky').setAttribute('fill', mix('#D7E8F2', '#B9AE93', murk));
+  document.getElementById('sun').setAttribute('opacity', (0.9 - 0.45*murk).toFixed(2));
+
+  /* trees: 14 of them, felled from the right */
+  const g = document.getElementById('trees');
+  while(g.firstChild) g.removeChild(g.firstChild);
+  const left = Math.round(14 * (1 - m.fo/100));
+  for(let i=0;i<14;i++){
+    const x = 26 + i*31;
+    if(i < left){
+      const tr = document.createElementNS(NS,'path');
+      tr.setAttribute('d', `M ${x} 214 L ${x} 190 M ${x} 192 l -13 0 l 13 -26 l 13 26 z`);
+      tr.setAttribute('stroke', 'var(--co2)'); tr.setAttribute('stroke-width','3');
+      tr.setAttribute('fill', 'var(--co2)'); tr.setAttribute('opacity','0.85');
+      g.appendChild(tr);
+    } else {
+      const st = document.createElementNS(NS,'rect');   /* a stump */
+      st.setAttribute('x', x-4); st.setAttribute('y', 206);
+      st.setAttribute('width', 8); st.setAttribute('height', 8);
+      st.setAttribute('fill','var(--muscle)');
+      g.appendChild(st);
+    }
+  }
+
+  /* smoke */
+  const sm = document.getElementById('smoke');
+  while(sm.firstChild) sm.removeChild(sm.firstChild);
+  const puffs = Math.round(m.fs/14);
+  for(let i=0;i<puffs;i++){
+    const c = document.createElementNS(NS,'circle');
+    c.setAttribute('cx', 495 + i*9); c.setAttribute('cy', 104 - i*13);
+    c.setAttribute('r', 9 + i*2.6); c.setAttribute('fill','#6F6A61');
+    c.setAttribute('opacity', (0.16 + m.fs/280).toFixed(2));
+    sm.appendChild(c);
+  }
+
+  /* river greens as fertiliser runs off; fish vanish below 5 mg/dm³ */
+  document.getElementById('river').setAttribute('fill', mix('#5C93B8', '#5E7C2A', Math.min(1, m.fe/100)));
+  const fg = document.getElementById('fish');
+  while(fg.firstChild) fg.removeChild(fg.firstChild);
+  const nfish = m.o2 >= 5 ? 5 : (m.o2 >= 3 ? 2 : 0);
+  for(let i=0;i<nfish;i++){
+    const x = 90 + i*120, y = 268 + (i%2)*14;
+    const f = document.createElementNS(NS,'path');
+    f.setAttribute('d', `M ${x} ${y} q 14 -9 28 0 q -14 9 -28 0 z M ${x+28} ${y} l 9 -6 l 0 12 z`);
+    f.setAttribute('fill','#F0EDE4'); f.setAttribute('opacity','0.92');
+    fg.appendChild(f);
+  }
+  if(nfish === 0){
+    const t = document.createElementNS(NS,'text');
+    t.setAttribute('x',350); t.setAttribute('y',282); t.setAttribute('text-anchor','middle');
+    t.setAttribute('class','station onwater');
+    t.textContent = 'no fish — not enough dissolved oxygen';
+    fg.appendChild(t);
+  }
+}
+
+function renderDials(){
+  const m = model();
+  document.getElementById('v-for').textContent = m.fo + '%';
+  document.getElementById('v-fos').textContent = m.fs;
+  document.getElementById('v-fer').textContent = m.fe;
+  document.getElementById('d-co2').textContent  = Math.round(m.co2) + ' ppm';
+  document.getElementById('d-temp').textContent = '+' + m.temp.toFixed(1) + ' °C';
+  document.getElementById('d-o2').textContent   = m.o2.toFixed(1) + ' mg/dm³';
+  document.getElementById('d-bio').textContent  = Math.round(m.bio) + ' out of 100';
+
+  const pill = document.getElementById('d-pill');
+  if(m.temp < 0.3 && m.o2 >= 8 && m.bio >= 90){ pill.className='pill bal'; pill.textContent='Near untouched'; }
+  else if(m.temp < 1.6 && m.o2 >= 5 && m.bio >= 65){ pill.className='pill hold'; pill.textContent='Stressed but living'; }
+  else if(m.o2 < 5 || m.temp >= 3 || m.bio < 40){ pill.className='pill in'; pill.textContent='Ecosystem failing'; }
+  else { pill.className='pill hold'; pill.textContent='Under pressure'; }
+
+  const note = document.getElementById('d-note');
+  if(m.o2 < 5){
+    note.innerHTML = 'The river is below <span class="num">5 mg/dm³</span> and the fish have gone. Nothing poisoned them &mdash; bacteria decomposing the dead algae used the oxygen up. Walk it through in the tank below.';
+  } else if(m.fo > 70){
+    note.innerHTML = 'With most of the forest gone, two separate things happen to the carbon dioxide: less is <strong>removed</strong> by photosynthesis, and the carbon stored in the felled wood is <strong>released</strong> when it burns or rots. Examiners want both.';
+  } else if(m.temp > 2.5){
+    note.innerHTML = 'Above about <span class="num">+2 °C</span> the problem is not that it is warmer, it is that rainfall belts, growing seasons and sea level all move &mdash; faster than species can move with them.';
+  } else if(m.fo === 0 && m.fs === 0 && m.fe === 0){
+    note.innerHTML = 'Pre-industrial: <span class="num">280 ppm</span> and no warming above the natural greenhouse effect. Note that the natural greenhouse effect is still doing its job here &mdash; without it this planet would average about &minus;18 °C.';
+  } else {
+    note.innerHTML = 'Fish need more than <span class="num">5 mg/dm³</span> of dissolved oxygen. Below that they suffocate &mdash; and nothing in the fertiliser is poisonous.';
+  }
+  drawLand(m);
+}
+[dFor,dFos,dFer].forEach(s=>s.addEventListener('input', renderDials));
+window.setPreset = function(v){
+  const p = String(v).split(',').map(Number);
+  dFor.value = p[0]; dFos.value = p[1]; dFer.value = p[2];
+  renderDials();
+};
+
+mkPuzzles('newquiz','quizbox',[
+ {q:"Set the fertiliser dial to 100 and leave the other two alone. What kills the fish?",
+  o:["The fertiliser is poisonous to them","Bacteria use up the dissolved oxygen and the fish suffocate"], a:1,
+  why:"Nitrate is a plant nutrient, not a poison. It feeds algae; the algae block the light; the plants below die; decomposer bacteria multiply on the dead material and use the oxygen up in respiration. The fish suffocate at the end of a five-step chain."},
+ {q:"Set the forest slider to 100. Why does the carbon dioxide figure rise?",
+  o:["Only because fewer trees photosynthesise","Because fewer trees remove it AND the carbon in the felled wood is released"], a:1,
+  why:"Two separate effects, and most answers only give one. Photosynthesis that used to remove carbon dioxide stops, and the carbon locked in the wood returns to the air as the timber is burnt or left to decay."},
+ {q:"Take every slider to zero. Is there still a greenhouse effect?",
+  o:["Yes, and without it the planet would average about −18 °C","No, the greenhouse effect only exists because of humans"], a:0,
+  why:"The greenhouse effect is natural and necessary — water vapour and carbon dioxide have kept this planet habitable for billions of years. What humans have added is the <em>enhanced</em> greenhouse effect. Writing that the greenhouse effect should be stopped is a biology error, not an opinion."},
+ {q:"Carbon dioxide doubles from 280 to 560 ppm. The long-term warming is about:",
+  o:["+3 °C","+0.3 °C"], a:0,
+  why:"Roughly 3 °C per doubling is the standard figure the model in this tool uses. Set the dials until the readout says 560 ppm and check it for yourself."},
+ {q:"Which single dial does the most damage to the biodiversity score?",
+  o:["Forest cleared","Fossil fuel burned"], a:0,
+  why:"Clearing forest destroys habitat directly and immediately — the species living there have nowhere to go. Burning fuel does its damage more slowly and indirectly, through the climate."},
+ {q:"The temperature readout is labelled “long-term warming this commits us to”. Why not just “temperature now”?",
+  o:["Because the oceans take decades to warm up to the new level","Because the figure is a guess"], a:0,
+  why:"Carbon dioxide put in the air today keeps warming the planet for decades, because the oceans absorb heat slowly. The warming already measured is smaller than the warming the current level will eventually produce."}
+]);
+
+/* ---------------- tool 2: the eutrophication tank ---------------- */
+const STEPS = [
+ {what:"A clean river. Plants on the bed, fish in the water, plenty of dissolved oxygen.",
+  o2:9.2, alive:"plants, fish, insects", pill:["bal","Healthy"],
+  note:"The word the mark scheme wants at every step is a <em>cause</em>, not a list. Each box below is caused by the one before it."},
+ {what:"Fertiliser is spread on the field. Rain washes the soluble nitrates off the land and into the river — this is <strong>leaching</strong>, or run-off.",
+  o2:9.2, alive:"plants, fish, insects", pill:["hold","Nitrates arriving"],
+  note:"Nothing has been harmed yet. Nitrate is a plant nutrient — the river has simply been fertilised, exactly as the field was."},
+ {what:"The extra nitrates make the <strong>algae</strong> at the surface grow and multiply very rapidly. This is an <strong>algal bloom</strong>.",
+  o2:9.0, alive:"algae (lots), plants, fish", pill:["hold","Algal bloom"],
+  note:"Algae were always there, limited by how little nitrate there was. Remove the limit and they grow until something else stops them."},
+ {what:"The mat of algae at the surface <strong>blocks the light</strong> from reaching the plants growing on the river bed.",
+  o2:8.4, alive:"algae, plants (struggling), fish", pill:["hold","Light blocked"],
+  note:"This is the step most answers skip, and it is usually worth a mark on its own. Say <em>light</em>."},
+ {what:"The plants on the bed can no longer photosynthesise, so they <strong>die</strong>. Algae at the surface die too as they are shaded by the ones above them.",
+  o2:7.6, alive:"algae, fish", pill:["in","Plants dying"],
+  note:"Now there is a large quantity of dead organic material in the water. Everything that follows is about what feeds on it."},
+ {what:"<strong>Decomposer bacteria</strong> feed on the dead plants and algae, and multiply enormously.",
+  o2:4.1, alive:"bacteria (enormous numbers), fish (struggling)", pill:["in","Bacteria multiplying"],
+  note:"The bacteria are not the problem in themselves. What matters is that they are <strong>aerobic</strong> — they respire, and respiration needs oxygen."},
+ {what:"The bacteria <strong>use up the dissolved oxygen</strong> in their aerobic respiration. Fish and other aerobic organisms suffocate and die.",
+  o2:1.3, alive:"bacteria only", pill:["in","Dead river"],
+  note:"Six steps from a bag of fertiliser to a dead fish, and nothing in the chain was poisonous at any point. Write all six and the marks are yours."}
+];
+let step = 0;
+
+function drawTank(){
+  const S = STEPS[step];
+  const algaeH = [0,0,26,40,46,40,34][step];
+  document.getElementById('t-algae').setAttribute('height', algaeH);
+  document.getElementById('t-water').setAttribute('fill',
+    step >= 5 ? '#5E6B55' : (step >= 2 ? '#4F86A5' : '#5C93B8'));
+
+  /* run-off arrows from the field */
+  const ro = document.getElementById('t-runoff');
+  while(ro.firstChild) ro.removeChild(ro.firstChild);
+  if(step >= 1){
+    for(let i=0;i<5;i++){
+      const x = 70 + i*140;
+      const p = document.createElementNS(NS,'path');
+      p.setAttribute('d', `M ${x} 10 L ${x} 44`);
+      p.setAttribute('stroke','var(--o2)'); p.setAttribute('stroke-width','3');
+      p.setAttribute('marker-end',''); p.setAttribute('fill','none');
+      ro.appendChild(p);
+      const h = document.createElementNS(NS,'polygon');
+      h.setAttribute('points', `${x},50 ${x-5},38 ${x+5},38`);
+      h.setAttribute('fill','var(--o2)');
+      ro.appendChild(h);
+    }
+    const t = document.createElementNS(NS,'text');
+    t.setAttribute('x',660); t.setAttribute('y',28); t.setAttribute('text-anchor','end');
+    t.setAttribute('class','station'); t.textContent = 'nitrates leaching in';
+    ro.appendChild(t);
+  }
+
+  /* sunlight reaching the bed */
+  const lg = document.getElementById('t-light');
+  while(lg.firstChild) lg.removeChild(lg.firstChild);
+  if(step >= 3){
+    const t = document.createElementNS(NS,'text');
+    t.setAttribute('x',350); t.setAttribute('y',118); t.setAttribute('text-anchor','middle');
+    t.setAttribute('class','station onwater');
+    t.textContent = step >= 4 ? 'no light reaches the bed' : 'light blocked by the algae';
+    lg.appendChild(t);
+  }
+
+  /* plants on the bed */
+  const pg = document.getElementById('t-plants');
+  while(pg.firstChild) pg.removeChild(pg.firstChild);
+  const dead = step >= 4;
+  for(let i=0;i<9;i++){
+    const x = 44 + i*74;
+    const p = document.createElementNS(NS,'path');
+    p.setAttribute('d', dead ? `M ${x} 238 q 16 -6 26 -2` : `M ${x} 238 q 6 -28 0 -46`);
+    p.setAttribute('stroke', dead ? '#7A6A4F' : '#3E8A3A');
+    p.setAttribute('stroke-width','4'); p.setAttribute('fill','none'); p.setAttribute('stroke-linecap','round');
+    pg.appendChild(p);
+  }
+
+  /* bacteria */
+  const bg = document.getElementById('t-bacteria');
+  while(bg.firstChild) bg.removeChild(bg.firstChild);
+  if(step >= 5){
+    const n = step === 5 ? 60 : 150;
+    for(let i=0;i<n;i++){
+      const c = document.createElementNS(NS,'circle');
+      c.setAttribute('cx', (20 + (i*97)%660).toFixed(0));
+      c.setAttribute('cy', (120 + (i*53)%110).toFixed(0));
+      c.setAttribute('r', 2.2); c.setAttribute('fill','#D9C97F'); c.setAttribute('opacity','0.85');
+      bg.appendChild(c);
+    }
+  }
+
+  /* fish */
+  const fg = document.getElementById('t-fish');
+  while(fg.firstChild) fg.removeChild(fg.firstChild);
+  const nfish = STEPS[step].o2 >= 5 ? 4 : (STEPS[step].o2 >= 3 ? 1 : 0);
+  for(let i=0;i<nfish;i++){
+    const x = 110 + i*150, y = 160 + (i%2)*30;
+    const f = document.createElementNS(NS,'path');
+    f.setAttribute('d', `M ${x} ${y} q 16 -10 32 0 q -16 10 -32 0 z M ${x+32} ${y} l 10 -7 l 0 14 z`);
+    f.setAttribute('fill','#F0EDE4'); f.setAttribute('opacity','0.92');
+    fg.appendChild(f);
+  }
+  if(nfish === 0 && step >= 6){
+    for(let i=0;i<4;i++){
+      const x = 110 + i*150;
+      const f = document.createElementNS(NS,'path');
+      f.setAttribute('d', `M ${x} 232 q 16 -10 32 0 q -16 10 -32 0 z M ${x+32} 232 l 10 -7 l 0 14 z`);
+      f.setAttribute('transform', `rotate(180 ${x+21} 232)`);
+      f.setAttribute('fill','#B9B3A4'); f.setAttribute('opacity','0.9');
+      fg.appendChild(f);
+    }
+  }
+
+  document.getElementById('t-count').textContent = 'step ' + step + ' of 6';
+  document.getElementById('t-what').innerHTML = S.what;
+  document.getElementById('t-o2').textContent = S.o2.toFixed(1) + ' mg/dm³';
+  document.getElementById('t-alive').textContent = S.alive;
+  document.getElementById('t-note').innerHTML = S.note;
+  const pill = document.getElementById('t-pill');
+  pill.className = 'pill ' + S.pill[0];
+  pill.textContent = S.pill[1];
+}
+document.getElementById('stepNext').addEventListener('click', ()=>{ if(step<6){ step++; drawTank(); } });
+document.getElementById('stepBack').addEventListener('click', ()=>{ if(step>0){ step--; drawTank(); } });
+document.getElementById('stepReset').addEventListener('click', ()=>{ step=0; drawTank(); });
+
+mkPuzzles('newquiz2','quizbox2',[
+ {q:"At which step does the dissolved oxygen actually fall sharply?",
+  o:["When the algae bloom","When the bacteria decompose the dead plants"], a:1,
+  why:"The bloom itself barely changes the oxygen — algae photosynthesise. The collapse comes at step 6, when huge numbers of aerobic bacteria respire while feeding on the dead material."},
+ {q:"Why do the plants on the river bed die?",
+  o:["The nitrates poison them","The algae above them block the light, so they cannot photosynthesise"], a:1,
+  why:"Nitrate is a fertiliser to them too. What kills them is shade. Missing out the word <em>light</em> is the single commonest way to lose a mark on this sequence."},
+ {q:"What finally kills the fish?",
+  o:["Lack of oxygen","Poisoning by the fertiliser"], a:0,
+  why:"They suffocate. Nothing in the chain is toxic — the bacteria simply take the dissolved oxygen the fish needed for aerobic respiration."},
+ {q:"The bacteria matter because they are:",
+  o:["Aerobic, so their respiration uses oxygen","Poisonous to fish"], a:0,
+  why:"That one word, aerobic, is the hinge of the whole answer. A decomposer that did not need oxygen would not kill anything."},
+ {q:"Which of these would reduce eutrophication in this river?",
+  o:["Leaving an unfertilised strip of vegetation along the bank","Adding more oxygen-producing algae"], a:0,
+  why:"A buffer strip catches run-off before it reaches the water. Adding algae is adding the problem — it is the algae dying and decomposing that starts the oxygen crash."},
+ {q:"Untreated sewage entering a river causes the same oxygen crash. Why?",
+  o:["Sewage is rich in nitrates and organic matter, so the same chain runs","Sewage is acidic"], a:0,
+  why:"Sewage both fertilises the water and supplies organic matter for bacteria directly. Different source, identical mechanism — and identical mark scheme."}
+]);
+
+function boot(){
+  renderDials();
+  drawTank();
+}
+
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  boot();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='humanimpact', SUBJECT='biology', TITLE="What We Take, What We Leave", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Everything Eats Something &mdash; Grade 7 IGCSE Biology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "ecosystems",
+  "file": "ecosystems.html",
+  "subject": "biology",
+  "status": "ready",
+  "papers": 2,
+  "title": "Everything Eats Something",
+  "sub": "Biology · ecosystems, habitats and food webs",
+  "blurb": "Pull one species out of a food web and watch the other five move — then find out why only a tenth of the energy survives each step, and why that makes food chains short. Quadrats, pyramids and interdependence.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "live food web"
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#141C26;
+  --ink-soft:#4F5D6E;
+  --paper:#E9ECE2;
+  --card:#FFFFFF;
+  --line:#CFD7C4;
+  --line-soft:#E3E8DA;
+  /* the two semantic accents for this page; the shared CSS calls them --o2 / --co2 */
+  --o2:#2E7D4F;          /* producers and plant material · always green */
+  --o2-tint:#E7F3EB;
+  --co2:#A96A12;         /* consumers and energy transfer · always amber */
+  --co2-tint:#FAF0DF;
+  --muscle:#7A5A3A;
+  --steel:#9AA7B1;
+  --steel-dark:#6E7E8B;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--co2)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(230,235,231,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--o2);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--o2);font-weight:700}
+.co2txt{color:var(--co2);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+nav.jump{background:rgba(233,236,226,.93)}
+
+.spbtns{display:flex;gap:8px;flex-wrap:wrap}
+.spbtns .btn.on{background:var(--o2);border-color:var(--o2);color:#fff}
+.station{font-family:var(--mono);font-size:10.5px;fill:var(--ink-soft)}
+
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Biology &middot; Grade 7 &middot; Ecosystems and habitats</div>
+  <h1>Everything <em>Eats</em> <b>Something</b></h1>
+  <p class="lede">Two ideas carry this page. First: nothing in an ecosystem is independent &mdash; change one population and you change the others, sometimes in the direction you did not expect. Second: <strong>energy flows one way and leaks badly</strong>, about <span class='num'>90%</span> lost at every step, while <strong>nutrients go round in circles</strong>. Get those two straight and the rest is vocabulary.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of <span class="num">30</span>, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme &mdash; otherwise you're just reading, and reading feels like learning without being learning.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>web puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#web">Food-web machine</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#pyramid">Energy pyramid</a>
+  <a href="#papers">Mock papers</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+
+<!-- ============ HERO: THE FOOD-WEB MACHINE ============ -->
+<section id="web">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The food-web machine</h2>
+      <p>Pick one species, push its population up or down, and the other five settle into a new balance. Predict what will happen <em>before</em> you move the slider &mdash; that is the whole exercise. The arrows point the way the <strong>energy</strong> travels, from the eaten to the eater.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 700 350" role="img" aria-label="A food web of six species with population bars that respond when one population is changed">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--co2)"/>
+        </marker>
+      </defs>
+      <g id="weblinks" stroke="var(--co2)" stroke-width="2.5" fill="none" marker-end="url(#ah)" opacity="0.75"></g>
+      <g id="webnodes"></g>
+    </svg>
+
+    <div class="ctrl">
+      <div class="spbtns" id="spbtns"></div>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="popslider">Population of the chosen species</label>
+      <input id="popslider" type="range" min="0" max="220" value="100" aria-label="Population of the chosen species, where 100 is its natural level">
+      <button class="btn ghost small" type="button" id="resetWeb">Back to balance</button>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">You are controlling</div><div class="val" id="w-sp">grass (producer)</div></div>
+      <div class="cell"><div class="lab">Its trophic level</div><div class="val" id="w-lvl">1 &mdash; producer</div></div>
+      <div class="cell"><div class="lab">It is eaten by</div><div class="val" id="w-pred">grasshopper, rabbit</div></div>
+      <div class="cell"><div class="lab">Biggest knock-on effect</div><div class="val" id="w-effect">nothing changed yet</div></div>
+      <div class="phasebar">
+        <span class="pill bal" id="w-pill">At balance</span>
+        <span id="w-note">Every arrow is a route energy can take. Cut one route and the energy finds another &mdash; which is exactly why a web survives losses that would wreck a single chain.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~32 min total</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was just a screensaver. Pause and write &mdash; don't rewind at the end.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~30 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+
+<!-- ============ THE ENERGY PYRAMID ============ -->
+<section id="pyramid">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The energy pyramid: where the other 90% goes</h2>
+      <p>Set how much light energy the plants capture, and how good each transfer is. Then find the level where there is no longer enough energy to keep an animal alive &mdash; that is why you have never seen a food chain eight links long.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 700 300" role="img" aria-label="A pyramid of energy with five trophic levels whose widths and values change with the sliders">
+      <rect x="18" y="12" width="664" height="276" rx="10" fill="#F2F4EE" stroke="var(--line)" stroke-width="2"/>
+      <g id="tiers"></g>
+      <text x="350" y="283" text-anchor="middle" class="station">bar width is on a logarithmic scale &mdash; a drawn-to-scale tier 5 would be invisible</text>
+    </svg>
+
+    <div class="ctrl">
+      <label for="eslider">Energy captured by the plants</label>
+      <input id="eslider" type="range" min="0" max="100" value="55" aria-label="Energy captured by producers, in kilojoules per square metre per year">
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="tslider">Energy passed on at each step</label>
+      <input id="tslider" type="range" min="2" max="30" value="10" aria-label="Percentage of energy transferred to the next trophic level">
+      <div class="spbtns">
+        <button class="btn ghost small" type="button" data-preset="10">Typical 10%</button>
+        <button class="btn ghost small" type="button" data-preset="20">Good 20%</button>
+        <button class="btn ghost small" type="button" data-preset="4">Poor 4%</button>
+      </div>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">Producers capture</div><div class="val mono" id="p-e1">20 000 kJ/m&sup2;/yr</div></div>
+      <div class="cell"><div class="lab">Reaching a tertiary consumer</div><div class="val mono" id="p-e4">20 kJ/m&sup2;/yr</div></div>
+      <div class="cell"><div class="lab">Fraction of the plants' energy that gets there</div><div class="val mono" id="p-frac">0.1%</div></div>
+      <div class="cell"><div class="lab">Longest food chain this can support</div><div class="val mono" id="p-len">4 levels</div></div>
+      <div class="phasebar">
+        <span class="pill out" id="p-pill">90% lost at every step</span>
+        <span id="p-note">The missing energy is not destroyed. It leaves as heat from respiration, and in faeces, urine and uneaten parts &mdash; bone, bark, roots, shell.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox2"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes open. These are the marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>&ldquo;Energy is recycled in an ecosystem&rdquo;</h4><p>It is not. <strong>Energy flows through</strong> &mdash; in as sunlight, up the levels, out as heat &mdash; and is never used again, which is why the Sun has to keep supplying more. <strong>Nutrients cycle</strong>: carbon, nitrogen and mineral ions go round for ever, and decomposers are the return leg. Swapping these two words is the most expensive mistake in this unit.</p></div>
+    <div class="trap"><h4>Drawing the arrows backwards</h4><p>The arrow points from the organism <strong>eaten</strong> to the organism <strong>eating</strong> it, because that is the way the energy travels. &ldquo;Fox eats rabbit&rdquo; makes people draw fox &rarr; rabbit, which says the fox feeds the rabbit. Read every arrow as &ldquo;gives its energy to&rdquo; and you will never get it wrong again.</p></div>
+    <div class="trap"><h4>Using habitat, population, community and ecosystem as if they meant the same thing</h4><p>Habitat is the <em>place</em>. A population is one species. A community is all the species. An ecosystem is the community <strong>plus</strong> the non-living surroundings, interacting. Defining an ecosystem without the non-living part is the standard way to lose a definition mark.</p></div>
+    <div class="trap"><h4>&ldquo;Remove the predator and the prey will thrive&rdquo;</h4><p>Only at first. The prey population rises, eats through its own food supply, and then crashes. Predator and prey numbers <strong>cycle</strong>, with the predator peak always <em>after</em> the prey peak. In a graph question, point at that lag &mdash; it is what the question is built to test.</p></div>
+    <div class="trap"><h4>Expecting a pyramid of numbers always to be pyramid-shaped</h4><p>One oak tree supports 500 caterpillars, so the bottom bar is the narrowest one. A pyramid of numbers counts organisms and ignores their size, so a single huge producer, or a few large hosts carrying many parasites, turns it upside down. A pyramid of <strong>biomass</strong> measures total mass and comes out the right way up.</p></div>
+  </div>
+</section>
+
+
+<section id="papers">
+  <div class="shead"><h2>The two biology mocks</h2><span class="tag">80 marks each</span></div>
+  <p class="snote">These are full mock papers, not topic drills: each one covers gas exchange, circulation, ecosystems and human impact together. Do them on paper, timed, with your phone in another room. Only sit Mock&nbsp;2 once you have marked Mock&nbsp;1 and gone back over what you dropped.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/biology-mock-1.pdf" download><span class="pn">1</span><span class="pt">Mock 1 &mdash; 80 marks</span><span class="num" style="color:var(--ink-soft);font-size:13px">90 min</span>
+      <p class="pd">Ventilation and alveoli, the heart and vessels, food webs and the 10% rule, deforestation and the greenhouse effect. Section&nbsp;3 ends on a eutrophication data table.</p></a>
+    <a class="paper" href="sheets/biology-mock-2.pdf" download><span class="pn hard">2</span><span class="pt">Mock 2 &mdash; 80 marks</span><span class="num" style="color:var(--ink-soft);font-size:13px">90 min</span>
+      <p class="pd">Exhalation and smoking, valves and double circulation, pyramids and transects, sea level and eutrophication control. Ends with three wrong answers to diagnose and correct.</p></a>
+  </div>
+</section>
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'ecosystems-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"Key Ecology Terms", ch:"FuseSchool · Ecology and Environment", url:"https://www.youtube.com/watch?v=E6WAQpRulhA",
+  why:"Habitat, population, community, ecosystem — the four words that get swapped for each other in half the answers on this topic. Watch this one first.",
+  task:"Write the four terms down the side of a page and define each in one line, then add a real example from your own street or school grounds. Q6 is exactly this."},
+ {t:"Home Sweet Habitat: Crash Course Kids", ch:"Crash Course Kids", url:"https://www.youtube.com/watch?v=p15IrEuhYmo",
+  why:"Short, concrete version of what a habitat has to supply. Watch it for the examples, not the level.",
+  task:"Pick one animal from the video and list the four things its habitat provides. If you cannot get to four, you have not understood the word yet."},
+ {t:"Food Chains &amp; Food Webs", ch:"FuseSchool · Ecology and Environment", url:"https://www.youtube.com/watch?v=2lqhJNgn_Wg",
+  why:"Chains, webs, and which way the arrows go. Everything in Q7 and Q12 is here.",
+  task:"Copy one food web from the video, then cross out one species and write down every other population that changes, and in which direction. Then test your prediction on the machine at the top of this page."},
+ {t:"What Are Trophic Levels?", ch:"FuseSchool · Ecology and Environment", url:"https://www.youtube.com/watch?v=mCHdhXMFhcU",
+  why:"Producer, primary, secondary, tertiary — counted properly — and the 10% rule that follows. Q11 and Q15 live here.",
+  task:"Write out a five-link chain and label each level with its number and its name. Then start with 50 000 kJ at the bottom and work every level out at 10%."},
+ {t:"Food Webs and Energy Pyramids: Bedrocks of Biodiversity", ch:"Amoeba Sisters", url:"https://www.youtube.com/watch?v=-oVavgmveyY",
+  why:"Pyramids of numbers, biomass and energy, and why the first of those three sometimes comes out upside down. This is the video for Q14.",
+  task:"Draw the one-oak-tree example: a pyramid of numbers and a pyramid of biomass for the same chain. One of them will not be pyramid-shaped. Write one sentence saying why."},
+ {t:"Competition &amp; Interdependence", ch:"Cognito", url:"https://www.youtube.com/watch?v=IwVdrk_M1hU",
+  why:"What organisms compete for, and why removing one species moves several others. Sets up the predator–prey cycle in lesson 6.",
+  task:"List what a plant competes for and what an animal competes for — they are not the same list. Four items each is the target."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"Four words that are not synonyms", len:"5 min",
+  body:`<p>Most marks lost on this topic are lost in the first sentence, because four words get used as if they meant the same thing. They do not.</p>
+        <table class="data">
+          <tr><th>Word</th><th>What it means</th><th>Example</th></tr>
+          <tr><td>Habitat</td><td>the place an organism lives</td><td>a rotting log</td></tr>
+          <tr><td>Population</td><td>all the members of <em>one species</em> in an area</td><td>all the woodlice in that log</td></tr>
+          <tr><td>Community</td><td>all the populations of <em>all species</em> in an area</td><td>woodlice, fungi, beetles, moss</td></tr>
+          <tr><td>Ecosystem</td><td>the community <strong>plus</strong> the non-living surroundings, interacting</td><td>the log, its moisture, temperature, soil and everything in it</td></tr>
+        </table>
+        <p>The word doing the work in that last row is <strong>plus the non-living surroundings</strong>. Light, temperature, water, soil pH and mineral ions are not scenery — they decide what can live there at all. A definition of an ecosystem that mentions only living things is only half a definition, and scores like one.</p>`,
+  demo:`<strong>Do this:</strong> go outside and find one habitat smaller than your hand — under a stone, a crack in a wall, a plant pot. Name one population in it, describe the community, then list three non-living factors. That is an ecosystem you can hold.`,
+  cliff:`Everything in that log is eating something. Trace it back far enough and where did the energy come from — and can it ever go back?`},
+
+ {t:"Producers, consumers, decomposers", len:"5 min",
+  body:`<p>Almost all energy in almost every ecosystem starts as <strong>sunlight</strong>.</p>
+        <ul>
+          <li><strong>Producers</strong> are green plants and algae. They capture light energy by photosynthesis and store it as chemical energy in glucose. They are the only organisms that put energy <em>into</em> the ecosystem.</li>
+          <li><strong>Consumers</strong> eat other organisms. A <strong>primary consumer</strong> (herbivore) eats the producer; a <strong>secondary consumer</strong> eats the primary; a <strong>tertiary consumer</strong> eats the secondary.</li>
+          <li><strong>Decomposers</strong> — bacteria and fungi — feed on dead organisms and waste, breaking them down and releasing mineral ions back into the soil.</li>
+        </ul>
+        <p>The position an organism occupies is its <strong>trophic level</strong>, and it is counted from the producer: level 1 is the plant, level 2 the herbivore, and so on. Count the arrows from the plant and add one.</p>
+        <p>Decomposers are the reason an ecosystem does not silently fill up with dead bodies and leaves. They are also the return leg of every nutrient cycle: the nitrogen in a fallen oak leaf is back in the soil and available to the next plant within a year.</p>`,
+  demo:`<strong>Do this:</strong> look at the compost, the bin or the back of the fridge. Whatever is happening to that food is decomposers respiring. Name the two groups responsible out loud.`,
+  cliff:`If decomposers return nutrients to the soil, does energy come back round the same way? Lesson 4 &mdash; and the answer is not the one most people guess.`},
+
+ {t:"Chains, webs, and why the web is the honest one", len:"5 min",
+  body:`<p>A <strong>food chain</strong> shows one route energy takes:</p>
+        <div class="eqline">grass &rarr; grasshopper &rarr; frog &rarr; snake &rarr; hawk</div>
+        <p>The arrows point from the organism being eaten to the one eating it, because that is the direction <strong>energy and biomass travel</strong>. Draw them the other way and you have said the hawk feeds the snake. Examiners mark that as wrong every time, and it is the easiest mark on the page to throw away.</p>
+        <p>Real ecosystems are not chains. Most organisms eat several things and are eaten by several things, and the overlapping chains make a <strong>food web</strong>. The web is not just a tidier picture &mdash; it behaves differently:</p>
+        <ul>
+          <li>An animal with more than one food source can <strong>switch</strong> when one prey species declines.</li>
+          <li>So a web absorbs a loss that would destroy a single chain.</li>
+          <li>But an effect can still travel a long way: removing a top predator changes species it never touches.</li>
+        </ul>
+        <p>And effects <strong>alternate</strong> as they move down a chain. Remove the snakes: frogs go up, so grasshoppers go down, so grass goes up. Most students stop after the first step, which is exactly where the marks stop.</p>`,
+  demo:`<strong>Do this:</strong> on the machine at the top of this page, set the snakes to zero and predict all five other populations before you look. Then look. Count how many you got right.`,
+  cliff:`If the grass captures a huge amount of energy, why is the hawk at the top so rare? Lesson 4 has the number.`},
+
+ {t:"Energy flows. Nutrients cycle.", len:"6 min",
+  body:`<p>This is the single most examined idea in the unit, and it has two halves that must not be swapped.</p>
+        <p><strong>Energy flows through, one way.</strong> It enters as sunlight, is captured by producers, passes up the trophic levels, and leaves as <strong>heat</strong>. It is never reused and never comes back. That is why the Sun has to keep shining.</p>
+        <p><strong>Nutrients cycle round.</strong> Carbon, nitrogen and mineral ions are used, passed on, released by decomposers, and taken up again by plants. The same nitrogen atom can go round for ever.</p>
+        <p>Only about <strong>10%</strong> of the energy at one level ends up in the next. The other 90% goes:</p>
+        <ul>
+          <li>out as <strong>heat</strong> released during respiration &mdash; much the biggest share, especially in mammals and birds, which spend energy staying warm;</li>
+          <li>into <strong>faeces and urine</strong>, which is energy eaten but not absorbed;</li>
+          <li>into parts that are simply <strong>not eaten</strong> &mdash; bone, bark, roots, shell.</li>
+        </ul>
+        <p>That 90% loss is why food chains are short. Start with <span class="num">20 000 kJ</span> in the plants and a tertiary consumer gets <span class="num">20 kJ</span> &mdash; one part in a thousand. Add one more level and it is one part in ten thousand, which will not keep anything alive.</p>`,
+  demo:`<strong>Do this:</strong> set the pyramid tool below to 10% and read the five numbers out loud. Then set it to 20% and see how much further the chain gets. It is not as much further as you expect.`,
+  cliff:`All of this needs population numbers &mdash; but nobody counts every daisy in a field. So how is it actually measured?`},
+
+ {t:"Counting what you cannot count", len:"5 min",
+  body:`<p>You cannot count every dandelion in a field, so ecologists <strong>sample</strong>: count a small area properly and scale up.</p>
+        <p>A <strong>quadrat</strong> is a square frame, often <span class="num">0.5 m &times; 0.5 m</span>, which is an area of <span class="num">0.25 m²</span>. The method:</p>
+        <ol>
+          <li>Place the quadrat at <strong>random</strong> positions &mdash; usually with random number coordinates, never by choosing a nice-looking patch.</li>
+          <li>Count the organisms inside it.</li>
+          <li>Repeat many times and take the <strong>mean</strong> per quadrat.</li>
+          <li>Divide by the quadrat's area to get a density per m², then multiply by the total area.</li>
+        </ol>
+        <p>Two words earn marks here. <strong>Random</strong>, because choosing where to put the quadrat biases the result; and <strong>repeat</strong>, because one quadrat tells you about one square. More quadrats means a more reliable mean.</p>
+        <p>When you want to study how a population <em>changes</em> across a gradient &mdash; up a beach, out from a path &mdash; you use a <strong>transect</strong> instead: a line, with quadrats at fixed intervals along it. Random placement would destroy the very pattern you are looking for.</p>`,
+  demo:`<strong>Do this:</strong> make a 0.5 m square from string or four rulers, throw it over your shoulder onto some grass five times, and count one type of plant each time. Work out the mean, then estimate the number in the whole patch. Q13 is this, with the numbers supplied.`,
+  cliff:`Populations do not sit still. Predators eat prey, prey run short, predators starve &mdash; so what shape does that make on a graph?`},
+
+ {t:"Everything depends on everything", len:"4 min",
+  body:`<p>Organisms in a community are <strong>interdependent</strong>: they rely on each other for food, shelter, pollination and seed dispersal. Change one and you change others.</p>
+        <p>They also <strong>compete</strong>, and the lists are not the same for plants and animals:</p>
+        <table class="data">
+          <tr><th>Plants compete for</th><th>Animals compete for</th></tr>
+          <tr><td>light, water, mineral ions, space</td><td>food, water, territory, mates</td></tr>
+        </table>
+        <p>Predator and prey populations rise and fall in a repeating cycle, slightly out of step. More prey means more food for predators, so predator numbers rise. More predators eat more prey, so prey numbers fall. Less food means predator numbers then fall too, which lets the prey recover. The <strong>predator peak always comes after the prey peak</strong> &mdash; that lag is the thing to point at in any graph question, and it is the reason removing a predator does not give the prey a permanent free ride: they multiply, then run out of food themselves.</p>`,
+  demo:`<strong>Do this:</strong> on the machine at the top, take the hawks to zero, then watch the snake bar and the frog bar. Write one sentence explaining how a hawk controls a frog it never eats.`,
+  cliff:`You're through the lessons. Now go and lose to Q14 and Q15, then come back tomorrow and take them apart.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which of these is an <em>ecosystem</em>?",
+  o:["All the frogs living in a pond",
+     "All the living organisms in a pond",
+     "A pond, all the organisms living in it, and the water, light and temperature they interact with",
+     "The muddy bank where a frog lives"], a:2,
+  why:"An ecosystem is the community <strong>plus</strong> the non-living surroundings, interacting. Option A is a population, option B is a community, and option D is a habitat. Leave the non-living part out and you have not defined an ecosystem."},
+ {n:2, lvl:"medium", q:"In the food chain &nbsp;lettuce &rarr; slug &rarr; hedgehog &rarr; fox,&nbsp; the hedgehog is:",
+  o:["a producer","a primary consumer","a secondary consumer","a decomposer"], a:2,
+  why:"Count from the producer. Lettuce is level 1, the slug that eats it is the primary consumer at level 2, and the hedgehog eating the slug is the secondary consumer at level 3. Counting the producer as &ldquo;the first consumer&rdquo; is what shifts every later answer by one."},
+ {n:3, lvl:"medium", q:"What does an arrow in a food chain represent?",
+  o:["the direction in which energy is transferred","which animal is hunting which",
+     "the movement of the animals through the habitat","the order in which the species evolved"], a:0,
+  why:"The arrow points from the organism eaten to the organism eating it, because that is the direction energy and biomass move. It is not an arrow of attack — which is why it looks backwards to people who think of it as &ldquo;fox eats hedgehog&rdquo;."},
+ {n:4, lvl:"medium", q:"All the decomposers in a woodland are killed. The most important consequence is that:",
+  o:["the producers will grow faster with less competition",
+     "dead material will build up and mineral ions will not be returned to the soil",
+     "the top predators will die first","energy will stop entering the ecosystem"], a:1,
+  why:"Decomposers are the return leg of every nutrient cycle. Without them, dead leaves and bodies accumulate and the nitrogen and minerals locked inside them never get back to the plants. Energy keeps arriving from the Sun — that is not what decomposers supply."},
+ {n:5, lvl:"trap", q:"A student writes: &ldquo;Energy is recycled around an ecosystem.&rdquo; The best correction is:",
+  o:["Energy is recycled, but only by the decomposers.",
+     "Energy flows through an ecosystem and is lost as heat; it is nutrients that are recycled.",
+     "Energy is recycled in water but not on land.",
+     "The statement is correct — energy is conserved, so it must be recycled."], a:1,
+  why:"Energy is conserved, but conserved is not the same as reused: once it has left as heat it is no longer available to any organism, which is why the Sun has to keep supplying more. Carbon, nitrogen and mineral ions genuinely do go round and round. This single distinction appears in nearly every paper on the topic."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"Define the terms <strong>habitat</strong> and <strong>ecosystem</strong>, and state the main difference between them.",
+  scheme:["Habitat: the place where an organism lives. <span class='num'>[1]</span>",
+          "Ecosystem: all the organisms living in an area together with the non-living parts of their surroundings, all interacting. The difference is that an ecosystem includes the living community <em>and</em> the non-living factors, while a habitat is only the place. <span class='num'>[1]</span>"],
+  tip:"If your definition of an ecosystem does not contain the words &ldquo;non-living&rdquo; or a list such as light, water and temperature, it is not finished."},
+ {n:7, m:2, lvl:"medium", q:"Explain why the arrows in a food chain point from the organism that is eaten towards the organism that eats it.",
+  scheme:["The arrow shows the direction in which energy (and biomass) is transferred. <span class='num'>[1]</span>",
+          "Energy passes from the organism being eaten into the organism eating it, so the arrow follows the energy, not the act of hunting. <span class='num'>[1]</span>"],
+  tip:"Say the word <strong>energy</strong>. &ldquo;It shows what eats what&rdquo; describes the diagram without explaining it, and scores one mark at most."},
+ {n:8, m:2, lvl:"medium", q:"Explain the role of decomposers in an ecosystem.",
+  scheme:["Decomposers (bacteria and fungi) feed on dead organisms, dead plant material and waste, breaking them down. <span class='num'>[1]</span>",
+          "This releases mineral ions such as nitrates back into the soil, where plants can absorb them again — so nutrients are recycled. <span class='num'>[1]</span>"],
+  tip:"Two halves: what they break down, and what that releases. &ldquo;They rot things&rdquo; is the first half only, and only just."},
+ {n:9, m:2, lvl:"medium", q:"Explain why food chains rarely contain more than four or five organisms.",
+  scheme:["Only about 10% of the energy at each trophic level is transferred to the next; about 90% is lost. <span class='num'>[1]</span>",
+          "After several transfers there is too little energy left to support another population, so the chain stops. <span class='num'>[1]</span>"],
+  tip:"Quote the figure. &ldquo;Energy is lost&rdquo; is worth one mark; &ldquo;about 90% is lost at each level&rdquo; is worth the pair."},
+ {n:10, m:2, lvl:"medium", q:"Describe <em>two</em> ways in which energy is lost between one trophic level and the next.",
+  scheme:["Released as heat during respiration — the largest loss, especially in mammals and birds which use energy to stay warm. <span class='num'>[1]</span>",
+          "Lost in faeces and urine, or in parts that are not eaten at all such as bone, bark and roots. <span class='num'>[1]</span>"],
+  tip:"&ldquo;Energy is lost as heat&rdquo; earns one. For the second, name a specific route — waste or uneaten parts. Do not write that energy is destroyed; it never is."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"medium", q:"In a grassland, the plants capture 20 000 kJ of energy per square metre per year. About 10% of the energy at each trophic level is passed on to the next.<br><br><strong>(a)</strong> Calculate the energy per square metre per year available to the primary consumers. <span class='num'>[1]</span><br><strong>(b)</strong> Calculate the energy available to the tertiary consumers. <span class='num'>[1]</span><br><strong>(c)</strong> Calculate what percentage of the plants' energy this is, and state where the rest has gone. <span class='num'>[1]</span>",
+  hints:["10% means multiply by 0.1. Do it one level at a time and write each number down — jumping straight to the answer is how levels get miscounted.",
+         "Tertiary consumers are the <em>fourth</em> level: producer → primary → secondary → tertiary. That is three transfers, not four.",
+         "For (c), divide the tertiary figure by 20 000 and multiply by 100."],
+  sol:["(a) 20 000 × 0.1 = <strong>2000 kJ/m² per year</strong>.",
+       "(b) 2000 × 0.1 = 200 (secondary), then 200 × 0.1 = <strong>20 kJ/m² per year</strong> (tertiary).",
+       "(c) (20 ÷ 20 000) × 100 = <strong>0.1%</strong>. The rest was released as heat during respiration, or lost in faeces and urine, or was in parts never eaten — roots, bark, bone.",
+       "One part in a thousand, after only three steps. Now you know why nobody has ever found a food chain with nine links in it."]},
+
+ {n:12, m:3, lvl:"medium", q:"A food web in a field contains these feeding relationships: grass &rarr; grasshopper &rarr; frog &rarr; snake; grass &rarr; rabbit &rarr; hawk; and snake &rarr; hawk.<br><br>Farmers kill all the snakes in the field.<br><br><strong>(a)</strong> State and explain the effect on the frog population. <span class='num'>[1]</span><br><strong>(b)</strong> State and explain the effect on the grasshopper population. <span class='num'>[1]</span><br><strong>(c)</strong> Explain why the hawk population falls less than you might expect. <span class='num'>[1]</span>",
+  hints:["Take it one arrow at a time, and write down the direction of change at each step before moving to the next.",
+         "The effect on the grasshoppers is not the same direction as the effect on the frogs. Work out what more frogs do.",
+         "For (c), look at everything with an arrow pointing into the hawk. How many food sources does it have?"],
+  sol:["(a) The frog population <strong>increases</strong>: the snake was its predator, so with the snakes gone fewer frogs are eaten.",
+       "(b) The grasshopper population <strong>decreases</strong>: there are now more frogs, and frogs eat grasshoppers.",
+       "(c) The hawk eats <strong>both</strong> rabbits and snakes. With the snakes gone it can still feed on rabbits, so it has an alternative food source and the population falls only partly. This is the advantage of a food web over a single food chain.",
+       "Notice the alternation: up, then down, then up again as you move away from the change. Most answers stop at (a), which is where most of the marks stop too."]},
+
+ {n:13, m:3, lvl:"medium", q:"Aditi estimates the number of daisies in a field of area 400 m². She places a quadrat measuring 0.5 m × 0.5 m at ten random positions and counts the daisies inside it each time:<br><br><span class='num'>6, 4, 9, 7, 5, 8, 3, 6, 7, 5</span><br><br><strong>(a)</strong> Calculate the mean number of daisies per quadrat. <span class='num'>[1]</span><br><strong>(b)</strong> Estimate the total number of daisies in the field. <span class='num'>[1]</span><br><strong>(c)</strong> Give one reason why her estimate may not be accurate, and one way she could improve it. <span class='num'>[1]</span>",
+  hints:["Add the ten numbers and divide by ten. The total is a round number, which is a good sign you have added correctly.",
+         "Work out the area of one quadrat first — it is not 0.5 m². Then get daisies per m², then scale to 400 m².",
+         "For (c), think about whether daisies are spread evenly, and about what ten quadrats out of a 400 m² field really tells you."],
+  sol:["(a) Total = 6+4+9+7+5+8+3+6+7+5 = 60, so the mean = 60 ÷ 10 = <strong>6 daisies per quadrat</strong>.",
+       "(b) One quadrat covers 0.5 × 0.5 = 0.25 m², so the density is 6 ÷ 0.25 = 24 daisies per m². Over the field: 24 × 400 = <strong>9600 daisies</strong>.",
+       "(c) Daisies are unlikely to be spread evenly, so ten quadrats covering only 2.5 m² of a 400 m² field may have missed dense or empty patches. She could take many more quadrats, and make sure the positions are chosen using random numbers rather than by eye.",
+       "The half-metre quadrat is the trap. Multiply by four rather than by two and the answer comes out as 4800 — half the truth, and it looks perfectly reasonable."]},
+
+ {n:14, m:3, lvl:"hard", q:"A single oak tree supports about 500 caterpillars, which support about 25 blue tits, which support 2 sparrowhawks. The oak has a biomass of 4000 kg; all the caterpillars together have a biomass of 5 kg.<br><br><strong>(a)</strong> Describe the shape of the pyramid of <em>numbers</em> for this chain, and explain why it is not the usual pyramid shape. <span class='num'>[1]</span><br><strong>(b)</strong> Explain why a pyramid of <em>biomass</em> for the same chain is the usual shape. <span class='num'>[1]</span><br><strong>(c)</strong> Calculate the caterpillars' biomass as a percentage of the oak's, and explain why the figure is so small. <span class='num'>[1]</span>",
+  hints:["Sketch it. Put 1 at the bottom, then 500, then 25, then 2, with bar width proportional to the number.",
+         "For (b), ask what a pyramid of biomass measures that a pyramid of numbers ignores completely.",
+         "For (c), the percentage is straightforward. The explanation needs two reasons: what never gets eaten, and what happens to what is."],
+  sol:["(a) The bottom bar is <strong>narrower than the one above it</strong> — the pyramid is inverted at the base — because there is only <em>one</em> oak tree supporting 500 caterpillars. A pyramid of numbers counts organisms without regard to their size, so one enormous producer makes a tiny bottom bar.",
+       "(b) A pyramid of biomass measures the <strong>total mass</strong> at each level, not the count. The single oak has a far greater mass (4000 kg) than all 500 caterpillars together (5 kg), so the bottom bar is the widest and the normal shape is restored.",
+       "(c) (5 ÷ 4000) × 100 = <strong>0.125%</strong>. Most of the oak is never eaten at all — trunk, bark, branches, roots — and of the leaves that are eaten, most of the energy is released as heat in respiration or lost in faeces rather than being built into caterpillar.",
+       "This is why the biomass pyramid is the more honest of the two: it cannot be fooled by one big organism or by a swarm of tiny ones."]},
+
+ {n:15, m:3, lvl:"hard", q:"A farmer has 10 000 m² of land growing a crop that captures 25 000 kJ of energy per square metre per year. About 10% of the energy is passed on at each transfer.<br><br><strong>(a)</strong> Calculate the total energy captured by the crop in one year. Give your answer in standard form. <span class='num'>[1]</span><br><strong>(b)</strong> The farmer can sell the crop for people to eat, or feed it to cattle and sell beef. Calculate the energy that reaches people in each case. <span class='num'>[1]</span><br><strong>(c)</strong> Explain the difference between your two answers, and give one reason a farmer might still keep cattle. <span class='num'>[1]</span>",
+  hints:["For (a), multiply energy per square metre by the number of square metres. 25 000 × 10 000 — count the zeros carefully, then write it as a number between 1 and 10 times a power of ten.",
+         "For (b), eating the crop directly makes a person a primary consumer: one transfer. Eating beef makes them a secondary consumer: two transfers.",
+         "For (c), compare the two answers as a ratio. Then think about what cattle can eat that people cannot."],
+  sol:["(a) 25 000 × 10 000 = 250 000 000 = <strong>2.5 × 10⁸ kJ per year</strong>.",
+       "(b) Eating the crop: 2.5 × 10⁸ × 0.1 = <strong>2.5 × 10⁷ kJ</strong>. Eating beef: 2.5 × 10⁸ × 0.1 × 0.1 = <strong>2.5 × 10⁶ kJ</strong>.",
+       "(c) Feeding the crop to cattle adds an extra trophic level, and about 90% of the energy is lost at that transfer — so only about a <strong>tenth</strong> as much energy reaches people. A farmer may still keep cattle because they can digest grass and crop waste that humans cannot eat at all, and because much grazing land is too steep, poor or dry to grow crops on.",
+       "That last part is why &ldquo;eating lower down the food chain feeds more people&rdquo; is true in energy terms but not the whole argument. Say both halves and the mark is safe."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const pre = e.target.closest('[data-preset]');
+  if(pre && typeof window.setPreset==='function'){ window.setPreset(pre.dataset.preset); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the puzzle engine (shared by both tools) ---------------- */
+function mkPuzzles(btnId, boxId, list){
+  let cur = null;
+  const btn = document.getElementById(btnId), box = document.getElementById(boxId);
+  if(!btn || !box) return;
+  btn.addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*list.length);
+    if(cur===i) i = (i+1)%list.length;
+    cur = i;
+    const P = list[i];
+    box.classList.add('on');
+    box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+      <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-pz="${j}">${o}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-pz]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ok = +b.dataset.pz === P.a;
+        if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+        box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+          <div class="qrow"><button class="btn ghost small" type="button" class="again">Another one</button></div>`;
+        box.querySelector('button').addEventListener('click', ()=>btn.click());
+      });
+    });
+  });
+}
+
+
+/* ---------------- tool 1: the food-web machine ---------------- */
+const SPECIES = [
+ {k:"grass",       n:"grass",       full:"grass (producer)",          lvl:"1 — producer",           x:350, y:292, eats:[],                    r:30},
+ {k:"grasshopper", n:"grasshopper", full:"grasshopper",               lvl:"2 — primary consumer",   x:205, y:206, eats:["grass"],             r:24},
+ {k:"rabbit",      n:"rabbit",      full:"rabbit",                    lvl:"2 — primary consumer",   x:510, y:206, eats:["grass"],             r:26},
+ {k:"frog",        n:"frog",        full:"frog",                      lvl:"3 — secondary consumer", x:160, y:118, eats:["grasshopper"],       r:23},
+ {k:"snake",       n:"snake",       full:"snake",                     lvl:"4 — tertiary consumer",  x:250, y:64,  eats:["frog"],              r:23, barUp:true},
+ {k:"hawk",        n:"hawk",        full:"hawk",                      lvl:"4/5 — top consumer",     x:500, y:70,  eats:["rabbit","snake"],    r:26, barUp:true}
+];
+const IDX = {}; SPECIES.forEach((s,i)=>IDX[s.k]=i);
+const EATEN_BY = {};
+SPECIES.forEach(s=>EATEN_BY[s.k]=[]);
+SPECIES.forEach(s=>s.eats.forEach(p=>EATEN_BY[p].push(s.k)));
+
+let pop = {}, pinned = "grass", base = {};
+SPECIES.forEach(s=>{ pop[s.k] = 100; base[s.k] = 100; });
+
+/* settle the web: more food pushes a population up, more predators push it down */
+function settle(){
+  for(let pass=0; pass<60; pass++){
+    const next = {};
+    SPECIES.forEach(s=>{
+      if(s.k === pinned){ next[s.k] = pop[s.k]; return; }
+      let food = 1;
+      if(s.eats.length){
+        food = s.eats.reduce((a,p)=>a+pop[p],0) / (100*s.eats.length);
+      }
+      let pred = 1;
+      const ps = EATEN_BY[s.k];
+      if(ps.length){
+        pred = ps.reduce((a,p)=>a+pop[p],0) / (100*ps.length);
+      }
+      const target = 100 * Math.pow(Math.max(food,0.02), 0.55) * Math.pow(Math.max(pred,0.02), -0.45);
+      next[s.k] = pop[s.k] + (Math.max(0, Math.min(260, target)) - pop[s.k]) * 0.25;
+    });
+    pop = next;
+  }
+}
+
+function drawWeb(){
+  const links = document.getElementById('weblinks');
+  const nodes = document.getElementById('webnodes');
+  while(links.firstChild) links.removeChild(links.firstChild);
+  while(nodes.firstChild) nodes.removeChild(nodes.firstChild);
+  const NS = 'http://www.w3.org/2000/svg';
+
+  SPECIES.forEach(s=>s.eats.forEach(pk=>{
+    const a = SPECIES[IDX[pk]], b = s;
+    const dx = b.x-a.x, dy = b.y-a.y, d = Math.hypot(dx,dy);
+    const p = document.createElementNS(NS,'path');
+    p.setAttribute('d', `M ${(a.x+dx/d*(a.r+4)).toFixed(1)} ${(a.y+dy/d*(a.r+4)).toFixed(1)}
+                         L ${(b.x-dx/d*(b.r+9)).toFixed(1)} ${(b.y-dy/d*(b.r+9)).toFixed(1)}`);
+    links.appendChild(p);
+  }));
+
+  SPECIES.forEach(s=>{
+    const v = pop[s.k], g = document.createElementNS(NS,'g');
+    const c = document.createElementNS(NS,'circle');
+    c.setAttribute('cx',s.x); c.setAttribute('cy',s.y); c.setAttribute('r',s.r);
+    c.setAttribute('fill', s.eats.length ? 'var(--co2-tint)' : 'var(--o2-tint)');
+    c.setAttribute('stroke', s.k===pinned ? 'var(--ink)' : (s.eats.length ? 'var(--co2)' : 'var(--o2)'));
+    c.setAttribute('stroke-width', s.k===pinned ? 4 : 2);
+    g.appendChild(c);
+    const t = document.createElementNS(NS,'text');
+    t.setAttribute('x',s.x); t.setAttribute('y',s.y+4); t.setAttribute('text-anchor','middle');
+    t.setAttribute('font-family','var(--display)'); t.setAttribute('font-size','12.5');
+    t.setAttribute('font-weight','700'); t.setAttribute('fill','var(--ink)');
+    t.textContent = s.n;
+    g.appendChild(t);
+
+    /* population bar under each node */
+    const bw = 64, bx = s.x - bw/2, by = s.barUp ? s.y - s.r - 21 : s.y + s.r + 7;
+    const bg = document.createElementNS(NS,'rect');
+    bg.setAttribute('x',bx); bg.setAttribute('y',by); bg.setAttribute('width',bw);
+    bg.setAttribute('height',7); bg.setAttribute('rx',3.5); bg.setAttribute('fill','var(--line-soft)');
+    g.appendChild(bg);
+    const fg = document.createElementNS(NS,'rect');
+    const frac = Math.max(0, Math.min(1, v/220));
+    fg.setAttribute('x',bx); fg.setAttribute('y',by); fg.setAttribute('width',(bw*frac).toFixed(1));
+    fg.setAttribute('height',7); fg.setAttribute('rx',3.5);
+    fg.setAttribute('fill', v > 118 ? 'var(--ok)' : (v < 82 ? 'var(--no)' : 'var(--ink-soft)'));
+    g.appendChild(fg);
+    const n = document.createElementNS(NS,'text');
+    n.setAttribute('x',s.x); n.setAttribute('y',s.barUp ? by-5 : by+19); n.setAttribute('text-anchor','middle');
+    n.setAttribute('class','station');
+    n.textContent = Math.round(v) + (v>118?' ▲':(v<82?' ▼':''));
+    g.appendChild(n);
+    nodes.appendChild(g);
+  });
+}
+
+function webReadout(){
+  const s = SPECIES[IDX[pinned]];
+  document.getElementById('w-sp').textContent  = s.full;
+  document.getElementById('w-lvl').textContent = s.lvl;
+  document.getElementById('w-pred').textContent = EATEN_BY[s.k].length ? EATEN_BY[s.k].join(', ') : 'nothing in this web';
+  let worst = null, wd = 0;
+  SPECIES.forEach(o=>{
+    if(o.k === pinned) return;
+    const d = Math.abs(pop[o.k] - 100);
+    if(d > wd){ wd = d; worst = o; }
+  });
+  const eff = document.getElementById('w-effect');
+  const pill = document.getElementById('w-pill');
+  if(wd < 3){
+    eff.textContent = 'nothing much — the web is near balance';
+    pill.className = 'pill bal'; pill.textContent = 'At balance';
+  } else {
+    eff.innerHTML = worst.n + ' ' + (pop[worst.k] > 100 ? 'up' : 'down') +
+                    ' <span class="num">' + Math.round(wd) + '%</span>';
+    pill.className = 'pill ' + (pop[worst.k] > 100 ? 'in' : 'out');
+    pill.textContent = 'Knock-on effect';
+  }
+  const note = document.getElementById('w-note');
+  if(pinned === 'snake' && pop.snake < 60){
+    note.innerHTML = 'Snakes gone, so frogs rise — and the <strong>grasshoppers</strong> fall, because more frogs eat more of them. Two steps down the chain, in the opposite direction. That alternation is what examiners test.';
+  } else if(pinned === 'grass' && pop.grass < 60){
+    note.innerHTML = 'Lose the producer and <em>everything</em> falls. Every joule in this web entered through the grass; nothing else makes its own food.';
+  } else if(pinned === 'hawk' && pop.hawk < 60){
+    note.innerHTML = 'Rabbits and snakes both rise with the hawk gone. Watch what the rising snakes then do to the frogs — a top predator controls species it never touches.';
+  } else if(pinned === 'rabbit' && pop.rabbit < 60){
+    note.innerHTML = 'The hawk has a second food source, so it does not collapse with the rabbits — it switches to snakes instead. <strong>That</strong> is the advantage of a web over a chain.';
+  } else {
+    note.innerHTML = 'Every arrow is a route energy can take. Cut one route and the energy finds another — which is exactly why a web survives losses that would wreck a single chain.';
+  }
+}
+
+const popSlider = document.getElementById('popslider');
+function runWeb(){ settle(); drawWeb(); webReadout(); }
+
+function buildSpBtns(){
+  const host = document.getElementById('spbtns');
+  host.innerHTML = SPECIES.map(s=>
+    `<button class="btn ghost small${s.k===pinned?' on':''}" type="button" data-sp="${s.k}">${s.n}</button>`).join('');
+}
+document.addEventListener('click', e=>{
+  const b = e.target.closest('[data-sp]');
+  if(!b) return;
+  pinned = b.dataset.sp;
+  popSlider.value = Math.round(pop[pinned]);
+  buildSpBtns();
+  runWeb();
+});
+popSlider.addEventListener('input', ()=>{ pop[pinned] = +popSlider.value; runWeb(); });
+document.getElementById('resetWeb').addEventListener('click', ()=>{
+  SPECIES.forEach(s=>pop[s.k]=100);
+  popSlider.value = 100;
+  runWeb();
+});
+
+mkPuzzles('newquiz','quizbox',[
+ {q:"Drag the snake population down to zero. What happens to the grasshoppers?",
+  o:["They rise — one fewer predator in the web","They fall — more frogs survive to eat them"], a:1,
+  why:"Snakes eat frogs, so removing snakes means more frogs. More frogs eat more grasshoppers, so the grasshoppers fall. Effects alternate as they pass down a chain, and most students only go one step."},
+ {q:"What does an arrow in a food web show?",
+  o:["The direction the energy moves, from the eaten to the eater","Which animal is hunting which"], a:0,
+  why:"The arrow points from the organism being eaten to the one eating it, because that is the way the energy and biomass travel. Drawing them backwards is the single most common diagram error in this topic."},
+ {q:"Set the grass to zero. Which populations survive?",
+  o:["The ones that don't eat grass directly","None of them"], a:1,
+  why:"Every joule in this web entered through the grass. The frog never eats grass, but the grasshopper it depends on does — remove the producer and the whole web goes with it."},
+ {q:"The hawk eats both rabbits and snakes. If the rabbits disappear, the hawk population:",
+  o:["Collapses to nothing","Falls, but survives on snakes"], a:1,
+  why:"That is the advantage of a web over a chain. An organism with more than one food source can switch, so the web absorbs losses that would destroy a single chain."},
+ {q:"Which organism in this web is the producer?",
+  o:["Grass","Grasshopper"], a:0,
+  why:"A producer makes its own food by photosynthesis, so it is always a green plant (or an alga). Every consumer in the web, however far up, is ultimately eating sunlight that the grass captured."},
+ {q:"The rabbit is at which trophic level?",
+  o:["Level 1","Level 2"], a:1,
+  why:"Level 1 is the producer. A primary consumer — a herbivore eating the producer — is level 2. Count the arrows from the plant and add one."},
+ {q:"Push the rabbits up to 220. What happens to the grass?",
+  o:["It falls","It rises"], a:0,
+  why:"More rabbits eat more grass. In a real field this is self-correcting: the grass runs short, the rabbits starve, and both populations oscillate rather than settling flat."},
+ {q:"A frog eats a grasshopper that ate grass. Where did the frog's energy originally come from?",
+  o:["The Sun","The soil"], a:0,
+  why:"Light energy is captured by the grass in photosynthesis; everything above is spending what the plant banked. The soil supplies mineral ions, not energy."}
+]);
+
+/* ---------------- tool 2: the energy pyramid ---------------- */
+const LEVELS = ["producers","primary consumers","secondary consumers","tertiary consumers","quaternary consumers"];
+const eSlider = document.getElementById('eslider'), tSlider = document.getElementById('tslider');
+
+function fmtE(v){
+  if(v >= 1000) return Math.round(v).toLocaleString('en-US').replace(/,/g, ' ');
+  if(v >= 10)  return v.toFixed(0);
+  if(v >= 1)   return v.toFixed(1);
+  return v.toFixed(2);
+}
+function twoSig(x){                       /* so each tier is exactly a tenth of the one below */
+  const p = Math.pow(10, Math.floor(Math.log10(x)) - 1);
+  return Math.round(x/p) * p;
+}
+function renderPyramid(){
+  /* producer energy runs 1 000 … 100 000 kJ/m²/yr on a log slider */
+  const E1 = twoSig(Math.pow(10, 3 + 2*(+eSlider.value)/100));
+  const eff = (+tSlider.value)/100;
+  const vals = [E1];
+  for(let i=1;i<5;i++) vals.push(vals[i-1]*eff);
+
+  const g = document.getElementById('tiers'), NS='http://www.w3.org/2000/svg';
+  while(g.firstChild) g.removeChild(g.firstChild);
+  const maxW = 470, h = 42, gap = 8, top = 26;
+  const SHORT = ['producers','primary','secondary','tertiary','quaternary'];
+  vals.forEach((v,i)=>{
+    /* log widths, or tier 5 would be a single pixel */
+    const w = Math.max(26, maxW * Math.max(0.06, (Math.log10(Math.max(v,0.01)) + 2) / (Math.log10(E1) + 2)));
+    const y = top + (4-i)*(h+gap);
+    const r = document.createElementNS(NS,'rect');
+    r.setAttribute('x', (350 - w/2).toFixed(1)); r.setAttribute('y', y);
+    r.setAttribute('width', w.toFixed(1)); r.setAttribute('height', h); r.setAttribute('rx', 7);
+    r.setAttribute('fill', i===0 ? 'var(--o2)' : 'var(--co2)');
+    r.setAttribute('opacity', v < 1 ? 0.18 : (0.86 - i*0.13).toFixed(2));
+    g.appendChild(r);
+    const t = document.createElementNS(NS,'text');
+    t.setAttribute('x', 350); t.setAttribute('y', y + 26); t.setAttribute('text-anchor','middle');
+    t.setAttribute('font-family','var(--mono)'); t.setAttribute('font-size','12.5');
+    t.setAttribute('font-weight','700'); t.setAttribute('fill', v < 1 ? 'var(--ink-soft)' : '#fff');
+    t.textContent = fmtE(v) + ' kJ' + (v < 1 ? ' — too little to live on' : '');
+    g.appendChild(t);
+    const l = document.createElementNS(NS,'text');
+    l.setAttribute('x', 106); l.setAttribute('y', y + 26);
+    l.setAttribute('text-anchor','end'); l.setAttribute('class','station');
+    l.textContent = (i+1) + '  ' + SHORT[i];
+    g.appendChild(l);
+  });
+
+  let last = 1;
+  vals.forEach((v,i)=>{ if(v >= 1) last = i+1; });
+  document.getElementById('p-e1').textContent  = fmtE(E1) + ' kJ/m²/yr';
+  document.getElementById('p-e4').textContent  = fmtE(vals[3]) + ' kJ/m²/yr';
+  document.getElementById('p-frac').textContent = (vals[3]/E1*100).toPrecision(2) + '%';
+  document.getElementById('p-len').textContent = last + ' levels';
+  const pill = document.getElementById('p-pill');
+  pill.textContent = Math.round((1-eff)*100) + '% lost at every step';
+  pill.className = 'pill ' + (eff >= 0.18 ? 'in' : 'out');
+  const note = document.getElementById('p-note');
+  if(eff <= 0.05){
+    note.innerHTML = 'At this efficiency the chain runs out of energy almost immediately. Cold-blooded animals do better than mammals here, because they spend nothing on staying warm.';
+  } else if(eff >= 0.2){
+    note.innerHTML = 'Even at a generous 20%, five levels costs you a factor of <span class="num">625</span>. Lengthening a food chain is expensive no matter how good the transfers are.';
+  } else {
+    note.innerHTML = 'The missing energy is not destroyed. It leaves as heat from respiration, and in faeces, urine and uneaten parts — bone, bark, roots, shell.';
+  }
+}
+eSlider.addEventListener('input', renderPyramid);
+tSlider.addEventListener('input', renderPyramid);
+window.setPreset = function(v){ tSlider.value = v; renderPyramid(); };
+
+mkPuzzles('newquiz2','quizbox2',[
+ {q:"Roughly what fraction of the energy at one level reaches the next?",
+  o:["About a tenth","About nine tenths"], a:0,
+  why:"Around 10% is passed on; about 90% is lost. Set the transfer slider to 10% and read the two top tiers — the numbers fall off a cliff."},
+ {q:"Where does the lost 90% actually go?",
+  o:["It is destroyed","Mostly out as heat from respiration, plus faeces, urine and uneaten parts"], a:1,
+  why:"Energy is never destroyed. Most of it is released as heat when the organism respires, and the rest leaves in waste or in the parts nothing eats — bone, bark, roots, shell."},
+ {q:"Why are food chains rarely longer than four or five links?",
+  o:["Big predators are rare","Too little energy is left to support another level"], a:1,
+  why:"After four transfers at 10% you have a ten-thousandth of what the plants captured. There is simply not enough left to keep another animal alive — and the tool greys the tier out when it drops below a joule."},
+ {q:"1000 kJ of plant energy, 10% transfer. How much reaches a secondary consumer?",
+  o:["100 kJ","10 kJ"], a:1,
+  why:"Two transfers, not one: 1000 → 100 (primary consumer) → 10 (secondary consumer). Counting the levels wrongly is the usual way this calculation goes astray."},
+ {q:"Feeding grain to cattle and then eating beef, instead of eating the grain yourself, means:",
+  o:["More energy reaches people","About ten times less energy reaches people"], a:1,
+  why:"Every extra step costs about 90%. Adding cattle between the crop and the person adds one transfer, so roughly a tenth as much energy ends up on the plate."},
+ {q:"Which arrow direction is right for energy in an ecosystem?",
+  o:["Sun → producers → consumers, then out as heat","Round in a cycle, endlessly reused"], a:0,
+  why:"Energy <em>flows through</em> and leaves as heat; it is never reused. Nutrients — carbon, nitrogen, minerals — are the things that cycle. Mixing these two up is the most expensive error in this unit."}
+]);
+
+function boot(){
+  buildSpBtns();
+  runWeb();
+  renderPyramid();
+}
+
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  boot();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='ecosystems', SUBJECT='biology', TITLE="Everything Eats Something", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>
