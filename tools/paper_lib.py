@@ -29,6 +29,15 @@ for name, fn in [('Body', 'DejaVuSerif.ttf'), ('Body-Bold', 'DejaVuSerif-Bold.tt
                  ('Mono', 'DejaVuSansMono.ttf'), ('Mono-Bold', 'DejaVuSansMono-Bold.ttf')]:
     pdfmetrics.registerFont(TTFont(name, FDIR + fn))
 
+# Without these, reportlab has no bold/italic member for a family and silently
+# drops every <b> and <i> in paragraph text — the bug recorded in docs/STATE.md.
+pdfmetrics.registerFontFamily('Body', normal='Body', bold='Body-Bold',
+                              italic='Body-Italic', boldItalic='Body-Italic')
+pdfmetrics.registerFontFamily('UI', normal='UI', bold='UI-Bold',
+                              italic='UI', boldItalic='UI-Bold')
+pdfmetrics.registerFontFamily('Mono', normal='Mono', bold='Mono-Bold',
+                              italic='Mono', boldItalic='Mono-Bold')
+
 INK      = colors.HexColor('#1A1A22')
 SOFT     = colors.HexColor('#5A5A66')
 LINE     = colors.HexColor('#C9C4BA')
@@ -200,8 +209,66 @@ def _grid(rows, col_widths=None):
     return t
 
 
+def passage(lines, start=1, intro=None, size=10.2):
+    """A line-numbered reading insert.
+
+    `lines` are PRE-WRAPPED — one list entry per printed line — because the line
+    numbers are what the questions cite. An empty string is a paragraph break: it
+    takes no number and does not advance the count, exactly as the school paper
+    prints it. Reportlab must never be allowed to re-wrap a line, or every number
+    after it shifts, so each entry gets its own row.
+    """
+    out = []
+    if intro:
+        out.append(Paragraph('<i>%s</i>' % intro, S_Q))
+        out.append(Spacer(1, 7))
+
+    numw = 22
+    rows, heights, n = [], [], start
+    for ln in lines:
+        if not ln:
+            rows.append(['', ''])
+            heights.append(5)
+            continue
+        rows.append([Paragraph('<font name="Mono" size="7.4" color="#5A5A66">%d</font>' % n, S_META),
+                     Paragraph('<font name="Body" size="%s">%s</font>' % (size, ln), S_Q)])
+        heights.append(None)
+        n += 1
+    t = Table(rows, colWidths=[numw, AVAIL - numw], rowHeights=heights)
+    t.setStyle(TableStyle([
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('LEFTPADDING', (0,0), (-1,-1), 0),
+        ('RIGHTPADDING', (0,0), (-1,-1), 0),
+        ('TOPPADDING', (0,0), (-1,-1), 1.2),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 1.2),
+    ]))
+    out.append(t)
+    return out
+
+
+def _tickboxes(options, box=6.5*mm):
+    """Option text on the left, an empty square to tick on the right."""
+    rows = [[Paragraph('<font name="Body" size="10.2">%s</font>' % o, S_Q), ''] for o in options]
+    t = Table(rows, colWidths=[AVAIL - 26*mm, 26*mm], rowHeights=[box + 3.4*mm]*len(rows))
+    style = [('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+             ('LEFTPADDING', (0,0), (0,-1), 14),
+             ('RIGHTPADDING', (0,0), (-1,-1), 0),
+             ('TOPPADDING', (0,0), (-1,-1), 0),
+             ('BOTTOMPADDING', (0,0), (-1,-1), 0)]
+    for i in range(len(rows)):
+        style.append(('BOX', (1,i), (1,i), 0.8, LINE))
+    t.setStyle(TableStyle(style))
+    return t
+
+
 def build_paper(spec, path):
     story = _header(spec)
+    for block in spec.get('inserts', []):
+        story.extend(passage(block['lines'], block.get('start', 1), block.get('intro')))
+        story.append(Spacer(1, 10))
+    if spec.get('inserts'):
+        story.append(Rule(thickness=0.6, colour=LINE))
+        story.append(Spacer(1, 8))
     for i, q in enumerate(spec['questions'], 1):
         head = []
         if q.get('section'):
@@ -211,6 +278,10 @@ def build_paper(spec, path):
         if q.get('grid'):
             head.append(Spacer(1, 4))
             head.append(_grid(q['grid'], q.get('grid_widths')))
+            head.append(Spacer(1, 2))
+        if q.get('tick'):
+            head.append(Spacer(1, 3))
+            head.append(_tickboxes(q['tick']))
             head.append(Spacer(1, 2))
         if q.get('space'):
             head.append(Ruled(q['space']))
@@ -222,6 +293,14 @@ def build_paper(spec, path):
         for p in q.get('parts', []):
             sub = [Spacer(1, 3),
                    _qrow(p['label'], p['text'], p.get('marks', 0), indent=16, numw=26)]
+            if p.get('tick'):
+                sub.append(Spacer(1, 3))
+                sub.append(_tickboxes(p['tick']))
+                sub.append(Spacer(1, 2))
+            if p.get('grid'):
+                sub.append(Spacer(1, 4))
+                sub.append(_grid(p['grid'], p.get('grid_widths')))
+                sub.append(Spacer(1, 2))
             if p.get('space'):
                 sub.append(Ruled(p['space'], width=AVAIL, indent=16))
             story.append(KeepTogether(sub))
@@ -285,7 +364,7 @@ def build_scheme(schemes, path, header):
             row = Table([[Paragraph('%s' % q['n'], S_ANSN),
                           Paragraph(body, S_ANS),
                           Paragraph('[%d]' % q['marks'], S_MARKS)]],
-                        colWidths=[21, AVAIL-21-26, 26])
+                        colWidths=[32, AVAIL-32-26, 26])  # 32 so "1(a)" does not wrap
             row.setStyle(TableStyle([
                 ('VALIGN', (0,0), (-1,-1), 'TOP'),
                 ('LEFTPADDING', (0,0), (-1,-1), 0), ('RIGHTPADDING', (0,0), (-1,-1), 0),
@@ -293,8 +372,8 @@ def build_scheme(schemes, path, header):
             ]))
             block.append(row)
             if q.get('note'):
-                block.append(Table([[Paragraph(q['note'], S_NOTE)]], colWidths=[AVAIL-21],
-                                   style=TableStyle([('LEFTPADDING', (0,0), (-1,-1), 21),
+                block.append(Table([[Paragraph(q['note'], S_NOTE)]], colWidths=[AVAIL-32],
+                                   style=TableStyle([('LEFTPADDING', (0,0), (-1,-1), 32),
                                                      ('RIGHTPADDING', (0,0), (-1,-1), 0),
                                                      ('TOPPADDING', (0,0), (-1,-1), 1),
                                                      ('BOTTOMPADDING', (0,0), (-1,-1), 0)])))

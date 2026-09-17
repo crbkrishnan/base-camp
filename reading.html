@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Between the Lines &mdash; Grade 7 IGCSE English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "reading",
+  "file": "reading.html",
+  "subject": "english",
+  "status": "ready",
+  "papers": 4,
+  "title": "Between the Lines",
+  "sub": "English \u00b7 reading comprehension",
+  "blurb": "Says, Shows, So what \u2014 three rungs, five tells and one sentence shape that turns a 1-mark answer into a 2-mark one. Highlight the evidence yourself, build an answer the machine marks like an examiner, and learn where the line is between inference and inventing.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "evidence bench"
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#1B1720;
+  --ink-soft:#5C5462;
+  --paper:#EDE8E9;
+  --card:#FFFFFF;
+  --line:#D8CBCE;
+  --line-soft:#EAE1E3;
+  /* the three semantic accents for this page: the three rungs of the ladder.
+     The shared CSS calls them --o2 / --co2, so they are aliased below. */
+  --shows:#9B2C3F;       /* Shows \u00b7 the evidence in the text \u00b7 always crimson */
+  --shows-tint:#F8E9EC;
+  --sowhat:#2F4E7C;      /* So what \u00b7 the inference you build \u00b7 always indigo */
+  --sowhat-tint:#EAEFF6;
+  --says:#6B6370;        /* Says \u00b7 the literal layer \u00b7 always grey, deliberately dull */
+  --o2:var(--shows);   --o2-tint:var(--shows-tint);
+  --co2:var(--sowhat); --co2-tint:var(--sowhat-tint);
+  --muscle:#7A5A86;
+  --steel:#9A94A0;
+  --steel-dark:#6E6876;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--co2)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(230,235,231,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--o2);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--o2);font-weight:700}
+.co2txt{color:var(--co2);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+nav.jump{background:rgba(237,232,233,.93)}
+
+/* ---------- the passage ---------- */
+.pbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.pbox > summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:12px;align-items:center;
+  font-family:var(--display);font-weight:700;font-size:15.5px}
+.pbox > summary::-webkit-details-marker{display:none}
+.pbox > summary .tagx{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-left:auto}
+.pbody{padding:4px 16px 16px;border-top:1px solid var(--line-soft)}
+.pintro{font-style:italic;font-size:15.5px;margin:14px 0 10px;color:var(--ink)}
+.pline{display:grid;grid-template-columns:34px 1fr;gap:6px;font-size:16px;line-height:1.52}
+.pline .pno{font-family:var(--mono);font-size:11.5px;color:var(--steel);text-align:right;padding-top:5px;user-select:none}
+.pline .ptx{padding:1px 0}
+.pline.blank{height:9px}
+
+/* ---------- tool chips ---------- */
+.claimbar{padding:13px 16px;border-top:1px solid var(--line);background:var(--sowhat-tint);
+  font-size:16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.claimbar .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.claimbar strong{font-family:var(--display);font-size:17px}
+.chipwrap{display:grid;gap:7px;padding:13px 16px}
+.echip{text-align:left;width:100%;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:9px 13px;cursor:pointer;font-family:var(--body);font-size:16px;color:var(--ink);
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start}
+.echip:hover:not([disabled]){border-color:var(--ink)}
+.echip .box{width:17px;height:17px;border:1.5px solid var(--steel);border-radius:5px;margin-top:4px;flex:0 0 auto}
+.echip.sel{background:var(--sowhat-tint);border-color:var(--sowhat)}
+.echip.sel .box{background:var(--sowhat);border-color:var(--sowhat)}
+.echip.hit{background:var(--ok-tint);border-color:var(--ok)}
+.echip.hit .box{background:var(--ok);border-color:var(--ok)}
+.echip.miss{background:var(--no-tint);border-color:var(--no)}
+.echip.miss .box{background:var(--no);border-color:var(--no)}
+.echip .verd{grid-column:2;font-family:var(--display);font-size:13px;margin-top:5px;color:var(--ink-soft)}
+.echip[disabled]{cursor:default}
+
+.brow{padding:12px 16px;border-top:1px solid var(--line-soft)}
+.brow .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:8px}
+.bchips{display:flex;gap:7px;flex-wrap:wrap}
+.bchip{font-family:var(--body);font-size:15.5px;background:var(--paper);border:1px solid var(--line);
+  border-radius:99px;padding:6px 13px;cursor:pointer;color:var(--ink);text-align:left}
+.bchip:hover{border-color:var(--ink)}
+.bchip.sel{background:var(--ink);border-color:var(--ink);color:#fff}
+.bchip.mono{font-family:var(--mono);font-size:14px}
+.built{padding:13px 16px;border-top:1px solid var(--line);background:var(--paper);font-size:16px;min-height:52px}
+.built em{color:var(--ink-soft);font-style:italic}
+.scorebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:13px 16px;border-top:1px solid var(--line)}
+.scorebar .sc{font-family:var(--mono);font-weight:700;font-size:26px;line-height:1;padding:7px 14px;border-radius:10px;
+  background:var(--paper);color:var(--ink-soft)}
+.scorebar .sc.two{background:var(--ok-tint);color:var(--ok)}
+.scorebar .sc.one{background:var(--shows-tint);color:var(--shows)}
+.scorebar .sc.zero{background:var(--no-tint);color:var(--no)}
+.scorebar .why{flex:1 1 240px;font-size:15.5px}
+
+.ladder{display:grid;gap:8px;margin:12px 0}
+.rung{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-left:4px solid var(--says);border-radius:0 10px 10px 0;padding:10px 13px;font-size:15.5px}
+.rung .rn{font-family:var(--display);font-weight:700;font-size:15px}
+.rung.shows{border-left-color:var(--shows)}
+.rung.shows .rn{color:var(--shows)}
+.rung.sowhat{border-left-color:var(--sowhat)}
+.rung.sowhat .rn{color:var(--sowhat)}
+.tells{counter-reset:tell;display:grid;gap:7px;margin:10px 0}
+.tell{background:var(--paper);border-radius:9px;padding:9px 13px;font-size:15.5px}
+.tell b{font-family:var(--display)}
+.wrongright{display:grid;gap:8px;margin:11px 0}
+.wr{border-radius:9px;padding:10px 13px;font-size:15.5px}
+.wr.bad{background:var(--no-tint)}
+.wr.good{background:var(--ok-tint)}
+.wr .mk{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.quoteline{font-family:var(--body);font-style:italic}
+
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE English &middot; Grade 7 &middot; Reading comprehension</div>
+  <h1>Between the <em>Lines</em></h1>
+  <p class="lede">About seven of the twenty-five marks on your reading paper are for writing down what the text <strong>says</strong>. The other eighteen are for what it <strong>shows</strong> and what that <strong>means</strong> &mdash; and those are the ones you are leaving on the table. This page is one ladder, five tells and one sentence shape. That is the whole trick, and it works on any passage you are ever given.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of <span class="num">30</span>, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme &mdash; otherwise you're just reading, and reading feels like learning without being learning.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>inference puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#bench">Evidence bench</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#machine">Mark machine</a>
+  <a href="#papers">Practice papers</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+
+<!-- ============ HERO: THE DOUBLE CIRCUIT ============ -->
+<section id="bench">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The evidence bench</h2>
+      <p>A claim is made about a character. Underneath it are eight lines from a text. <strong>Tick only the lines that prove the claim</strong>, then press Mark. Ticking too many is wrong in exactly the same way as ticking too few &mdash; and the machine will tell you <em>which kind</em> of wrong each one is.</p>
+    </div>
+
+    <div class="claimbar">
+      <span class="lab">The claim</span>
+      <strong id="b-claim">&nbsp;</strong>
+    </div>
+
+    <div class="chipwrap" id="b-chips" role="group" aria-label="Lines from the text: tick the ones that are evidence"></div>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="b-mark">Mark my selection</button>
+      <button class="btn ghost small" type="button" id="b-clear">Clear</button>
+      <button class="btn ghost small" type="button" id="b-next">Different claim</button>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">Evidence found</div><div class="val mono" id="b-found">&mdash;</div></div>
+      <div class="cell"><div class="lab">Lines ticked that prove nothing</div><div class="val mono" id="b-false">&mdash;</div></div>
+      <div class="phasebar">
+        <span class="pill out" id="b-pill">Not marked yet</span>
+        <span id="b-note">There are three ways to be wrong here, and only one of them is not spotting the evidence. The other two are ticking a line that just repeats the claim, and ticking a line that you have added meaning to yourself.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~38 min total</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was just a screensaver with words on it. Two of these are pitched at a younger year than yours &mdash; watch them at 1.5&times; and take the method, not the tone.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~40 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+
+<!-- ============ THE PRESSURE DROP ============ -->
+<section id="machine">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The mark machine</h2>
+      <p>Build an answer out of three pieces &mdash; a <strong>quotation</strong>, one <strong>word inside it</strong> to zoom in on, and the <strong>effect</strong> you claim it has &mdash; and the machine marks it out of 2 the way an examiner would. Some of the quotations offered are three lines long, and some of the effects sound fine and earn nothing. Find out which.</p>
+    </div>
+
+    <div class="claimbar">
+      <span class="lab">The question</span>
+      <strong id="m-task">&nbsp;</strong>
+    </div>
+
+    <div class="brow">
+      <div class="lab">1 &middot; choose a quotation</div>
+      <div class="bchips" id="m-quotes" role="group" aria-label="Choose a quotation"></div>
+    </div>
+    <div class="brow">
+      <div class="lab">2 &middot; zoom in on one word</div>
+      <div class="bchips mono" id="m-words" role="group" aria-label="Choose one word to zoom in on"></div>
+    </div>
+    <div class="brow">
+      <div class="lab">3 &middot; say what it suggests</div>
+      <div class="bchips" id="m-effects" role="group" aria-label="Choose what the word suggests"></div>
+    </div>
+
+    <div class="built" id="m-built"><em>Your answer will build itself here as you choose.</em></div>
+
+    <div class="scorebar">
+      <span class="sc" id="m-score">&ndash;</span>
+      <span class="why" id="m-why">Choose one of each, then press Mark it.</span>
+      <span class="push"><button class="btn ghost small" type="button" id="m-mark">Mark it</button><button class="btn ghost small" type="button" id="m-reset">Start again</button></span>
+    </div>
+
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill bal">Quote &rarr; Zoom &rarr; So what</span>
+        <span>Two marks needs all three pieces. One mark is usually a right quotation with an explanation that only says the same thing again in different words.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. Q5 is the one that catches people who have just learned to infer: one of those four options is an invention, not an inference.</p>
+  <div data-passage></div>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Two marks means two separate ideas &mdash; one idea written twice in different words is one mark, every time.</p>
+  <div data-passage></div>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Long answers</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. Hint 1 gives you the line range, hint 2 names the tell, hint 3 gives you the word &mdash; none of them gives you the explanation, because that is the part worth marks. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div data-passage></div>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Copying three lines and calling it a quotation</h4><p>A long quotation is a confession that you have not found the part that matters. The examiner is looking for evidence that you can <strong>locate</strong> the words doing the work &mdash; if you quote the whole sentence, you have shown the opposite. Quote the shortest run of words that still carries the meaning, then zoom to one word inside it. Five words beats fifty.</p></div>
+    <div class="trap"><h4>&ldquo;This shows he is scared.&rdquo;</h4><p>True, and worth about half of what you think. You have named a feeling but not shown <em>how</em> the words produce it, so there is nothing for the second mark to land on. Add the zoom: <strong>which word</strong>, and what that word is doing. &ldquo;&lsquo;Shakes it <em>again</em>&rsquo; &mdash; the repeat shows he knows it is hopeless and cannot make himself stop.&rdquo;</p></div>
+    <div class="trap"><h4>Answering from outside the line range</h4><p>When a question says <em>look at lines 14&ndash;19</em>, an answer from line 31 scores zero even when it is the better answer. This is the cheapest mark on the whole paper to lose, and it is lost by not re-reading the instruction. Put your finger on the first and last line named before you start hunting.</p></div>
+    <div class="trap"><h4>Two quotations that make the same point</h4><p>Four-mark questions ask for two quotations and two explanations. If your second quotation proves what the first already proved, the second explanation earns nothing &mdash; you have written one answer twice. Before you commit to the second, check it is a <strong>different kind of evidence</strong>: a body, a repeat, a word choice, a gap, a turn.</p></div>
+    <div class="trap"><h4>Inventing instead of inferring</h4><p>&ldquo;She is lonely because her husband has died&rdquo; is not reading between the lines, it is writing your own story in the gap. Before any inference, find the word you would underline if the examiner challenged you. No word, no mark &mdash; an overreach scores exactly the same as a blank, and it costs you more time.</p>
+  </div>
+</section>
+
+
+<section id="papers">
+  <div class="shead"><h2>Four practice papers</h2><span class="tag">25 marks each</span></div>
+  <p class="snote">These are built to the shape of your school's English Paper&nbsp;2 &mdash; two texts, nine questions, 25 marks, 35 minutes &mdash; so that sitting one feels like sitting the real thing. Do them on paper, timed, with the passage in front of you and nothing else. A and B print the ladder in the instructions; C and D make you remember it.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/english-reading-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A &mdash; Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Meera's first morning on her father's tiffin round, and her journal that night. Retrieval, words in context, and a worked example on the explanation question.</p></a>
+    <a class="paper" href="sheets/english-reading-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B &mdash; Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">A boy, a stray dog on the maidan, and a letter from his grandmother in Thrissur about the same dog. Two voices who disagree, which is where the four-mark question lives.</p></a>
+    <a class="paper" href="sheets/english-reading-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C &mdash; Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Ananya at a swimming trial she never wanted, paired with a coach's blog post. Narrative against non-fiction: the register contrast is doing the work, and no framework is printed.</p></a>
+    <a class="paper" href="sheets/english-reading-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D &mdash; Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Clearing a grandfather's house in Chennai, with a newspaper notice about the same house. Ends with two weak answers in another student's handwriting for you to diagnose and rewrite.</p></a>
+  </div>
+</section>
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'reading-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- the passage ----------------
+   One entry per numbered line. An empty string is a paragraph break: it takes
+   no number, exactly as the school paper prints it. The questions cite these
+   numbers, so never edit a line without re-checking every range that names it. */
+const PASSAGE = [
+ {label:"Text A", start:3,
+  intro:"Arjun, who is thirteen, is alone in the flat on the third evening that week that the power has failed.",
+  lines:[
+   "The lights go out at ten past eight, halfway through a sentence, and the flat drops",
+   "into a silence Arjun did not know it had been hiding. The fridge stops its low",
+   "complaining. The ceiling fan slows, turning and turning on nothing but its own weight.",
+   "He stands still in the middle of the room, as though the darkness might not notice him.",
+   "",
+   "It is the third time this week, and he knows the drill. Torch in the second drawer,",
+   "candles above the sink, Amma at the hospital until eleven. He finds the torch. The",
+   "torch is dead. He shakes it, which helps nothing, and shakes it again.",
+   "",
+   "Outside, the road has gone as well &mdash; no yellow squares in the building opposite, no",
+   "streetlight, only the headlights of an auto sweeping across the ceiling and away.",
+   "It is the quietest he has ever heard Bengaluru be. He counts the seconds between his",
+   "own breaths, which is a thing he has never once needed to do.",
+   "",
+   "Then, from the landing, three knocks. Not loud. Patient.",
+   "",
+   "&lsquo;Arjun? It&rsquo;s Mrs Fernandes, from 2B.&rsquo; A pause. &lsquo;I have a candle, and I have made far",
+   "too much rasam.&rsquo;",
+   "",
+   "He does not open the door at once. He stands with his hand flat against it, listening,",
+   "doing sums about whether his mother would mind. Through the wood he can hear her",
+   "waiting &mdash; not going away, not knocking again, just waiting.",
+   "",
+   "When he does open it she is holding a steel tumbler in one hand and a candle in a",
+   "saucer in the other, and she looks at him the way you look at a kettle you have been",
+   "watching for a while.",
+   "",
+   "&lsquo;Your mother&rsquo;s car isn&rsquo;t in the compound,&rsquo; she says. &lsquo;Thursday, no? She has the late",
+   "shift on Thursdays.&rsquo;",
+   "",
+   "He had not told anyone this.",
+   "",
+   "Her flat smells of curry leaves and old paper. She sets the candle down between them",
+   "and tells him about the eighties, when the power went at seven every evening and came",
+   "back at nine, and the whole building sat out on the steps and complained happily for",
+   "two hours. There is a photograph on the wall behind her of a young man on a scooter,",
+   "and Arjun looks at it twice and does not ask.",
+   "",
+   "At half past ten the lights come back with a shudder and the fridge starts complaining",
+   "again and the two of them blink at each other, caught. At the door he hears himself",
+   "offer to carry her vegetables up on Saturdays, and is surprised to find that he means it."
+  ]},
+ {label:"Text B", start:35,
+  intro:"Later that night, Arjun writes in the notebook he keeps under his mattress.",
+  lines:[
+   "Thursday. Power gone again, third time this week. BESCOM are a joke.",
+   "",
+   "Torch was dead (obviously). I was fine, I want to say that first. But for about a",
+   "minute there I was standing in the middle of the room in the dark not doing anything",
+   "at all. Not going to write down what that felt like.",
+   "",
+   "Then 2B knocked. Mrs F. I nearly didn&rsquo;t open it &mdash; you&rsquo;re not supposed to open the",
+   "door, are you &mdash; but she just stood out there and waited, and somehow the waiting was",
+   "worse than the knocking.",
+   "",
+   "Anyway. She knew about Amma&rsquo;s Thursday shift. I never told her that. She&rsquo;s been",
+   "keeping track of us this entire time and I had no idea. Bit weird? Or not weird. I",
+   "don&rsquo;t know. Nice, maybe.",
+   "",
+   "Rasam was unbelievable. Don&rsquo;t tell Amma.",
+   "",
+   "There&rsquo;s a photo of some guy on a scooter on her wall and she didn&rsquo;t say anything about",
+   "it and I didn&rsquo;t ask, which I&rsquo;m annoyed about now, because I actually want to know.",
+   "",
+   "Told her I&rsquo;d carry her vegetables up on Saturdays. So that&rsquo;s a thing I&rsquo;ve signed up for.",
+   "",
+   "A."
+  ]}
+];
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"How to answer inference comprehension questions", ch:"Spread Book Joy", url:"https://www.youtube.com/watch?v=7u0sLGxw3MU",
+  why:"The clearest statement of the method anywhere: find the clue, add what you already know, say what it must mean. It is pitched at a younger year than yours and you will notice — watch it at 1.5&times; and take the method, not the tone.",
+  task:"Pause at each example before she answers it and write your own answer first. Then count how many of hers point at a specific word and how many do not. That ratio is the whole skill."},
+
+ {t:"Reading Terms &mdash; Imply, Infer, Implicit, Explicit", ch:"Mrs Reid GCSE English and Exam Skills", url:"https://www.youtube.com/watch?v=h9dsc9_zLBw",
+  why:"Four words that get used interchangeably and are not interchangeable. Writers <em>imply</em>; readers <em>infer</em>. Questions are worded with these words, so misreading one costs you the question rather than the mark.",
+  task:"Write the four words down the side of a page with your own one-line definition of each, then write which of the four describes what <em>you</em> do in an exam. If you cannot answer that last one, watch it again."},
+
+ {t:"Using context clues to figure out new words", ch:"Khan Academy", url:"https://www.youtube.com/watch?v=CiNggzdWkIo",
+  why:"For every &lsquo;give one word that means&hellip;&rsquo; question. The point he keeps making is that you do not need the dictionary meaning, you need the meaning that fits the job the word is doing in that sentence.",
+  task:"Take the word &lsquo;Patient&rsquo; in line 14 of the passage on this page. Write three meanings it could have, then cross out the two that do not fit the sentence. Write one line saying what killed them."},
+
+ {t:"PEE and PETER", ch:"Vicky Maxted (Teacher in Your Pocket)", url:"https://www.youtube.com/watch?v=Js2CMSq29Wg",
+  why:"Point, Evidence, Explain is the version everyone is taught and it is the version that scores one mark. The step she adds &mdash; technique and <strong>effect on the reader</strong> &mdash; is the second mark, and it is the same step this page calls <em>zoom</em>.",
+  task:"Write one PEE answer and one PETER answer about the same quotation from this page&rsquo;s passage. Put them side by side and underline the words that exist in the second but not the first. Those words are the mark."},
+
+ {t:"How to Find a &ldquo;Language&rdquo; Technique in 30 Seconds", ch:"First Rate Tutors", url:"https://www.youtube.com/watch?v=nFeEb7DgXMo",
+  why:"Pitched at GCSE, so ignore the paper references and keep the hunting method. She is fast at spotting the one word in a line that was chosen rather than defaulted to, which is exactly what a writer&rsquo;s-choices question rewards.",
+  task:"Go to lines 3&ndash;6 of the passage and find three words the writer chose over a more obvious one. For each, write the boring word she could have used instead. &lsquo;Complaining&rsquo; against &lsquo;humming&rsquo; is the model."},
+
+ {t:"Formal and Informal Language", ch:"CENTURY Tech &middot; KS3", url:"https://www.youtube.com/watch?v=NkjLQXt4hkI",
+  why:"Register, at exactly your level. The features it lists &mdash; contractions, slang, fragments, asides &mdash; are the features an exam question about a journal or a letter wants you to name.",
+  task:"Take three sentences from Text B and rewrite them as they would appear in a formal report. Then write one line saying what got lost. The thing that got lost is what &lsquo;informal&rsquo; is for."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"The ladder, and the rung most answers stop on", len:"7 min",
+  body:`<p>Every reading question is asking you to stand on one of three rungs. Work out which rung before you write anything, because an answer on the wrong rung is not a weak answer &mdash; it is a zero.</p>
+    <div class="ladder">
+      <div class="rung"><span class="rn">1 &middot; Says</span><span>What literally happened. <em>He checks his pockets. The torch is dead.</em> Copying, basically.</span></div>
+      <div class="rung shows"><span class="rn">2 &middot; Shows</span><span>What the writer <strong>chose</strong> to put there. He checks <em>three</em> places. &lsquo;Patient.&rsquo; gets a sentence to itself. The fridge <em>complains</em>.</span></div>
+      <div class="rung sowhat"><span class="rn">3 &middot; So what</span><span>What that implies about the person. He already knew it was gone and was searching to avoid admitting it.</span></div>
+    </div>
+    <p>The question tells you which rung it wants, in its verb:</p>
+    <table class="data">
+      <tr><th>The question says</th><th>It wants</th></tr>
+      <tr><td>Give&hellip; / Quote&hellip; / Which two things&hellip;</td><td>Rung 1. Short, exact, no explaining.</td></tr>
+      <tr><td>What does this tell the reader&hellip; / suggest&hellip; / imply&hellip;</td><td>Rung 3, proved with rung 2.</td></tr>
+      <tr><td>Explain how the writer&hellip;</td><td>Rung 2 <em>and</em> rung 3, in one sentence.</td></tr>
+    </table>
+    <p>Rung 1 is worth about seven marks on a twenty-five mark paper, and you already get most of them. Everything else on this page is about the other eighteen.</p>
+    <p>Two rules make rung 1 safe. <strong>Stay inside the line range</strong> &mdash; a perfect answer from line 31 scores nothing when the question said lines 14 to 19. And when it asks for two things, give <strong>two separate ideas</strong>: &ldquo;he is nervous&rdquo; and &ldquo;he is worried&rdquo; is one idea written twice, and it is one mark.</p>`,
+  demo:"Find your last English paper. Against every question write 1, 2 or 3 for the rung it wanted, then put a tick beside the ones where your answer was on the same rung as the question. Count the ticks. That number is the real score you should be arguing with.",
+  cliff:"Rung 1 includes the questions that say &lsquo;give one word that means&hellip;&rsquo;. They look like vocabulary, they are marked like precision, and there is a two-second test that gets them right almost every time."},
+
+ {t:"Words in context: the substitution test", len:"5 min",
+  body:`<p>A question asks for one word meaning &lsquo;at ease and untroubled&rsquo;, or asks what &lsquo;pays attention&rsquo; means <em>here</em>. Two mistakes lose these marks: giving the dictionary meaning instead of the one that fits, and giving a whole phrase when it asked for one word.</p>
+    <p>The test: <strong>put your answer back into the sentence and read it aloud.</strong> If the sentence still does the same job, you have it. If it wobbles, you have a near-synonym, which scores nothing.</p>
+    <p>Try it on line 14 of the passage: <span class="quoteline">&lsquo;Then, from the landing, three knocks. Not loud. Patient.&rsquo;</span></p>
+    <ul>
+      <li><em>someone in a hospital</em> &mdash; the dictionary&rsquo;s first meaning, and the passage even mentions a hospital nine lines earlier. That mention is bait.</li>
+      <li><em>gentle</em> &mdash; but &lsquo;Not loud&rsquo; has already said that. The writer does not spend a whole sentence repeating herself.</li>
+      <li><em>willing to wait without pressing</em> &mdash; fits, and it is the only one that adds something new.</li>
+    </ul>
+    <p>Notice what did the work there: not vocabulary, but the sentence next to it. In context means <strong>in this sentence, in this paragraph, said by this person</strong>.</p>
+    <p>When the question says <em>one word</em>, give one word. Not &ldquo;calm and still&rdquo;. Not &ldquo;she was patient&rdquo;. One word, spelled correctly, nothing else on the line.</p>`,
+  demo:"Open any book you own at any page. Find three words you could not define cleanly if asked. For each, write what it must mean from the sentence alone, then look it up. Score yourself out of three. Most people get two, which is the point.",
+  cliff:"So far everything has been findable. The next lesson is about the things the writer never says &mdash; and the five places she always hides them."},
+
+ {t:"The five tells", len:"8 min",
+  body:`<p>A writer gives things away the way a bad liar does. There are five places to look, and once you know them you stop hunting the whole passage and start hunting five things.</p>
+    <div class="tells">
+      <div class="tell"><b>1 &middot; Bodies.</b> What a body does while the mouth says nothing. <span class="quoteline">He stands still in the middle of the room</span>&hellip; <span class="quoteline">his hand flat against it</span>&hellip; <span class="quoteline">counts the seconds between his own breaths</span>. Nobody in that passage says the word afraid.</div>
+      <div class="tell"><b>2 &middot; Repeats.</b> Anything done or said twice. <span class="quoteline">shakes it, which helps nothing, and shakes it again</span>. The fan is <span class="quoteline">turning and turning</span>. The fridge complains in line 4 and complains again in line 31. Repetition is never an accident &mdash; it is the one tell you can prove.</div>
+      <div class="tell"><b>3 &middot; Loaded words.</b> The word she chose over the obvious one. The fridge does not hum, it <span class="quoteline">complains</span>. The lights do not return, they come back <span class="quoteline">with a shudder</span>.</div>
+      <div class="tell"><b>4 &middot; Gaps.</b> What is missing. He <span class="quoteline">looks at it twice and does not ask</span>. Text B says <span class="quoteline">Not going to write down what that felt like</span> &mdash; in a private journal, where there is no one to hide from.</div>
+      <div class="tell"><b>5 &middot; Turns.</b> What is different by the end. He starts refusing to open a door and finishes volunteering for Saturdays.</div>
+    </div>
+    <p>Now the half nobody teaches, and the half that will cost you most. <strong>Reading between the lines is not inventing.</strong> There is a photograph of a young man on a scooter, and a flat that smells of old paper, and it is very tempting to write that Mrs Fernandes is lonely since her husband died. The text says nothing about a husband, and nothing about dying.</p>
+    <p>So: <strong>before any inference, find the word you would underline if the examiner challenged you.</strong> No word, no mark. An overreach scores exactly what a blank scores, and it takes you longer to write.</p>`,
+  demo:"Read one page of whatever novel is nearest, with a pencil. Mark B, R, W, G or T in the margin every time you spot a tell. One page, five minutes. Count them — a decent writer leaves about one every three lines, and you have been reading past all of them.",
+  cliff:"You can now see it. Seeing it is not the mark. The mark is in a sentence with a very particular shape, and most people write the version worth half of it."},
+
+ {t:"Quote, zoom, so what", len:"7 min",
+  body:`<p>This is the shape. Every explanation mark on every paper is this sentence:</p>
+    <p><strong>Quote short</strong> &rarr; <strong>zoom to one word inside it</strong> &rarr; <strong>say what it suggests.</strong></p>
+    <div class="wrongright">
+      <div class="wr bad"><span class="mk">1 MARK</span> &mdash; &ldquo;<span class="quoteline">He shakes it, which helps nothing, and shakes it again.</span>&rdquo; This shows he is worried.<br><em>Everything here is true. The quotation is a whole line long, no single word has been picked out, and &lsquo;worried&rsquo; just renames what the question already told you.</em></div>
+      <div class="wr good"><span class="mk">2 MARKS</span> &mdash; &ldquo;<span class="quoteline">shakes it again</span>&rdquo; &mdash; the word <em>again</em> shows he already knows the torch is dead and is repeating a useless action because stopping would mean facing what he has to do next.<br><em>Six words quoted, one word zoomed, and the last clause says something the question did not.</em></div>
+    </div>
+    <p>Three rules that follow from that:</p>
+    <ol>
+      <li><strong>Short quotation.</strong> A three-line quotation tells the examiner you could not find the part that matters. Five words beats fifty.</li>
+      <li><strong>The zoom word must be inside your quotation.</strong> Obvious, and dropped constantly.</li>
+      <li><strong>Two quotations must make two different points.</strong> A four-mark question asks for two quotations and two explanations. If the second proves what the first proved, the second explanation is worth nothing &mdash; check it is a different tell.</li>
+    </ol>
+    <p>Write the word &lsquo;suggests&rsquo; into your answers on purpose. It forces the last clause to go somewhere the text did not already go, which is the whole definition of the mark.</p>`,
+  demo:"Take the mark machine above and deliberately build three answers that score 1. Then fix each one with a single change. Say out loud what the change was each time — it is the same change every time, and that is the thing to remember.",
+  cliff:"So far the words have been doing the work. Next: why the writer picked those words and not the flatter ones sitting right beside them."},
+
+ {t:"Why that word and not the other one", len:"6 min",
+  body:`<p>A writer&rsquo;s-choices question hands you a line and asks what the language does. The answer is never &lsquo;it makes it more interesting&rsquo; or &lsquo;it helps the reader imagine it&rsquo;. Both of those can be written without reading the line, which is why they earn nothing.</p>
+    <p>Ask instead: <strong>what is the flat word she could have used, and what did she gain by refusing it?</strong></p>
+    <table class="data">
+      <tr><th>She wrote</th><th>She could have written</th><th>What that buys</th></tr>
+      <tr><td>the fridge stops its low <strong>complaining</strong></td><td>humming</td><td>Makes the flat sound inhabited &mdash; something in it was grumbling along with him, and now it has stopped.</td></tr>
+      <tr><td>the fan <strong>turning and turning</strong> on nothing but its own weight</td><td>slowing down</td><td>The repeat stretches the moment out. Nothing is happening, slowly, and he has to stand there while it does.</td></tr>
+      <tr><td>the lights come back <strong>with a shudder</strong></td><td>came back on</td><td>Even the return is not smooth. The building flinches.</td></tr>
+      <tr><td>she looks at him <strong>the way you look at a kettle you have been watching</strong></td><td>she looked at him kindly</td><td>A kettle you watch is one you expect to boil. She has been waiting for him to need her, and is not surprised.</td></tr>
+    </table>
+    <p>Two more things worth marks, and neither is a word: <strong>sentence length</strong> and <strong>punctuation</strong>. &lsquo;Not loud. Patient.&rsquo; is two sentences that a normal writer would have joined with an &lsquo;and&rsquo;. Splitting them makes you read each one on its own, which is why &lsquo;Patient&rsquo; lands. And in line 25, one short sentence gets a whole paragraph to itself: <span class="quoteline">He had not told anyone this.</span> A paragraph that size is a writer holding up a hand and saying <em>stop here</em>.</p>`,
+  demo:"Take any four lines of the passage and rewrite them in the dullest English you can manage, keeping every fact. Read both versions aloud. Every difference you hear is a mark somebody is offering you.",
+  cliff:"One event, two texts, two voices — and the last question on every paper of this shape asks you to hold both at once."},
+
+ {t:"Two voices, one evening", len:"7 min",
+  body:`<p>Your paper gives you two texts about the same events, and the last questions are about the <strong>difference between them</strong>. Three things are being tested.</p>
+    <p><strong>1 &middot; Text type.</strong> What tells you Text B is a private journal and not a story? Not the content &mdash; the furniture. A date heading. An initial instead of a name. Notes to himself (<span class="quoteline">Don&rsquo;t tell Amma</span>). Things only he would understand (<span class="quoteline">2B</span>, <span class="quoteline">Mrs F</span>). Sentences that stop before they are finished. When a question asks for &lsquo;features&rsquo;, it wants furniture, and it wants you to <em>name</em> the feature, not just quote it.</p>
+    <p><strong>2 &middot; Register.</strong> Formal or informal, and how you know. Text B has contractions, a brand name used as an insult (<span class="quoteline">BESCOM are a joke</span>), an aside in brackets (<span class="quoteline">(obviously)</span>), a question asked of nobody (<span class="quoteline">Bit weird?</span>), and fragments with no verb. The full-mark answer names the feature <em>and</em> says what it shows: brackets add a private aside, as if he is muttering while he writes.</p>
+    <p><strong>3 &middot; What each voice knows that the other does not.</strong> This is the top-band question, and it is easier than it looks, because it is just a subtraction. Text A shows you Mrs Fernandes from the outside &mdash; the tumbler, the candle, the kettle look. Text B never describes her at all. Text B tells you what Arjun could not say in the moment: that he nearly did not open the door, that the waiting was worse than the knocking, that he is annoyed with himself about the photograph.</p>
+    <p>One fact appears in both: she knew about the Thursday shift. In Text A it is a shock that gets its own paragraph. In Text B, hours later, he has turned it into <span class="quoteline">She&rsquo;s been keeping track of us this entire time</span> &mdash; the same fact, now meaning something warmer. <strong>When a fact appears twice, the question is never about the fact. It is about what changed between the two tellings.</strong></p>`,
+  demo:"Write four sentences about your own day: two as a news report, two as a journal entry. Then underline every word in the journal version that could not appear in the report. That underlined set is what the word &lsquo;informal&rsquo; means on a mark scheme.",
+  cliff:"That is the method, all of it. What is left is fifteen questions and four papers &mdash; and the only thing that moves you from 21 to 26 is doing them with the mark scheme shut."}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Look at lines 7&ndash;9. <span class='quoteline'>&lsquo;He finds the torch. The torch is dead. He shakes it, which helps nothing, and shakes it again.&rsquo;</span><br><br>What does <strong>and shakes it again</strong> tell the reader?",
+  o:["He does not really understand how torches work","He is doing something useless because doing nothing would be worse","The torch is nearly working and needs one more knock","He is angry with his mother for not buying batteries"],
+  a:1,
+  why:"This is the <strong>repeat</strong> tell. The writer has already told you the shaking helps nothing, so the second shake cannot be about the torch &mdash; it is about him, filling the moment rather than facing it. The battery answer is the trap: it is a story you have added, and nothing in the passage mentions batteries or blame."},
+
+ {n:2, lvl:"warm-up", q:"Look at line 14: <span class='quoteline'>&lsquo;Then, from the landing, three knocks. Not loud. Patient.&rsquo;</span><br><br>What does <strong>Patient</strong> mean here?",
+  o:["A person being treated in a hospital","Willing to wait without pressing","Repeated over and over again","Gentle and quiet"],
+  a:1,
+  why:"Two traps, and both are aimed at you. The hospital meaning is baited by line 8, which mentions a hospital. And &lsquo;gentle and quiet&rsquo; is already covered by &lsquo;Not loud&rsquo; &mdash; a writer does not spend a separate sentence saying the same thing twice. Substitute each option back into the sentence and only one of them adds anything new."},
+
+ {n:3, lvl:"standard", q:"Look at lines 21&ndash;22: <span class='quoteline'>&lsquo;she looks at him the way you look at a kettle you have been watching for a while.&rsquo;</span><br><br>What does this suggest about Mrs Fernandes?",
+  o:["She thinks he is about to lose his temper","She has been expecting him to need her, and is not surprised","She finds him dull company","She is impatient to get back to her own flat"],
+  a:1,
+  why:"A kettle you have been watching is one you already know is going to boil. The comparison is about <em>expectation</em>, not anger or boredom &mdash; and lines 23 to 24 confirm it, because she knows his mother&rsquo;s shift pattern. &lsquo;About to lose his temper&rsquo; takes the boiling literally, which is the classic way to get a simile question wrong."},
+
+ {n:4, lvl:"standard", q:"Line 25 is one short sentence with a whole paragraph to itself: <span class='quoteline'>&lsquo;He had not told anyone this.&rsquo;</span><br><br>Why has the writer set it out that way?",
+  o:["To fill the space between two longer paragraphs","To show that Arjun has a poor memory","To slow the reader down on the moment he realises he has been noticed all along","To show that he is angry with her for prying"],
+  a:2,
+  why:"Layout is a choice, like a word is a choice. Surrounding one sentence with white space forces you to stop on it, and what you stop on is the size of what he has just understood: someone has been keeping track of his family without ever mentioning it. Notice that the passage never tells you he is moved, or unsettled &mdash; the shape of the page does it."},
+
+ {n:5, lvl:"trap", q:"Three of these are inferences the text can support. <strong>One is an invention.</strong> Which one would score zero?",
+  o:["Arjun is uneasy long before he would admit it","Mrs Fernandes has been paying attention to this family for a long time","Mrs Fernandes is lonely because her husband has died","Arjun is less guarded at the end of the evening than at the start"],
+  a:2,
+  why:"There is a photograph of a young man on a scooter, and a flat that smells of old paper, and your brain finishes the story on its own. But the text never mentions a husband and never mentions anyone dying. The test is always the same: <strong>which word would you underline if you were challenged?</strong> For the other three you can point at &lsquo;shakes it again&rsquo;, at &lsquo;She has the late shift on Thursdays&rsquo;, and at &lsquo;hears himself offer&rsquo;. For this one you can only point at your own imagination, and an overreach scores exactly what a blank scores."}
+];
+
+const SHORTS = [
+ {n:6, lvl:"warm-up", m:2, q:"Look at lines 3&ndash;13. The writer never uses a word like <em>afraid</em> or <em>nervous</em>.<br><br>Give <strong>two</strong> things that tell the reader Arjun is uneasy.",
+  scheme:["Any one: he stands still &lsquo;as though the darkness might not notice him&rsquo;. <span class='num'>[1]</span>",
+          "Any one other: he shakes the dead torch and shakes it again; or he counts the seconds between his own breaths, &lsquo;a thing he has never once needed to do&rsquo;. <span class='num'>[1]</span>"],
+  tip:"Two marks means two <em>separate</em> ideas. &ldquo;He is nervous&rdquo; and &ldquo;he is worried&rdquo; is one idea written twice, and it scores one. Each bullet should point at a different moment in the text."},
+
+ {n:7, lvl:"standard", m:2, q:"Look at lines 14&ndash;19.<br><br>Give <strong>two</strong> things that suggest Mrs Fernandes is being careful not to frighten Arjun.",
+  scheme:["Any one: the knocks are &lsquo;Not loud&rsquo; / there are only three of them; or she does not knock a second time, she simply waits. <span class='num'>[1]</span>",
+          "Any one other: she says her name and her flat number straight away so he knows who is there; or she gives an ordinary reason for calling (&lsquo;far too much rasam&rsquo;) rather than saying he is alone and needs help. <span class='num'>[1]</span>"],
+  tip:"The rasam one is the better answer and the one most people miss: pretending she has cooked too much lets him accept help without having to admit he needs any. Notice that she never once mentions the dark."},
+
+ {n:8, lvl:"standard", m:2, q:"<strong>(a)</strong> Give <strong>one word</strong> from lines 31&ndash;33 that means &lsquo;found out, and slightly embarrassed about it&rsquo;. <span class='num'>[1]</span><br><br><strong>(b)</strong> In lines 4 and 31 the fridge is described as <strong>complaining</strong>. What does that word do that &lsquo;humming&rsquo; would not? <span class='num'>[1]</span>",
+  scheme:["(a) <strong>caught</strong>. One word, spelled correctly, nothing else on the line. <span class='num'>[1]</span>",
+          "(b) It gives the fridge a personality, so the flat sounds inhabited &mdash; something in the room was grumbling along beside him, and the silence in line 4 is the moment that company stops. Its return in line 31 is ordinary life coming back. <span class='num'>[1]</span>"],
+  tip:"For (b), &ldquo;it makes it more interesting&rdquo; and &ldquo;it helps the reader imagine it&rdquo; are worth nothing, because you could write either without reading the line. Name the flat word she refused, then say what refusing it bought her."},
+
+ {n:9, lvl:"standard", m:2, q:"Look at Text B (lines 35&ndash;49).<br><br>Give <strong>two</strong> features that tell the reader this is a private journal rather than a story.",
+  scheme:["Any one: the date heading &lsquo;Thursday&rsquo;; or the single initial &lsquo;A.&rsquo; instead of a name at the end. <span class='num'>[1]</span>",
+          "Any one other: notes written to himself (&lsquo;Don&rsquo;t tell Amma&rsquo;); or shorthand only he would understand (&lsquo;2B&rsquo;, &lsquo;Mrs F&rsquo;); or unfinished, verbless sentences and asides in brackets. <span class='num'>[1]</span>"],
+  tip:"&lsquo;Features&rsquo; means the furniture of the text type, not the events in it. &ldquo;It is about his evening&rdquo; is a summary and earns nothing &mdash; name the feature, and name it in words a teacher would use."},
+
+ {n:10, lvl:"hard", m:2, q:"Look at lines 31&ndash;33 and lines 46&ndash;48.<br><br>Explain what has changed in Arjun by the end of the evening, using <strong>one</strong> detail from each text.",
+  scheme:["From Text A: at the start he will not even open the door (&lsquo;He does not open the door at once&rsquo;), and by the end he &lsquo;hears himself offer&rsquo; to carry her vegetables and is &lsquo;surprised to find that he means it&rsquo;. <span class='num'>[1]</span>",
+          "From Text B: he is &lsquo;annoyed&rsquo; with himself for not asking about the photograph &mdash; he now wants to know more about her &mdash; and he records the Saturday arrangement as something he has willingly &lsquo;signed up for&rsquo;. <span class='num'>[1]</span>"],
+  tip:"The change is from guarded to involved, and the evidence for it is the same in both texts: he keeps committing to things he did not plan to commit to. One detail from <em>each</em> text &mdash; an answer drawing both details from Text A caps at one mark, however good it is."}
+];
+
+const WORDS = [
+ {n:11, lvl:"standard", m:3, q:"Choose the opinion you agree with more:<br><br><strong>A</strong> &mdash; Arjun is frightened and is hiding it, even from himself.<br><strong>B</strong> &mdash; Arjun is frightened and is dealing with it sensibly.<br><br><strong>(a)</strong> Give one quotation that supports your opinion, and explain how. <span class='num'>[1]</span><br><strong>(b)</strong> Give a second quotation that uses a <em>different</em> tell, and explain how. <span class='num'>[1]</span><br><strong>(c)</strong> Write one sentence saying why the other opinion is weaker. <span class='num'>[1]</span>",
+  hints:["There is no right choice between A and B. The marks are entirely in how well the quotations are chosen and explained &mdash; pick whichever you can prove.",
+         "For (b), check your second quotation is a different <em>kind</em> of evidence from your first. A body, a repeat, a loaded word, a gap, a turn. Two quotations proving the same thing is one answer written twice.",
+         "For (c), the strongest version does not attack the other opinion &mdash; it admits what supports it and then says why your evidence outweighs it."],
+  sol:["<strong>(a) For A:</strong> &lsquo;Not going to write down what that felt like&rsquo; (line 38) &mdash; the refusal is the evidence. He is alone with a private notebook and still will not put the feeling on the page, which suggests he is hiding it from himself as much as from anyone else.",
+       "<strong>(b) For A, a different tell:</strong> &lsquo;I was fine, I want to say that first&rsquo; (line 36) &mdash; nobody insists they were fine unless they suspect they were not, and &lsquo;first&rsquo; shows him arranging the story before he tells it.",
+       "<strong>Or for B:</strong> &lsquo;he knows the drill. Torch in the second drawer, candles above the sink&rsquo; (lines 7&ndash;8) is one tell; &lsquo;doing sums about whether his mother would mind&rsquo; (line 18) is another &mdash; he is weighing a risk rather than freezing at it.",
+       "<strong>(c)</strong> For example: &ldquo;B is weaker because the sensible things he does &mdash; the drawer, the sums &mdash; are all in the first half, and by line 38 he is still refusing to name what he felt.&rdquo;",
+       "Worth noticing: both opinions are defensible, and that is deliberate. An examiner is not marking which box you ticked &mdash; only whether your two quotations are short, different from each other, and explained with a word rather than a feeling."]},
+
+ {n:12, lvl:"standard", m:3, q:"For each line below, name the <strong>one word</strong> doing the work and say what it suggests.<br><br><strong>(a)</strong> <span class='quoteline'>&lsquo;The ceiling fan slows, turning and turning on nothing but its own weight.&rsquo;</span> (line 5) <span class='num'>[1]</span><br><strong>(b)</strong> <span class='quoteline'>&lsquo;It is the quietest he has ever heard Bengaluru be.&rsquo;</span> (line 12) <span class='num'>[1]</span><br><strong>(c)</strong> <span class='quoteline'>&lsquo;the lights come back with a shudder&rsquo;</span> (line 31) <span class='num'>[1]</span>",
+  hints:["In each case, ask what the flat, obvious word would have been. &lsquo;Slowing down&rsquo;, &lsquo;very quiet&rsquo;, &lsquo;came back on&rsquo;. The gap between that and what she wrote is the answer.",
+         "For (b), the sentence is not really about volume. Think about what the word &lsquo;ever&rsquo; is measuring, and how long he has lived in that city.",
+         "For (c), a shudder is something a living thing does. Ask which living thing."],
+  sol:["<strong>(a) turning</strong>, because it is said twice. The repeat stretches the moment out: nothing is happening, slowly, and he has to stand there while it does. &lsquo;On nothing but its own weight&rsquo; adds that even the movement is left over rather than powered &mdash; the fan is running on what it had, which is roughly Arjun&rsquo;s situation.",
+       "<strong>(b) ever</strong>. The comparison is against his whole life in the city, so it measures how far outside normal this is &mdash; and it does it from <em>his</em> point of view, not the writer&rsquo;s. Bengaluru being quiet is not a fact about decibels; it is a fact about how wrong tonight feels.",
+       "<strong>(c) shudder</strong>. The flat word is &lsquo;came back on&rsquo;. A shudder is a flinch, something a body does, so even the return to normal is not smooth &mdash; the building jolts, and so do the two of them, who &lsquo;blink at each other, caught&rsquo; in the next clause.",
+       "All three answers have the same shape: name the word, name the duller word it replaced, say what the swap buys. If you can only manage two of the three parts, make sure one of them is the last one &mdash; it is the part the mark is actually for."]},
+
+ {n:13, lvl:"standard", m:3, q:"Text B is written in an informal style because it is a private journal.<br><br>Give <strong>three</strong> quotations that are examples of informal writing, and explain how each one shows informality.<br><br><em>One has been done for you:</em><br>Quotation: <span class='quoteline'>&lsquo;(obviously)&rsquo;</span><br>Explanation: brackets are used to drop in a private aside, as if he is muttering to himself while writing. <span class='num'>[3]</span>",
+  hints:["Do not pick three of the same thing. Contractions are informal, but three contractions is one answer written three times.",
+         "Look for: a name shortened; a question asked of nobody; a sentence with no verb; an instruction to himself; slang or an insult.",
+         "For each one, name the <em>feature</em> and then say what it shows. &ldquo;This is informal&rdquo; is not an explanation &mdash; it is the question repeated back."],
+  sol:["<strong>&lsquo;BESCOM are a joke&rsquo;</strong> (line 35) &mdash; slang used as a flat insult about the electricity board, the kind of thing said out loud to a friend and never written in a report.",
+       "<strong>&lsquo;Bit weird? Or not weird. I don&rsquo;t know.&rsquo;</strong> (lines 43&ndash;44) &mdash; a question asked of nobody, then answered and withdrawn. It shows him thinking on the page rather than presenting a finished thought.",
+       "<strong>&lsquo;Mrs F&rsquo;</strong> / <strong>&lsquo;2B&rsquo;</strong> (lines 39&ndash;40) &mdash; shorthand that only makes sense to him, because he is his own only reader and does not have to explain anyone.",
+       "Also acceptable: &lsquo;Don&rsquo;t tell Amma&rsquo; (an instruction to himself), &lsquo;Anyway.&rsquo; (a one-word sentence steering himself back on topic), or the dashes in lines 39&ndash;40 holding an interruption inside a sentence.",
+       "The worked example is there as a model of length: one line of quotation, one line of explanation, and the explanation names a feature. Match that shape three times and the three marks are automatic."]},
+
+ {n:14, lvl:"hard", m:3, q:"Two texts, one evening.<br><br><strong>(a)</strong> Give one thing Text A shows about Mrs Fernandes that Text B does not. <span class='num'>[1]</span><br><strong>(b)</strong> Give one thing Text B shows about Arjun that Text A does not. <span class='num'>[1]</span><br><strong>(c)</strong> One fact appears in <em>both</em> texts. Identify it, and explain why it matters more in Text B. <span class='num'>[1]</span>",
+  hints:["Start with subtraction: make two quick lists of what each text tells you, then cross out everything that appears on both. What is left is the answer to (a) and (b).",
+         "Text B never describes Mrs Fernandes physically at all. Text A never tells you what Arjun was thinking behind the door.",
+         "For (c), find the thing he is still turning over hours later. It is the one that got its own paragraph in Text A."],
+  sol:["<strong>(a)</strong> Text A shows her from the outside: the steel tumbler and the candle in a saucer, the long look, the story about the eighties, the photograph on the wall. Text B never describes her at all &mdash; she is &lsquo;Mrs F&rsquo; and nothing else.",
+       "<strong>(b)</strong> Text B gives you what he could not say at the time: that he &lsquo;nearly didn&rsquo;t open it&rsquo;, that &lsquo;the waiting was worse than the knocking&rsquo;, and that he is annoyed with himself for not asking about the photograph. Text A shows him standing at the door; only Text B tells you what he was doing in there.",
+       "<strong>(c)</strong> She knew about his mother&rsquo;s Thursday shift. In Text A it arrives as a shock and is given a paragraph of its own (line 25). In Text B, hours later, he has turned it into &lsquo;She&rsquo;s been keeping track of us this entire time&rsquo; &mdash; the same fact, but now it means he has been looked after for longer than he knew, and he is deciding whether that is &lsquo;weird&rsquo; or &lsquo;nice&rsquo;. The fact did not change; what it meant to him did.",
+       "When a fact appears in both texts, the question is never about the fact. It is always about what changed between the two tellings, and the answer is usually time."]},
+
+ {n:15, lvl:"hard", m:3, q:"Both characters work something out about the other without being told.<br><br><strong>(a)</strong> What has Mrs Fernandes worked out about Arjun&rsquo;s household, and which line proves it? <span class='num'>[1]</span><br><strong>(b)</strong> What has Arjun worked out about himself by the end, and which detail proves it? <span class='num'>[1]</span><br><strong>(c)</strong> One of those two is stated on the page and one is only implied. Say which is which, and explain how an implied answer can still be given full marks. <span class='num'>[1]</span>",
+  hints:["For (a), she says it out loud, which makes this the easier half. Find the line where she tells him something about his own family that he never told her.",
+         "For (b), he does not announce anything. Look at the verb in &lsquo;he hears himself offer&rsquo; &mdash; who is doing the deciding in that sentence?",
+         "For (c), think about what you would have to show an examiner who said &lsquo;prove it&rsquo;. One of your two answers has a sentence to point at. What does the other one have?"],
+  sol:["<strong>(a)</strong> That his mother works late on Thursdays and he is alone in the flat. It is <strong>stated</strong>: &lsquo;Your mother&rsquo;s car isn&rsquo;t in the compound&hellip; She has the late shift on Thursdays&rsquo; (lines 23&ndash;24), confirmed by &lsquo;He had not told anyone this&rsquo; (line 25).",
+       "<strong>(b)</strong> That he does not actually mind being looked after &mdash; and that he wants it to continue. It is <strong>implied</strong>: &lsquo;he <em>hears himself</em> offer&rsquo; (line 32) puts him a step behind his own mouth, so the offer arrives before the decision does, and &lsquo;surprised to find that he means it&rsquo; tells you he expected to be pretending. Text B backs it up: &lsquo;So that&rsquo;s a thing I&rsquo;ve signed up for&rsquo;.",
+       "<strong>(c)</strong> (a) is stated and (b) is implied. An implied answer earns full marks as long as you can <strong>point at the words that force it</strong> &mdash; here, &lsquo;hears himself&rsquo; and &lsquo;surprised&rsquo;. What scores nothing is an inference with no word behind it, like deciding that Mrs Fernandes is lonely because of the photograph. The difference between reading between the lines and making things up is one quotation, every time.",
+       "This is the question that separates a 21 from a 26, and notice it is not about spotting more. It is about knowing which of your own answers you could defend if challenged &mdash; which is the only reading skill that still matters after the exam."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const pre = e.target.closest('[data-preset]');
+  if(pre && typeof window.setPreset==='function'){ window.setPreset(pre.dataset.preset); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the puzzle engine (shared by both tools) ---------------- */
+function mkPuzzles(btnId, boxId, list){
+  let cur = null;
+  const btn = document.getElementById(btnId), box = document.getElementById(boxId);
+  if(!btn || !box) return;
+  btn.addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*list.length);
+    if(cur===i) i = (i+1)%list.length;
+    cur = i;
+    const P = list[i];
+    box.classList.add('on');
+    box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+      <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-pz="${j}">${o}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-pz]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ok = +b.dataset.pz === P.a;
+        if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+        box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+          <div class="qrow"><button class="btn ghost small" type="button" class="again">Another one</button></div>`;
+        box.querySelector('button').addEventListener('click', ()=>btn.click());
+      });
+    });
+  });
+}
+
+
+/* ---------------- the passage, mounted above every question section ---------------- */
+function passageHTML(){
+  return PASSAGE.map(T=>{
+    let n = T.start, rows = '';
+    T.lines.forEach(ln=>{
+      if(!ln){ rows += '<div class="pline blank"></div>'; return; }
+      rows += `<div class="pline"><span class="pno">${n}</span><span class="ptx">${ln}</span></div>`;
+      n++;
+    });
+    return `<p class="pintro">${T.intro}</p>${rows}`;
+  }).join('');
+}
+function mountPassage(){
+  const body = passageHTML();
+  document.querySelectorAll('[data-passage]').forEach((el,i)=>{
+    el.innerHTML = `<details class="pbox"${i===0?' open':''}>
+      <summary>The passage &mdash; read it once, properly, before you start
+        <span class="tagx">Text A 3&ndash;33 &middot; Text B 35&ndash;49</span></summary>
+      <div class="pbody">${body}</div>
+    </details>`;
+  });
+}
+
+/* ---------------- tool 1: the evidence bench ----------------
+   k: ev = genuine evidence · restate = says the claim again · irrel = true but
+   about something else · notin = not in the text at all, the overreach bin. */
+const CLAIMS = [
+ {claim:"Arjun is uneasy long before he would admit it.",
+  lines:[
+   {t:"He stands still in the middle of the room, as though the darkness might not notice him.", k:"ev"},
+   {t:"It is the third time this week, and he knows the drill.", k:"irrel"},
+   {t:"He shakes it, which helps nothing, and shakes it again.", k:"ev"},
+   {t:"Arjun feels nervous as soon as the lights go out.", k:"restate"},
+   {t:"He counts the seconds between his own breaths, which is a thing he has never once needed to do.", k:"ev"},
+   {t:"Torch in the second drawer, candles above the sink.", k:"irrel"},
+   {t:"He has always been frightened of being alone in the flat.", k:"notin"},
+   {t:"Her flat smells of curry leaves and old paper.", k:"irrel"}
+  ]},
+ {claim:"Mrs Fernandes has been paying attention to this family for a long time.",
+  lines:[
+   {t:"&lsquo;Your mother&rsquo;s car isn&rsquo;t in the compound,&rsquo; she says. &lsquo;Thursday, no? She has the late shift on Thursdays.&rsquo;", k:"ev"},
+   {t:"He had not told anyone this.", k:"ev"},
+   {t:"She sets the candle down between them and tells him about the eighties.", k:"irrel"},
+   {t:"&lsquo;Arjun? It&rsquo;s Mrs Fernandes, from 2B.&rsquo;", k:"ev"},
+   {t:"Mrs Fernandes watches this family closely.", k:"restate"},
+   {t:"She has known his mother since Arjun was a baby.", k:"notin"},
+   {t:"There is a photograph on the wall behind her of a young man on a scooter.", k:"irrel"},
+   {t:"the whole building sat out on the steps and complained happily for two hours", k:"irrel"}
+  ]},
+ {claim:"By the end of the evening Arjun is less guarded than he was at the start.",
+  lines:[
+   {t:"At the door he hears himself offer to carry her vegetables up on Saturdays, and is surprised to find that he means it.", k:"ev"},
+   {t:"He does not open the door at once. He stands with his hand flat against it, listening.", k:"ev"},
+   {t:"the two of them blink at each other, caught", k:"ev"},
+   {t:"Arjun relaxes as the evening goes on.", k:"restate"},
+   {t:"He decides that Mrs Fernandes is now his best friend.", k:"notin"},
+   {t:"It is the quietest he has ever heard Bengaluru be.", k:"irrel"},
+   {t:"&lsquo;Thursday, no? She has the late shift on Thursdays.&rsquo;", k:"irrel"},
+   {t:"Her flat smells of curry leaves and old paper.", k:"irrel"}
+  ]}
+];
+const VERDICT = {
+  ev:      "Evidence. You could point at this if challenged.",
+  restate: "This only says the claim again in other words. It proves nothing.",
+  irrel:   "True, and it is in the text &mdash; but it is about something else.",
+  notin:   "Not in the text. You added this yourself."
+};
+
+let bClaim = 0, bSel = new Set(), bMarked = false;
+
+function benchRender(){
+  const C = CLAIMS[bClaim];
+  document.getElementById('b-claim').innerHTML = C.claim;
+  const host = document.getElementById('b-chips');
+  host.innerHTML = C.lines.map((L,i)=>
+    `<button type="button" class="echip" data-ev="${i}"><span class="box"></span><span>${L.t}</span></button>`
+  ).join('');
+  document.getElementById('b-found').innerHTML = '&mdash;';
+  document.getElementById('b-false').innerHTML = '&mdash;';
+  const pill = document.getElementById('b-pill');
+  pill.textContent = 'Not marked yet';
+  pill.className = 'pill out';
+  document.getElementById('b-note').innerHTML = "There are three ways to be wrong here, and only one of them is not spotting the evidence. The other two are ticking a line that just repeats the claim, and ticking a line that you have added meaning to yourself.";
+}
+
+function benchToggle(i){
+  if(bMarked) return;
+  const btn = document.querySelector(`[data-ev="${i}"]`);
+  if(bSel.has(i)){ bSel.delete(i); btn.classList.remove('sel'); }
+  else { bSel.add(i); btn.classList.add('sel'); }
+}
+
+function benchMark(){
+  if(bMarked) return;
+  const C = CLAIMS[bClaim];
+  bMarked = true;
+  let found = 0, total = 0, wrong = 0;
+  C.lines.forEach((L,i)=>{
+    if(L.k === 'ev') total++;
+    const btn = document.querySelector(`[data-ev="${i}"]`);
+    const picked = bSel.has(i);
+    btn.disabled = true;
+    btn.classList.remove('sel');
+    if(picked && L.k === 'ev'){ found++; btn.classList.add('hit');
+      btn.insertAdjacentHTML('beforeend', `<span class="verd">${VERDICT.ev}</span>`); }
+    else if(picked){ wrong++; btn.classList.add('miss');
+      btn.insertAdjacentHTML('beforeend', `<span class="verd">${VERDICT[L.k]}</span>`); }
+    else if(L.k === 'ev'){ btn.classList.add('miss');
+      btn.insertAdjacentHTML('beforeend', `<span class="verd">Missed. This one was evidence.</span>`); }
+  });
+  document.getElementById('b-found').textContent = found + ' of ' + total;
+  document.getElementById('b-false').textContent = String(wrong);
+  const pill = document.getElementById('b-pill');
+  const clean = (found === total && wrong === 0);
+  pill.textContent = clean ? 'All three, nothing false' : (wrong ? 'Over-ticked' : 'Evidence missed');
+  pill.className = 'pill ' + (clean ? 'bal' : 'out');
+  document.getElementById('b-note').innerHTML = clean
+    ? "That is the whole skill. Every line you ticked has a word in it you could underline, and every line you left has nothing to underline."
+    : (wrong ? "Ticking a line that proves nothing costs you as much as missing one. In an exam it is worse, because it takes you longer to write."
+             : "You were careful, and careful left marks behind. Evidence is not only the dramatic lines &mdash; a small action counts if you can explain it.");
+  if(clean){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+}
+
+function benchNext(){
+  bClaim = (bClaim + 1) % CLAIMS.length;
+  bSel = new Set(); bMarked = false;
+  benchRender();
+}
+
+/* ---------------- tool 2: the mark machine ---------------- */
+const TASKS = [
+ {task:"Explain how the writer shows that Arjun is uneasy, in lines 7&ndash;13.",
+  quotes:[
+   {t:"&lsquo;shakes it again&rsquo;", kind:"good", words:["shakes","it","again"], key:["again"]},
+   {t:"&lsquo;He finds the torch. The torch is dead. He shakes it, which helps nothing, and shakes it again.&rsquo;", kind:"long", words:["finds","dead","nothing","again"], key:["again","nothing"]},
+   {t:"&lsquo;Torch in the second drawer, candles above the sink&rsquo;", kind:"irrelevant", words:["torch","drawer","candles"], key:[]},
+   {t:"&lsquo;counts the seconds between his own breaths&rsquo;", kind:"good", words:["counts","seconds","own","breaths"], key:["counts","own"]}
+  ],
+  effects:[
+   {t:"which shows he is uneasy.", kind:"generic", for:[]},
+   {t:"because the repeat shows he already knows it is hopeless and cannot make himself stop.", kind:"specific", for:["again","nothing"]},
+   {t:"because counting something automatic means he is watching his own body for signs of panic.", kind:"specific", for:["counts","own"]},
+   {t:"which proves he is a careful and well-organised person.", kind:"wrong", for:[]}
+  ]},
+ {task:"Explain how the writer shows that Mrs Fernandes is careful not to frighten Arjun, in lines 14&ndash;19.",
+  quotes:[
+   {t:"&lsquo;Not loud. Patient.&rsquo;", kind:"good", words:["Not","loud","Patient"], key:["Patient"]},
+   {t:"&lsquo;Then, from the landing, three knocks. Not loud. Patient.&rsquo;", kind:"long", words:["landing","knocks","loud","Patient"], key:["Patient"]},
+   {t:"&lsquo;I have made far too much rasam&rsquo;", kind:"good", words:["far","too","much","rasam"], key:["too"]},
+   {t:"&lsquo;Mrs Fernandes is a kind neighbour who wants to help him.&rsquo;", kind:"restates", words:["kind","neighbour","help"], key:[]}
+  ],
+  effects:[
+   {t:"which shows she is being kind.", kind:"generic", for:[]},
+   {t:"because giving it a sentence of its own makes the waiting itself the message: she will not push.", kind:"specific", for:["Patient"]},
+   {t:"because pretending she has cooked too much lets him accept help without admitting he needs any.", kind:"specific", for:["too"]},
+   {t:"which shows she is impatient to get back to her own flat.", kind:"wrong", for:[]}
+  ]},
+ {task:"Explain how the writer shows that Arjun has changed by the end of the evening, in lines 31&ndash;33.",
+  quotes:[
+   {t:"&lsquo;hears himself offer&rsquo;", kind:"good", words:["hears","himself","offer"], key:["hears","himself"]},
+   {t:"&lsquo;surprised to find that he means it&rsquo;", kind:"good", words:["surprised","find","means"], key:["surprised","means"]},
+   {t:"&lsquo;At half past ten the lights come back with a shudder and the fridge starts complaining again&rsquo;", kind:"irrelevant", words:["shudder","complaining","again"], key:[]},
+   {t:"&lsquo;At the door he hears himself offer to carry her vegetables up on Saturdays, and is surprised to find that he means it.&rsquo;", kind:"long", words:["hears","himself","surprised","means"], key:["hears","surprised"]}
+  ],
+  effects:[
+   {t:"which shows that he has changed.", kind:"generic", for:[]},
+   {t:"because he is not deciding to offer, he is discovering that he already has &mdash; the writer puts him a step behind his own mouth.", kind:"specific", for:["hears","himself"]},
+   {t:"because the surprise is his own: he expected to be pretending, and finds that he is not.", kind:"specific", for:["surprised","means"]},
+   {t:"which shows he was never worried in the first place.", kind:"wrong", for:[]}
+  ]}
+];
+
+let mTask = 0, mQ = null, mW = null, mE = null, mDone = false;
+
+function machineRender(){
+  const T = TASKS[mTask];
+  document.getElementById('m-task').innerHTML = T.task;
+  document.getElementById('m-quotes').innerHTML = T.quotes.map((q,i)=>
+    `<button type="button" class="bchip" data-mq="${i}">${q.t}</button>`).join('');
+  document.getElementById('m-words').innerHTML =
+    '<span style="font-size:14.5px;color:var(--ink-soft)">Choose a quotation first.</span>';
+  document.getElementById('m-effects').innerHTML = T.effects.map((e,i)=>
+    `<button type="button" class="bchip" data-me="${i}">&hellip;${e.t}</button>`).join('');
+  mQ = null; mW = null; mE = null; mDone = false;
+  machineBuilt();
+  document.getElementById('m-score').textContent = '–';
+  document.getElementById('m-score').className = 'sc';
+  document.getElementById('m-why').textContent = 'Choose one of each, then press Mark it.';
+}
+
+function machineWords(){
+  const T = TASKS[mTask];
+  if(mQ === null) return;
+  document.getElementById('m-words').innerHTML = T.quotes[mQ].words.map(w=>
+    `<button type="button" class="bchip mono" data-mw="${w}">${w}</button>`).join('');
+}
+
+function machineBuilt(){
+  const T = TASKS[mTask], host = document.getElementById('m-built');
+  if(mQ === null && mE === null){
+    host.innerHTML = '<em>Your answer will build itself here as you choose.</em>';
+    return;
+  }
+  const q = mQ === null ? '<em>[quotation]</em>' : T.quotes[mQ].t;
+  const w = mW === null ? '<em>[word]</em>' : '<strong>' + mW + '</strong>';
+  const e = mE === null ? '<em>[what it suggests]</em>' : T.effects[mE].t;
+  host.innerHTML = q + ' &mdash; the word ' + w + ' ' + e;
+}
+
+function machineMark(){
+  if(mDone) return;
+  const T = TASKS[mTask];
+  if(mQ === null || mW === null || mE === null){
+    document.getElementById('m-why').textContent = 'Choose one of each first — a quotation, a word inside it, and what it suggests.';
+    return;
+  }
+  const q = T.quotes[mQ], e = T.effects[mE];
+  let score = 2; const why = [];
+
+  if(q.kind === 'irrelevant'){
+    score = 0; why.push('That quotation is in the text, but it is not about what the question asked. Nothing built on it can score.');
+  } else if(q.kind === 'restates'){
+    score = 0; why.push('That is not a quotation from the text at all — it is your own summary. Quote the writer, not yourself.');
+  } else if(e.kind === 'wrong'){
+    score = 0; why.push('The explanation contradicts the text, so the quotation cannot rescue it. A wrong reading scores zero however well it is written.');
+  } else {
+    if(q.kind === 'long'){ score--; why.push('The quotation is too long: quoting the whole sentence shows you have not found the part that matters.'); }
+    if(q.key.indexOf(mW) < 0){ score--; why.push('The word you zoomed on is not the one carrying the meaning — it is doing no more work than the words around it.'); }
+    if(e.kind === 'generic'){ score--; why.push('The explanation renames the feeling instead of explaining the word. It could have been written without reading the line.'); }
+    else if(e.for.indexOf(mW) < 0){ score--; why.push('The explanation is a good one, but it is about a different word from the one you picked, so the two halves do not meet.'); }
+    /* a relevant quotation always banks the first mark; 0 is reserved for
+       answers that are wrong rather than half-built */
+    score = Math.max(1, score);
+  }
+
+  mDone = true;
+  const el = document.getElementById('m-score');
+  el.textContent = score;
+  el.className = 'sc ' + (score === 2 ? 'two' : score === 1 ? 'one' : 'zero');
+  document.getElementById('m-why').innerHTML = score === 2
+    ? '<strong>Full marks.</strong> Short quotation, the word that carries it, and a last clause that says something the question did not. That is the shape, every time.'
+    : why.join(' ');
+  if(score === 2){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+}
+
+/* ---------------- tool wiring ---------------- */
+document.addEventListener('click', e=>{
+  const ev = e.target.closest('[data-ev]');
+  if(ev && !ev.disabled){ benchToggle(+ev.dataset.ev); return; }
+  const mq = e.target.closest('[data-mq]');
+  if(mq && !mDone){
+    mQ = +mq.dataset.mq; mW = null;
+    document.querySelectorAll('[data-mq]').forEach(b=>b.classList.toggle('sel', b === mq));
+    machineWords(); machineBuilt(); return;
+  }
+  const mw = e.target.closest('[data-mw]');
+  if(mw && !mDone){
+    mW = mw.dataset.mw;
+    document.querySelectorAll('[data-mw]').forEach(b=>b.classList.toggle('sel', b === mw));
+    machineBuilt(); return;
+  }
+  const me = e.target.closest('[data-me]');
+  if(me && !mDone){
+    mE = +me.dataset.me;
+    document.querySelectorAll('[data-me]').forEach(b=>b.classList.toggle('sel', b === me));
+    machineBuilt(); return;
+  }
+});
+document.getElementById('b-mark').addEventListener('click', benchMark);
+document.getElementById('b-clear').addEventListener('click', ()=>{ bSel = new Set(); bMarked = false; benchRender(); });
+document.getElementById('b-next').addEventListener('click', benchNext);
+document.getElementById('m-mark').addEventListener('click', machineMark);
+document.getElementById('m-reset').addEventListener('click', ()=>{ mTask = (mTask+1) % TASKS.length; machineRender(); });
+
+mkPuzzles('newquiz','quizbox',[
+ {q:"A line says &lsquo;Arjun feels nervous as soon as the lights go out.&rsquo; You are asked to prove he is uneasy. Is it evidence?",
+  o:["Yes — it says he is nervous","No — it only repeats the claim"], a:1,
+  why:"Evidence has to be something the writer showed you, which you then interpret. A line that already states the conclusion does no work: you have quoted the answer instead of proving it. In this passage the writer never uses the word nervous at all — that is exactly why the question is worth asking."},
+ {q:"Which of these could you defend if an examiner said &lsquo;prove it&rsquo;?",
+  o:["Mrs Fernandes is lonely","Mrs Fernandes knows the family's routine"], a:1,
+  why:"You can point at &lsquo;She has the late shift on Thursdays&rsquo; and at &lsquo;He had not told anyone this&rsquo;. For lonely you can point at a photograph and a smell, neither of which says anything about who she lives with. One is an inference; the other is a story you finished yourself."},
+ {q:"You tick five lines when three are evidence. What has it cost you?",
+  o:["Nothing, the three right ones still count","Marks — the extra two show you cannot tell evidence from filler"], a:1,
+  why:"Selecting everything is not caution, it is refusing to choose. On a paper it looks like a list of quotations with no argument, and mark schemes for this question type only credit the lines that actually support the point."},
+ {q:"&lsquo;Torch in the second drawer, candles above the sink.&rsquo; Evidence that Arjun is uneasy?",
+  o:["Yes — he is scrabbling around for things","No — it shows the opposite: he knows exactly where everything is"], a:1,
+  why:"Read what it actually says. He recites the locations without hesitating, which is competence, not panic. It is a good line, for a different claim: it is the best evidence in the passage that this has happened often enough to have a routine."},
+ {q:"Which is the strongest single piece of evidence that Arjun is frightened?",
+  o:["&lsquo;He counts the seconds between his own breaths&rsquo;","&lsquo;The lights go out at ten past eight&rsquo;"], a:0,
+  why:"The second is a fact about the electricity. The first is his body doing something involuntary, and the clause after it — &lsquo;a thing he has never once needed to do&rsquo; — tells you this is new for him. Bodies are the first of the five tells for a reason: they leak."},
+ {q:"How many separate ideas does a two-mark &lsquo;give two things&rsquo; question need?",
+  o:["Two, and they must be genuinely different","Two, but they can both be about the same moment"], a:0,
+  why:"Two versions of one idea is one mark. The safe habit is to make your second point from a different tell: if the first was a body, make the second a repeat, a word choice or a gap."}
+]);
+
+mkPuzzles('newquiz2','quizbox2',[
+ {q:"&ldquo;&lsquo;Shakes it again&rsquo; — this shows he is worried.&rdquo; Out of 2, what is that worth?",
+  o:["1 — the quotation is right, the explanation only renames the feeling","2 — quotation plus explanation"], a:0,
+  why:"The second mark is for saying what the word does, not for naming an emotion. Add the zoom: &lsquo;again&rsquo; shows he already knows the torch is dead, so he is repeating a useless action rather than face what comes next."},
+ {q:"Your quotation is three lines long but your explanation is excellent. Likely score?",
+  o:["2 — the explanation is what is marked","1 — a long quotation shows you have not located the words that matter"], a:1,
+  why:"Selecting the evidence is half the skill being tested. Quoting everything and explaining afterwards proves you can explain, but not that you can find. Cut to the shortest run of words that still carries the meaning."},
+ {q:"Which is a better zoom word in &lsquo;the fridge stops its low complaining&rsquo;?",
+  o:["stops","complaining"], a:1,
+  why:"&lsquo;Stops&rsquo; is the only word that could have gone there. &lsquo;Complaining&rsquo; was chosen over &lsquo;humming&rsquo;, and a word that was chosen is a word you can say something about."},
+ {q:"A four-mark question wants two quotations. Your second proves the same thing as your first.",
+  o:["Fine — it is more evidence for the same point","It wastes two marks: the second explanation adds nothing"], a:1,
+  why:"Two quotations means two points. Before committing to the second, check it comes from a different tell — a body, a repeat, a loaded word, a gap, a turn."},
+ {q:"Which last clause is doing the work?",
+  o:["&hellip;which makes the reader imagine the scene.","&hellip;which suggests he is watching his own body for signs of panic."], a:1,
+  why:"The first could be written about any sentence in any book without reading it. The second could only be written about this line. That is the test: if your explanation would survive being pasted under a different quotation, it is not an explanation."},
+ {q:"You cannot find a word inside your quotation to zoom in on.",
+  o:["Explain the quotation as a whole","Change the quotation — you have chosen the wrong one"], a:1,
+  why:"A quotation with no word worth zooming on is a quotation that was not carrying the point. Going back to choose a better one takes ten seconds; explaining a flat quotation takes three sentences and earns one mark."}
+]);
+
+function boot(){
+  mountPassage();
+  benchRender();
+  machineRender();
+}
+
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  boot();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='reading', SUBJECT='english', TITLE="Between the Lines", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

@@ -36,8 +36,8 @@ def read_manifest(path):
     for key in ('id', 'file', 'subject', 'status', 'title', 'sub'):
         if key not in card:
             die('the manifest is missing "%s"' % key)
-    if card['subject'] not in ('maths', 'physics', 'biology', 'chemistry'):
-        die('subject must be maths, physics, biology or chemistry')
+    if card['subject'] not in ('maths', 'physics', 'biology', 'chemistry', 'english'):
+        die('subject must be maths, physics, biology, chemistry or english')
     if card['status'] not in ('ready', 'next', 'planned'):
         die('status must be ready, next or planned')
 

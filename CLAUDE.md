@@ -2,7 +2,7 @@
 
 A static site of interactive study pages and printable test papers, built by a tutor for **one student**: Grade 7 IGCSE, scoring around **10 out of 15**, smart but lazy. Every design decision follows from that. The site's job is to make him *do* things rather than read things.
 
-Subjects: Maths, Physics, Biology, Chemistry.
+Subjects: Maths, Physics, Biology, Chemistry, English.
 
 ## Read these before working
 
@@ -10,6 +10,7 @@ Subjects: Maths, Physics, Biology, Chemistry.
 |---|---|
 | adding a new topic page | `docs/ADDING-A-TOPIC.md` |
 | writing test papers | `docs/WRITING-PAPERS.md` |
+| touching anything in English | `docs/READING-COMPREHENSION.md` |
 | writing any student-facing words | `docs/CONTENT-VOICE.md` |
 | wondering why something is built this way | `docs/ARCHITECTURE.md` |
 | wondering what's done and what's next | `docs/STATE.md` |
@@ -31,6 +32,7 @@ Subjects: Maths, Physics, Biology, Chemistry.
 4. **Never use `localStorage` directly in a page.** Use `window.storage`, which the shim provides. See `docs/ARCHITECTURE.md`.
 
 5. **Marks are fixed at 30 per topic page and 30 per paper.** 15 questions per page (5 MCQ × 1, 5 short × 2, 5 word × 3). Assert the total in any generator; the existing ones do.
+   Two recorded exceptions, both in `docs/STATE.md`, neither of which changes this rule: the maths mock papers are 80 marks, and the English reading papers are 25, because that is the paper the student actually sits. Every topic page is still 30.
 
 6. **Check arithmetic in code before it reaches a document.** Write a throwaway script that computes every answer, run it, read the output. Every number in every paper was verified this way. Do not typeset a number you have only worked out in your head.
 
@@ -50,11 +52,13 @@ gaspressure.html        Physics   · gas pressure, particle model, diffusion
 magnetism.html          Physics   · magnets and magnetic fields
 respiration.html        Biology   · gas exchange
 particles.html          Chemistry · the particle model
-sheets/*.pdf            60 test papers + 15 mark schemes (generated)
+reading.html            English   · reading comprehension (25-mark papers, not 30)
+sheets/*.pdf            test papers + mark schemes (generated — never edit a PDF)
 .nojekyll               stops GitHub Pages hiding underscore paths
 tools/
   smoke.js              runtime check — the one that matters
-  paper_lib.py          PDF engine: layout, ruled space, mark schemes
+  paper_lib.py          PDF engine: layout, ruled space, tick boxes,
+                        line-numbered reading passages, mark schemes
   papers/*.py           one file per topic; content + answers live here
   legacy/               scaffolding used to generate particles.html and speed.html
 docs/                   the guides listed above

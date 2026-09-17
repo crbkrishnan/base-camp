@@ -19,6 +19,7 @@
   --physics:#0B6E75; --physics-t:#E3F1F2;
   --biology:#17693F; --biology-t:#E6F1EA;
   --chemistry:#B4560B; --chemistry-t:#FBEFE3;
+  --english:#9B2C3F; --english-t:#F8E9EC;
   --ok:#1B7F4B;  --ok-t:#E6F3EC;
   --no:#98241B;  --no-t:#FBEAE8;
   --steel:#9A968D;
@@ -353,6 +354,10 @@ let S = { puzzles:{}, filter:'all', pIdx:null };
    The printed papers live on each topic page, in its #papers section — set papers
    to how many that page links, and this hub signposts them.                      */
 const TOPICS = [
+ {id:'reading', file:'reading.html', subject:'english', status:'ready', papers:4,
+  title:'Between the Lines', sub:'English · reading comprehension',
+  blurb:'Says, Shows, So what — three rungs, five tells and one sentence shape that turns a 1-mark answer into a 2-mark one. Highlight the evidence yourself, build an answer the machine marks like an examiner, and learn where the line is between inference and inventing.',
+  meta:['30 marks', '6 lessons', 'evidence bench']},
  {id:'humanimpact', file:'humanimpact.html', subject:'biology', status:'ready', papers:2,
   title:'What We Take, What We Leave', sub:'Biology · human impact on ecosystems',
   blurb:'Three dials — forest cleared, fuel burned, fertiliser spread — and a landscape that answers back. Then walk the six steps from a bag of fertiliser to a dead river, one step at a time, and see which one actually kills the fish.',
@@ -471,7 +476,8 @@ const SUBJECTS = {
   maths:{label:'Maths', colour:'var(--maths)', tint:'var(--maths-t)'},
   physics:{label:'Physics', colour:'var(--physics)', tint:'var(--physics-t)'},
   biology:{label:'Biology', colour:'var(--biology)', tint:'var(--biology-t)'},
-  chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'}
+  chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'},
+  english:{label:'English', colour:'var(--english)', tint:'var(--english-t)'}
 };
 
 const BANDS = [
@@ -484,6 +490,11 @@ const BANDS = [
 
 /* ---------------- puzzles ---------------- */
 const PUZZLES = [
+ {subject:'english',
+  q:'A story ends: <em>He takes the envelope. He does not take the four rupees out of it.</em> Nothing else is said about how he feels. What does that second sentence tell you — and which word would you underline if an examiner asked you to prove it?',
+  nudge:'Ask why the writer made it two sentences rather than one. Then ask what he is left holding, once you have taken the money out of the answer.',
+  ans:'He wants the envelope, not what is in it — and since the envelope is the thing with his grandfather\'s handwriting on it, the writing is what he is keeping. Underline <strong>not</strong>: leaving the money inside is a deliberate refusal, and the separate full stop makes you stop on it. This is the whole method in one line — the text never says he is grieving, and you never need it to, because you can point at a word.'},
+
  {subject:'maths',
   q:'A jacket costs 2000 rupees. The shop raises the price by 20% for the new season, then two weeks later takes 20% off in the sale. Is it back to 2000 rupees? If not, what is it — and why?',
   nudge:'Write each change as a multiplier instead of an amount. What are the two multipliers, and what happens when you multiply them together?',

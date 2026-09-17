@@ -1,6 +1,6 @@
 # State and roadmap
 
-Last updated: 30 August 2026.
+Last updated: 17 September 2026.
 
 ## Done
 
@@ -21,6 +21,7 @@ Last updated: 30 August 2026.
 | Pressure in solids and liquids | Physics | `pressure.html` | pressure pad, depth tank | A–D + scheme |
 | Gas pressure and diffusion | Physics | `gaspressure.html` | gas box, diffusion tube | A–D + scheme |
 | Magnets and magnetic fields | Physics | `magnetism.html` | field plotter, two-magnet bench | A–D + scheme |
+| Reading comprehension | English | `reading.html` | evidence bench, mark machine | A–D + scheme |
 
 All fifteen topics carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries all fifteen, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing sixty PDFs.
 
@@ -93,6 +94,42 @@ Two notes on how this was split:
 - **Unit 9 was split across two pages, not one.** `pressure.html` takes the calculation half (`p = F/A` and `p = ρgh`); `gaspressure.html` takes the explanation half, where the marks go to the wording about collisions per unit area per second rather than to arithmetic. One page covering all five subtopics would have had to drop one of those two skills.
 - **The old `density` roadmap entry was retitled** from "Density and Pressure" to "Density and Floating", because `pressure.html` now teaches the pressure half. Do not re-add pressure to it.
 
+## English — a fifth subject
+
+Added 17 September 2026, from a real school paper the tutor supplied
+(`reference/reading_comprehension_reference.pdf`: English Paper 2, Grade 7, 25 marks, 35 minutes).
+`docs/READING-COMPREHENSION.md` is the guide; read it before touching `reading.html` or
+`tools/papers/english_reading.py`.
+
+The diagnosis behind the topic: retrieval is worth about 7 of the 25 marks and he already gets most
+of them. The other 18 go to inference, word-in-context, writer's choices and register. So the page
+teaches **one named framework** — the ladder (Says → Shows → So what), the five tells, the answer
+shape (quote → zoom → so what), and the brake (*could you point at a word?*) — and nothing else.
+Keep that wording identical wherever it appears; it is meant to become a reflex.
+
+Four deliberate departures, recorded so they are not "fixed" back:
+
+- **English is a fifth subject.** Three small edits made it possible: `--english` / `--english-t` in
+  `index.html`, one row in `SUBJECTS`, and `'english'` added to the allowlist in
+  `tools/register_topic.py`. Everything else in the hub is data-driven off `SUBJECTS`.
+- **The papers are 25 marks, not 30**, at 35 minutes, nine questions, in the reference's own mark
+  distribution. `CLAUDE.md` #5 fixes *topic* papers at 30 because that mirrors the 30 on-screen
+  marks; a reading paper's job is to rehearse the exact artefact he sits, and the school's is 25.
+  This is an exception like the 80-mark maths mock — **do not change #5**, and do not "correct"
+  these to 30. The generator asserts 25.
+- **The on-page 30 marks are unchanged**, still 5 MCQ + 5 short + 5 word. One paired text (Arjun and
+  the power cut, plus his journal) is line-numbered 3–33 and 35–49 and mounted at the head of all
+  three question sections, so he never scrolls back.
+- **`paper_lib.py` gained three additive pieces** — `passage()`, `_tickboxes()`, and `q['tick']` /
+  `p['tick']` / `spec['inserts']` wiring. No existing code path was touched.
+
+`english_reading.py` runs `_verify()` on every build. The reading-paper equivalent of checking the
+arithmetic (`CLAUDE.md` #6) is checking the **line references**, and they fail the same silent way.
+It re-checks that every passage line fits the frame at its printed size, that every range a question
+cites exists, that the words the mark scheme expects are inside the range it names, and that the
+marks total 25. On the first build it caught 35 wrong references — every single question had been
+numbered by eye. Trust it over your own counting.
+
 ## Next
 
 1. **`moments.html` has no videos section.** It predates the format. Add six videos with written tasks, matching the other five pages.
@@ -105,7 +142,17 @@ Grade 7 maths is complete and the Grade 7 physics units above are complete, so t
 - **Puzzle overlap.** The hub's weekly puzzle rotation includes a metre-rule balance problem close to Q11 on `moments.html`. Swap one out when convenient.
 - **No cross-device sync.** Progress is per-browser by design. Only revisit if the student count grows past a handful, since it needs a backend.
 - **The six `sheets/*-answers.pdf` mark schemes are not linked anywhere**, deliberately. If a future tutor-facing page is added, link them there rather than from a topic page.
-- **`<b>` inside mark-scheme text does not render bold.** `paper_lib.py` registers `Body-Bold` but never calls `registerFontFamily`, so reportlab silently drops the tag — the booklets read fine because the `[1]` splits carry the structure. Affects every booklet equally. Fixing it means re-rendering all seven.
+- ~~**`<b>` inside mark-scheme text does not render bold.**~~ **Fixed 17 September 2026.**
+  `paper_lib.py` now calls `registerFontFamily` for `Body`, `UI` and `Mono`, so `<b>` and `<i>` are
+  no longer silently dropped. Every generator was re-run and **not one question paper changed page
+  count** — the fix affects glyphs, not pagination. (The booklet number column was widened 21pt →
+  32pt at the same time so that `1(a)` stops wrapping, which added one page to three of the answer
+  booklets.) It mattered enough to do now because the English papers
+  carry their instructions in bold (*give **two** things*, *one **word***), and losing that loses the
+  instruction. If you edit a paper, expect bold to work.
+
+- **`&#10003;` does not exist in DejaVu Serif.** A tick in body text renders as an empty box. Wrap it:
+  `Tick (<font name="UI">&#10003;</font>) one box`. `english_reading.py` does this everywhere.
 
 - **The paper generators need reportlab and pypdf, which the system Python usually does not have.** On the machine this was last built on they live in a gitignored `.venv` at the repo root: run `.venv/bin/python tools/papers/<topic>.py`, not `python3 tools/papers/<topic>.py`. `CLAUDE.md`, `README.md` and `WRITING-PAPERS.md` all still document the bare form.
 - **`node tools/smoke.js` fails with no argument.** It defaults to `/home/claude/hub`, a path from the environment the project started in. Pass the directory: `node tools/smoke.js .`. `CLAUDE.md`, `README.md` and `package.json`'s `check` script all still document the bare form.
