@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disappearing Act — Grade 7 IGCSE Chemistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/json" id="hub-card">
+{
+  "id": "solutions",
+  "file": "solutions.html",
+  "subject": "chemistry",
+  "status": "ready",
+  "papers": 4,
+  "title": "Disappearing Act",
+  "sub": "Chemistry · solutions and solubility",
+  "blurb": "Pour solute into a tank of water, heat it, cool it, and watch exactly how much dissolves and how much lands on the bottom — then read the same numbers off real solubility curves. Solute, solvent, saturated, and the factors that change solubility against the ones that only change speed.",
+  "meta": ["30 marks", "6 lessons", "dissolving tank"]
+}
+</script>
+<style>
+:root{
+  --ink:#1A1A22;
+  --ink-soft:#575463;
+  --paper:#EDEBE5;
+  --card:#FFFFFF;
+  --line:#D8D2C6;
+  --line-soft:#E8E3DA;
+  --su:#2B4E9B;         /* solute / dissolved — always indigo */
+  --su-tint:#E9EDF7;
+  --sv:#0E7C6B;         /* solvent / water — always green-teal */
+  --sv-tint:#E2F1EE;
+  --sa:#B4560B;         /* saturated / undissolved — always amber */
+  --sa-tint:#FBEFE3;
+  --fr:var(--su);  --fr-tint:var(--su-tint);
+  --de:var(--sv);  --de-tint:var(--sv-tint);
+  --pc:var(--sa);  --pc-tint:var(--sa-tint);
+  --steel:#A29B8C;
+  --steel-dark:#6F6A5D;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#98241B;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--fr)}
+:focus-visible{outline:3px solid var(--fr);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(34px,7.2vw,62px);font-weight:800;margin:12px 0 6px}
+.mast h1 i{font-style:normal;color:var(--fr)}
+.mast h1 em{font-style:normal;color:var(--de)}
+.mast h1 b{font-weight:800;color:var(--pc)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--fr);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(236,233,241,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--fr);color:var(--fr)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--pc);min-width:150px}
+input[type=number]{font-family:var(--mono);font-size:15px;width:110px;padding:7px 9px;border:1px solid var(--line);
+  border-radius:9px;background:var(--paper);color:var(--ink)}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn.on{background:var(--fr);border-color:var(--fr);color:#fff}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line-soft)}
+.rows.two{grid-template-columns:1fr 1fr}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--mono);font-weight:700;font-size:19px;margin-top:3px}
+.cell .sub{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+.cell.f .lab{color:var(--fr)} .cell.f .val{color:var(--fr)}
+.cell.d .lab{color:var(--de)} .cell.d .val{color:var(--de)}
+.cell.p .lab{color:var(--pc)} .cell.p .val{color:var(--pc)}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.pill.go{background:var(--fr-tint);color:var(--fr)}
+.pill.up{background:var(--pc-tint);color:var(--pc)}
+.pill.down{background:var(--de-tint);color:var(--de)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--fr-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+
+/* ---------- hundred grid ---------- */
+#gridWrap{padding:16px}
+.hgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;max-width:400px;margin:0 auto;touch-action:none}
+.hcell{aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line);border-radius:3px;cursor:pointer}
+.hcell.on{background:var(--fr);border-color:var(--fr)}
+.gtools{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--fr);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--fr-tint)}
+.vid h3 a:hover{border-bottom-color:var(--fr)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--pc);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--fr)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--de);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--pc);background:var(--pc-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.frtxt{color:var(--fr);font-weight:700}
+.detxt{color:var(--de);font-weight:700}
+.pctxt{color:var(--pc);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--pc-tint);color:var(--pc)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--de-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--pc)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows,.rows.two{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+
+nav.jump{background:rgba(237,235,229,.93)}
+.sutxt{color:var(--su);font-weight:700}
+.svtxt{color:var(--sv);font-weight:700}
+.satxt{color:var(--sa);font-weight:700}
+.pill.su{background:var(--su-tint);color:var(--su)}
+.pill.sv{background:var(--sv-tint);color:var(--sv)}
+.pill.sa{background:var(--sa-tint);color:var(--sa)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line);align-items:center}
+.chips .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.chip{font-family:var(--display);font-weight:700;font-size:13px;cursor:pointer;border-radius:99px;padding:7px 13px;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);display:inline-flex;align-items:center;gap:7px}
+.chip i{width:10px;height:10px;border-radius:99px;display:inline-block}
+.chip.on{border-color:var(--ink);background:var(--card);box-shadow:inset 0 0 0 1px var(--ink)}
+.rfin{font-family:var(--mono);font-size:15px;width:90px;padding:7px 9px;border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink)}
+
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Chemistry · Grade 7 · Unit 5.3 · Solutions and solubility</div>
+  <h1>Disappearing <i>Act</i></h1>
+  <p class="lede">Stir sugar into tea and it vanishes. It has not gone anywhere: every particle is still in the cup, now spread out between the water particles, and the cup weighs exactly what the tea and the sugar weighed separately. This page is about what "dissolve" really means, how much a liquid can hold, and what changes that number — as against what only changes how fast it happens.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> You've been landing around <span class="num">10 out of 15</span>. This page is out of <span class="num">30</span>, so the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Two things pay here: the four words <em>solute, solvent, solution, saturated</em> used exactly, and knowing that stirring changes the <em>speed</em> of dissolving but not the <em>amount</em>.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#tank">Dissolving tank</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#curves">Solubility curves</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
+</nav>
+
+
+<!-- ============ HERO 1: THE DISSOLVING TANK ============ -->
+<section id="tank">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The dissolving tank</h2>
+      <p>Exactly <span class="num">100 g</span> of water. Choose a solute, pour in as much as you like, and set the temperature. The tank dissolves what the water can hold at that temperature and drops the rest on the bottom — using the real data-book solubilities, so the numbers you read here are the numbers in the papers.</p>
+    </div>
+
+    <div class="chips" id="soluteChips"><span class="lab">Solute</span></div>
+
+    <svg class="stage" id="tankSvg" viewBox="0 0 500 250" role="img" aria-label="A beaker of water showing how much solute has dissolved and how much lies undissolved at the bottom">
+      <path d="M150 30 L150 214 Q150 228 164 228 L336 228 Q350 228 350 214 L350 30" fill="none" stroke="var(--ink)" stroke-width="2.5"/>
+      <rect id="tk-water" x="152" y="90" width="196" height="137" rx="0" fill="var(--sv-tint)"/>
+      <g id="tk-dots"></g>
+      <g id="tk-pile"></g>
+      <text id="tk-cap" x="250" y="20" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)">100 g WATER</text>
+      <text id="tk-massLab" x="470" y="222" text-anchor="end" font-family="var(--mono)" font-size="11.5" fill="var(--ink-soft)">on the balance</text>
+      <text id="tk-mass" x="470" y="205" text-anchor="end" font-family="var(--mono)" font-size="20" font-weight="700" fill="var(--ink)">100 g</text>
+    </svg>
+
+    <div class="ctrl">
+      <label for="tkAdd">Solute added</label>
+      <input id="tkAdd" type="range" min="0" max="200" value="0" step="1" aria-label="Mass of solute added, in grams">
+      <span class="num" id="tkAddVal" style="min-width:60px;text-align:right">0 g</span>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="tkTemp">Temperature</label>
+      <input id="tkTemp" type="range" min="0" max="100" value="20" step="1" aria-label="Temperature of the water in degrees Celsius">
+      <span class="num" id="tkTempVal" style="min-width:60px;text-align:right">20 °C</span>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">Dissolved</div><div class="val" id="tk-dis">0 g</div><div class="sub" id="tk-diss">spread through the water</div></div>
+      <div class="cell p"><div class="lab">Undissolved</div><div class="val" id="tk-un">0 g</div><div class="sub" id="tk-uns">nothing on the bottom</div></div>
+      <div class="cell d"><div class="lab">Solubility here</div><div class="val" id="tk-sol">32 g</div><div class="sub" id="tk-sols">per 100 g water at 20 °C</div></div>
+      <div class="phasebar">
+        <span class="pill sv" id="tk-pill">Pure water</span>
+        <span id="tk-note">Add some solute. Then keep adding and watch for the moment the water gives up.</span>
+        <span class="push"><button class="btn ghost" type="button" id="tankPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="tankQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~35 min total</span></div>
+  <p class="snote">Each video comes with one small written job. Do the job, or the video was a screensaver with chemistry on it. If you are not going to write the lines underneath, close the video and go straight to the questions instead — that is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~35 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: SOLUBILITY CURVES ============ -->
+<section id="curves">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The solubility curves</h2>
+      <p>The same three solutes, plotted the way the exam draws them: solubility in grams per 100 g of water, against temperature. Drag the temperature line and read off each curve. Notice that one of the three barely moves — and that is the one most students draw sloping upwards anyway.</p>
+    </div>
+
+    <svg class="stage" id="curveSvg" viewBox="0 0 700 360" role="img" aria-label="Solubility curves for potassium nitrate, copper sulfate and sodium chloride between 0 and 100 degrees Celsius">
+      <g id="cv-grid"></g>
+      <line x1="70" y1="46" x2="70" y2="300" stroke="var(--line)" stroke-width="2"/>
+      <line x1="70" y1="300" x2="585" y2="300" stroke="var(--line)" stroke-width="2"/>
+      <g id="cv-lines"></g>
+      <line id="cv-cursor" x1="70" y1="46" x2="70" y2="300" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <g id="cv-dots"></g>
+      <text x="328" y="340" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)">TEMPERATURE (°C) &#8594;</text>
+      <text x="14" y="24" font-family="var(--mono)" font-size="11" fill="var(--ink-soft)">g / 100 g water</text>
+    </svg>
+
+    <div class="ctrl">
+      <label for="cvTemp">Temperature</label>
+      <input id="cvTemp" type="range" min="0" max="100" value="20" step="1" aria-label="Temperature to read the curves at">
+      <span class="num" id="cvTempVal" style="min-width:60px;text-align:right">20 °C</span>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">Potassium nitrate</div><div class="val" id="cv-kno3">32 g</div><div class="sub">per 100 g water</div></div>
+      <div class="cell p"><div class="lab">Copper sulfate</div><div class="val" id="cv-cuso4">21 g</div><div class="sub">per 100 g water</div></div>
+      <div class="cell d"><div class="lab">Sodium chloride</div><div class="val" id="cv-nacl">36 g</div><div class="sub">per 100 g water</div></div>
+      <div class="phasebar">
+        <span class="pill su" id="cv-pill">Reading at 20 °C</span>
+        <span id="cv-note">At room temperature sodium chloride is the most soluble of the three. Slide right and see how long that lasts.</span>
+        <span class="push"><button class="btn ghost" type="button" id="curvePuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="curveQuiz"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes, no looking back at the lessons. These are the five marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marks only count if you write your answer before opening the scheme — otherwise you're just reading, and reading feels like learning without being learning.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Saying the solute "disappears" or "melts"</h4><p>It does neither. Dissolving is the solute breaking up into particles too small to see and spreading out between the solvent particles. Melting is a solid turning to liquid on its own with heat. Sugar in cold water dissolves without melting; a lump of butter in a hot pan melts without dissolving. Write "dissolves" and "spreads out between the water particles".</p></div>
+    <div class="trap"><h4>Thinking stirring makes more dissolve</h4><p>Stirring, crushing and (mostly) warming make the solute dissolve <em>faster</em>. Only temperature changes how <em>much</em> can dissolve. If a solution is saturated, stir it all day and the pile on the bottom stays the same size. The question "how could you dissolve more?" has one answer — heat it — and "how could you dissolve it faster?" has three.</p></div>
+    <div class="trap"><h4>Leaving the temperature off a solubility</h4><p>"The solubility of potassium nitrate is 32 g per 100 g of water" is incomplete — at 60 °C it is 110 g. A solubility without a temperature is not a number an examiner can mark. Same for "saturated": a solution saturated at 60 °C is nowhere near saturated at 20 °C, which is exactly why crystals fall out when it cools.</p></div>
+    <div class="trap"><h4>Assuming everything gets more soluble when heated</h4><p>Most solids do. Sodium chloride barely does — 36 g at 20 °C, 40 g at 100 °C. And <em>gases go the other way</em>: warm water holds less dissolved oxygen and less dissolved carbon dioxide, which is why a warm fizzy drink goes flat faster and why fish struggle in a warm pond. Say which kind of substance you are talking about.</p></div>
+    <div class="trap"><h4>Believing the mass drops when something dissolves</h4><p>50 g of water plus 10 g of salt is 60 g of salt solution, before and after, stirred or not. Nothing left the beaker. If the reading on a balance falls, some water evaporated — say so. Conservation of mass is tested in this topic every year, usually by a question that looks like it is about something else.</p></div>
+  </div>
+</section>
+
+
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/chemistry-solutions-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Solute, solvent and solution named in everyday examples, soluble against insoluble, what dissolving looks like in particles, and conservation of mass.</p></a>
+    <a class="paper" href="sheets/chemistry-solutions-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Saturated solutions and solubility, reading a solubility table and a curve, and the three ways to dissolve something faster with the reason for each.</p></a>
+    <a class="paper" href="sheets/chemistry-solutions-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Solubility against rate of dissolving, gases in warm water, planning a fair test on solubility, and calculating how much crystallises when a hot solution cools.</p></a>
+    <a class="paper" href="sheets/chemistry-solutions-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Multi-step problems: an unfamiliar solubility curve to interpret, a six-mark particle explanation of dissolving and saturation, and two wrong answers to diagnose and correct.</p></a>
+  </div>
+</section>
+
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+
+</div>
+
+<script>
+
+
+const KEY = 'solutions-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+let saveTimer = null;
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){}
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+
+
+/* ---------------- videos ---------------- *//* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"Solutions — Solute, Solvent and Solutions", ch:"Khan Academy", url:"https://www.youtube.com/watch?v=kYgGI9Ox3gU",
+  why:"The three words, slowly, with examples you already know. Get the vocabulary fixed before anything else, because every later question assumes it.",
+  task:"Write down five solutions from your own house (tea, sea water, fizzy drink…). For each, name the solute and the solvent. If you cannot name both, it may not be a solution — say why."},
+
+ {t:"Solute, Solvent & Solution — Solubility Chemistry", ch:"The Organic Chemistry Tutor", url:"https://www.youtube.com/watch?v=MDHlaTHbEgM",
+  why:"The same ideas one notch harder, with saturated and unsaturated solutions and the first look at 'like dissolves like'. Stop when it moves on to molarity — that is beyond Grade 7.",
+  task:"Write one sentence each defining unsaturated, saturated and (if he mentions it) supersaturated. Then write which one the dissolving tank above shows when a pile forms on the bottom."},
+
+ {t:"Solubility Curves", ch:"FuseSchool", url:"https://www.youtube.com/watch?v=7AZ2Z6_CQmA",
+  why:"How the curves are drawn, what a point on the curve means, and what a point above or below it means. Q12 and Paper B come straight from this.",
+  task:"Sketch one solubility curve from the video. Mark a point on it, one above it and one below it, and label each: saturated, saturated with excess solid, or unsaturated."},
+
+ {t:"Solubility Curves and Practice Problems", ch:"Tyler DeWitt", url:"https://www.youtube.com/watch?v=xxy7o4I3BMQ",
+  why:"Worked problems: reading values off curves, working out how much crystallises on cooling, and scaling to a different mass of water. This is the arithmetic in Papers C and D.",
+  task:"Pause before each answer and do it yourself. Write your answer and his side by side. Any difference bigger than reading error, work out whose is wrong."},
+
+ {t:"Temperature and Solubility: Solids and Gases", ch:"Tyler DeWitt", url:"https://www.youtube.com/watch?v=awMdCCidgOc",
+  why:"The one direction most students get wrong. Solids mostly dissolve better hot; gases dissolve better cold. He explains why, with the particle picture that earns the marks.",
+  task:"Write two sentences: why a warm fizzy drink goes flat faster, and why fish are in trouble in a warm pond. Both must contain the word 'gas' and the word 'solubility'."},
+
+ {t:"Rate of Dissolving — Surface Area, Stirring, Temperature", ch:"Straight Science", url:"https://www.youtube.com/watch?v=BE5zHhpsGRw",
+  why:"The three ways to dissolve something faster, and the particle reason for each. Watch this last so you can see clearly that it is about speed, not amount.",
+  task:"Make a two-column table: 'changes how fast' and 'changes how much'. Put stirring, crushing and heating in the right column or columns. One of them goes in both."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"Solute, solvent, solution", len:"5 min",
+  body:`<p>Three words, and the exam will not accept them swapped:</p>
+        <ul>
+          <li>The <span class="sutxt">solute</span> is the substance that dissolves — the salt, the sugar, the dye.</li>
+          <li>The <span class="svtxt">solvent</span> is the liquid it dissolves in — usually water, but not always.</li>
+          <li>The <strong>solution</strong> is the mixture you get: solute spread evenly through solvent.</li>
+        </ul>
+        <p>In particle terms: the solid's particles break away from each other and spread out <strong>between the solvent particles</strong>, until they are evenly mixed. They are too small and too spread out to see, which is why the solution looks clear — but <em>clear</em> is not <em>colourless</em>. Copper sulfate solution is clear and bright blue.</p>
+        <p>Two facts follow, and both are examined:</p>
+        <ul>
+          <li><strong>The solute is still there.</strong> Taste it, or evaporate the water and get it back. Dissolving is a physical change and a solution is a mixture.</li>
+          <li><strong>Mass is conserved.</strong> 100 g of water plus 20 g of salt makes 120 g of salt solution. Nothing has left the beaker.</li>
+        </ul>`,
+  demo:`<strong>Do this:</strong> weigh a glass of water and a spoon of sugar separately (kitchen scales are fine), then stir the sugar in and weigh again. Write the three numbers and one sentence about what they show.`,
+  cliff:`Sugar dissolves in water. Sand does not. Nail varnish does not dissolve in water either — but there is a bottle in the bathroom it dissolves in perfectly. What decides?`},
+
+ {t:"Soluble, insoluble, and which solvent", len:"5 min",
+  body:`<p>A substance that dissolves in a solvent is <strong>soluble</strong> in it; one that does not is <strong>insoluble</strong>. Sand and chalk are insoluble in water: stir them in and you get a cloudy <strong>suspension</strong> that settles back to the bottom if you leave it. That settling is the give-away — a true solution never separates on standing.</p>
+        <p>Solubility depends on the <strong>pair</strong>, not just the solute. Nail varnish is insoluble in water but soluble in propanone (nail-varnish remover). Grease will not come off in water but does in ethanol or washing-up liquid. Salt dissolves in water and hardly at all in oil. So "is it soluble?" is only a complete question when you say <em>in what</em>.</p>
+        <p>Water dissolves more things than any other common liquid, which is why it gets called the universal solvent — but it is not universal. Some everyday solvents: <strong>ethanol</strong> (perfumes, some inks), <strong>propanone</strong> (nail varnish), <strong>white spirit</strong> (gloss paint).</p>
+        <table class="data">
+          <tr><th></th><th>Solution</th><th>Suspension</th></tr>
+          <tr><th>Looks</th><td>clear (may be coloured)</td><td>cloudy</td></tr>
+          <tr><th>Left to stand</th><td>stays mixed</td><td>settles out</td></tr>
+          <tr><th>Filtered</th><td>passes straight through</td><td>solid is caught</td></tr>
+        </table>`,
+  demo:`<strong>Do this:</strong> stir half a spoon each of salt, flour and cooking oil into three glasses of water. Leave them ten minutes. Write which one is a solution, which a suspension and which neither, with the observation that told you.`,
+  cliff:`Keep adding salt to a glass of water, spoon after spoon. Does it ever stop dissolving?`},
+
+ {t:"Saturated solutions and solubility", len:"6 min",
+  body:`<p>Yes, it stops. A solvent can only hold so much solute, and when it holds as much as it can, the solution is <strong>saturated</strong>. Add more and the extra simply sits on the bottom, undissolved. The tank above shows you the exact moment.</p>
+        <p>How much is "as much as it can"? That number is the <strong>solubility</strong>, and the exam version of it is precise: <strong>the mass of solute that dissolves in 100 g of water at a given temperature</strong>. Units: g per 100 g of water. The temperature is part of the number — leave it off and the answer is not marked.</p>
+        <div class="eqline">solubility of potassium nitrate at 20 °C = 32 g per 100 g water &nbsp;·&nbsp; at 60 °C = 110 g per 100 g water</div>
+        <p>Three states of a solution, all examinable:</p>
+        <ul>
+          <li><strong>Unsaturated</strong> — could dissolve more. Nothing on the bottom, and another spoonful would vanish.</li>
+          <li><strong>Saturated</strong> — holds exactly the solubility. Another grain would stay solid.</li>
+          <li><strong>Saturated with excess</strong> — holds the solubility, and undissolved solute lies on the bottom. The <em>solution</em> is still just saturated; the pile is not part of it.</li>
+        </ul>
+        <p>One calculation the papers like: if the solubility is 32 g per 100 g at 20 °C, then 50 g of water at 20 °C holds 16 g, and 250 g holds 80 g. Scale by the mass of water.</p>`,
+  demo:`<strong>Do this:</strong> add salt to half a glass of water, a level teaspoon at a time, stirring until each one has gone. Count the spoons until one will not dissolve. That count, doubled for a full glass, is a rough solubility. Write it down with the word "saturated".`,
+  cliff:`The same water at 20 °C holds 32 g of potassium nitrate. Warm it to 60 °C and it holds 110 g. What happens when a solution made at 60 °C cools back down?`},
+
+ {t:"Temperature: the one thing that changes how much", len:"7 min",
+  body:`<p>For most solid solutes, <strong>solubility rises with temperature</strong>: hotter water holds more. Warmer solvent particles move faster, collide with the solute harder, and can hold more solute particles apart from each other. But the amount it rises by varies enormously, and examiners use that:</p>
+        <table class="data">
+          <tr><th>Solubility, g per 100 g water</th><th>0 °C</th><th>20 °C</th><th>40 °C</th><th>60 °C</th><th>80 °C</th><th>100 °C</th></tr>
+          <tr><th>potassium nitrate</th><td>13</td><td>32</td><td>64</td><td>110</td><td>169</td><td>246</td></tr>
+          <tr><th>copper sulfate</th><td>14</td><td>21</td><td>29</td><td>40</td><td>55</td><td>75</td></tr>
+          <tr><th>sodium chloride</th><td>36</td><td>36</td><td>37</td><td>37</td><td>38</td><td>40</td></tr>
+        </table>
+        <p>Potassium nitrate's solubility multiplies nearly nineteen times between freezing and boiling. Sodium chloride's barely moves — 36 to 40. So heating salt water does almost nothing, and a hot salt solution gives back almost no crystals on cooling. Potassium nitrate is the opposite: make a saturated solution at 60 °C (110 g in 100 g water), cool it to 20 °C where only 32 g can stay dissolved, and <strong>110 − 32 = 78 g of crystals</strong> fall out. That subtraction is the most common calculation in this topic.</p>
+        <p><strong>Gases go the other way.</strong> Warm water holds <em>less</em> dissolved gas — the gas particles have more energy and escape from the liquid more easily. A fizzy drink left in the sun goes flat; a pan of water grows bubbles on the bottom long before it boils; fish in a warm pond gasp at the surface because the water is holding less oxygen. Two marks, every year, for saying "gases are less soluble in warm water".</p>
+        <p>Because temperature is part of the number, a <strong>solubility curve</strong> is how the data is usually given: solubility up the side, temperature along the bottom, one line per solute. Any point <em>on</em> the line is a saturated solution; below it, unsaturated; above it, saturated with the excess as solid. The machine below draws the three from the table.</p>`,
+  demo:`<strong>Do this:</strong> open a bottle of fizzy drink that has been in the fridge and one that has been in a warm room. Write down which fizzes more on opening and give the reason in one sentence using "solubility".`,
+  cliff:`Crush the salt, stir it, warm it — it dissolves in seconds instead of minutes. Have you changed how much dissolves, or only how fast?`},
+
+ {t:"Speed is not amount", len:"6 min",
+  body:`<p>This is the distinction that separates a 21 from a 26 on this page, so read it twice. There are three ways to make a solute dissolve <strong>faster</strong>:</p>
+        <ul>
+          <li><strong>Stirring</strong> — moves fresh solvent up against the solute and carries dissolved particles away, so the solvent next to the solid is never already full.</li>
+          <li><strong>Crushing</strong> the solute into smaller pieces — a bigger <strong>surface area</strong>, so more solute particles are in contact with solvent at once. Granulated sugar beats a sugar cube.</li>
+          <li><strong>Heating</strong> — solvent particles move faster, collide with the solute more often and more energetically, and pull particles off it more quickly.</li>
+        </ul>
+        <p>Now the trap. Stirring and crushing change <strong>only the speed</strong>. A saturated solution stays saturated however long you stir. <strong>Only heating changes both</strong> — it speeds up dissolving <em>and</em> raises the solubility. So:</p>
+        <div class="eqline">"How would you dissolve it faster?" &#8594; stir, crush, heat (any) &nbsp;·&nbsp; "How would you dissolve more?" &#8594; heat (only)</div>
+        <p>When a question asks you to explain a rate factor, the marks are for particles: <em>more collisions between solvent particles and solute particles per second</em>. That phrase, adapted, answers all three.</p>`,
+  demo:`<strong>Do this:</strong> drop a sugar cube into one glass of water and a spoon of granulated sugar into another, no stirring. Time both. Then write why the faster one won, using the words "surface area" and "collisions".`,
+  cliff:`You can now say what dissolves, how much, and how fast. The questions below are where you find out whether you can keep those three apart under time.`},
+
+ {t:"Concentration, and the calculations", len:"5 min",
+  body:`<p><strong>Concentrated</strong> means a lot of solute in the solvent; <strong>dilute</strong> means a little. They are comparisons, not fixed amounts — strong squash is more concentrated than weak squash, and adding water dilutes it. Do not confuse concentrated with saturated: a dilute solution of a very insoluble substance can still be saturated.</p>
+        <p>The four calculations this topic sets, with the method for each:</p>
+        <ol>
+          <li><strong>Mass of solution</strong> = mass of solvent + mass of solute. 100 g + 25 g = 125 g. Never less.</li>
+          <li><strong>Scaling solubility</strong>: solubility is per 100 g of water, so for 25 g of water divide by 4; for 500 g multiply by 5.</li>
+          <li><strong>Reading a curve</strong>: go up from the temperature to the line, across to the axis. State the temperature with the answer.</li>
+          <li><strong>Crystals on cooling</strong>: solubility at the hot temperature minus solubility at the cold one — <em>for the same mass of water</em>. 110 − 32 = 78 g per 100 g of water; in 50 g of water it would be 39 g.</li>
+        </ol>
+        <p>Answer shape for a curve question: quote both readings, show the subtraction, give the unit. "78 g" with no working is one mark out of three; "110 g at 60 °C − 32 g at 20 °C = 78 g of crystals" is all three.</p>`,
+  demo:`<strong>Do this:</strong> using the table in Lesson 4, work out how many grams of copper sulfate crystallise when a saturated solution in 200 g of water cools from 80 °C to 20 °C. Show the two readings, the subtraction and the scaling. (Check: it is 68 g.)`,
+  cliff:`If you got 68 g without looking at the answer, you are ready for Q15. If you got 34 g, you forgot the 200 g.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"In sea water, the salt is the…", o:["solvent","solution","solute","suspension"], a:2,
+  why:"The salt dissolves, so it is the solute. Water is the solvent; sea water is the solution. Swapping solute and solvent is the commonest one-mark loss on this page."},
+ {n:2, lvl:"warm-up", q:"A solution is described as <strong>saturated</strong>. This means…", o:["it is very concentrated","no more solute will dissolve at that temperature","the solute has been heated","it contains only water"], a:1,
+  why:"Saturated is about the limit: the solvent holds as much solute as it can at that temperature. It says nothing about how concentrated it is — a barely-soluble substance gives a saturated solution that is still dilute."},
+ {n:3, lvl:"standard", q:"20 g of sugar is stirred into 80 g of water until it has all dissolved. The mass of the solution is…", o:["60 g","80 g","100 g","slightly less than 100 g"], a:2,
+  why:"Nothing left the beaker. Every sugar particle is still there, spread between the water particles, so 80 + 20 = 100 g. Dissolving does not destroy mass."},
+ {n:4, lvl:"standard", q:"Which change would let <strong>more</strong> salt dissolve in a saturated salt solution?", o:["Stirring it faster","Crushing the salt","Warming the solution","Leaving it longer"], a:2,
+  why:"Only temperature changes how much can dissolve. Stirring, crushing and time change how fast — a saturated solution stays saturated however hard you stir. (And salt is a poor example: warming helps, but only a little.)"},
+ {n:5, lvl:"trap", q:"Which of these is <strong>less</strong> soluble in warm water than in cold water?", o:["Potassium nitrate","Sugar","Copper sulfate","Oxygen"], a:3,
+  why:"Gases are less soluble in warm water — the gas particles have more energy and escape more easily. The three solids all dissolve better warm. This is why warm ponds are short of oxygen and warm fizzy drinks go flat."}
+];
+
+const SHORTS = [
+ {n:6, lvl:"standard", m:2, q:"Describe, in terms of particles, what happens when salt dissolves in water.",
+  scheme:["The salt particles break away from each other (leave the solid). <span class='num'>[1]</span>",
+          "They spread out between the water particles, mixing evenly through the liquid. <span class='num'>[1]</span>"],
+  tip:"\"It disappears\" scores nothing. The marks are for what the particles do: separate, then spread between the solvent particles."},
+
+ {n:7, lvl:"standard", m:2, q:"State what is meant by the <strong>solubility</strong> of a substance, and give its units.",
+  scheme:["The maximum mass of the substance that will dissolve in 100 g of water (solvent) at a stated temperature. <span class='num'>[1]</span>",
+          "Grams per 100 g of water (g / 100 g water). <span class='num'>[1]</span>"],
+  tip:"Three parts to the definition: maximum mass, per 100 g of water, at a given temperature. Miss the temperature and the first mark is lost."},
+
+ {n:8, lvl:"standard", m:2, q:"Explain why crushing a sugar cube makes it dissolve faster.",
+  scheme:["Crushing increases the surface area of the sugar. <span class='num'>[1]</span>",
+          "So more sugar particles are in contact with water particles at once, and there are more collisions between them per second. <span class='num'>[1]</span>"],
+  tip:"Surface area is the first mark; what surface area does to collisions is the second. Most students stop after the first."},
+
+ {n:9, lvl:"standard", m:2, q:"The solubility of potassium nitrate is <span class='num'>64 g</span> per 100 g of water at 40 °C. Calculate the mass that will dissolve in <span class='num'>25 g</span> of water at 40 °C.",
+  scheme:["25 g is a quarter of 100 g, so 64 ÷ 4 <span class='num'>[1]</span>",
+          "= 16 g <span class='num'>[1]</span>"],
+  tip:"Solubility is per 100 g of water. Scale by the water, and show the division."},
+
+ {n:10, lvl:"hard", m:2, q:"A bottle of fizzy drink is opened warm and goes flat much faster than a cold one. Explain why.",
+  scheme:["The fizz is dissolved carbon dioxide gas, and gases are less soluble in warm liquids than in cold ones. <span class='num'>[1]</span>",
+          "So in the warm drink less gas can stay dissolved and it escapes (as bubbles) more quickly. <span class='num'>[1]</span>"],
+  tip:"Name the gas and say which way its solubility goes with temperature. \"Warm drinks lose their fizz\" restates the question."}
+];
+
+const WORDS = [
+ {n:11, lvl:"standard", m:3, q:"A student stirs <span class='num'>40 g</span> of potassium nitrate into <span class='num'>100 g</span> of water at 20 °C, where its solubility is <span class='num'>32 g</span> per 100 g of water.<br><br><strong>(a)</strong> State the mass that dissolves and the mass left on the bottom. <span class='num'>[1]</span><br><strong>(b)</strong> Is the solution saturated? Explain. <span class='num'>[1]</span><br><strong>(c)</strong> State the total mass of the beaker's contents, and explain why. <span class='num'>[1]</span>",
+  hints:["The water can hold 32 g at this temperature. The student added more than that.",
+         "Saturated means the water holds as much as it can. Is there any left over?",
+         "Everything the student added is still in the beaker — dissolved or not."],
+  sol:["(a) <strong>32 g dissolves</strong> (the solubility); <strong>8 g</strong> is left undissolved on the bottom.",
+       "(b) <strong>Yes.</strong> The water holds the maximum it can at 20 °C, shown by the undissolved solid — no more will dissolve, however long it is stirred.",
+       "(c) <strong>140 g</strong>: 100 g of water + 40 g of potassium nitrate. Dissolving is a physical change; no particles have left the beaker, so mass is conserved.",
+       "Try it on the tank above — 40 g at 20 °C — and read the three numbers off the cells. Then warm it and watch the pile shrink."]},
+
+ {n:12, lvl:"standard", m:3, q:"Use the solubility curves above (or the table in Lesson 4).<br><br><strong>(a)</strong> State the solubility of copper sulfate at 60 °C. <span class='num'>[1]</span><br><strong>(b)</strong> A solution contains 30 g of potassium nitrate in 100 g of water at 40 °C. State whether it is saturated or unsaturated, and how you know. <span class='num'>[1]</span><br><strong>(c)</strong> State the temperature at which potassium nitrate and sodium chloride have the same solubility, to the nearest 5 °C. <span class='num'>[1]</span>",
+  hints:["Go up from 60 °C to the copper sulfate line, then across.",
+         "Compare 30 g with the solubility at 40 °C. Below the line means unsaturated.",
+         "Find where the two lines cross. Drag the cursor on the machine until the two readings match."],
+  sol:["(a) <strong>40 g</strong> per 100 g of water.",
+       "(b) <strong>Unsaturated.</strong> The solubility at 40 °C is 64 g, and 30 g is below that, so the water could dissolve more.",
+       "(c) About <strong>25 °C</strong> — the lines cross just above 20 °C (both about 36 g per 100 g). Below that sodium chloride is the more soluble; above it potassium nitrate races ahead.",
+       "Curve questions want the reading <em>and</em> the temperature. \"40 g\" alone in (a) is fine only because the question fixed the temperature; in your own working, always write both."]},
+
+ {n:13, lvl:"hard", m:3, q:"Two students each stir <span class='num'>50 g</span> of sodium chloride into <span class='num'>100 g</span> of water. Priya uses water at 20 °C; Arjun uses water at 80 °C. The solubility of sodium chloride is 36 g per 100 g at 20 °C and 38 g per 100 g at 80 °C.<br><br><strong>(a)</strong> State how much salt is left undissolved in each beaker. <span class='num'>[1]</span><br><strong>(b)</strong> Arjun says heating \"made hardly any difference\". Explain why, referring to the data. <span class='num'>[1]</span><br><strong>(c)</strong> Arjun's salt dissolved much faster than Priya's. Explain why, in terms of particles. <span class='num'>[1]</span>",
+  hints:["Undissolved = added − solubility, in each case.",
+         "Compare the two solubilities. How much extra did 60 degrees buy?",
+         "Speed is about collisions. What does temperature do to the water particles?"],
+  sol:["(a) Priya: 50 − 36 = <strong>14 g</strong> left. Arjun: 50 − 38 = <strong>12 g</strong> left.",
+       "(b) Sodium chloride's solubility barely changes with temperature — only <strong>2 g more</strong> per 100 g between 20 °C and 80 °C. Heating raised the amount that could dissolve by a tiny fraction, so nearly as much was left over.",
+       "(c) At 80 °C the water particles move <strong>faster</strong>, so they <strong>collide with the salt more often and more energetically</strong>, pulling particles off the solid more quickly. Heating changes the <em>rate</em> a great deal even when it changes the <em>amount</em> very little.",
+       "This is the whole of Lesson 5 as one question: (b) is about amount, (c) is about speed, and the same change — heating — did almost nothing to one and a lot to the other."]},
+
+ {n:14, lvl:"hard", m:3, q:"A saturated solution of potassium nitrate is made in <span class='num'>50 g</span> of water at 60 °C and then cooled to 20 °C. Solubility: <span class='num'>110 g</span> per 100 g at 60 °C; <span class='num'>32 g</span> per 100 g at 20 °C.<br><br><strong>(a)</strong> Calculate the mass dissolved at 60 °C. <span class='num'>[1]</span><br><strong>(b)</strong> Calculate the mass of crystals that form on cooling. <span class='num'>[1]</span><br><strong>(c)</strong> Explain why crystals form. <span class='num'>[1]</span>",
+  hints:["The solubility is per 100 g of water. There is only 50 g here.",
+         "Crystals = what was dissolved when hot − what can stay dissolved when cold. Same mass of water for both numbers.",
+         "At the lower temperature the water can hold less. Where does the rest go?"],
+  sol:["(a) 110 g per 100 g, so in 50 g of water: 110 ÷ 2 = <strong>55 g</strong>.",
+       "(b) At 20 °C, 50 g of water holds 32 ÷ 2 = 16 g. Crystals = 55 − 16 = <strong>39 g</strong>.",
+       "(c) Solubility <strong>falls as the temperature falls</strong>, so the cooled water can no longer hold all the dissolved potassium nitrate. The excess comes out of solution as solid crystals until what remains dissolved equals the solubility at 20 °C.",
+       "The trap is doing 110 − 32 = 78 g and forgetting the 50 g of water. Halve both readings, or halve the answer — but do one of them."]},
+
+ {n:15, lvl:"hard", m:3, q:"A student claims: \"Stirring a saturated sugar solution for longer would dissolve the sugar left on the bottom, because stirring makes sugar dissolve.\"<br><br><strong>(a)</strong> Explain what is wrong with the claim. <span class='num'>[1]</span><br><strong>(b)</strong> State what stirring actually changes, and explain it in terms of particles. <span class='num'>[1]</span><br><strong>(c)</strong> Describe one change that <em>would</em> dissolve the remaining sugar, and explain why it works. <span class='num'>[1]</span>",
+  hints:["The solution is saturated. What does that word mean about the amount the water can hold?",
+         "Stirring is a rate factor. Think about fresh water reaching the solid.",
+         "Only one thing raises solubility."],
+  sol:["(a) The solution is <strong>saturated</strong> — the water already holds the maximum mass of sugar it can at that temperature. Stirring cannot make it hold more, so the sugar on the bottom stays there however long she stirs.",
+       "(b) Stirring changes only the <strong>rate</strong> of dissolving. It moves solvent particles that are already full of solute away from the solid and brings fresh solvent particles into contact with it, so dissolving happens <em>faster</em> — up to the limit, and no further.",
+       "(c) <strong>Warm the solution.</strong> Solubility rises with temperature for sugar: the faster-moving water particles can hold more sugar particles apart, so the limit itself goes up and the remaining sugar dissolves.",
+       "The discriminator on this page. Speed and amount are different questions, and the claim mixes them. If you can mark this student's error, you will not make it yourself."]}
+];
+
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render questions ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    S.mcq[n] = +opt.dataset.i;
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+});
+
+function answerMcq(n, i){
+  const Q = MCQS.find(x=>x.n===n);
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  if(!box) return;
+  box.querySelectorAll('.opt').forEach(b=>{
+    b.disabled = true;
+    if(+b.dataset.i === Q.a) b.classList.add('right');
+    else if(+b.dataset.i === i) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb'+n);
+  fb.className = 'fb on ' + (i===Q.a ? 'good':'bad');
+  fb.innerHTML = (i===Q.a ? '<strong>Correct.</strong> ' : '<strong>Not this time.</strong> ') + Q.why;
+}
+
+document.addEventListener('change', e=>{
+  const cb = e.target.closest('[data-lesson]');
+  if(cb){ S.lessons[cb.dataset.lesson] = cb.checked; save(); refresh(); }
+});
+document.addEventListener('input', e=>{
+  const ta = e.target.closest('[data-note]');
+  if(ta){ S.notes[ta.dataset.note] = ta.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*10)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+
+
+/* ================= shared data: solubility in g per 100 g water at 0,10,…,100 °C ================= */
+/* rounded from data-book values — the same numbers appear in the lessons, the questions and the papers */
+const SOLUTES = [
+ {id:'kno3',  label:'Potassium nitrate', col:'var(--su)', hex:'#2B4E9B', sol:[13,21,32,46,64,86,110,138,169,202,246]},
+ {id:'cuso4', label:'Copper sulfate',    col:'var(--sa)', hex:'#B4560B', sol:[14,17,21,25,29,33,40,47,55,64,75]},
+ {id:'nacl',  label:'Sodium chloride',   col:'var(--sv)', hex:'#0E7C6B', sol:[36,36,36,36,37,37,37,38,38,39,40]}
+];
+function solAt(s, t){                       // linear interpolation between the table points
+  const i = Math.min(9, Math.floor(t/10)), f = (t - i*10)/10;
+  return s.sol[i] + (s.sol[i+1]-s.sol[i])*f;
+}
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ================= HERO 1: the dissolving tank ================= */
+let tkSol = SOLUTES[0], tkAdd = 0, tkTemp = 20;
+(function(){
+  const host = document.getElementById('soluteChips');
+  SOLUTES.forEach(s=>{
+    const b = document.createElement('button'); b.type='button'; b.className='chip'+(s===tkSol?' on':''); b.dataset.sol=s.id;
+    b.innerHTML = `<i style="background:${s.hex}"></i>${s.label}`;
+    b.addEventListener('click', ()=>{ tkSol=s; document.querySelectorAll('#soluteChips .chip').forEach(x=>x.classList.toggle('on', x.dataset.sol===s.id)); paintTank(); });
+    host.appendChild(b);
+  });
+})();
+const TK_SLOTS = [];
+(function(){ let seed=11; function rnd(){ seed=(seed*9301+49297)%233280; return seed/233280; }
+  for(let i=0;i<120;i++) TK_SLOTS.push({x:158+rnd()*184, y:96+rnd()*126}); })();
+
+function tankState(){
+  const sol = solAt(tkSol, tkTemp);
+  const dis = Math.min(tkAdd, sol), un = Math.max(0, tkAdd - sol);
+  return {sol, dis, un};
+}
+function paintTank(){
+  const NS='http://www.w3.org/2000/svg';
+  const {sol, dis, un} = tankState();
+  const dots = document.getElementById('tk-dots'); while(dots.firstChild) dots.removeChild(dots.firstChild);
+  const n = Math.min(120, Math.round(dis/2));       // one dot per 2 g dissolved
+  for(let i=0;i<n;i++){ const c=document.createElementNS(NS,'circle'); c.setAttribute('cx',TK_SLOTS[i].x.toFixed(1)); c.setAttribute('cy',TK_SLOTS[i].y.toFixed(1)); c.setAttribute('r',3); c.setAttribute('fill',tkSol.hex); c.setAttribute('opacity','.75'); dots.appendChild(c); }
+  const pile = document.getElementById('tk-pile'); while(pile.firstChild) pile.removeChild(pile.firstChild);
+  if(un>0){ const h = Math.min(60, 4 + un*0.55); const p=document.createElementNS(NS,'path'); p.setAttribute('d',`M152 227 L152 ${227-h*0.5} Q250 ${227-h*1.6} 348 ${227-h*0.5} L348 227 Z`); p.setAttribute('fill',tkSol.hex); pile.appendChild(p); }
+  document.getElementById('tk-water').setAttribute('fill', tkSol.id==='cuso4' && dis>0 ? '#CFE3EE' : 'var(--sv-tint)');
+  document.getElementById('tk-mass').textContent = (100 + tkAdd) + ' g';
+  document.getElementById('tkAddVal').textContent = tkAdd + ' g';
+  document.getElementById('tkTempVal').textContent = tkTemp + ' °C';
+  document.getElementById('tk-dis').textContent = dis.toFixed(0) + ' g';
+  document.getElementById('tk-diss').textContent = dis>0 ? 'spread between the water particles' : 'nothing added yet';
+  document.getElementById('tk-un').textContent = un.toFixed(0) + ' g';
+  document.getElementById('tk-uns').textContent = un>0 ? 'lying on the bottom' : 'nothing on the bottom';
+  document.getElementById('tk-sol').textContent = sol.toFixed(0) + ' g';
+  document.getElementById('tk-sols').textContent = 'per 100 g water at ' + tkTemp + ' °C';
+  const pill = document.getElementById('tk-pill');
+  let note;
+  if(tkAdd===0){ pill.className='pill sv'; pill.textContent='Pure water'; note='Add some solute. Then keep adding and watch for the moment the water gives up.'; }
+  else if(un>0.5){ pill.className='pill sa'; pill.textContent='Saturated, with excess'; note='The water holds ' + sol.toFixed(0) + ' g and no more at ' + tkTemp + ' °C. The other ' + un.toFixed(0) + ' g is solid on the bottom — stirring will not shift it, warming might. The balance still reads ' + (100+tkAdd) + ' g.'; }
+  else if(Math.abs(un)<=0.5 && tkAdd >= sol-0.5){ pill.className='pill sa'; pill.textContent='Exactly saturated'; note='Right on the limit: ' + sol.toFixed(0) + ' g dissolved, nothing left over, and one more gram would stay solid. This is the point on the solubility curve.'; }
+  else { pill.className='pill su'; pill.textContent='Unsaturated'; note='All ' + dis.toFixed(0) + ' g has dissolved and the water could take ' + (sol-dis).toFixed(0) + ' g more at this temperature.'; }
+  document.getElementById('tk-note').textContent = note;
+}
+document.getElementById('tkAdd').addEventListener('input', e=>{ tkAdd=+e.target.value; paintTank(); });
+document.getElementById('tkTemp').addEventListener('input', e=>{ tkTemp=+e.target.value; paintTank(); });
+
+const TANK_PUZZLES = [
+ {ask:"Make a solution of <strong>potassium nitrate</strong> at <strong>40 °C</strong> that is <strong>exactly saturated</strong> — nothing left over, and nothing more would dissolve.",
+  test:()=>tkSol.id==='kno3' && tkTemp===40 && Math.abs(tkAdd-64)<=1, why:"64 g per 100 g of water at 40 °C — the solubility, read straight off the curve."},
+ {ask:"Set the tank so that <strong>exactly 20 g</strong> of solute lies undissolved on the bottom. Any solute, any temperature.",
+  test:()=>Math.abs(tankState().un-20)<=1, why:"Undissolved = added − solubility. You just did the subtraction the papers ask for, in reverse."},
+ {ask:"Find the <strong>lowest temperature</strong> (to the nearest 5 °C) at which <strong>100 g of potassium nitrate</strong> dissolves completely in the 100 g of water.",
+  test:()=>tkSol.id==='kno3' && Math.abs(tkAdd-100)<=1 && tankState().un<=0.5 && tkTemp<=60, why:"About 56 °C — between the 86 g at 50 °C and the 110 g at 60 °C. Anything at or below 60 that leaves nothing on the bottom counts."},
+ {ask:"Make a saturated <strong>copper sulfate</strong> solution at <strong>60 °C</strong> with <strong>10 g</strong> of excess solid on the bottom.",
+  test:()=>tkSol.id==='cuso4' && tkTemp===60 && Math.abs(tankState().un-10)<=1, why:"Solubility 40 g at 60 °C, so 50 g added leaves 10 g. The solution itself is just saturated; the pile is not part of it."},
+ {ask:"Dissolve <strong>110 g of potassium nitrate</strong> completely at <strong>60 °C</strong>, then cool the tank to <strong>20 °C</strong> and see what crystallises.",
+  test:()=>tkSol.id==='kno3' && Math.abs(tkAdd-110)<=2 && tkTemp===20, why:"78 g on the bottom: 110 g dissolved hot, only 32 g can stay dissolved at 20 °C. That subtraction is Q14."},
+ {ask:"Show that heating does almost nothing for <strong>sodium chloride</strong>: put in <strong>45 g</strong> and heat all the way to <strong>100 °C</strong>.",
+  test:()=>tkSol.id==='nacl' && Math.abs(tkAdd-45)<=1 && tkTemp===100, why:"Still 5 g on the bottom at boiling point. 36 g at 20 °C, 40 g at 100 °C — sixty degrees bought four grams."}
+];
+let tankQ = null;
+document.getElementById('tankPuzzle').addEventListener('click', ()=>{
+  tankQ = TANK_PUZZLES[Math.floor(Math.random()*TANK_PUZZLES.length)];
+  const box = document.getElementById('tankQuiz');
+  box.classList.add('on');
+  box.innerHTML = '<strong>Puzzle.</strong> ' + tankQ.ask +
+    '<div class="qrow"><button class="btn ghost small" type="button" id="tankCheck">Check the tank</button>' +
+    '<span id="tankFb" class="num" style="font-size:13px"></span></div>';
+  document.getElementById('tankCheck').addEventListener('click', ()=>{
+    const fb = document.getElementById('tankFb');
+    if(tankQ.test()){
+      fb.style.color='var(--ok)'; fb.textContent='Correct — ' + tankQ.why;
+      S.puzzles=(S.puzzles||0)+1; save(); refresh();
+      document.getElementById('tankCheck').disabled=true;
+    } else {
+      const st = tankState();
+      fb.style.color='var(--no)'; fb.textContent='Not yet: ' + tkSol.label.toLowerCase() + ', ' + tkAdd + ' g at ' + tkTemp + ' °C — ' + st.dis.toFixed(0) + ' g dissolved, ' + st.un.toFixed(0) + ' g on the bottom.';
+    }
+  });
+});
+
+/* ================= HERO 2: the solubility curves ================= */
+const CX0=70, CX1=585, CY0=46, CY1=300, CMAX=250;
+function cx(t){ return CX0 + t/100*(CX1-CX0); }
+function cy(g){ return CY1 - g/CMAX*(CY1-CY0); }
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  const grid=document.getElementById('cv-grid');
+  for(let g=50; g<=250; g+=50){ const l=document.createElementNS(NS,'line'); l.setAttribute('x1',CX0); l.setAttribute('x2',CX1); l.setAttribute('y1',cy(g)); l.setAttribute('y2',cy(g)); l.setAttribute('stroke','var(--line-soft)'); l.setAttribute('stroke-dasharray','4 5'); grid.appendChild(l);
+    const t=document.createElementNS(NS,'text'); t.setAttribute('x',CX0-8); t.setAttribute('y',cy(g)+4); t.setAttribute('text-anchor','end'); t.setAttribute('font-family','var(--mono)'); t.setAttribute('font-size','11'); t.setAttribute('fill','var(--ink-soft)'); t.textContent=g; grid.appendChild(t); }
+  for(let T=0; T<=100; T+=20){ const l=document.createElementNS(NS,'line'); l.setAttribute('x1',cx(T)); l.setAttribute('x2',cx(T)); l.setAttribute('y1',CY0); l.setAttribute('y2',CY1); l.setAttribute('stroke','var(--line-soft)'); l.setAttribute('stroke-dasharray','4 5'); grid.appendChild(l);
+    const t=document.createElementNS(NS,'text'); t.setAttribute('x',cx(T)); t.setAttribute('y',CY1+18); t.setAttribute('text-anchor','middle'); t.setAttribute('font-family','var(--mono)'); t.setAttribute('font-size','11'); t.setAttribute('fill','var(--ink-soft)'); t.textContent=T; grid.appendChild(t); }
+  const lines=document.getElementById('cv-lines'), dots=document.getElementById('cv-dots');
+  SOLUTES.forEach(s=>{
+    const pts=[]; for(let T=0;T<=100;T+=2) pts.push(cx(T).toFixed(1)+','+cy(solAt(s,T)).toFixed(1));
+    const p=document.createElementNS(NS,'polyline'); p.setAttribute('points',pts.join(' ')); p.setAttribute('fill','none'); p.setAttribute('stroke',s.col); p.setAttribute('stroke-width','4'); p.setAttribute('stroke-linejoin','round'); lines.appendChild(p);
+    const lab=document.createElementNS(NS,'text'); lab.setAttribute('x',cx(100)+6); lab.setAttribute('y',cy(s.sol[10])+4); lab.setAttribute('font-family','var(--mono)'); lab.setAttribute('font-size','10.5'); lab.setAttribute('fill',s.col); lab.textContent=s.label.toLowerCase(); lines.appendChild(lab);
+    const d=document.createElementNS(NS,'circle'); d.setAttribute('id','cvd-'+s.id); d.setAttribute('r',7); d.setAttribute('fill',s.col); d.setAttribute('stroke','#fff'); d.setAttribute('stroke-width','2.5'); dots.appendChild(d);
+  });
+})();
+let cvTemp = 20;
+function paintCurves(){
+  const c=document.getElementById('cv-cursor'); c.setAttribute('x1',cx(cvTemp)); c.setAttribute('x2',cx(cvTemp));
+  SOLUTES.forEach(s=>{ const d=document.getElementById('cvd-'+s.id); d.setAttribute('cx',cx(cvTemp).toFixed(1)); d.setAttribute('cy',cy(solAt(s,cvTemp)).toFixed(1)); });
+  const k=solAt(SOLUTES[0],cvTemp), u=solAt(SOLUTES[1],cvTemp), n=solAt(SOLUTES[2],cvTemp);
+  document.getElementById('cv-kno3').textContent=k.toFixed(0)+' g';
+  document.getElementById('cv-cuso4').textContent=u.toFixed(0)+' g';
+  document.getElementById('cv-nacl').textContent=n.toFixed(0)+' g';
+  document.getElementById('cvTempVal').textContent=cvTemp+' °C';
+  document.getElementById('cv-pill').textContent='Reading at '+cvTemp+' °C';
+  const order=[['potassium nitrate',k],['copper sulfate',u],['sodium chloride',n]].sort((a,b)=>b[1]-a[1]);
+  let note='Most soluble here: '+order[0][0]+' ('+order[0][1].toFixed(0)+' g). Least: '+order[2][0]+' ('+order[2][1].toFixed(0)+' g). ';
+  if(Math.abs(k-n)<2) note += 'Potassium nitrate and sodium chloride are neck and neck — this is where the curves cross.';
+  else if(cvTemp>=80) note += 'Potassium nitrate now holds more than five times what sodium chloride does; sodium chloride has barely moved since 0 °C.';
+  else if(cvTemp<20) note += 'At the cold end sodium chloride wins — the steep curve has not caught up yet.';
+  document.getElementById('cv-note').textContent=note;
+}
+document.getElementById('cvTemp').addEventListener('input', e=>{ cvTemp=+e.target.value; paintCurves(); });
+
+const CURVE_PUZZLES = [
+ {kind:'pos', ask:"Move the cursor to the temperature where <strong>potassium nitrate and sodium chloride</strong> have the <strong>same solubility</strong>.",
+  test:()=>Math.abs(solAt(SOLUTES[0],cvTemp)-solAt(SOLUTES[2],cvTemp))<=1.5, why:"About 23 °C — the crossing point. Colder, salt wins; warmer, potassium nitrate runs away."},
+ {kind:'pos', ask:"Move the cursor to the lowest temperature at which <strong>50 g of copper sulfate</strong> will dissolve in 100 g of water.",
+  test:()=>{ const u=solAt(SOLUTES[1],cvTemp); return u>=50 && solAt(SOLUTES[1],Math.max(0,cvTemp-3))<50; }, why:"Just under 75 °C: 47 g at 70, 55 g at 80. Go up from the axis until the curve reaches 50."},
+ {kind:'num', ask:"Read the solubility of <strong>potassium nitrate at 70 °C</strong> and type it, in g per 100 g of water.",
+  test:v=>Math.abs(v-138)<=3, why:"138 g per 100 g of water. Go up from 70 °C to the indigo line, then across."},
+ {kind:'num', ask:"A saturated potassium nitrate solution in 100 g of water cools from <strong>80 °C to 40 °C</strong>. Use the curves and type the mass of crystals that forms.",
+  test:v=>Math.abs(v-105)<=4, why:"169 g at 80 °C − 64 g at 40 °C = 105 g of crystals. Two readings and a subtraction."},
+ {kind:'num', ask:"Type the mass of <strong>sodium chloride</strong> that crystallises when a saturated solution in 100 g of water cools from <strong>100 °C to 0 °C</strong>.",
+  test:v=>Math.abs(v-4)<=1, why:"40 − 36 = 4 g. Cooling a salt solution gives back almost nothing — which is why salt is recovered by evaporation, not by cooling."}
+];
+let curveQ=null;
+document.getElementById('curvePuzzle').addEventListener('click', ()=>{
+  curveQ = CURVE_PUZZLES[Math.floor(Math.random()*CURVE_PUZZLES.length)];
+  const box=document.getElementById('curveQuiz'); box.classList.add('on');
+  const input = curveQ.kind==='num' ? '<input class="rfin" id="curveIn" type="number" step="1" min="0" max="300" placeholder="g" aria-label="Your answer in grams">' : '';
+  box.innerHTML = '<strong>Puzzle.</strong> ' + curveQ.ask +
+    '<div class="qrow">' + input + '<button class="btn ghost small" type="button" id="curveCheck">Check</button>' +
+    '<span id="curveFb" class="num" style="font-size:13px"></span></div>';
+  document.getElementById('curveCheck').addEventListener('click', ()=>{
+    const fb=document.getElementById('curveFb');
+    const inEl=document.getElementById('curveIn'); const v = inEl ? parseFloat(inEl.value) : null;
+    const pass = curveQ.kind==='pos' ? curveQ.test() : (!isNaN(v) && curveQ.test(v));
+    if(pass){ fb.style.color='var(--ok)'; fb.textContent='Correct — '+curveQ.why; S.puzzles=(S.puzzles||0)+1; save(); refresh(); document.getElementById('curveCheck').disabled=true; }
+    else { fb.style.color='var(--no)'; fb.textContent = curveQ.kind==='pos' ? 'Not there. Cursor is at '+cvTemp+' °C — read the three cells and move.' : 'Not quite. Read the curve again, and check you used the right temperature.'; }
+  });
+});
+
+function boot(){
+  paintTank();
+  paintCurves();
+}
+
+
+/* ---------------- boot ---------------- */
+(async function(){
+  await loadState();
+  restore();
+  boot();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='solutions', SUBJECT='chemistry', TITLE='Disappearing Act', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

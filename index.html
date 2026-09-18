@@ -354,6 +354,18 @@ let S = { puzzles:{}, filter:'all', pIdx:null };
    The printed papers live on each topic page, in its #papers section — set papers
    to how many that page links, and this hub signposts them.                      */
 const TOPICS = [
+ {id:'mixtures', file:'mixtures.html', subject:'chemistry', status:'ready', papers:4,
+  title:'One Thing, or Many?', sub:'Chemistry · pure substances and mixtures',
+  blurb:'Build a box of particles from five substances and let the machine rule on whether it is an element, a compound or a mixture — then add impurities to a sample and watch its sharp melting point smear into a range. The one test examiners always ask for.',
+  meta:['30 marks', '6 lessons', 'particle builder']},
+ {id:'separating', file:'separating.html', subject:'chemistry', status:'ready', papers:4,
+  title:'Take It Apart', sub:'Chemistry · separating mixtures',
+  blurb:'Plan a separation step by step on a bench that actually runs it — filter salt water and watch nothing happen — then run a chromatogram, read the distances off the paper and work out Rf yourself. Filtration, evaporation, distillation and chromatography, with the reasons that earn the marks.',
+  meta:['30 marks', '6 lessons', 'separation bench']},
+ {id:'solutions', file:'solutions.html', subject:'chemistry', status:'ready', papers:4,
+  title:'Disappearing Act', sub:'Chemistry · solutions and solubility',
+  blurb:'Pour solute into a tank of water, heat it, cool it, and watch exactly how much dissolves and how much lands on the bottom — then read the same numbers off real solubility curves. Solute, solvent, saturated, and the factors that change solubility against the ones that only change speed.',
+  meta:['30 marks', '6 lessons', 'dissolving tank']},
  {id:'reading', file:'reading.html', subject:'english', status:'ready', papers:4,
   title:'Between the Lines', sub:'English · reading comprehension',
   blurb:'Says, Shows, So what — three rungs, five tells and one sentence shape that turns a 1-mark answer into a 2-mark one. Highlight the evidence yourself, build an answer the machine marks like an examiner, and learn where the line is between inference and inventing.',
@@ -454,8 +466,6 @@ const TOPICS = [
   title:'The Digestive System', sub:'Enzymes and absorption'},
  {id:'photosynthesis', subject:'biology', status:'planned',
   title:'Photosynthesis', sub:'The reaction, the leaf, the experiments'},
- {id:'separation', subject:'chemistry', status:'planned',
-  title:'Mixtures and Separation', sub:'Filtration, distillation, chromatography'},
  {id:'reactions', subject:'chemistry', status:'planned',
   title:'Chemical Reactions', sub:'Word equations and conservation of mass'}
 ];

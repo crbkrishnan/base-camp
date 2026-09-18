@@ -52,6 +52,9 @@ gaspressure.html        Physics   · gas pressure, particle model, diffusion
 magnetism.html          Physics   · magnets and magnetic fields
 respiration.html        Biology   · gas exchange
 particles.html          Chemistry · the particle model
+mixtures.html           Chemistry · pure substances and mixtures
+separating.html         Chemistry · separating mixtures, Rf
+solutions.html          Chemistry · solutions and solubility
 reading.html            English   · reading comprehension (25-mark papers, not 30)
 sheets/*.pdf            test papers + mark schemes (generated — never edit a PDF)
 .nojekyll               stops GitHub Pages hiding underscore paths
@@ -60,7 +63,8 @@ tools/
   paper_lib.py          PDF engine: layout, ruled space, tick boxes,
                         line-numbered reading passages, mark schemes
   papers/*.py           one file per topic; content + answers live here
-  legacy/               scaffolding used to generate particles.html and speed.html
+  legacy/               scaffolding used to generate particles.html, speed.html
+                        and (unit5/) the three chemistry Unit 5 pages — run once, never re-run
 docs/                   the guides listed above
 ```
 

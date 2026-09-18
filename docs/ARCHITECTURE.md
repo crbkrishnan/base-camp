@@ -20,6 +20,7 @@ Keys in use:
 | `respiration-progress-v1` | respiration.html | same shape |
 | `particles-progress-v1` | particles.html | same shape |
 | `ratio-progress-v1` | ratio.html | same shape |
+| `<topic>-progress-v1` | every later topic page | same shape — the key is always the page id |
 | `hub-progress-v1` | every topic page | per-topic summary the hub reads |
 | `hub-state-v1` | index.html | puzzle record, subject filter |
 | `firstmove-progress-v1` | firstmove.html | `{seen, tech, sessions, bestStreak, right, wrong, lastScore}` |

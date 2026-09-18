@@ -1,0 +1,689 @@
+# -*- coding: utf-8 -*-
+# Content module for mixtures.html — Chemistry 5.1, pure substances and mixtures.
+ID = 'mixtures'
+TITLE = 'One Thing, or Many? — Grade 7 IGCSE Chemistry'
+BRIDGE_TITLE = 'One Thing, or Many?'
+
+MANIFEST = '''<script type="application/json" id="hub-card">
+{
+  "id": "mixtures",
+  "file": "mixtures.html",
+  "subject": "chemistry",
+  "status": "ready",
+  "papers": 4,
+  "title": "One Thing, or Many?",
+  "sub": "Chemistry · pure substances and mixtures",
+  "blurb": "Build a box of particles from five substances and let the machine rule on whether it is an element, a compound or a mixture — then add impurities to a sample and watch its sharp melting point smear into a range. The one test examiners always ask for.",
+  "meta": ["30 marks", "6 lessons", "particle builder"]
+}
+</script>'''
+
+ROOT_CSS = ''':root{
+  --ink:#1A1A22;
+  --ink-soft:#575463;
+  --paper:#EEEAE1;
+  --card:#FFFFFF;
+  --line:#D8D2C6;
+  --line-soft:#E8E3DA;
+  --el:#2B4E9B;         /* element — always indigo */
+  --el-tint:#E9EDF7;
+  --co:#0E7C6B;         /* compound — always green-teal */
+  --co-tint:#E2F1EE;
+  --mi:#B4560B;         /* mixture — always amber */
+  --mi-tint:#FBEFE3;
+  --fr:var(--el);  --fr-tint:var(--el-tint);
+  --de:var(--co);  --de-tint:var(--co-tint);
+  --pc:var(--mi);  --pc-tint:var(--mi-tint);
+  --steel:#A29B8C;
+  --steel-dark:#6F6A5D;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#98241B;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}'''
+
+EXTRA_CSS = '''nav.jump{background:rgba(238,234,225,.93)}
+.eltxt{color:var(--el);font-weight:700}
+.cotxt{color:var(--co);font-weight:700}
+.mitxt{color:var(--mi);font-weight:700}
+.pill.el{background:var(--el-tint);color:var(--el)}
+.pill.co{background:var(--co-tint);color:var(--co)}
+.pill.mi{background:var(--mi-tint);color:var(--mi)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.chip{font-family:var(--display);font-weight:700;font-size:13px;cursor:pointer;border-radius:99px;padding:7px 12px 7px 8px;
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);display:inline-flex;align-items:center;gap:7px}
+.chip svg{width:34px;height:16px;display:block}
+.chip.on{border-color:var(--ink);background:var(--card);box-shadow:inset 0 0 0 1px var(--ink)}
+.chip .kind{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}'''
+
+BODY_HTML = r'''<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Chemistry · Grade 7 · Unit 5.1 · Pure substances and mixtures</div>
+  <h1>One Thing,<br>or <b>Many?</b></h1>
+  <p class="lede">A chemist's "pure" has nothing to do with orange juice. It means <strong>one substance and nothing else</strong> — and whether a box of particles holds one substance or several is a question you can settle by looking. This page teaches you to look, then to prove it with a thermometer.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> You've been landing around <span class="num">10 out of 15</span>. This page is out of <span class="num">30</span>, so the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Most of the marks here go to three words used precisely — <em>element</em>, <em>compound</em>, <em>mixture</em> — and to one test: a pure substance melts at one temperature, a mixture melts over a range.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#builder">Particle builder</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#melt">Melting-point test</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
+</nav>
+
+
+<!-- ============ HERO 1: THE PARTICLE BUILDER ============ -->
+<section id="builder">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The particle builder</h2>
+      <p>Five substances, three kinds of atom. Switch substances into the box and the machine rules on what you have made. The rule it uses is the only one that matters: <strong>one substance is pure; more than one is a mixture</strong> — and a substance is a compound if its particles contain more than one kind of atom joined together.</p>
+    </div>
+
+    <div class="chips" id="chips"></div>
+
+    <svg class="stage" id="pbox" viewBox="0 0 500 260" role="img" aria-label="A box of particles built from the substances you have switched on">
+      <rect x="40" y="26" width="420" height="214" rx="4" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+      <g id="parts"></g>
+      <text x="46" y="20" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)">WHAT IS IN THE BOX</text>
+    </svg>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">Verdict</div><div class="val" id="pb-verdict">Pure</div><div class="sub" id="pb-verdicts">one substance only</div></div>
+      <div class="cell d"><div class="lab">Made of</div><div class="val" id="pb-made">1 element</div><div class="sub" id="pb-mades">every particle is the same</div></div>
+      <div class="cell p"><div class="lab">Kinds of atom</div><div class="val" id="pb-kinds">1</div><div class="sub" id="pb-kindss">sharp melting point: yes</div></div>
+      <div class="phasebar">
+        <span class="pill el" id="pb-pill">Pure element</span>
+        <span id="pb-note">Single atoms of one kind, all the same. This is an element — nothing to separate.</span>
+        <span class="push"><button class="btn ghost" type="button" id="boxPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="boxQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~30 min total</span></div>
+  <p class="snote">Each video comes with one small written job. Do the job, or the video was a screensaver with chemistry on it. If you are not going to write the lines underneath, close the video and go straight to the questions instead — that is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~35 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: THE MELTING-POINT TEST ============ -->
+<section id="melt">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The melting-point test</h2>
+      <p>A solid whose data-book melting point is <span class="num">80 °C</span>, heated at a steady rate. Start with it pure and the graph has a hard, flat shelf at exactly 80. Now stir in impurity and watch the shelf tilt, sink and smear out into a range. This is the test examiners mean by <em>"how could you check that the sample is pure?"</em></p>
+    </div>
+
+    <svg class="stage" id="mcurve" viewBox="0 0 700 330" role="img" aria-label="A heating curve whose flat melting section becomes a sloping range as impurity is added">
+      <line x1="60" y1="40" x2="60" y2="280" stroke="var(--line)" stroke-width="2"/>
+      <line x1="60" y1="280" x2="668" y2="280" stroke="var(--line)" stroke-width="2"/>
+      <g id="mgrid-lines"></g>
+      <polyline id="mc-pure" fill="none" stroke="var(--line)" stroke-width="4" stroke-dasharray="6 6" stroke-linejoin="round" points=""/>
+      <polyline id="mc-live" fill="none" stroke="var(--el)" stroke-width="6" stroke-linejoin="round" points=""/>
+      <circle id="mc-dot" cx="60" cy="280" r="8" fill="var(--el)" stroke="#fff" stroke-width="2.5"/>
+      <text x="60" y="308" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)">ENERGY ADDED &#8594;</text>
+      <text x="14" y="46" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)">°C</text>
+    </svg>
+
+    <div class="ctrl">
+      <label for="imp">Impurity</label>
+      <input id="imp" type="range" min="0" max="30" value="0" step="1" aria-label="Percentage of impurity in the sample">
+      <span class="num" id="impval" style="min-width:70px;text-align:right">0%</span>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="menergy">Energy added</label>
+      <input id="menergy" type="range" min="0" max="1000" value="0" step="1" aria-label="Energy added to the sample">
+      <span class="num" id="menergyval" style="min-width:70px;text-align:right">0%</span>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">Starts melting at</div><div class="val" id="mc-start">80 °C</div><div class="sub" id="mc-starts">data-book value</div></div>
+      <div class="cell d"><div class="lab">Finishes melting at</div><div class="val" id="mc-end">80 °C</div><div class="sub" id="mc-ends">same temperature</div></div>
+      <div class="cell p"><div class="lab">Melting range</div><div class="val" id="mc-range">0 °C</div><div class="sub" id="mc-ranges">sharp — one temperature</div></div>
+      <div class="phasebar">
+        <span class="pill el" id="mc-pill">Pure sample</span>
+        <span id="mc-note">The dashed grey line is always the pure sample, so you can see how far the impure one has drifted from it.</span>
+        <span class="push"><button class="btn ghost" type="button" id="curvePuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="curveQuiz"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes, no looking back at the lessons. These are the five marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marks only count if you write your answer before opening the scheme — otherwise you're just reading, and reading feels like learning without being learning.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Using "pure" the way a juice carton does</h4><p>"Pure orange juice" is water, sugars, acids and a hundred flavour compounds — a mixture. In chemistry, pure means <em>one substance only</em>. If a question asks whether a sample is pure and you answer "yes, nothing has been added to it", you have answered a different question. Answer with the melting point.</p></div>
+    <div class="trap"><h4>Calling a compound a mixture because it contains two elements</h4><p>Water contains hydrogen and oxygen, but you cannot filter the hydrogen out. The atoms are <em>chemically joined</em> in a fixed ratio, so water is one substance — a compound, and pure. A mixture is two or more substances that are <em>not</em> joined to each other. Write "joined" or "bonded" when you mean a compound, and "not chemically joined" when you mean a mixture.</p></div>
+    <div class="trap"><h4>Saying a mixture melts "at a lower temperature"</h4><p>Half the answer. An impure substance melts at a <strong>lower temperature</strong> <em>and</em> <strong>over a range</strong> of temperatures, rather than sharply at one. Both halves are separate marks, and the range is the one students forget. The machine above shows it: the shelf sinks <em>and</em> tilts.</p></div>
+    <div class="trap"><h4>Drawing a mixture as two kinds of particle touching in pairs</h4><p>If two different circles are drawn joined together, you have drawn a compound. A mixture of two elements is two kinds of particle <em>scattered among each other</em>, each kind on its own. Check every diagram you draw: is anything joined that should not be?</p></div>
+    <div class="trap"><h4>Believing that a compound behaves like a bit of each element</h4><p>Sodium is a metal that explodes in water; chlorine is a poisonous green gas; sodium chloride is table salt. A compound has its <em>own</em> properties, usually nothing like the elements it is made from. A mixture, by contrast, keeps the properties of everything in it — iron filings mixed with sulfur still stick to a magnet.</p></div>
+  </div>
+</section>
+
+
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/chemistry-mixtures-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Definitions of element, compound and mixture; sorting everyday substances; particle diagrams to draw and to classify; and the properties of mixtures.</p></a>
+    <a class="paper" href="sheets/chemistry-mixtures-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Compound against mixture in a table, iron and sulfur, reading melting-point data to decide whether samples are pure, and air as a mixture.</p></a>
+    <a class="paper" href="sheets/chemistry-mixtures-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Heating curves of pure and impure samples, planning a purity test, salt on icy roads, and unfamiliar substances to classify from their particle descriptions.</p></a>
+    <a class="paper" href="sheets/chemistry-mixtures-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Multi-step problems: identifying substances from melting-point data, a six-mark explanation of why a compound is not a mixture, and two wrong answers to diagnose and correct.</p></a>
+  </div>
+</section>
+
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+'''
+
+DATA_JS = r'''/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"What Is An Element, Mixture And Compound?", ch:"FuseSchool", url:"https://www.youtube.com/watch?v=DZ6Ap8Zyb9w",
+  why:"The three definitions in four minutes, drawn with particle diagrams — which is exactly how the exam will ask them. Everything on this page hangs off these three pictures.",
+  task:"Pause at each particle diagram and copy it. Under each one write a single line: 'one substance' or 'more than one substance'. That line is the whole test for pure against mixture."},
+
+ {t:"Element Mixture Or Compound", ch:"FuseSchool", url:"https://www.youtube.com/watch?v=MaZ7lsc5ub8",
+  why:"A practice run. Diagrams flash up and you classify them before the answer appears. Do it properly — say your answer out loud before it is revealed — and you will not need to revise Q1 to Q3.",
+  task:"Keep a tally of right and wrong. For every one you got wrong, write which of the three words you confused with which, and why. If you got them all right, build three of your own in the particle builder above and label them."},
+
+ {t:"GCSE Chemistry Revision — Elements, Compounds and Mixtures", ch:"Freesciencelessons", url:"https://www.youtube.com/watch?v=nUzOXy9V-K0",
+  why:"The same content at exam pitch, with the phrases that carry marks: 'chemically joined', 'fixed ratio', 'not chemically combined'. Listen for those.",
+  task:"Write down the three phrases he uses that you would not have used yourself. Then write one sentence about water and one about air using at least one of them each."},
+
+ {t:"GCSE Chemistry — Pure Substances Explained", ch:"Cognito", url:"https://www.youtube.com/watch?v=aAPyPH6wx0U",
+  why:"This is where the chemist's meaning of 'pure' is nailed down, and where you meet the melting-point test for the first time. Q8, Q13 and Q14 all come from here.",
+  task:"Finish this sentence in writing: 'A pure substance melts at ___, but a mixture melts ___.' Get both blanks right — the second one has two parts."},
+
+ {t:"GCSE Chemistry Revision — Purity and Formulations", ch:"Freesciencelessons", url:"https://www.youtube.com/watch?v=3oJxWwcnfJY",
+  why:"The melting-point test at exam pitch, with the exact wording the mark scheme wants: sharp against range, and below the data-book value. Stop when he reaches formulations — that part is beyond Grade 7.",
+  task:"Before he gives the answer to any melting-point example, pause and write your own. Compare. If yours lacked the word 'range', write it out again with the word in."},
+
+ {t:"Tutorial: Paper & Thin Layer Chromatography", ch:"FuseSchool", url:"https://www.youtube.com/watch?v=J8r8hN05xXk",
+  why:"The second purity test, and a preview of the next topic: a pure substance gives one spot on a chromatogram, a mixture gives several. Watch the paper version; the thin-layer part is optional.",
+  task:"Write two sentences: what a pure substance looks like on a chromatogram, and what a mixture looks like. Then write which of the two purity tests — melting point or chromatography — you would use for a coloured dye, and why."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"What a chemist means by pure", len:"5 min",
+  body:`<p>Outside a lab, "pure" means natural, or clean, or with nothing added. In chemistry it means one thing only: <strong>a single substance, with nothing else mixed in</strong>. Pure water is water particles and nothing else. Pure gold is gold atoms and nothing else. Pure orange juice, by the chemist's definition, is nowhere near pure.</p>
+        <p>The test is visual. Draw the particles. If every particle is the same, the substance is pure. If there are two or more different particles scattered about, it is a <span class="mitxt">mixture</span>. That is genuinely the whole rule, and every question on this page reduces to it.</p>
+        <table class="data">
+          <tr><th></th><th>Pure substance</th><th>Mixture</th></tr>
+          <tr><th>Contains</th><td>one substance</td><td>two or more substances</td></tr>
+          <tr><th>Particles</th><td>all identical</td><td>two or more different kinds, not joined to each other</td></tr>
+          <tr><th>Composition</th><td>fixed</td><td>can be anything — a pinch of salt or a spoonful</td></tr>
+          <tr><th>Melting point</th><td>one sharp temperature</td><td>a range, and lower than the pure substance</td></tr>
+        </table>
+        <p>Notice the last row now, because it is the practical test. You cannot see particles. You <em>can</em> put a thermometer in a sample and watch it melt.</p>`,
+  demo:`<strong>Do this:</strong> find three things in the kitchen labelled "pure" or "100%". For each one, write whether a chemist would agree, and the one word that decides it: <em>one</em> substance, or <em>several</em>.`,
+  cliff:`A pure substance is all one kind of particle. But water particles contain two kinds of atom. So is water pure or not?`},
+
+ {t:"Elements and compounds", len:"7 min",
+  body:`<p>Every particle is built from <strong>atoms</strong>, and there are about a hundred kinds of atom. That gives two kinds of pure substance.</p>
+        <p>An <span class="eltxt">element</span> contains <strong>one kind of atom only</strong>. Some elements are single atoms drifting about (helium, argon); some join their atoms into small molecules (oxygen is O<sub>2</sub>, two oxygen atoms stuck together); some pack their atoms into a solid lump (iron, copper). All three are elements, because there is only one kind of atom in the box.</p>
+        <p>A <span class="cotxt">compound</span> contains <strong>two or more kinds of atom chemically joined together</strong>, always in the same fixed ratio. Water is H<sub>2</sub>O: every single water particle is two hydrogens joined to one oxygen. Not roughly — exactly. That fixed ratio is why a compound counts as <em>one</em> substance, and therefore as pure.</p>
+        <p>Three things follow from the atoms being joined, and all three turn up in exam questions:</p>
+        <ul>
+          <li>A compound has <strong>its own properties</strong>, usually nothing like its elements. Hydrogen burns and oxygen feeds fires; water puts them out.</li>
+          <li>You <strong>cannot separate</strong> a compound by physical means — no filter, magnet or evaporating dish pulls the hydrogen out of water. It takes a chemical reaction.</li>
+          <li>Making a compound <strong>is</strong> a chemical reaction. Energy is usually given out or taken in, and the change is hard to reverse.</li>
+        </ul>`,
+  demo:`<strong>Do this:</strong> write down five substances from around the house. Sort them into element, compound or "not sure yet". Salt, water, sugar, the copper in a wire and the aluminium in foil are enough to start.`,
+  cliff:`Iron filings stirred into yellow sulfur powder: two elements, side by side. Warm the mix and it glows and turns into one grey solid. What changed?`},
+
+ {t:"Mixtures, and the iron-and-sulfur experiment", len:"7 min",
+  body:`<p>A <span class="mitxt">mixture</span> is two or more substances in the same place that are <strong>not chemically joined</strong>. The classic demonstration uses iron filings and sulfur powder, and it is worth knowing in detail because examiners love it.</p>
+        <p><strong>Before heating</strong> you have a mixture. You can see grey and yellow specks. A magnet pulls the iron out and leaves the sulfur. You could have mixed any amounts — a lot of iron and a little sulfur, or the reverse. And each substance keeps its own properties: the iron still rusts, the sulfur still burns with a blue flame.</p>
+        <p><strong>After heating</strong> you have iron sulfide, a compound. It is a single grey solid with no specks. A magnet does nothing to it. The iron and sulfur atoms are joined in a fixed ratio, and there is no physical way to get them apart again.</p>
+        <table class="data">
+          <tr><th></th><th>Iron + sulfur mixture</th><th>Iron sulfide compound</th></tr>
+          <tr><th>Appearance</th><td>grey and yellow specks</td><td>one uniform grey solid</td></tr>
+          <tr><th>Magnet</th><td>pulls the iron out</td><td>no effect</td></tr>
+          <tr><th>Ratio of iron to sulfur</th><td>anything you like</td><td>fixed</td></tr>
+          <tr><th>Properties</th><td>each element keeps its own</td><td>new properties of its own</td></tr>
+          <tr><th>To separate</th><td>physical method (magnet)</td><td>needs a chemical reaction</td></tr>
+        </table>
+        <p>Mixtures are everywhere once you look. <strong>Air</strong> is about 78% nitrogen, 21% oxygen and 1% argon with a little carbon dioxide and water vapour — and none of them are joined to each other. <strong>Sea water</strong> is water with several salts dissolved in it. <strong>Brass</strong> is copper mixed with zinc: a solid mixture of metals, called an alloy, and useful precisely because you can tune the proportions.</p>`,
+  demo:`<strong>Do this:</strong> without looking back, write the five rows of the table above for "sand and salt" against "sodium chloride". Then check which rows you could actually fill in and which you guessed.`,
+  cliff:`Two white powders. One is a pure compound, the other a mixture that looks identical. No magnet helps. How do you tell them apart?`},
+
+ {t:"The melting-point test", len:"7 min",
+  body:`<p>You cannot see particles, but you can watch a sample melt. A <strong>pure substance melts at one sharp temperature</strong> — the whole sample is the same particle, held by the same forces, so it all lets go at once. Pure ice melts at exactly 0 °C. Pure stearic acid melts at 69 °C. The data book lists these, and they do not vary.</p>
+        <p>An <strong>impure substance melts over a range</strong>, and that range starts <strong>below</strong> the pure melting point. Stray particles of the impurity get in the way of the regular pattern, so it takes less energy to loosen it — melting begins early — and different parts of the sample let go at different temperatures, so it finishes late. The machine below shows both effects at once: the shelf sinks and it tilts.</p>
+        <div class="eqline">pure: melts sharply at 80 °C &nbsp;·&nbsp; with impurity: starts at 68 °C, finishes at 77 °C — a 9 °C range, and all of it below 80</div>
+        <p>Boiling works the same way in reverse: an impurity <strong>raises</strong> the boiling point and spreads it out. Salt water boils a little above 100 °C, and the temperature keeps creeping up as it boils because the solution gets more concentrated.</p>
+        <p><strong>How to answer "how would you test whether the sample is pure?"</strong> Four steps, each worth something: measure its melting point; compare with the data-book value; a pure sample melts <em>sharply</em>, <em>at</em> that value; an impure one melts <em>over a range</em>, <em>below</em> it. Say all four and you have the full marks.</p>
+        <p>This is also why <strong>salt is spread on icy roads</strong>. Salt mixed with ice is impure ice, and impure ice melts below 0 °C — so the road stays liquid at temperatures that would otherwise freeze it.</p>`,
+  demo:`<strong>Do this:</strong> put two ice cubes on two saucers. Sprinkle salt on one. Check every five minutes and write which is melting faster and the one-line reason, using the word "impure".`,
+  cliff:`Here is a table: sample A melts at 80 °C, sample B melts at 74–79 °C, sample C melts at 80–81 °C. Which are pure? One of these is a trap.`},
+
+ {t:"Reading melting-point data", len:"5 min",
+  body:`<p>The exam version of the melting-point test is a table. You get three or four samples with their observed melting points, the data-book value for the pure substance, and a question about which samples are pure. There is a method.</p>
+        <ol>
+          <li><strong>Is it a single temperature or a range?</strong> A range means impure, full stop.</li>
+          <li><strong>Does it match the data-book value?</strong> A sharp melting point that matches means pure. A sharp melting point that <em>doesn't</em> match means it is a different substance altogether — pure, but not the one you were told.</li>
+          <li><strong>Which is most impure?</strong> The widest range, and the one that starts lowest. More impurity, more disruption.</li>
+        </ol>
+        <p>Now the cliffhanger table. Sample A melts sharply at 80 °C: pure. Sample B melts over 74–79 °C: impure, and the range sits below 80 as it should. Sample C melts over 80–81 °C: that is the trap. It is a range, so it is not pure — but a real impurity would push it <em>below</em> 80, not above. A careful answer says "impure, because it melts over a range", and a very careful one adds that a range above the pure value is not what an impurity does, so something else is going on (a thermometer error, or a different substance).</p>
+        <p>There is a second purity test, used for coloured substances: <strong>chromatography</strong>. Put a spot of the sample on paper and let a solvent carry it. A pure substance travels as <strong>one spot</strong>; a mixture separates into <strong>several</strong>. The next topic page is about that.</p>
+        <p>One more data skill: <strong>state at a given temperature</strong>. If a substance melts at −7 °C and boils at 58 °C, then at 20 °C it is above its melting point and below its boiling point, so it is a liquid. Always give both comparisons; one of them narrows it to two states, not one.</p>`,
+  demo:`<strong>Do this:</strong> make up your own three-sample table with one pure, one impure and one trap. Write the answer key underneath. Then hide the key and answer it tomorrow.`,
+  cliff:`You can now name the three types and test for purity. The questions below are where you find out whether you can draw and write them under time.`},
+
+ {t:"Particle diagrams that score", len:"5 min",
+  body:`<p>A third of the marks on this topic are for diagrams, and the marking is mechanical. The examiner checks three things, so check them yourself before you lift the pen.</p>
+        <ul>
+          <li><strong>Element:</strong> all circles the same colour or size. If the element is made of molecules (like oxygen), draw the identical circles <em>touching in pairs</em>, every pair the same.</li>
+          <li><strong>Compound:</strong> every particle is a small group of <em>different</em> circles joined together, and every group is <em>identical</em>. Two blues and one red, two blues and one red, two blues and one red. If one group has a different make-up, you have drawn a mixture of compounds.</li>
+          <li><strong>Mixture:</strong> two or more different kinds of particle scattered among each other and <em>not joined to each other</em>. A mixture of two elements is two kinds of lone circle. A mixture of an element and a compound is lone circles plus identical groups. Nothing is joined across the kinds.</li>
+        </ul>
+        <p>The two errors that lose marks every time: joining the different circles of a mixture together (that makes a compound), and drawing a compound's groups with inconsistent make-up (that makes a mixture). Both are one careless circle away. Draw slowly.</p>
+        <p>Read a diagram the same way in reverse. Count the kinds of atom. Count the kinds of particle. One kind of particle means pure; more than one means mixture. Then look inside a particle: one kind of atom means element, more than one means compound.</p>`,
+  demo:`<strong>Do this:</strong> draw, from memory and in under two minutes, six boxes: an element of single atoms, an element of molecules, a compound, a mixture of two elements, a mixture of two compounds, and a mixture of an element and a compound. Check all six against the particle builder.`,
+  cliff:`Two things are true at once: water is pure, and water contains two elements. If you can explain how both hold, you are ready for Q15.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which of these is a <strong>pure substance</strong>?", o:["Sea water","Air","Distilled water","Orange juice"], a:2,
+  why:"Distilled water is water particles and nothing else — one substance. Sea water, air and orange juice each contain several substances not joined to each other, so all three are mixtures, whatever the carton says."},
+ {n:2, lvl:"warm-up", q:"A substance contains two kinds of atom <strong>chemically joined</strong> in a fixed ratio. It is…", o:["an element","a compound","a mixture","a solution"], a:1,
+  why:"Two or more kinds of atom joined together in a fixed ratio is the definition of a compound. Two kinds of atom simply present in the same place, not joined, would be a mixture."},
+ {n:3, lvl:"standard", q:"Which statement about a <strong>mixture</strong> is correct?", o:["Its substances are joined in a fixed ratio","It can be separated by physical methods","It always has a sharp melting point","It has new properties unlike its parts"], a:1,
+  why:"Because nothing is chemically joined, a mixture can be taken apart by filtering, evaporating, magnets and so on. The other three statements all describe compounds — the trap is picking the one you half-remember."},
+ {n:4, lvl:"standard", q:"A solid sample melts between 62 °C and 68 °C. The data book gives its melting point as 70 °C. The sample is…", o:["pure, because it melts near 70 °C","impure, because it melts over a range below 70 °C","pure, because it melts sharply","a different substance"], a:1,
+  why:"Two signs of impurity, and both are here: the melting is spread over a range instead of happening at one temperature, and the range sits below the pure value. That is what impurity does — it lowers the melting point and smears it out."},
+ {n:5, lvl:"trap", q:"Iron filings and sulfur powder are heated together and form iron sulfide. Which of these is <strong>true of the product</strong>?", o:["A magnet can still pull the iron out","It is a mixture of iron and sulfur","The iron and sulfur atoms are chemically joined","The ratio of iron to sulfur can be anything"], a:2,
+  why:"Heating causes a chemical reaction, and the product is a compound: iron and sulfur atoms joined in a fixed ratio. That is why the magnet no longer works and why it has none of the properties of the separate elements."}
+];
+
+const SHORTS = [
+ {n:6, lvl:"standard", m:2, q:"State what is meant by a <strong>pure substance</strong>, and give <strong>one</strong> example.",
+  scheme:["A substance made of only one substance — only one type of particle, with nothing else mixed in. <span class='num'>[1]</span>",
+          "Example: any single element or compound — distilled water, oxygen, sodium chloride, gold. <span class='num'>[1]</span>"],
+  tip:"\"Something natural with nothing added\" scores nothing. The word that earns the mark is \"one\" — one substance, one type of particle."},
+
+ {n:7, lvl:"standard", m:2, q:"Explain the difference between an <strong>element</strong> and a <strong>compound</strong>.",
+  scheme:["An element contains only one kind of atom. <span class='num'>[1]</span>",
+          "A compound contains two or more kinds of atom chemically joined together (in a fixed ratio). <span class='num'>[1]</span>"],
+  tip:"\"Chemically joined\" is doing the work in the second mark. Without it, \"two kinds of atom\" also describes a mixture of elements."},
+
+ {n:8, lvl:"standard", m:2, q:"Describe how the melting of an <strong>impure</strong> solid differs from the melting of the same solid when pure.",
+  scheme:["The impure solid melts over a range of temperatures rather than sharply at one temperature. <span class='num'>[1]</span>",
+          "It starts to melt at a lower temperature than the pure solid. <span class='num'>[1]</span>"],
+  tip:"Two marks, two ideas: lower, and over a range. Almost everyone writes the first and forgets the second."},
+
+ {n:9, lvl:"standard", m:2, q:"Air is described as a mixture. Give <strong>two</strong> pieces of evidence that support this.",
+  scheme:["Any two: the proportions of the gases can vary (e.g. more water vapour on a humid day); <span class='num'>[1]</span>",
+          "the gases can be separated by physical means (fractional distillation of liquid air); or each gas keeps its own properties (oxygen still supports burning). <span class='num'>[1]</span>"],
+  tip:"\"It contains different gases\" is not evidence — a compound also contains different elements. Evidence is something a compound could not do: vary in composition, or be separated physically."},
+
+ {n:10, lvl:"hard", m:2, q:"A student says: \"Water must be a mixture, because it is made of hydrogen and oxygen.\" Explain why the student is wrong.",
+  scheme:["In water the hydrogen and oxygen atoms are chemically joined together, in a fixed ratio (H<sub>2</sub>O), so every particle is the same. <span class='num'>[1]</span>",
+          "A mixture contains substances that are not chemically joined; the hydrogen and oxygen cannot be separated from water by physical means, so it is a compound (and pure). <span class='num'>[1]</span>"],
+  tip:"Containing two elements is not the same as being a mixture of two elements. The question is whether the atoms are joined, not whether there are two kinds."}
+];
+
+const WORDS = [
+ {n:11, lvl:"standard", m:3, q:"A box contains particles. Some are single blue circles; the rest are groups of one blue circle joined to two red circles, and every group is identical.<br><br><strong>(a)</strong> How many kinds of atom are present? <span class='num'>[1]</span><br><strong>(b)</strong> How many different substances are present? <span class='num'>[1]</span><br><strong>(c)</strong> State whether the contents of the box are pure or a mixture, and what the two types of particle are. <span class='num'>[1]</span>",
+  hints:["Kinds of atom means colours of circle. Kinds of substance means kinds of particle.",
+         "A single blue circle is one kind of particle. A blue-red-red group is a different kind of particle — even though blue appears in both.",
+         "One kind of particle only would be pure. Anything more is a mixture. Then say what each kind of particle is: only one kind of atom, or more than one joined?"],
+  sol:["(a) <strong>Two</strong> kinds of atom — blue and red.",
+       "(b) <strong>Two</strong> substances — the lone blue atoms are one substance and the blue-red-red groups are another.",
+       "(c) It is a <strong>mixture</strong>, of an <strong>element</strong> (the single blue atoms — one kind of atom) and a <strong>compound</strong> (the blue-red-red groups — two kinds of atom joined in a fixed ratio).",
+       "The trap is answering (b) with \"two\" because there are two colours. Count particles, not colours: the number of substances is the number of different kinds of particle."]},
+
+ {n:12, lvl:"standard", m:3, q:"Three white solids are tested. Their melting points are: <span class='num'>P: 118 °C</span>; <span class='num'>Q: 109–115 °C</span>; <span class='num'>R: 118–119 °C</span>. The data book gives the melting point of pure benzoic acid as <span class='num'>122 °C</span>.<br><br><strong>(a)</strong> Which sample is definitely not pure benzoic acid, and why? <span class='num'>[1]</span><br><strong>(b)</strong> Which sample is a pure substance, and why is it not benzoic acid? <span class='num'>[1]</span><br><strong>(c)</strong> Which sample contains the most impurity? Explain. <span class='num'>[1]</span>",
+  hints:["Start with rule one: a range means impure. Two of the three are ranges.",
+         "A sharp melting point means pure — but pure what? Compare it with the data-book number.",
+         "More impurity means a wider range and a lower start. Compare the two ranges on both counts."],
+  sol:["(a) Both Q and R melt over a range, so neither is pure. Either is acceptable, with the reason: <strong>it melts over a range of temperatures</strong>, which a pure substance never does.",
+       "(b) <strong>P</strong> melts sharply, at one temperature, so it is pure — but 118 °C does not match the data-book value of 122 °C, so it is a <strong>different pure substance</strong>, not benzoic acid.",
+       "(c) <strong>Q</strong>. Its range is 6 °C wide against R's 1 °C, and it starts at 109 °C, much further below 122 °C. More impurity disrupts the structure more, so the melting begins lower and is spread wider.",
+       "Part (b) is the one most students get backwards. Sharp does not mean \"it is the substance we expected\" — it means pure. Which pure substance is a second, separate question answered by the number."]},
+
+ {n:13, lvl:"hard", m:3, q:"A grey solid is suspected to be a <strong>mixture</strong> of two metal powders, iron and copper. A student says it might instead be a compound of the two.<br><br><strong>(a)</strong> Describe one simple test the student could do, and the result that would show it is a mixture. <span class='num'>[1]</span><br><strong>(b)</strong> Explain why that test would give a different result for a compound. <span class='num'>[1]</span><br><strong>(c)</strong> Give one other difference between a mixture and a compound that the student could check. <span class='num'>[1]</span>",
+  hints:["One of the two metals has a property you can test without a lab. Think about what iron does near a magnet.",
+         "In a mixture, each substance keeps its own properties. In a compound, the atoms are joined and the compound has new properties of its own.",
+         "Think about the ratio of the two metals, or about what you would see under a magnifying glass."],
+  sol:["(a) Hold a <strong>magnet</strong> over the powder. If it is a mixture, the <strong>iron is pulled out</strong> and the copper is left behind — the iron keeps its own property of being magnetic.",
+       "(b) In a compound the iron atoms are chemically joined to the copper atoms, so the compound has its own properties and the iron is no longer free to behave as iron. The magnet would <strong>not</strong> pull anything out.",
+       "(c) Any one: the mixture could be made in <strong>any ratio</strong> of iron to copper, but a compound has a fixed ratio; under magnification the mixture shows <strong>separate grey and orange specks</strong>, a compound is uniform; the mixture was made without a chemical reaction and could be made by simply stirring.",
+       "This is the iron-and-sulfur experiment in disguise. If you recognised it, the question was easy — which is why Lesson 3 asked you to learn the table rather than the story."]},
+
+ {n:14, lvl:"hard", m:3, q:"A road is icy at −4 °C. A truck spreads salt on it and, within an hour, the ice has melted although the air temperature has not changed.<br><br><strong>(a)</strong> Explain, using the idea of pure and impure substances, why the ice melted. <span class='num'>[1]</span><br><strong>(b)</strong> State what would happen to the <strong>boiling point</strong> of the melted salt water compared with pure water. <span class='num'>[1]</span><br><strong>(c)</strong> A student says the salt \"warmed the ice up\". Explain what is wrong with this and what actually changed. <span class='num'>[1]</span>",
+  hints:["Salt mixed into ice makes the ice impure. What does impurity do to a melting point?",
+         "Impurity moves the melting point one way and the boiling point the other way.",
+         "The temperature did not change — the question says so. So which number did?"],
+  sol:["(a) Salt mixed with ice makes it an <strong>impure</strong> substance, and impure substances melt at a <strong>lower temperature</strong> than the pure substance. The melting point of the salty ice drops below −4 °C, so at −4 °C it is above its melting point and it melts.",
+       "(b) The boiling point would be <strong>higher</strong> than 100 °C. Impurities lower the melting point and raise the boiling point.",
+       "(c) Nothing was warmed — the road stayed at −4 °C. What changed was the <strong>melting point of the ice</strong>, which fell below the road's temperature. The ice did not get hotter; the temperature it needed to melt at got lower.",
+       "Part (c) is the discriminator. \"Salt makes ice melt\" is something everyone knows; the mark is for saying which number moved, and it was not the temperature."]},
+
+ {n:15, lvl:"hard", m:3, q:"Hydrogen is a flammable gas. Oxygen is a gas that makes things burn faster. Water is a liquid that puts fires out. Yet water is made only of hydrogen and oxygen.<br><br><strong>(a)</strong> Explain why water does not behave like hydrogen or oxygen. <span class='num'>[1]</span><br><strong>(b)</strong> Explain why water is classed as a <strong>pure substance</strong> even though it contains two elements. <span class='num'>[1]</span><br><strong>(c)</strong> A mixture of hydrogen and oxygen gas is made in a jar. State two ways this mixture differs from water, in terms of the particles. <span class='num'>[1]</span>",
+  hints:["In water the atoms are joined. A compound has its own properties, not a bit of each element's.",
+         "Pure means one kind of particle. Look at one water particle — is every water particle the same as every other?",
+         "In the jar, hydrogen particles and oxygen particles are separate. In water they are not. And think about the ratio."],
+  sol:["(a) Water is a <strong>compound</strong>: the hydrogen and oxygen atoms are <strong>chemically joined</strong>, and a compound has its own properties, which are usually completely different from those of the elements it is made from.",
+       "(b) Every water particle is identical — two hydrogen atoms joined to one oxygen atom, in a <strong>fixed ratio</strong>. There is only <strong>one kind of particle</strong> present, which is what pure means. Containing two elements is not the same as containing two substances.",
+       "(c) Any two: in the jar the hydrogen and oxygen particles are <strong>not joined</strong> to each other, whereas in water they are; the jar's mixture can have <strong>any ratio</strong> of hydrogen to oxygen, whereas water is always 2:1; the jar keeps the properties of both gases (it is explosive), whereas water does not; the jar could be separated physically, water cannot.",
+       "This is the question that separates a 21 from a 26, and the whole of it turns on one word: joined. Two elements joined make one substance. Two elements side by side make two."]}
+];
+'''
+
+TOOLS_JS = r'''/* ================= HERO 1: the particle builder ================= */
+const ATOM_COL = {a:'#3B5BA9', b:'#C4472B', c:'#4C9A3E'};
+const SUBS = [
+ {id:'A',   label:'Single blue atoms',        kind:'element',  atoms:['a']},
+ {id:'B2',  label:'Pairs of red atoms',       kind:'element',  atoms:['b','b']},
+ {id:'C',   label:'Single green atoms',       kind:'element',  atoms:['c']},
+ {id:'AB',  label:'Blue–red molecules',       kind:'compound', atoms:['a','b']},
+ {id:'CB2', label:'Green–red–red molecules',  kind:'compound', atoms:['b','c','b']}
+];
+let onSubs = {A:true};
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function miniSvg(sub){
+  const r = 6, cx0 = 8, cy = 8;
+  return '<svg viewBox="0 0 34 16" aria-hidden="true">' +
+    sub.atoms.map((t,i)=>`<circle cx="${cx0 + i*(r*1.7)}" cy="${cy}" r="${r}" fill="${ATOM_COL[t]}" stroke="#fff" stroke-width="1"/>`).join('') +
+    '</svg>';
+}
+(function(){
+  const host = document.getElementById('chips');
+  SUBS.forEach(s=>{
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip' + (onSubs[s.id] ? ' on':''); b.dataset.sub = s.id;
+    b.setAttribute('aria-pressed', onSubs[s.id] ? 'true':'false');
+    b.innerHTML = miniSvg(s) + `<span>${s.label}</span><span class="kind">${s.kind}</span>`;
+    b.addEventListener('click', ()=>{
+      const n = Object.values(onSubs).filter(Boolean).length;
+      if(onSubs[s.id] && n===1) return;          // the box is never empty
+      onSubs[s.id] = !onSubs[s.id];
+      b.classList.toggle('on', onSubs[s.id]);
+      b.setAttribute('aria-pressed', onSubs[s.id] ? 'true':'false');
+      paintBox();
+    });
+    host.appendChild(b);
+  });
+})();
+
+/* a fixed jittered grid so the picture is stable between repaints */
+const SLOTS = [];
+(function(){
+  let seed = 7;
+  function rnd(){ seed = (seed*9301 + 49297) % 233280; return seed/233280; }
+  for(let r=0;r<5;r++) for(let c=0;c<6;c++){
+    SLOTS.push({x: 75 + c*70 + (rnd()-0.5)*22, y: 52 + r*40 + (rnd()-0.5)*16, rot: rnd()*360});
+  }
+})();
+
+function classify(){
+  const sel = SUBS.filter(s=>onSubs[s.id]);
+  const kinds = new Set(); sel.forEach(s=>s.atoms.forEach(a=>kinds.add(a)));
+  const els = sel.filter(s=>s.kind==='element').length;
+  const cos = sel.filter(s=>s.kind==='compound').length;
+  const allMol = sel.every(s=>s.atoms.length>1);
+  return {sel, n:sel.length, kinds:kinds.size, els, cos, allMol, pure: sel.length===1};
+}
+
+function paintBox(){
+  const g = document.getElementById('parts');
+  while(g.firstChild) g.removeChild(g.firstChild);
+  const C = classify();
+  const NS = 'http://www.w3.org/2000/svg';
+  SLOTS.forEach((sl,i)=>{
+    const s = C.sel[i % C.n];
+    const grp = document.createElementNS(NS,'g');
+    grp.setAttribute('transform', `translate(${sl.x.toFixed(1)} ${sl.y.toFixed(1)}) rotate(${sl.rot.toFixed(0)})`);
+    const R = 8, off = (s.atoms.length-1) * R * 0.85;
+    s.atoms.forEach((t,j)=>{
+      const c = document.createElementNS(NS,'circle');
+      c.setAttribute('cx', (j*R*1.7 - off).toFixed(1)); c.setAttribute('cy', 0); c.setAttribute('r', R);
+      c.setAttribute('fill', ATOM_COL[t]); c.setAttribute('stroke', '#fff'); c.setAttribute('stroke-width', '1.5');
+      grp.appendChild(c);
+    });
+    g.appendChild(grp);
+  });
+
+  let verdict, verdicts, made, mades, pill, cls, note;
+  if(C.pure){
+    const s = C.sel[0];
+    verdict = 'Pure'; verdicts = 'one substance only';
+    made = s.kind==='element' ? '1 element' : '1 compound';
+    mades = s.kind==='element' ? 'one kind of atom' : 'kinds of atom joined, fixed ratio';
+    pill = s.kind==='element' ? 'Pure element' : 'Pure compound';
+    cls = s.kind==='element' ? 'el' : 'co';
+    note = s.kind==='element'
+      ? (s.atoms.length>1 ? 'Every particle is a molecule of the same two atoms. Still one kind of atom, so still an element — oxygen is like this.' : 'Single atoms of one kind, all the same. This is an element — nothing to separate.')
+      : 'Every particle is the same group of joined atoms. Two kinds of atom, but only one kind of particle — a compound, and pure. You cannot filter the red atoms out.';
+  } else {
+    verdict = 'Mixture'; verdicts = C.n + ' substances, not joined to each other';
+    const bits = []; if(C.els) bits.push(C.els + (C.els>1?' elements':' element')); if(C.cos) bits.push(C.cos + (C.cos>1?' compounds':' compound'));
+    made = bits.join(' + '); mades = 'each keeps its own properties';
+    pill = 'Mixture'; cls = 'mi';
+    note = 'More than one kind of particle scattered together, none joined across the kinds. No fixed ratio, no sharp melting point, and it could be separated by physical means.';
+  }
+  document.getElementById('pb-verdict').textContent = verdict;
+  document.getElementById('pb-verdicts').textContent = verdicts;
+  document.getElementById('pb-made').textContent = made;
+  document.getElementById('pb-mades').textContent = mades;
+  document.getElementById('pb-kinds').textContent = C.kinds;
+  document.getElementById('pb-kindss').textContent = 'sharp melting point: ' + (C.pure ? 'yes' : 'no');
+  const p = document.getElementById('pb-pill'); p.className = 'pill ' + cls; p.textContent = pill;
+  document.getElementById('pb-note').textContent = note;
+}
+
+const BOX_PUZZLES = [
+ {ask:"Make the box hold a <strong>pure compound</strong>.", test:C=>C.pure && C.sel[0].kind==='compound',
+  why:"One kind of particle, and that particle contains more than one kind of atom joined together."},
+ {ask:"Make a <strong>mixture of two elements</strong>.", test:C=>C.n===2 && C.els===2,
+  why:"Two substances, each with only one kind of atom, and nothing joined across them."},
+ {ask:"Make a mixture of <strong>one element and one compound</strong>.", test:C=>C.n===2 && C.els===1 && C.cos===1,
+  why:"Lone atoms (or same-atom pairs) scattered among identical joined groups — the picture from Q11."},
+ {ask:"Make something that is <strong>pure</strong> but contains <strong>two kinds of atom</strong>.", test:C=>C.pure && C.kinds===2,
+  why:"Only a compound can do this: two kinds of atom, one kind of particle."},
+ {ask:"Using only <strong>two substances</strong>, make a mixture that contains <strong>three kinds of atom</strong>.", test:C=>C.n===2 && C.kinds===3,
+  why:"A compound brings two kinds of atom with it, so one compound plus the right partner reaches three."},
+ {ask:"Make a mixture in which <strong>every particle is a molecule</strong> — no single atoms anywhere.", test:C=>C.n>=2 && C.allMol,
+  why:"Pairs of red atoms, blue–red and green–red–red are all molecules. Single atoms are not."}
+];
+let boxQ = null;
+document.getElementById('boxPuzzle').addEventListener('click', ()=>{
+  boxQ = BOX_PUZZLES[Math.floor(Math.random()*BOX_PUZZLES.length)];
+  const box = document.getElementById('boxQuiz');
+  box.classList.add('on');
+  box.innerHTML = '<strong>Puzzle.</strong> ' + boxQ.ask +
+    '<div class="qrow"><button class="btn ghost small" type="button" id="boxCheck">Check the box</button>' +
+    '<span id="boxFb" class="num" style="font-size:13px"></span></div>';
+  document.getElementById('boxCheck').addEventListener('click', ()=>{
+    const C = classify();
+    const fb = document.getElementById('boxFb');
+    if(boxQ.test(C)){
+      fb.style.color = 'var(--ok)';
+      fb.textContent = 'Correct — ' + boxQ.why;
+      S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+      document.getElementById('boxCheck').disabled = true;
+    } else {
+      fb.style.color = 'var(--no)';
+      fb.textContent = 'Not yet. The box currently holds ' + (C.pure ? 'a pure ' + C.sel[0].kind : 'a mixture of ' + C.n + ' substances') + '. Try again.';
+    }
+  });
+});
+
+/* ================= HERO 2: the melting-point test ================= */
+const MP = 80;                                  // data-book melting point
+const F1 = 0.30, F2 = 0.70;                     // fractions of the energy axis where melting starts / ends
+function meltStart(imp){ return MP - imp; }     // impurity lowers the onset
+function meltEnd(imp){ return MP - imp*0.2; }   // and spreads it into a range
+function mTempAt(f, imp){
+  const s = meltStart(imp), e = meltEnd(imp);
+  if(f <= F1) return 20 + f/F1*(s-20);
+  if(f <= F2) return s + (f-F1)/(F2-F1)*(e-s);
+  return e + (f-F2)/(1-F2)*(120-e);
+}
+const MX0 = 60, MX1 = 660, MY0 = 40, MY1 = 280;
+function mx(f){ return MX0 + f*(MX1-MX0); }
+function my(t){ return MY1 - (t-20)/100*(MY1-MY0); }
+
+(function(){
+  const g = document.getElementById('mgrid-lines');
+  [[MP, MP+' °C'],[50,'50 °C'],[100,'100 °C']].forEach(([t,lab])=>{
+    const ln = document.createElementNS('http://www.w3.org/2000/svg','line');
+    ln.setAttribute('x1', MX0); ln.setAttribute('x2', MX1);
+    ln.setAttribute('y1', my(t)); ln.setAttribute('y2', my(t));
+    ln.setAttribute('stroke', t===MP ? 'var(--mi)' : 'var(--line-soft)'); ln.setAttribute('stroke-width','1.5');
+    ln.setAttribute('stroke-dasharray','4 5');
+    g.appendChild(ln);
+    const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
+    tx.setAttribute('x', 14); tx.setAttribute('y', my(t)+4);
+    tx.setAttribute('font-family','var(--mono)'); tx.setAttribute('font-size','11');
+    tx.setAttribute('fill', t===MP ? 'var(--mi)' : 'var(--ink-soft)');
+    tx.textContent = lab;
+    g.appendChild(tx);
+  });
+})();
+
+const MSTEPS = 200;
+function curvePts(imp, upto){
+  const n = Math.max(1, Math.round(upto*MSTEPS));
+  const pts = [];
+  for(let i=0;i<=n;i++){ const f = upto*i/n; pts.push(mx(f).toFixed(1)+','+my(mTempAt(f,imp)).toFixed(1)); }
+  return pts.join(' ');
+}
+document.getElementById('mc-pure').setAttribute('points', curvePts(0, 1));
+
+let imp = 0, mef = 0;
+function paintCurve(){
+  const s = meltStart(imp), e = meltEnd(imp), t = mTempAt(mef, imp);
+  const col = imp===0 ? 'var(--el)' : 'var(--mi)';
+  const live = document.getElementById('mc-live');
+  live.setAttribute('points', curvePts(imp, mef));
+  live.setAttribute('stroke', col);
+  const dot = document.getElementById('mc-dot');
+  dot.setAttribute('cx', mx(mef).toFixed(1)); dot.setAttribute('cy', my(t).toFixed(1)); dot.setAttribute('fill', col);
+
+  document.getElementById('mc-start').textContent = s.toFixed(0) + ' °C';
+  document.getElementById('mc-starts').textContent = imp===0 ? 'data-book value' : (MP-s).toFixed(0) + ' °C below the data-book value';
+  document.getElementById('mc-end').textContent = e.toFixed(1).replace(/\.0$/,'') + ' °C';
+  document.getElementById('mc-ends').textContent = imp===0 ? 'same temperature' : 'still below ' + MP + ' °C';
+  document.getElementById('mc-range').textContent = (e-s).toFixed(1).replace(/\.0$/,'') + ' °C';
+  document.getElementById('mc-ranges').textContent = imp===0 ? 'sharp — one temperature' : 'melts over a range';
+  const pill = document.getElementById('mc-pill');
+  pill.className = 'pill ' + (imp===0 ? 'el' : 'mi');
+  pill.textContent = imp===0 ? 'Pure sample' : 'Impure sample';
+  let phase;
+  if(mef < F1) phase = 'Solid, warming up. ' + Math.round(t) + ' °C and climbing.';
+  else if(mef <= F2) phase = imp===0 ? 'Melting — the temperature is pinned at ' + MP + ' °C until the last crystal has gone.'
+                                      : 'Melting — but the temperature is still creeping up, from ' + s.toFixed(0) + ' to ' + e.toFixed(1).replace(/\.0$/,'') + ' °C. That creep is the range.';
+  else phase = 'All liquid now, and warming again. ' + Math.round(t) + ' °C.';
+  document.getElementById('mc-note').textContent = phase;
+  document.getElementById('impval').textContent = imp + '%';
+  document.getElementById('menergyval').textContent = Math.round(mef*100) + '%';
+}
+const impSlider = document.getElementById('imp');
+impSlider.addEventListener('input', ()=>{ imp = +impSlider.value; paintCurve(); });
+const meSlider = document.getElementById('menergy');
+meSlider.addEventListener('input', ()=>{ mef = +meSlider.value/1000; paintCurve(); });
+
+const CURVE_PUZZLES = [
+ {ask:"Set the impurity so the sample melts over a range of <strong>at least 10 °C</strong>.", test:()=>(meltEnd(imp)-meltStart(imp))>=10,
+  why:"More impurity, wider range. The range here is 0.8 °C for every 1% of impurity, so 13% or more does it."},
+ {ask:"Make the sample <strong>pure</strong> again, and drag the energy to a point where it is <strong>part melted</strong>.", test:()=>imp===0 && mef>F1 && mef<F2,
+  why:"Pure, and on the flat shelf: solid and liquid together at exactly 80 °C."},
+ {ask:"Set the impurity so the sample <strong>finishes</strong> melting at about <strong>76 °C</strong>.", test:()=>Math.abs(meltEnd(imp)-76)<=0.5,
+  why:"The finishing temperature drops much more slowly than the start — that is what stretches the range."},
+ {ask:"Set the impurity to <strong>25%</strong> and drag the energy to the moment the sample has <strong>just started to melt</strong>.", test:()=>imp===25 && Math.abs(mef-F1)<=0.03,
+  why:"At 25% impurity the first crystals let go at 55 °C — a full 25 degrees early."},
+ {ask:"Set the impurity so the sample <strong>starts</strong> melting below <strong>65 °C</strong>.", test:()=>meltStart(imp)<65,
+  why:"Sixteen per cent or more. On a real road, that is why salt beats ice."}
+];
+let curveQ = null;
+document.getElementById('curvePuzzle').addEventListener('click', ()=>{
+  curveQ = CURVE_PUZZLES[Math.floor(Math.random()*CURVE_PUZZLES.length)];
+  const box = document.getElementById('curveQuiz');
+  box.classList.add('on');
+  box.innerHTML = '<strong>Puzzle.</strong> ' + curveQ.ask +
+    '<div class="qrow"><button class="btn ghost small" type="button" id="curveCheck">Check the machine</button>' +
+    '<span id="curveFb" class="num" style="font-size:13px"></span></div>';
+  document.getElementById('curveCheck').addEventListener('click', ()=>{
+    const fb = document.getElementById('curveFb');
+    if(curveQ.test()){
+      fb.style.color = 'var(--ok)';
+      fb.textContent = 'Correct — ' + curveQ.why;
+      S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+      document.getElementById('curveCheck').disabled = true;
+    } else {
+      fb.style.color = 'var(--no)';
+      fb.textContent = 'Not yet. Impurity ' + imp + '%, melting ' + meltStart(imp).toFixed(0) + '–' + meltEnd(imp).toFixed(1).replace(/\.0$/,'') + ' °C. Try again.';
+    }
+  });
+});
+
+function boot(){
+  paintBox();
+  paintCurve();
+}
+'''

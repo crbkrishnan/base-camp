@@ -1,6 +1,6 @@
 # State and roadmap
 
-Last updated: 17 September 2026.
+Last updated: 18 September 2026.
 
 ## Done
 
@@ -22,8 +22,11 @@ Last updated: 17 September 2026.
 | Gas pressure and diffusion | Physics | `gaspressure.html` | gas box, diffusion tube | A–D + scheme |
 | Magnets and magnetic fields | Physics | `magnetism.html` | field plotter, two-magnet bench | A–D + scheme |
 | Reading comprehension | English | `reading.html` | evidence bench, mark machine | A–D + scheme |
+| Pure substances and mixtures | Chemistry | `mixtures.html` | particle builder, melting-point test | A–D + scheme |
+| Separating mixtures | Chemistry | `separating.html` | separation bench, chromatogram | A–D + scheme |
+| Solutions and solubility | Chemistry | `solutions.html` | dissolving tank, solubility curves | A–D + scheme |
 
-All fifteen topics carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries all fifteen, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing sixty PDFs.
+All topic pages above carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries them all, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing sixty PDFs.
 
 ## Grade 7 maths syllabus coverage
 
@@ -130,12 +133,41 @@ cites exists, that the words the mark scheme expects are inside the range it nam
 marks total 25. On the first build it caught 35 wrong references — every single question had been
 numbered by eye. Trust it over your own counting.
 
+## Chemistry Unit 5 — mixtures and solubility
+
+Added 18 September 2026, unattended, from the tutor's brief: 5.1 pure substances and mixtures, 5.2 separating mixtures
+(with R<sub>f</sub> calculation), 5.3 solutions (with factors affecting solubility). Three pages, twelve papers, three mark-scheme
+booklets, all on the standard chemistry template (`particles.html`), 30 marks each, 4 papers each.
+
+| Unit | Subtopic | Page |
+|---|---|---|
+| 5.1 | Pure substances and mixtures — element, compound, mixture; the melting-point purity test | `mixtures.html` |
+| 5.2 | Separating mixtures — filtration, evaporation, distillation, chromatography, magnet, funnel; R<sub>f</sub> | `separating.html` |
+| 5.3 | Solutions — solute/solvent/saturated, solubility and its factors, rate against amount, solubility curves | `solutions.html` |
+
+Notes for whoever touches these next:
+
+- **The three pages were assembled by `tools/legacy/unit5/build_page.py`** from `particles.html` plus one content module each
+  (`mixtures.py`, `separating.py`, `solutions.py`). Like the rest of `tools/legacy/`, it ran once. The HTML files are now the
+  source of truth — **do not re-run the builder over a page that has since been edited by hand**, or the edit is silently lost.
+  If you want the builder again, edit the module and accept that the page is regenerated from scratch.
+- **One solubility table, three places.** `solutions.html` (`SOLUTES` in the script), Lesson 4's table on the same page, and
+  `tools/papers/chem_solutions.py` (`SOL`) all carry the same rounded g-per-100-g values for potassium nitrate, copper sulfate
+  and sodium chloride. The paper generator asserts that its printed table matches its data, and computes every number on the
+  papers from it (`N` dict) before typesetting. If the table ever changes, change all three.
+- **Every R<sub>f</sub> on the separating papers is computed in `chem_separating.py`** (`RF` dict, asserted) — never typed.
+- **The old `separation` placeholder in `TOPICS`** ("Mixtures and Separation") was removed; `separating` replaces it. Do not re-add it.
+- **Videos.** Channels were taken from search-result titles (FuseSchool, Freesciencelessons, Cognito, Khan Academy, Tyler DeWitt,
+  KayScience, Straight Science, The Organic Chemistry Tutor). YouTube itself rate-limited every direct fetch during the build, so
+  the pages were not opened in a browser. Worth a two-minute click-through of the eighteen links before the student is sent to them.
+- **The hub bridge key** for each page is `<id>-progress-v1` (`mixtures-progress-v1`, `separating-progress-v1`, `solutions-progress-v1`).
+
 ## Next
 
 1. **`moments.html` has no videos section.** It predates the format. Add six videos with written tasks, matching the other five pages.
 2. **Acids and alkalis** (Chemistry) — flagged `next`.
 
-Grade 7 maths is complete and the Grade 7 physics units above are complete, so the roadmap is now biology- and chemistry-led. Ten further topics are listed as `planned` in `TOPICS` in `index.html`; that array is the roadmap. The two remaining maths entries there (`geometry`, `averages`) are beyond the Grade 7 portions above and are not blocking anything.
+Grade 7 maths, the Grade 7 physics units above and chemistry Unit 5 are complete, so the roadmap is now biology- and chemistry-led. Nine further topics are listed as `planned` in `TOPICS` in `index.html`; that array is the roadmap. The two remaining maths entries there (`geometry`, `averages`) are beyond the Grade 7 portions above and are not blocking anything.
 
 ## Known issues
 
