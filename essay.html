@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essay Writing &mdash; Grade 7 IGCSE Hindi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "essay",
+  "file": "essay.html",
+  "subject": "hindi",
+  "status": "ready",
+  "title": "Essay Writing",
+  "sub": "Hindi · निबंध",
+  "blurb": "A 200-300 word Hindi essay is four paragraphs, one idea each, held together by a handful of linking phrases and one well-placed मुहावरा. Drop jumbled sentences into the right paragraph slots, then upgrade a plain sentence with a linker, an adjective, an idiom and a reason, and see which choice breaks the grammar.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "outline builder"
+  ]
+}
+</script>
+
+<style>
+:root{
+  --ink:#1C1A26;
+  --ink-soft:#5A566B;
+  --paper:#EDEBF2;
+  --card:#FFFFFF;
+  --line:#D6D2E0;
+  --line-soft:#E8E5EF;
+  /* the semantic accents for this page: the four jobs a word can do in a Hindi sentence.
+     A job keeps its colour for the whole page. The shared CSS calls the first two --o2 / --co2. */
+  --karta:#6B3FA0;      /* कर्ता · who does it · always violet */
+  --karta-tint:#F0EAF7;
+  --karm:#0B6E75;       /* कर्म · what it acts on, where, when · always teal */
+  --karm-tint:#E3F1F2;
+  --kriya:#B4560B;      /* क्रिया · the verb, always last · always amber */
+  --kriya-tint:#FBEFE3;
+  --chihn:#A3285A;      /* marker · को से में पर का की के · always rose */
+  --chihn-tint:#FAE8F0;
+  --o2:var(--kriya);   --o2-tint:var(--kriya-tint);
+  --co2:var(--karta);  --co2-tint:var(--karta-tint);
+  /* names the shared reading-page classes expect */
+  --shows:var(--kriya);  --shows-tint:var(--kriya-tint);
+  --sowhat:var(--karta); --sowhat-tint:var(--karta-tint);
+  --says:#6B6370;
+  --muscle:#7A5A86;
+  --steel:#9A94A0;
+  --steel-dark:#6E6876;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Noto Sans Devanagari','Trebuchet MS',sans-serif;
+  --body:'Newsreader','Noto Serif Devanagari',Georgia,serif;
+  --mono:'JetBrains Mono','Noto Sans Devanagari',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--co2)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(230,235,231,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--o2);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--o2);font-weight:700}
+.co2txt{color:var(--co2);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- the passage ---------- */
+.pbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.pbox > summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:12px;align-items:center;
+  font-family:var(--display);font-weight:700;font-size:15.5px}
+.pbox > summary::-webkit-details-marker{display:none}
+.pbox > summary .tagx{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-left:auto}
+.pbody{padding:4px 16px 16px;border-top:1px solid var(--line-soft)}
+.pintro{font-style:italic;font-size:15.5px;margin:14px 0 10px;color:var(--ink)}
+.pline{display:grid;grid-template-columns:34px 1fr;gap:6px;font-size:16px;line-height:1.52}
+.pline .pno{font-family:var(--mono);font-size:11.5px;color:var(--steel);text-align:right;padding-top:5px;user-select:none}
+.pline .ptx{padding:1px 0}
+.pline.blank{height:9px}
+
+/* ---------- tool chips ---------- */
+.claimbar{padding:13px 16px;border-top:1px solid var(--line);background:var(--sowhat-tint);
+  font-size:16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.claimbar .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.claimbar strong{font-family:var(--display);font-size:17px}
+.chipwrap{display:grid;gap:7px;padding:13px 16px}
+.echip{text-align:left;width:100%;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:9px 13px;cursor:pointer;font-family:var(--body);font-size:16px;color:var(--ink);
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start}
+.echip:hover:not([disabled]){border-color:var(--ink)}
+.echip .box{width:17px;height:17px;border:1.5px solid var(--steel);border-radius:5px;margin-top:4px;flex:0 0 auto}
+.echip.sel{background:var(--sowhat-tint);border-color:var(--sowhat)}
+.echip.sel .box{background:var(--sowhat);border-color:var(--sowhat)}
+.echip.hit{background:var(--ok-tint);border-color:var(--ok)}
+.echip.hit .box{background:var(--ok);border-color:var(--ok)}
+.echip.miss{background:var(--no-tint);border-color:var(--no)}
+.echip.miss .box{background:var(--no);border-color:var(--no)}
+.echip .verd{grid-column:2;font-family:var(--display);font-size:13px;margin-top:5px;color:var(--ink-soft)}
+.echip[disabled]{cursor:default}
+
+.brow{padding:12px 16px;border-top:1px solid var(--line-soft)}
+.brow .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:8px}
+.bchips{display:flex;gap:7px;flex-wrap:wrap}
+.bchip{font-family:var(--body);font-size:15.5px;background:var(--paper);border:1px solid var(--line);
+  border-radius:99px;padding:6px 13px;cursor:pointer;color:var(--ink);text-align:left}
+.bchip:hover{border-color:var(--ink)}
+.bchip.sel{background:var(--ink);border-color:var(--ink);color:#fff}
+.bchip.mono{font-family:var(--mono);font-size:14px}
+.built{padding:13px 16px;border-top:1px solid var(--line);background:var(--paper);font-size:16px;min-height:52px}
+.built em{color:var(--ink-soft);font-style:italic}
+.scorebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:13px 16px;border-top:1px solid var(--line)}
+.scorebar .sc{font-family:var(--mono);font-weight:700;font-size:26px;line-height:1;padding:7px 14px;border-radius:10px;
+  background:var(--paper);color:var(--ink-soft)}
+.scorebar .sc.two{background:var(--ok-tint);color:var(--ok)}
+.scorebar .sc.one{background:var(--shows-tint);color:var(--shows)}
+.scorebar .sc.zero{background:var(--no-tint);color:var(--no)}
+.scorebar .why{flex:1 1 240px;font-size:15.5px}
+
+.ladder{display:grid;gap:8px;margin:12px 0}
+.rung{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-left:4px solid var(--says);border-radius:0 10px 10px 0;padding:10px 13px;font-size:15.5px}
+.rung .rn{font-family:var(--display);font-weight:700;font-size:15px}
+.rung.shows{border-left-color:var(--shows)}
+.rung.shows .rn{color:var(--shows)}
+.rung.sowhat{border-left-color:var(--sowhat)}
+.rung.sowhat .rn{color:var(--sowhat)}
+.tells{counter-reset:tell;display:grid;gap:7px;margin:10px 0}
+.tell{background:var(--paper);border-radius:9px;padding:9px 13px;font-size:15.5px}
+.tell b{font-family:var(--display)}
+.wrongright{display:grid;gap:8px;margin:11px 0}
+.wr{border-radius:9px;padding:10px 13px;font-size:15.5px}
+.wr.bad{background:var(--no-tint)}
+.wr.good{background:var(--ok-tint)}
+.wr .mk{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.quoteline{font-family:var(--body);font-style:italic}
+
+
+/* ---------- Hindi page additions ---------- */
+body{font-size:18px;line-height:1.7}
+nav.jump{background:rgba(237,235,242,.93)}
+.mast .hsub{font-family:var(--display);font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--ink-soft);margin:-2px 0 10px}
+.rung{grid-template-columns:118px 1fr}
+.rung.karta{border-left-color:var(--karta)} .rung.karta .rn{color:var(--karta)}
+.rung.karm{border-left-color:var(--karm)}   .rung.karm .rn{color:var(--karm)}
+.rung.kriya{border-left-color:var(--kriya)} .rung.kriya .rn{color:var(--kriya)}
+.rung.chihn{border-left-color:var(--chihn)} .rung.chihn .rn{color:var(--chihn)}
+.kt{color:var(--karta);font-weight:700} .ko{color:var(--karm);font-weight:700}
+.kv{color:var(--kriya);font-weight:700} .kc{color:var(--chihn);font-weight:700}
+.hline{font-family:var(--display);font-weight:600;font-size:1.12em;line-height:1.6}
+.hbig{font-family:var(--display);font-weight:700;font-size:1.3em;line-height:1.5;background:var(--paper);padding:10px 14px;border-radius:9px;margin:10px 0;overflow-x:auto}
+
+/* tiles */
+.tilepool{display:flex;flex-wrap:wrap;gap:9px;padding:14px 16px;min-height:66px}
+.tileline{display:flex;flex-wrap:wrap;gap:9px;align-items:center;min-height:72px;padding:13px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.tileline .ph{color:var(--ink-soft);font-style:italic;font-size:15.5px}
+.tile{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.5;padding:5px 15px;border-radius:10px;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tileline .tile{background:var(--card)}
+.tile:hover:not([disabled]){border-color:var(--ink)}
+.tile[disabled]{cursor:default}
+.tile.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.tile.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.tile.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.tile.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.tile.x,.tile.c{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 13px}
+.lg{font-family:var(--display);font-size:13px;font-weight:700;padding:3px 11px;border-radius:99px;border:1.5px solid}
+.lg.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.lg.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.lg.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.lg.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.lg.x{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+
+/* verb bank */
+.vctl{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin-bottom:14px;display:block;padding:13px 16px}
+.vctl .bchips{margin-bottom:11px}
+.vctl .vrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+input[type=search]{flex:1 1 220px;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-family:var(--body);font-size:16px;background:var(--paper);color:var(--ink)}
+.vctl label{font-family:var(--display);font-size:13.5px;color:var(--ink-soft);display:flex;gap:8px;align-items:center;cursor:pointer}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:10px}
+.vcard{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+  font-family:var(--body);color:var(--ink);cursor:default;display:block;width:100%}
+.vcard .vh{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.35}
+.vcard .ve{font-size:14.5px;color:var(--ink-soft);margin-bottom:7px}
+.vcard .vf{display:grid;gap:1px;font-size:17px;line-height:1.55}
+.vcard .vf b{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-right:9px}
+.vcard .vt{float:right;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px}
+.vt.T{background:var(--karm-tint);color:var(--karm)}
+.vt.I{background:var(--karta-tint);color:var(--karta)}
+.vt.B{background:var(--kriya-tint);color:var(--kriya)}
+.vcard.cover{cursor:pointer}
+.vcard.cover:not(.shown) .vf{filter:blur(7px);user-select:none}
+.vempty{padding:26px;text-align:center;color:var(--ink-soft);font-style:italic}
+
+/* marker machine + drill */
+.mout{font-family:var(--display);font-size:clamp(30px,6vw,44px);font-weight:700;text-align:center;padding:20px 16px;min-height:96px;line-height:1.4}
+.mout .mn{color:var(--karm)} .mout .mm{color:var(--chihn)}
+.mout .men{display:block;font-size:14.5px;font-weight:500;font-family:var(--body);color:var(--ink-soft);font-style:italic;margin-top:2px}
+.gap{display:inline-block;min-width:3em;border-bottom:2.5px solid var(--ink);text-align:center;font-weight:700;color:var(--ink-soft)}
+.gap.ok{color:var(--ok);border-color:var(--ok)} .gap.no{color:var(--no);border-color:var(--no)}
+.dline{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.6;margin:0 0 11px}
+.bchip[disabled]{cursor:default;opacity:.85}
+.bchip.right{background:var(--ok-tint);border-color:var(--ok);color:var(--ok);font-weight:700}
+.bchip.wrong{background:var(--no-tint);border-color:var(--no);color:var(--no)}
+.bchip.hin{font-family:var(--display);font-size:18px;font-weight:600}
+
+
+/* ---------- Essay page additions ---------- */
+:root{
+  --paper:#F1EDE3;
+  --line:#DBD4C4; --line-soft:#EAE5D7;
+  --bh:#0B6E75;  --bh-tint:#E3F1F2;   /* भूमिका · introduction · teal */
+  --mb:#6B3FA0;  --mb-tint:#F0EAF7;   /* मुख्य भाग · body · violet */
+  --up:#B4560B;  --up-tint:#FBEFE3;   /* उपसंहार · conclusion · amber */
+  --sh:#A3285A;  --sh-tint:#FAE8F0;   /* linkers, marks · rose */
+  --o2:var(--up);   --o2-tint:var(--up-tint);
+  --co2:var(--mb);  --co2-tint:var(--mb-tint);
+  --shows:var(--up);  --shows-tint:var(--up-tint);
+  --sowhat:var(--mb); --sowhat-tint:var(--mb-tint);
+}
+body{font-size:18px;line-height:1.7}
+nav.jump{background:rgba(241,237,227,.93)}
+.mast .hsub{font-family:var(--display);font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--ink-soft);margin:-2px 0 10px}
+.rung{grid-template-columns:118px 1fr}
+.rung.bh{border-left-color:var(--bh)} .rung.bh .rn{color:var(--bh)}
+.rung.mb{border-left-color:var(--mb)} .rung.mb .rn{color:var(--mb)}
+.rung.up{border-left-color:var(--up)} .rung.up .rn{color:var(--up)}
+.rung.sh{border-left-color:var(--sh)} .rung.sh .rn{color:var(--sh)}
+.tb{color:var(--bh);font-weight:700} .tm{color:var(--mb);font-weight:700}
+.tu{color:var(--up);font-weight:700} .ts{color:var(--sh);font-weight:700}
+.hline{font-family:var(--display);font-weight:600;font-size:1.12em;line-height:1.6}
+.hbig{font-family:var(--display);font-weight:700;font-size:1.25em;line-height:1.55;background:var(--card);padding:10px 14px;border-radius:9px;margin:10px 0;overflow-x:auto;border:1px solid var(--line-soft)}
+table.data td.h, table.data th.h{font-family:var(--display);font-weight:600;font-size:16.5px}
+table.data{font-family:var(--body);font-size:15.5px}
+table.data td .en{color:var(--ink-soft);font-size:14px}
+.tablewrap{overflow-x:auto}
+
+/* model essays */
+.essay{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+.essay .etitle{font-family:var(--display);font-weight:800;font-size:22px;text-align:center;margin:0 0 10px;border-bottom:2px solid var(--line);padding-bottom:7px}
+.essay .ep{font-family:var(--display);font-weight:500;font-size:19px;line-height:1.85;margin:0 0 9px;padding:6px 11px;border-left:4px solid var(--line);border-radius:0 8px 8px 0}
+.essay .ep.I{border-left-color:var(--bh);background:var(--bh-tint)}
+.essay .ep.M{border-left-color:var(--mb);background:var(--mb-tint)}
+.essay .ep.C{border-left-color:var(--up);background:var(--up-tint)}
+.essay .ep .pl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4}
+.essay .ep .lk{color:var(--sh);font-weight:700}
+.essay .ep .id{background:#FFF3B8;border-radius:4px;padding:0 3px}
+.essay .ecount{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);text-align:right}
+
+/* outline builder */
+.opool{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:9px;padding:14px 16px;min-height:66px}
+.ocard{text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:11px;padding:8px 12px;cursor:pointer;color:var(--ink);display:block;width:100%;font-family:var(--body)}
+.ocard:hover:not([disabled]){border-color:var(--ink)}
+.ocard[disabled]{cursor:default}
+.ocard .oh{display:block;font-family:var(--display);font-weight:600;font-size:18.5px;line-height:1.5}
+.ocard .oe{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.35;margin-top:2px}
+.ocard.gI{background:var(--bh-tint);border-color:var(--bh)} .ocard.gA,.ocard.gB{background:var(--mb-tint);border-color:var(--mb)}
+.ocard.gC{background:var(--up-tint);border-color:var(--up)} .ocard.gX{background:#EEF0F4;border-color:var(--steel-dark)}
+.oslots{display:grid;gap:8px;padding:12px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.oslot{background:var(--card);border:1.5px dashed var(--line);border-radius:11px;padding:8px 10px;cursor:pointer}
+.oslot.act{border-style:solid;border-color:var(--ink)}
+.oslot .oslab{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;gap:8px}
+.oslot .oslab b{font-family:var(--display);font-size:14px;letter-spacing:0;text-transform:none;color:var(--ink)}
+.oslot .ph{color:var(--ink-soft);font-style:italic;font-size:14.5px;padding:3px 0}
+.oslot .ocard{margin-top:6px}
+.oslot.done.sI{border-color:var(--bh)} .oslot.done.sA,.oslot.done.sB{border-color:var(--mb)} .oslot.done.sC{border-color:var(--up)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:10px 16px 13px}
+.lg{font-family:var(--display);font-size:13px;font-weight:700;padding:3px 11px;border-radius:99px;border:1.5px solid}
+.lg.i{background:var(--bh-tint);border-color:var(--bh);color:var(--bh)}
+.lg.m{background:var(--mb-tint);border-color:var(--mb);color:var(--mb)}
+.lg.c{background:var(--up-tint);border-color:var(--up);color:var(--up)}
+.lg.x{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+
+/* sentence upgrader */
+.uout{font-family:var(--display);font-size:clamp(24px,4.6vw,34px);font-weight:700;line-height:1.55;padding:18px 16px;min-height:96px}
+.uout .up1{color:var(--sh)} .uout .bad{background:var(--no-tint);border-radius:4px}
+.uout .men{display:block;font-size:14.5px;font-weight:500;font-family:var(--body);color:var(--ink-soft);font-style:italic;margin-top:2px}
+.bchip.hin{font-family:var(--display);font-size:17px;font-weight:600}
+.bchip.good{background:var(--ok-tint);border-color:var(--ok);color:var(--ok);font-weight:700}
+.bchip.bad{background:var(--no-tint);border-color:var(--no);color:var(--no)}
+.bchip.right{background:var(--ok-tint);border-color:var(--ok);color:var(--ok);font-weight:700}
+.bchip.wrong{background:var(--no-tint);border-color:var(--no);color:var(--no)}
+.bchip[disabled]{cursor:default;opacity:.9}
+.uv{padding:0;margin:0;list-style:none;font-size:15.5px}
+.uv li{padding:4px 0}
+.uv .yes{color:var(--ok);font-weight:700} .uv .no{color:var(--no);font-weight:700}
+.meter{display:flex;gap:5px}
+.meter i{width:26px;height:9px;border-radius:5px;background:var(--line)}
+.meter i.on{background:var(--sh)}
+.dline{font-family:var(--display);font-weight:600;font-size:22px;line-height:1.6;margin:0 0 11px}
+.gap{display:inline-block;min-width:3em;border-bottom:2.5px solid var(--ink);text-align:center;font-weight:700;color:var(--ink-soft)}
+.gap.ok{color:var(--ok);border-color:var(--ok)} .gap.no{color:var(--no);border-color:var(--no)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}
+.chips span{font-family:var(--display);font-weight:600;font-size:16px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.chips span small{font-family:var(--body);font-weight:400;color:var(--ink-soft);font-size:13px;margin-left:4px}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Hindi &middot; Grade 7 &middot; Essays</div>
+  <h1>Essay <em>Writing</em></h1>
+  <div class="hsub" lang="hi">निबंध</div>
+  <p class="lede">A Hindi essay looks like a big job and is really a small one repeated four times. Every essay at this level is a <strong>title and four paragraphs</strong>, each paragraph carries <strong>one idea</strong>, and the paragraphs are stitched together by about a dozen linking phrases you can learn in an evening. Add one <em>मुहावरा</em> in the right place and the examiner sees a writer, not a translator. This page gives you the skeleton, the words for the six topics that come up again and again, and two machines: one that tests where a sentence <em>belongs</em>, one that tests whether an upgrade is <em>grammatical</em>.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of <span class="num">30</span>, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme &mdash; otherwise you're just reading, and reading feels like learning without being learning. Write the Hindi. A page you only nodded at is a page you still cannot write.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#tool1">Outline builder</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#tool2">Sentence upgrader</a>
+  <a href="#drill">Linker drill</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Long answers</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+
+<!-- ============ TOOL 1: THE OUTLINE BUILDER ============ -->
+<section id="tool1">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The outline builder</h2>
+      <p>Every topic comes with <strong>eight sentences that belong in the essay and one that does not</strong>, all jumbled. Tap a paragraph slot to select it, then tap sentences to drop them in: <strong>two per paragraph</strong>, the sentence that opens the idea first. Press Check. The machine tells you which rule you broke &mdash; a paragraph with two ideas in it, an odd sentence, paragraphs in the wrong order &mdash; not just that you were wrong. Tap a sentence inside a slot to send it back.</p>
+    </div>
+
+    <div class="claimbar">
+      <span class="lab">Essay topic &middot; शीर्षक</span>
+      <strong id="o-title">&nbsp;</strong>
+    </div>
+
+    <div class="opool" id="o-pool" role="group" aria-label="Jumbled sentences: tap to put one in the selected paragraph"></div>
+    <div class="oslots" id="o-slots" role="group" aria-label="Paragraph slots: tap a slot to select it, tap a sentence inside it to send it back"></div>
+    <div class="legend" id="o-legend" aria-label="What the colours mean">
+      <span class="lg i">भूमिका &middot; introduce</span><span class="lg m">मुख्य भाग &middot; one idea each</span><span class="lg c">उपसंहार &middot; close</span><span class="lg x">odd one out</span>
+    </div>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="o-check">Check my outline</button>
+      <button class="btn ghost small" type="button" id="o-clear">Clear</button>
+      <button class="btn ghost small" type="button" id="o-next">Different topic</button>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">Topic</div><div class="val mono" id="o-num">1 of 4</div></div>
+      <div class="cell"><div class="lab">Solved / first time right</div><div class="val mono" id="o-count">0 / 0 of 4</div></div>
+      <div class="phasebar">
+        <span class="pill hold" id="o-pill">Not checked yet</span>
+        <span id="o-note">Order: introduce &rarr; first point &rarr; second point &rarr; close. Two sentences a paragraph, one idea a paragraph.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">6 videos</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was a screensaver with Hindi on it. If a link is dead or a video is too slow, skip it &mdash; the lessons below stand on their own, and that is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~45 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ TOOL 2: THE SENTENCE UPGRADER ============ -->
+<section id="tool2">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The sentence upgrader</h2>
+      <p>Same plain sentence, four upgrades: a <strong>linker</strong> at the front, a <strong>describing word</strong> before the noun, a <strong>मुहावरा</strong> in place of a plain phrase, and a <strong>reason clause</strong> at the back. Some options in every row are wrong on purpose &mdash; wrong gender, a linker that points the wrong way, an idiom that means something else. Pick one from each row and the machine says, choice by choice, why it works or why it breaks.</p>
+    </div>
+
+    <div class="brow">
+      <div class="lab">Choose a sentence</div>
+      <div class="bchips" id="u-tasks" role="group" aria-label="Choose a sentence to upgrade"></div>
+    </div>
+    <div class="claimbar">
+      <span class="lab">Say it in Hindi &mdash; and upgrade it</span>
+      <strong id="u-en">&nbsp;</strong>
+    </div>
+    <div id="u-slots"></div>
+
+    <div class="built uout" id="u-out" aria-live="polite"></div>
+
+    <div class="scorebar">
+      <span class="meter" id="u-meter" aria-label="Upgrades used"></span>
+      <span class="why" id="u-why"></span>
+    </div>
+
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill bal">plain &rarr; rich</span>
+        <span>A richer sentence earns marks only if it is still <strong>correct</strong>. One wrong ending cancels the upgrade.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LINKER DRILL ============ -->
+<section id="drill">
+  <div class="shead"><h2>Linker drill</h2><span class="tag" id="d-score">0 of 12 right</span></div>
+  <p class="snote">Twelve sentences, one gap each. These do not count towards your 30 &mdash; they are the repetitions. One try per sentence, and the explanation appears either way. Read the sentence <em>before and after</em> the gap: the linker depends on what the other half says.</p>
+  <div id="d-list"></div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. Q5 catches people who have learned the skeleton and are now over-applying it.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. A mark is for a <strong>whole correct sentence</strong> &mdash; one wrong verb ending and it is gone, exactly as it would be in an exam.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Long answers</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. Hint 1 chunks the task, hint 2 names the rule, hint 3 narrows it down &mdash; none of them writes the Hindi for you. Q14 and Q15 are the two that separate a 21 from a 26. Get someone who reads Hindi to look at those two.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>The paragraph that wanders</h4><p>Three sentences about the school building, then one about the principal, then the cricket team. Each sentence is fine and the paragraph is still wrong, because the examiner's tick is for <strong>one idea per paragraph</strong>. The instinct is to write down everything you know as it arrives. Decide the two ideas <em>before</em> the first sentence, put each in its own paragraph, and if a sentence fits neither, delete it &mdash; even a good one.</p></div>
+    <div class="trap"><h4>&ldquo;बस ख़राब थी, क्योंकि मैं देर से पहुँची&rdquo;</h4><p>The linker is right and the sentence is backwards. <strong>क्योंकि</strong> points at the <em>reason</em>: what comes after it is the cause. <strong>इसलिए</strong> points at the <em>result</em>. Before you write either, say it in English with &lsquo;because&rsquo;: <em>I was late because the bus broke down</em> &mdash; the bus is the cause, so it goes after क्योंकि.</p></div>
+    <div class="trap"><h4>English order in the middle of a good essay</h4><p><em>मैं जाती हूँ स्कूल बस से हर रोज़</em> sits comfortably in a paragraph of correct sentences, and it costs a mark every time. Long sentences make you slip back into English order without noticing. The check is mechanical: draw a circle round the verb block in every sentence. If a circle is not the last thing in its sentence, fix it. (Exceptions: a closing <em>न</em> or a question word.)</p></div>
+    <div class="trap"><h4>The girl who writes like a boy</h4><p><em>मैं रोज़ स्कूल जाता हूँ। मैं बहुत खुश हुआ।</em> The essay is yours, so every &lsquo;I&rsquo; verb, adjective and ending must be <strong>feminine</strong>: जाती हूँ, खुश हुई, चाहती हूँ, बनूँगी. This is the easiest mistake to make because you have heard the masculine form far more often from textbooks and the news. Underline every मैं and check the ending. (For general statements about &lsquo;we&rsquo; or &lsquo;students&rsquo; use the plain masculine plural, which is correct there.)</p></div>
+    <div class="trap"><h4>The मुहावरा that changed its words</h4><p><em>नौ दो बारह हो गए</em>, <em>दाँतों में उँगली दबाई</em>. An idiom is a fixed block: you may bend the <strong>verb</strong> (tense, gender), never the other words, and never swap one for a &lsquo;similar&rsquo; word. The second trap is the wrong <em>feeling</em>: <em>आग-बबूला होना</em> is fury, not joy. If you cannot say what an idiom means in English in five seconds, do not use it. A plain correct sentence beats a fancy wrong one.</p></div>
+  </div>
+</section>
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'essay-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, pzSeen:{}, store:{} };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+
+
+/* ---------------- model essays ----------------
+   Word counts are computed on the page (wc below) and re-computed independently by verify.py. */
+function plain(h){ return h.replace(/<[^>]*>/g,''); }
+function wc(h){ return plain(h).replace(/[।,?!:;"“”]/g,' ').split(/\s+/).filter(Boolean).length; }
+const LK = t => '<span class="lk">' + t + '</span>';
+const ID = t => '<span class="id">' + t + '</span>';
+const ESSAY1 = {
+  title:'मेरा विद्यालय',
+  paras:[
+    {k:'I', lab:'भूमिका &middot; introduction',
+     h:'मेरा विद्यालय शहर के सबसे अच्छे विद्यालयों में से एक है। इस निबंध में मैं अपने विद्यालय के बारे में बताऊँगी। यहाँ आकर मुझे हर दिन कुछ नया सीखने को मिलता है।'},
+    {k:'M', lab:'मुख्य भाग 1 &middot; the building',
+     h:LK('सबसे पहले,') + ' हमारे विद्यालय की इमारत बहुत बड़ी और साफ़-सुथरी है। इसमें हवादार कक्षाएँ, पुस्तकालय और प्रयोगशालाएँ हैं। उसकी दीवारों पर सुंदर चित्र बने हुए हैं। इमारत के पीछे एक बड़ा मैदान भी है, जहाँ हम रोज़ खेलते हैं।'},
+    {k:'M', lab:'मुख्य भाग 2 &middot; the teachers',
+     h:LK('इसके अलावा,') + ' हमारे अध्यापक बहुत मेहनती और दयालु हैं। वे हमें हर विषय प्यार से समझाते हैं और हमारी मदद करते हैं। जब मुझे कोई बात समझ नहीं आती, तो मैं बेझिझक उनसे पूछ लेती हूँ। उनकी मेहनत से ही मैं हर परीक्षा में अच्छे अंक ला पाती हूँ।'},
+    {k:'C', lab:'उपसंहार &middot; conclusion',
+     h:LK('अंत में,') + ' ' + LK('मैं कहना चाहूँगी कि') + ' मुझे अपने विद्यालय पर गर्व है। यह विद्यालय मेरे लिए दूसरे घर के समान है। मैं बड़ी होकर अपने विद्यालय का ' + ID('नाम रोशन करना') + ' चाहती हूँ।'}
+  ]
+};
+const ESSAY2 = {
+  title:'वृक्षारोपण का महत्व',
+  paras:[
+    {k:'I', lab:'भूमिका &middot; introduction',
+     h:'आज हमारा पर्यावरण प्रदूषण की चपेट में है। पेड़ हमारे सच्चे मित्र हैं, पर हम उन्हें भूलते जा रहे हैं। कारखानों का धुआँ, गाड़ियों का शोर और प्लास्टिक का कचरा लगातार बढ़ रहे हैं। ' + LK('ऐसे में') + ' वृक्षारोपण सबसे आसान और सबसे अच्छा उपाय है।'},
+    {k:'M', lab:'मुख्य भाग 1 &middot; what trees give the earth',
+     h:LK('सबसे पहले,') + ' पेड़ हमें शुद्ध हवा और ठंडी छाया देते हैं। वे बारिश बुलाते हैं और तेज़ बहाव में मिट्टी को बहने से रोकते हैं। उनकी जड़ें मिट्टी को कसकर पकड़े रहती हैं। जहाँ पेड़ नहीं होते, वहाँ धरती सूखी और बंजर हो जाती है।'},
+    {k:'M', lab:'मुख्य भाग 2 &middot; what trees give us',
+     h:LK('इसके अलावा,') + ' पेड़ हमें फल, फूल, लकड़ी और दवाइयाँ भी देते हैं। पेड़ों से हमें मन की शांति भी मिलती है। अनगिनत पक्षी और छोटे जीव उन्हीं पर अपना घर बनाते हैं। ' + LK('इसलिए') + ' पेड़ काटना अपने ' + ID('पैरों पर कुल्हाड़ी मारने') + ' के समान है।'},
+    {k:'M', lab:'मुख्य भाग 3 &middot; what we can do',
+     h:'अब प्रश्न यह है कि हम क्या कर सकते हैं। हर बच्चा अपने जन्मदिन पर एक पौधा लगाए और उसकी देखभाल करे। इसके लिए बड़ी ज़मीन की ज़रूरत नहीं है। मैंने भी अपने घर के आँगन में एक नीम का पौधा लगाया है। आज उसमें नई पत्तियाँ निकल आई हैं और मेरी मेहनत ' + ID('रंग लाई') + ' है।'},
+    {k:'C', lab:'उपसंहार &middot; conclusion',
+     h:LK('अंत में,') + ' यदि हम आज पेड़ लगाएँगे, तो कल हमें ठंडी हवा और साफ़ आसमान मिलेगा। ' + LK('तभी') + ' हमारी धरती फिर से हरी-भरी होगी। आइए, हम सब आज ही एक पौधा लगाने का वादा करें।'}
+  ]
+};
+function essayHtml(E){
+  let tot = 0;
+  const ps = E.paras.map(p=>{ const n = wc(p.h); tot += n;
+    return '<p class="ep ' + p.k + '"><span class="pl">' + p.lab + ' &middot; ' + n + ' words</span>' + p.h + '</p>'; }).join('');
+  return '<div class="essay"><div class="etitle">' + E.title + '</div>' + ps +
+    '<div class="ecount">' + E.paras.length + ' paragraphs &middot; <b>' + tot + ' words</b> &middot; linkers in rose, idioms highlighted</div></div>';
+}
+
+/* ---------------- videos ----------------
+   Found by web search (titles as listed there). Not opened in a browser during the build:
+   worth a two-minute click-through before the student is sent to them. */
+const VIDEOS = [
+ {t:"Nibandh Lekhan | निबंध-लेखन | Hindi Grammar | Vyakaran Saar for Class 7", ch:"YouTube &middot; Class 7 Hindi grammar (Vyakaran Saar)", url:"https://www.youtube.com/watch?v=4uE98sb0bfQ",
+  why:"The school-syllabus version of what Lesson 1 teaches: what an essay is, and what a Class 7 essay is expected to contain. It is pitched at your year, so watch it at 1.5&times; and treat it as the map before you look at the skeleton.",
+  task:"While it plays, write the parts of an essay in Hindi in the order the video gives them &mdash; शीर्षक first. Beside each part, write how many sentences you would give it in a 200-word essay. Where the video and Lesson 1 disagree, mark it with a star."},
+
+ {t:"ICSE 2025 | Tips for Writing Hindi Essay | Nibandh Lekhan", ch:"YouTube &middot; ICSE Hindi essay tips", url:"https://www.youtube.com/watch?v=gsR6ziKWrxg",
+  why:"Exam-side advice from a board that sets Hindi essays of this size: how to choose a topic, how to plan before writing, and how to use the time. Lesson 1 tells you what the essay is made of; this is about not losing marks while you make it.",
+  task:"Write down every tip that is about <strong>planning</strong> (before you write) separately from tips about <strong>writing</strong>. Then pick the single tip you personally are most likely to ignore, and copy it onto a sticky note for your desk."},
+
+ {t:"Muhavare Meaning, Explanation and Examples | Idioms in Hindi | Hindi Grammar | Hindi Vyakaran", ch:"YouTube &middot; Hindi grammar (idioms)", url:"https://www.youtube.com/watch?v=3J0fEGMYunM",
+  why:"An explanation of what a मुहावरा is and how it differs from an ordinary phrase, before you meet any list. Lesson 4 gives you sixteen; this tells you why a मुहावरा cannot be translated word by word, which is the reason you must learn them as fixed blocks.",
+  task:"Write down the definition of a मुहावरा in your own English. Then take <strong>one</strong> idiom from the video and one from Lesson 4, and for each write the literal meaning and the real meaning on two separate lines. Notice how far apart they are."},
+
+ {t:"30 मुहावरे हिंदी में | 30 muhavare in hindi | मुहावरे का अर्थ और वाक्य | hindi muhavare ka arth", ch:"YouTube &middot; 30 muhavare with meanings and sentences", url:"https://www.youtube.com/watch?v=1SesICy-kVo",
+  why:"Thirty idioms with meaning and a sample sentence each &mdash; a bigger pool than the sixteen in Lesson 4. Use it as a supply of extras, not a syllabus: two idioms you can use correctly are worth more than twenty you half-remember.",
+  task:"Choose <strong>three</strong> idioms that are not in Lesson 4. For each, write one sentence about your own life, using feminine verb endings where you say &lsquo;I&rsquo;. Underline the idiom, circle the verb. Ask whoever checks your Hindi to look at these three."},
+
+ {t:"वृक्षारोपण पर निबंध | Vriksharopan Par Nibandh | वृक्षारोपण पर निबंध 150 शब्दों में | Hindi Essay", ch:"YouTube &middot; Hindi essay on tree planting, 150 words", url:"https://www.youtube.com/watch?v=v1suf383mcA",
+  why:"A finished essay of about your beginner target, on one of the six topics on this page. Hearing an essay read aloud is different from reading it: you hear where the paragraph breaks fall and which linking words carry the joins.",
+  task:"Listen once with your notebook closed. Then replay it and write down only the <strong>linking phrases</strong> you hear (सबसे पहले, इसके अलावा&hellip;). Count them. Then compare with Model essay 2 in Lesson 6, which is on the same topic: what does the model have that the video does not?"},
+
+ {t:"Diwali Essay 200 Words: दिवाली पर शानदार निबंध | Nibandh, Bhashan, Speech In Hindi | Boldsky", ch:"YouTube &middot; Boldsky (as named in the title), 200-word essay", url:"https://www.youtube.com/watch?v=qC7WVIXx1fA",
+  why:"A 200-word essay is the size you are aiming for, and this one is on the festival topic. It is a chance to see the same skeleton dressed in different words: where does this essay put its opening line, and how does it end?",
+  task:"After watching, write the essay&rsquo;s skeleton in six lines: title, one line per paragraph. For each paragraph write its <strong>one idea</strong> in three English words. If you cannot give a paragraph one idea in three words, it has more than one &mdash; and that is what the examiner would mark down."}
+];
+
+/* ---------------- topic vocabulary banks (Lesson 2) ---------------- */
+const BANKS = [
+ {t:'मेरा विद्यालय', en:'My school', w:[['कक्षा','class'],['अध्यापिका','woman teacher'],['अध्यापक','man teacher'],['प्रधानाचार्य','principal'],['पुस्तकालय','library'],['प्रयोगशाला','laboratory'],['खेल का मैदान','playground'],['अनुशासन','discipline'],['प्रार्थना-सभा','morning assembly'],['गृहकार्य','homework'],['सहपाठी','classmate'],['वार्षिकोत्सव','annual day']]},
+ {t:'मेरा प्रिय खेल', en:'My favourite sport', w:[['खिलाड़ी','player'],['टीम','team'],['कप्तान','captain'],['गेंद','ball'],['अभ्यास','practice'],['प्रतियोगिता','competition'],['जीत','victory'],['हार','defeat'],['पदक','medal'],['फुर्ती','quickness, agility'],['स्वास्थ्य','health'],['टीम-भावना','team spirit']]},
+ {t:'दीपावली / त्योहार', en:'Diwali / festivals', w:[['दीया','lamp'],['रंगोली','rangoli'],['पूजा','worship'],['मिठाई','sweets'],['पटाखे','fireworks'],['रोशनी','light'],['सजावट','decoration'],['उपहार','gift'],['उल्लास','joy, excitement'],['जगमगाना','to glitter, to light up'],['अँधेरा','darkness'],['अच्छाई की जीत','victory of good']]},
+ {t:'पर्यावरण / वृक्षारोपण', en:'Environment / tree planting', w:[['पर्यावरण','environment'],['प्रदूषण','pollution'],['वृक्षारोपण','tree planting'],['पौधा','sapling, plant'],['शुद्ध हवा','clean air'],['छाया','shade'],['हरियाली','greenery'],['पशु-पक्षी','animals and birds'],['संरक्षण','protection'],['जल','water'],['धरती','the earth'],['कचरा','rubbish']]},
+ {t:'समय का महत्व', en:'The value of time', w:[['समय','time'],['कीमती','precious'],['बरबाद करना','to waste'],['सदुपयोग','good use'],['कद्र','respect, value'],['आलस्य','laziness'],['परिश्रम','hard work'],['दिनचर्या','daily routine'],['पाबंदी','punctuality, strictness'],['पछतावा','regret'],['सफलता','success'],['अवसर','opportunity']]},
+ {t:'मेरी प्रिय पुस्तक / मेरे प्रिय अध्यापक', en:'My favourite book / teacher', w:[['पुस्तक','book'],['लेखक','author'],['कहानी','story'],['पात्र','character'],['सीख','lesson learned'],['प्रेरणा','inspiration'],['मनोरंजन','entertainment'],['ज्ञान','knowledge'],['धैर्य','patience'],['दयालु','kind'],['मार्गदर्शन','guidance'],['सम्मान','respect']]}
+];
+function bankHtml(B){
+  return '<h4 style="margin:14px 0 2px;font-size:16px">' + B.t + ' <span style="font-family:var(--body);font-weight:400;color:var(--ink-soft);font-size:14px">&mdash; ' + B.en + '</span></h4>' +
+    '<div class="chips">' + B.w.map(x=>'<span>' + x[0] + '<small>' + x[1] + '</small></span>').join('') + '</div>';
+}
+/* ---------------- मुहावरे (Lesson 4) ---------------- */
+const IDIOMS = [
+ ['आँखों का तारा','a much-loved child','मेरी छोटी बहन पूरे परिवार की आँखों का तारा है।'],
+ ['नौ दो ग्यारह होना','to run away, to vanish','पुलिस को देखते ही चोर नौ दो ग्यारह हो गए।'],
+ ['दाँतों तले उँगली दबाना','to be astonished','उसकी चित्रकारी देखकर मैंने दाँतों तले उँगली दबा ली।'],
+ ['आसमान सिर पर उठाना','to make a huge racket','छुट्टी होते ही बच्चों ने आसमान सिर पर उठा लिया।'],
+ ['मुँह की खाना','to be badly beaten','फ़ाइनल में विपक्षी टीम को मुँह की खानी पड़ी।'],
+ ['अपने मुँह मियाँ मिट्ठू बनना','to praise oneself','जो हमेशा अपने मुँह मियाँ मिट्ठू बनता है, उसे कोई पसंद नहीं करता।'],
+ ['काला अक्षर भैंस बराबर','not able to read a word','जिसने कभी किताब नहीं खोली, उसके लिए हर किताब काला अक्षर भैंस बराबर है।'],
+ ['दिन-रात एक करना','to work extremely hard','परीक्षा से पहले मैंने दिन-रात एक कर दिया।'],
+ ['हाथ मलते रह जाना','to be left regretting a lost chance','ट्रेन छूट गई और मैं हाथ मलती रह गई।'],
+ ['पानी-पानी होना','to be deeply ashamed','झूठ पकड़े जाने पर वह पानी-पानी हो गई।'],
+ ['आग-बबूला होना','to be furious','अपनी किताब फटी देखकर भाई आग-बबूला हो गया।'],
+ ['फूले न समाना','to be overjoyed','प्रथम आने की खबर सुनकर मैं खुशी से फूली न समाई।'],
+ ['चार चाँद लगाना','to add glory or beauty','रंगोली ने हमारे आँगन की शोभा में चार चाँद लगा दिए।'],
+ ['टेढ़ी खीर होना','to be very hard to do','सुबह पाँच बजे उठना मेरे लिए टेढ़ी खीर है।'],
+ ['तिल का ताड़ बनाना','to blow a small thing up','बात बहुत छोटी थी, पर तुमने तो तिल का ताड़ बना दिया।'],
+ ['अपने पैरों पर कुल्हाड़ी मारना','to harm oneself by one’s own act','पेड़ काटना अपने पैरों पर कुल्हाड़ी मारने के समान है।']
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [];
+LESSONS.push(
+ {t:"The skeleton: a title, four paragraphs, one idea each", len:"7 min",
+  body:`<p>A Hindi essay at this level has a size (<strong>200&ndash;300 words</strong>) and a shape. The shape does most of the work. If you know the shape, a blank page is a set of four boxes to fill, not a mountain.</p>
+    <div class="ladder">
+      <div class="rung sh"><span class="rn">शीर्षक &middot; title</span><span>One line at the top, centred or underlined. The topic exactly as set: <span class="ts">मेरा प्रिय खेल</span>. It costs five seconds and an essay without one looks unfinished.</span></div>
+      <div class="rung bh"><span class="rn">भूमिका &middot; opening</span><span>Say what the topic is and why it matters. <span class="tb">40&ndash;50 words.</span> Two or three sentences, no details yet.</span></div>
+      <div class="rung mb"><span class="rn">मुख्य भाग &middot; body</span><span>Two paragraphs (three if you have the time). <span class="tm">60&ndash;90 words each.</span> <strong>One idea per paragraph</strong>, and the first sentence tells the reader which idea.</span></div>
+      <div class="rung up"><span class="rn">उपसंहार &middot; closing</span><span>Look back or look forward. <span class="tu">40&ndash;50 words.</span> It never starts a new idea.</span></div>
+    </div>
+    <p>Check the arithmetic: 40 + 60 + 60 + 40 is <strong>200</strong>; 50 + 90 + 90 + 50 is <strong>280</strong>. Two body paragraphs already land you inside 200&ndash;300. A third body paragraph pushes a confident essay to about 300. You do not need a fifth idea.</p>
+    <p><strong>Opening lines that work</strong> (fill the gaps, then move on):</p>
+    <div class="hbig">___ मेरा सबसे प्रिय ___ है।<br>आज के समय में ___ बहुत ज़रूरी है।<br>भारत त्योहारों का देश है।</div>
+    <p><strong>Closing lines that work:</strong></p>
+    <div class="hbig">अंत में, मैं कहना चाहूँगी कि&hellip;<br>इसलिए हमें&hellip; चाहिए।<br>मैं बड़ी होकर&hellip; चाहती हूँ।</div>
+    <p>Notice <em>चाहूँगी</em> and <em>चाहती हूँ</em>: the writer is you, so &lsquo;I&rsquo; verbs are feminine. The last line either <strong>sums up</strong> or <strong>looks ahead</strong>. If your last sentence introduces something the essay has not discussed &mdash; the school bus, the cafeteria &mdash; delete it.</p>
+    <p><strong>What the examiner rewards, in order:</strong> the essay is complete (title, all four parts); each paragraph is about one thing; the length is in range; the sentences are correct. Fancy vocabulary comes after all four.</p>`,
+  demo:"Take tonight&rsquo;s topic, <em>मेरा घर</em>. On a scrap of paper draw four boxes. In each write the idea in <strong>three English words</strong>, with no Hindi yet. Show the boxes to someone: if they cannot tell what each box is about, two of your ideas overlap. Fix the boxes, not the sentences.",
+  cliff:"The skeleton is empty until you have words to hang on it. And the same six topics come round in every school and every exam: school, a sport, a festival, the environment, time, a favourite book or teacher. What if you already owned the words for all six?"}
+);
+
+LESSONS.push(
+ {t:"Six topics, six word banks", len:"6 min",
+  body:`<p>Most Grade 7 essay titles are one of about six. Below is a bank for each: twelve words, in Hindi with the meaning beside it. You do not need all seventy-two. <strong>Learn five words from each bank</strong> and you own thirty words that will turn up in a real essay this year.</p>
+    ${BANKS.map(bankHtml).join('')}
+    <p><strong>How to use a bank.</strong> A bank word is worth marks only inside a correct sentence. Pick a word, say the sentence <em>who | the rest | verb</em>, and write it. For example, from the school bank: <span class="hline">मेरे विद्यालय का पुस्तकालय बहुत बड़ा है।</span> The noun is masculine, so <em>बड़ा</em>; the verb is last.</p>
+    <p><strong>Three verbs that write half of every essay:</strong> <em>पसंद होना</em> (to like: <em>मुझे खेल पसंद है</em>), <em>सिखाना</em> (to teach: <em>यह हमें सिखाता है</em>) and <em>देना</em> (to give: <em>पेड़ हमें छाया देते हैं</em>). Notice the pattern in the first: <em>मुझे</em> is the &lsquo;liker&rsquo;, and the verb agrees with the thing that is <strong>liked</strong>, not with you. <em>मुझे किताबें पसंद हैं</em> but <em>मुझे क्रिकेट पसंद है</em>.</p>
+    <p>One trap in the banks: <strong>अध्यापक</strong> is a man, <strong>अध्यापिका</strong> a woman. The verb follows: <em>हमारी अध्यापिका पढ़ाती हैं</em>, <em>हमारे अध्यापक पढ़ाते हैं</em>. The plural verb is for respect; the &lsquo;-ती/-ते&rsquo; still shows the gender.</p>`,
+  demo:"Choose the topic you fear most. Set a 3-minute timer and write <strong>six sentences</strong>, each using a different word from that bank. No linking words yet &mdash; six plain sentences. Then circle the verb in each and check it is last. Anything wrong here is cheaper to fix than in an exam.",
+  cliff:"Six plain sentences make a list, not a paragraph. What turns them into a paragraph is a small set of joining words, and most of the marks for &lsquo;flow&rsquo; sit there. Which ones, and where do they go?"}
+);
+
+LESSONS.push(
+ {t:"Linking and opinion phrases", len:"8 min",
+  body:`<p>A linker is a small word that tells the reader how this sentence relates to the last one. Eight jobs cover almost everything you need:</p>
+    <div class="tablewrap"><table class="data">
+      <tr><th>Job</th><th>Hindi</th><th>In a sentence</th></tr>
+      <tr><td>first point</td><td class="h ts">सबसे पहले,</td><td class="h">सबसे पहले, मैं अपनी कक्षा के बारे में बताऊँगी।</td></tr>
+      <tr><td>next point</td><td class="h ts">इसके अलावा, &middot; साथ ही</td><td class="h">इसके अलावा, हमारे पास एक बड़ा पुस्तकालय है।</td></tr>
+      <tr><td>example</td><td class="h ts">उदाहरण के लिए,</td><td class="h">उदाहरण के लिए, मेरी अध्यापिका हर बच्चे का नाम याद रखती हैं।</td></tr>
+      <tr><td>reason</td><td class="h ts">क्योंकि</td><td class="h">मैं देर से पहुँची, क्योंकि बस ख़राब हो गई थी।</td></tr>
+      <tr><td>result</td><td class="h ts">इसलिए</td><td class="h">बस ख़राब हो गई थी, इसलिए मैं देर से पहुँची।</td></tr>
+      <tr><td>contrast</td><td class="h ts">लेकिन &middot; परंतु</td><td class="h">मुझे गणित कठिन लगता है, लेकिन मैं रोज़ अभ्यास करती हूँ।</td></tr>
+      <tr><td>opinion</td><td class="h ts">मेरे विचार से, &middot; मुझे लगता है कि &middot; मेरा मानना है कि</td><td class="h">मुझे लगता है कि खेल हर बच्चे के लिए ज़रूरी हैं।</td></tr>
+      <tr><td>closing</td><td class="h ts">अंत में, &middot; इस प्रकार</td><td class="h">अंत में, मैं कहना चाहूँगी कि पेड़ हमारे सच्चे मित्र हैं।</td></tr>
+    </table></div>
+    <p><strong>The mirror pair.</strong> क्योंकि and इसलिए describe the same two facts from opposite ends. Say the facts first: <em>I was tired. I slept early.</em> The tiredness is the <strong>reason</strong>; sleeping is the <strong>result</strong>.</p>
+    <div class="hbig">मैं जल्दी सो गई, <span class="ts">क्योंकि</span> मैं थकी थी।<br>मैं थकी थी, <span class="ts">इसलिए</span> मैं जल्दी सो गई।</div>
+    <p>Both are correct and mean the same thing. What is <strong>wrong</strong> is swapping them: <em>मैं थकी थी, क्योंकि मैं जल्दी सो गई</em> says that sleeping caused the tiredness. क्योंकि always introduces the cause; इसलिए always introduces the effect. Do not use both in one sentence.</p>
+    <p><strong>Three habits for placing them.</strong></p>
+    <ul>
+      <li>An opener like <em>सबसे पहले,</em> or <em>अंत में,</em> takes a comma. <em>मुझे लगता है कि</em> does not: the कि joins straight onto what follows.</li>
+      <li>Do not start three sentences in a row with the same linker. Rotate, or leave a sentence bare &mdash; a bare sentence is fine.</li>
+      <li>क्योंकि sits in the <em>middle</em> of a sentence, after a comma. It does not start a paragraph.</li>
+    </ul>
+    <p>Opinion phrases matter for a second reason: a paragraph that says <em>मेरे विचार से</em> sounds like the writer thought about the topic. One per essay is enough &mdash; the first sentence of a body paragraph or the closing line is the natural place.</p>`,
+  demo:"Here are two facts: <em>बारिश हो रही थी। हम खेलने नहीं गए।</em> (It was raining. We did not go out to play.) Write them as one sentence with क्योंकि, and again with इसलिए. Check the English of each: does the क्योंकि half really say <em>why</em>?",
+  cliff:"Correct sentences held together by correct linkers earn a solid mark. What gets a writer noticed is something Hindi examiners love and English translators cannot fake: the <em>मुहावरा</em>. The danger is that it is easy to use one and be wrong. Where can you drop one in safely?"}
+);
+
+LESSONS.push(
+ {t:"Sixteen मुहावरे and how to drop one in", len:"9 min",
+  body:`<p>A <em>मुहावरा</em> is a phrase whose meaning is not the sum of its words: <em>नौ दो ग्यारह होना</em> is not arithmetic, it means &lsquo;to run away&rsquo;. Sixteen to start with, each with an example in which any &lsquo;I&rsquo; is feminine. Use the <strong>bold</strong> block as it stands; only the verb bends.</p>
+    <div class="tablewrap"><table class="data">
+      <tr><th>#</th><th>मुहावरा</th><th>Meaning</th><th>Example</th></tr>
+      ${IDIOMS.map((x,i)=>'<tr><td>' + (i+1) + '</td><td class="h ts"><strong>' + x[0] + '</strong></td><td>' + x[1] + '</td><td class="h">' + x[2] + '</td></tr>').join('')}
+    </table></div>
+    <p><strong>Four rules for dropping one in.</strong></p>
+    <ol>
+      <li><strong>Replace, do not add.</strong> An idiom takes the place of a plain phrase. <em>बच्चे बहुत शोर मचाने लगे</em> becomes <em>बच्चों ने आसमान सिर पर उठा लिया</em>. If you keep both, you say it twice.</li>
+      <li><strong>Only the verb bends.</strong> <em>पानी-पानी हो गई</em> (girl), <em>पानी-पानी हो गया</em> (boy). Never change <em>पानी-पानी</em> itself. The fixed words stay fixed, and swapping one for a &lsquo;similar&rsquo; word turns the idiom into nonsense.</li>
+      <li><strong>Match the feeling.</strong> Joy, fury, shame, astonishment, hard work: each idiom belongs to one. Before writing, say what the situation is in English, then pick.</li>
+      <li><strong>Two at most.</strong> One in a body paragraph or the closing line is plenty. An essay with six idioms reads as if it was assembled from a list &mdash; and it was.</li>
+    </ol>
+    <p><strong>Where they sit.</strong> Almost always as the <em>predicate</em>: the part of the sentence that says what happened. That is the slot the sentence upgrader below gives you: the plain phrase on the left, the idiom on the right. Notice how the feminine ending is the only thing that changes when you switch from a boy to a girl: <em>फूला न समाया</em> versus <em>फूली न समाई</em>.</p>
+    <p><em>दिन-रात एक करना</em> and <em>चार चाँद लगाना</em> are the two safest for a beginner: nearly every topic has somebody working hard, or something that makes something else more beautiful.</p>`,
+  demo:"Pick <strong>four</strong> idioms from the table. For each, cover the meaning column and say the English meaning out loud. Then cover the Hindi and try to recall the idiom from the meaning. Whichever you miss, write on a sticky note and put it where you brush your teeth.",
+  cliff:"You now have the four ingredients: a shape, the words for the topic, the joins, and a pinch of idiom. What does all of that look like when it is put together in one essay of about 150 words &mdash; the length you should be able to hit on the day?"}
+);
+
+LESSONS.push(
+ {t:"Model essay one: the 150-word target", len:"7 min",
+  body:`<p>This is the size to hit tomorrow, not the size to dream about. Four paragraphs, about <strong>150 words</strong>, written by a girl about her own school &mdash; so every &lsquo;I&rsquo; ending is feminine. Each paragraph is coloured as in the outline builder above: teal opening, violet body, amber closing.</p>
+    ${essayHtml(ESSAY1)}
+    <p><strong>How it is built.</strong></p>
+    <ul>
+      <li><strong>Opening:</strong> line one names the topic (<em>&hellip;में से एक है</em>), line two announces what follows (<em>इस निबंध में मैं&hellip; बताऊँगी</em>), line three says why it matters to <em>her</em>.</li>
+      <li><strong>Body 1</strong> is only the building, and starts with <span class="ts">सबसे पहले,</span>. <strong>Body 2</strong> is only the teachers, and starts with <span class="ts">इसके अलावा,</span>. Neither mentions the other&rsquo;s idea.</li>
+      <li><strong>Closing:</strong> <span class="ts">अंत में,</span> looks back (<em>मुझे गर्व है</em>) and the last line looks ahead. The idiom <span class="tu">नाम रोशन करना</span> (to make one&rsquo;s name shine) sits exactly where a plain <em>&hellip;अच्छा बनना चाहती हूँ</em> would have been.</li>
+      <li><strong>Feminine endings:</strong> <em>बताऊँगी, पूछ लेती हूँ, ला पाती हूँ, चाहूँगी, चाहती हूँ.</em> Count them. Each one is a mark if you copy the pattern and a mark lost if you do not.</li>
+      <li>Every sentence has its verb block last. Read the essay aloud: if a sentence ever feels like it ends too early, the verb is in the wrong place.</li>
+    </ul>
+    <p>The outline builder&rsquo;s first topic is this essay pulled to pieces: eight of its nine sentences are lifted word for word from the essay above, and the ninth is the odd one out. If you can rebuild the outline, you can rebuild the essay.</p>`,
+  demo:"Cover the essay. Write your own four-paragraph skeleton for <em>मेरा घर</em> using the same pattern: one sentence per box, with सबसे पहले in Body 1, इसके अलावा in Body 2 and अंत में in the closing. Then expand each box to three sentences. You should land near 150 words &mdash; count them.",
+  cliff:"150 words gets you a pass and a decent mark. What separates a good essay from a great one is not more words on the same idea but a wider range: a third body paragraph, a personal touch, a stronger closing. Model essay two is the 220-word version. What does it do that essay one does not?"}
+);
+
+LESSONS.push(
+ {t:"Model essay two, and the five-pass edit", len:"9 min",
+  body:`<p>The same skeleton, now with <strong>three body paragraphs</strong> and about <strong>220 words</strong>. The topic is less personal, so most sentences use &lsquo;we&rsquo; and &lsquo;they&rsquo; (masculine plural is correct there); the writer steps in once, in the third body paragraph, and the ने rule shows: <em>मैंने पौधा लगाया</em> ends in <em>-आ</em> because the verb copies <em>पौधा</em> (masculine), not the writer.</p>
+    ${essayHtml(ESSAY2)}
+    <p><strong>What it does that essay one does not.</strong> The opening makes a problem (pollution) and offers the topic as the answer, instead of just announcing it. Each body paragraph gets a distinct job: what trees give the earth, what they give us, what we can do. Two idioms (<span class="tu">अपने पैरों पर कुल्हाड़ी मारना</span>, <span class="tu">रंग लाना</span>) turn up once each, in the predicate. The closing ends on an appeal, <em>आइए&hellip;</em>, not a summary.</p>
+    <p><strong>The five-pass edit.</strong> After you finish, spend two minutes. Do <em>one</em> check per pass, because your eye cannot hold five at once:</p>
+    <div class="tablewrap"><table class="data">
+      <tr><th>Pass</th><th>Look for</th><th>Fix</th></tr>
+      <tr><td>1 &middot; verb</td><td>Circle every verb block. Is it the <strong>last</strong> thing before the &#2404;?</td><td>Move it. (<em>मैं जाती हूँ स्कूल</em> &rarr; <em>मैं स्कूल जाती हूँ</em>.)</td></tr>
+      <tr><td>2 &middot; markers</td><td>Every को, से, में, पर, का/की/के: is it glued <strong>behind</strong> its noun, and has the noun changed?</td><td><em>लड़का को</em> &rarr; <em>लड़के को</em>; <em>कमरा में</em> &rarr; <em>कमरे में</em>.</td></tr>
+      <tr><td>3 &middot; agreement</td><td>Underline every मैं and check the ending is feminine. For each adjective and का/की/के, find the noun it copies.</td><td><em>मैं खेलता हूँ</em> &rarr; <em>खेलती हूँ</em>; <em>मेरी भाई</em> &rarr; <em>मेरा भाई</em>.</td></tr>
+      <tr><td>4 &middot; ने</td><td>Any past-tense sentence with an object and a ने? The verb copies the <strong>object</strong>.</td><td><em>मैंने रोटी खाया</em> &rarr; <em>मैंने रोटी खाई</em>.</td></tr>
+      <tr><td>5 &middot; spelling</td><td>हूँ / हैं / में (dots), कि (that) versus की (of), ज़ ड़ फ़ dots, and a full stop that is &#2404; not a full stop dot.</td><td>Fix the dot, keep the word. Only fix what you are <strong>sure</strong> of.</td></tr>
+    </table></div>
+    <p>The order matters: verb position first, because moving a verb can change what it agrees with; spelling last, because it is the lowest-value check and the only one you may cheerfully skip if the clock says so.</p>`,
+  demo:"Take any paragraph of Hindi you wrote in the last week &mdash; a school answer, a message. Do the five passes on it in order, using a different coloured pen for each pass. If one colour appears more than any other, that is your personal weak spot. Write its name on your hand.",
+  cliff:"You now have a shape, words, joins, idioms and an edit routine. The hardest question on this page hands you a single paragraph with <strong>all five faults at once</strong>, plus a sentence that does not belong. Can you both find the faults and repair the structure?"}
+);
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which is the correct order of the parts of a 200&ndash;300 word Hindi essay?",
+  o:["शीर्षक &rarr; भूमिका &rarr; मुख्य भाग &rarr; उपसंहार","भूमिका &rarr; शीर्षक &rarr; उपसंहार &rarr; मुख्य भाग","शीर्षक &rarr; मुख्य भाग &rarr; भूमिका &rarr; उपसंहार","शीर्षक &rarr; उपसंहार &rarr; मुख्य भाग &rarr; भूमिका"],
+  a:0,
+  why:"Title first, then the opening (भूमिका), the body (मुख्य भाग) and the closing (उपसंहार) &mdash; Lesson 1 in one line. The other three all put the closing or the body ahead of the opening, which is how an essay reads when it was written as the ideas arrived instead of to a plan."},
+
+ {n:2, lvl:"warm-up", q:"Which linker tells the reader &lsquo;here is the <strong>result</strong>&rsquo;?<br><em>बस ख़राब हो गई थी, ___ मैं देर से पहुँची।</em>",
+  o:["इसलिए","क्योंकि","लेकिन","मेरे विचार से"],
+  a:0,
+  why:"<strong>इसलिए</strong> introduces the result: the bus broke down (reason), so I was late (result). क्योंकि would point at the reason and turn the sentence backwards; लेकिन means &lsquo;but&rsquo; and there is nothing to contrast; <em>मेरे विचार से</em> gives an opinion and does not link a cause to an effect."},
+
+ {n:3, lvl:"standard", q:"Which sentence uses क्योंकि correctly?",
+  o:["बस ख़राब हो गई थी, क्योंकि मैं देर से पहुँची।","मैं देर से पहुँची, क्योंकि बस ख़राब हो गई थी।","क्योंकि मैं देर से पहुँची, इसलिए बस ख़राब हो गई थी।","मैं देर से पहुँची, इसलिए क्योंकि बस ख़राब हो गई थी।"],
+  a:1,
+  why:"क्योंकि is followed by the <strong>cause</strong>. The bus broke down, and that is why I was late: B. A has the arrow backwards (it says being late broke the bus). C also reverses cause and effect, and uses both linkers. D piles इसलिए and क्योंकि into one sentence: use one or the other."},
+
+ {n:4, lvl:"standard", q:"Which मुहावरा fits the situation?<br><em>पुरस्कार मिलने की खबर सुनकर वह ___।</em> (She is a girl.)",
+  o:["खुशी से फूली न समाई","पानी-पानी हो गई","आग-बबूला हो गई","नौ दो ग्यारह हो गई"],
+  a:0,
+  why:"<strong>फूले न समाना</strong> means to be overjoyed, and the feminine form is <em>फूली न समाई</em>. पानी-पानी होना is shame, आग-बबूला होना is fury, नौ दो ग्यारह होना is running away &mdash; all grammatical, all the wrong feeling. Match the feeling first, then check the ending."},
+
+ {n:5, lvl:"trap", q:"An essay on <em>दीपावली</em> needs a closing sentence. Which one should <strong>not</strong> be used?",
+  o:["इसलिए हमें दीपावली सुरक्षित और खुशी से मनानी चाहिए।","अंत में, यह त्योहार हमें अँधेरे से रोशनी की ओर ले जाता है।","इसके अलावा, दीपावली पर बाज़ार में नई साड़ियाँ भी बिकती हैं।","मुझे दीपावली बहुत प्रिय है और मैं हर साल इसकी प्रतीक्षा करती हूँ।"],
+  a:2,
+  why:"C is grammatical and it is the wrong sentence: <strong>इसके अलावा</strong> opens a <em>new point</em> (saris in the market), and a closing paragraph never starts a new idea. A, B and D each look back at the essay or look ahead with a wish or appeal. The trap is that A, B and D look plainer than C, and C looks more &lsquo;informative&rsquo;."}
+];
+
+const SHORTS = [
+ {n:6, lvl:"warm-up", m:2, q:"For an essay on <strong>मेरा प्रिय खेल</strong>, write in Hindi:<br><strong>(a)</strong> a one-sentence भूमिका that names your sport. <span class='num'>[1]</span><br><strong>(b)</strong> a one-sentence उपसंहार that begins with <em>अंत में</em>. <span class='num'>[1]</span>",
+  scheme:["(a) e.g. <strong>मेरा सबसे प्रिय खेल क्रिकेट है।</strong> One mark for a correct sentence that <em>names the sport</em> and tells the reader the topic, verb last. Any sport is fine. <span class='num'>[1]</span>",
+          "(b) e.g. <strong>अंत में, मैं कहना चाहूँगी कि खेल जीवन के लिए बहुत ज़रूरी हैं।</strong> One mark: it begins <em>अंत में,</em> (comma), it looks back or forward without starting a new idea, and any &lsquo;I&rsquo; verb is feminine (<em>चाहूँगी</em>, not <em>चाहूँगा</em>). <span class='num'>[1]</span>"],
+  tip:"Say the idea in English first, in seven words, then build the Hindi as who | the rest | verb. The opening only names the topic; the closing only looks back."},
+
+ {n:7, lvl:"standard", m:2, q:"Rewrite each pair using the linker in brackets.<br><strong>(a)</strong> पेड़ हमें छाया देते हैं। पेड़ हमें फल देते हैं। (इसके अलावा) <span class='num'>[1]</span><br><strong>(b)</strong> मैं बहुत थक गई थी। मैं जल्दी सो गई। (इसलिए) <span class='num'>[1]</span>",
+  scheme:["(a) <strong>पेड़ हमें छाया देते हैं। इसके अलावा, वे हमें फल भी देते हैं।</strong> One mark: <em>इसके अलावा,</em> opens the <em>second</em> sentence, with its comma, and the repeated पेड़ becomes <em>वे</em> (or is dropped). <span class='num'>[1]</span>",
+          "(b) <strong>मैं बहुत थक गई थी, इसलिए जल्दी सो गई।</strong> One mark: इसलिए starts the <em>result</em> (sleeping), after a comma, and the second मैं is dropped. Both verbs stay feminine. <span class='num'>[1]</span>"],
+  tip:"In (b) ask which half is the cause. The tiredness is the reason, so it comes first and इसलिए introduces what followed. If you would rather use क्योंकि, the halves swap: <em>मैं जल्दी सो गई, क्योंकि मैं बहुत थक गई थी।</em>"},
+
+ {n:8, lvl:"standard", m:2, q:"Use each मुहावरा in a sentence of your own. Any &lsquo;I&rsquo; must be feminine.<br><strong>(a)</strong> दिन-रात एक करना <span class='num'>[1]</span><br><strong>(b)</strong> दाँतों तले उँगली दबाना <span class='num'>[1]</span>",
+  scheme:["(a) e.g. <strong>परीक्षा से पहले मैंने दिन-रात एक कर दिया।</strong> One mark: the idiom is unchanged apart from the verb, the situation is really about hard work, and the verb finishes the sentence. <span class='num'>[1]</span>",
+          "(b) e.g. <strong>जादूगर का खेल देखकर सबने दाँतों तले उँगली दबा ली।</strong> One mark: the situation is astonishment, the fixed words are unchanged, and after ने the verb copies the object (<em>उँगली</em> is feminine: <em>दबा ली</em>). <span class='num'>[1]</span>"],
+  tip:"Do not change the fixed words of the idiom, only the verb. And check the feeling: if you cannot say in English why the person is astonished, the sentence is not about astonishment."},
+
+ {n:9, lvl:"standard", m:2, q:"Upgrade <em>मेरी सहेली गाना गाती है।</em> by adding, in one sentence:<br><strong>(a)</strong> a describing word before <em>गाना</em> that is correct for that noun. <span class='num'>[1]</span><br><strong>(b)</strong> a reason clause beginning <em>क्योंकि</em>. <span class='num'>[1]</span>",
+  scheme:["(a) e.g. <strong>मेरी सहेली मीठा गाना गाती है</strong> (or <em>सुंदर</em>, <em>सुरीला</em>). One mark: गाना is masculine, so the word ends in -ा (or does not change at all, as सुंदर). <em>मीठी गाना</em> and <em>मीठे गाना</em> lose the mark. <span class='num'>[1]</span>",
+          "(b) e.g. <strong>&hellip;, क्योंकि उसे संगीत बहुत पसंद है।</strong> One mark: after a comma, क्योंकि is followed by a real <em>cause</em> clause with its verb last. Full answer: <strong>मेरी सहेली मीठा गाना गाती है, क्योंकि उसे संगीत बहुत पसंद है।</strong> <span class='num'>[1]</span>"],
+  tip:"To choose the describing word, find the noun it describes and ask its gender first. For an adjective ending in -ा, the noun&rsquo;s gender decides the ending; for one like सुंदर, nothing to decide."},
+
+ {n:10, lvl:"trap", m:2, q:"Each sentence is from a girl&rsquo;s essay and has <strong>one</strong> mistake. Rewrite it correctly.<br><strong>(a)</strong> मैंने कल एक निबंध लिखी। <span class='num'>[1]</span><br><strong>(b)</strong> मैं रोज़ स्कूल जाता हूँ। <span class='num'>[1]</span>",
+  scheme:["(a) <strong>मैंने कल एक निबंध लिखा।</strong> One mark: after ने the verb copies the object, and <em>निबंध</em> is masculine, so <em>लिखा</em>, not <em>लिखी</em>. (The writer being a girl is not relevant here &mdash; ने shuts that off.) <span class='num'>[1]</span>",
+          "(b) <strong>मैं रोज़ स्कूल जाती हूँ।</strong> One mark: no ने here, so the verb copies the doer, and the doer is a girl: <em>जाती</em>. <span class='num'>[1]</span>"],
+  tip:"The two sentences look like the same kind of fault and are opposites. In (a) the writer&rsquo;s gender is irrelevant because of ने; in (b) it is the whole story. Find out which rule you are under before you fix the ending."}
+];
+
+const WORDS = [
+ {n:11, lvl:"standard", m:3, q:"Write a three-sentence <strong>skeleton</strong> for an essay on <strong>मेरे प्रिय अध्यापक / मेरी प्रिय अध्यापिका</strong>, one sentence per part:<br><strong>(a)</strong> a भूमिका sentence that names the teacher and what they teach. <span class='num'>[1]</span><br><strong>(b)</strong> a मुख्य भाग sentence that begins <em>सबसे पहले,</em> and makes one point. <span class='num'>[1]</span><br><strong>(c)</strong> an उपसंहार sentence that begins <em>अंत में,</em> and looks back. <span class='num'>[1]</span>",
+  hints:["Three boxes, three jobs: <em>introduce</em> (who, what they teach), <em>one point</em> (why they are good at it), <em>close</em> (how you feel).",
+         "Each sentence is who | the rest | verb, with the verb last. (b) starts <em>सबसे पहले,</em> with its comma; (c) starts <em>अंत में,</em> with its comma.",
+         "If you use <em>मैं</em> in any sentence, the verb ending is feminine. If your teacher is a woman, the verb is <em>-ती हैं</em> (respectful plural); if a man, <em>-ते हैं</em>."],
+  sol:["<strong>(a)</strong> मेरी प्रिय अध्यापिका श्रीमती शर्मा हैं, जो हमें हिंदी पढ़ाती हैं। <em>(names the teacher and the subject; verb last in each half)</em>",
+       "<strong>(b)</strong> सबसे पहले, वे कठिन बातें भी उदाहरण देकर आसानी से समझा देती हैं। <em>(one point: how she explains; feminine plural of respect)</em>",
+       "<strong>(c)</strong> अंत में, मैं कहना चाहूँगी कि ऐसी अध्यापिका पाकर मैं बहुत भाग्यशाली हूँ। <em>(looks back; चाहूँगी and the closing statement introduce nothing new)</em>",
+       "Any correct teacher, any correct subject. One mark each for: the right slot, the right opener where one is asked, and a correct sentence."]},
+
+ {n:12, lvl:"standard", m:3, q:"Rewrite each sentence, replacing the underlined plain phrase with a मुहावरा from this list: <em>पानी-पानी होना &middot; फूले न समाना &middot; आग-बबूला होना</em>. In (a) and (b) the person is a woman; in (c) the person is the writer&rsquo;s father.<br><strong>(a)</strong> पुरस्कार मिलने पर वह <u>बहुत खुश हुई</u>। <span class='num'>[1]</span><br><strong>(b)</strong> झूठ पकड़े जाने पर वह <u>बहुत शर्मिंदा हुई</u>। <span class='num'>[1]</span><br><strong>(c)</strong> शरारत देखकर पिताजी <u>बहुत क्रोधित हुए</u>। <span class='num'>[1]</span>",
+  hints:["Name the feeling in each sentence first: (a) joy, (b) shame, (c) anger. Then match a feeling to an idiom.",
+         "Only the verb bends, and it bends for the doer: she &rarr; feminine, father (respectful) &rarr; plural masculine. The fixed words stay fixed.",
+         "(a) <em>फूले न समाना</em> is in the list in its masculine form; a woman says <em>फूली न समाई</em>. (b) <em>हो गई</em>. (c) father, respectful plural: <em>हो गए</em>."],
+  sol:["<strong>(a)</strong> पुरस्कार मिलने पर वह खुशी से <strong>फूली न समाई</strong>। <em>(feeling: joy; feminine)</em>",
+       "<strong>(b)</strong> झूठ पकड़े जाने पर वह <strong>पानी-पानी हो गई</strong>। <em>(feeling: shame; feminine)</em>",
+       "<strong>(c)</strong> शरारत देखकर पिताजी <strong>आग-बबूला हो गए</strong>। <em>(feeling: fury; plural of respect, masculine)</em>",
+       "One mark per sentence. The mark goes only if the idiom is right for the feeling <em>and</em> the ending is right for the doer. <em>फूला न समाई</em> or <em>आग-बबूला हो गई</em> for father loses the mark."]},
+
+ {n:13, lvl:"trap", m:3, q:"The writer of this paragraph is a girl. It has <strong>three</strong> mistakes. Copy it out corrected, and say in one word what each mistake was (verb, gender, or ने).<br><em>मेरा प्रिय खेल क्रिकेट है। मैं रोज़ शाम को मैदान में खेलता हूँ। मैंने कल एक छक्का मारी। हमारी टीम मैच जीत गया।</em> <span class='num'>[3]</span>",
+  hints:["Go sentence by sentence. Sentence 1 is fine. Circle the verb of each of sentences 2, 3 and 4 and ask: whom does this verb copy?",
+         "Sentence 2 has no ने, so the verb copies the doer &mdash; and the doer is a girl. Sentence 3 has ने, so the verb copies the <em>object</em>. Sentence 4 has no ने, so the verb copies the doer &mdash; the team.",
+         "The object in sentence 3 is <em>छक्का</em>, masculine. The doer in sentence 4 is <em>टीम</em>, feminine."],
+  sol:["<strong>खेलता &rarr; खेलती</strong> (gender: the writer is a girl, no ने, so the verb copies her).",
+       "<strong>मारी &rarr; मारा</strong> (ने: the verb copies the object <em>छक्का</em>, which is masculine, not the writer).",
+       "<strong>जीत गया &rarr; जीत गई</strong> (gender: the doer is <em>टीम</em>, feminine, and there is no ने).",
+       "Corrected: <em>मेरा प्रिय खेल क्रिकेट है। मैं रोज़ शाम को मैदान में खेलती हूँ। मैंने कल एक छक्का मारा। हमारी टीम मैच जीत गई।</em> A closing observation: mistakes 1 and 3 look identical and need opposite fixes. That is exactly what the exam is testing."]},
+
+ {n:14, lvl:"hard", m:3, q:"Write a complete mini-essay of about <strong>60&ndash;80 words</strong> on <strong>पर्यावरण की रक्षा</strong>: a शीर्षक, a भूमिका, <strong>one</strong> मुख्य भाग paragraph on a single idea (begin <em>सबसे पहले,</em>), and an उपसंहार (begin <em>अंत में,</em>). Marks: structure and title <span class='num'>[1]</span>; one idea in the body and the two linkers in the right place <span class='num'>[1]</span>; correct grammar throughout <span class='num'>[1]</span>.",
+  hints:["Choose the <em>one idea</em> of your body paragraph before you write anything. Something you can name in three English words: plastic, trees, water. Everything in the body must belong to it.",
+         "Plan: title | 2 sentences of opening | 3 sentences of body starting <em>सबसे पहले,</em> | 1&ndash;2 sentences of closing starting <em>अंत में,</em>. That is 60&ndash;80 words. Count them.",
+         "Edit with the five passes from Lesson 6: verb last, markers glued (noun changed), agreement (feminine <em>मैं</em>), ने, spelling. Do them one at a time."],
+  sol:["<strong>शीर्षक:</strong> पर्यावरण की रक्षा",
+       "<strong>भूमिका:</strong> हमारा पर्यावरण आज प्रदूषण से परेशान है। इसे बचाना हम सबकी ज़िम्मेदारी है।",
+       "<strong>मुख्य भाग:</strong> सबसे पहले, हमें प्लास्टिक का उपयोग कम करना चाहिए। कपड़े के थैले में सामान लाने से कचरा कम होता है और नदियाँ साफ़ रहती हैं। मैं भी अब बाज़ार जाते समय कपड़े का थैला ले जाती हूँ।",
+       "<strong>उपसंहार:</strong> अंत में, यदि हम सब छोटे कदम उठाएँ, तो हमारी धरती फिर से स्वच्छ हो जाएगी।",
+       "The one idea is plastic; every body sentence is about it. Marks: one for a title and all three parts; one for a single-idea body with सबसे पहले and अंत में in place; one for correct grammar (verb last, feminine <em>ले जाती हूँ</em>, the noun <em>थैले</em> changed before <em>में</em>)."]},
+
+ {n:15, lvl:"hard", m:3, q:"This paragraph is from a girl&rsquo;s essay <em>मेरा प्रिय खेल</em>. It has two ideas mixed together, one sentence that does not belong, and <strong>four</strong> grammar faults.<br><em>मेरा प्रिय खेल कबड्डी है। मैं खेलता हूँ रोज़ शाम को मैदान में। इस खेल से शरीर मज़बूत बनती है। हमारे विद्यालय में कबड्डी की टीम है। मेरे पिताजी को क्रिकेट पसंद है। मैंने कल मैच में तीन अंक बनाया।</em><br>Rewrite it as <strong>two paragraphs</strong> (how I play; why I like it), delete the sentence that does not belong, begin the second paragraph with <em>इसके अलावा,</em>, and finish with a one-line closing beginning <em>अंत में,</em>. Marks: two single-idea paragraphs, odd sentence gone <span class='num'>[1]</span>; the two linkers placed correctly <span class='num'>[1]</span>; all four faults fixed <span class='num'>[1]</span>.",
+  hints:["Sort the six sentences into: <em>how I play</em>, <em>why I like it</em>, and <em>does not belong</em>. Do this before you touch any Hindi.",
+         "The four faults are: a verb in the wrong place; a masculine verb for a girl; a verb that does not match its noun (the noun is <em>शरीर</em>); and a ने-sentence whose verb does not copy its object. Find one sentence for each.",
+         "For the ne-sentence, the object is <em>अंक</em> (masculine plural). The ne-verb must copy it. <em>बनाया</em> is masculine singular."],
+  sol:["<strong>Sorted:</strong> how I play &mdash; sentences 1, 2, 4, 6; why I like it &mdash; sentence 3; does not belong &mdash; sentence 5 (the father&rsquo;s cricket).",
+       "<strong>The four faults:</strong> (1) <em>मैं खेलता हूँ रोज़ शाम को मैदान में</em> &mdash; verb not last; (2) <em>खेलता</em> &mdash; should be <em>खेलती</em>; (3) <em>शरीर मज़बूत बनती है</em> &mdash; <em>शरीर</em> is masculine: <em>बनता है</em>; (4) <em>तीन अंक बनाया</em> &mdash; should be <em>बनाए</em>.",
+       "<strong>Paragraph 1:</strong> मेरा प्रिय खेल कबड्डी है। मैं रोज़ शाम को मैदान में खेलती हूँ। हमारे विद्यालय में कबड्डी की टीम है। मैंने कल मैच में तीन अंक बनाए।<br><strong>Paragraph 2:</strong> इसके अलावा, इस खेल से शरीर मज़बूत बनता है।<br><strong>Closing:</strong> अंत में, मैं कहना चाहूँगी कि कबड्डी मुझे हमेशा प्रिय रहेगी।",
+       "Paragraph 2 may have more than one sentence, and the closing is yours to word; any correct version is fine. A closing observation: fault (1) and fault (2) are in the same sentence, so fixing only the word order still loses a mark. This question rewards reading each verb <em>twice</em>."]}
+];
+
+/* ---------------- tool 1 data: the outline builder ----------------
+   Each topic: nine cards in canonical order I1 I2 A1 A2 B1 B2 C1 C2 X.
+   card = [hindi, english, idea, rank]; idea I/A/B/C = intro / body 1 / body 2 / close, X = odd one out.
+   Slots on screen: [I, A, B, C], two cards each, rank 1 before rank 2. */
+const OL = [
+ {id:'o1', title:'मेरा विद्यालय', en:'My school', ideas:{A:'the school building', B:'the teachers'}, cards:[
+  ['मेरा विद्यालय शहर के सबसे अच्छे विद्यालयों में से एक है।','My school is one of the best schools in the city.','I',1],
+  ['इस निबंध में मैं अपने विद्यालय के बारे में बताऊँगी।','In this essay I will tell you about my school.','I',2],
+  ['सबसे पहले, हमारे विद्यालय की इमारत बहुत बड़ी और साफ़-सुथरी है।','First of all, our school building is big and clean.','A',1],
+  ['इसमें हवादार कक्षाएँ, पुस्तकालय और प्रयोगशालाएँ हैं।','It has airy classrooms, a library and laboratories.','A',2],
+  ['इसके अलावा, हमारे अध्यापक बहुत मेहनती और दयालु हैं।','Besides this, our teachers are hardworking and kind.','B',1],
+  ['वे हमें हर विषय प्यार से समझाते हैं और हमारी मदद करते हैं।','They explain every subject with love and help us.','B',2],
+  ['अंत में, मैं कहना चाहूँगी कि मुझे अपने विद्यालय पर गर्व है।','Finally, I want to say that I am proud of my school.','C',1],
+  ['मैं बड़ी होकर अपने विद्यालय का नाम रोशन करना चाहती हूँ।','When I grow up I want to make my school’s name shine.','C',2],
+  ['कल रात मेरे पड़ोस में एक बड़ी शादी थी।','Last night there was a big wedding in my neighbourhood.','X',0]]},
+ {id:'o2', title:'मेरा प्रिय खेल', en:'My favourite sport', ideas:{A:'how I play', B:'why I like the game'}, cards:[
+  ['मेरा सबसे प्रिय खेल क्रिकेट है।','My favourite sport is cricket.','I',1],
+  ['इसे बच्चे, बड़े और बूढ़े सभी बड़े शौक से खेलते और देखते हैं।','Children, adults and the old all play and watch it with great enthusiasm.','I',2],
+  ['सबसे पहले, मैं रोज़ शाम को अपनी सहेलियों के साथ मैदान में खेलती हूँ।','First, I play on the ground every evening with my friends.','A',1],
+  ['हम दो टीमें बना लेते हैं और मैं गेंदबाज़ी करती हूँ।','We form two teams and I bowl.','A',2],
+  ['इसके अलावा, इस खेल से शरीर स्वस्थ और फुर्तीला रहता है।','Besides this, the game keeps the body healthy and quick.','B',1],
+  ['इससे हम अनुशासन और टीम-भावना भी सीखते हैं।','From it we also learn discipline and team spirit.','B',2],
+  ['अंत में, मैं यही कहूँगी कि खेल जीवन के लिए बहुत ज़रूरी हैं।','Finally, I will say just this: sports are very important for life.','C',1],
+  ['मैं बड़ी होकर देश के लिए खेलना चाहती हूँ।','When I grow up I want to play for my country.','C',2],
+  ['हमारे शहर में कल बहुत तेज़ बारिश हुई।','It rained very heavily in our city yesterday.','X',0]]},
+ {id:'o3', title:'दीपावली', en:'Diwali', ideas:{A:'getting ready', B:'the evening of Diwali'}, cards:[
+  ['दीपावली हमारे देश का सबसे बड़ा और सबसे प्रिय त्योहार है।','Diwali is the biggest and best-loved festival of our country.','I',1],
+  ['यह हर साल अक्तूबर या नवंबर के महीने में आता है।','It comes every year in October or November.','I',2],
+  ['सबसे पहले, कई दिन पहले से हम घर की सफ़ाई और सजावट शुरू कर देते हैं।','First, days ahead, we begin cleaning and decorating the house.','A',1],
+  ['माँ रसोई में स्वादिष्ट मिठाइयाँ बनाती हैं और हम दरवाज़े पर रंगोली बनाते हैं।','Mother makes tasty sweets in the kitchen and we make rangoli at the door.','A',2],
+  ['इसके अलावा, दीपावली की शाम को हम लक्ष्मी-पूजन करते हैं।','Besides this, on the evening of Diwali we perform Lakshmi puja.','B',1],
+  ['उसके बाद हम घर के हर कोने में दीये जलाते हैं और मिठाइयाँ बाँटते हैं।','After that we light lamps in every corner of the house and share sweets.','B',2],
+  ['अंत में, यह त्योहार हमें सिखाता है कि अँधेरे पर रोशनी की जीत होती है।','Finally, this festival teaches us that light wins over darkness.','C',1],
+  ['मैं चाहती हूँ कि हम पटाखों के बिना सुरक्षित दीपावली मनाएँ।','I want us to celebrate a safe Diwali without firecrackers.','C',2],
+  ['मेरी गली के कोने पर एक नई दुकान खुली है।','A new shop has opened at the corner of my lane.','X',0]]},
+ {id:'o4', title:'वृक्षारोपण', en:'Tree planting', ideas:{A:'what trees give us', B:'what we can do'}, cards:[
+  ['आज हमारा पर्यावरण प्रदूषण की चपेट में है।','Today our environment is in the grip of pollution.','I',1],
+  ['ऐसे में वृक्षारोपण सबसे आसान और सबसे अच्छा उपाय है।','In such a time, planting trees is the easiest and best remedy.','I',2],
+  ['सबसे पहले, पेड़ हमें शुद्ध हवा और ठंडी छाया देते हैं।','First, trees give us clean air and cool shade.','A',1],
+  ['वे बारिश बुलाते हैं और तेज़ बहाव में मिट्टी को बहने से रोकते हैं।','They bring rain and stop the soil from washing away in a strong current.','A',2],
+  ['इसके अलावा, हमें अपने आसपास पौधे लगाने चाहिए और उनकी देखभाल करनी चाहिए।','Besides, we should plant saplings around us and look after them.','B',1],
+  ['मैंने भी अपने घर के आँगन में एक नीम का पौधा लगाया है।','I too have planted a neem sapling in the courtyard of my house.','B',2],
+  ['अंत में, यदि हम आज पेड़ लगाएँगे, तो कल हमें ठंडी हवा और साफ़ आसमान मिलेगा।','Finally, if we plant trees today, tomorrow we will get cool air and clear skies.','C',1],
+  ['आइए, हम सब आज ही एक पौधा लगाने का वादा करें।','Come, let us all promise today to plant a sapling.','C',2],
+  ['मेरे पिताजी हर सुबह अख़बार पढ़ते हैं।','My father reads the newspaper every morning.','X',0]]}
+];
+/* puzzle topics: different from the four above, so a puzzle is a fresh outline */
+const OP = [
+ {id:'p1', title:'समय का महत्व', en:'The value of time', ideas:{A:'nature keeps time', B:'time for a student'}, cards:[
+  ['समय संसार की सबसे कीमती चीज़ है।','Time is the most precious thing in the world.','I',1],
+  ['इसीलिए इसकी कद्र करना हमारा पहला कर्तव्य है।','That is why valuing it is our first duty.','I',2],
+  ['सबसे पहले, प्रकृति को देखिए: सूरज ठीक समय पर उगता और डूबता है।','First, look at nature: the sun rises and sets exactly on time.','A',1],
+  ['यदि वह एक दिन भी देर करे, तो पूरा संसार अस्त-व्यस्त हो जाए।','If it were late even one day, the whole world would be thrown into chaos.','A',2],
+  ['इसके अलावा, विद्यार्थी के लिए समय का सही उपयोग सबसे ज़रूरी है।','Besides, for a student the right use of time matters most.','B',1],
+  ['जो विद्यार्थी हर काम समय पर करता है, वह परीक्षा में अच्छे अंक पाता है।','The student who does every task on time gets good marks in the exam.','B',2],
+  ['अंत में, मैं यही कहूँगी कि जो समय की कद्र करता है, समय उसकी कद्र करता है।','Finally, I will say just this: whoever respects time, time respects him.','C',1],
+  ['इसलिए मैं आज से एक-एक पल का सही उपयोग करूँगी।','So from today I will make good use of every moment.','C',2],
+  ['हमारे घर में पिछले हफ़्ते एक नया सोफ़ा आया।','A new sofa came to our house last week.','X',0]]},
+ {id:'p2', title:'मेरी प्रिय पुस्तक', en:'My favourite book', ideas:{A:'the stories', B:'the lessons in them'}, cards:[
+  ['मेरी सबसे प्रिय पुस्तक पंचतंत्र है।','My favourite book is the Panchatantra.','I',1],
+  ['यह पुस्तक मुझे जन्मदिन पर दादी ने दी थी।','My grandmother gave me this book on my birthday.','I',2],
+  ['सबसे पहले, इसकी कहानियाँ पशु-पक्षियों के बारे में हैं और बहुत मज़ेदार हैं।','First, its stories are about animals and birds and are great fun.','A',1],
+  ['इनमें चतुर सियार और बुद्धिमान कौआ जैसे पात्र मिलते हैं।','In them we meet characters like the clever jackal and the wise crow.','A',2],
+  ['इसके अलावा, हर कहानी हमें कोई न कोई सीख देती है।','Besides, every story teaches us some lesson.','B',1],
+  ['कबूतरों की कहानी सिखाती है कि एकता में ही शक्ति है।','The pigeons’ story teaches that there is strength in unity.','B',2],
+  ['अंत में, यह पुस्तक हर बच्चे को अवश्य पढ़नी चाहिए।','Finally, every child should certainly read this book.','C',1],
+  ['मैं इसे जीवन भर सँभालकर रखूँगी।','I will keep it safe all my life.','C',2],
+  ['बाज़ार में आज सब्ज़ियाँ बहुत महँगी थीं।','Vegetables were very expensive in the market today.','X',0]]},
+ {id:'p3', title:'मेरे प्रिय अध्यापक', en:'My favourite teacher', ideas:{A:'how he teaches', B:'his kindness'}, cards:[
+  ['मेरे प्रिय अध्यापक श्री वर्मा हैं, जो हमें गणित पढ़ाते हैं।','My favourite teacher is Mr Verma, who teaches us maths.','I',1],
+  ['मैं उनका बहुत सम्मान करती हूँ।','I respect him a great deal.','I',2],
+  ['सबसे पहले, वे कठिन प्रश्न भी उदाहरण देकर आसानी से समझा देते हैं।','First, he explains even hard questions easily, with examples.','A',1],
+  ['इसीलिए उनकी कक्षा में सब ध्यान से सुनते हैं।','That is why everyone listens carefully in his class.','A',2],
+  ['इसके अलावा, वे बहुत दयालु और धैर्यवान हैं।','Besides, he is very kind and patient.','B',1],
+  ['जब मैं कोई प्रश्न ग़लत कर देती हूँ, तब भी वे मुझे कभी नहीं डाँटते।','Even when I get a question wrong, he never scolds me.','B',2],
+  ['अंत में, मेरा मानना है कि एक अच्छा अध्यापक जीवन की दिशा बदल सकता है।','Finally, I believe a good teacher can change the direction of a life.','C',1],
+  ['मैं भी बड़ी होकर उनकी तरह एक अच्छी शिक्षिका बनना चाहती हूँ।','When I grow up I too want to become a good teacher like him.','C',2],
+  ['पिछले साल हम गर्मियों की छुट्टियों में नानी के घर गए थे।','Last year we went to Nani’s house in the summer holidays.','X',0]]},
+ {id:'p4', title:'वर्षा ऋतु', en:'The rainy season', ideas:{A:'what rain does to nature', B:'what I love to do in it'}, cards:[
+  ['भारत में छह ऋतुएँ होती हैं, पर मुझे वर्षा ऋतु सबसे अच्छी लगती है।','India has six seasons, but I like the rainy season best.','I',1],
+  ['यह ऋतु गर्मी की तपन के बाद आती है।','This season comes after the burning heat of summer.','I',2],
+  ['सबसे पहले, बारिश की पहली बूँदें पड़ते ही धरती से सोंधी खुशबू उठती है।','First, as soon as the first drops fall, a sweet earthy smell rises from the ground.','A',1],
+  ['पेड़-पौधे हरे-भरे हो जाते हैं और मोर नाचने लगते हैं।','Plants turn green and peacocks begin to dance.','A',2],
+  ['इसके अलावा, बारिश में भीगना और काग़ज़ की नाव चलाना मुझे बहुत पसंद है।','Besides, I love getting wet in the rain and sailing paper boats.','B',1],
+  ['जब मैं सहेलियों के साथ भीगती हूँ, तो सारी चिंता भूल जाती हूँ।','When I get drenched with my friends, I forget all my worries.','B',2],
+  ['अंत में, वर्षा हमारे किसानों के लिए वरदान है।','Finally, the rains are a blessing for our farmers.','C',1],
+  ['इसलिए मैं हर साल इसकी प्रतीक्षा करती हूँ।','So I wait for it every year.','C',2],
+  ['हमारे स्कूल की बस आज देर से आई।','Our school bus came late today.','X',0]]}
+];
+const OSLOTS = [['I','भूमिका','introduction'],['A','मुख्य भाग 1','first point'],['B','मुख्य भाग 2','second point'],['C','उपसंहार','closing']];
+
+/* ---------------- tool 2 data: the sentence upgrader ----------------
+   Each task: a template (tokens '@o' '@a' '@i' '@r' are slots) and slots.
+   Slot options are [text, ok, why]. Option 0 of every slot is the plain one and is always ok.
+   The built sentence is the tokens joined by spaces. A pick is 'right' only if ok === 1. */
+const UKIND = {o:'Start with a linker', a:'Describe the noun', i:'Swap in a मुहावरा', r:'Add a reason'};
+const UT = [
+ {id:'u1', en:'I like my school’s library.', tpl:['@o','मुझे अपने विद्यालय का','@a','पुस्तकालय पसंद है','@r','।'], slots:{
+  o:[['',1,'Plain: no opener.'],
+     ['मेरे विचार से,',1,'An opinion opener. It tells the reader this is your view. Comma after it.'],
+     ['सच कहूँ तो,',1,'&lsquo;To tell the truth&rsquo; &mdash; a friendly opinion opener. Comma after it.'],
+     ['इसलिए,',0,'<em>इसलिए</em> means &lsquo;so&rsquo; and needs a reason in the sentence before it. This is the first sentence.'],
+     ['इसके अलावा,',0,'<em>इसके अलावा</em> means &lsquo;besides this&rsquo; and points back at an earlier point. Nothing comes before this sentence.']],
+  a:[['',1,'Plain: no describing word.'],
+     ['बड़ा',1,'<em>पुस्तकालय</em> is masculine, so the describing word ends in -ा: <em>बड़ा पुस्तकालय</em>.'],
+     ['शांत',1,'<em>शांत</em> (peaceful) never changes for gender, so it is safe with any noun.'],
+     ['बड़ी',0,'<em>बड़ी</em> is the feminine form. <em>पुस्तकालय</em> is masculine: <em>बड़ा</em>.'],
+     ['बड़े',0,'<em>बड़े</em> is masculine plural. This is one library: <em>बड़ा</em>.']],
+  r:[['',1,'Plain: no reason.'],
+     [', क्योंकि वहाँ हज़ारों किताबें हैं',1,'<em>क्योंकि</em> introduces the reason. <em>किताबें</em> is plural, so the verb is <em>हैं</em>.'],
+     [', क्योंकि वहाँ हज़ारों किताबें है',0,'<em>हज़ारों किताबें</em> is plural, so the verb must be <em>हैं</em>, not <em>है</em>.'],
+     [', इसलिए वहाँ हज़ारों किताबें हैं',0,'<em>इसलिए</em> introduces a result. Here the books are the <em>reason</em> she likes the library: <em>क्योंकि</em>.']]}},
+
+ {id:'u2', en:'My little sister is dear to everyone.', tpl:['@o','मेरी','@a','बहन','@i','@r','।'], slots:{
+  o:[['',1,'Plain: no opener.'],
+     ['मुझे लगता है कि',1,'&lsquo;I think that&rsquo;. No comma: <em>कि</em> joins straight onto the sentence.'],
+     ['मेरे विचार से,',1,'An opinion opener, with a comma.'],
+     ['अंत में,',0,'<em>अंत में</em> means &lsquo;finally&rsquo; and closes an essay. It cannot open a first sentence.'],
+     ['इसलिए,',0,'<em>इसलिए</em> means &lsquo;so&rsquo; and needs a reason before it. Nothing comes before this sentence.']],
+  a:[['',1,'Plain: no describing word.'],
+     ['छोटी',1,'<em>बहन</em> is feminine, so <em>छोटी</em>.'],
+     ['नटखट',1,'<em>नटखट</em> (mischievous) does not change with gender.'],
+     ['छोटा',0,'<em>छोटा</em> is masculine. <em>बहन</em> is feminine: <em>छोटी</em>.'],
+     ['छोटे',0,'<em>छोटे</em> is masculine plural. This is one sister: <em>छोटी</em>.']],
+  i:[['सबको प्यारी है',1,'Plain: &lsquo;is dear to all&rsquo;. Correct, but ordinary.'],
+     ['सबकी आँखों का तारा है',1,'<em>आँखों का तारा</em> = a much-loved child. The meaning fits exactly and the verb <em>है</em> is unchanged.'],
+     ['सबके सामने नौ दो ग्यारह हो गई',0,'<em>नौ दो ग्यारह होना</em> means to run away. It says she ran away in front of everyone.'],
+     ['सबके सामने दाँतों तले उँगली दबाती है',0,'<em>दाँतों तले उँगली दबाना</em> means to be astonished. That is the wrong feeling for &lsquo;dear to all&rsquo;.']],
+  r:[['',1,'Plain: no reason.'],
+     [', क्योंकि वह सबसे हँसकर बात करती है',1,'<em>क्योंकि</em> + a reason. The doer is a girl, so <em>करती है</em>.'],
+     [', क्योंकि वह सबसे हँसकर बात करता है',0,'The doer is the sister, a girl. The verb must be <em>करती</em>, not <em>करता</em>.'],
+     [', इसलिए वह सबसे हँसकर बात करती है',0,'<em>इसलिए</em> gives a result. Her friendly talk is the <em>reason</em> she is loved: <em>क्योंकि</em>.']]}},
+
+ {id:'u3', en:'The light of the lamps adds beauty to the house.', tpl:['@o','दीयों की','@a','रोशनी घर की','@i','@r','।'], slots:{
+  o:[['',1,'Plain: no opener.'],
+     ['दीपावली की रात',1,'A time phrase that sets the scene. No comma needed.'],
+     ['मेरे विचार से,',1,'An opinion opener, with a comma.'],
+     ['इसके अलावा,',0,'<em>इसके अलावा</em> points back at an earlier point, and there is none.'],
+     ['अंत में,',0,'<em>अंत में</em> closes an essay. It cannot start a first sentence.']],
+  a:[['',1,'Plain: no describing word.'],
+     ['सुनहरी',1,'<em>रोशनी</em> is feminine, so <em>सुनहरी</em>.'],
+     ['तेज़',1,'<em>तेज़</em> (bright) does not change with gender.'],
+     ['सुनहरा',0,'<em>सुनहरा</em> is masculine. <em>रोशनी</em> is feminine: <em>सुनहरी</em>.'],
+     ['सुनहरे',0,'<em>सुनहरे</em> is masculine plural. <em>रोशनी</em> is feminine singular: <em>सुनहरी</em>.']],
+  i:[['शोभा बढ़ाती है',1,'Plain: &lsquo;increases the beauty&rsquo;. Correct, but ordinary.'],
+     ['शोभा में चार चाँद लगा देती है',1,'<em>चार चाँद लगाना</em> = to add glory or beauty to something. The meaning fits, and <em>रोशनी</em> is feminine, so <em>लगा देती है</em>.'],
+     ['शोभा देखकर आग-बबूला हो जाती है',0,'<em>आग-बबूला होना</em> means to be furious. Light cannot be angry at beauty.'],
+     ['शोभा के सामने मुँह की खाती है',0,'<em>मुँह की खाना</em> means to be beaten. That says the light loses, the opposite of the meaning.']],
+  r:[['',1,'Plain: no reason.'],
+     [', क्योंकि हर कोना जगमगा उठता है',1,'<em>क्योंकि</em> + a reason. <em>कोना</em> is masculine, so <em>उठता है</em>.'],
+     [', क्योंकि हर कोना जगमगा उठती है',0,'<em>कोना</em> is masculine. The verb needs <em>उठता</em>, not <em>उठती</em>.'],
+     [', इसलिए हर कोना जगमगा उठता है',0,'<em>इसलिए</em> gives a result. The glowing corners are the <em>reason</em>: <em>क्योंकि</em>.']]}},
+
+ {id:'u4', en:'We should plant trees.', tpl:['@o','हमें','@a','पेड़ लगाने चाहिए','@r','।'], slots:{
+  o:[['',1,'Plain: no opener.'],
+     ['मेरे विचार से,',1,'An opinion opener, with a comma.'],
+     ['मुझे लगता है कि',1,'&lsquo;I think that&rsquo;. No comma: <em>कि</em> joins straight onto the sentence.'],
+     ['इसलिए,',0,'<em>इसलिए</em> needs a reason before it. This is the first sentence.'],
+     ['लेकिन,',0,'<em>लेकिन</em> means &lsquo;but&rsquo; and needs an earlier idea to contrast with.']],
+  a:[['',1,'Plain: no describing word.'],
+     ['हरे-भरे',1,'The trees are masculine plural, so the -ा word becomes <em>-े</em>: <em>हरे-भरे पेड़</em>.'],
+     ['छायादार',1,'<em>छायादार</em> (shady) never changes.'],
+     ['हरा-भरा',0,'<em>हरा-भरा</em> is masculine singular. We are planting several trees: <em>हरे-भरे</em>.'],
+     ['हरी-भरी',0,'<em>हरी-भरी</em> is feminine. <em>पेड़</em> is masculine.']],
+  r:[['',1,'Plain: no reason.'],
+     [', क्योंकि पेड़ हमें शुद्ध हवा देते हैं',1,'<em>क्योंकि</em> + a reason. <em>पेड़</em> is masculine plural: <em>देते हैं</em>.'],
+     [', क्योंकि पेड़ हमें शुद्ध हवा देती हैं',0,'<em>पेड़</em> is masculine. The verb must be <em>देते</em>, not <em>देती</em>.'],
+     [', इसलिए पेड़ हमें शुद्ध हवा देते हैं',0,'<em>इसलिए</em> gives a result. The clean air is the <em>reason</em> to plant trees: <em>क्योंकि</em>.']]}},
+
+ {id:'u5', en:'I was very happy to win the contest.', tpl:['@o','@a','मुकाबला जीतने पर मैं','@i','@r','।'], slots:{
+  o:[['',1,'Plain: no opener.'],
+     ['उस दिन',1,'A time phrase that sets the scene. No comma needed.'],
+     ['सच कहूँ तो,',1,'&lsquo;To tell the truth&rsquo;, with a comma.'],
+     ['इसलिए,',0,'<em>इसलिए</em> needs a reason before it. This is the first sentence.'],
+     ['इसके अलावा,',0,'<em>इसके अलावा</em> points back at an earlier point, and there is none.']],
+  a:[['',1,'Plain: no describing word.'],
+     ['कड़ा',1,'<em>मुकाबला</em> is masculine, so <em>कड़ा मुकाबला</em>.'],
+     ['रोमांचक',1,'<em>रोमांचक</em> (thrilling) never changes.'],
+     ['कड़ी',0,'<em>कड़ी</em> is feminine. <em>मुकाबला</em> is masculine: <em>कड़ा</em>.'],
+     ['कड़े',0,'<em>कड़े</em> is masculine plural. This is one contest: <em>कड़ा</em>.']],
+  i:[['बहुत खुश हुई',1,'Plain: &lsquo;was very happy&rsquo;. Note <em>हुई</em>: the doer is a girl.'],
+     ['खुशी से फूली न समाई',1,'<em>फूले न समाना</em> = to be overjoyed. A girl says <em>फूली न समाई</em>.'],
+     ['खुशी से फूला न समाया',0,'This is the masculine form. The speaker is a girl: <em>फूली न समाई</em>.'],
+     ['पानी-पानी हो गई',0,'<em>पानी-पानी होना</em> means to be deeply ashamed. Winning is not shameful.']],
+  r:[['',1,'Plain: no reason.'],
+     [', क्योंकि पूरी टीम ने मेहनत की थी',1,'<em>क्योंकि</em> + a reason. After ने the verb copies the object: <em>मेहनत</em> is feminine, so <em>की थी</em>.'],
+     [', क्योंकि पूरी टीम ने मेहनत किया था',0,'After ने the verb copies the object. <em>मेहनत</em> is feminine: <em>की थी</em>, not <em>किया था</em>.'],
+     [', इसलिए पूरी टीम ने मेहनत की थी',0,'<em>इसलिए</em> gives a result. The team&rsquo;s effort is the <em>reason</em> for the joy: <em>क्योंकि</em>.']]}},
+
+ {id:'u6', en:'Our teacher teaches us with love.', tpl:['@o','हमारी','@a','अध्यापिका हमें प्यार से पढ़ाती हैं','@r','।'], slots:{
+  o:[['',1,'Plain: no opener.'],
+     ['मेरे विचार से,',1,'An opinion opener, with a comma.'],
+     ['सच कहूँ तो,',1,'&lsquo;To tell the truth&rsquo;, with a comma.'],
+     ['अंत में,',0,'<em>अंत में</em> closes an essay. It cannot start a first sentence.'],
+     ['इसलिए,',0,'<em>इसलिए</em> needs a reason before it. This is the first sentence.']],
+  a:[['',1,'Plain: no describing word.'],
+     ['अच्छी',1,'<em>अध्यापिका</em> is feminine, so <em>अच्छी</em>.'],
+     ['दयालु',1,'<em>दयालु</em> (kind) does not change with gender.'],
+     ['अच्छा',0,'<em>अच्छा</em> is masculine. <em>अध्यापिका</em> is feminine: <em>अच्छी</em>.'],
+     ['अच्छे',0,'<em>अच्छे</em> is masculine plural. <em>अध्यापिका</em> is feminine: <em>अच्छी</em>.']],
+  r:[['',1,'Plain: no reason.'],
+     [', क्योंकि वे हमारी हर समस्या ध्यान से सुनती हैं',1,'<em>क्योंकि</em> + a reason. The teacher is a woman, so <em>सुनती हैं</em> (plural of respect, feminine).'],
+     [', क्योंकि वे हमारी हर समस्या ध्यान से सुनते हैं',0,'The teacher is a woman (<em>अध्यापिका</em>). Even with the plural of respect the verb is <em>सुनती हैं</em>.'],
+     [', इसलिए वे हमारी हर समस्या ध्यान से सुनती हैं',0,'<em>इसलिए</em> gives a result. Listening is the <em>reason</em> she teaches well: <em>क्योंकि</em>.']]}}
+];
+
+/* machine-derived answer sets for the upgrader puzzles: exactly the listed slots upgraded, every pick grammatical. Re-derived and checked by verify.py */
+const PZU = [
+ {
+  "id": "pu1",
+  "task": "u1",
+  "need": "oar",
+  "ans": [
+   "मेरे विचार से, मुझे अपने विद्यालय का बड़ा पुस्तकालय पसंद है, क्योंकि वहाँ हज़ारों किताबें हैं।",
+   "मेरे विचार से, मुझे अपने विद्यालय का शांत पुस्तकालय पसंद है, क्योंकि वहाँ हज़ारों किताबें हैं।",
+   "सच कहूँ तो, मुझे अपने विद्यालय का बड़ा पुस्तकालय पसंद है, क्योंकि वहाँ हज़ारों किताबें हैं।",
+   "सच कहूँ तो, मुझे अपने विद्यालय का शांत पुस्तकालय पसंद है, क्योंकि वहाँ हज़ारों किताबें हैं।"
+  ]
+ },
+ {
+  "id": "pu2",
+  "task": "u2",
+  "need": "ir",
+  "ans": [
+   "मेरी बहन सबकी आँखों का तारा है, क्योंकि वह सबसे हँसकर बात करती है।"
+  ]
+ },
+ {
+  "id": "pu3",
+  "task": "u3",
+  "need": "ai",
+  "ans": [
+   "दीयों की सुनहरी रोशनी घर की शोभा में चार चाँद लगा देती है।",
+   "दीयों की तेज़ रोशनी घर की शोभा में चार चाँद लगा देती है।"
+  ]
+ },
+ {
+  "id": "pu4",
+  "task": "u4",
+  "need": "ar",
+  "ans": [
+   "हमें हरे-भरे पेड़ लगाने चाहिए, क्योंकि पेड़ हमें शुद्ध हवा देते हैं।",
+   "हमें छायादार पेड़ लगाने चाहिए, क्योंकि पेड़ हमें शुद्ध हवा देते हैं।"
+  ]
+ },
+ {
+  "id": "pu5",
+  "task": "u5",
+  "need": "iar",
+  "ans": [
+   "कड़ा मुकाबला जीतने पर मैं खुशी से फूली न समाई, क्योंकि पूरी टीम ने मेहनत की थी।",
+   "रोमांचक मुकाबला जीतने पर मैं खुशी से फूली न समाई, क्योंकि पूरी टीम ने मेहनत की थी।"
+  ]
+ },
+ {
+  "id": "pu6",
+  "task": "u6",
+  "need": "oa",
+  "ans": [
+   "मेरे विचार से, हमारी अच्छी अध्यापिका हमें प्यार से पढ़ाती हैं।",
+   "मेरे विचार से, हमारी दयालु अध्यापिका हमें प्यार से पढ़ाती हैं।",
+   "सच कहूँ तो, हमारी अच्छी अध्यापिका हमें प्यार से पढ़ाती हैं।",
+   "सच कहूँ तो, हमारी दयालु अध्यापिका हमें प्यार से पढ़ाती हैं।"
+  ]
+ },
+ {
+  "id": "pu7",
+  "task": "u2",
+  "need": "oai",
+  "ans": [
+   "मुझे लगता है कि मेरी छोटी बहन सबकी आँखों का तारा है।",
+   "मुझे लगता है कि मेरी नटखट बहन सबकी आँखों का तारा है।",
+   "मेरे विचार से, मेरी छोटी बहन सबकी आँखों का तारा है।",
+   "मेरे विचार से, मेरी नटखट बहन सबकी आँखों का तारा है।"
+  ]
+ },
+ {
+  "id": "pu8",
+  "task": "u4",
+  "need": "oar",
+  "ans": [
+   "मेरे विचार से, हमें हरे-भरे पेड़ लगाने चाहिए, क्योंकि पेड़ हमें शुद्ध हवा देते हैं।",
+   "मेरे विचार से, हमें छायादार पेड़ लगाने चाहिए, क्योंकि पेड़ हमें शुद्ध हवा देते हैं।",
+   "मुझे लगता है कि हमें हरे-भरे पेड़ लगाने चाहिए, क्योंकि पेड़ हमें शुद्ध हवा देते हैं।",
+   "मुझे लगता है कि हमें छायादार पेड़ लगाने चाहिए, क्योंकि पेड़ हमें शुद्ध हवा देते हैं।"
+  ]
+ }
+];
+
+/* ---------------- linker and agreement drill (not counted in the 30) ---------------- */
+const DRILL = [
+ {s:'मैं थकी थी, ___ जल्दी सो गई।', en:'result: the tiredness is the reason', o:['क्योंकि','लेकिन','इसलिए','अंत में'], a:2,
+  why:'Tired is the reason, sleeping is the result, so <strong>इसलिए</strong> introduces the result. क्योंकि would put the reason second.'},
+ {s:'मैं जल्दी सो गई, ___ मैं थकी थी।', en:'reason: why did she sleep early?', o:['क्योंकि','इसलिए','लेकिन','सबसे पहले'], a:0,
+  why:'Now the result comes first and the cause second, so <strong>क्योंकि</strong> introduces the cause: I slept early because I was tired.'},
+ {s:'मुझे तैरना बहुत पसंद है, ___ मुझे पानी से थोड़ा डर भी लगता है।', en:'contrast', o:['इसलिए','क्योंकि','अंत में','लेकिन'], a:3,
+  why:'Liking swimming and fearing water pull in opposite directions: <strong>लेकिन</strong>. इसलिए and क्योंकि both need a cause and effect, and there is none here.'},
+ {s:'___, मैं अपनी कक्षा के बारे में बताऊँगी।', en:'the first point of an essay', o:['लेकिन','अंत में','क्योंकि','सबसे पहले'], a:3,
+  why:'<strong>सबसे पहले,</strong> opens the first point. अंत में is the closing, लेकिन needs something to contrast with, and क्योंकि does not open a sentence in an essay.'},
+ {s:'पेड़ हमें छाया देते हैं। ___, वे हमें फल भी देते हैं।', en:'adding a second point', o:['इसलिए','इसके अलावा','लेकिन','अंत में'], a:1,
+  why:'A second, separate benefit: <strong>इसके अलावा</strong> (besides this). इसलिए would claim that the shade causes the fruit.'},
+ {s:'___, मैं कहना चाहूँगी कि पेड़ हमारे सच्चे मित्र हैं।', en:'the closing line', o:['अंत में','सबसे पहले','इसके अलावा','क्योंकि'], a:0,
+  why:'A closing line begins <strong>अंत में,</strong>. Notice also <em>चाहूँगी</em>, the feminine ending.'},
+ {s:'मैं रोज़ स्कूल ___ हूँ।', en:'the writer is a girl', o:['जाता','जाते','गया','जाती'], a:3,
+  why:'No ने, so the verb copies the doer, and the doer is a girl: <strong>जाती हूँ</strong>. Read the words <em>after</em> the gap as well: हूँ goes with जाती/जाता, not with गया.'},
+ {s:'हमारी अध्यापिका बहुत ___ हैं।', en:'she is kind and good', o:['अच्छा','अच्छी','अच्छे','अच्छो'], a:1,
+  why:'<em>अध्यापिका</em> is feminine. Respect makes the verb plural (<em>हैं</em>) but not the describing word: <strong>अच्छी हैं</strong>.'},
+ {s:'मैंने कल एक कविता ___।', en:'ने: the verb copies the object', o:['लिखा','लिखे','लिखती','लिखी'], a:3,
+  why:'After ने the verb copies the object, and <em>कविता</em> is feminine: <strong>लिखी</strong>. The writer being a girl does not matter here.'},
+ {s:'मुझे लगता है ___ खेल हर बच्चे के लिए ज़रूरी हैं।', en:'&lsquo;that&rsquo;', o:['की','कि','के','का'], a:1,
+  why:'<strong>कि</strong> (short, no -ी) means &lsquo;that&rsquo; and joins two clauses. <strong>की</strong> means &lsquo;of&rsquo; for a feminine noun. Spelling costs marks.'},
+ {s:'अपनी गलती का पता चलने पर वह शर्म से ___।', en:'she felt ashamed: pick the मुहावरा', o:['फूली न समाई','आग-बबूला हो गई','नौ दो ग्यारह हो गई','पानी-पानी हो गई'], a:3,
+  why:'<strong>पानी-पानी होना</strong> is deep shame. फूले न समाना is joy, आग-बबूला होना is fury and नौ दो ग्यारह होना is running away.'},
+ {s:'सुबह पाँच बजे उठना मेरे लिए ___ है।', en:'something very hard: pick the मुहावरा', o:['टेढ़ी खीर','चार चाँद','आँखों का तारा','तिल का ताड़'], a:0,
+  why:'<strong>टेढ़ी खीर</strong> is a very hard thing to do. चार चाँद लगाना adds beauty, आँखों का तारा is a loved child, and तिल का ताड़ is a small matter blown up.'}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const pre = e.target.closest('[data-preset]');
+  if(pre && typeof window.setPreset==='function'){ window.setPreset(pre.dataset.preset); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, drill:{}, bDone:{}, bFirst:{}, pzSeen:{} };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the puzzle engine (shared by both tools) ---------------- */
+function mkPuzzles(btnId, boxId, list){
+  let cur = null;
+  const btn = document.getElementById(btnId), box = document.getElementById(boxId);
+  if(!btn || !box) return;
+  btn.addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*list.length);
+    if(cur===i) i = (i+1)%list.length;
+    cur = i;
+    const P = list[i];
+    box.classList.add('on');
+    box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+      <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-pz="${j}">${o}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-pz]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ok = +b.dataset.pz === P.a;
+        if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+        box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+          <div class="qrow"><button class="btn ghost small" type="button" class="again">Another one</button></div>`;
+        box.querySelector('button').addEventListener('click', ()=>btn.click());
+      });
+    });
+  });
+}
+
+
+
+
+/* ---------------- small helpers ---------------- */
+const gid = id => document.getElementById(id);
+function el(tag, cls, html){ const e = document.createElement(tag); if(cls) e.className = cls; if(html!==undefined) e.innerHTML = html; return e; }
+function shuffleIdx(n){
+  const a = [...Array(n).keys()];
+  for(let t=0;t<25;t++){
+    for(let i=n-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; }
+    if(n<3 || a.some((v,i)=>v!==i)) break;
+  }
+  return a;
+}
+function ST(){
+  if(!S.store) S.store = {};
+  ['oDone','oFirst','drill'].forEach(k=>{ if(!S.store[k]) S.store[k] = {}; });
+  return S.store;
+}
+function setPill(kind, text, note){
+  const p = gid('o-pill'); p.className = 'pill ' + kind; p.textContent = text;
+  if(note!==undefined) gid('o-note').innerHTML = note;
+}
+
+/* ---------------- tool 1: the outline builder ---------------- */
+let oT = 0, oCur = null, oPool = [], oSlots = [[],[],[],[]], oAct = 0, oTries = 0, oDone = false, oMode = 'main';
+const O_DEFAULT_NOTE = 'Order: introduce &rarr; first point &rarr; second point &rarr; close. Two sentences a paragraph, one idea a paragraph.';
+const O_EXPECT = [[0,1],[2,3],[4,5],[6,7]];
+
+function oName(T, g){
+  if(g==='I') return 'the introduction';
+  if(g==='C') return 'the closing';
+  if(g==='X') return 'something unrelated';
+  return T.ideas[g];
+}
+function oCounts(){
+  const st = ST();
+  const d = OL.filter(t=>st.oDone[t.id]).length;
+  const f = OL.filter(t=>st.oFirst[t.id]).length;
+  gid('o-count').textContent = d + ' / ' + f + ' of ' + OL.length;
+}
+function oPlaced(){ return oSlots.reduce((a,s)=>a+s.length, 0); }
+function oLoad(T, mode){
+  oCur = T; oMode = mode; oTries = 0; oDone = false; oSlots = [[],[],[],[]]; oAct = 0;
+  oPool = shuffleIdx(T.cards.length);
+  gid('o-num').textContent = mode==='puzzle' ? 'Puzzle' : (OL.indexOf(T)+1) + ' of ' + OL.length;
+  setPill('hold', 'Not checked yet', O_DEFAULT_NOTE);
+  oRender(); oCounts();
+}
+function oCardBtn(T, i, cls){
+  const c = T.cards[i];
+  const b = el('button', 'ocard' + (cls||''), '<span class="oh">' + c[0] + '</span><span class="oe">' + c[1] + '</span>');
+  b.type = 'button'; b.dataset.i = i; if(oDone) b.disabled = true;
+  return b;
+}
+function oRender(){
+  const T = oCur;
+  gid('o-title').innerHTML = T.title + ' <span style="font-family:var(--body);font-weight:400;color:var(--ink-soft);font-size:14.5px">&mdash; ' + T.en + '</span>';
+  const pool = gid('o-pool'); pool.innerHTML = '';
+  oPool.forEach(i=>pool.appendChild(oCardBtn(T, i, oDone ? ' g' + T.cards[i][2] : '')));
+  if(!oPool.length) pool.appendChild(el('span','ph','Every sentence is placed.'));
+  const host = gid('o-slots'); host.innerHTML = '';
+  oSlots.forEach((sl, k)=>{
+    const d = el('div', 'oslot' + (k===oAct && !oDone ? ' act' : '') + (oDone ? ' done s' + OSLOTS[k][0] : ''));
+    d.dataset.s = k;
+    d.appendChild(el('div','oslab','<b>' + (k+1) + ' &middot; ' + OSLOTS[k][1] + '</b><span>' + OSLOTS[k][2] + ' &middot; ' + sl.length + '/2</span>'));
+    if(!sl.length) d.appendChild(el('div','ph','Tap here, then tap sentences above to drop them in.'));
+    sl.forEach(i=>d.appendChild(oCardBtn(T, i, oDone ? ' g' + T.cards[i][2] : '')));
+    host.appendChild(d);
+  });
+}
+function oRight(slots){
+  return slots.every((sl,k)=>sl.length===2 && sl[0]===O_EXPECT[k][0] && sl[1]===O_EXPECT[k][1]);
+}
+function oDiagnose(T, slots){
+  const g = i => T.cards[i][2], r = i => T.cards[i][3];
+  for(let k=0;k<4;k++) if(slots[k].some(i=>g(i)==='X'))
+    return '<strong>One sentence does not belong in any paragraph.</strong> &ldquo;' + T.cards[slots[k].find(i=>g(i)==='X')][1] + '&rdquo; is about something else. Take it out and leave it in the pool: the essay is eight sentences, not nine.';
+  for(let k=0;k<4;k++){
+    const a = g(slots[k][0]), b = g(slots[k][1]);
+    if(a!==b) return '<strong>Paragraph ' + (k+1) + ' has two ideas in it:</strong> ' + oName(T,a) + ' and ' + oName(T,b) + '. One idea per paragraph. Pull one out and swap it with the sentence that belongs beside its own idea.';
+  }
+  const ideas = slots.map(sl=>g(sl[0]));
+  if(ideas[0]!=='I') return '<strong>The essay must open by introducing the topic.</strong> Your paragraph 1 is about ' + oName(T, ideas[0]) + '. Look for the sentence that names the topic and announces what follows.';
+  if(ideas[3]!=='C') return '<strong>The last paragraph must close the essay.</strong> Yours is about ' + oName(T, ideas[3]) + '. The closing begins <em>अंत में,</em> and looks back or looks ahead.';
+  if(ideas[1]!=='A') return '<strong>The two body paragraphs are the wrong way round.</strong> The paragraph that opens with <em>सबसे पहले,</em> is the first point; the one that opens with <em>इसके अलावा,</em> comes second.';
+  for(let k=0;k<4;k++) if(r(slots[k][0])>r(slots[k][1]))
+    return '<strong>Paragraph ' + (k+1) + ' has the right two sentences in the wrong order.</strong> The sentence that opens the idea goes first; the one that adds detail, or points back at the first (<em>इसमें, वे, इससे, इसीलिए, उसके बाद</em>), goes second.';
+  return '<strong>Not yet.</strong> Something is out of place; check each paragraph for one idea and the order of the four.';
+}
+function oCheck(){
+  if(oDone) return;
+  const T = oCur;
+  if(oPlaced() < 8){
+    setPill('hold','Not finished', 'Fill every paragraph: eight sentences go in, one stays out. ' + (8-oPlaced()) + ' places still empty.');
+    return;
+  }
+  oTries++;
+  if(oRight(oSlots)){
+    oDone = true; oRender();
+    let extra = oTries===1 ? ' First time.' : ' Took ' + oTries + ' checks.';
+    const st = ST();
+    if(oMode==='main'){
+      st.oDone[T.id] = true;
+      if(oTries===1) st.oFirst[T.id] = true;
+    } else {
+      const key = 'o' + T.id;
+      if(oTries===1 && !S.pzSeen[key]){
+        S.pzSeen[key] = true; S.puzzles = (S.puzzles||0) + 1; extra = ' First time right &mdash; puzzle solved.';
+        gid('quizbox').innerHTML = '<strong>Puzzle solved.</strong> That is one on the counter. Press <em>Set me a puzzle</em> for another.';
+      } else if(oTries>1){
+        extra = ' Right, but not on the first check &mdash; no point for this one. Press <em>Set me a puzzle</em> for another.';
+        gid('quizbox').innerHTML = '<strong>Not counted.</strong> A puzzle needs the first Check to be right.';
+      }
+    }
+    save(); refresh(); oCounts();
+    setPill('bal', 'Correct', 'One idea per paragraph, in the right order, and the odd one left out.' + extra);
+  } else {
+    setPill('in', 'Not yet', oDiagnose(T, oSlots));
+  }
+}
+function oInit(){
+  gid('o-pool').addEventListener('click', e=>{
+    const b = e.target.closest('.ocard'); if(!b || oDone) return;
+    const i = +b.dataset.i;
+    let s = oAct;
+    if(oSlots[s].length >= 2){
+      s = -1;
+      for(let d=1; d<=4; d++){ const c = (oAct + d) % 4; if(oSlots[c].length < 2){ s = c; break; } }
+    }
+    if(s < 0){ setPill('hold','All slots are full','Tap a sentence <em>inside</em> a slot to send it back to the pool, then place another.'); return; }
+    oPool = oPool.filter(x=>x!==i); oSlots[s].push(i); oAct = s;
+    if(oSlots[oAct].length >= 2){ for(let d=1; d<=4; d++){ const c = (oAct + d) % 4; if(oSlots[c].length < 2){ oAct = c; break; } } }
+    oRender();
+  });
+  gid('o-slots').addEventListener('click', e=>{
+    if(oDone) return;
+    const slot = e.target.closest('.oslot'); if(!slot) return;
+    const k = +slot.dataset.s, b = e.target.closest('.ocard');
+    if(b){ const i = +b.dataset.i; oSlots[k] = oSlots[k].filter(x=>x!==i); oPool.push(i); }
+    oAct = k; oRender();
+  });
+  gid('o-check').addEventListener('click', oCheck);
+  gid('o-clear').addEventListener('click', ()=>{
+    if(oDone) return;
+    oSlots.forEach(sl=>{ sl.forEach(i=>oPool.push(i)); }); oSlots = [[],[],[],[]]; oAct = 0; oRender();
+    setPill('hold','Not checked yet', O_DEFAULT_NOTE);
+  });
+  gid('o-next').addEventListener('click', ()=>{
+    if(oMode==='main') oT = (oT+1) % OL.length;
+    gid('quizbox').classList.remove('on');
+    oLoad(OL[oT], 'main');
+  });
+  gid('newquiz').addEventListener('click', ()=>{
+    const box = gid('quizbox'); box.classList.add('on');
+    const open = OP.filter(p=>!S.pzSeen['o'+p.id]);
+    if(!open.length){ box.innerHTML = '<strong>All four outline puzzles solved.</strong> Try the sentence upgrader below, or go back through the four topics and aim for first-time-right on all of them.'; return; }
+    const P = open[Math.floor(Math.random()*open.length)];
+    oLoad(P, 'puzzle');
+    box.innerHTML = '<strong>Puzzle.</strong> A topic you have not seen. Build the outline above and get it right on your <strong>first</strong> Check. A second attempt still teaches you something, but it does not count.';
+  });
+  oLoad(OL[oT], 'main');
+}
+
+/* ---------------- tool 2: the sentence upgrader ---------------- */
+let uT = 0, uPick = {}, uMode = 'free', uP = null, uTries = 0;
+const U_ORDER = ['o','a','i','r'];
+function uTask(){ return UT[uT]; }
+function uKeys(T){ return U_ORDER.filter(k=>T.slots[k]); }
+function uReset(){ uPick = {}; uKeys(uTask()).forEach(k=>{ uPick[k] = 0; }); }
+function uJoin(parts){ return parts.filter(x=>x!=='').join(' ').replace(/ ,/g, ',').replace(/ ।/g, '।'); }
+function uResult(){
+  const T = uTask(), texts = [], marked = [], errs = [], goods = [], kinds = [];
+  T.tpl.forEach(tok=>{
+    if(tok[0]==='@'){
+      const k = tok[1], o = T.slots[k][uPick[k]];
+      texts.push(o[0]);
+      const label = o[0].replace(/^,\s*/, '');
+      marked.push(uPick[k]===0 || o[0]==='' ? o[0] : '<span class="up1' + (o[1] ? '' : ' bad') + '">' + o[0] + '</span>');
+      if(uPick[k] > 0){
+        kinds.push(k);
+        (o[1] ? goods : errs).push({k, t:label, w:o[2]});
+      }
+    } else { texts.push(tok); marked.push(tok); }
+  });
+  return {text:uJoin(texts), html:uJoin(marked), errs, goods, kinds, allOk:errs.length===0};
+}
+function uRender(){
+  const T = uTask();
+  const th = gid('u-tasks'); th.innerHTML = '';
+  UT.forEach((t,i)=>{ const b = el('button','bchip' + (i===uT ? ' sel' : ''), String(i+1)); b.type = 'button'; b.dataset.i = i; b.setAttribute('aria-label','Sentence ' + (i+1)); th.appendChild(b); });
+  gid('u-en').textContent = T.en;
+  const host = gid('u-slots'); host.innerHTML = '';
+  uKeys(T).forEach((k,n)=>{
+    const row = el('div','brow');
+    row.appendChild(el('div','lab', (n+1) + ' &middot; ' + UKIND[k]));
+    const chips = el('div','bchips'); chips.dataset.k = k;
+    chips.setAttribute('role','group'); chips.setAttribute('aria-label', UKIND[k]);
+    T.slots[k].forEach((o,j)=>{
+      const label = o[0]==='' ? '<span style="font-family:var(--body);font-weight:400;font-size:15px">(none)</span>' : o[0].replace(/^,\s*/, '');
+      const b = el('button','bchip hin' + (uPick[k]===j ? ' sel' : ''), label + (j===0 && o[0]!=='' ? ' <small style="font-family:var(--body);font-weight:400;opacity:.7">plain</small>' : ''));
+      b.type = 'button'; b.dataset.k = k; b.dataset.j = j; chips.appendChild(b);
+    });
+    row.appendChild(chips); host.appendChild(row);
+  });
+  const R = uResult();
+  gid('u-out').innerHTML = R.html + '<span class="men">' + T.en + '</span>';
+  const total = uKeys(T).length, on = R.goods.length;
+  gid('u-meter').innerHTML = Array.from({length:total}, (_,i)=>'<i class="' + (i<on ? 'on' : '') + '"></i>').join('');
+  const why = gid('u-why');
+  if(uMode==='puzzle'){
+    why.innerHTML = '<em>Puzzle mode.</em> The verdict stays hidden until you press <strong>Check the machine</strong>.';
+  } else if(!R.kinds.length){
+    why.innerHTML = 'This is the plain sentence. Pick something from any row &mdash; the first choice in every row is always safe.';
+  } else {
+    why.innerHTML = '<strong>' + (R.allOk ? 'Grammatical.' : 'Something breaks.') + '</strong> ' + (R.allOk ? 'Every upgrade is correct (' + on + ' of ' + total + ' rows used).' : 'Fix the red ones.') +
+      '<ul class="uv">' + R.goods.map(x=>'<li><span class="yes">&#10003; ' + x.t + '</span> &mdash; ' + x.w + '</li>').join('') +
+      R.errs.map(x=>'<li><span class="no">&#10007; ' + x.t + '</span> &mdash; ' + x.w + '</li>').join('') + '</ul>';
+  }
+}
+function uInit(){
+  gid('u-tasks').addEventListener('click', e=>{
+    const b = e.target.closest('.bchip'); if(!b) return;
+    uT = +b.dataset.i; uMode = 'free'; uP = null; gid('quizbox2').classList.remove('on'); uReset(); uRender();
+  });
+  gid('u-slots').addEventListener('click', e=>{
+    const b = e.target.closest('.bchip'); if(!b) return;
+    uPick[b.dataset.k] = +b.dataset.j; uRender();
+  });
+  gid('newquiz2').addEventListener('click', ()=>{
+    const box = gid('quizbox2'); box.classList.add('on');
+    const open = PZU.filter(p=>!S.pzSeen['u'+p.id]);
+    if(!open.length){ box.innerHTML = '<strong>All eight upgrade puzzles solved.</strong> Linker drill next.'; uP = null; uMode = 'free'; uRender(); return; }
+    uP = open[Math.floor(Math.random()*open.length)];
+    uT = UT.findIndex(t=>t.id===uP.task); uMode = 'puzzle'; uTries = 0; uReset();
+    box.innerHTML = '<strong>Puzzle.</strong> Upgrade this sentence with <em>exactly</em> these rows: <strong>' + uP.need.split('').map(k=>UKIND[k]).join(' + ') + '</strong>. Leave every other row on its first (plain) choice, and every pick must be grammatical. Then press Check.' +
+      '<div class="qrow"><button class="btn ghost small" type="button" id="u-check">Check the machine</button></div><div id="u-pzfb" style="margin-top:9px"></div>';
+    uRender();
+    gid('u-check').addEventListener('click', ()=>{
+      const R = uResult(), fb = gid('u-pzfb');
+      uTries++;
+      if(uP.ans.indexOf(R.text) >= 0){
+        let msg;
+        if(uTries===1 && !S.pzSeen['u'+uP.id]){
+          S.pzSeen['u'+uP.id] = true; S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+          msg = 'First time right &mdash; puzzle solved.';
+        } else msg = 'Right, but not on the first check &mdash; no point for this one.';
+        fb.innerHTML = '<strong>Right &mdash; <span class="hline">' + R.text + '</span></strong> ' + msg + ' <button class="btn ghost small" type="button" id="u-again">Another one</button>';
+        gid('u-again').addEventListener('click', ()=>gid('newquiz2').click());
+        uMode = 'free'; uRender();
+      } else if(R.errs.length){
+        fb.innerHTML = '<strong>The machine says <span class="hline">' + (R.text || '&hellip;') + '</span>, which breaks:</strong><ul class="uv">' + R.errs.map(x=>'<li><span class="no">&#10007; ' + x.t + '</span> &mdash; ' + x.w + '</li>').join('') + '</ul>';
+      } else {
+        const need = uP.need.split(''), have = R.kinds.slice().sort();
+        fb.innerHTML = '<strong>Every pick is grammatical, but that is not what the puzzle asks.</strong> It wants exactly <em>' + need.map(k=>UKIND[k]).join(' + ') + '</em>; you have upgraded ' + (have.length ? '<em>' + have.map(k=>UKIND[k]).join(' + ') + '</em>' : 'nothing') + '.';
+      }
+    });
+  });
+  uReset(); uRender();
+}
+
+/* ---------------- linker drill ---------------- */
+function drillScore(){
+  const dr = ST().drill;
+  const right = DRILL.filter((D,i)=>dr[i]===D.a).length;
+  gid('d-score').textContent = right + ' of ' + DRILL.length + ' right';
+}
+function drillAnswer(i, j){
+  const D = DRILL[i], host = document.querySelector('[data-dr="' + i + '"]');
+  ST().drill[i] = j;
+  host.querySelectorAll('.bchip').forEach((b,k)=>{
+    b.disabled = true;
+    if(k===D.a) b.classList.add('right');
+    else if(k===j) b.classList.add('wrong');
+  });
+  const ok = j===D.a, gap = gid('gap' + i);
+  gap.textContent = D.o[D.a];
+  gap.className = 'gap ' + (ok ? 'ok' : 'no');
+  const fb = gid('dfb' + i);
+  fb.className = 'fb on ' + (ok ? 'good' : 'bad');
+  fb.innerHTML = '<strong>' + (ok ? 'Right.' : 'Not this time.') + '</strong> ' + D.why;
+  drillScore();
+}
+function drillRender(){
+  const host = gid('d-list'); host.innerHTML = '';
+  DRILL.forEach((D,i)=>{
+    const c = el('div','qcard');
+    c.innerHTML = '<div class="qhead"><span class="qn">D' + (i+1) + '</span><span class="mk" style="font-family:var(--body)">' + D.en + '</span></div>' +
+      '<p class="dline">' + D.s.replace('___', '<span class="gap" id="gap' + i + '">&nbsp;&nbsp;&nbsp;</span>') + '</p>' +
+      '<div class="bchips" data-dr="' + i + '">' + D.o.map((o,j)=>'<button type="button" class="bchip hin" data-j="' + j + '">' + o + '</button>').join('') + '</div>' +
+      '<div class="fb" id="dfb' + i + '"></div>';
+    host.appendChild(c);
+  });
+  host.addEventListener('click', e=>{
+    const b = e.target.closest('.bchip'); if(!b || b.disabled) return;
+    const i = +b.parentElement.dataset.dr;
+    drillAnswer(i, +b.dataset.j); save();
+  });
+  const dr = ST().drill;
+  Object.keys(dr).forEach(i=>{ if(DRILL[i]) drillAnswer(+i, dr[i]); });
+  drillScore();
+}
+
+function boot(){
+  ST();
+  oInit();
+  uInit();
+  drillRender();
+}
+
+
+(async ()=>{ await loadState(); restore(); boot(); })();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='essay', SUBJECT='hindi', TITLE="Essay Writing", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

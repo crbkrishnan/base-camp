@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tenses and Pronouns &mdash; Grade 7 IGCSE Hindi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "tenses",
+  "file": "tenses.html",
+  "subject": "hindi",
+  "status": "ready",
+  "title": "Tenses and Pronouns",
+  "sub": "Hindi · काल और सर्वनाम",
+  "blurb": "The Hindi verb copies two different things at once: the ending copies the doer's gender, and a small helper copies the person. Build any tense from six persons, two genders and nine verbs (predicting it first), then switch pronouns and markers and see why मैं becomes मुझे, and why 'his' is not always उसका.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "tense forge"
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#1C1A26;
+  --ink-soft:#5A566B;
+  --paper:#EDEBF2;
+  --card:#FFFFFF;
+  --line:#D6D2E0;
+  --line-soft:#E8E5EF;
+  /* the semantic accents for this page: the four jobs a word can do in a Hindi sentence.
+     A job keeps its colour for the whole page. The shared CSS calls the first two --o2 / --co2. */
+  --karta:#6B3FA0;      /* कर्ता · who does it · always violet */
+  --karta-tint:#F0EAF7;
+  --karm:#0B6E75;       /* कर्म · what it acts on, where, when · always teal */
+  --karm-tint:#E3F1F2;
+  --kriya:#B4560B;      /* क्रिया · the verb, always last · always amber */
+  --kriya-tint:#FBEFE3;
+  --chihn:#A3285A;      /* marker · को से में पर का की के · always rose */
+  --chihn-tint:#FAE8F0;
+  --o2:var(--kriya);   --o2-tint:var(--kriya-tint);
+  --co2:var(--karta);  --co2-tint:var(--karta-tint);
+  /* names the shared reading-page classes expect */
+  --shows:var(--kriya);  --shows-tint:var(--kriya-tint);
+  --sowhat:var(--karta); --sowhat-tint:var(--karta-tint);
+  --says:#6B6370;
+  --muscle:#7A5A86;
+  --steel:#9A94A0;
+  --steel-dark:#6E6876;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Noto Sans Devanagari','Trebuchet MS',sans-serif;
+  --body:'Newsreader','Noto Serif Devanagari',Georgia,serif;
+  --mono:'JetBrains Mono','Noto Sans Devanagari',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--co2)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(230,235,231,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--o2);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--o2);font-weight:700}
+.co2txt{color:var(--co2);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- the passage ---------- */
+.pbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.pbox > summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:12px;align-items:center;
+  font-family:var(--display);font-weight:700;font-size:15.5px}
+.pbox > summary::-webkit-details-marker{display:none}
+.pbox > summary .tagx{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-left:auto}
+.pbody{padding:4px 16px 16px;border-top:1px solid var(--line-soft)}
+.pintro{font-style:italic;font-size:15.5px;margin:14px 0 10px;color:var(--ink)}
+.pline{display:grid;grid-template-columns:34px 1fr;gap:6px;font-size:16px;line-height:1.52}
+.pline .pno{font-family:var(--mono);font-size:11.5px;color:var(--steel);text-align:right;padding-top:5px;user-select:none}
+.pline .ptx{padding:1px 0}
+.pline.blank{height:9px}
+
+/* ---------- tool chips ---------- */
+.claimbar{padding:13px 16px;border-top:1px solid var(--line);background:var(--sowhat-tint);
+  font-size:16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.claimbar .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.claimbar strong{font-family:var(--display);font-size:17px}
+.chipwrap{display:grid;gap:7px;padding:13px 16px}
+.echip{text-align:left;width:100%;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:9px 13px;cursor:pointer;font-family:var(--body);font-size:16px;color:var(--ink);
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start}
+.echip:hover:not([disabled]){border-color:var(--ink)}
+.echip .box{width:17px;height:17px;border:1.5px solid var(--steel);border-radius:5px;margin-top:4px;flex:0 0 auto}
+.echip.sel{background:var(--sowhat-tint);border-color:var(--sowhat)}
+.echip.sel .box{background:var(--sowhat);border-color:var(--sowhat)}
+.echip.hit{background:var(--ok-tint);border-color:var(--ok)}
+.echip.hit .box{background:var(--ok);border-color:var(--ok)}
+.echip.miss{background:var(--no-tint);border-color:var(--no)}
+.echip.miss .box{background:var(--no);border-color:var(--no)}
+.echip .verd{grid-column:2;font-family:var(--display);font-size:13px;margin-top:5px;color:var(--ink-soft)}
+.echip[disabled]{cursor:default}
+
+.brow{padding:12px 16px;border-top:1px solid var(--line-soft)}
+.brow .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:8px}
+.bchips{display:flex;gap:7px;flex-wrap:wrap}
+.bchip{font-family:var(--body);font-size:15.5px;background:var(--paper);border:1px solid var(--line);
+  border-radius:99px;padding:6px 13px;cursor:pointer;color:var(--ink);text-align:left}
+.bchip:hover{border-color:var(--ink)}
+.bchip.sel{background:var(--ink);border-color:var(--ink);color:#fff}
+.bchip.mono{font-family:var(--mono);font-size:14px}
+.built{padding:13px 16px;border-top:1px solid var(--line);background:var(--paper);font-size:16px;min-height:52px}
+.built em{color:var(--ink-soft);font-style:italic}
+.scorebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:13px 16px;border-top:1px solid var(--line)}
+.scorebar .sc{font-family:var(--mono);font-weight:700;font-size:26px;line-height:1;padding:7px 14px;border-radius:10px;
+  background:var(--paper);color:var(--ink-soft)}
+.scorebar .sc.two{background:var(--ok-tint);color:var(--ok)}
+.scorebar .sc.one{background:var(--shows-tint);color:var(--shows)}
+.scorebar .sc.zero{background:var(--no-tint);color:var(--no)}
+.scorebar .why{flex:1 1 240px;font-size:15.5px}
+
+.ladder{display:grid;gap:8px;margin:12px 0}
+.rung{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-left:4px solid var(--says);border-radius:0 10px 10px 0;padding:10px 13px;font-size:15.5px}
+.rung .rn{font-family:var(--display);font-weight:700;font-size:15px}
+.rung.shows{border-left-color:var(--shows)}
+.rung.shows .rn{color:var(--shows)}
+.rung.sowhat{border-left-color:var(--sowhat)}
+.rung.sowhat .rn{color:var(--sowhat)}
+.tells{counter-reset:tell;display:grid;gap:7px;margin:10px 0}
+.tell{background:var(--paper);border-radius:9px;padding:9px 13px;font-size:15.5px}
+.tell b{font-family:var(--display)}
+.wrongright{display:grid;gap:8px;margin:11px 0}
+.wr{border-radius:9px;padding:10px 13px;font-size:15.5px}
+.wr.bad{background:var(--no-tint)}
+.wr.good{background:var(--ok-tint)}
+.wr .mk{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.quoteline{font-family:var(--body);font-style:italic}
+
+
+/* ---------- Hindi page additions ---------- */
+body{font-size:18px;line-height:1.7}
+nav.jump{background:rgba(237,235,242,.93)}
+.mast .hsub{font-family:var(--display);font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--ink-soft);margin:-2px 0 10px}
+.rung{grid-template-columns:118px 1fr}
+.rung.karta{border-left-color:var(--karta)} .rung.karta .rn{color:var(--karta)}
+.rung.karm{border-left-color:var(--karm)}   .rung.karm .rn{color:var(--karm)}
+.rung.kriya{border-left-color:var(--kriya)} .rung.kriya .rn{color:var(--kriya)}
+.rung.chihn{border-left-color:var(--chihn)} .rung.chihn .rn{color:var(--chihn)}
+.kt{color:var(--karta);font-weight:700} .ko{color:var(--karm);font-weight:700}
+.kv{color:var(--kriya);font-weight:700} .kc{color:var(--chihn);font-weight:700}
+.hline{font-family:var(--display);font-weight:600;font-size:1.12em;line-height:1.6}
+.hbig{font-family:var(--display);font-weight:700;font-size:1.3em;line-height:1.5;background:var(--paper);padding:10px 14px;border-radius:9px;margin:10px 0;overflow-x:auto}
+
+/* tiles */
+.tilepool{display:flex;flex-wrap:wrap;gap:9px;padding:14px 16px;min-height:66px}
+.tileline{display:flex;flex-wrap:wrap;gap:9px;align-items:center;min-height:72px;padding:13px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.tileline .ph{color:var(--ink-soft);font-style:italic;font-size:15.5px}
+.tile{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.5;padding:5px 15px;border-radius:10px;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tileline .tile{background:var(--card)}
+.tile:hover:not([disabled]){border-color:var(--ink)}
+.tile[disabled]{cursor:default}
+.tile.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.tile.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.tile.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.tile.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.tile.x,.tile.c{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 13px}
+.lg{font-family:var(--display);font-size:13px;font-weight:700;padding:3px 11px;border-radius:99px;border:1.5px solid}
+.lg.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.lg.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.lg.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.lg.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.lg.x{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+
+/* verb bank */
+.vctl{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin-bottom:14px;display:block;padding:13px 16px}
+.vctl .bchips{margin-bottom:11px}
+.vctl .vrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+input[type=search]{flex:1 1 220px;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-family:var(--body);font-size:16px;background:var(--paper);color:var(--ink)}
+.vctl label{font-family:var(--display);font-size:13.5px;color:var(--ink-soft);display:flex;gap:8px;align-items:center;cursor:pointer}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:10px}
+.vcard{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+  font-family:var(--body);color:var(--ink);cursor:default;display:block;width:100%}
+.vcard .vh{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.35}
+.vcard .ve{font-size:14.5px;color:var(--ink-soft);margin-bottom:7px}
+.vcard .vf{display:grid;gap:1px;font-size:17px;line-height:1.55}
+.vcard .vf b{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-right:9px}
+.vcard .vt{float:right;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px}
+.vt.T{background:var(--karm-tint);color:var(--karm)}
+.vt.I{background:var(--karta-tint);color:var(--karta)}
+.vt.B{background:var(--kriya-tint);color:var(--kriya)}
+.vcard.cover{cursor:pointer}
+.vcard.cover:not(.shown) .vf{filter:blur(7px);user-select:none}
+.vempty{padding:26px;text-align:center;color:var(--ink-soft);font-style:italic}
+
+/* marker machine + drill */
+.mout{font-family:var(--display);font-size:clamp(30px,6vw,44px);font-weight:700;text-align:center;padding:20px 16px;min-height:96px;line-height:1.4}
+.mout .mn{color:var(--karm)} .mout .mm{color:var(--chihn)}
+.mout .men{display:block;font-size:14.5px;font-weight:500;font-family:var(--body);color:var(--ink-soft);font-style:italic;margin-top:2px}
+.gap{display:inline-block;min-width:3em;border-bottom:2.5px solid var(--ink);text-align:center;font-weight:700;color:var(--ink-soft)}
+.gap.ok{color:var(--ok);border-color:var(--ok)} .gap.no{color:var(--no);border-color:var(--no)}
+.dline{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.6;margin:0 0 11px}
+.bchip[disabled]{cursor:default;opacity:.85}
+.bchip.right{background:var(--ok-tint);border-color:var(--ok);color:var(--ok);font-weight:700}
+.bchip.wrong{background:var(--no-tint);border-color:var(--no);color:var(--no)}
+.bchip.hin{font-family:var(--display);font-size:18px;font-weight:600}
+
+
+/* ---------- Tenses and Pronouns additions ---------- */
+.fout{font-family:var(--display);font-size:clamp(28px,5.6vw,42px);font-weight:700;text-align:center;padding:20px 16px 12px;min-height:108px;line-height:1.45}
+.fout .fs{color:var(--karta)} .fout .fo{color:var(--karm)} .fout .fv{color:var(--kriya)} .fout .fa{color:var(--chihn)} .fout .fx{color:var(--chihn)}
+.fout .fen{display:block;font-size:15px;font-weight:500;font-family:var(--body);color:var(--ink-soft);font-style:italic;margin-top:4px}
+.fout .fq{color:var(--ink-soft);letter-spacing:.15em}
+.fout .fsum{display:block;font-size:14.5px;font-weight:500;font-family:var(--body);color:var(--ink-soft);margin-top:6px}
+.gapv{display:inline-block;min-width:3.4em;border-bottom:3px solid var(--kriya);color:transparent;user-select:none}
+.bchip.pick{font-family:var(--display);font-size:20px;font-weight:600;padding:7px 16px}
+.bchip.dim{opacity:.4}
+.predrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line-soft)}
+.predrow label{font-family:var(--display);font-size:13.5px;color:var(--ink-soft);display:flex;gap:8px;align-items:center;cursor:pointer}
+.predrow .pscore{margin-left:auto;font-family:var(--mono);font-size:12.5px;color:var(--ink-soft)}
+.optrow{padding:2px 16px 14px}
+.optrow .pl{font-family:var(--display);font-size:14px;color:var(--ink-soft);margin-bottom:8px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;padding:6px 16px 12px}
+.tabs .bchip{font-family:var(--display);font-weight:700;font-size:14.5px}
+.dtab{width:100%;border-collapse:collapse;margin:10px 0;font-size:16px}
+.dtab th,.dtab td{border:1px solid var(--line);padding:6px 9px;text-align:left;font-family:var(--display);font-weight:600;font-size:17px}
+.dtab th{background:var(--paper);font-family:var(--mono);font-size:11.5px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.dtab td.en{font-family:var(--body);font-weight:400;font-size:14.5px;color:var(--ink-soft)}
+.tabwrap{overflow-x:auto;margin:6px 0 12px}
+.cov .ans{filter:blur(7px);cursor:pointer;user-select:none}
+.cov .ans.shown{filter:none}
+.covrow{display:flex;gap:8px;align-items:center;font-family:var(--display);font-size:13.5px;color:var(--ink-soft);margin:8px 0 2px;cursor:pointer}
+.aside{font-size:15px;color:var(--ink-soft);border-left:3px solid var(--line);padding:2px 0 2px 12px;margin:10px 0}
+.mini{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Hindi &middot; Grade 7 &middot; Verbs and pronouns</div>
+  <h1>Tenses and <em>Pronouns</em></h1>
+  <div class="hsub" lang="hi">काल और सर्वनाम</div>
+  <p class="lede">Every Hindi verb wears two name tags. The <strong>ending</strong> says whether the doer is a boy or a girl, one or many. A small <strong>helper</strong> at the back says who: <em>मैं, तुम, आप, वह</em>. Pronouns play the same trick from the other side &mdash; <em>मैं</em> turns into <em>मुझे</em> or <em>मेरा</em> depending on what gets stuck next to it. Learn which tag copies what, and six tenses, three levels of &ldquo;please&rdquo; and eight pronouns collapse into tables you can build in your head.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of <span class="num">30</span>, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme. One thing is different on this page: every time you speak or write about <em>yourself</em>, you are a girl, so the verb wears the feminine tag &mdash; <em>मैं जाती हूँ</em>, never <em>जाता</em>. Most marks lost on this topic are that one ending.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#tool1">Tense forge</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#tool2">Pronoun switchboard</a>
+  <a href="#drill">Form drill</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Long answers</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+
+<!-- ============ TOOL 1: THE TENSE FORGE ============ -->
+<section id="tool1">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The tense forge</h2>
+      <p>Choose <strong>who</strong>, <strong>boy or girl</strong>, <strong>when</strong> and <strong>which verb</strong>, and the forge builds the Hindi. With <em>Predict first</em> switched on, the verb is hidden and you tap the form you think is right <em>before</em> you see it &mdash; that is the exercise. Watch the colours: the <span class="kv">ending</span> copies the doer's gender and number, the <span class="kc">helper</span> copies the person. Change the gender chip in the <em>past</em> tense of a verb that takes an object, and nothing moves. That is not a bug.</p>
+    </div>
+
+    <div class="brow"><div class="lab">1 &middot; who</div><div class="bchips" id="f-who" role="group" aria-label="Choose who"></div></div>
+    <div class="brow"><div class="lab">2 &middot; boy or girl</div><div class="bchips" id="f-gen" role="group" aria-label="Choose boy or girl"></div></div>
+    <div class="brow"><div class="lab">3 &middot; when</div><div class="bchips" id="f-ten" role="group" aria-label="Choose the tense"></div></div>
+    <div class="brow"><div class="lab">4 &middot; which verb</div><div class="bchips" id="f-verb" role="group" aria-label="Choose the verb"></div></div>
+
+    <div class="predrow">
+      <label><input type="checkbox" id="f-pred" checked> Predict first &mdash; hide the verb until I commit</label>
+      <span class="pscore" id="f-score">predictions: 0 of 0 right first time</span>
+    </div>
+    <div class="optrow" id="f-optrow"><div class="pl" id="f-optlab"></div><div class="bchips" id="f-opts" role="group" aria-label="Your prediction"></div></div>
+
+    <div class="built fout" id="f-out" aria-live="polite"></div>
+
+    <div class="legend" aria-label="What the colours mean">
+      <span class="lg k">who</span><span class="lg o">the rest</span><span class="lg v">ending &middot; copies gender</span><span class="lg m">helper &middot; copies person</span>
+    </div>
+
+    <div class="scorebar"><span class="why" id="f-why"></span></div>
+
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill bal">read the colours</span>
+        <span>Ending = doer's gender and number. Helper = the person. Commands ignore gender altogether.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">6 videos</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was a screensaver with Hindi on it. Some are in Hindi, some are in English about Hindi; if one is too slow or too fast, skip it &mdash; the lessons below stand on their own, and that is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~45 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ TOOL 2: THE PRONOUN SWITCHBOARD ============ -->
+<section id="tool2">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The pronoun switchboard</h2>
+      <p>Two boards. On the first, pick a pronoun and a marker and watch <em>मैं</em> become <em>मुझे</em>, <em>मुझसे</em>, <em>मेरा</em>. On the second, decide whether a possessive should point back at the subject (<em>अपना</em>) or at somebody else (<em>उसका</em>). Both have a puzzle button, and a puzzle only counts if your <strong>first</strong> Check is right.</p>
+    </div>
+
+    <div class="tabs" role="group" aria-label="Choose a board">
+      <button type="button" class="bchip sel" id="t2-tabA" data-tab="a">Board 1 &middot; pronoun + marker</button>
+      <button type="button" class="bchip" id="t2-tabB" data-tab="b">Board 2 &middot; अपना or उसका?</button>
+    </div>
+
+    <div id="t2-boardA">
+      <div class="brow"><div class="lab">1 &middot; choose a pronoun</div><div class="bchips" id="a-pron" role="group" aria-label="Choose a pronoun"></div></div>
+      <div class="brow"><div class="lab">2 &middot; stick on a marker</div><div class="bchips" id="a-mark" role="group" aria-label="Choose a marker"></div></div>
+      <div class="brow"><div class="lab">3 &middot; the thing owned &mdash; only used by का / की / के</div><div class="bchips" id="a-own" role="group" aria-label="Choose the thing owned"></div></div>
+      <div class="built mout" id="a-out" aria-live="polite"></div>
+      <div class="scorebar"><span class="why" id="a-why"></span></div>
+    </div>
+
+    <div id="t2-boardB" style="display:none">
+      <div class="brow"><div class="lab">1 &middot; who is doing it (the subject)</div><div class="bchips" id="b-subj" role="group" aria-label="Choose the subject"></div></div>
+      <div class="brow"><div class="lab">2 &middot; the thing</div><div class="bchips" id="b-thing" role="group" aria-label="Choose the thing"></div></div>
+      <div class="brow"><div class="lab">3 &middot; whose is it?</div><div class="bchips" id="b-whose" role="group" aria-label="Choose whose it is"></div></div>
+      <div class="built mout" id="b-out" aria-live="polite"></div>
+      <div class="scorebar"><span class="why" id="b-why"></span></div>
+    </div>
+
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill bal">pronoun + marker</span>
+        <span>The pronoun changes <strong>before</strong> the marker arrives. <em>के लिए</em> and <em>के साथ</em> ask for the possessive shape.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM DRILL ============ -->
+<section id="drill">
+  <div class="shead"><h2>Form drill</h2><span class="tag" id="d-score">0 of 20 right</span></div>
+  <p class="snote">Twenty sentences, one blank each. These do not count towards your 30 &mdash; they are the repetitions. One try per sentence, and the explanation appears either way. The English in brackets tells you who is speaking; use it.</p>
+  <div id="d-list"></div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. Q5 catches people who have just learned the rule and are now over-applying it.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. A mark is for a <strong>whole correct sentence</strong> &mdash; one wrong verb ending and it is gone, exactly as it would be in an exam.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Long answers</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. Hint 1 chunks the sentence, hint 2 names the rule, hint 3 narrows it to the word &mdash; none of them writes the Hindi for you. Q14 and Q15 are the two that separate a 21 from a 26. Get someone who reads Hindi to look at those two.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>&ldquo;मैं जाता हूँ&rdquo; &mdash; said by a girl</h4><p>The ending copies the <strong>doer</strong>, and the doer is you. The instinct is to copy the pattern from the textbook, and the textbook is usually written from a boy's point of view. <em>मैं स्कूल जाती हूँ</em>, <em>मैं खा रही थी</em>, <em>मैं गई थी</em>, <em>मैं आऊँगी</em>. The helper (<em>हूँ</em>) stays the same; the ending is the tag that flips. It is the single easiest mark to lose on this whole page, because the wrong version looks perfectly normal.</p></div>
+    <div class="trap"><h4>The helper does not match the person</h4><p><em>मैं जाती है</em>, <em>वह जाती हूँ</em>, <em>तुम जाते है</em>. Two tags, two jobs: the ending matches gender and number, the helper matches the <em>person</em>. And <strong>तुम</strong> and <strong>आप</strong> are always treated as plural by the verb, even when you mean one person: <em>तुम जाते हो / जाती हो</em>, <em>आप जाती हैं</em> &mdash; never <em>तुम जाता हो</em>.</p></div>
+    <div class="trap"><h4>ने everywhere, or ने nowhere</h4><p><em>मैंने स्कूल गई</em> and <em>मैंने खा रही हूँ</em> are both wrong. ने belongs to the <strong>&ldquo;done&rdquo; forms of verbs that take an object</strong> (<em>मैंने रोटी खाई</em>, <em>मैंने रोटी खाई है</em>) and to nothing else &mdash; not <em>जाना, आना, सोना</em>, not the continuous, not the future, not <em>चुका</em>. And when it does appear, the verb copies the <strong>object</strong>, so <em>मैंने रोटी खाई</em> but <em>मैंने आम खाया</em> &mdash; your own gender is not in the verb at all.</p></div>
+    <div class="trap"><h4>&ldquo;मैं को&rdquo;, &ldquo;मैं के साथ&rdquo;</h4><p>A pronoun never keeps its plain shape in front of a marker. <em>मैं + को = मुझे</em>, <em>मैं + से = मुझसे</em>, <em>वह + ने = उसने</em>, <em>वे + ने = उन्होंने</em>. And <em>के लिए / के साथ</em> do not take the oblique base at all; they take the possessive: <em>मेरे लिए</em>, <em>तुम्हारे साथ</em>, <em>उसके लिए</em>. The English word &ldquo;for me&rdquo; has no shape-change to warn you.</p></div>
+    <div class="trap"><h4>&ldquo;his&rdquo; is not always उसका</h4><p><em>राधा उसकी किताब पढ़ती है</em> means Radha is reading <strong>someone else's</strong> book. If it is her own, the word is <strong>अपनी</strong>. The test: does the possessor equal the subject of the sentence? Yes &rarr; <em>अपना / अपनी / अपने</em> (which copy the thing owned, not the owner). No &rarr; <em>उसका / उनका</em>. English uses one word, &ldquo;her&rdquo;, for both, which is exactly why you will write the wrong one.</p></div>
+  </div>
+</section>
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'tenses-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, pzSeen:{}, store:{} };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+
+
+/* ---------------- videos ----------------
+   Found by web search (titles as listed there). Not opened in a browser during the build:
+   worth a two-minute click-through before the student is sent to them. */
+const VIDEOS = [
+ {t:"1-2. Present Tense of होना honā (To Be) and Some Basics of Hindi Word Order", ch:"YouTube &middot; Hindi for learners", url:"https://www.youtube.com/watch?v=IyuON2b6JUI",
+  why:"होना is the helper behind half of this page, so start with the helper on its own. The title promises the present tense (<em>हूँ, हो, है, हैं</em>) plus word order, which is Lesson 1 of the last Hindi page again in one more voice. Watch it with Lesson 1's table open beside it.",
+  task:"Without looking, write the six persons down the left side of a page &mdash; मैं, तुम, आप, वह, हम, वे &mdash; and the right helper beside each. Then check against the video. Circle any you had to think about; those are the ones the exam will pick."},
+
+ {t:"था, थे, थी का सही प्रयोग जानें | Detailed explanation with examples | हिन्दी व्याकरण", ch:"YouTube &middot; Hindi grammar, explained in Hindi", url:"https://www.youtube.com/watch?v=KhBr4ubdMt8",
+  why:"The past helpers <em>था, थी, थे, थीं</em> are chosen by gender and number, not by person, and that is the opposite of the present helpers. This one is spoken in Hindi, so it doubles as listening practice. Set it to 1.25&times; and read the on-screen examples if the speech is too quick.",
+  task:"Copy down five example sentences from it. For each, underline the doer and circle the helper, then write a small &lsquo;m&rsquo; or &lsquo;f&rsquo; over both. If the letters do not match, you have found a rule you do not know yet."},
+
+ {t:"Bhavishyat Kaal (भविष्य काल) - Future Tense in Hindi | Lessons for Class 1 to 8", ch:"YouTube &middot; school Hindi grammar", url:"https://www.youtube.com/watch?v=fYpKnb5sUTg",
+  why:"A school-level walk through <em>-गा, -गी, -गे</em> futures. It is made for Classes 1 to 8, so parts of it may feel slow; the useful part is hearing the endings said aloud, because the spelling of <em>-ऊँगी, -ओगे, -एँगे</em> hides how similar they sound.",
+  task:"Write tomorrow's plan in six sentences &mdash; two about you, two about a friend, two about your family. Mark each ending: which of the six future endings did you use? If you used only one kind, redo two sentences with a different person."},
+
+ {t:"Lesson 7: Imperatives in Hindi | How to sound extra polite?", ch:"YouTube &middot; Hindi for learners", url:"https://www.youtube.com/watch?v=QzclaaxrH6M",
+  why:"The three levels of &lsquo;please&rsquo; (<em>तू, तुम, आप</em>) are where a correct sentence turns into a rude one. The title is about sounding polite, which is exactly the choice the exam asks you to make. Lesson 5 has the table; this gives you the sound of it.",
+  task:"Write the same order &mdash; &lsquo;sit down&rsquo; &mdash; three times: to a small child, to a friend your age, and to your teacher. Then add <em>कृपया</em> to the third. Read all three aloud and listen to how different they feel."},
+
+ {t:"main (मैं) versus mujhe (मुझे) - Learn when and how to use them in Hindi sentences", ch:"YouTube &middot; Hindi for learners", url:"https://www.youtube.com/watch?v=MWjguwCwLqo",
+  why:"The single most common pronoun mistake is using <em>मैं</em> where Hindi wants <em>मुझे</em>. This video is about that exact choice, so it is the best fit for the pronoun switchboard. Use the switchboard as you watch: whenever it says &lsquo;to me&rsquo; or &lsquo;me&rsquo;, find the row on Board 1.",
+  task:"Write six short sentences that each contain मुझे, मुझसे or मेरा. For every one, write the English word under it that made you choose that form (to me, from me, my). If you cannot say why, the sentence does not count."},
+
+ {t:"हिंदी वाक्य में 'अपना', 'अपने', 'अपनी' का प्रयोग - डॉ. कुसुम नैपसिक", ch:"YouTube &middot; Hindi grammar lecture, in Hindi", url:"https://www.youtube.com/watch?v=Wob-JtEyqlo",
+  why:"अपना is the word English has no version of, and it decides one mark in most sentences with a possessive. The title says it is in Hindi and is a lecture by a named teacher, so watch for the examples rather than the terminology. Use Board 2 on the switchboard to test each example it gives.",
+  task:"Write down every example sentence you catch. Beside each, write &lsquo;own&rsquo; or &lsquo;someone else&rsquo;s&rsquo;, then swap अपना for उसका (or the other way round) and say aloud how the meaning changes."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [];
+LESSONS.push(
+ {t:"होना: the helper that runs the page", len:"6 min",
+  body:`<p>Nearly every tense on this page is a verb with a small helper stuck on the back. The helper is <strong>होना</strong>, &lsquo;to be&rsquo;. On its own it means <em>am / is / are / was</em>. Behind another verb it becomes the word that says <em>who</em> and <em>when</em>. Here is the whole verb. Tick &lsquo;cover&rsquo;, say each form aloud, then tap the blurred cell to check.</p>
+    <label class="covrow"><input type="checkbox" id="ho-cover"> Cover the answers &mdash; tap a blurred cell to reveal it</label>
+    <div class="tabwrap" id="ho-wrap"><table class="dtab">
+      <tr><th>Who</th><th>now</th><th>was &middot; boy</th><th>was &middot; girl</th><th>will be &middot; boy</th><th>will be &middot; girl</th></tr>
+      <tr><td>मैं</td><td><span class="ans">हूँ</span></td><td><span class="ans">था</span></td><td><span class="ans">थी</span></td><td><span class="ans">होऊँगा</span></td><td><span class="ans">होऊँगी</span></td></tr>
+      <tr><td>तुम</td><td><span class="ans">हो</span></td><td><span class="ans">थे</span></td><td><span class="ans">थीं</span></td><td><span class="ans">होगे</span></td><td><span class="ans">होगी</span></td></tr>
+      <tr><td>आप</td><td><span class="ans">हैं</span></td><td><span class="ans">थे</span></td><td><span class="ans">थीं</span></td><td><span class="ans">होंगे</span></td><td><span class="ans">होंगी</span></td></tr>
+      <tr><td>वह &middot; यह</td><td><span class="ans">है</span></td><td><span class="ans">था</span></td><td><span class="ans">थी</span></td><td><span class="ans">होगा</span></td><td><span class="ans">होगी</span></td></tr>
+      <tr><td>हम</td><td><span class="ans">हैं</span></td><td><span class="ans">थे</span></td><td><span class="ans">थीं</span></td><td><span class="ans">होंगे</span></td><td><span class="ans">होंगी</span></td></tr>
+      <tr><td>वे &middot; ये</td><td><span class="ans">हैं</span></td><td><span class="ans">थे</span></td><td><span class="ans">थीं</span></td><td><span class="ans">होंगे</span></td><td><span class="ans">होंगी</span></td></tr>
+    </table></div>
+    <p>Look at the columns, not the rows. <strong>Now</strong> has no boy or girl at all: <em>हूँ, हो, है, हैं</em> follow the <em>person</em> and nothing else. <strong>Was</strong> has no person at all: <em>था, थी, थे, थीं</em> follow gender and number. That is two different copying systems inside one verb, and it is the whole reason Hindi tenses feel messy. Once you know which tag copies what, they stop being messy.</p>
+    <div class="hbig">मैं घर पर हूँ। &nbsp; तुम कहाँ हो? &nbsp; आप कैसे हैं?</div>
+    <div class="hbig">वह स्कूल में थी। &nbsp; वे कल दिल्ली में थे।</div>
+    <p class="mini">I am at home. Where are you? How are you, sir? &nbsp;|&nbsp; She was at school. They were in Delhi yesterday. &nbsp;|&nbsp; Say them: हूँ h&#363;&#7749;, हो ho, है hai, हैं ha&#7749;, था th&#257;, थी th&#299;, थे the, थीं th&#299;&#7749;.</p>
+    <p>Two oddities that cost marks. <strong>तुम</strong> takes <em>हो</em> and, in the past, <em>थे / थीं</em> &mdash; it behaves like a plural even when it means one friend. <strong>आप</strong> takes <em>हैं</em> for one respected person as well as for many. Only <em>मैं</em> gets <em>हूँ</em> and only <em>वह / यह</em> get <em>है</em>.</p>
+    <p class="aside">Yes, <em>मैं होऊँगा / होऊँगी</em> looks odd next to <em>होगा</em>. That first form is the irregular one; every other person is regular. You will meet the same &lsquo;-ऊँ-&rsquo; again in Lesson 4.</p>`,
+  demo:"Cover the table. Say the six persons aloud with their <em>now</em> helper, then again with their <em>was</em> helper, as yourself &mdash; a girl. Any you hesitate over, write on a sticky note and stick it where you brush your teeth. Two days of hesitation-notes beat one hour of re-reading.",
+  cliff:"<em>मैं स्कूल जाती हूँ</em> means &lsquo;I go to school&rsquo;. The word <em>हूँ</em> tells you who. But something in that sentence tells you the speaker is a girl, and it is not <em>हूँ</em>. Which word is it, and what happens to it when the boy next to you says the same sentence?"},
+
+ {t:"Every day, and right now", len:"7 min",
+  body:`<p>Take the verb, chop <em>-ना</em> off to get the <strong>root</strong> (<em>जाना &rarr; जा</em>, <em>पढ़ना &rarr; पढ़</em>), add an ending, then add the helper. Two tenses, one shape:</p>
+    <div class="ladder">
+      <div class="rung kriya"><span class="rn">every day</span><span>root + <span class="kv">-ता / -ती / -ते</span> + helper &nbsp;&rarr;&nbsp; <em>मैं स्कूल जाती हूँ</em></span></div>
+      <div class="rung kriya"><span class="rn">right now</span><span>root + <span class="kv">रहा / रही / रहे</span> + helper &nbsp;&rarr;&nbsp; <em>मैं स्कूल जा रही हूँ</em></span></div>
+    </div>
+    <p>The ending is the tag that copies the doer. Only three shapes exist:</p>
+    <table class="data">
+      <tr><th>the doer is&hellip;</th><th>every day</th><th>right now</th></tr>
+      <tr><td>one boy or man (मैं, वह)</td><td>जाता</td><td>जा रहा</td></tr>
+      <tr><td>many, or तुम / आप / हम / वे as boys</td><td>जाते</td><td>जा रहे</td></tr>
+      <tr><td>any girl or woman, one or many</td><td>जाती</td><td>जा रही</td></tr>
+    </table>
+    <p>Girls have no separate plural: <em>वह जाती है</em>, <em>वे जाती हैं</em>. The <em>-ी</em> stays put and the helper does the counting. Make it the past by swapping the helper for a past one, still copying gender and number: <em>वह जाती थी</em> (she used to go), <em>वह जा रही थी</em> (she was going), <em>वे जा रहे थे</em> (they were going).</p>
+    <div class="hbig">वह रोज़ स्कूल जाती है। &nbsp; वह अभी स्कूल जा रही है।</div>
+    <p class="mini">She goes to school every day. She is going to school right now. &nbsp;|&nbsp; ता t&#257;, ती t&#299;, ते te; रहा rah&#257;, रही rah&#299;, रहे rahe.</p>
+    <p>Notice that <em>रोज़</em> and <em>अभी</em> do the work an English speaker expects from the tense. Use them: they are free marks of clarity. <em>नहीं</em> goes straight in front of the verb: <em>मैं स्कूल नहीं जा रही हूँ।</em></p>
+    <p class="aside">One aside. For respected elders Hindi uses the plural even for one person: <em>माँ खाना बना रही हैं</em>, <em>पापा टीवी देख रहे हैं</em>. That is the same &lsquo;आप&rsquo; logic, and it is why <em>वे</em> can mean &lsquo;he (respected)&rsquo;.</p>`,
+  demo:"Stand somewhere you can see three people or three things doing something. Say what each is doing right now, out loud, in Hindi: <em>बिल्ली सो रही है। भाई पढ़ रहा है।</em> Then say what each does <em>every day</em>. Six sentences, and you must get the ending right before you say the helper.",
+  cliff:"<em>वह जा रही थी</em> &mdash; she was going. But what if she has <em>already gone</em>, and what if you want to say you <em>went</em>, once, yesterday? Some past sentences want <em>मैंने</em> at the front and some refuse it completely. Which ones, and why does the verb suddenly stop caring what you are?"},
+
+ {t:"Done: the past, the perfect and ने", len:"8 min",
+  body:`<p>The simple past has <strong>no helper</strong>. The verb just ends in <em>-आ / -ई / -ए / -ईं</em>, again copying the doer: <em>वह खेला, वह खेली, वे खेले, वे खेलीं</em>. After a vowel root it adds a <em>-य-</em>: <em>खाया, आया, सोया</em>. A handful are irregular and must simply be learnt:</p>
+    <table class="data">
+      <tr><th>verb</th><th>boy</th><th>boys</th><th>girl</th><th>girls</th></tr>
+      <tr><td>जाना</td><td>गया</td><td>गए</td><td>गई</td><td>गईं</td></tr>
+      <tr><td>करना</td><td>किया</td><td>किए</td><td>की</td><td>कीं</td></tr>
+      <tr><td>देना</td><td>दिया</td><td>दिए</td><td>दी</td><td>दीं</td></tr>
+      <tr><td>लेना</td><td>लिया</td><td>लिए</td><td>ली</td><td>लीं</td></tr>
+      <tr><td>होना</td><td>हुआ</td><td>हुए</td><td>हुई</td><td>हुईं</td></tr>
+    </table>
+    <p><strong>ने, in two lines.</strong> If the verb takes an object (<em>पढ़ना, लिखना, खाना, देखना, करना</em>), the doer gets <strong>ने</strong> and the verb stops copying the doer &mdash; it copies the <strong>object</strong>. If it takes no object (<em>जाना, आना, सोना</em>, and <em>खेलना</em> when nothing is being played), there is no ने and the verb copies the doer as usual.</p>
+    <div class="hbig">मैंने रोटी खाई। &nbsp; मैंने आम खाया। &nbsp; मैं स्कूल गई।</div>
+    <p class="mini">I ate a roti. I ate a mango. I went to school (a girl speaking).</p>
+    <p>The pronouns with ने are <em>मैंने, तुमने, आपने, उसने, इसने, हमने, उन्होंने, इन्होंने</em>. Notice how <em>वे</em> and <em>ये</em> grow an extra <em>-ों-</em>. The first two sentences above are said by you, a girl, and the verb ignores it. That is the strangest thing on this page, so test it in the forge: put <em>पढ़ना</em> in the past and flip the gender chip.</p>
+    <p><strong>Already done.</strong> Two ways. With <em>चुका</em>: root + <em>चुका / चुकी / चुके</em> + helper, copying the doer, and <strong>never</strong> with ने: <em>मैं खा चुकी हूँ, वे जा चुके हैं</em>. Or the past form plus the helper: <em>वह गई है, उसने रोटी खाई है</em>. Past form plus a <em>past</em> helper gives &lsquo;had done&rsquo;: <em>वह गई थी</em> (she had gone). The <em>चुका</em> route is the one with no exceptions, so use it when you can choose.</p>`,
+  demo:"Write three things you ate, three things you read, and three places you went this week, each as a full Hindi sentence in the past. Draw a box round every <em>ने</em>. Before you write the verb in any sentence with a box, point at the object &mdash; that word, not you, decides the ending.",
+  cliff:"So far every verb has kept a helper or an ending copying the doer. But how do you talk about tomorrow? <em>मैं जाऊँगी, तुम जाओगी, वह जाएगी, हम जाएँगी</em> &mdash; four endings for one verb, and there is no helper anywhere. Where did the person go?"}
+);
+
+LESSONS.push(
+ {t:"Will: the future, and all six tenses side by side", len:"8 min",
+  body:`<p>The future has no helper. The person and the gender are both folded into one ending, so this is the one tense where the ending does <em>both</em> jobs. Add it to the root:</p>
+    <table class="data">
+      <tr><th>who</th><th>boy</th><th>girl</th><th>जाना</th><th>करना</th></tr>
+      <tr><td>मैं</td><td>-ऊँगा</td><td>-ऊँगी</td><td>जाऊँगा / जाऊँगी</td><td>करूँगा / करूँगी</td></tr>
+      <tr><td>तुम</td><td>-ओगे</td><td>-ओगी</td><td>जाओगे / जाओगी</td><td>करोगे / करोगी</td></tr>
+      <tr><td>वह</td><td>-एगा</td><td>-एगी</td><td>जाएगा / जाएगी</td><td>करेगा / करेगी</td></tr>
+      <tr><td>आप &middot; हम &middot; वे</td><td>-एँगे</td><td>-एँगी</td><td>जाएँगे / जाएँगी</td><td>करेंगे / करेंगी</td></tr>
+    </table>
+    <p>Why do <em>जाना</em> and <em>करना</em> look different? After a root that ends in a <strong>vowel</strong> (जा, आ, खा, सो) the ending keeps its vowel: <em>जा + ऊँगी</em>. After a root that ends in a <strong>consonant</strong> (कर, पढ़, लिख, देख) the vowel shrinks into a mark on that consonant: <em>कर + ऊँगी = करूँगी</em>, <em>कर + ओगे = करोगे</em>, <em>कर + एँगे = करेंगे</em>. Same ending, two spellings. The three irregulars: <em>देना &rarr; दूँगी, दोगी, देगी, देंगी</em>; <em>लेना &rarr; लूँगी, लोगी, लेगी, लेंगी</em>; <em>होना &rarr; होऊँगी, होगी, होगी, होंगी</em> (in the table's order: मैं, तुम, वह, हम; Lesson 1).</p>
+    <div class="hbig">कल मैं दिल्ली जाऊँगी। &nbsp; वह कल नहीं आएगी।</div>
+    <p class="mini">Tomorrow I (a girl) will go to Delhi. She will not come tomorrow.</p>
+    <p><strong>All six on one page.</strong> This is the table to take into the exam room. Cover it, say each row for &ldquo;she&rdquo; and &ldquo;they (boys)&rdquo;, then reveal.</p>
+    <label class="covrow"><input type="checkbox" id="pt-cover"> Cover the answers &mdash; tap a blurred cell to reveal it</label>
+    <div class="tabwrap" id="pt-wrap"><table class="dtab">
+      <tr><th>tense</th><th>pattern</th><th>वह &middot; girl</th><th>वे &middot; boys</th></tr>
+      <tr><td>every day</td><td class="en">root + ता / ती / ते + helper</td><td><span class="ans">वह जाती है</span></td><td><span class="ans">वे जाते हैं</span></td></tr>
+      <tr><td>right now</td><td class="en">root + रहा / रही / रहे + helper</td><td><span class="ans">वह जा रही है</span></td><td><span class="ans">वे जा रहे हैं</span></td></tr>
+      <tr><td>done</td><td class="en">past form, no helper (ने with objects)</td><td><span class="ans">वह गई</span></td><td><span class="ans">वे गए</span></td></tr>
+      <tr><td>was doing</td><td class="en">root + रहा / रही / रहे + था / थी / थे / थीं</td><td><span class="ans">वह जा रही थी</span></td><td><span class="ans">वे जा रहे थे</span></td></tr>
+      <tr><td>already done</td><td class="en">root + चुका / चुकी / चुके + helper</td><td><span class="ans">वह जा चुकी है</span></td><td><span class="ans">वे जा चुके हैं</span></td></tr>
+      <tr><td>will do</td><td class="en">root + future ending, no helper</td><td><span class="ans">वह जाएगी</span></td><td><span class="ans">वे जाएँगे</span></td></tr>
+    </table></div>`,
+  demo:"Pick one verb from the forge and write its six rows for <em>you</em> (a girl) on a card: <em>मैं ___ती हूँ, मैं ___ रही हूँ, मैं ___, मैं ___ रही थी, मैं ___ चुकी हूँ, मैं ___ऊँगी</em>. Stick the card in your Hindi notebook. Then do the same for <em>हम</em>. Only the helper and the future ending change.",
+  cliff:"You now have the whole grid, and the grid has one thing in common: every verb in it is a statement. What about &lsquo;sit down&rsquo;, &lsquo;give me the book&rsquo; and &lsquo;please don't go&rsquo;? Those have no tense, no gender, and three completely different versions depending on who you are speaking to. Which version do you use with your teacher?"},
+
+ {t:"Please: commands and requests", len:"6 min",
+  body:`<p>A command in Hindi needs no helper and no gender. It needs one choice: <strong>how much respect?</strong> Three levels, three endings on the root:</p>
+    <div class="ladder">
+      <div class="rung kriya"><span class="rn">तू</span><span>bare root: <em>बैठ, जा, कर</em>. Only for a very small child or an extremely close friend. Avoid it in the exam unless the question asks.</span></div>
+      <div class="rung kriya"><span class="rn">तुम</span><span>root + <span class="kv">-ओ</span>: <em>बैठो, जाओ, करो</em>. Friends, brothers and sisters, younger people.</span></div>
+      <div class="rung kriya"><span class="rn">आप</span><span>root + <span class="kv">-इए</span>: <em>बैठिए, जाइए, पढ़िए</em>. Teachers, elders, strangers, anyone you would call sir or madam.</span></div>
+    </div>
+    <div class="tabwrap"><table class="dtab">
+      <tr><th>verb</th><th>तू</th><th>तुम</th><th>आप</th><th>soft request</th></tr>
+      <tr><td>करना</td><td>कर</td><td>करो</td><td>कीजिए</td><td>करना</td></tr>
+      <tr><td>देना</td><td>दे</td><td>दो</td><td>दीजिए</td><td>देना</td></tr>
+      <tr><td>लेना</td><td>ले</td><td>लो</td><td>लीजिए</td><td>लेना</td></tr>
+      <tr><td>पढ़ना</td><td>पढ़</td><td>पढ़ो</td><td>पढ़िए</td><td>पढ़ना</td></tr>
+      <tr><td>जाना</td><td>जा</td><td>जाओ</td><td>जाइए</td><td>जाना</td></tr>
+      <tr><td>आना</td><td>आ</td><td>आओ</td><td>आइए</td><td>आना</td></tr>
+      <tr><td>बैठना</td><td>बैठ</td><td>बैठो</td><td>बैठिए</td><td>बैठना</td></tr>
+      <tr><td>सुनना</td><td>सुन</td><td>सुनो</td><td>सुनिए</td><td>सुनना</td></tr>
+    </table></div>
+    <p>Three verbs break the pattern for <em>आप</em> and must simply be learnt: <strong>कीजिए, दीजिए, लीजिए</strong>. Their <em>तुम</em> forms <em>दो</em> and <em>लो</em> are also short. Everything else is regular.</p>
+    <div class="hbig">कृपया यहाँ बैठिए। &nbsp; मुझे किताब दीजिए। &nbsp; मत जाओ।</div>
+    <p class="mini">Please sit here. (Please) give me the book. Don't go.</p>
+    <p><strong>Soft request.</strong> The infinitive on its own, <em>कल जल्दी आना</em>, is a friendly &ldquo;do come early tomorrow&rdquo;, the way you would ask a friend or a younger cousin. <strong>Don't.</strong> The word for &lsquo;don't&rsquo; in a command is <strong>मत</strong>, never <em>नहीं</em>: <em>मत जाओ, मत जाइए</em>. <strong>Please</strong> is <em>कृपया</em> at the front; <em>ज़रा</em> in the middle softens it further (<em>ज़रा सुनिए</em>). None of these change for a boy or a girl.</p>`,
+  demo:"Write the order <em>&lsquo;give me some water&rsquo;</em> (<em>मुझे पानी</em> &hellip;) three times &mdash; to a toddler, to your brother, to your teacher. Now say each in the voice you would really use. If the toddler version came out as <em>दीजिए</em>, redo it.",
+  cliff:"<em>मुझे किताब दीजिए</em>. Look at the first word. In the last lesson it was <em>मैं</em>, and here it is <em>मुझे</em>. What happened to it, and why does the same thing happen again in <em>उसे, हमें, उन्हें</em>?"},
+
+ {t:"Pronouns change shape, and अपना", len:"9 min",
+  body:`<p>A pronoun has a plain form (<em>मैं, वह</em>) that appears when it is the doer the verb copies. The moment a marker gets stuck onto it, the pronoun changes to an <strong>oblique base</strong>: <em>मैं &rarr; मुझ, वह &rarr; उस, वे &rarr; उन, ये &rarr; इन</em> and so on. Then the marker joins.</p>
+    <label class="covrow"><input type="checkbox" id="pr-cover"> Cover the answers &mdash; tap a blurred cell to reveal it</label>
+    <div class="tabwrap" id="pr-wrap"><table class="dtab">
+      <tr><th>plain</th><th>ने</th><th>को</th><th>से</th><th>में</th><th>my / your&hellip;</th><th>for / with</th></tr>
+      <tr><td>मैं</td><td><span class="ans">मैंने</span></td><td><span class="ans">मुझे</span></td><td><span class="ans">मुझसे</span></td><td><span class="ans">मुझमें</span></td><td><span class="ans">मेरा · मेरी · मेरे</span></td><td><span class="ans">मेरे लिए</span></td></tr>
+      <tr><td>तुम</td><td><span class="ans">तुमने</span></td><td><span class="ans">तुम्हें</span></td><td><span class="ans">तुमसे</span></td><td><span class="ans">तुममें</span></td><td><span class="ans">तुम्हारा · तुम्हारी · तुम्हारे</span></td><td><span class="ans">तुम्हारे लिए</span></td></tr>
+      <tr><td>आप</td><td><span class="ans">आपने</span></td><td><span class="ans">आपको</span></td><td><span class="ans">आपसे</span></td><td><span class="ans">आपमें</span></td><td><span class="ans">आपका · आपकी · आपके</span></td><td><span class="ans">आपके लिए</span></td></tr>
+      <tr><td>वह</td><td><span class="ans">उसने</span></td><td><span class="ans">उसे</span></td><td><span class="ans">उससे</span></td><td><span class="ans">उसमें</span></td><td><span class="ans">उसका · उसकी · उसके</span></td><td><span class="ans">उसके लिए</span></td></tr>
+      <tr><td>यह</td><td><span class="ans">इसने</span></td><td><span class="ans">इसे</span></td><td><span class="ans">इससे</span></td><td><span class="ans">इसमें</span></td><td><span class="ans">इसका · इसकी · इसके</span></td><td><span class="ans">इसके लिए</span></td></tr>
+      <tr><td>हम</td><td><span class="ans">हमने</span></td><td><span class="ans">हमें</span></td><td><span class="ans">हमसे</span></td><td><span class="ans">हममें</span></td><td><span class="ans">हमारा · हमारी · हमारे</span></td><td><span class="ans">हमारे लिए</span></td></tr>
+      <tr><td>वे</td><td><span class="ans">उन्होंने</span></td><td><span class="ans">उन्हें</span></td><td><span class="ans">उनसे</span></td><td><span class="ans">उनमें</span></td><td><span class="ans">उनका · उनकी · उनके</span></td><td><span class="ans">उनके लिए</span></td></tr>
+      <tr><td>ये</td><td><span class="ans">इन्होंने</span></td><td><span class="ans">इन्हें</span></td><td><span class="ans">इनसे</span></td><td><span class="ans">इनमें</span></td><td><span class="ans">इनका · इनकी · इनके</span></td><td><span class="ans">इनके लिए</span></td></tr>
+    </table></div>
+    <p>Four things to see in it. <strong>One:</strong> <em>को</em> has short forms that everybody uses &mdash; <em>मुझे, तुम्हें, उसे, इसे, हमें, उन्हें, इन्हें</em>. Only <em>आप</em> keeps the long <em>आपको</em>. <strong>Two:</strong> <em>तुम</em> becomes <em>तुम्ह-</em> before the short <em>को</em>. <strong>Three:</strong> <em>का / की / के</em> copies the thing owned, never the owner: <em>मेरा भाई, मेरी बहन, मेरे दोस्त</em>. <strong>Four:</strong> the last column. <em>के लिए</em> (for) and <em>के साथ</em> (with) do not want the base at all; they want the possessive <em>-े</em> shape: <em>मेरे लिए, तुम्हारे साथ, उसके साथ</em>.</p>
+    <p><strong>अपना, the word English does not have.</strong> <em>अपना / अपनी / अपने</em> means &lsquo;one's own&rsquo; and it points <strong>back at the subject of the sentence</strong>. <em>उसका</em> points at <strong>somebody else</strong>.</p>
+    <div class="hbig">राधा अपनी किताब पढ़ती है। &nbsp; राधा उसकी किताब पढ़ती है।</div>
+    <p class="mini">Radha reads her own book. &nbsp;|&nbsp; Radha reads somebody else&rsquo;s book.</p>
+    <p>The first is Radha's own book. The second is a book belonging to a different person, and the reader will go looking for who. Like any possessive, <em>अपना</em> copies the <strong>thing owned</strong> (<em>अपना काम, अपनी किताब, अपने भाई से</em>), and it cannot be the subject itself. With <em>मैं, तुम, हम</em> it means my / your / our own, and is very natural: <em>मैं अपना काम करती हूँ</em>.</p>`,
+  demo:"Write six sentences about your family, each with a possessive. For each, ask one question: <em>is the owner also the person doing the verb?</em> If yes, the word is a form of अपना. If no, it is a form of उसका, उनका, मेरा, तुम्हारा. Check that every possessive copies the thing owned, not the owner.",
+  cliff:"Q15 asks for three sentences at once: a ने, a <em>मुझसे</em>, an <em>अपना</em>, a plural before <em>के साथ</em> and one irregular future. You now have every piece. The only remaining question is whether you can put them in the right order under time pressure &mdash; who first, verb last."}
+);
+
+/* ---------------- tool 1 data: the tense forge ---------------- */
+const FP = [
+ {id:'main', w:'मैं', ne:'मैंने', aux:'हूँ', pl:false, en:'I', be:['am','was'], hv:'have'},
+ {id:'tum',  w:'तुम', ne:'तुमने', aux:'हो', pl:true,  en:'You', be:['are','were'], hv:'have'},
+ {id:'aap',  w:'आप', ne:'आपने', aux:'हैं', pl:true,  en:'You (polite)', be:['are','were'], hv:'have'},
+ {id:'vah',  w:'वह', ne:'उसने', aux:'है', pl:false, en:'He', enf:'She', be:['is','was'], hv:'has'},
+ {id:'hum',  w:'हम', ne:'हमने', aux:'हैं', pl:true,  en:'We', be:['are','were'], hv:'have'},
+ {id:'ve',   w:'वे', ne:'उन्होंने', aux:'हैं', pl:true,  en:'They', be:['are','were'], hv:'have'}
+];
+/* future endings: [vowel-root boy, vowel-root girl, consonant-root boy, consonant-root girl] */
+const FUT = {
+ main:['ऊँगा','ऊँगी','ूँगा','ूँगी'],
+ tum: ['ओगे','ओगी','ोगे','ोगी'],
+ aap: ['एँगे','एँगी','ेंगे','ेंगी'],
+ vah: ['एगा','एगी','ेगा','ेगी'],
+ hum: ['एँगे','एँगी','ेंगे','ेंगी'],
+ ve:  ['एँगे','एँगी','ेंगे','ेंगी']
+};
+/* past: [boy, boys, girl, girls]; for object verbs the boy/girl slot is chosen by the OBJECT (cg) */
+const FV = [
+ {id:'jaana',  inf:'जाना',  root:'जा',  vow:true,  type:'I', irr:true, comp:'स्कूल',     ecomp:'to school',      past:['गया','गए','गई','गईं'],      imp:['जाओ','जाइए'],  en:{b:'go',s:'goes',g:'going',p:'went',pp:'gone'}},
+ {id:'aana',   inf:'आना',   root:'आ',   vow:true,  type:'I', comp:'घर',              ecomp:'home',           past:['आया','आए','आई','आईं'],      imp:['आओ','आइए'],   en:{b:'come',s:'comes',g:'coming',p:'came',pp:'come'}},
+ {id:'khelna', inf:'खेलना', root:'खेल', vow:false, type:'I', comp:'मैदान में',       ecomp:'on the ground',  past:['खेला','खेले','खेली','खेलीं'], imp:['खेलो','खेलिए'], en:{b:'play',s:'plays',g:'playing',p:'played',pp:'played'}},
+ {id:'sona',   inf:'सोना',  root:'सो',  vow:true,  type:'I', comp:'जल्दी',           ecomp:'early',          past:['सोया','सोए','सोई','सोईं'],   imp:['सोओ','सोइए'],  en:{b:'sleep',s:'sleeps',g:'sleeping',p:'slept',pp:'slept'}},
+ {id:'padhna', inf:'पढ़ना', root:'पढ़', vow:false, type:'T', cg:'f', comp:'किताब',   ecomp:'a book',         past:['पढ़ा','पढ़े','पढ़ी','पढ़ीं'],  imp:['पढ़ो','पढ़िए'], en:{b:'read',s:'reads',g:'reading',p:'read',pp:'read'}},
+ {id:'likhna', inf:'लिखना', root:'लिख', vow:false, type:'T', cg:'m', comp:'पत्र',    ecomp:'a letter',       past:['लिखा','लिखे','लिखी','लिखीं'], imp:['लिखो','लिखिए'], en:{b:'write',s:'writes',g:'writing',p:'wrote',pp:'written'}},
+ {id:'khaana', inf:'खाना',  root:'खा',  vow:true,  type:'T', cg:'f', comp:'रोटी',    ecomp:'a roti',         past:['खाया','खाए','खाई','खाईं'],   imp:['खाओ','खाइए'],  en:{b:'eat',s:'eats',g:'eating',p:'ate',pp:'eaten'}},
+ {id:'dekhna', inf:'देखना', root:'देख', vow:false, type:'T', cg:'f', comp:'फ़िल्म',  ecomp:'a film',         past:['देखा','देखे','देखी','देखीं'], imp:['देखो','देखिए'], en:{b:'watch',s:'watches',g:'watching',p:'watched',pp:'watched'}},
+ {id:'karna',  inf:'करना',  root:'कर',  vow:false, type:'T', irr:true, cg:'m', comp:'काम', ecomp:'the work',   past:['किया','किए','की','कीं'],     imp:['करो','कीजिए'],  en:{b:'do',s:'does',g:'doing',p:'did',pp:'done'}}
+];
+const FT = [
+ {id:'hab',   l:'every day'},
+ {id:'cont',  l:'right now'},
+ {id:'past',  l:'done (past)'},
+ {id:'pcont', l:'was doing'},
+ {id:'perf',  l:'already done'},
+ {id:'fut',   l:'will do'},
+ {id:'cmd',   l:'an order'}
+];
+/* puzzles for the forge: the machine's Hindi must equal t. The spec (p,g,t,v) is only there so the checker script can prove each one is reachable. */
+const PZ_F = [
+ {id:'f1',  ask:'I (a girl) go to school every day.',            p:'main', g:'f', t:'hab',   v:'jaana',  h:'मैं स्कूल जाती हूँ।'},
+ {id:'f2',  ask:'She is eating a roti.',                          p:'vah',  g:'f', t:'cont',  v:'khaana', h:'वह रोटी खा रही है।'},
+ {id:'f3',  ask:'We (boys) were playing on the ground.',          p:'hum',  g:'m', t:'pcont', v:'khelna', h:'हम मैदान में खेल रहे थे।'},
+ {id:'f4',  ask:'You (तुम, to a girl) will write a letter.',      p:'tum',  g:'f', t:'fut',   v:'likhna', h:'तुम पत्र लिखोगी।'},
+ {id:'f5',  ask:'They (girls) have already gone to school.',      p:'ve',   g:'f', t:'perf',  v:'jaana',  h:'वे स्कूल जा चुकी हैं।'},
+ {id:'f6',  ask:'He watched a film.',                             p:'vah',  g:'m', t:'past',  v:'dekhna', h:'उसने फ़िल्म देखी।'},
+ {id:'f7',  ask:'I (a boy) did the work.',                        p:'main', g:'m', t:'past',  v:'karna',  h:'मैंने काम किया।'},
+ {id:'f8',  ask:'You (आप, a lady) were sleeping early.',          p:'aap',  g:'f', t:'pcont', v:'sona',   h:'आप जल्दी सो रही थीं।'},
+ {id:'f9',  ask:'We (girls) came home.',                          p:'hum',  g:'f', t:'past',  v:'aana',   h:'हम घर आईं।'},
+ {id:'f10', ask:'Please read a book (to your teacher).',          p:'aap',  g:'f', t:'cmd',   v:'padhna', h:'आप किताब पढ़िए।'},
+ {id:'f11', ask:'Eat a roti! (to your friend)',                   p:'tum',  g:'m', t:'cmd',   v:'khaana', h:'तुम रोटी खाओ।'},
+ {id:'f12', ask:'She will come home.',                            p:'vah',  g:'f', t:'fut',   v:'aana',   h:'वह घर आएगी।'},
+ {id:'f13', ask:'I (a boy) will read a book.',                    p:'main', g:'m', t:'fut',   v:'padhna', h:'मैं किताब पढ़ूँगा।'},
+ {id:'f14', ask:'They (boys) have already watched a film.',       p:'ve',   g:'m', t:'perf',  v:'dekhna', h:'वे फ़िल्म देख चुके हैं।'},
+ {id:'f15', ask:'I (a girl) wrote a letter.',                     p:'main', g:'f', t:'past',  v:'likhna', h:'मैंने पत्र लिखा।'},
+ {id:'f16', ask:'You (तुम, to boys) go to school every day.',     p:'tum',  g:'m', t:'hab',   v:'jaana',  h:'तुम स्कूल जाते हो।'}
+];
+
+/* ---------------- tool 2 data: the pronoun switchboard ---------------- */
+const PR = [
+ {id:'main', w:'मैं', base:'मुझ', ne:'मैंने',   ko:'मुझे',   se:'मुझसे',  me:'मुझमें',  pos:['मेरा','मेरी','मेरे'],          en:['I','me','my']},
+ {id:'tum',  w:'तुम', base:'तुम', ne:'तुमने',   ko:'तुम्हें', se:'तुमसे',  me:'तुममें',  pos:['तुम्हारा','तुम्हारी','तुम्हारे'], en:['you','you','your']},
+ {id:'aap',  w:'आप', base:'आप', ne:'आपने',    ko:'आपको',   se:'आपसे',   me:'आपमें',   pos:['आपका','आपकी','आपके'],         en:['you (polite)','you','your']},
+ {id:'vah',  w:'वह', base:'उस', ne:'उसने',    ko:'उसे',    se:'उससे',   me:'उसमें',   pos:['उसका','उसकी','उसके'],         en:['he/she','him/her','his/her']},
+ {id:'yah',  w:'यह', base:'इस', ne:'इसने',    ko:'इसे',    se:'इससे',   me:'इसमें',   pos:['इसका','इसकी','इसके'],         en:['this one','this one','its']},
+ {id:'hum',  w:'हम', base:'हम', ne:'हमने',    ko:'हमें',   se:'हमसे',   me:'हममें',   pos:['हमारा','हमारी','हमारे'],       en:['we','us','our']},
+ {id:'ve',   w:'वे', base:'उन', ne:'उन्होंने', ko:'उन्हें',  se:'उनसे',   me:'उनमें',   pos:['उनका','उनकी','उनके'],         en:['they','them','their']},
+ {id:'ye',   w:'ये', base:'इन', ne:'इन्होंने', ko:'इन्हें',  se:'इनसे',   me:'इनमें',   pos:['इनका','इनकी','इनके'],         en:['these ones','these ones','their']}
+];
+const MK = [
+ {id:'none', l:'no marker'},
+ {id:'ne',   l:'ने'},
+ {id:'ko',   l:'को'},
+ {id:'se',   l:'से'},
+ {id:'me',   l:'में'},
+ {id:'ka',   l:'का · की · के'},
+ {id:'lie',  l:'के लिए'},
+ {id:'sath', l:'के साथ'}
+];
+const OW = [
+ {w:'भाई',  i:0, en:'brother', d:'boy, one'},
+ {w:'बहन',  i:1, en:'sister',  d:'girl, one'},
+ {w:'दोस्त', i:2, en:'friends', d:'boys, many'}
+];
+const PZ_A = [
+ {id:'a1',  ask:'to me',                                   t:'मुझे'},
+ {id:'a2',  ask:'with us',                                 t:'हमारे साथ'},
+ {id:'a3',  ask:'he / she &mdash; as the doer in a past-tense sentence with an object', t:'उसने'},
+ {id:'a4',  ask:'they &mdash; as the doer in a past-tense sentence with an object',     t:'उन्होंने'},
+ {id:'a5',  ask:'for you (तुम)',                           t:'तुम्हारे लिए'},
+ {id:'a6',  ask:'from him / her',                          t:'उससे'},
+ {id:'a7',  ask:'my sister',                               t:'मेरी बहन'},
+ {id:'a8',  ask:'your (तुम) brother',                      t:'तुम्हारा भाई'},
+ {id:'a9',  ask:'in them',                                 t:'उनमें'},
+ {id:'a10', ask:'to you (आप, polite)',                     t:'आपको'},
+ {id:'a11', ask:'our friends (many boys)',                 t:'हमारे दोस्त'},
+ {id:'a12', ask:'with this one',                           t:'इसके साथ'},
+ {id:'a13', ask:'to us',                                   t:'हमें'},
+ {id:'a14', ask:'for him / her',                           t:'उसके लिए'},
+ {id:'a15', ask:'I &mdash; as the doer in a past-tense sentence with an object',         t:'मैंने'},
+ {id:'a16', ask:'the gap in &ldquo;माँ ने ___ बुलाया।&rdquo; (Mother called <b>us</b>; बुलाना takes को)', t:'हमें'},
+ {id:'a17', ask:'the gap in &ldquo;शिक्षक ___ बात करते हैं।&rdquo; (The teacher talks <b>with you</b>, आप; बात करना takes से)', t:'आपसे'},
+ {id:'a18', ask:'the gap in &ldquo;वह ___ खेलती है।&rdquo; (She plays <b>with them</b>)', t:'उनके साथ'}
+];
+
+/* board 2: अपना or उसका */
+const SB = [
+ {w:'राम',      g:'m', n:'s', en:'Ram',       own:'his own'},
+ {w:'राधा',     g:'f', n:'s', en:'Radha',     own:'her own'},
+ {w:'लड़के',    g:'m', n:'p', en:'The boys',  own:'their own'},
+ {w:'लड़कियाँ', g:'f', n:'p', en:'The girls', own:'their own'}
+];
+const TB = [
+ {id:'kaam',   noun:'काम',   g:'m', obl:false, post:'',    root:'कर',  vb:['does','do'],   enn:'work'},
+ {id:'kitaab', noun:'किताब', g:'f', obl:false, post:'',    root:'पढ़', vb:['reads','read'], enn:'book'},
+ {id:'bhai',   noun:'भाई',   g:'m', obl:true,  post:' से', root:'मिल', vb:['meets','meet'], enn:'brother'},
+ {id:'bahan',  noun:'बहन',   g:'f', obl:true,  post:' से', root:'मिल', vb:['meets','meet'], enn:'sister'}
+];
+const WB = [
+ {id:'own',  l:'the subject&rsquo;s own',         f:['अपना','अपनी','अपने']},
+ {id:'one',  l:'another person&rsquo;s (one)',    f:['उसका','उसकी','उसके']},
+ {id:'many', l:'other people&rsquo;s (several)',  f:['उनका','उनकी','उनके']}
+];
+const PZ_B = [
+ {id:'b1', ask:'Ram does <b>his own</b> work.',                                s:0, th:0, wh:0, h:'राम अपना काम करता है।'},
+ {id:'b2', ask:'Radha reads <b>someone else&rsquo;s</b> book (one person&rsquo;s).', s:1, th:1, wh:1, h:'राधा उसकी किताब पढ़ती है।'},
+ {id:'b3', ask:'The boys meet <b>their own</b> brother.',                      s:2, th:2, wh:0, h:'लड़के अपने भाई से मिलते हैं।'},
+ {id:'b4', ask:'The girls meet <b>several other people&rsquo;s</b> sister.',   s:3, th:3, wh:2, h:'लड़कियाँ उनकी बहन से मिलती हैं।'},
+ {id:'b5', ask:'Ram meets <b>his own</b> sister.',                             s:0, th:3, wh:0, h:'राम अपनी बहन से मिलता है।'},
+ {id:'b6', ask:'Radha does <b>someone else&rsquo;s</b> work (one person&rsquo;s).', s:1, th:0, wh:1, h:'राधा उसका काम करती है।'},
+ {id:'b7', ask:'The boys read <b>their own</b> book.',                         s:2, th:1, wh:0, h:'लड़के अपनी किताब पढ़ते हैं।'},
+ {id:'b8', ask:'Radha meets <b>someone else&rsquo;s</b> brother (one person&rsquo;s).', s:1, th:2, wh:1, h:'राधा उसके भाई से मिलती है।'},
+ {id:'b9', ask:'The girls do <b>their own</b> work.',                          s:3, th:0, wh:0, h:'लड़कियाँ अपना काम करती हैं।'}
+];
+
+/* ---------------- form drill (not counted in the 30) ---------------- */
+const DRILL = [
+ {en:'I (a girl) am reading.', s:'मैं पढ़ ___ हूँ।', o:['रहा','रही','रहे','चुका'], a:1,
+  why:'You are a girl, so the ending is <strong>रही</strong>. The helper <em>हूँ</em> stays because the person is मैं.'},
+ {en:'The boys are going.', s:'लड़के जा ___ हैं।', o:['रहा','रही','रहे','चुकी'], a:2,
+  why:'लड़के is masculine and many, so <strong>रहे</strong>. <em>रहा</em> is one boy; <em>रही</em> is a girl.'},
+ {en:'You (तुम, to a girl) go every day.', s:'तुम रोज़ ___ हो।', o:['जाता','जाती','जाते','जाएगी'], a:1,
+  why:'A girl, every day: <strong>जाती</strong>. The helper <em>हो</em> goes with तुम. <em>जाएगी</em> is the future, not every day.'},
+ {en:'We (boys) were sleeping.', s:'हम सो रहे ___।', o:['था','थी','थे','थीं'], a:2,
+  why:'हम as boys is masculine plural, so the past helper is <strong>थे</strong>.'},
+ {en:'She was writing a letter.', s:'वह पत्र लिख रही ___।', o:['है','थी','था','थीं'], a:1,
+  why:'&lsquo;Was&rsquo; means a past helper, and a single girl gives <strong>थी</strong>. <em>है</em> would make it &lsquo;is writing&rsquo;.'},
+ {en:'The girls ate a roti.', s:'लड़कियों ने रोटी ___।', o:['खाई','खाया','खाए','खाती हैं'], a:0,
+  why:'After ने the verb copies the <strong>object</strong>. रोटी is feminine and one, so <strong>खाई</strong>; the girls being many does not matter.'},
+ {en:'Sita ate a mango.', s:'सीता ने आम ___।', o:['खाई','खाया','खाईं','खाएगी'], a:1,
+  why:'आम is masculine, so <strong>खाया</strong>, even though Sita is a girl. The verb ignores the doer after ने.'},
+ {en:'I (a girl) went to Delhi.', s:'मैं दिल्ली ___।', o:['गया','गई','गईं','गए'], a:1,
+  why:'जाना never takes ने, so the verb copies you: a girl, one &rarr; <strong>गई</strong>.'},
+ {en:'You (तुम, to boys) went to school.', s:'तुम स्कूल ___।', o:['गया','गए','गई','गईं'], a:1,
+  why:'तुम takes plural verb forms, so for boys it is <strong>गए</strong>, never गया.'},
+ {en:'She has already eaten.', s:'वह खा ___ है।', o:['चुका','चुकी','चुके','चुकते'], a:1,
+  why:'<em>चुका</em> copies the doer, and no ने is needed: a girl gives <strong>चुकी</strong>.'},
+ {en:'I (a boy) will come tomorrow.', s:'मैं कल ___।', o:['आऊँगा','आओगे','आएगा','आएँगे'], a:0,
+  why:'The ending carries the person. For <em>मैं</em> it is <strong>-ऊँगा</strong>; <em>आओगे</em> belongs to तुम, <em>आएगा</em> to वह.'},
+ {en:'You (तुम, to a girl) will come tomorrow.', s:'तुम कल ___।', o:['आऊँगी','आओगी','आएगी','आएँगी'], a:1,
+  why:'<em>तुम</em> takes <strong>-ओगी</strong> for a girl. आएगी is for वह.'},
+ {en:'They (boys) will do the work.', s:'वे काम ___।', o:['करेगा','करेंगे','करोगे','करूँगा'], a:1,
+  why:'वे and boys: <strong>-एँगे</strong>, which after the consonant root कर shrinks to <strong>करेंगे</strong>.'},
+ {en:'Please (आप) give it to me.', s:'आप यह मुझे ___।', o:['दे','दो','दीजिए','देंगे'], a:2,
+  why:'आप is the polite level, and देना is one of the three irregulars: <strong>दीजिए</strong>. <em>दे</em> is for तू and <em>दो</em> for तुम.'},
+ {en:'Don&rsquo;t go (तुम).', s:'तुम ___ जाओ।', o:['नहीं','मत','ना','बस'], a:1,
+  why:'In an order, &lsquo;don&rsquo;t&rsquo; is <strong>मत</strong>. नहीं belongs to statements.'},
+ {en:'He gave me a book.', s:'उसने ___ किताब दी।', o:['मैं','मुझे','मेरा','मैंने'], a:1,
+  why:'The receiver is marked with को, and मैं + को is <strong>मुझे</strong>.'},
+ {en:'I am going with you (तुम).', s:'मैं ___ साथ जा रही हूँ।', o:['तुम्हारे','तुम्हें','तुम्हारा','तुमसे'], a:0,
+  why:'<em>के साथ</em> asks for the possessive -े shape: <strong>तुम्हारे साथ</strong>.'},
+ {en:'This is for him.', s:'यह ___ लिए है।', o:['उसका','उसे','उसके','उससे'], a:2,
+  why:'<em>के लिए</em> wants the possessive -े shape too: <strong>उसके लिए</strong>.'},
+ {en:'Radha went to meet her own mother.', s:'राधा ___ माँ से मिलने गई।', o:['अपनी','उसका','अपना','अपने'], a:0,
+  why:'The owner is the subject, so a form of <strong>अपना</strong>; it copies the thing owned. माँ is feminine, so <strong>अपनी</strong>.'},
+ {en:'Ravi is doing her (Sita&rsquo;s) work.', s:'रवि ___ काम कर रहा है।', o:['अपना','उसका','अपनी','उसकी'], a:1,
+  why:'The owner is somebody else, so <strong>उसका</strong> &mdash; and it copies काम, which is masculine, not the owner.'}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"You are a girl. Which sentence says <em>I go to school every day</em>?",
+  o:["मैं रोज़ स्कूल जाता हूँ।","मैं रोज़ स्कूल जाती हूँ।","मैं रोज़ स्कूल जाती है।","मैं रोज़ स्कूल जा रही हूँ।"],
+  a:1,
+  why:"The ending copies the <strong>doer</strong>, and the doer is you, a girl: <em>जाती</em>. The helper copies the person: <em>मैं &rarr; हूँ</em>. A is a boy's sentence. C has the helper for वह, so the two tags disagree. D is a fine sentence, but it says &lsquo;I am going right now&rsquo;, not &lsquo;every day&rsquo;."},
+
+ {n:2, lvl:"warm-up", q:"<em>Please give this to me.</em> &nbsp; कृपया यह ___ दीजिए।",
+  o:["मैं","मुझे","मेरा","मैंने"],
+  a:1,
+  why:"<strong>मुझे</strong> is <em>मैं + को</em>: the person who receives. मैं is the plain doer and cannot sit in front of a marker. मेरा means &lsquo;my&rsquo;, and मैंने is the doer in a past-tense sentence with an object &mdash; the wrong job entirely."},
+
+ {n:3, lvl:"standard", q:"<em>Where were you yesterday?</em> (asked to a boy, using <em>तुम</em>) &nbsp; तुम कल कहाँ ___?",
+  o:["था","थे","थी","हो"],
+  a:1,
+  why:"<em>तुम</em> is always treated as plural by the verb, so a boy gets <strong>थे</strong>. <em>था</em> is what you would say about one boy called by name, and <em>थी</em> is a girl. <em>हो</em> is the present helper &mdash; that would ask &lsquo;where are you&rsquo;."},
+
+ {n:4, lvl:"standard", q:"<em>I watched a lovely film last night.</em> &nbsp; मैंने कल रात एक अच्छी फ़िल्म ___।",
+  o:["देखा","देखी","देखे","देखती हूँ"],
+  a:1,
+  why:"After <em>ने</em> the verb copies the object. <em>फ़िल्म</em> is feminine and one, so <strong>देखी</strong>; the adjective <em>अच्छी</em> already told you so. <em>देखा</em> is what a boy would say if he wrongly copied himself. D is the every-day tense, which never goes with ने."},
+
+ {n:5, lvl:"trap", q:"<em>Sita is reading her own book.</em> Which sentence says exactly that?",
+  o:["सीता उसकी किताब पढ़ रही है।","सीता अपनी किताब पढ़ रही है।","सीता अपना किताब पढ़ रही है।","सीता ने अपनी किताब पढ़ रही है।"],
+  a:1,
+  why:"The owner is the subject, so the word is a form of <strong>अपना</strong>, and it copies the thing owned: <em>किताब</em> is feminine, so <em>अपनी</em>. A is grammatical but means a book belonging to <em>someone else</em>. C uses the wrong gender. D adds a ने that a continuous tense never takes."}
+];
+
+const SHORTS = [
+ {n:6, lvl:"warm-up", m:2, q:"Complete each sentence with the right form of <em>होना</em> (हूँ, हो, है, हैं, था, थी, थे, थीं).<br><strong>(a)</strong> <em>I was at home yesterday</em> (you are a girl): मैं कल घर पर ___। <span class='num'>[1]</span><br><strong>(b)</strong> <em>How are you, sir?</em> आप कैसे ___? <span class='num'>[1]</span>",
+  scheme:["(a) <strong>थी</strong> &mdash; a past helper, and it copies the doer's gender: a girl gives थी, not था. <span class='num'>[1]</span>",
+          "(b) <strong>हैं</strong> &mdash; आप always takes हैं, even for one person. (<em>हो</em> is तुम, <em>है</em> is वह.) <span class='num'>[1]</span>"],
+  tip:"Ask two questions in this order: is it now or then? Now &rarr; the helper follows the person. Then &rarr; the helper follows gender and number."},
+
+ {n:7, lvl:"standard", m:2, q:"Write in Hindi.<br><strong>(a)</strong> She is reading a book. <span class='num'>[1]</span><br><strong>(b)</strong> We (boys) play in the garden every day. <span class='num'>[1]</span><br><em>Words: किताब book, बगीचा garden.</em>",
+  scheme:["(a) <strong>वह किताब पढ़ रही है।</strong> One mark for the whole sentence: root <em>पढ़</em> + <em>रही</em> (a girl) + <em>है</em> (वह), verb block last. <span class='num'>[1]</span>",
+          "(b) <strong>हम रोज़ बगीचे में खेलते हैं।</strong> One mark: <em>खेलते</em> for boys, <em>हैं</em> for हम, and बगीचे (not बगीचा) in front of में. <span class='num'>[1]</span>"],
+  tip:"Underline the English clue words before you write: &lsquo;is reading&rsquo; = right now = रहा / रही / रहे. &lsquo;every day&rsquo; = ता / ती / ते."},
+
+ {n:8, lvl:"standard", m:2, q:"Write in Hindi.<br><strong>(a)</strong> I (you are a girl) will go to Delhi tomorrow. <span class='num'>[1]</span><br><strong>(b)</strong> You (तुम, to a boy) will eat a mango. <span class='num'>[1]</span><br><em>Words: आम mango, दिल्ली Delhi.</em>",
+  scheme:["(a) <strong>मैं कल दिल्ली जाऊँगी।</strong> One mark: <em>जा + ऊँगी</em> (मैं, girl) with no helper, verb last. <span class='num'>[1]</span>",
+          "(b) <strong>तुम आम खाओगे।</strong> One mark: <em>खा + ओगे</em> &mdash; तुम with a boy. The future has no helper, so <em>हो</em> would be an error. <span class='num'>[1]</span>"],
+  tip:"In the future the person lives inside the ending: -ऊँ- is मैं, -ओ- is तुम, -ए- is वह, -एँ- is हम / वे / आप."},
+
+ {n:9, lvl:"standard", m:2, q:"Give the order at the right level of respect.<br><strong>(a)</strong> To your teacher: <em>Please give me the book.</em> <span class='num'>[1]</span><br><strong>(b)</strong> To a friend your age: <em>Don't go.</em> <span class='num'>[1]</span>",
+  scheme:["(a) <strong>कृपया मुझे किताब दीजिए।</strong> (or <em>मुझे किताब दीजिए।</em>) One mark: आप-level <em>दीजिए</em> and <em>मुझे</em> (not मैं). <span class='num'>[1]</span>",
+          "(b) <strong>मत जाओ।</strong> One mark: तुम-level <em>जाओ</em> and <em>मत</em>. नहीं जाओ is not accepted. <span class='num'>[1]</span>"],
+  tip:"Decide the level before you touch the verb: teacher = आप = -इए, friend = तुम = -ओ. Then remember that देना is irregular for आप."},
+
+ {n:10, lvl:"trap", m:2, q:"Each sentence has <strong>one</strong> mistake. Rewrite it correctly.<br><strong>(a)</strong> राधा उसकी किताब पढ़ती है। (Radha is reading <em>her own</em> book.) <span class='num'>[1]</span><br><strong>(b)</strong> मैं को एक पेन दीजिए। (<em>Give me a pen.</em>) <span class='num'>[1]</span>",
+  scheme:["(a) <strong>राधा अपनी किताब पढ़ती है।</strong> The owner and the subject are the same person, so a form of अपना; उसकी would mean someone else's. <span class='num'>[1]</span>",
+          "(b) <strong>मुझे एक पेन दीजिए।</strong> (or <em>मुझको</em>) मैं cannot stand in front of को; it becomes मुझे. <span class='num'>[1]</span>"],
+  tip:"When the mistake is in a pronoun, ask two questions: which marker is stuck to it, and is the owner also the subject?"}
+];
+
+const WORDS = [
+ {n:11, lvl:"standard", m:3, q:"Translate into Hindi. You are a girl wherever the sentence says <em>I</em>.<br><strong>(a)</strong> The girls were playing in the garden. <span class='num'>[1]</span><br><strong>(b)</strong> I have already eaten. <span class='num'>[1]</span><br><strong>(c)</strong> He will not come tomorrow. <span class='num'>[1]</span><br><em>Words: बगीचा garden, कल tomorrow.</em>",
+  hints:["Name the tense of each before writing: (a) was + -ing, (b) &lsquo;already&rsquo;, (c) will + not. Each tense has its own pattern in Lesson 3's table.",
+         "(a) is the continuous root + रही, but with a <em>past</em> helper, and many girls. (b) <em>चुकी</em>, because you are a girl. (c) the future for वह, with <em>नहीं</em> just before the verb.",
+         "(a) खेल रही थीं &mdash; note the nasal on थीं for many girls. (b) खा चुकी हूँ. (c) आएगा, because आ is a vowel root."],
+  sol:["<strong>(a)</strong> लड़कियाँ बगीचे में खेल रही थीं। <em>(root खेल + रही + past helper थीं for many girls; बगीचे before में)</em>",
+       "<strong>(b)</strong> मैं खा चुकी हूँ। <em>(चुकी copies you; हूँ copies मैं; no ने with चुका)</em>",
+       "<strong>(c)</strong> वह कल नहीं आएगा। <em>(आ + एगा for वह; नहीं straight before the verb)</em>",
+       "One mark per sentence. The most common loss is (b) written with चुका, from copying a boy's textbook."]},
+
+ {n:12, lvl:"standard", m:3, q:"Translate into Hindi. Decide first where <em>ने</em> belongs.<br><strong>(a)</strong> I read a book yesterday. (I am a girl.) <span class='num'>[1]</span><br><strong>(b)</strong> She ate a roti. <span class='num'>[1]</span><br><strong>(c)</strong> We (girls) went to the market. <span class='num'>[1]</span><br><em>Words: किताब book, रोटी roti, बाज़ार market, कल yesterday.</em>",
+  hints:["Two of these three take an object (a book, a roti) and one does not. Sort them first: <em>पढ़ना, खाना</em> are object verbs; <em>जाना</em> is not.",
+         "For (a) and (b): ने on the doer, then the verb copies the <strong>object</strong>. For (c): no ने, and the verb copies the doer.",
+         "Ask what gender किताब and रोटी are, and what गई becomes when many girls went."],
+  sol:["<strong>(a)</strong> मैंने कल एक किताब पढ़ी। <em>(मैंने; किताब is feminine &rarr; पढ़ी. Your gender does not appear.)</em>",
+       "<strong>(b)</strong> उसने रोटी खाई। <em>(उसने; रोटी feminine &rarr; खाई)</em>",
+       "<strong>(c)</strong> हम बाज़ार गईं। <em>(जाना takes no ने; girls, many &rarr; गईं)</em>",
+       "The tell for (a): a girl saying पढ़ी might think she copied herself. She did not &mdash; she copied किताब. Change the object to आम and the same girl says पढ़ा."]},
+
+ {n:13, lvl:"standard", m:3, q:"Translate into Hindi.<br><strong>(a)</strong> I gave the book to her. <span class='num'>[1]</span><br><strong>(b)</strong> They are coming with us. <span class='num'>[1]</span><br><strong>(c)</strong> This gift is for you (तुम). <span class='num'>[1]</span><br><em>Words: किताब book, उपहार gift.</em>",
+  hints:["Each sentence has a pronoun stuck to a marker. Write the marker next to the pronoun before you write anything else: (a) to her, (b) with us, (c) for you.",
+         "(a) needs ने on I <em>and</em> को on her. (b) and (c) use के साथ and के लिए, which do not want the oblique base.",
+         "(a) मैंने + उसे &hellip; then the verb copies किताब. (b) हमारे. (c) तुम्हारे."],
+  sol:["<strong>(a)</strong> मैंने उसे किताब दी। <em>(मैंने for I; उसे for to her; दी copies किताब, feminine)</em>",
+       "<strong>(b)</strong> वे हमारे साथ आ रहे हैं। <em>(के साथ takes हमारे; आ रहे हैं for many boys, or वे आ रही हैं for girls)</em>",
+       "<strong>(c)</strong> यह उपहार तुम्हारे लिए है। <em>(के लिए takes तुम्हारे; है copies उपहार, singular)</em>",
+       "Notice that (b) and (c) contain no oblique base at all. ‘मेरे लिए’ is the possessive."]},
+
+ {n:14, lvl:"hard", m:3, q:"Meera is a girl writing about her day. <strong>Three</strong> of her four lines contain one mistake each; one line is correct. Rewrite the three faulty lines correctly. One mark for each correct rewrite. Changing the correct line into something wrong loses a mark. <span class='num'>[3]</span><br><span class='hline'>1. मैं रोज़ सात बजे स्कूल जाता हूँ।</span><br><span class='hline'>2. कल मैं बाज़ार गई थी।</span><br><span class='hline'>3. वहाँ मैंने एक सुंदर किताब देखा।</span><br><span class='hline'>4. मेरी सहेली मैं के साथ थी।</span>",
+  hints:["Meera is a girl, writing about herself. Go line by line and, for each, ask: what does each tag copy, and is it copying the right thing?",
+         "The three mistakes are from three different lessons: an ending copying the wrong doer, a verb copying the wrong thing after ने, and a pronoun that should have changed shape in front of a marker.",
+         "Line 2 is the tricky one: a past form <em>plus</em> a past helper (गई थी) is correct. Then: line 1 needs the girl's ending; in line 3 ask what the object is and what gender it has; in line 4 ask what मैं must become before के साथ."],
+  sol:["<strong>Line 1</strong> &rarr; मैं रोज़ सात बजे स्कूल जाती हूँ। <em>(a girl: जाती, not जाता)</em>",
+       "<strong>Line 2</strong> is correct. <em>(गई copies Meera; थी copies her; nothing to fix.)</em>",
+       "<strong>Line 3</strong> &rarr; वहाँ मैंने एक सुंदर किताब देखी। <em>(after ने the verb copies किताब, feminine)</em>",
+       "<strong>Line 4</strong> &rarr; मेरी सहेली मेरे साथ थी। <em>(के साथ takes the possessive shape मेरे, never मैं)</em>",
+       "What makes this hard is line 2. A student who has just learnt three rules goes looking for a mistake in every line and “fixes” a correct one. Reading a sentence and agreeing that it is right is a skill, and it is examined."]},
+
+ {n:15, lvl:"hard", m:3, q:"Translate into Hindi. You are the girl in each sentence.<br><strong>(a)</strong> Mother said to me, “Do your own work.” <span class='num'>[1]</span><br><strong>(b)</strong> I did my work and then went to play with my friends (girls). <span class='num'>[1]</span><br><strong>(c)</strong> I will give it to you (आप) tomorrow. <span class='num'>[1]</span><br><em>Words: माँ mother, सहेली girl friend, खेलने गई went to play, कहा said.</em>",
+  hints:["Chunk each into who | to whom or with whom | what | verb. (a) has a quotation; (b) has two verbs joined by <em>और फिर</em>; (c) has an irregular future.",
+         "(a) <em>कहना</em> takes ने and the person spoken to takes से. The quoted order is at the तुम level, and &lsquo;your own&rsquo; points back at the person being ordered. (b) the first verb takes an object, the second does not. सहेली is many and in front of के साथ.",
+         "(a) माँ ने मुझसे कहा &hellip; then अपना काम + the तुम-order of करना. (b) मैंने अपना काम किया, then अपनी सहेलियों के साथ, then the girl's past of जाना. (c) आपको, and the future of देना for मैं as a girl."],
+  sol:["<strong>(a)</strong> माँ ने मुझसे कहा, “अपना काम करो।” <em>(ने on माँ; मुझसे for &lsquo;to me&rsquo; after कहना; अपना because the doer of करो is the person ordered; करो is the तुम level)</em>",
+       "<strong>(b)</strong> मैंने अपना काम किया और फिर अपनी सहेलियों के साथ खेलने गई। <em>(मैंने + काम + किया; अपनी copies सहेलियों; सहेलियों takes -ों before के साथ; गई copies you, with no ने)</em>",
+       "<strong>(c)</strong> मैं आपको यह कल दूँगी। <em>(आपको; irregular future of देना: दूँ- + -गी for a girl)</em>",
+       "This is the 26 question. It needs a ने, a moved pronoun, अपना, a plural before a marker and an irregular verb, and every one of them is a rule you have already met. Mark it in parts and see which rule did not hold."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const pre = e.target.closest('[data-preset]');
+  if(pre && typeof window.setPreset==='function'){ window.setPreset(pre.dataset.preset); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, pzSeen:{}, store:{} };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the puzzle engine (shared by both tools) ---------------- */
+function mkPuzzles(btnId, boxId, list){
+  let cur = null;
+  const btn = document.getElementById(btnId), box = document.getElementById(boxId);
+  if(!btn || !box) return;
+  btn.addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*list.length);
+    if(cur===i) i = (i+1)%list.length;
+    cur = i;
+    const P = list[i];
+    box.classList.add('on');
+    box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+      <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-pz="${j}">${o}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-pz]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ok = +b.dataset.pz === P.a;
+        if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+        box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+          <div class="qrow"><button class="btn ghost small" type="button" class="again">Another one</button></div>`;
+        box.querySelector('button').addEventListener('click', ()=>btn.click());
+      });
+    });
+  });
+}
+
+
+
+
+/* ---------------- small helpers ---------------- */
+const gid = id => document.getElementById(id);
+function el(tag, cls, html){ const e = document.createElement(tag); if(cls) e.className = cls; if(html!==undefined) e.innerHTML = html; return e; }
+function shuf(a){ a = a.slice(); for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
+function ST(){ if(!S.store || typeof S.store!=='object') S.store = {}; return S.store; }
+
+/* ---------------- tool 1: the tense forge ---------------- */
+function auxPast(P, f){ return f ? (P.pl ? 'थीं' : 'थी') : (P.pl ? 'थे' : 'था'); }
+function clsOf(P, f){ return f ? 'feminine' : (P.pl ? 'masculine plural' : 'masculine singular'); }
+
+function forge(pi, g, ti, vi){
+  const P = FP[pi], V = FV[vi], T = FT[ti].id, f = g==='f';
+  const numI = f ? (P.pl ? 3 : 2) : (P.pl ? 1 : 0);
+  const r = {ok:true, subj:P.w, comp:V.comp, verb:'', aux:'', tid:T};
+  switch(T){
+    case 'hab':   r.verb = V.root + (f ? 'ती' : (P.pl ? 'ते' : 'ता')); r.aux = P.aux; break;
+    case 'cont':  r.verb = V.root + ' ' + (f ? 'रही' : (P.pl ? 'रहे' : 'रहा')); r.aux = P.aux; break;
+    case 'past':
+      if(V.type==='T'){ r.subj = P.ne; r.verb = V.past[V.cg==='f' ? 2 : 0]; }
+      else { r.verb = V.past[numI]; }
+      break;
+    case 'pcont': r.verb = V.root + ' ' + (f ? 'रही' : (P.pl ? 'रहे' : 'रहा')); r.aux = auxPast(P, f); break;
+    case 'perf':  r.verb = V.root + ' ' + (f ? 'चुकी' : (P.pl ? 'चुके' : 'चुका')); r.aux = P.aux; break;
+    case 'fut':   r.verb = V.root + FUT[P.id][(V.vow ? 0 : 2) + (f ? 1 : 0)]; break;
+    case 'cmd':
+      if(P.id==='tum') r.verb = V.imp[0];
+      else if(P.id==='aap') r.verb = V.imp[1];
+      else r.ok = false;
+      break;
+  }
+  r.block = [r.verb, r.aux].filter(Boolean).join(' ');
+  r.text = r.ok ? ([r.subj, r.comp, r.verb, r.aux].filter(Boolean).join(' ') + '।') : '';
+  r.en = r.ok ? forgeEnglish(P, V, T, f) : '';
+  r.why = forgeWhy(P, V, T, f, r);
+  return r;
+}
+function forgeEnglish(P, V, T, f){
+  const subj = (P.id==='vah' && f) ? P.enf : P.en;
+  const third = P.id==='vah';
+  const c = V.ecomp, e = V.en;
+  switch(T){
+    case 'hab':   return subj + ' ' + (third ? e.s : e.b) + ' ' + c + '.';
+    case 'cont':  return subj + ' ' + P.be[0] + ' ' + e.g + ' ' + c + '.';
+    case 'past':  return subj + ' ' + e.p + ' ' + c + '.';
+    case 'pcont': return subj + ' ' + P.be[1] + ' ' + e.g + ' ' + c + '.';
+    case 'perf':  return subj + ' ' + P.hv + ' already ' + e.pp + ' ' + c + '.';
+    case 'fut':   return subj + ' will ' + e.b + ' ' + c + '.';
+    case 'cmd':   return (P.id==='aap') ? 'Please ' + e.b + ' ' + c + '.' : e.b.charAt(0).toUpperCase() + e.b.slice(1) + ' ' + c + '!';
+  }
+  return '';
+}
+function forgeWhy(P, V, T, f, r){
+  const cls = clsOf(P, f), plnote = (P.id==='tum' || P.id==='aap') && !f ? ' (' + P.w + ' counts as plural for the verb, even for one person, so a boy gets the plural shape.)' : '';
+  const kv = t => '<b class="kv">' + t + '</b>', kc = t => '<b class="kc">' + t + '</b>';
+  switch(T){
+    case 'hab': {
+      const end = f ? 'ती' : (P.pl ? 'ते' : 'ता');
+      return 'Root ' + kv(V.root) + ' + ending ' + kv(end) + ' + helper ' + kc(P.aux) + '. The ending copies the doer (' + cls + '); the helper copies the person alone (' + P.w + ' &rarr; ' + P.aux + '), boy or girl.' + plnote;
+    }
+    case 'cont': {
+      const end = f ? 'रही' : (P.pl ? 'रहे' : 'रहा');
+      return 'Root ' + kv(V.root) + ' + ' + kv(end) + ' + helper ' + kc(P.aux) + '. रहा / रही / रहे copies the doer (' + cls + '); the helper copies the person.' + plnote;
+    }
+    case 'past':
+      if(V.type==='T'){
+        return V.inf + ' takes an object, so the doer wears ने (' + kc(P.ne) + ') and the verb stops copying the doer. It copies the <b>object</b>, ' + V.comp + ' (' + (V.cg==='f' ? 'feminine' : 'masculine') + ', one): ' + kv(V.past[V.cg==='f' ? 2 : 0]) + '. Flip the boy / girl chip: nothing moves.' + (P.id==='ve' ? ' Note वे becomes उन्होंने, not वेने.' : '');
+      }
+      return V.inf + ' takes no object, so there is no ने: the verb copies the doer (' + cls + ') and there is no helper: ' + kv(r.verb) + '.' + (V.irr ? ' This verb is irregular; its four past forms (' + V.past.join(', ') + ') have to be learnt.' : '') + plnote;
+    case 'pcont':
+      return 'Root ' + kv(V.root) + ' + ' + kv(f ? 'रही' : (P.pl ? 'रहे' : 'रहा')) + ' + a past helper ' + kc(r.aux) + '. In the past the helper follows gender and number, not the person: ' + cls + ' gives ' + r.aux + '.' + plnote;
+    case 'perf':
+      return 'Root ' + kv(V.root) + ' + ' + kv(f ? 'चुकी' : (P.pl ? 'चुके' : 'चुका')) + ' + helper ' + kc(P.aux) + '. चुका copies the doer (' + cls + ')' + (V.type==='T' ? ', and it never takes ने, even with an object verb like ' + V.inf : '') + '; the helper copies the person.' + plnote;
+    case 'fut': {
+      const e0 = FUT[P.id][f ? 1 : 0];
+      return 'No helper: the ending carries person <em>and</em> gender together (' + P.w + ', ' + (f ? 'girl' : 'boy') + ' &rarr; -' + e0 + '). ' + (V.vow ? 'The root ' + V.root + ' ends in a vowel, so the full ending stays.' : 'The root ' + V.root + ' ends in a consonant, so the ending&rsquo;s vowel shrinks into a mark on it.') + ' Result: ' + kv(r.verb) + '.';
+    }
+    case 'cmd':
+      if(!r.ok) return 'Orders go to <b>तुम</b> (friends, younger people) or <b>आप</b> (elders, teachers). Pick one of those two. वह, हम and वे do not get orders in Hindi.';
+      return (P.id==='tum' ? 'तुम level: root + ओ' : 'आप level: root + इए') + (V.id==='karna' && P.id==='aap' ? ' &mdash; and करना is one of the three irregulars: <b>कीजिए</b>' : '') + '. Commands have no tense and no gender. Flip the boy / girl chip: nothing moves.';
+  }
+  return '';
+}
+
+/* forge UI state */
+const fSt = {p:0, g:'f', t:0, v:0};
+let fPz = null, fRev = false, fOpts = [], fPickI = -1;
+
+function fCandidates(r){
+  const V = FV[fSt.v], P = FP[fSt.p];
+  const cur = r.block, seen = new Set([cur]);
+  let pool = [];
+  if(r.tid==='past' && V.type==='T'){ V.past.forEach(x=>{ if(!seen.has(x)){ seen.add(x); pool.push(x); } }); }
+  else if(r.tid==='cmd'){ [V.imp[0], V.imp[1], V.root, V.inf].forEach(x=>{ if(!seen.has(x)){ seen.add(x); pool.push(x); } }); }
+  else {
+    for(let p=0;p<FP.length;p++) for(const gg of ['m','f']){
+      const b = forge(p, gg, fSt.t, fSt.v);
+      if(b.ok && !seen.has(b.block)){ seen.add(b.block); pool.push(b.block); }
+    }
+  }
+  if(pool.length < 3){
+    for(let t2=0;t2<FT.length-1;t2++){
+      if(t2===fSt.t) continue;
+      for(let p=0;p<FP.length;p++) for(const gg of ['m','f']){
+        const b = forge(p, gg, t2, fSt.v);
+        if(b.ok && !seen.has(b.block)){ seen.add(b.block); pool.push(b.block); }
+      }
+    }
+  }
+  const pick = shuf(pool).slice(0,3);
+  const pos = Math.floor(Math.random()*4);
+  pick.splice(pos, 0, cur);
+  return pick;
+}
+function fPredOn(){ return gid('f-pred').checked; }
+function fReset(){
+  if(fPz && fPz.done) fPz = null;
+  fRev = false; fPickI = -1; fOpts = [];
+  const r = forge(fSt.p, fSt.g, fSt.t, fSt.v);
+  if(r.ok && fPredOn() && !fPz) fOpts = fCandidates(r);
+  fRender();
+}
+function fScoreText(){
+  const s = ST().pr || {n:0, ok:0};
+  gid('f-score').textContent = 'predictions: ' + s.ok + ' of ' + s.n + ' right first time';
+}
+function fRender(){
+  const LAB = {main:'I', tum:'you', aap:'you (polite)', vah:'he / she', hum:'we', ve:'they'};
+  const small = t => ' <small style="font-family:var(--body);font-weight:400;opacity:.75">' + t + '</small>';
+  const put = (host, htmls, sel, key, cls) => {
+    const h = gid(host); h.innerHTML = '';
+    htmls.forEach((x, i)=>{ const b = el('button', 'bchip' + (cls ? ' ' + cls : '') + (sel(i) ? ' sel' : ''), x); b.type = 'button'; b.dataset[key] = i; h.appendChild(b); });
+  };
+  put('f-who', FP.map(p=>p.w + small(LAB[p.id])), i=>i===fSt.p, 'i', 'hin');
+  put('f-gen', ['boy &middot; man','girl &middot; woman'], i=>(i===1)===(fSt.g==='f'), 'i');
+  gid('f-gen').querySelectorAll('.bchip').forEach((b, i)=>{ b.dataset.g = i===1 ? 'f' : 'm'; });
+  put('f-ten', FT.map(t=>t.l), i=>i===fSt.t, 'i');
+  put('f-verb', FV.map(v=>v.inf + small(v.en.b)), i=>i===fSt.v, 'i', 'hin');
+
+  const r = forge(fSt.p, fSt.g, fSt.t, fSt.v);
+  const out = gid('f-out'), why = gid('f-why'), oh = gid('f-opts'), ol = gid('f-optlab');
+  oh.innerHTML = ''; ol.textContent = '';
+  const puzzle = !!fPz && !fPz.done;
+  const P = FP[fSt.p], V = FV[fSt.v];
+  if(puzzle){
+    out.innerHTML = '<span class="fq">? ? ?</span><span class="fsum">your setting: ' + P.w + ' &middot; ' + (fSt.g==='f' ? 'girl' : 'boy') + ' &middot; ' + FT[fSt.t].l + ' &middot; ' + V.inf + '</span>';
+    why.innerHTML = 'Puzzle mode: the forge keeps its Hindi to itself until you press <em>Check the forge</em>. Only the first Check counts.';
+    return;
+  }
+  if(!r.ok){
+    out.innerHTML = '<span class="fq">&mdash;</span><span class="fsum">' + P.w + ' &middot; ' + FT[fSt.t].l + ' &middot; ' + V.inf + '</span>';
+    why.innerHTML = r.why;
+    return;
+  }
+  const predicting = fPredOn() && !fRev;
+  const parts = [];
+  parts.push('<span class="fs">' + r.subj + '</span>');
+  if(r.comp) parts.push('<span class="fo">' + r.comp + '</span>');
+  if(predicting){
+    parts.push('<span class="gapv">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+    out.innerHTML = parts.join(' ') + '<span class="fen">' + r.en + '</span>';
+    ol.textContent = 'Which verb form is right? Tap your prediction before you see it.';
+    fOpts.forEach((o, i)=>{ const b = el('button','bchip pick', o); b.type = 'button'; b.dataset.k = i; oh.appendChild(b); });
+    why.innerHTML = 'The colours, once you commit: the <span class="kv">ending</span> copies the doer&rsquo;s gender and number, the <span class="kc">helper</span> copies the person. Predict first, then read.';
+  } else {
+    parts.push('<span class="fv">' + r.verb + '</span>');
+    if(r.aux) parts.push('<span class="fa">' + r.aux + '</span>');
+    out.innerHTML = parts.join(' ') + '।<span class="fen">' + r.en + '</span>';
+    if(fPredOn() && fOpts.length){
+      ol.textContent = 'You tapped:';
+      fOpts.forEach((o, i)=>{ const b = el('button','bchip pick' + (o===r.block ? ' right' : (i===fPickI ? ' wrong' : '')), o); b.type = 'button'; b.disabled = true; oh.appendChild(b); });
+    }
+    why.innerHTML = r.why;
+  }
+}
+function fPick(k){
+  const r = forge(fSt.p, fSt.g, fSt.t, fSt.v);
+  if(fRev || fPz) return;
+  fPickI = k; fRev = true;
+  const s = ST(); s.pr = s.pr || {n:0, ok:0};
+  s.pr.n += 1; if(fOpts[k]===r.block) s.pr.ok += 1;
+  save(); fScoreText(); fRender();
+  gid('f-why').innerHTML = '<strong>' + (fOpts[k]===r.block ? 'Right.' : 'Not this one.') + '</strong> ' + r.why;
+}
+function fPzOpen(){
+  const box = gid('quizbox'); box.classList.add('on');
+  const open = PZ_F.filter(p=>!S.pzSeen[p.id]);
+  if(!open.length){
+    box.innerHTML = '<strong>All ' + PZ_F.length + ' forge puzzles solved.</strong> Go back to <em>Predict first</em> and see how long you can keep a run of right predictions going.';
+    fPz = null; fReset(); return;
+  }
+  const P = open[Math.floor(Math.random()*open.length)];
+  fPz = {P, tries:0, done:false};
+  box.innerHTML = '<strong>Puzzle.</strong> Set the forge so that it says: <em>' + P.ask + '</em> Choose who, boy or girl, when and the verb above, then press Check. The forge hides its Hindi until you check, and only your <strong>first</strong> Check counts.' +
+    '<div class="qrow"><button class="btn ghost small" type="button" id="f-check">Check the forge</button><button class="btn ghost small" type="button" id="f-cancel">Cancel the puzzle</button></div><div id="f-pzfb" style="margin-top:9px"></div>';
+  gid('f-check').addEventListener('click', fPzCheck);
+  gid('f-cancel').addEventListener('click', ()=>{ fPz = null; box.classList.remove('on'); fReset(); });
+  fReset();
+}
+function fPzCheck(){
+  if(!fPz || fPz.done) return;
+  const P = fPz.P, r = forge(fSt.p, fSt.g, fSt.t, fSt.v), fb = gid('f-pzfb');
+  fPz.tries += 1;
+  if(r.ok && r.text===P.h){
+    fPz.done = true;
+    let msg;
+    if(fPz.tries===1){
+      S.pzSeen[P.id] = true; S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+      msg = '<strong>Right &mdash; ' + r.text + '</strong> First Check, so it counts. ';
+    } else {
+      msg = '<strong>Right &mdash; ' + r.text + '</strong> But not on the first Check, so it does not count. It will come round again. ';
+    }
+    fb.innerHTML = msg + '<button class="btn ghost small" type="button" id="f-again">Another one</button>';
+    gid('f-again').addEventListener('click', ()=>gid('newquiz').click());
+    fRev = true; fPickI = -1; fOpts = []; fRender();
+    gid('f-why').innerHTML = r.why;
+  } else {
+    fb.innerHTML = '<strong>Not this one.</strong> ' + (r.ok ? 'The forge says <span class="hline">' + r.text + '</span>, which means &ldquo;' + r.en + '&rdquo; That is not the sentence asked for.' : 'Orders only go to तुम or आप.') + ' You can keep trying, but this puzzle no longer counts.';
+  }
+}
+function fInit(){
+  gid('f-who').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; fSt.p = +b.dataset.i; fReset(); });
+  gid('f-gen').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; fSt.g = b.dataset.g; fReset(); });
+  gid('f-ten').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; fSt.t = +b.dataset.i; fReset(); });
+  gid('f-verb').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; fSt.v = +b.dataset.i; fReset(); });
+  gid('f-opts').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b || b.disabled) return; fPick(+b.dataset.k); });
+  gid('f-pred').addEventListener('change', fReset);
+  gid('newquiz').addEventListener('click', fPzOpen);
+  fScoreText();
+  fReset();
+}
+
+/* ---------------- tool 2: the pronoun switchboard ---------------- */
+const aSt = {p:0, m:1, o:0};
+const bSt = {s:0, th:0, wh:0};
+let t2Tab = 'a', t2Pz = null;
+
+function aResult(){
+  const P = PR[aSt.p], M = MK[aSt.m], O = OW[aSt.o];
+  let text, en, why;
+  switch(M.id){
+    case 'none':
+      text = P.w; en = P.en[0];
+      why = 'The plain form, <strong>' + P.w + '</strong>. This is what the pronoun looks like when it is the doer the verb copies and nothing is stuck to it. Add a marker and watch it change.'; break;
+    case 'ne':
+      text = P.ne; en = P.en[0] + ' &mdash; the doer, in a &lsquo;done&rsquo; sentence with an object';
+      if(P.id==='ve' || P.id==='ye') why = P.w + ' grows an extra <strong>-ों-</strong> before ने: <strong>' + P.ne + '</strong>. Only used in the past of verbs that take an object.';
+      else if(P.id==='vah' || P.id==='yah') why = P.w + ' switches to its base <strong>' + P.base + '</strong> first, then ने joins: <strong>' + P.ne + '</strong>. Only used in the past of verbs that take an object.';
+      else why = 'ने joins straight on: ' + P.w + ' + ने = <strong>' + P.ne + '</strong>. Only used in the past of verbs that take an object.';
+      break;
+    case 'ko':
+      text = P.ko; en = 'to ' + P.en[1] + ' &nbsp;/&nbsp; ' + P.en[1];
+      why = 'को marks the receiver, or the person the action lands on. The short form <strong>' + P.ko + '</strong> is what everybody writes' + (P.id==='aap' ? ' (आप is the one pronoun that keeps the long form).' : '.') + (P.id==='tum' ? ' Note तुम becomes तुम्ह- here.' : '');
+      break;
+    case 'se':
+      text = P.se; en = 'from / with / by ' + P.en[1];
+      why = 'से sticks onto the base: <strong>' + P.base + '</strong> + से = <strong>' + P.se + '</strong>. It is one word: no gap.'; break;
+    case 'me':
+      text = P.me; en = 'in ' + P.en[1];
+      why = 'में sticks onto the base: <strong>' + P.base + '</strong> + में = <strong>' + P.me + '</strong>.'; break;
+    case 'ka':
+      text = P.pos[O.i] + ' ' + O.w; en = P.en[2] + ' ' + O.en;
+      why = 'का / की / के copies the <strong>thing owned</strong> (' + O.w + ': ' + O.d + '), never the owner. So <strong>' + P.pos[O.i] + '</strong>. Change the thing owned and the possessive changes with it.'; break;
+    case 'lie':
+      text = P.pos[2] + ' लिए'; en = 'for ' + P.en[1];
+      why = '<em>के लिए</em> does not want the base at all. It wants the possessive -े shape: <strong>' + P.pos[2] + ' लिए</strong>, not &ldquo;' + P.base + ' के लिए&rdquo;.'; break;
+    case 'sath':
+      text = P.pos[2] + ' साथ'; en = 'with ' + P.en[1];
+      why = '<em>के साथ</em> also wants the possessive -े shape: <strong>' + P.pos[2] + ' साथ</strong>, not &ldquo;' + P.base + ' के साथ&rdquo;.'; break;
+  }
+  return {text, en, why};
+}
+function bResult(){
+  const S_ = SB[bSt.s], T = TB[bSt.th], W = WB[bSt.wh];
+  const pi = T.g==='f' ? 1 : (T.obl ? 2 : 0);
+  const poss = W.f[pi];
+  const verb = T.root + (S_.g==='f' ? 'ती' : (S_.n==='p' ? 'ते' : 'ता')) + ' ' + (S_.n==='p' ? 'हैं' : 'है');
+  const text = S_.w + ' ' + poss + ' ' + T.noun + T.post + ' ' + verb + '।';
+  const pe = W.id==='own' ? S_.own : (W.id==='one' ? 'someone else&rsquo;s' : 'other people&rsquo;s');
+  const en = S_.en + ' ' + T.vb[S_.n==='p' ? 1 : 0] + ' ' + pe + ' ' + T.enn + '.';
+  let why;
+  if(W.id==='own') why = 'The owner is the subject (' + S_.w + '), so the word is a form of <strong>अपना</strong>. It copies the thing owned: ' + T.noun + ' is ' + (T.g==='f' ? 'feminine' : 'masculine') + (T.obl ? ' and stands in front of से, so it takes the -े shape' : '') + ' &rarr; <strong>' + poss + '</strong>.';
+  else why = 'The owner is somebody else, so it cannot be अपना. <strong>' + (W.id==='one' ? 'उसका' : 'उनका') + '</strong> points at ' + (W.id==='one' ? 'one other person' : 'several other people') + ', and copies the thing owned: ' + T.noun + ' is ' + (T.g==='f' ? 'feminine' : 'masculine') + (T.obl ? ' and stands in front of से' : '') + ' &rarr; <strong>' + poss + '</strong>. Say अपना here and the meaning changes to &lsquo;their own&rsquo;.';
+  return {text, en, why};
+}
+function t2Render(){
+  const mk = (host, htmls, sel, key, cls) => {
+    const h = gid(host); h.innerHTML = '';
+    htmls.forEach((x, i)=>{ const b = el('button','bchip' + (cls ? ' ' + cls : '') + (sel(i) ? ' sel' : ''), x); b.type = 'button'; b.dataset[key] = i; h.appendChild(b); });
+  };
+  const small = t => ' <small style="font-family:var(--body);font-weight:400;opacity:.75">' + t + '</small>';
+  gid('t2-tabA').classList.toggle('sel', t2Tab==='a'); gid('t2-tabB').classList.toggle('sel', t2Tab==='b');
+  gid('t2-boardA').style.display = t2Tab==='a' ? '' : 'none';
+  gid('t2-boardB').style.display = t2Tab==='b' ? '' : 'none';
+  const hidden = !!t2Pz && !t2Pz.done;
+  mk('a-pron', PR.map(p=>p.w + small(p.en[0])), i=>i===aSt.p, 'i', 'hin');
+  mk('a-mark', MK.map(m=>m.id==='none' ? '<span style="font-family:var(--body);font-weight:400;font-size:15px">no marker</span>' : m.l), i=>i===aSt.m, 'i', 'hin');
+  mk('a-own', OW.map(o=>o.w + small(o.en + ' &middot; ' + o.d)), i=>i===aSt.o, 'i', 'hin');
+  gid('a-own').querySelectorAll('.bchip').forEach(b=>b.classList.toggle('dim', MK[aSt.m].id!=='ka'));
+  mk('b-subj', SB.map(s=>s.w + small(s.en)), i=>i===bSt.s, 'i', 'hin');
+  mk('b-thing', TB.map(t=>t.noun + t.post + small(t.enn + (t.obl ? ' &middot; before से' : ''))), i=>i===bSt.th, 'i', 'hin');
+  mk('b-whose', WB.map(w=>w.l), i=>i===bSt.wh, 'i');
+  const RA = aResult(), RB = bResult();
+  if(hidden && t2Pz.k==='a'){
+    gid('a-out').innerHTML = '<span class="mn">? ? ?</span><span class="men">your setting: ' + PR[aSt.p].w + ' + ' + (MK[aSt.m].id==='none' ? 'no marker' : MK[aSt.m].l) + '</span>';
+    gid('a-why').innerHTML = 'Puzzle mode: the board keeps its answer until you press Check. Only the first Check counts.';
+  } else {
+    gid('a-out').innerHTML = '<span class="mn">' + RA.text + '</span><span class="men">' + RA.en + '</span>';
+    gid('a-why').innerHTML = RA.why;
+  }
+  if(hidden && t2Pz.k==='b'){
+    gid('b-out').innerHTML = '<span class="mn">? ? ?</span><span class="men">your setting: ' + SB[bSt.s].w + ' &middot; ' + TB[bSt.th].noun + ' &middot; ' + WB[bSt.wh].l + '</span>';
+    gid('b-why').innerHTML = 'Puzzle mode: the board keeps its answer until you press Check. Only the first Check counts.';
+  } else {
+    gid('b-out').innerHTML = '<span class="mn">' + RB.text + '</span><span class="men">' + RB.en + '</span>';
+    gid('b-why').innerHTML = RB.why;
+  }
+}
+function t2Reveal(){ if(t2Pz && t2Pz.done) t2Pz = null; t2Render(); }
+function t2Pick(){
+  const box = gid('quizbox2'); box.classList.add('on');
+  const open = PZ_A.filter(p=>!S.pzSeen[p.id]).map(p=>({k:'a', P:p})).concat(PZ_B.filter(p=>!S.pzSeen[p.id]).map(p=>({k:'b', P:p})));
+  if(!open.length){
+    box.innerHTML = '<strong>All ' + (PZ_A.length + PZ_B.length) + ' switchboard puzzles solved.</strong> That is every pronoun form on this page. Try the form drill next.';
+    t2Pz = null; t2Render(); return;
+  }
+  const pick = open[Math.floor(Math.random()*open.length)];
+  t2Pz = {k:pick.k, P:pick.P, tries:0, done:false};
+  t2Tab = pick.k;
+  const isA = pick.k==='a';
+  box.innerHTML = '<strong>Puzzle &mdash; board ' + (isA ? '1' : '2') + '.</strong> ' +
+    (isA ? 'Set the board so that it gives the Hindi for: <em>' + pick.P.ask + '</em>.' : 'Set the board so that it says: <em>' + pick.P.ask + '</em>') +
+    ' The board hides its answer until you press Check, and only your <strong>first</strong> Check counts.' +
+    '<div class="qrow"><button class="btn ghost small" type="button" id="t2-check">Check the board</button><button class="btn ghost small" type="button" id="t2-cancel">Cancel the puzzle</button></div><div id="t2-pzfb" style="margin-top:9px"></div>';
+  gid('t2-check').addEventListener('click', t2Check);
+  gid('t2-cancel').addEventListener('click', ()=>{ t2Pz = null; box.classList.remove('on'); t2Render(); });
+  t2Render();
+}
+function t2Check(){
+  if(!t2Pz || t2Pz.done) return;
+  const fb = gid('t2-pzfb'), Z = t2Pz, R = Z.k==='a' ? aResult() : bResult();
+  const want = Z.k==='a' ? Z.P.t : Z.P.h;
+  Z.tries += 1;
+  if(R.text===want){
+    Z.done = true;
+    let msg;
+    if(Z.tries===1){ S.pzSeen[Z.P.id] = true; S.puzzles = (S.puzzles||0) + 1; save(); refresh(); msg = '<strong>Right &mdash; ' + R.text + '</strong> First Check, so it counts. '; }
+    else msg = '<strong>Right &mdash; ' + R.text + '</strong> But not on the first Check, so it does not count. It will come round again. ';
+    fb.innerHTML = msg + '<button class="btn ghost small" type="button" id="t2-again">Another one</button>';
+    gid('t2-again').addEventListener('click', ()=>gid('newquiz2').click());
+    t2Render();
+    (Z.k==='a' ? gid('a-why') : gid('b-why')).innerHTML = R.why;
+  } else {
+    fb.innerHTML = '<strong>Not this one.</strong> The board says <span class="hline">' + R.text + '</span> (' + R.en + '), which is not what the puzzle asks. You can keep trying, but this puzzle no longer counts.';
+  }
+}
+function t2Init(){
+  gid('t2-tabA').addEventListener('click', ()=>{ t2Tab = 'a'; t2Render(); });
+  gid('t2-tabB').addEventListener('click', ()=>{ t2Tab = 'b'; t2Render(); });
+  gid('a-pron').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; aSt.p = +b.dataset.i; t2Reveal(); });
+  gid('a-mark').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; aSt.m = +b.dataset.i; t2Reveal(); });
+  gid('a-own').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; aSt.o = +b.dataset.i; t2Reveal(); });
+  gid('b-subj').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; bSt.s = +b.dataset.i; t2Reveal(); });
+  gid('b-thing').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; bSt.th = +b.dataset.i; t2Reveal(); });
+  gid('b-whose').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; bSt.wh = +b.dataset.i; t2Reveal(); });
+  gid('newquiz2').addEventListener('click', t2Pick);
+  t2Render();
+}
+
+/* ---------------- form drill ---------------- */
+function drillScore(){
+  const dr = ST().drill || {};
+  const right = DRILL.filter((D,i)=>dr[i]===D.a).length;
+  gid('d-score').textContent = right + ' of ' + DRILL.length + ' right';
+}
+function drillAnswer(i, j){
+  const D = DRILL[i], host = document.querySelector('[data-dr="' + i + '"]');
+  ST().drill = ST().drill || {}; ST().drill[i] = j;
+  host.querySelectorAll('.bchip').forEach((b,k)=>{
+    b.disabled = true;
+    if(k===D.a) b.classList.add('right');
+    else if(k===j) b.classList.add('wrong');
+  });
+  const ok = j===D.a, gap = gid('gap' + i);
+  gap.textContent = D.o[D.a];
+  gap.className = 'gap ' + (ok ? 'ok' : 'no');
+  const fb = gid('dfb' + i);
+  fb.className = 'fb on ' + (ok ? 'good' : 'bad');
+  fb.innerHTML = '<strong>' + (ok ? 'Right.' : 'Not this time.') + '</strong> ' + D.why;
+  drillScore();
+}
+function drillRender(){
+  const host = gid('d-list'); host.innerHTML = '';
+  DRILL.forEach((D,i)=>{
+    const c = el('div','qcard');
+    c.innerHTML = '<div class="qhead"><span class="qn">D' + (i+1) + '</span><span class="mk" style="font-family:var(--body)">' + D.en + '</span></div>' +
+      '<p class="dline">' + D.s.replace('___', '<span class="gap" id="gap' + i + '">&nbsp;&nbsp;&nbsp;</span>') + '</p>' +
+      '<div class="bchips" data-dr="' + i + '">' + D.o.map((o,j)=>'<button type="button" class="bchip hin" data-j="' + j + '">' + o + '</button>').join('') + '</div>' +
+      '<div class="fb" id="dfb' + i + '"></div>';
+    host.appendChild(c);
+  });
+  host.addEventListener('click', e=>{
+    const b = e.target.closest('.bchip'); if(!b || b.disabled) return;
+    const i = +b.parentElement.dataset.dr;
+    drillAnswer(i, +b.dataset.j); save();
+  });
+  const dr = ST().drill || {};
+  Object.keys(dr).forEach(i=>{ if(DRILL[i]) drillAnswer(+i, dr[i]); });
+  drillScore();
+}
+
+/* ---------------- cover-the-answers tables in the lessons ---------------- */
+function coverInit(){
+  [['ho-cover','ho-wrap'],['pt-cover','pt-wrap'],['pr-cover','pr-wrap']].forEach(pair=>{
+    const cb = gid(pair[0]), wrap = gid(pair[1]);
+    if(!cb || !wrap) return;
+    cb.addEventListener('change', ()=>{
+      wrap.classList.toggle('cov', cb.checked);
+      wrap.querySelectorAll('.ans').forEach(a=>a.classList.remove('shown'));
+    });
+    wrap.addEventListener('click', e=>{
+      const a = e.target.closest('.ans');
+      if(a && wrap.classList.contains('cov')) a.classList.toggle('shown');
+    });
+  });
+}
+
+function boot(){
+  fInit();
+  t2Init();
+  drillRender();
+  coverInit();
+  refresh();
+}
+
+
+(async ()=>{ await loadState(); restore(); boot(); })();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='tenses', SUBJECT='hindi', TITLE="Tenses and Pronouns / काल और सर्वनाम", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

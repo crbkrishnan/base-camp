@@ -23,6 +23,10 @@ Last updated: 18 September 2026.
 | Magnets and magnetic fields | Physics | `magnetism.html` | field plotter, two-magnet bench | A–D + scheme |
 | Reading comprehension | English | `reading.html` | evidence bench, mark machine | A–D + scheme |
 | Hindi sentence construction | Hindi | `hindi.html` | sentence builder, marker machine | **none yet** |
+| Letters and email (पत्र और ईमेल) | Hindi | `letters.html` | letter assembler, register switcher | **none yet** |
+| Tenses and pronouns (काल और सर्वनाम) | Hindi | `tenses.html` | tense forge, pronoun switchboard | **none yet** |
+| Essay writing (निबंध) | Hindi | `essay.html` | outline builder, sentence upgrader | **none yet** |
+| Words and spelling (शब्द और वर्तनी) | Hindi | `wordbank.html` | agreement machine, spelling doctor | **none yet** |
 | Pure substances and mixtures | Chemistry | `mixtures.html` | particle builder, melting-point test | A–D + scheme |
 | Separating mixtures | Chemistry | `separating.html` | separation bench, chromatogram | A–D + scheme |
 | Solutions and solubility | Chemistry | `solutions.html` | dissolving tank, solubility curves | A–D + scheme |
@@ -211,3 +215,14 @@ Grade 7 maths, the Grade 7 physics units above and chemistry Unit 5 are complete
 - **The heating curve uses true energy proportions**, which makes the boiling plateau 73% of the graph. That looks lopsided and is the point — do not "fix" it.
 - **Self-marking over auto-marking** for written answers. He types an answer, opens the scheme, awards himself 0–3. Immediate auto-marking would let him skip the writing.
 - **Staged hints, never a single reveal.** Three escalating hints before the full solution.
+
+### Hindi follow-on pages (30 September 2026)
+
+Four more Hindi pages, built from `hindi.html`'s engine and registered with `register_topic.py`: `letters`, `tenses`, `essay`, `wordbank`. Each has 2 tools with machine-checked puzzles, 6 lessons, 6 videos, 15 questions = 30 marks, 5 traps, and an uncounted drill. The student is a girl: first-person Hindi is feminine throughout (the older site pages and docs still say "him").
+
+- `wordbank.html` holds the 178-noun bank with gender and plural, 68 adjectives, 40 time words, and the matras/nukta/chandrabindu spelling doctor. The verb bank in `hindi.html` still shows he-forms only; a she-column is not built yet.
+- All the videos came from search-result titles and were never opened. Click through all 24 Hindi videos before the student uses them.
+- Each page lists Hindi items it wants a native reader to check (idioms, chandrabindu vs anusvara spellings, letter conventions, time-word framing). None has been proofread.
+- `tools/build_page.py` is not in the repo: pages were assembled by a scratch builder in `$HOME/hb/`. Fix any further page by editing the `.html` directly.
+- No papers: still blocked on a Devanagari font in `paper_lib.py`.
+- Still wanted from the tutor: the school's real Hindi reference paper or syllabus, to calibrate all five pages.

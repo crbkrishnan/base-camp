@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Words and Spelling &mdash; Grade 7 IGCSE Hindi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "wordbank",
+  "file": "wordbank.html",
+  "subject": "hindi",
+  "status": "ready",
+  "title": "Words and Spelling",
+  "sub": "Hindi · शब्द और वर्तनी",
+  "blurb": "Every Hindi noun is masculine or feminine, and the adjective has to match. Learn the ending clues and their exceptions on 178 nouns, set an adjective, noun, number and marker in the agreement machine and see who changes, then repair broken spellings tile by tile in the spelling doctor: matras, chandrabindu, nukta and conjuncts.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "agreement machine",
+    "spelling doctor"
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#1C1A26;
+  --ink-soft:#5A566B;
+  --paper:#EDEBF2;
+  --card:#FFFFFF;
+  --line:#D6D2E0;
+  --line-soft:#E8E5EF;
+  /* the semantic accents for this page: the four jobs a word can do in a Hindi sentence.
+     A job keeps its colour for the whole page. The shared CSS calls the first two --o2 / --co2. */
+  --karta:#6B3FA0;      /* कर्ता · who does it · always violet */
+  --karta-tint:#F0EAF7;
+  --karm:#0B6E75;       /* कर्म · what it acts on, where, when · always teal */
+  --karm-tint:#E3F1F2;
+  --kriya:#B4560B;      /* क्रिया · the verb, always last · always amber */
+  --kriya-tint:#FBEFE3;
+  --chihn:#A3285A;      /* marker · को से में पर का की के · always rose */
+  --chihn-tint:#FAE8F0;
+  --o2:var(--kriya);   --o2-tint:var(--kriya-tint);
+  --co2:var(--karta);  --co2-tint:var(--karta-tint);
+  /* names the shared reading-page classes expect */
+  --shows:var(--kriya);  --shows-tint:var(--kriya-tint);
+  --sowhat:var(--karta); --sowhat-tint:var(--karta-tint);
+  --says:#6B6370;
+  --muscle:#7A5A86;
+  --steel:#9A94A0;
+  --steel-dark:#6E6876;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Noto Sans Devanagari','Trebuchet MS',sans-serif;
+  --body:'Newsreader','Noto Serif Devanagari',Georgia,serif;
+  --mono:'JetBrains Mono','Noto Sans Devanagari',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--co2)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(230,235,231,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--o2);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--o2);font-weight:700}
+.co2txt{color:var(--co2);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- the passage ---------- */
+.pbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.pbox > summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:12px;align-items:center;
+  font-family:var(--display);font-weight:700;font-size:15.5px}
+.pbox > summary::-webkit-details-marker{display:none}
+.pbox > summary .tagx{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-left:auto}
+.pbody{padding:4px 16px 16px;border-top:1px solid var(--line-soft)}
+.pintro{font-style:italic;font-size:15.5px;margin:14px 0 10px;color:var(--ink)}
+.pline{display:grid;grid-template-columns:34px 1fr;gap:6px;font-size:16px;line-height:1.52}
+.pline .pno{font-family:var(--mono);font-size:11.5px;color:var(--steel);text-align:right;padding-top:5px;user-select:none}
+.pline .ptx{padding:1px 0}
+.pline.blank{height:9px}
+
+/* ---------- tool chips ---------- */
+.claimbar{padding:13px 16px;border-top:1px solid var(--line);background:var(--sowhat-tint);
+  font-size:16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.claimbar .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.claimbar strong{font-family:var(--display);font-size:17px}
+.chipwrap{display:grid;gap:7px;padding:13px 16px}
+.echip{text-align:left;width:100%;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:9px 13px;cursor:pointer;font-family:var(--body);font-size:16px;color:var(--ink);
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start}
+.echip:hover:not([disabled]){border-color:var(--ink)}
+.echip .box{width:17px;height:17px;border:1.5px solid var(--steel);border-radius:5px;margin-top:4px;flex:0 0 auto}
+.echip.sel{background:var(--sowhat-tint);border-color:var(--sowhat)}
+.echip.sel .box{background:var(--sowhat);border-color:var(--sowhat)}
+.echip.hit{background:var(--ok-tint);border-color:var(--ok)}
+.echip.hit .box{background:var(--ok);border-color:var(--ok)}
+.echip.miss{background:var(--no-tint);border-color:var(--no)}
+.echip.miss .box{background:var(--no);border-color:var(--no)}
+.echip .verd{grid-column:2;font-family:var(--display);font-size:13px;margin-top:5px;color:var(--ink-soft)}
+.echip[disabled]{cursor:default}
+
+.brow{padding:12px 16px;border-top:1px solid var(--line-soft)}
+.brow .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:8px}
+.bchips{display:flex;gap:7px;flex-wrap:wrap}
+.bchip{font-family:var(--body);font-size:15.5px;background:var(--paper);border:1px solid var(--line);
+  border-radius:99px;padding:6px 13px;cursor:pointer;color:var(--ink);text-align:left}
+.bchip:hover{border-color:var(--ink)}
+.bchip.sel{background:var(--ink);border-color:var(--ink);color:#fff}
+.bchip.mono{font-family:var(--mono);font-size:14px}
+.built{padding:13px 16px;border-top:1px solid var(--line);background:var(--paper);font-size:16px;min-height:52px}
+.built em{color:var(--ink-soft);font-style:italic}
+.scorebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:13px 16px;border-top:1px solid var(--line)}
+.scorebar .sc{font-family:var(--mono);font-weight:700;font-size:26px;line-height:1;padding:7px 14px;border-radius:10px;
+  background:var(--paper);color:var(--ink-soft)}
+.scorebar .sc.two{background:var(--ok-tint);color:var(--ok)}
+.scorebar .sc.one{background:var(--shows-tint);color:var(--shows)}
+.scorebar .sc.zero{background:var(--no-tint);color:var(--no)}
+.scorebar .why{flex:1 1 240px;font-size:15.5px}
+
+.ladder{display:grid;gap:8px;margin:12px 0}
+.rung{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-left:4px solid var(--says);border-radius:0 10px 10px 0;padding:10px 13px;font-size:15.5px}
+.rung .rn{font-family:var(--display);font-weight:700;font-size:15px}
+.rung.shows{border-left-color:var(--shows)}
+.rung.shows .rn{color:var(--shows)}
+.rung.sowhat{border-left-color:var(--sowhat)}
+.rung.sowhat .rn{color:var(--sowhat)}
+.tells{counter-reset:tell;display:grid;gap:7px;margin:10px 0}
+.tell{background:var(--paper);border-radius:9px;padding:9px 13px;font-size:15.5px}
+.tell b{font-family:var(--display)}
+.wrongright{display:grid;gap:8px;margin:11px 0}
+.wr{border-radius:9px;padding:10px 13px;font-size:15.5px}
+.wr.bad{background:var(--no-tint)}
+.wr.good{background:var(--ok-tint)}
+.wr .mk{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.quoteline{font-family:var(--body);font-style:italic}
+
+
+/* ---------- Hindi page additions ---------- */
+body{font-size:18px;line-height:1.7}
+nav.jump{background:rgba(237,235,242,.93)}
+.mast .hsub{font-family:var(--display);font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--ink-soft);margin:-2px 0 10px}
+.rung{grid-template-columns:118px 1fr}
+.rung.karta{border-left-color:var(--karta)} .rung.karta .rn{color:var(--karta)}
+.rung.karm{border-left-color:var(--karm)}   .rung.karm .rn{color:var(--karm)}
+.rung.kriya{border-left-color:var(--kriya)} .rung.kriya .rn{color:var(--kriya)}
+.rung.chihn{border-left-color:var(--chihn)} .rung.chihn .rn{color:var(--chihn)}
+.kt{color:var(--karta);font-weight:700} .ko{color:var(--karm);font-weight:700}
+.kv{color:var(--kriya);font-weight:700} .kc{color:var(--chihn);font-weight:700}
+.hline{font-family:var(--display);font-weight:600;font-size:1.12em;line-height:1.6}
+.hbig{font-family:var(--display);font-weight:700;font-size:1.3em;line-height:1.5;background:var(--paper);padding:10px 14px;border-radius:9px;margin:10px 0;overflow-x:auto}
+
+/* tiles */
+.tilepool{display:flex;flex-wrap:wrap;gap:9px;padding:14px 16px;min-height:66px}
+.tileline{display:flex;flex-wrap:wrap;gap:9px;align-items:center;min-height:72px;padding:13px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.tileline .ph{color:var(--ink-soft);font-style:italic;font-size:15.5px}
+.tile{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.5;padding:5px 15px;border-radius:10px;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tileline .tile{background:var(--card)}
+.tile:hover:not([disabled]){border-color:var(--ink)}
+.tile[disabled]{cursor:default}
+.tile.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.tile.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.tile.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.tile.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.tile.x,.tile.c{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 13px}
+.lg{font-family:var(--display);font-size:13px;font-weight:700;padding:3px 11px;border-radius:99px;border:1.5px solid}
+.lg.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.lg.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.lg.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.lg.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.lg.x{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+
+/* verb bank */
+.vctl{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin-bottom:14px;display:block;padding:13px 16px}
+.vctl .bchips{margin-bottom:11px}
+.vctl .vrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+input[type=search]{flex:1 1 220px;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-family:var(--body);font-size:16px;background:var(--paper);color:var(--ink)}
+.vctl label{font-family:var(--display);font-size:13.5px;color:var(--ink-soft);display:flex;gap:8px;align-items:center;cursor:pointer}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:10px}
+.vcard{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+  font-family:var(--body);color:var(--ink);cursor:default;display:block;width:100%}
+.vcard .vh{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.35}
+.vcard .ve{font-size:14.5px;color:var(--ink-soft);margin-bottom:7px}
+.vcard .vf{display:grid;gap:1px;font-size:17px;line-height:1.55}
+.vcard .vf b{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-right:9px}
+.vcard .vt{float:right;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px}
+.vt.T{background:var(--karm-tint);color:var(--karm)}
+.vt.I{background:var(--karta-tint);color:var(--karta)}
+.vt.B{background:var(--kriya-tint);color:var(--kriya)}
+.vcard.cover{cursor:pointer}
+.vcard.cover:not(.shown) .vf{filter:blur(7px);user-select:none}
+.vempty{padding:26px;text-align:center;color:var(--ink-soft);font-style:italic}
+
+/* marker machine + drill */
+.mout{font-family:var(--display);font-size:clamp(30px,6vw,44px);font-weight:700;text-align:center;padding:20px 16px;min-height:96px;line-height:1.4}
+.mout .mn{color:var(--karm)} .mout .mm{color:var(--chihn)}
+.mout .men{display:block;font-size:14.5px;font-weight:500;font-family:var(--body);color:var(--ink-soft);font-style:italic;margin-top:2px}
+.gap{display:inline-block;min-width:3em;border-bottom:2.5px solid var(--ink);text-align:center;font-weight:700;color:var(--ink-soft)}
+.gap.ok{color:var(--ok);border-color:var(--ok)} .gap.no{color:var(--no);border-color:var(--no)}
+.dline{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.6;margin:0 0 11px}
+.bchip[disabled]{cursor:default;opacity:.85}
+.bchip.right{background:var(--ok-tint);border-color:var(--ok);color:var(--ok);font-weight:700}
+.bchip.wrong{background:var(--no-tint);border-color:var(--no);color:var(--no)}
+.bchip.hin{font-family:var(--display);font-size:18px;font-weight:600}
+
+
+/* ---------- Words and Spelling additions ---------- */
+:root{--kt:#6B3FA0;--kt-tint:#F0EAF7;--ka:#B4560B;--ka-tint:#FBEFE3;--kn:#0B6E75;--kn-tint:#E3F1F2;--km:#A3285A;--km-tint:#FAE8F0}
+body{font-size:18px;line-height:1.7}
+nav.jump{background:rgba(237,235,242,.93)}
+.mast .hsub{font-family:var(--display);font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--ink-soft);margin:-2px 0 10px}
+.rung{grid-template-columns:118px 1fr}
+.hline{font-family:var(--display);font-weight:600;font-size:1.12em;line-height:1.6}
+.hbig{font-family:var(--display);font-weight:700;font-size:1.3em;line-height:1.5;background:var(--paper);padding:10px 14px;border-radius:9px;margin:10px 0;overflow-x:auto}
+.gm{color:var(--kn);font-weight:700} .gf{color:var(--km);font-weight:700}
+.wa{color:var(--ka)} .wn{color:var(--kt)} .wm{color:var(--km)}
+.dv{font-family:var(--display)}
+table.data td.dv,table.data th.dv{font-family:var(--display);font-weight:600}
+.gbadge{float:right;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px}
+.gbadge.m{background:var(--kn-tint);color:var(--kn)} .gbadge.f{background:var(--km-tint);color:var(--km)}
+.gbadge.a{background:var(--ka-tint);color:var(--ka)} .gbadge.v{background:var(--paper);color:var(--ink-soft)}
+.gbadge.t{background:var(--kt-tint);color:var(--kt)}
+
+/* bank cards (nouns, adjectives, time words, pairs) */
+.vctl{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin-bottom:14px;display:block;padding:13px 16px}
+.vctl .bchips{margin-bottom:11px}
+.vctl .vrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+input[type=search]{flex:1 1 220px;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-family:var(--body);font-size:16px;background:var(--paper);color:var(--ink)}
+.vctl label{font-family:var(--display);font-size:13.5px;color:var(--ink-soft);display:flex;gap:8px;align-items:center;cursor:pointer}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:10px}
+.vcard{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+  font-family:var(--body);color:var(--ink);cursor:default;display:block;width:100%}
+.vcard .vh{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.35}
+.vcard .ve{font-size:14.5px;color:var(--ink-soft);margin-bottom:7px}
+.vcard .vf{display:grid;gap:1px;font-size:17px;line-height:1.55}
+.vcard .vf b{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-right:9px}
+.vcard .vf .clue{font-size:13.5px;color:var(--ink-soft);font-style:italic;margin-top:3px}
+.vcard .vf .clue.exc{color:var(--no);font-style:normal;font-weight:600}
+.vcard.exc{border-color:var(--no)}
+.vcard.cover{cursor:pointer}
+.vcard.cover:not(.shown) .vf{filter:blur(7px);user-select:none}
+.vempty{padding:26px;text-align:center;color:var(--ink-soft);font-style:italic}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pcard .pw{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.3}
+.pcard .pm{font-size:14px;color:var(--ink-soft)}
+.pcard .pr{grid-column:1/-1;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.pcard.cover{cursor:pointer}
+.pcard.cover:not(.shown) .pm{filter:blur(6px);user-select:none}
+
+/* agreement machine */
+.aout{font-family:var(--display);font-size:clamp(30px,6vw,46px);font-weight:700;text-align:center;padding:20px 16px;min-height:96px;line-height:1.4}
+.aout .men{display:block;font-size:14.5px;font-weight:500;font-family:var(--body);color:var(--ink-soft);font-style:italic;margin-top:2px}
+.aout.wrong{background:var(--no-tint)}
+.aout.ok{background:var(--ok-tint)}
+.nline{padding:0 0 3px;font-size:15.5px}
+.nline p{margin:4px 0}
+.gbtn{font-family:var(--display);font-weight:700}
+
+/* spelling doctor */
+.tilebar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;min-height:86px;padding:16px;border-top:1px solid var(--line);background:var(--paper)}
+.stile{font-family:var(--display);font-size:32px;font-weight:700;line-height:1.4;padding:6px 18px;border-radius:12px;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.stile:hover:not([disabled]){border-color:var(--ink)}
+.stile.sus{border-color:var(--no);background:var(--no-tint);color:var(--no)}
+.stile.fixed{border-color:var(--ok);background:var(--ok-tint);color:var(--ok)}
+.stile[disabled]{cursor:default}
+.wordnow{font-family:var(--display);font-size:20px;font-weight:700;color:var(--ink-soft);text-align:center;padding:6px 0 0}
+.scell{font-family:var(--display);font-weight:700}
+
+/* time ladder */
+.ladder2{display:grid;gap:6px;margin:12px 0}
+.ladder2 .l2{display:grid;grid-template-columns:130px 1fr 64px;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 12px}
+.ladder2 .l2 b{font-family:var(--display);font-size:19px}
+.ladder2 .l2 i{display:block;height:9px;border-radius:9px;background:var(--kn)}
+.ladder2 .l2 span{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-align:right}
+.dline{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.6;margin:0 0 11px}
+.gap{display:inline-block;min-width:3em;border-bottom:2.5px solid var(--ink);text-align:center;font-weight:700;color:var(--ink-soft)}
+.gap.ok{color:var(--ok);border-color:var(--ok)} .gap.no{color:var(--no);border-color:var(--no)}
+.bchip[disabled]{cursor:default;opacity:.85}
+.bchip.right{background:var(--ok-tint);border-color:var(--ok);color:var(--ok);font-weight:700}
+.bchip.wrong{background:var(--no-tint);border-color:var(--no);color:var(--no)}
+.bchip.hin{font-family:var(--display);font-size:18px;font-weight:600}
+@media (max-width:560px){.ladder2 .l2{grid-template-columns:100px 1fr 46px}.pcard{grid-template-columns:1fr}}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Hindi &middot; Grade 7 &middot; Nouns, adjectives and spelling</div>
+  <h1>Words and <em>Spelling</em></h1>
+  <div class="hsub" lang="hi">शब्द और वर्तनी</div>
+  <p class="lede">English never asks whether a table is masculine. Hindi asks every time, and then makes the adjective, the verb and <em>का / की / के</em> follow the answer. Get the gender wrong and three words are wrong, not one. The other half of the page is spelling: one small mark can turn <em>दिन</em> (day) into <em>दीन</em> (poor) and no spell-checker will save you. Learn 178 nouns with their genders and plurals, 68 adjectives, the time words, and the small marks that decide whether a word is right.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of <span class="num">30</span>, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write the answer <em>before</em> opening the mark scheme &mdash; otherwise you are just reading, and reading feels like learning without being learning. Type your Hindi or write it in a notebook, but write it: nobody has ever got better at spelling by nodding at a word.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#tool1">Agreement machine</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#nouns">178 nouns</a>
+  <a href="#adjs">68 adjectives</a>
+  <a href="#time">Time words</a>
+  <a href="#tool2">Spelling doctor</a>
+  <a href="#spell">Spelling guide</a>
+  <a href="#drill">Drill</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Long answers</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+<!-- ============ HERO 1: THE AGREEMENT MACHINE ============ -->
+<section id="tool1">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The agreement machine</h2>
+      <p>Pick a noun. <strong>Decide its gender before anything else</strong> &mdash; that is the whole skill. Then choose an adjective, one or many, and a marker. The machine writes the phrase using <em>your</em> gender, and tells you at once whether the noun is really what you said. The adjective is the word that gives you away.</p>
+    </div>
+
+    <div class="brow"><div class="lab">1 &middot; choose a noun</div>
+      <div class="bchips" id="t1-th" role="group" aria-label="Choose a theme"></div>
+      <div class="bchips" id="t1-noun" role="group" aria-label="Choose a noun" style="margin-top:9px"></div></div>
+    <div class="brow"><div class="lab">2 &middot; I say this noun is</div>
+      <div class="bchips" id="t1-g" role="group" aria-label="Choose masculine or feminine"></div></div>
+    <div class="brow"><div class="lab">3 &middot; choose an adjective</div>
+      <div class="bchips" id="t1-adj" role="group" aria-label="Choose an adjective"></div></div>
+    <div class="brow"><div class="lab">4 &middot; one or many, and a marker</div>
+      <div class="bchips" id="t1-num" role="group" aria-label="Choose one or many"></div>
+      <div class="bchips" id="t1-mk" role="group" aria-label="Choose a marker" style="margin-top:9px"></div></div>
+
+    <div class="built aout" id="t1-out" aria-live="polite"></div>
+    <div class="scorebar"><span class="why nline" id="t1-why"></span></div>
+
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill hold" id="t1-pill">Pick a gender</span>
+        <span id="t1-note">The adjective copies the noun: <em>बड़ा</em> for masculine one, <em>बड़े</em> for masculine many or before a marker, <em>बड़ी</em> for every feminine.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">6 videos</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was a screensaver with Hindi on it. If a link is dead or a video is too slow, skip it &mdash; the lessons below stand on their own, and that is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~40 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ NOUN BANK ============ -->
+<section id="nouns">
+  <div class="shead"><h2>The noun bank</h2><span class="tag" id="n-count">178 of 178</span></div>
+  <p class="snote">Each card shows the noun, its <strong>gender</strong>, its <strong>plural</strong>, and what it turns into in front of a marker (<em>में, को, पर&hellip;</em>). The last line is the ending clue and whether it was right for this word &mdash; cards outlined in red are the <strong>exceptions</strong>, which is where the exam marks are lost. Learn ten a day with the forms covered: tap a card to check yourself. Plurals shown as &ldquo;&mdash;&rdquo; are words we do not normally count (milk, sugar, the sun).</p>
+  <div class="vctl">
+    <div class="bchips" id="n-cats" role="group" aria-label="Filter nouns by theme"></div>
+    <div class="bchips" id="n-g" role="group" aria-label="Filter nouns by gender" style="margin-bottom:11px"></div>
+    <div class="vrow">
+      <input type="search" id="n-q" placeholder="Search in English or Hindi&hellip;" aria-label="Search nouns">
+      <label><input type="checkbox" id="n-cover"> Cover the forms &mdash; test yourself, tap a card to check</label>
+    </div>
+  </div>
+  <div class="vgrid" id="n-grid"></div>
+</section>
+
+<!-- ============ ADJECTIVES ============ -->
+<section id="adjs">
+  <div class="shead"><h2>Sixty-eight adjectives</h2><span class="tag" id="j-count">68 of 68</span></div>
+  <p class="snote">Two kinds, and the badge tells you which. <span class="gbadge a" style="float:none">CHANGES</span> adjectives end in <em>-ा</em> and copy the noun: <em>बड़ा / बड़े / बड़ी</em>. <span class="gbadge v" style="float:none">NEVER CHANGES</span> adjectives (<em>लाल, सुंदर, भारी</em>) stay exactly as they are, for every noun. Yes, <em>भारी</em> and <em>गुलाबी</em> end in -ी and still do not change. The three shown forms are: <strong>masc. one</strong>, <strong>masc. many / before a marker</strong>, <strong>feminine</strong>.</p>
+  <div class="vctl">
+    <div class="bchips" id="j-cats" role="group" aria-label="Filter adjectives"></div>
+    <div class="vrow">
+      <input type="search" id="j-q" placeholder="Search in English or Hindi&hellip;" aria-label="Search adjectives">
+      <label><input type="checkbox" id="j-cover"> Cover the forms &mdash; test yourself, tap a card to check</label>
+    </div>
+  </div>
+  <div class="vgrid" id="j-grid"></div>
+</section>
+
+<!-- ============ TIME WORDS ============ -->
+<section id="time">
+  <div class="shead"><h2>Time and frequency words</h2><span class="tag" id="m-count">40 of 40</span></div>
+  <p class="snote">These words never agree with anything &mdash; no gender, no plural. They just sit near the front of the sentence, before the verb. The day and month names are all here too. Frequency has a ladder; learn it top to bottom:</p>
+  <div class="ladder2" aria-label="How often, from always to never">
+    <div class="l2"><b lang="hi">हमेशा</b><i style="width:100%"></i><span>always</span></div>
+    <div class="l2"><b lang="hi">अक्सर</b><i style="width:75%"></i><span>often</span></div>
+    <div class="l2"><b lang="hi">कभी-कभी</b><i style="width:45%"></i><span>sometimes</span></div>
+    <div class="l2"><b lang="hi">शायद ही कभी</b><i style="width:15%"></i><span>hardly ever</span></div>
+    <div class="l2"><b lang="hi">कभी नहीं</b><i style="width:2%"></i><span>never</span></div>
+  </div>
+  <div class="vctl">
+    <div class="bchips" id="m-cats" role="group" aria-label="Filter time words"></div>
+    <div class="vrow">
+      <input type="search" id="m-q" placeholder="Search in English or Hindi&hellip;" aria-label="Search time words">
+      <label><input type="checkbox" id="m-cover"> Cover the meaning &mdash; tap a card to check</label>
+    </div>
+  </div>
+  <div class="vgrid" id="m-grid"></div>
+</section>
+
+<!-- ============ HERO 2: THE SPELLING DOCTOR ============ -->
+<section id="tool2">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The spelling doctor</h2>
+      <p>Each patient is a word with <strong>one damaged tile</strong> &mdash; a wrong matra, a missing dot, a wrong conjunct. Read the meaning, <strong>tap the tile you think is wrong</strong>, then choose the repair. Press Check. Some damaged words are real words with a different meaning, which is exactly why they are dangerous.</p>
+    </div>
+    <div class="claimbar"><span class="lab">The word means</span><strong id="s-en">&nbsp;</strong><span class="lab" id="s-rule" style="margin-left:auto"></span></div>
+    <div class="tilebar" id="s-tiles" role="group" aria-label="The damaged word, one tile per letter group. Tap the wrong one."></div>
+    <div class="wordnow" id="s-now" aria-live="polite"></div>
+    <div class="brow"><div class="lab">2 &middot; choose the repair for the tile you tapped</div>
+      <div class="bchips" id="s-fix" role="group" aria-label="Repair choices"><span style="color:var(--ink-soft);font-style:italic;font-size:15px">Tap a tile first.</span></div></div>
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="s-check">Check the repair</button>
+      <button class="btn ghost small" type="button" id="s-reset">Undo</button>
+      <button class="btn ghost small" type="button" id="s-next">Different word</button>
+    </div>
+    <div class="rows">
+      <div class="cell"><div class="lab">Word</div><div class="val mono" id="s-num">1 of 28</div></div>
+      <div class="cell"><div class="lab">Repaired / first time right</div><div class="val mono" id="s-count">0 / 0 of 28</div></div>
+      <div class="phasebar">
+        <span class="pill hold" id="s-pill">Not checked yet</span>
+        <span id="s-note">Say the word aloud first. Then find the tile whose sound does not match.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPELLING GUIDE ============ -->
+<section id="spell">
+  <div class="shead"><h2>The spelling guide</h2><span class="tag">the marks &middot; 27 confusable pairs</span></div>
+  <p class="snote">Hindi is spelled the way it sounds, so nearly every spelling mistake is a <strong>sound you did not listen to</strong>: short or long, flat or wide, nasal or not. Say the word out loud slowly, one sound at a time, before you write the mark.</p>
+
+  <table class="data">
+    <tr><th>Mark</th><th>Name</th><th>Sounds like</th><th>Pair to learn</th></tr>
+    <tr><td class="dv">ि</td><td>short i (छोटी इ)</td><td>i in <em>sit</em></td><td class="dv">दिन &middot; पिता</td></tr>
+    <tr><td class="dv">ी</td><td>long ee (बड़ी ई)</td><td>ee in <em>seen</em></td><td class="dv">दीन &middot; पीता</td></tr>
+    <tr><td class="dv">ु</td><td>short u (उ)</td><td>u in <em>put</em></td><td class="dv">कुल &middot; पुल</td></tr>
+    <tr><td class="dv">ू</td><td>long oo (ऊ)</td><td>oo in <em>moon</em></td><td class="dv">कूल &middot; पूल</td></tr>
+    <tr><td class="dv">े</td><td>e (ए)</td><td>a in <em>cake</em>, but flat</td><td class="dv">बेर &middot; मेल</td></tr>
+    <tr><td class="dv">ै</td><td>ai (ऐ)</td><td>a in <em>cat</em>, wide open</td><td class="dv">बैर &middot; मैल</td></tr>
+    <tr><td class="dv">ो</td><td>o (ओ)</td><td>o in <em>go</em></td><td class="dv">ओर &middot; सो</td></tr>
+    <tr><td class="dv">ौ</td><td>au (औ)</td><td>ow in <em>now</em>, flatter</td><td class="dv">और &middot; सौ</td></tr>
+  </table>
+  <p style="font-size:15.5px"><strong>A trap the eye plays on you.</strong> The short <em class="dv">ि</em> is written to the <em>left</em> of its letter but pronounced <em>after</em> it: <span class="dv">कि</span> is &ldquo;ki&rdquo;, not &ldquo;ik&rdquo;. The long <span class="dv">ी</span> sits on the right, where you would expect it. If you can see which side the stroke is on, you can see which vowel it is.</p>
+
+  <div class="ladder">
+    <div class="rung karm"><span class="rn">ँ &middot; chandrabindu</span><span>The moon-and-dot. A <strong>nasal vowel</strong>, and it is used when nothing else sits above the line: <span class="dv">आँख, साँस, कहाँ, माँ, हूँ, चाँद</span>. Leave it out and you can change the word: <span class="dv">साँस</span> (breath) &rarr; <span class="dv">सास</span> (mother-in-law).</span></div>
+    <div class="rung karta"><span class="rn">ं &middot; anusvara</span><span>The plain dot. Used <strong>before a consonant</strong> (<span class="dv">पंखा, हंस, आनंद, गोंद</span>) and whenever another mark already stands on top of the letter (<span class="dv">में, नहीं, हैं, गेंद</span>) &mdash; there is simply no room for a moon.</span></div>
+    <div class="rung chihn"><span class="rn">़ &middot; nukta</span><span>A dot <em>under</em> a letter. It makes <span class="dv">ज़</span> (z as in zoo), <span class="dv">फ़</span> (f as in fan, with the teeth), and the flaps <span class="dv">ड़ ढ़</span>, which never start a word: <span class="dv">बड़ा, पेड़, पढ़ना, सड़क</span>. Urdu-origin words need it (<span class="dv">ज़रा, बाज़ार, सज़ा</span>); native words do not (<span class="dv">फूल, जल</span>). Over-dotting is a mistake too.</span></div>
+    <div class="rung kriya"><span class="rn">ः &middot; visarga</span><span>Two dots, stacked. An &lsquo;h&rsquo; echo at the end of Sanskrit-origin words: <span class="dv">अतः</span> (therefore), <span class="dv">पुनः</span> (again), <span class="dv">प्रातः</span> (morning), <span class="dv">संभवतः</span> (probably).</span></div>
+    <div class="rung karm"><span class="rn">्  &middot; halant</span><span>Every plain consonant carries a hidden &lsquo;a&rsquo;: <span class="dv">क</span> is &ldquo;ka&rdquo;. The halant kills it: <span class="dv">क्</span> is just &ldquo;k&rdquo;. That is how two consonants join into one shape, and how a word can end on a bare consonant: <span class="dv">अर्थात्</span>.</span></div>
+  </div>
+
+  <h3 style="margin:22px 0 4px">How the joined letters are built</h3>
+  <table class="data">
+    <tr><th>Conjunct</th><th>Built from</th><th>Examples</th></tr>
+    <tr><td class="dv">क्ष</td><td class="dv">क् + ष</td><td class="dv">शिक्षा (education) &middot; कक्षा (class)</td></tr>
+    <tr><td class="dv">त्र</td><td class="dv">त् + र</td><td class="dv">मित्र (friend) &middot; पत्र (letter)</td></tr>
+    <tr><td class="dv">ज्ञ</td><td class="dv">ज् + ञ</td><td class="dv">ज्ञान (knowledge) &middot; विज्ञान (science)</td></tr>
+    <tr><td class="dv">श्र</td><td class="dv">श् + र</td><td class="dv">श्रम (hard work) &middot; श्रेष्ठ (best)</td></tr>
+    <tr><td class="dv">द्य</td><td class="dv">द् + य</td><td class="dv">विद्या (learning) &middot; उद्यान (garden)</td></tr>
+    <tr><td class="dv">स्त</td><td class="dv">स् + त</td><td class="dv">दोस्त (friend) &middot; पुस्तक (book)</td></tr>
+    <tr><td class="dv">द्ध</td><td class="dv">द् + ध</td><td class="dv">शुद्ध (pure) &middot; युद्ध (war)</td></tr>
+    <tr><td class="dv">द्व</td><td class="dv">द् + व</td><td class="dv">द्वार (door) &middot; द्वीप (island)</td></tr>
+    <tr><td class="dv">त्य</td><td class="dv">त् + य</td><td class="dv">सत्य (truth) &middot; नृत्य (dance)</td></tr>
+    <tr><td class="dv">ष्ट</td><td class="dv">ष् + ट</td><td class="dv">कष्ट (trouble) &middot; स्पष्ट (clear)</td></tr>
+    <tr><td class="dv">त्त</td><td class="dv">त् + त</td><td class="dv">पत्ता (leaf) &middot; बत्ती (light)</td></tr>
+    <tr><td class="dv">प्र</td><td class="dv">प् + र</td><td class="dv">प्रश्न (question) &middot; प्रकाश (light)</td></tr>
+  </table>
+  <p style="font-size:15.5px"><em>र</em> is the odd one. After a letter it becomes a tail (<span class="dv">प्र, क्र, ट्र</span>: प्रश्न, क्रम, राष्ट्र). Before a letter it becomes a hook on top of the <em>next</em> letter (<span class="dv">धर्म, कर्म, सर्दी, पूर्ण</span>) &mdash; you say the र first, but you write it last.</p>
+
+  <h3 style="margin:22px 0 4px">Confusable pairs</h3>
+  <p class="snote" style="margin-top:0">Both words in every pair are real, so a spell-checker will accept either. Cover the meanings and check yourself.</p>
+  <div class="vctl">
+    <div class="bchips" id="p-cats" role="group" aria-label="Filter pairs"></div>
+    <div class="vrow">
+      <label><input type="checkbox" id="p-cover"> Cover the meanings &mdash; tap a pair to check</label>
+      <span id="p-count" style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto">27 of 27</span>
+    </div>
+  </div>
+  <div class="vgrid" id="p-grid"></div>
+</section>
+
+<!-- ============ DRILL ============ -->
+<section id="drill">
+  <div class="shead"><h2>Agreement drill</h2><span class="tag" id="d-score">0 of 24 right</span></div>
+  <p class="snote">Twenty-four gaps. These do not count towards your 30 &mdash; they are the repetitions. One try per gap, and the explanation appears either way. The last four ask for gender on words that break the ending rule.</p>
+  <div id="d-list"></div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. Q5 catches people who have just learned the rule and are now over-applying it.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. A mark is for a <strong>whole correct answer</strong> &mdash; one wrong matra and it is gone, exactly as it would be in an exam.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Long answers</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. Q14 and Q15 are the two that separate a 21 from a 26. Get someone who reads Hindi to look at those two.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>&ldquo;Ends in -ी, so it is feminine&rdquo;</h4><p>Usually true, and that is what makes it dangerous. <em>हाथी, पानी, दही, आदमी, पड़ोसी</em> are masculine, and <em>भाई</em> (brother) is masculine with an -ई ending. So <em>हाथी बड़ा है</em>, not <em>बड़ी</em>. The same goes the other way: <em>कक्षा, परीक्षा, हवा</em> end in -आ and are feminine. When the meaning is a male or female person, trust the person, not the ending.</p></div>
+    <div class="trap"><h4>Putting the plural on the adjective</h4><p><em>बड़ियाँ लड़कियाँ</em> looks thorough and is wrong. The <strong>noun</strong> takes the plural (<em>लड़कियाँ</em>); the adjective only picks a gender form. Feminine, one or many, the adjective is <em>बड़ी</em> both times: <em>बड़ी लड़कियाँ</em>. The plural is announced once.</p></div>
+    <div class="trap"><h4>Changing an adjective that never changes</h4><p><em>लाल फूल, लाल किताबें, लाल कुर्सी</em> &mdash; लाल is the same three times. So are <em>सुंदर, तेज़, गरम, भारी, गुलाबी</em>. The test is mechanical: <strong>does the masculine one-form end in -ा?</strong> If not, leave it alone. The instinct to make it match is the instinct you just learned from बड़ा, over-applied.</p></div>
+    <div class="trap"><h4>The wrong word that spells correctly</h4><p><em>दीन, पूल, मेल, सुना, जरा, सास</em> &mdash; every one is a real word, so nothing flags it. The mistake is only visible against the meaning you intended. When you check your writing, do not ask &ldquo;is this a word?&rdquo;. Ask &ldquo;is this the word I meant?&rdquo;.</p></div>
+    <div class="trap"><h4>Dots in the wrong place, or too many</h4><p>The chandrabindu and the nukta each change what a word means or how it sounds, and both are punished if they are missing: <em>कहा</em> (said) is not <em>कहाँ</em> (where); <em>पेड</em> is not <em>पेड़</em>. The reverse also loses marks: native words take no dot, so <em>फूल</em> is right and <em>फ़ूल</em> is not. Dot it when the sound is z, or the flap in ड़ ढ़ &mdash; not because a letter looks lonely.</p></div>
+  </div>
+</section>
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'wordbank-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, pzSeen:{}, store:{} };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+
+/* ---------------- the noun bank ----------------
+   [word, English, gender m/f, theme, plural or null (null = no natural plural)].
+   Oblique forms are built by the rule engine, then checked against an independent Python engine. */
+const THEMES = [["all", "All"], ["school", "School"], ["home", "Home"], ["family", "Family &amp; people"], ["body", "Body"], ["food", "Food"], ["nature", "Nature &amp; animals"], ["town", "Town"], ["time", "Time"], ["sport", "Sport"]];
+const NOUNS = [
+ ["किताब", "book", "f", "school", "किताबें"],
+ ["कॉपी", "notebook", "f", "school", "कॉपियाँ"],
+ ["कलम", "pen", "f", "school", "कलमें"],
+ ["पेंसिल", "pencil", "f", "school", "पेंसिलें"],
+ ["बस्ता", "school bag", "m", "school", "बस्ते"],
+ ["कक्षा", "class, classroom", "f", "school", "कक्षाएँ"],
+ ["अध्यापक", "teacher (man)", "m", "school", "अध्यापक"],
+ ["अध्यापिका", "teacher (woman)", "f", "school", "अध्यापिकाएँ"],
+ ["छात्रा", "student (girl)", "f", "school", "छात्राएँ"],
+ ["परीक्षा", "exam", "f", "school", "परीक्षाएँ"],
+ ["प्रश्न", "question", "m", "school", "प्रश्न"],
+ ["उत्तर", "answer", "m", "school", "उत्तर"],
+ ["कहानी", "story", "f", "school", "कहानियाँ"],
+ ["कविता", "poem", "f", "school", "कविताएँ"],
+ ["शब्द", "word", "m", "school", "शब्द"],
+ ["नक्शा", "map", "m", "school", "नक्शे"],
+ ["घंटी", "bell", "f", "school", "घंटियाँ"],
+ ["पन्ना", "page", "m", "school", "पन्ने"],
+ ["अक्षर", "letter (of the alphabet)", "m", "school", "अक्षर"],
+ ["घर", "house, home", "m", "home", "घर"],
+ ["कमरा", "room", "m", "home", "कमरे"],
+ ["दरवाज़ा", "door", "m", "home", "दरवाज़े"],
+ ["खिड़की", "window", "f", "home", "खिड़कियाँ"],
+ ["छत", "roof, ceiling", "f", "home", "छतें"],
+ ["दीवार", "wall", "f", "home", "दीवारें"],
+ ["बिस्तर", "bed", "m", "home", "बिस्तर"],
+ ["सीढ़ी", "stair, ladder", "f", "home", "सीढ़ियाँ"],
+ ["रसोई", "kitchen", "f", "home", "रसोइयाँ"],
+ ["बर्तन", "pot, utensil", "m", "home", "बर्तन"],
+ ["गिलास", "glass", "m", "home", "गिलास"],
+ ["थाली", "plate", "f", "home", "थालियाँ"],
+ ["चादर", "bedsheet", "f", "home", "चादरें"],
+ ["पंखा", "fan", "m", "home", "पंखे"],
+ ["बत्ती", "light, lamp", "f", "home", "बत्तियाँ"],
+ ["चाबी", "key", "f", "home", "चाबियाँ"],
+ ["ताला", "lock", "m", "home", "ताले"],
+ ["अलमारी", "cupboard", "f", "home", "अलमारियाँ"],
+ ["मेज़", "table", "f", "home", "मेज़ें"],
+ ["कुर्सी", "chair", "f", "home", "कुर्सियाँ"],
+ ["पिता", "father", "m", "family", "पिता"],
+ ["माँ", "mother", "f", "family", null],
+ ["भाई", "brother", "m", "family", "भाई"],
+ ["बहन", "sister", "f", "family", "बहनें"],
+ ["बेटा", "son", "m", "family", "बेटे"],
+ ["बेटी", "daughter", "f", "family", "बेटियाँ"],
+ ["दादा", "grandfather (father's father)", "m", "family", "दादा"],
+ ["दादी", "grandmother (father's mother)", "f", "family", "दादियाँ"],
+ ["नाना", "grandfather (mother's father)", "m", "family", "नाना"],
+ ["नानी", "grandmother (mother's mother)", "f", "family", "नानियाँ"],
+ ["चाचा", "uncle (father's younger brother)", "m", "family", "चाचा"],
+ ["चाची", "aunt (chacha's wife)", "f", "family", "चाचियाँ"],
+ ["मौसी", "aunt (mother's sister)", "f", "family", "मौसियाँ"],
+ ["बच्चा", "child (boy)", "m", "family", "बच्चे"],
+ ["बच्ची", "child (girl)", "f", "family", "बच्चियाँ"],
+ ["दोस्त", "friend (a boy, or any)", "m", "family", "दोस्त"],
+ ["सहेली", "friend (a girl's girl friend)", "f", "family", "सहेलियाँ"],
+ ["आदमी", "man", "m", "family", "आदमी"],
+ ["औरत", "woman", "f", "family", "औरतें"],
+ ["लड़का", "boy", "m", "family", "लड़के"],
+ ["लड़की", "girl", "f", "family", "लड़कियाँ"],
+ ["हाथ", "hand", "m", "body", "हाथ"],
+ ["पैर", "foot, leg", "m", "body", "पैर"],
+ ["सिर", "head", "m", "body", "सिर"],
+ ["आँख", "eye", "f", "body", "आँखें"],
+ ["कान", "ear", "m", "body", "कान"],
+ ["मुँह", "mouth", "m", "body", "मुँह"],
+ ["दाँत", "tooth", "m", "body", "दाँत"],
+ ["बाल", "hair", "m", "body", "बाल"],
+ ["गला", "throat", "m", "body", "गले"],
+ ["पेट", "stomach", "m", "body", "पेट"],
+ ["पीठ", "back", "f", "body", "पीठें"],
+ ["उँगली", "finger", "f", "body", "उँगलियाँ"],
+ ["जीभ", "tongue", "f", "body", "जीभें"],
+ ["गाल", "cheek", "m", "body", "गाल"],
+ ["कंधा", "shoulder", "m", "body", "कंधे"],
+ ["घुटना", "knee", "m", "body", "घुटने"],
+ ["दिल", "heart", "m", "body", "दिल"],
+ ["हड्डी", "bone", "f", "body", "हड्डियाँ"],
+ ["चेहरा", "face", "m", "body", "चेहरे"],
+ ["रोटी", "roti, chapati", "f", "food", "रोटियाँ"],
+ ["दाल", "dal, lentils", "f", "food", "दालें"],
+ ["चावल", "rice", "m", "food", null],
+ ["दूध", "milk", "m", "food", null],
+ ["पानी", "water", "m", "food", null],
+ ["सब्ज़ी", "vegetable, cooked veg", "f", "food", "सब्ज़ियाँ"],
+ ["फल", "fruit", "m", "food", "फल"],
+ ["आम", "mango", "m", "food", "आम"],
+ ["केला", "banana", "m", "food", "केले"],
+ ["सेब", "apple", "m", "food", "सेब"],
+ ["संतरा", "orange", "m", "food", "संतरे"],
+ ["आलू", "potato", "m", "food", "आलू"],
+ ["टमाटर", "tomato", "m", "food", "टमाटर"],
+ ["चाय", "tea", "f", "food", null],
+ ["मिठाई", "sweet, sweets", "f", "food", "मिठाइयाँ"],
+ ["दही", "curd, yoghurt", "m", "food", null],
+ ["अंडा", "egg", "m", "food", "अंडे"],
+ ["मछली", "fish", "f", "food", "मछलियाँ"],
+ ["चीनी", "sugar", "f", "food", null],
+ ["नमक", "salt", "m", "food", null],
+ ["पराँठा", "paratha", "m", "food", "पराँठे"],
+ ["पेड़", "tree", "m", "nature", "पेड़"],
+ ["फूल", "flower", "m", "nature", "फूल"],
+ ["पत्ता", "leaf", "m", "nature", "पत्ते"],
+ ["जंगल", "forest", "m", "nature", "जंगल"],
+ ["नदी", "river", "f", "nature", "नदियाँ"],
+ ["पहाड़", "mountain", "m", "nature", "पहाड़"],
+ ["तारा", "star", "m", "nature", "तारे"],
+ ["बादल", "cloud", "m", "nature", "बादल"],
+ ["बारिश", "rain", "f", "nature", "बारिशें"],
+ ["हवा", "wind, air", "f", "nature", "हवाएँ"],
+ ["पत्थर", "stone", "m", "nature", "पत्थर"],
+ ["बगीचा", "garden", "m", "nature", "बगीचे"],
+ ["चिड़िया", "bird", "f", "nature", "चिड़ियाँ"],
+ ["कुत्ता", "dog", "m", "nature", "कुत्ते"],
+ ["बिल्ली", "cat", "f", "nature", "बिल्लियाँ"],
+ ["गाय", "cow", "f", "nature", "गायें"],
+ ["घोड़ा", "horse", "m", "nature", "घोड़े"],
+ ["हाथी", "elephant", "m", "nature", "हाथी"],
+ ["तितली", "butterfly", "f", "nature", "तितलियाँ"],
+ ["धूप", "sunshine", "f", "nature", null],
+ ["मिट्टी", "soil, mud", "f", "nature", null],
+ ["सूरज", "sun", "m", "nature", null],
+ ["चाँद", "moon", "m", "nature", null],
+ ["शहर", "city", "m", "town", "शहर"],
+ ["गाँव", "village", "m", "town", "गाँव"],
+ ["सड़क", "road", "f", "town", "सड़कें"],
+ ["दुकान", "shop", "f", "town", "दुकानें"],
+ ["बाज़ार", "market", "m", "town", "बाज़ार"],
+ ["बस", "bus", "f", "town", "बसें"],
+ ["गाड़ी", "car, vehicle", "f", "town", "गाड़ियाँ"],
+ ["रेलगाड़ी", "train", "f", "town", "रेलगाड़ियाँ"],
+ ["स्टेशन", "station", "m", "town", "स्टेशन"],
+ ["अस्पताल", "hospital", "m", "town", "अस्पताल"],
+ ["मंदिर", "temple", "m", "town", "मंदिर"],
+ ["पुल", "bridge", "m", "town", "पुल"],
+ ["चौराहा", "crossroads", "m", "town", "चौराहे"],
+ ["साइकिल", "bicycle", "f", "town", "साइकिलें"],
+ ["नाव", "boat", "f", "town", "नावें"],
+ ["किसान", "farmer", "m", "town", "किसान"],
+ ["राजा", "king", "m", "town", "राजा"],
+ ["नेता", "leader", "m", "town", "नेता"],
+ ["पड़ोसी", "neighbour (man)", "m", "town", "पड़ोसी"],
+ ["दफ़्तर", "office", "m", "town", "दफ़्तर"],
+ ["दिन", "day", "m", "time", "दिन"],
+ ["रात", "night", "f", "time", "रातें"],
+ ["सुबह", "morning", "f", "time", "सुबहें"],
+ ["शाम", "evening", "f", "time", "शामें"],
+ ["दोपहर", "afternoon", "f", "time", "दोपहरें"],
+ ["हफ़्ता", "week", "m", "time", "हफ़्ते"],
+ ["महीना", "month", "m", "time", "महीने"],
+ ["साल", "year", "m", "time", "साल"],
+ ["घंटा", "hour", "m", "time", "घंटे"],
+ ["मिनट", "minute", "m", "time", "मिनट"],
+ ["पल", "moment", "m", "time", "पल"],
+ ["तिथि", "date (day of the month)", "f", "time", "तिथियाँ"],
+ ["छुट्टी", "holiday", "f", "time", "छुट्टियाँ"],
+ ["मौसम", "weather, season", "m", "time", "मौसम"],
+ ["सर्दी", "winter, cold", "f", "time", "सर्दियाँ"],
+ ["बरसात", "rainy season", "f", "time", "बरसातें"],
+ ["घड़ी", "clock, watch", "f", "time", "घड़ियाँ"],
+ ["समय", "time", "m", "time", null],
+ ["सदी", "century", "f", "time", "सदियाँ"],
+ ["खेल", "game", "m", "sport", "खेल"],
+ ["गेंद", "ball", "f", "sport", "गेंदें"],
+ ["बल्ला", "bat", "m", "sport", "बल्ले"],
+ ["टीम", "team", "f", "sport", "टीमें"],
+ ["मैदान", "ground, field", "m", "sport", "मैदान"],
+ ["दौड़", "race", "f", "sport", "दौड़ें"],
+ ["कप्तान", "captain", "m", "sport", "कप्तान"],
+ ["रस्सी", "rope", "f", "sport", "रस्सियाँ"],
+ ["पतंग", "kite", "f", "sport", "पतंगें"],
+ ["गोल", "goal", "m", "sport", "गोल"],
+ ["सीटी", "whistle", "f", "sport", "सीटियाँ"],
+ ["जूता", "shoe", "m", "sport", "जूते"],
+ ["मोज़ा", "sock", "m", "sport", "मोज़े"],
+ ["इनाम", "prize", "m", "sport", "इनाम"],
+ ["प्रतियोगिता", "competition", "f", "sport", "प्रतियोगिताएँ"],
+ ["जीत", "win, victory", "f", "sport", null]
+];
+/* ---------------- adjectives ----------------
+   [word, English, type A (changes: -ा/-े/-ी) or V (never changes), group] */
+const ACATS = [["all", "All"], ["A", "Changes"], ["V", "Never changes"], ["colour", "Colours"], ["size", "Size"], ["feel", "Feel &amp; state"], ["quality", "Quality"], ["mine", "Mine, ours"]];
+const ADJS = [
+ ["बड़ा", "big", "A", "size"],
+ ["छोटा", "small", "A", "size"],
+ ["लंबा", "long, tall", "A", "size"],
+ ["चौड़ा", "wide", "A", "size"],
+ ["ऊँचा", "high, tall (buildings)", "A", "size"],
+ ["मोटा", "fat, thick", "A", "size"],
+ ["पतला", "thin", "A", "size"],
+ ["गहरा", "deep", "A", "size"],
+ ["हल्का", "light (weight)", "A", "size"],
+ ["बूढ़ा", "old (a person)", "A", "size"],
+ ["काला", "black", "A", "colour"],
+ ["पीला", "yellow", "A", "colour"],
+ ["नीला", "blue", "A", "colour"],
+ ["हरा", "green", "A", "colour"],
+ ["गोरा", "fair", "A", "colour"],
+ ["सुनहरा", "golden", "A", "colour"],
+ ["मीठा", "sweet", "A", "feel"],
+ ["खट्टा", "sour", "A", "feel"],
+ ["तीखा", "spicy, sharp", "A", "feel"],
+ ["ठंडा", "cold", "A", "feel"],
+ ["गीला", "wet", "A", "feel"],
+ ["सूखा", "dry", "A", "feel"],
+ ["गंदा", "dirty", "A", "feel"],
+ ["सस्ता", "cheap", "A", "feel"],
+ ["महँगा", "expensive", "A", "feel"],
+ ["भूखा", "hungry", "A", "feel"],
+ ["प्यासा", "thirsty", "A", "feel"],
+ ["अच्छा", "good", "A", "quality"],
+ ["बुरा", "bad", "A", "quality"],
+ ["नया", "new", "A", "quality"],
+ ["पुराना", "old (things)", "A", "quality"],
+ ["सीधा", "straight, simple", "A", "quality"],
+ ["टेढ़ा", "crooked", "A", "quality"],
+ ["सच्चा", "true, honest", "A", "quality"],
+ ["झूठा", "false", "A", "quality"],
+ ["पक्का", "firm, ripe", "A", "quality"],
+ ["कच्चा", "raw, unripe", "A", "quality"],
+ ["अकेला", "alone", "A", "quality"],
+ ["थोड़ा", "a little", "A", "quality"],
+ ["मेरा", "my", "A", "mine"],
+ ["हमारा", "our", "A", "mine"],
+ ["तुम्हारा", "your", "A", "mine"],
+ ["अपना", "one's own", "A", "mine"],
+ ["लाल", "red", "V", "colour"],
+ ["सफ़ेद", "white", "V", "colour"],
+ ["गुलाबी", "pink", "V", "colour"],
+ ["नारंगी", "orange", "V", "colour"],
+ ["सुंदर", "beautiful", "V", "quality"],
+ ["तेज़", "fast, sharp", "V", "quality"],
+ ["गरम", "hot", "V", "feel"],
+ ["नरम", "soft", "V", "feel"],
+ ["गोल", "round", "V", "size"],
+ ["भारी", "heavy", "V", "size"],
+ ["साफ़", "clean", "V", "feel"],
+ ["खुश", "happy", "V", "feel"],
+ ["उदास", "sad", "V", "feel"],
+ ["आसान", "easy", "V", "quality"],
+ ["मुश्किल", "difficult", "V", "quality"],
+ ["ज़रूरी", "necessary", "V", "quality"],
+ ["खाली", "empty", "V", "quality"],
+ ["होशियार", "clever", "V", "quality"],
+ ["मज़ेदार", "fun", "V", "quality"],
+ ["अमीर", "rich", "V", "quality"],
+ ["गरीब", "poor", "V", "quality"],
+ ["मज़बूत", "strong (things)", "V", "quality"],
+ ["कमज़ोर", "weak", "V", "quality"],
+ ["बहादुर", "brave", "V", "quality"],
+ ["ईमानदार", "honest", "V", "quality"]
+];
+/* ---------------- time and frequency words: [group, word, English, example (Hindi), example (English)] ---------------- */
+const TCATS = [["all", "All"], ["now", "Now &amp; soon"], ["often", "How often"], ["part", "Parts of the day"], ["day", "Days"], ["month", "Months"]];
+const TIMEW = [
+ ["now", "आज", "today", "आज मेरी छुट्टी है।", "Today I have a holiday."],
+ ["now", "कल", "yesterday OR tomorrow", "कल मैं नानी के घर गई थी। / कल मैं नानी के घर जाऊँगी।", "Yesterday I went to grandmother's house. / Tomorrow I will go to grandmother's house. (The verb tells you which.)"],
+ ["now", "परसों", "day before yesterday OR day after tomorrow", "परसों मेरी परीक्षा है।", "The day after tomorrow I have an exam."],
+ ["now", "अभी", "right now", "मैं अभी पढ़ रही हूँ।", "I am studying right now."],
+ ["now", "अब", "now (from here on)", "अब मैं खेलूँगी।", "Now I will play."],
+ ["now", "पहले", "first, earlier", "पहले मैं खाना खाती हूँ।", "First I eat."],
+ ["now", "बाद में", "afterwards, later", "बाद में मैं टीवी देखती हूँ।", "Afterwards I watch TV."],
+ ["now", "फिर", "then, again", "फिर वह घर चली गई।", "Then she went home."],
+ ["now", "जल्दी", "early, quickly, soon", "मैं जल्दी उठती हूँ।", "I get up early."],
+ ["now", "देर से", "late", "वह देर से आई।", "She came late."],
+ ["often", "हमेशा", "always", "मैं हमेशा सच बोलती हूँ।", "I always tell the truth."],
+ ["often", "अक्सर", "often, usually", "वह अक्सर देर से आता है।", "He often comes late."],
+ ["often", "रोज़", "every day", "मैं रोज़ स्कूल जाती हूँ।", "I go to school every day."],
+ ["often", "हर हफ़्ते", "every week", "हम हर हफ़्ते बाज़ार जाते हैं।", "We go to the market every week."],
+ ["often", "कभी-कभी", "sometimes", "हम कभी-कभी पार्क जाते हैं।", "We sometimes go to the park."],
+ ["often", "शायद ही कभी", "hardly ever", "मैं शायद ही कभी देर से सोती हूँ।", "I hardly ever sleep late."],
+ ["often", "कभी नहीं", "never", "मैं कभी झूठ नहीं बोलती।", "I never tell lies."],
+ ["part", "सुबह", "morning", "मैं सुबह दूध पीती हूँ।", "I drink milk in the morning."],
+ ["part", "दोपहर", "afternoon", "दोपहर को हम खाना खाते हैं।", "We eat lunch in the afternoon."],
+ ["part", "शाम", "evening", "शाम को मैं खेलती हूँ।", "I play in the evening."],
+ ["part", "रात", "night", "रात को मैं कहानी पढ़ती हूँ।", "I read a story at night."],
+ ["day", "सोमवार", "Monday", "सोमवार को मेरी संगीत की कक्षा है।", "On Monday I have my music class."],
+ ["day", "मंगलवार", "Tuesday", "मंगलवार को हम खेलते हैं।", "On Tuesday we play."],
+ ["day", "बुधवार", "Wednesday", "बुधवार को परीक्षा है।", "On Wednesday there is an exam."],
+ ["day", "गुरुवार", "Thursday (also बृहस्पतिवार)", "गुरुवार को मैं नानी से बात करती हूँ।", "On Thursday I talk to my grandmother."],
+ ["day", "शुक्रवार", "Friday", "शुक्रवार को स्कूल जल्दी बंद होता है।", "On Friday school closes early."],
+ ["day", "शनिवार", "Saturday", "शनिवार को छुट्टी होती है।", "On Saturday there is a holiday."],
+ ["day", "रविवार", "Sunday (also इतवार)", "रविवार को मैं देर से उठती हूँ।", "On Sunday I get up late."],
+ ["month", "जनवरी", "January (month 1)", "", ""],
+ ["month", "फ़रवरी", "February (month 2)", "", ""],
+ ["month", "मार्च", "March (month 3)", "", ""],
+ ["month", "अप्रैल", "April (month 4)", "", ""],
+ ["month", "मई", "May (month 5)", "", ""],
+ ["month", "जून", "June (month 6)", "", ""],
+ ["month", "जुलाई", "July (month 7)", "", ""],
+ ["month", "अगस्त", "August (month 8)", "", ""],
+ ["month", "सितंबर", "September (month 9)", "", ""],
+ ["month", "अक्टूबर", "October (month 10)", "", ""],
+ ["month", "नवंबर", "November (month 11)", "", ""],
+ ["month", "दिसंबर", "December (month 12)", "", ""]
+];
+/* ---------------- spelling: confusable pairs, and the spelling doctor ----------------
+   PAIRS: [rule, word A, meaning A, word B, meaning B]
+   DOC / DPZ: parts = the CORRECT word split into tiles; i = the tile that gets damaged; bad = the damaged tile;
+   opts = fix choices (right one included). The doctor shows the damaged word; the student finds tile i and picks parts[i]. */
+const PRULES = [["all", "All"], ["ि / ी", "ि / ी"], ["ु / ू", "ु / ू"], ["े / ै", "े / ै"], ["ो / ौ", "ो / ौ"], ["ँ / ं", "ँ / ं"], ["नुक़्ता", "नुक़्ता"], ["ड़ / ढ़", "ड़ / ढ़"]];
+const PAIRS = [["ि / ी", "दिन", "day", "दीन", "poor, humble"], ["ि / ी", "पिता", "father", "पीता", "drinks"], ["ि / ी", "चिता", "funeral pyre", "चीता", "cheetah"], ["ि / ी", "मिल", "mill; meet (root)", "मील", "mile"], ["ि / ी", "कि", "that (joins two clauses)", "की", "of (with a feminine noun)"], ["ु / ू", "कुल", "total; family", "कूल", "river bank"], ["ु / ू", "सुना", "heard", "सूना", "empty, lonely"], ["ु / ू", "पुल", "bridge", "पूल", "swimming pool"], ["ु / ू", "सुख", "happiness", "सूख", "dry up (root of सूखना)"], ["ु / ू", "सूत", "thread", "सुत", "son (literary)"], ["े / ै", "में", "in", "मैं", "I"], ["े / ै", "है", "is", "हे", "O! (calling out)"], ["े / ै", "बेर", "jujube berry", "बैर", "enmity"], ["े / ै", "मेल", "meeting; friendship", "मैल", "dirt"], ["ो / ौ", "और", "and", "ओर", "direction, side"], ["ो / ौ", "सौ", "hundred", "सो", "sleep (root of सोना)"], ["ँ / ं", "साँस", "breath", "सास", "mother-in-law"], ["ँ / ं", "हँस", "laugh (root)", "हंस", "swan"], ["ँ / ं", "पूँछ", "tail", "पूछ", "ask (root of पूछना)"], ["ँ / ं", "कहाँ", "where", "कहा", "said"], ["ँ / ं", "गोंद", "glue", "गोद", "lap"], ["नुक़्ता", "ज़रा", "a little", "जरा", "old age"], ["नुक़्ता", "सज़ा", "punishment", "सजा", "decorated (from सजाना)"], ["नुक़्ता", "राज़", "secret", "राज", "rule, kingdom"], ["ड़ / ढ़", "पड़ना", "to fall; to have to", "पढ़ना", "to read"], ["ड़ / ढ़", "बड़ा", "big", "बढ़ा", "grew"], ["ड़ / ढ़", "डाल", "branch", "ढाल", "shield; slope"]];
+const DOC = [
+ {"id": "d1", "en": "day", "parts": ["दि", "न"], "i": 0, "bad": "दी", "opts": ["दि", "दी", "दु"], "rule": "ि / ी", "why": "<em>दीन</em> is a real word (poor, humble), so a spell-checker would let it through &mdash; but it is not &lsquo;day&rsquo;. Short <strong>ि</strong>: दिन."},
+ {"id": "d2", "en": "book", "parts": ["कि", "ता", "ब"], "i": 0, "bad": "की", "opts": ["कि", "की", "के"], "rule": "ि / ी", "why": "<em>की</em> is the little word &lsquo;of&rsquo;. The first sound of किताब is short: <strong>कि</strong>."},
+ {"id": "d3", "en": "ground, field", "parts": ["मै", "दा", "न"], "i": 0, "bad": "मे", "opts": ["मै", "मे", "मो"], "rule": "े / ै", "why": "<em>मेदान</em> is not a word. The first sound is the &lsquo;ai&rsquo; of <em>मैं</em> and <em>पैर</em>: <strong>मै</strong>दान."},
+ {"id": "d4", "en": "school", "parts": ["स्कू", "ल"], "i": 0, "bad": "स्कु", "opts": ["स्कू", "स्कु", "स्को"], "rule": "ु / ू", "why": "Long <strong>ू</strong>, as in the English word it came from. Say it slowly: स-कू-ल."},
+ {"id": "d5", "en": "bridge", "parts": ["पु", "ल"], "i": 0, "bad": "पू", "opts": ["पु", "पू", "पो"], "rule": "ु / ू", "why": "<em>पूल</em> is a swimming pool. A bridge is <strong>पुल</strong>, short ु."},
+ {"id": "d6", "en": "empty, lonely (a lonely street)", "parts": ["सू", "ना"], "i": 0, "bad": "सु", "opts": ["सू", "सु", "सो"], "rule": "ु / ू", "why": "<em>सुना</em> means &lsquo;heard&rsquo; (सुनना). Empty and lonely is <strong>सूना</strong>, long ू."},
+ {"id": "d7", "en": "breath", "parts": ["साँ", "स"], "i": 0, "bad": "सा", "opts": ["साँ", "सा", "सां"], "rule": "ँ / ं", "why": "Without the chandrabindu it reads <em>सास</em> &mdash; mother-in-law. Breath is <strong>साँस</strong>: a nasal vowel, so ँ."},
+ {"id": "d8", "en": "where", "parts": ["क", "हाँ"], "i": 1, "bad": "हा", "opts": ["हाँ", "हा", "हां"], "rule": "ँ / ं", "why": "<em>कहा</em> is &lsquo;said&rsquo;. <strong>कहाँ</strong> is &lsquo;where&rsquo;. One tiny mark, a different word."},
+ {"id": "d9", "en": "eye", "parts": ["आँ", "ख"], "i": 0, "bad": "आ", "opts": ["आँ", "आ", "आं"], "rule": "ँ / ं", "why": "<strong>आँख</strong>: a nasal vowel with nothing above the line, so it takes ँ."},
+ {"id": "d10", "en": "to laugh", "parts": ["हँ", "स", "ना"], "i": 0, "bad": "हं", "opts": ["हँ", "हं", "ह"], "rule": "ँ / ं", "why": "The root of &lsquo;to laugh&rsquo; is <strong>हँस</strong> (chandrabindu). <em>हंस</em> with a dot is the swan."},
+ {"id": "d11", "en": "not", "parts": ["न", "हीं"], "i": 1, "bad": "ही", "opts": ["हीं", "ही", "हिं"], "rule": "ँ / ं", "why": "नहीं has a nasal sound at the end: <strong>हीं</strong>. Without it, नही is not a word. The mark here is ं because ी already has its own stroke on top."},
+ {"id": "d12", "en": "and", "parts": ["औ", "र"], "i": 0, "bad": "ओ", "opts": ["औ", "ओ", "अ"], "rule": "ो / ौ", "why": "<em>ओर</em> means &lsquo;direction&rsquo; (उस ओर = that way). &lsquo;And&rsquo; is <strong>और</strong>, with the two-stroke ौ."},
+ {"id": "d13", "en": "who", "parts": ["कौ", "न"], "i": 0, "bad": "को", "opts": ["कौ", "को", "कु"], "rule": "ो / ौ", "why": "<strong>कौन</strong>. ौ is the vowel of <em>कौआ</em> and <em>सौ</em> &mdash; it sounds like &lsquo;ow&rsquo; in &lsquo;now&rsquo;, a little flatter."},
+ {"id": "d14", "en": "a little", "parts": ["ज़", "रा"], "i": 0, "bad": "ज", "opts": ["ज़", "ज", "झ"], "rule": "नुक़्ता", "why": "<em>जरा</em> (no dot) means old age. &lsquo;A little&rsquo; is <strong>ज़रा</strong> &mdash; the dot makes the &lsquo;z&rsquo; sound."},
+ {"id": "d15", "en": "punishment", "parts": ["स", "ज़ा"], "i": 1, "bad": "जा", "opts": ["ज़ा", "जा", "झा"], "rule": "नुक़्ता", "why": "<em>सजा</em> without the dot is &lsquo;decorated&rsquo; (सजाना). Punishment is <strong>सज़ा</strong>."},
+ {"id": "d16", "en": "market", "parts": ["बा", "ज़ा", "र"], "i": 1, "bad": "जा", "opts": ["ज़ा", "जा", "सा"], "rule": "नुक़्ता", "why": "बाज़ार has a &lsquo;z&rsquo; sound, so the middle letter needs its dot: <strong>ज़ा</strong>."},
+ {"id": "d17", "en": "tree", "parts": ["पे", "ड़"], "i": 1, "bad": "ड", "opts": ["ड़", "ड", "ढ़"], "rule": "ड़ / ढ़", "why": "A word can end in the flapped <strong>ड़</strong> but never in the plain ड in this word. <em>पेड</em> without the dot is wrong."},
+ {"id": "d18", "en": "big", "parts": ["ब", "ड़ा"], "i": 1, "bad": "डा", "opts": ["ड़ा", "डा", "ढ़ा"], "rule": "ड़ / ढ़", "why": "<strong>बड़ा</strong>. Plain ड is the hard stop of <em>डाल</em>; the dot underneath gives the softer flap."},
+ {"id": "d19", "en": "to read", "parts": ["प", "ढ़", "ना"], "i": 1, "bad": "ढ", "opts": ["ढ़", "ढ", "द"], "rule": "ड़ / ढ़", "why": "<strong>पढ़ना</strong>. Compare <em>पड़ना</em> (to fall) &mdash; one dotted ड़, one dotted ढ़, and two different verbs."},
+ {"id": "d20", "en": "flower", "parts": ["फू", "ल"], "i": 0, "bad": "फ़ू", "opts": ["फू", "फ़ू", "पू"], "rule": "नुक़्ता (extra)", "why": "<strong>फूल</strong> is a native Hindi word: no dot. The dot on फ़ is for borrowed words like <em>फ़ौरन</em> (at once). Over-dotting is as wrong as under-dotting."},
+ {"id": "d21", "en": "education", "parts": ["शि", "क्षा"], "i": 1, "bad": "क्शा", "opts": ["क्षा", "क्शा", "ख्षा"], "rule": "conjunct", "why": "<strong>क्ष</strong> is क् + ष, not क् + श. It is the letter people spell as they say it and get wrong."},
+ {"id": "d22", "en": "letter (a written letter)", "parts": ["प", "त्र"], "i": 1, "bad": "त्त", "opts": ["त्र", "त्त", "ब्र"], "rule": "conjunct", "why": "<strong>त्र</strong> = त् + र. The similar-looking <em>त्त</em> is a double त, as in पत्ता (leaf)."},
+ {"id": "d23", "en": "knowledge", "parts": ["ज्ञा", "न"], "i": 0, "bad": "ग्या", "opts": ["ज्ञा", "ग्या", "ज्या"], "rule": "conjunct", "why": "<strong>ज्ञ</strong> = ज् + ञ. It is said &lsquo;gya&rsquo; but never spelled that way in an exam."},
+ {"id": "d24", "en": "friend", "parts": ["दो", "स्त"], "i": 1, "bad": "सत", "opts": ["स्त", "सत", "स्थ"], "rule": "conjunct", "why": "There are two consonants stuck together: <strong>स् + त = स्त</strong>. Written out with no halant it becomes a different sound."},
+ {"id": "d25", "en": "therefore", "parts": ["अ", "तः"], "i": 1, "bad": "तह", "opts": ["तः", "तह", "ता"], "rule": "visarga", "why": "<strong>ः</strong> (visarga) gives the &lsquo;h&rsquo; echo at the end of Sanskrit-origin words: अतः, पुनः, प्रायः. Do not write it as a real ह."},
+ {"id": "d26", "en": "that is (to say)", "parts": ["अ", "र्था", "त्"], "i": 2, "bad": "त", "opts": ["त्", "त", "ता"], "rule": "halant", "why": "अर्थात् ends in a <strong>bare त्</strong> &mdash; a consonant with no vowel, marked by the halant (्). Leave it off and you have written a different word."},
+ {"id": "d27", "en": "pure", "parts": ["शु", "द्ध"], "i": 1, "bad": "ध्द", "opts": ["द्ध", "ध्द", "दध"], "rule": "conjunct", "why": "<strong>द्ध</strong> = द् + ध, in that order. <em>ध्द</em> is the old, reversed spelling."},
+ {"id": "d28", "en": "joy", "parts": ["आ", "नं", "द"], "i": 1, "bad": "न", "opts": ["नं", "न", "ने"], "rule": "ँ / ं", "why": "आनंद needs the nasal dot on न. Without it: आनद, which is not a word."}
+];
+const DPZ = [
+ {"id": "q1", "en": "enmity, hatred", "parts": ["बै", "र"], "i": 0, "bad": "बे", "opts": ["बै", "बे", "बो"], "rule": "े / ै", "why": "<em>बेर</em> is a berry. Hatred is <strong>बैर</strong> &mdash; the ै matters."},
+ {"id": "q2", "en": "dirt, grime", "parts": ["मै", "ल"], "i": 0, "bad": "मे", "opts": ["मै", "मे", "मो"], "rule": "े / ै", "why": "<em>मेल</em> means friendship or a meeting. Dirt is <strong>मैल</strong>."},
+ {"id": "q3", "en": "deal, bargain", "parts": ["सौ", "दा"], "i": 0, "bad": "सो", "opts": ["सौ", "सो", "सु"], "rule": "ो / ौ", "why": "<strong>सौदा</strong> starts like <em>सौ</em> (hundred), not like <em>सो</em> (sleep)."},
+ {"id": "q4", "en": "crow", "parts": ["कौ", "आ"], "i": 0, "bad": "को", "opts": ["कौ", "को", "कु"], "rule": "ो / ौ", "why": "<strong>कौआ</strong> &mdash; the ौ is the &lsquo;ow&rsquo; sound at the start."},
+ {"id": "q5", "en": "glue, gum", "parts": ["गों", "द"], "i": 0, "bad": "गो", "opts": ["गों", "गो", "गू"], "rule": "ँ / ं", "why": "<em>गोद</em> is a lap. Glue is <strong>गोंद</strong>, with the nasal dot on ों."},
+ {"id": "q6", "en": "tail", "parts": ["पूँ", "छ"], "i": 0, "bad": "पू", "opts": ["पूँ", "पू", "पुँ"], "rule": "ँ / ं", "why": "<em>पूछ</em> is the root of &lsquo;to ask&rsquo;. A tail is <strong>पूँछ</strong>."},
+ {"id": "q7", "en": "thread", "parts": ["सू", "त"], "i": 0, "bad": "सु", "opts": ["सू", "सु", "सो"], "rule": "ु / ू", "why": "<em>सुत</em> is a literary word for a son. Thread is <strong>सूत</strong> (सूती कपड़ा = cotton cloth)."},
+ {"id": "q8", "en": "total, in all (कुल पचास = fifty in all)", "parts": ["कु", "ल"], "i": 0, "bad": "कू", "opts": ["कु", "कू", "को"], "rule": "ु / ू", "why": "<em>कूल</em> is the bank of a river. &lsquo;Total&rsquo; and &lsquo;family&rsquo; are both <strong>कुल</strong>, short ु."},
+ {"id": "q9", "en": "fun, entertaining", "parts": ["म", "ज़े", "दा", "र"], "i": 1, "bad": "जे", "opts": ["ज़े", "जे", "ज़ै"], "rule": "नुक़्ता", "why": "<strong>मज़ेदार</strong> &mdash; the &lsquo;z&rsquo; of मज़ा needs its dot. Four tiles, one wrong: check the sound of each."},
+ {"id": "q10", "en": "worship, prayer", "parts": ["पू", "जा"], "i": 0, "bad": "पु", "opts": ["पू", "पु", "पो"], "rule": "ु / ू", "why": "<strong>पूजा</strong>, long ू. This one is easy to shorten because we say it quickly."},
+ {"id": "q11", "en": "door (formal word)", "parts": ["द्वा", "र"], "i": 0, "bad": "दवा", "opts": ["द्वा", "दवा", "द्धा"], "rule": "conjunct", "why": "<strong>द्वार</strong> = द् + व + ार. <em>दवा</em> is medicine, so दवार would be a medicine-flavoured mistake."},
+ {"id": "q12", "en": "window", "parts": ["खि", "ड़", "की"], "i": 1, "bad": "ड", "opts": ["ड़", "ड", "ढ़"], "rule": "ड़ / ढ़", "why": "<strong>खिड़की</strong>. Three tiles, and the middle one carries the dot."}
+];
+
+/* ---------------- videos ----------------
+   Found by web search (titles as listed there). Not opened in a browser during the build:
+   worth a two-minute click-through before the student is sent to them. */
+const VIDEOS = [
+ {t:"The Key to Identify Gender in Hindi || Learn Hindi Grammar||", ch:"YouTube &middot; Learn Hindi Grammar", url:"https://www.youtube.com/watch?v=3xil_Td4Db0",
+  why:"Gender is the first decision for every noun, and this one is about spotting it from the word itself. Use it beside Lesson 1: the video gives the pattern, the noun bank tells you where the pattern fails.",
+  task:"Write down every clue it gives, one per line. Next to each, write one noun from the noun bank that follows the clue &mdash; then find one that <strong>breaks</strong> it. The broken ones are the ones that cost marks."},
+
+ {t:"Visheshan | विशेषण | Hindi Grammar | Vyakaran Saar for Class 7", ch:"YouTube &middot; Class 7 Hindi grammar (Vyakaran Saar)", url:"https://www.youtube.com/watch?v=fzuUH6aRjHg",
+  why:"School Hindi grammar names the kinds of adjective (of quality, of number, of amount). You will not be asked to name them much, but the examples are useful for the adjective bank. Watch at 1.5&times; and skip the definitions you already know.",
+  task:"Pick five adjectives it uses. For each, write <strong>masc. one / masc. many / feminine</strong> in a row (बड़ा, बड़े, बड़ी). Any adjective that turns out not to change &mdash; circle it. Check both lists against the adjective bank."},
+
+ {t:"उ और ऊ की मात्रा ' ु ', ' ू ' ('u' aur 'uu' ki Matra) | Hindi Class 1", ch:"YouTube &middot; Hindi for young children (Class 1)", url:"https://www.youtube.com/watch?v=xdwq8_mxWkw",
+  why:"This is a primary-school video, and that is the point: it is slow, and it makes you hear the difference between the short and the long sound, which is exactly what you skip when you write fast. Watch it once at normal speed, with the sound on.",
+  task:"Write five words with ु and five with ू from the video. Then say each one aloud and tick it only if your mouth really made a short sound (ु) or a long sound (ू). Two of them will feel wrong. Those are your words."},
+
+ {t:"वर्तनी शुद्धिकरण।अनुस्वार और अनुनासिक वर्ण || Anuswar and Anunasik", ch:"YouTube &middot; Hindi grammar (spelling correction)", url:"https://www.youtube.com/watch?v=VaiGeK6J_8A",
+  why:"Chandrabindu (ँ) versus the plain dot (ं) is the mark that Hindi writers most often get wrong, including adults. This is about spelling correction, so it shows the mistakes, not just the rule.",
+  task:"List every word in it with ँ and every word with ं, in two columns. Then look at the letters above each: in which column do you see a mark already on top of the letter? That is the rule from the spelling guide, found by you instead of told to you."},
+
+ {t:"Hindi Basics हिंदी ढ़, ड़, ज़, फ़, ऑ", ch:"YouTube &middot; Hindi basics (nukta letters)", url:"https://www.youtube.com/watch?v=XhVTaAUk5xA",
+  why:"The four dotted letters, said out loud, one after another. The sound difference between ड and ड़ is the whole reason the dot exists, and you can only learn it by hearing it.",
+  task:"Write five words with ज़, two with फ़ and three with ड़ or ढ़. Do not copy them from the video: use the spelling doctor's words as a source. Then cover them and write them again from memory."},
+
+ {t:"Sanyukt Akshar| संयुक्त अक्षर | क्ष, त्र, ज्ञ,श्र | sanyukt akshar wale shabd |Hindi |Panira Arts", ch:"YouTube &middot; Hindi conjunct letters (Panira Arts)", url:"https://www.youtube.com/watch?v=TAjFj7f9yts",
+  why:"Conjunct letters look like new characters but each one is two letters glued together. This video covers the four famous ones (क्ष, त्र, ज्ञ, श्र) with example words. The spelling guide adds the eight that appear in your own reading.",
+  task:"For each of the four, write it as its two parts (क्ष = क् + ष) and give two words. Then find one word in the noun bank with a conjunct in it (<em>स्टेशन, प्रश्न, अस्पताल</em>&hellip;) and split it the same way."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"Every noun has a gender, and the ending gives it away", len:"7 min",
+  body:`<p>English has <em>he, she, it</em>. Hindi has no <em>it</em>: a table is one thing, a chair is the other, and you must know which, because the adjective, the verb and <em>का / की / के</em> all copy it. The good news is that the last sound of the word is a clue, and it is right about seven times in eight. In the noun bank, 88 nouns have a clue in their ending and 77 of them obey it.</p>
+    <table class="data">
+      <tr><th>Ending</th><th>Usually</th><th>Examples</th></tr>
+      <tr><td class="dv">-ा (आ)</td><td class="gm">masculine</td><td class="dv">लड़का, कमरा, केला, घोड़ा</td></tr>
+      <tr><td class="dv">-ी / -ई</td><td class="gf">feminine</td><td class="dv">लड़की, रोटी, नदी, रसोई</td></tr>
+      <tr><td class="dv">-ता (quality), -आई, -आवट, -आहट</td><td class="gf">feminine</td><td class="dv">कविता, मिठाई, सजावट, घबराहट</td></tr>
+      <tr><td class="dv">-इया (a small thing)</td><td class="gf">feminine</td><td class="dv">चिड़िया, गुड़िया</td></tr>
+      <tr><td class="dv">-पन</td><td class="gm">masculine</td><td class="dv">बचपन, अपनापन</td></tr>
+      <tr><td>anything else</td><td>no clue</td><td class="dv">किताब (f), मकान (m), रात (f), दिन (m)</td></tr>
+    </table>
+    <p>The meaning is a clue too. Males are masculine and females feminine (<em>भाई, बहन</em>), the days of the week are masculine (<em>सोमवार</em>), rivers and languages are feminine (<em>नदी, हिंदी</em>). And your ear is a clue that beats all of them: say <span class="dv">मेरा ___</span> or <span class="dv">मेरी ___</span> in front of the word. <span class="dv">मेरा घर</span> sounds right. <span class="dv">मेरी घर</span> sounds like a mistake, because it is.</p>
+    <p>Now the exceptions, which are where the marks go. <strong>Masculine despite -ी / -ई:</strong> <span class="dv">हाथी, पानी, दही, आदमी, पड़ोसी, भाई</span>. <strong>Feminine despite -आ:</strong> <span class="dv">कक्षा, परीक्षा, हवा, छात्रा, अध्यापिका</span> (Sanskrit-origin words, mostly). In the noun bank, press <em>Exceptions only</em>: there are 11 in all, and they are the whole list you need to fear.</p>`,
+  demo:"Walk round one room and put मेरा or मेरी in front of ten things you can see (मेरी कुर्सी, मेरा पंखा&hellip;). Write down each with its gender. Then look every one up in the noun bank. The ones your ear got wrong go on a separate list. That list is short, and it is the only list you need to revise.",
+  cliff:"<em>हाथी</em> ends in -ी, so by the table it is feminine. And it is not. Now put a word in front of it: <em>बड़ा हाथी</em> or <em>बड़ी हाथी</em>? The adjective is the word that shows whether you knew. So what does a noun do when there are many of them?"},
+
+ {t:"Plurals: what happens to the noun", len:"8 min",
+  body:`<p>A noun has three shapes: the one you know, the plain plural, and the plural you use <strong>in front of a marker</strong> (में, को, पर, से, का&hellip;). One masculine shape also changes for a single noun before a marker: <em>लड़का</em> becomes <em>लड़के</em> in <em>लड़के को</em>. The rest is a table.</p>
+    <table class="data">
+      <tr><th>Kind of noun</th><th>One</th><th>Many</th><th>Many + marker</th></tr>
+      <tr><td>masc. in -ा</td><td class="dv">लड़का</td><td class="dv">लड़के</td><td class="dv">लड़कों</td></tr>
+      <tr><td>masc. other</td><td class="dv">घर</td><td class="dv">घर</td><td class="dv">घरों</td></tr>
+      <tr><td>masc. in -ी</td><td class="dv">हाथी</td><td class="dv">हाथी</td><td class="dv">हाथियों</td></tr>
+      <tr><td>fem. ending in a consonant</td><td class="dv">किताब</td><td class="dv">किताबें</td><td class="dv">किताबों</td></tr>
+      <tr><td>fem. in -ी</td><td class="dv">लड़की</td><td class="dv">लड़कियाँ</td><td class="dv">लड़कियों</td></tr>
+      <tr><td>fem. in -ा</td><td class="dv">कक्षा</td><td class="dv">कक्षाएँ</td><td class="dv">कक्षाओं</td></tr>
+    </table>
+    <p>Read the table down the last column. Every plural in front of a marker ends in <strong>-ों</strong> (or -ओं). That single fact removes half the plural mistakes. Read the second column: <strong>masculine nouns mostly do not change</strong> (<span class="dv">घर, दिन, हाथ</span>), and it is the feminine ones that grow a tail.</p>
+    <p>Three details lose marks. The feminine -ी words take a <strong>short ि</strong> before the tail (<span class="dv">नदी &rarr; नदियाँ</span>, not <span class="dv">नदीयाँ</span>). The tails <em>-ें, -ाँ, -एँ</em> all carry a nasal sound, so the dot or moon is part of the answer: <span class="dv">किताबें</span>, not <span class="dv">किताबे</span>. And a few masculine -ा words are stubborn and never change: <span class="dv">पिता, दादा, नाना, चाचा, राजा, नेता</span>. Their marker forms add -ओं: <span class="dv">राजाओं को</span>.</p>`,
+  demo:"Write six nouns from the bank down the left side of a page, with the gender beside each. Fold the page over, and write the three shapes of each (one, many, many + marker) from memory. Unfold and mark it in a different colour. Any -ी word without a short ि in the plural, and any -ें word without the dot, is wrong.",
+  cliff:"<em>छोटे कमरे में</em> &mdash; the room is one room and small. The noun changed to <em>कमरे</em>. But so did the word <em>छोटा</em>. Why did <em>छोटा</em> change too, and what would it have been for a chair?"},
+
+ {t:"Adjectives copy the noun", len:"8 min",
+  body:`<p>An adjective that ends in -ा has three shapes, and the noun picks which one. Nothing else matters: not the size, not what the sentence is about.</p>
+    <table class="data">
+      <tr><th>Noun is&hellip;</th><th>Adjective</th><th>Example</th></tr>
+      <tr><td>masculine, one, no marker</td><td class="dv">बड़ा</td><td class="dv">बड़ा कमरा</td></tr>
+      <tr><td>masculine, many</td><td class="dv">बड़े</td><td class="dv">बड़े कमरे</td></tr>
+      <tr><td>masculine, one, <em>before a marker</em></td><td class="dv">बड़े</td><td class="dv">बड़े कमरे में</td></tr>
+      <tr><td>feminine (one or many, marker or not)</td><td class="dv">बड़ी</td><td class="dv">बड़ी कुर्सी, बड़ी कुर्सियाँ</td></tr>
+    </table>
+    <p>The third row is the one people miss. The room is one room; the marker <em>में</em> still turns <em>कमरा</em> into <em>कमरे</em> (Lesson 2), and the adjective goes with it. The last row is the one people over-do. A feminine adjective has <strong>one</strong> shape, and the plural is announced only on the noun: <span class="dv">बड़ी लड़कियाँ</span>, never <span class="dv">बड़ियाँ लड़कियाँ</span>.</p>
+    <p>Two families of adjective ignore all of this. Adjectives that do <strong>not</strong> end in -ा never change: <span class="dv">लाल, सुंदर, तेज़, गरम, भारी, गुलाबी</span> (yes, भारी and गुलाबी end in -ी, and it makes no difference). And <span class="dv">नया</span> is the one -या word: <span class="dv">नया, नए, नई</span> (the standard spellings; you will also see <span class="dv">नये, नयी</span>). Words like <span class="dv">मेरा, हमारा, तुम्हारा, अपना</span> follow the same three-shape pattern, so <span class="dv">मेरी बहन</span>, <span class="dv">मेरे भाई को</span>.</p>`,
+  demo:"Choose one adjective that changes (say, छोटा) and one that does not (say, लाल). Write both in front of these four nouns: कुर्सी, कमरा, पतंगें, बगीचे में. You should end up with eight phrases; four of them are identical for लाल. If you wrote any change on लाल, go back to the bank and look at the badge.",
+  cliff:"<em>आज, कल, हमेशा</em> also sit in front of things in a sentence. They do not agree with anything. So where do they go, and why does <em>कल</em> mean two opposite days?"},
+
+ {t:"Time words, and the days and months", len:"6 min",
+  body:`<p>Words about <em>when</em> and <em>how often</em> are the easy ones: <strong>they never change</strong>. No gender, no plural, no marker to fear. Their only rule is position: they come near the front, <em>before</em> the thing they describe and always before the verb.</p>
+    <div class="hbig">आज मैं स्कूल गई। &nbsp;&nbsp; मैं हमेशा सुबह पढ़ती हूँ।</div>
+    <p>Three things to know. <strong>कल</strong> means both yesterday and tomorrow, and so does <strong>परसों</strong> (the day before yesterday and the day after tomorrow). Hindi does not care, because the verb tells you: <span class="dv">कल मैं गई थी</span> is yesterday, <span class="dv">कल मैं जाऊँगी</span> is tomorrow. Second, <strong>days take को</strong> when you mean &lsquo;on&rsquo;: <span class="dv">सोमवार को</span>, and so do most parts of the day: <span class="dv">शाम को, रात को</span>. Third, frequency words form a ladder (the picture above the time bank): <span class="dv">हमेशा, अक्सर, कभी-कभी, शायद ही कभी, कभी नहीं</span>.</p>
+    <p>The seven days are <span class="dv">सोमवार, मंगलवार, बुधवार, गुरुवार, शुक्रवार, शनिवार, रविवार</span>, and each one ends in <em>-वार</em>, meaning &lsquo;day&rsquo;. Read the ending as a clue to the whole word. The twelve months are the English names written in Devanagari (<span class="dv">जनवरी, फ़रवरी, मार्च</span>&hellip;) so the only problem is spelling them. The nukta on <span class="dv">फ़रवरी</span> is the one people forget.</p>`,
+  demo:"Write the days of the week from memory, in a column, then the months. For each, check the spelling against the time bank. Then write one true sentence about your week using three different frequency words (हमेशा, कभी-कभी, कभी नहीं).",
+  cliff:"Everything on this page so far has been about choosing the right word. The next two lessons are about writing it right. <em>दिन</em> and <em>दीन</em> are one small stroke apart. One means &lsquo;day&rsquo;. What does the other mean, and who would notice?"},
+
+ {t:"Matras: short and long, flat and wide", len:"7 min",
+  body:`<p>A matra is the vowel mark attached to a consonant. Eight of them come in short/long or narrow/wide pairs, and the two members of each pair are usually two different words.</p>
+    <div class="ladder">
+      <div class="rung karm"><span class="rn">ि &nbsp;/&nbsp; ी</span><span>Short vs long i: <span class="dv">दिन</span> (day) / <span class="dv">दीन</span> (poor); <span class="dv">पिता</span> (father) / <span class="dv">पीता</span> (drinks).</span></div>
+      <div class="rung karta"><span class="rn">ु &nbsp;/&nbsp; ू</span><span>Short vs long u: <span class="dv">पुल</span> (bridge) / <span class="dv">पूल</span> (pool); <span class="dv">सुना</span> (heard) / <span class="dv">सूना</span> (empty).</span></div>
+      <div class="rung kriya"><span class="rn">े &nbsp;/&nbsp; ै</span><span>e vs ai: <span class="dv">मैं</span> (I) / <span class="dv">में</span> (in); <span class="dv">बेर</span> (berry) / <span class="dv">बैर</span> (enmity).</span></div>
+      <div class="rung chihn"><span class="rn">ो &nbsp;/&nbsp; ौ</span><span>o vs au: <span class="dv">सो</span> (sleep) / <span class="dv">सौ</span> (hundred); <span class="dv">ओर</span> (direction) / <span class="dv">और</span> (and).</span></div>
+    </div>
+    <p>There is no rule that tells you which is right; there is a sound, and you have to hear it. The method: say the word slowly, <em>stretch</em> the vowel, and ask "was that long?". The pairs are so common that the best defence is to learn the pair <strong>together</strong>, which is what the pair cards in the spelling guide are for.</p>
+    <p>Where the errors happen in practice: (a) the short <em>ि</em> and <em>ु</em> get lengthened when you write fast, (b) <em>ै</em> and <em>ौ</em> are written as <em>े</em> and <em>ो</em> because the single stroke is quicker, and (c) the small words <em>मैं, में, है, हैं, और, कौन</em> get spelled from habit instead of from sound. Those six words appear in nearly every answer you write, so they are worth checking every time.</p>`,
+  demo:"Take the last thing you wrote in Hindi (anything). Circle every ि, ी, ु, ू, े, ै, ो and ौ. Say the word aloud and tick each circle only if the vowel length or width matches what you said. Any untick is a spelling to fix.",
+  cliff:"<em>साँस</em> (breath) and <em>सास</em> (mother-in-law) have the same letters and one mark between them. You have not yet used the marks that sit above and below the line. What do the moon, the dot, the two dots and the tiny dash do?"},
+
+ {t:"Dots, dashes and joined letters", len:"8 min",
+  body:`<p>Five small marks decide many of the words you will lose marks on.</p>
+    <p><strong>ँ (chandrabindu) or ं (dot).</strong> A nasal sound is written with the moon when nothing else sits above the letter (<span class="dv">आँख, साँस, कहाँ, माँ</span>) and with the plain dot otherwise: before a consonant (<span class="dv">पंखा, आनंद</span>) or when another mark is already up there (<span class="dv">में, नहीं, हैं</span>). Miss it and the word changes: <span class="dv">कहा</span> (said) &ne; <span class="dv">कहाँ</span> (where).</p>
+    <p><strong>़ (nukta).</strong> A dot under a letter. It makes <span class="dv">ज़, फ़</span> (z and f sounds, from Urdu and English) and turns <span class="dv">ड, ढ</span> into the flaps <span class="dv">ड़, ढ़</span>. The flaps never start a word: <span class="dv">बड़ा, पेड़, पढ़ना, सड़क</span>. Native words do not take it (<span class="dv">फूल</span>), so guessing "dot everything" fails as badly as guessing "dot nothing".</p>
+    <p><strong>ः (visarga)</strong> is the &lsquo;h&rsquo; echo at the end of a few Sanskrit-origin words: <span class="dv">अतः, पुनः</span>. <strong>्  (halant)</strong> removes a letter's hidden &lsquo;a&rsquo;: this is how <span class="dv">क + ष</span> becomes <span class="dv">क्ष</span> and how <span class="dv">अर्थात्</span> ends on a bare t.</p>
+    <p><strong>Conjuncts.</strong> Every joined letter is just the first letter with its halant, glued to the second: <span class="dv">क्ष</span> = क् + ष, <span class="dv">त्र</span> = त् + र, <span class="dv">ज्ञ</span> = ज् + ञ, <span class="dv">श्र</span> = श् + र. The mistake is spelling them as they sound: <span class="dv">ग्यान</span> for <span class="dv">ज्ञान</span>, <span class="dv">शिक्शा</span> for <span class="dv">शिक्षा</span>. The <span class="dv">स्त, द्ध, द्य</span> family is the same idea, and the guide lists twelve.</p>`,
+  demo:"Open the spelling doctor and do ten words in a row. Keep a tally: how many did you get right on the first Check? Then do the puzzles. The rule you got wrong most often is your revision topic for tomorrow, and it is on the guide as one short paragraph.",
+  cliff:"You now have every mark you need. The questions below mix the gender rules and the spelling rules in the same paragraph, the way an exam does. Q14 and Q15 do it with six things to catch at once."}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which of these nouns is <strong>feminine</strong>?",
+  o:["दरवाज़ा","कमरा","खिड़की","पंखा"],
+  a:2,
+  why:"<strong>खिड़की</strong> ends in -ी, the feminine clue (plural: खिड़कियाँ). The other three end in -आ, the masculine clue: दरवाज़े, कमरे, पंखे. This is the easy version of the rule &mdash; Q5 is the hard one."},
+
+ {n:2, lvl:"warm-up", q:"<em>The small girls are playing.</em> &nbsp; ___ लड़कियाँ खेल रही हैं।",
+  o:["छोटा","छोटे","छोटी","छोटियाँ"],
+  a:2,
+  why:"लड़की is feminine, so the adjective is <strong>छोटी</strong> &mdash; and it stays छोटी for one girl or many. The plural is announced once, on the noun (लड़कियाँ). छोटियाँ is the tempting wrong answer: the adjective never takes a plural ending. छोटा and छोटे are the masculine shapes."},
+
+ {n:3, lvl:"standard", q:"<em>I am going to school.</em> &nbsp; ___ स्कूल जा रही हूँ।",
+  o:["मै","में","मैं","मे"],
+  a:2,
+  why:"<strong>मैं</strong> is &lsquo;I&rsquo;: the wide <em>ै</em> and the nasal dot. <em>में</em> is &lsquo;in&rsquo; (a different word, narrow े). <em>मै</em> and <em>मे</em> lose the dot, and neither is a word. This one small word appears in almost every answer you write, so it is worth getting right every time."},
+
+ {n:4, lvl:"standard", q:"<em>The book is in the big room.</em> &nbsp; किताब ___ कमरे में है।",
+  o:["बड़ा","बड़े","बड़ी","बड़ों"],
+  a:1,
+  why:"कमरा is masculine. It is <em>one</em> room, but the marker में has already turned it into <strong>कमरे</strong>, and the adjective goes with it: <strong>बड़े</strong>. बड़ा would be right with no marker (बड़ा कमरा). बड़ी is feminine. बड़ों is a noun form, not an adjective."},
+
+ {n:5, lvl:"trap", q:"Which noun is <strong>masculine</strong> even though it ends in -ी?",
+  o:["रोटी","नदी","हाथी","लड़की"],
+  a:2,
+  why:"<strong>हाथी</strong> (elephant) is masculine: बड़ा हाथी. रोटी, नदी and लड़की all obey the -ी rule and are feminine. The rule is right about seven times in eight; हाथी, पानी, दही, आदमी, पड़ोसी and भाई are among the ones that are not."}
+];
+
+const SHORTS = [
+ {n:6, lvl:"warm-up", m:2, q:"For each noun, say whether it is masculine or feminine and write its <strong>plural</strong>:<br><strong>(a)</strong> कुर्सी (chair) <span class='num'>[1]</span><br><strong>(b)</strong> दरवाज़ा (door) <span class='num'>[1]</span>",
+  scheme:["(a) <strong>Feminine; कुर्सियाँ.</strong> Both needed for the mark. -ी drops the ी and adds -ियाँ (short ि). <span class='num'>[1]</span>",
+          "(b) <strong>Masculine; दरवाज़े.</strong> Both needed. The -ा of a masculine word becomes -े; the dot under ज़ must be there. <span class='num'>[1]</span>"],
+  tip:"Give both halves of each answer, and check the tail of the plural: कुर्सीयाँ (long ी) and दरवाजे (no dot) both lose the mark."},
+
+ {n:7, lvl:"standard", m:2, q:"Write the adjective in the correct form, and write the whole phrase:<br><strong>(a)</strong> ___ सहेलियाँ (अच्छा, good) <span class='num'>[1]</span><br><strong>(b)</strong> ___ कमरे में (नया, new) <span class='num'>[1]</span>",
+  scheme:["(a) <strong>अच्छी सहेलियाँ.</strong> सहेली is feminine, so अच्छी, and it stays अच्छी in the plural. <span class='num'>[1]</span>",
+          "(b) <strong>नए कमरे में.</strong> (नये is also accepted.) कमरे is masculine and before में, so नया becomes नए. <span class='num'>[1]</span>"],
+  tip:"Ask two questions in order: what gender is the noun? and is it many or in front of a marker? The adjective only needs those two answers."},
+
+ {n:8, lvl:"standard", m:2, q:"Each sentence has <strong>one</strong> spelling mistake. Write it out correctly.<br><strong>(a)</strong> मै रोज़ स्कूल जाती हूँ। <span class='num'>[1]</span><br><strong>(b)</strong> यह लड़का बहुत बडा है। <span class='num'>[1]</span>",
+  scheme:["(a) <strong>मैं रोज़ स्कूल जाती हूँ।</strong> The pronoun needs its nasal dot: मैं. <span class='num'>[1]</span>",
+          "(b) <strong>यह लड़का बहुत बड़ा है।</strong> बड़ा has the flapped ड़ (dot under the ड). <span class='num'>[1]</span>"],
+  tip:"Read each sentence one word at a time, out loud, pointing at the word. Errors hide in the quick words and in the words that need a dot."},
+
+ {n:9, lvl:"standard", m:2, q:"<strong>(a)</strong> Write in Hindi: <em>I always drink milk in the morning.</em> <span class='num'>[1]</span><br><strong>(b)</strong> Write in Hindi the day <em>after</em> Saturday and the day <em>before</em> Wednesday. <span class='num'>[1]</span>",
+  scheme:["(a) <strong>मैं हमेशा सुबह दूध पीती हूँ।</strong> (हमेशा and सुबह may swap.) One mark for the whole sentence: feminine <em>पीती</em> with long ी, the verb last, and the correct spelling of हमेशा. <span class='num'>[1]</span>",
+          "(b) <strong>रविवार, मंगलवार.</strong> Both days, both spelled correctly. <span class='num'>[1]</span>"],
+  tip:"In (a), the time words come before the verb and do not change. Only the verb has to agree with you."},
+
+ {n:10, lvl:"trap", m:2, q:"Rewrite each sentence in the <strong>plural</strong>:<br><strong>(a)</strong> यह अच्छा लड़का है। <span class='num'>[1]</span><br><strong>(b)</strong> वह छोटी लड़की है। <span class='num'>[1]</span>",
+  scheme:["(a) <strong>ये अच्छे लड़के हैं।</strong> Four things change: यह &rarr; ये, अच्छा &rarr; अच्छे, लड़का &rarr; लड़के, है &rarr; हैं. <span class='num'>[1]</span>",
+          "(b) <strong>वे छोटी लड़कियाँ हैं।</strong> वह &rarr; वे, लड़की &rarr; लड़कियाँ, है &rarr; हैं &mdash; and <strong>छोटी stays छोटी</strong>. <span class='num'>[1]</span>"],
+  tip:"Count what changes in (a) and what does not in (b). The feminine adjective is the trap: it sits still while everything around it moves."}
+];
+
+const WORDS = [
+ {n:11, lvl:"standard", m:3, q:"Fill each gap with the <strong>plural</strong> of the word in brackets.<br><strong>(a)</strong> मेरे घर में तीन ___ हैं। (कमरा) <span class='num'>[1]</span><br><strong>(b)</strong> रसोई में कई ___ रखे हैं। (बर्तन) <span class='num'>[1]</span><br><strong>(c)</strong> मेज़ पर दो ___ रखी हैं। (किताब) <span class='num'>[1]</span>",
+  hints:["First decide the gender and the ending of each word: masculine -ा, masculine other, or feminine consonant.",
+         "A masculine word in -ा becomes -े. A masculine word that ends in a consonant does not change at all in the plain plural. A feminine word ending in a consonant adds a tail.",
+         "The tail in (c) carries a nasal sound, so it needs a dot on top. The verb रखी हैं is already feminine plural and confirms the gender."],
+  sol:["<strong>(a)</strong> कमरे. <em>(masculine -ा &rarr; -े)</em>",
+       "<strong>(b)</strong> बर्तन. <em>(masculine, ends in a consonant: the plain plural is the same as the one. The verb रखे already tells you it is masculine plural.)</em>",
+       "<strong>(c)</strong> किताबें. <em>(feminine consonant ending adds -ें; without the dot, किताबे scores nothing)</em>",
+       "Notice what the verb tells you for free: रखे (masculine plural) in (b) and रखी (feminine) in (c). Reading the verb is a second way to check the gender."]},
+
+ {n:12, lvl:"standard", m:3, q:"Translate into Hindi as a phrase, keeping the marker. Words you need: small = छोटा, tall = लंबा, new = नया, room = कमरा, girl = लड़की, pen = कलम.<br><strong>(a)</strong> in the small room <span class='num'>[1]</span><br><strong>(b)</strong> to the tall girls <span class='num'>[1]</span><br><strong>(c)</strong> with the new pens <span class='num'>[1]</span>",
+  hints:["For each phrase, write down: gender of the noun, one or many, and the marker. Only then write Hindi.",
+         "(a) and (b) and (c) all have a marker, so every noun takes its &lsquo;in front of a marker&rsquo; shape. The many-nouns end in -ों.",
+         "(a) is masculine and one: noun <em>and</em> adjective both change. (b) and (c) are feminine: the adjective is the same feminine form whether many or not."],
+  sol:["<strong>(a)</strong> छोटे कमरे में. <em>(कमरा &rarr; कमरे before में; छोटा &rarr; छोटे with it)</em>",
+       "<strong>(b)</strong> लंबी लड़कियों को. <em>(feminine adjective लंबी; plural before a marker -ों; को for &lsquo;to a person&rsquo;)</em>",
+       "<strong>(c)</strong> नई कलमों से. <em>(नया &rarr; नई for feminine; कलमों; से for a tool)</em>",
+       "The marker is glued to the back of the noun, and the adjective comes first. Adjective, noun, marker &mdash; that is the same order as in the agreement machine."]},
+
+ {n:13, lvl:"standard", m:3, q:"Each sentence has <strong>one</strong> spelling mistake, and the wrong spelling may be a real word. Write each sentence correctly.<br><strong>(a)</strong> वह गाँव बहुत सुना था। (That village was very empty and lonely.) <span class='num'>[1]</span><br><strong>(b)</strong> तुम कहा जा रही हो? (Where are you going?) <span class='num'>[1]</span><br><strong>(c)</strong> दोपहर में दुकान पर बहुत भीड होती है। (There is a big crowd at the shop in the afternoon.) <span class='num'>[1]</span>",
+  hints:["Read the English in the brackets. In each sentence, one word does not match its meaning.",
+         "(a) and (b) are both real words that mean something else. (c) is a word with a missing mark.",
+         "(a) the vowel is long. (b) a nasal mark is missing at the end. (c) the last letter needs a dot underneath."],
+  sol:["<strong>(a)</strong> वह गाँव बहुत <strong>सूना</strong> था। <em>(सुना = heard; सूना, with the long ऊ, = empty, lonely)</em>",
+       "<strong>(b)</strong> तुम <strong>कहाँ</strong> जा रही हो? <em>(कहा = said. Where is कहाँ, with the chandrabindu)</em>",
+       "<strong>(c)</strong> &hellip; बहुत <strong>भीड़</strong> होती है। <em>(the flapped ड़ needs its dot; भीड़ is feminine, hence होती)</em>",
+       "Two of the three errors were real words. A spell-checker would pass both, and only the meaning catches them."]},
+
+ {n:14, lvl:"hard", m:3, q:"Translate into Hindi. Words you may need: dog = कुत्ता, garden = बगीचा, bag = बैग (masc.), tree = पेड़, bird = चिड़िया, table = मेज़, sleep = सोना, see = देखना, sister = बहन.<br><strong>(a)</strong> The big black dogs are sleeping in the small garden. <span class='num'>[1]</span><br><strong>(b)</strong> My tall sister's red bags are on the table. <span class='num'>[1]</span><br><strong>(c)</strong> Ramesh saw two beautiful birds on the old trees. <span class='num'>[1]</span>",
+  hints:["Chunk each sentence: who | the rest | verb. In each chunk, list the nouns with their gender, number and marker before you write any Hindi.",
+         "(a) two adjectives in front of one plural masculine noun, and another adjective with a masculine noun before में. (b) the possessed noun decides का / की / के, not the owner. (c) ने is in the past tense, so the verb copies the object.",
+         "(c): the object is the birds. What gender is चिड़िया? That decides the verb ending. And पेड़ needs its dot, and its -ों."],
+  sol:["<strong>(a)</strong> बड़े काले कुत्ते छोटे बगीचे में सो रहे हैं। <em>(both adjectives take -े for masculine many; बगीचा &rarr; बगीचे before में and छोटा &rarr; छोटे with it; सो रहे हैं agrees with कुत्ते)</em>",
+       "<strong>(b)</strong> मेरी लंबी बहन के लाल बैग मेज़ पर हैं। <em>(मेरी and लंबी agree with बहन (feminine); के agrees with बैग (masculine plural), not with the owner; लाल never changes; हैं for many)</em>",
+       "<strong>(c)</strong> रमेश ने पुराने पेड़ों पर दो सुंदर चिड़ियाँ देखीं। <em>(पुराना &rarr; पुराने with पेड़ों; the noun takes -ों before पर; सुंदर never changes; ने makes the verb copy the object, which is चिड़ियाँ, feminine plural: देखीं)</em>",
+       "The three things that separate a 21 from a 26 are all here: a marker turning the adjective, an adjective that does not change, and a verb that follows the object instead of the doer."]},
+
+ {n:15, lvl:"hard", m:3, q:"This paragraph has <strong>six</strong> mistakes: two in each line, made of gender, number, matra and dots. Write each line correctly. One mark for a line only if <em>both</em> its mistakes are fixed.<br><strong>(a)</strong> मेरी छोटा बहन रोज़ सुबह दूध पिती है। <span class='num'>[1]</span><br><strong>(b)</strong> वह बड़े किताबे पढ़ती है। <span class='num'>[1]</span><br><strong>(c)</strong> हमारे स्कूल में तीन बड़ी मैदान है। <span class='num'>[1]</span>",
+  hints:["In each line, the two mistakes are different kinds. Look for one agreement mistake and one spelling or number mistake.",
+         "(a) which adjective is in front of the feminine noun बहन, and what is the long vowel in the verb? (b) is the noun feminine? What tail does it need? (c) is मैदान masculine or feminine, and is there one of them?",
+         "(a) छोटा &rarr; ? and पिती &rarr; ? (b) बड़े &rarr; ? and किताबे &rarr; ? (c) बड़ी &rarr; ? and है &rarr; ?"],
+  sol:["<strong>(a)</strong> मेरी <strong>छोटी</strong> बहन रोज़ सुबह दूध <strong>पीती</strong> है। <em>(feminine adjective; the root पी has a long ी, so पीती)</em>",
+       "<strong>(b)</strong> वह <strong>बड़ी किताबें</strong> पढ़ती है। <em>(किताब is feminine, so बड़ी; and the plural tail -ें needs its dot)</em>",
+       "<strong>(c)</strong> हमारे स्कूल में तीन <strong>बड़े</strong> मैदान <strong>हैं</strong>। <em>(मैदान is masculine, so the adjective is बड़े; three of them, so हैं)</em>",
+       "Six mistakes in three lines is what a real answer looks like when it is written fast. Read each line for meaning first, then for gender, then for dots."]}
+];
+/* ---------------- tool 1: the agreement machine ---------------- */
+const ACHIPS = ["बड़ा", "छोटा", "अच्छा", "नया", "पुराना", "काला", "मीठा", "लाल", "सुंदर", "भारी"];
+const MARKS = [["", "no marker"], ["में", "में in"], ["को", "को to"], ["पर", "पर on"], ["से", "से from, with"]];
+/* puzzles: n noun, a adjective, num s/p, mk marker, g the true gender, t the Hindi the machine must show (computed by the Python engine, not the JS one) */
+const TPZ = [
+ {"id": "p1", "ask": "the big rooms", "n": "कमरा", "a": "बड़ा", "num": "p", "mk": "", "g": "m", "t": "बड़े कमरे"},
+ {"id": "p2", "ask": "in the small room", "n": "कमरा", "a": "छोटा", "num": "s", "mk": "में", "g": "m", "t": "छोटे कमरे में"},
+ {"id": "p3", "ask": "on the new tables", "n": "मेज़", "a": "नया", "num": "p", "mk": "पर", "g": "f", "t": "नई मेज़ों पर"},
+ {"id": "p4", "ask": "to the good girls", "n": "लड़की", "a": "अच्छा", "num": "p", "mk": "को", "g": "f", "t": "अच्छी लड़कियों को"},
+ {"id": "p5", "ask": "red kites", "n": "पतंग", "a": "लाल", "num": "p", "mk": "", "g": "f", "t": "लाल पतंगें"},
+ {"id": "p6", "ask": "in the old gardens", "n": "बगीचा", "a": "पुराना", "num": "p", "mk": "में", "g": "m", "t": "पुराने बगीचों में"},
+ {"id": "p7", "ask": "the heavy elephants", "n": "हाथी", "a": "भारी", "num": "p", "mk": "", "g": "m", "t": "भारी हाथी"},
+ {"id": "p8", "ask": "with the sweet mangoes", "n": "आम", "a": "मीठा", "num": "p", "mk": "से", "g": "m", "t": "मीठे आमों से"},
+ {"id": "p9", "ask": "a black cat", "n": "बिल्ली", "a": "काला", "num": "s", "mk": "", "g": "f", "t": "काली बिल्ली"},
+ {"id": "p10", "ask": "in the beautiful rivers", "n": "नदी", "a": "सुंदर", "num": "p", "mk": "में", "g": "f", "t": "सुंदर नदियों में"},
+ {"id": "p11", "ask": "to the small king", "n": "राजा", "a": "छोटा", "num": "s", "mk": "को", "g": "m", "t": "छोटे राजा को"},
+ {"id": "p12", "ask": "on the big chair", "n": "कुर्सी", "a": "बड़ा", "num": "s", "mk": "पर", "g": "f", "t": "बड़ी कुर्सी पर"},
+ {"id": "p13", "ask": "the good brothers", "n": "भाई", "a": "अच्छा", "num": "p", "mk": "", "g": "m", "t": "अच्छे भाई"},
+ {"id": "p14", "ask": "from the old cupboards", "n": "अलमारी", "a": "पुराना", "num": "p", "mk": "से", "g": "f", "t": "पुरानी अलमारियों से"},
+ {"id": "p15", "ask": "new books", "n": "किताब", "a": "नया", "num": "p", "mk": "", "g": "f", "t": "नई किताबें"}
+];
+/* ---------------- practice drill (24, not counted in the 30) ----------------
+   generated from the Python rule engine; options pre-shuffled */
+const DRILL = [
+ {"en": "the small girl", "s": "___ लड़की", "o": ["छोटे", "छोटी", "छोटा"], "a": 1, "why": "लड़की is feminine, so the adjective takes the feminine -ी form: <strong>छोटी</strong>."},
+ {"en": "in the big house", "s": "___ घर में", "o": ["बड़ी", "बड़े", "बड़ा"], "a": 1, "why": "घर is masculine and the noun is many or before a marker, so the adjective takes the -े form: <strong>बड़े</strong>."},
+ {"en": "the new books", "s": "___ किताबें", "o": ["नया", "नए", "नई"], "a": 2, "why": "किताब is feminine, so the adjective takes the feminine -ी form: <strong>नई</strong>."},
+ {"en": "to the tall boys", "s": "___ लड़कों को", "o": ["लंबी", "लंबे", "लंबा"], "a": 1, "why": "लड़का is masculine and the noun is many or before a marker, so the adjective takes the -े form: <strong>लंबे</strong>."},
+ {"en": "the black dog", "s": "___ कुत्ता", "o": ["काले", "काला", "काली"], "a": 1, "why": "कुत्ता is masculine, so the adjective takes the -ा form: <strong>काला</strong>."},
+ {"en": "on the old wall", "s": "___ दीवार पर", "o": ["पुराना", "पुराने", "पुरानी"], "a": 2, "why": "दीवार is feminine, so the adjective takes the feminine -ी form: <strong>पुरानी</strong>."},
+ {"en": "the sweet mango", "s": "___ आम", "o": ["मीठा", "मीठी", "मीठे"], "a": 0, "why": "आम is masculine, so the adjective takes the -ा form: <strong>मीठा</strong>."},
+ {"en": "red flowers", "s": "___ फूल", "o": ["लाले", "लाली", "लाल"], "a": 2, "why": "लाल never changes, whatever the noun is. Adjectives that do not end in -ा stay exactly as they are (even भारी and गुलाबी)."},
+ {"en": "the beautiful bird", "s": "___ चिड़िया", "o": ["सुंदरी", "सुंदरे", "सुंदर"], "a": 2, "why": "सुंदर never changes, whatever the noun is. Adjectives that do not end in -ा stay exactly as they are (even भारी and गुलाबी)."},
+ {"en": "from the cold water", "s": "___ पानी से", "o": ["ठंडा", "ठंडी", "ठंडे"], "a": 2, "why": "पानी is masculine and the noun is many or before a marker, so the adjective takes the -े form: <strong>ठंडे</strong>."},
+ {"en": "two chair (many)", "s": "दो ___", "o": ["कुर्सीयाँ", "कुर्सिया", "कुर्सियाँ"], "a": 2, "why": "Feminine -ी: drop the ी, add <strong>-ियाँ</strong> (short ि, then याँ)."},
+ {"en": "two book (many)", "s": "दो ___", "o": ["किताबें", "किताबे", "किताबा"], "a": 0, "why": "Feminine, ends in a consonant: add <strong>-ें</strong> &mdash; and the dot (ं) on top matters."},
+ {"en": "two boy (many)", "s": "दो ___", "o": ["लड़कें", "लड़कियाँ", "लड़के"], "a": 2, "why": "Masculine -ा: the ा becomes <strong>-े</strong>. लड़कियाँ is the plural of लड़की."},
+ {"en": "two eye (many)", "s": "दो ___", "o": ["आँखे", "आँखा", "आँखें"], "a": 2, "why": "Feminine, consonant ending: <strong>आँखें</strong>. The nasal ँ stays on the first letter."},
+ {"en": "two river (many)", "s": "दो ___", "o": ["नदियाँ", "नदिया", "नदीयाँ"], "a": 0, "why": "नदी is feminine -ी, so <strong>नदियाँ</strong>: short ि before याँ."},
+ {"en": "two class (many)", "s": "दो ___", "o": ["कक्षें", "कक्षाँ", "कक्षाएँ"], "a": 2, "why": "Feminine -ा words add <strong>-एँ</strong> to the whole word: कक्षा + एँ = कक्षाएँ."},
+ {"en": "two elephant (many)", "s": "दो ___", "o": ["हाथी", "हाथे", "हाथियाँ"], "a": 0, "why": "हाथी is <strong>masculine</strong> although it ends in -ी, so the plural does not change: हाथी. Only in front of a marker does it become हाथियों."},
+ {"en": "in the boys (many)", "s": "___ में", "o": ["लड़के", "लड़कों", "लड़का"], "a": 1, "why": "Many, before a marker: <strong>-ों</strong>. लड़के is the plain plural and is not allowed in front of में."},
+ {"en": "on the books (many)", "s": "___ पर", "o": ["किताबें", "किताबे", "किताबों"], "a": 2, "why": "Many + marker: <strong>किताबों</strong>. Plain plural किताबें cannot take a marker."},
+ {"en": "to the kings (many)", "s": "___ को", "o": ["राजा", "राजाओं", "राजों"], "a": 1, "why": "राजा is one of the -ा masculine words that never change shape, so the oblique plural is राजा + <strong>ओं</strong> = राजाओं."},
+ {"en": "elephant", "s": "हाथी is ___", "o": ["masculine", "feminine"], "a": 0, "why": "A famous exception: ends in -ी but is <strong>masculine</strong> (हाथी, पानी, दही, आदमी)."},
+ {"en": "roti, chapati", "s": "रोटी is ___", "o": ["masculine", "feminine"], "a": 1, "why": "Ends in -ी, and this time the rule works: <strong>feminine</strong>."},
+ {"en": "class, classroom", "s": "कक्षा is ___", "o": ["masculine", "feminine"], "a": 1, "why": "Ends in -आ but is <strong>feminine</strong>: Sanskrit-origin words such as कक्षा, परीक्षा, हवा, भाषा break the -आ rule."},
+ {"en": "brother", "s": "भाई is ___", "o": ["masculine", "feminine"], "a": 0, "why": "Ends in -ई but is <strong>masculine</strong>: a male person is masculine whatever the ending says."}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const pre = e.target.closest('[data-preset]');
+  if(pre && typeof window.setPreset==='function'){ window.setPreset(pre.dataset.preset); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, drill:{}, bDone:{}, bFirst:{}, pzSeen:{} };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the puzzle engine (shared by both tools) ---------------- */
+function mkPuzzles(btnId, boxId, list){
+  let cur = null;
+  const btn = document.getElementById(btnId), box = document.getElementById(boxId);
+  if(!btn || !box) return;
+  btn.addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*list.length);
+    if(cur===i) i = (i+1)%list.length;
+    cur = i;
+    const P = list[i];
+    box.classList.add('on');
+    box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+      <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-pz="${j}">${o}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-pz]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ok = +b.dataset.pz === P.a;
+        if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+        box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+          <div class="qrow"><button class="btn ghost small" type="button" class="again">Another one</button></div>`;
+        box.querySelector('button').addEventListener('click', ()=>btn.click());
+      });
+    });
+  });
+}
+
+
+
+
+/* ---------------- the rule engine (pure functions: no DOM here) ----------------
+   nounRule: the three shapes a noun can take. so = one, before a marker; p = many; po = many, before a marker.
+   adjForms: ms (masc, one, plain), mo (masc, many or before a marker), f (feminine, always). */
+const M_SAME_AA = ['पिता','दादा','नाना','चाचा','मामा','राजा','नेता'];
+function nounRule(w, g){
+  const last = w.slice(-1);
+  if(g === 'm'){
+    if(last === 'ा'){
+      if(M_SAME_AA.indexOf(w) >= 0) return {so:w, p:w, po:w + 'ओं'};
+      const st = w.slice(0,-1); return {so:st + 'े', p:st + 'े', po:st + 'ों'};
+    }
+    if(last === 'ी') return {so:w, p:w, po:w.slice(0,-1) + 'ियों'};
+    if(last === 'ई') return {so:w, p:w, po:w.slice(0,-1) + 'इयों'};
+    if(last === 'ू') return {so:w, p:w, po:w.slice(0,-1) + 'ुओं'};
+    return {so:w, p:w, po:w + 'ों'};
+  }
+  if(w.endsWith('िया')) return {so:w, p:w.slice(0,-1) + 'ाँ', po:w.slice(0,-1) + 'ों'};
+  if(last === 'ी') return {so:w, p:w.slice(0,-1) + 'ियाँ', po:w.slice(0,-1) + 'ियों'};
+  if(last === 'ई') return {so:w, p:w.slice(0,-1) + 'इयाँ', po:w.slice(0,-1) + 'इयों'};
+  if(last === 'ि') return {so:w, p:w + 'याँ', po:w + 'यों'};
+  if(last === 'ा') return {so:w, p:w + 'एँ', po:w + 'ओं'};
+  return {so:w, p:w + 'ें', po:w + 'ों'};
+}
+function adjForms(w, t){
+  if(t === 'V') return {ms:w, mo:w, f:w};
+  if(w.endsWith('या')){ const st = w.slice(0,-2); return {ms:w, mo:st + 'ए', f:st + 'ई'}; }
+  const st = w.slice(0,-1); return {ms:w, mo:st + 'े', f:st + 'ी'};
+}
+function adjPick(F, g, num, ob){
+  if(g === 'f') return F.f;
+  return (num === 'p' || ob) ? F.mo : F.ms;
+}
+/* the phrase the machine shows: adjective + noun + marker. g is the gender being USED (a student's guess may be wrong) */
+function buildPhrase(noun, adj, g, num, mk){
+  const R = nounRule(noun.w, noun.g), ob = !!mk;
+  const nn = num === 's' ? (ob ? R.so : noun.w) : (ob ? R.po : R.p);
+  const aa = adjPick(adjForms(adj.w, adj.t), g, num, ob);
+  return {adj:aa, noun:nn, mk:mk, text:aa + ' ' + nn + (mk ? ' ' + mk : '')};
+}
+/* count the letters of a word that start a sound (a letter straight after a halant does not) */
+function letterCount(w){
+  let n = 0, prev = '';
+  for(const ch of w){
+    const c = ch.codePointAt(0);
+    if(((c >= 0x904 && c <= 0x939) || (c >= 0x958 && c <= 0x961)) && prev !== 0x94D) n++;
+    prev = c;
+  }
+  return n;
+}
+/* the gender clue an ending gives, and whether it turned out right */
+function clueOf(w, g){
+  let k, cg, t;
+  if(/(ावट|ाहट)$/.test(w)){ k = 'avat'; cg = 'f'; t = 'ends -आवट / -आहट &rarr; feminine'; }
+  else if(/ाई$/.test(w)){ k = 'aai'; cg = 'f'; t = 'ends -आई &rarr; feminine'; }
+  else if(/िया$/.test(w)){ k = 'iya'; cg = 'f'; t = 'ends -इया (a small thing) &rarr; feminine'; }
+  else if(/ता$/.test(w) && letterCount(w) >= 3){ k = 'ta'; cg = 'f'; t = 'ends -ता (an idea or quality) &rarr; feminine'; }
+  else if(/ा$/.test(w)){ k = 'aa'; cg = 'm'; t = 'ends -आ &rarr; usually masculine'; }
+  else if(/[ीई]$/.test(w)){ k = 'ii'; cg = 'f'; t = 'ends -ई &rarr; usually feminine'; }
+  else if(/पन$/.test(w)){ k = 'pan'; cg = 'm'; t = 'ends -पन &rarr; masculine'; }
+  else return {k:'none', cg:null, ok:null, t:'no clue in the ending &mdash; learn the word, or use the meaning'};
+  return {k:k, cg:cg, ok:cg === g, t:t};
+}
+const NOUNOBJ = NOUNS.map(r => ({w:r[0], en:r[1], g:r[2], th:r[3], pl:r[4]}));
+const ADJOBJ = ADJS.map(r => ({w:r[0], en:r[1], t:r[2], grp:r[3]}));
+const nounByW = w => NOUNOBJ.find(n => n.w === w);
+const adjByW = w => ADJOBJ.find(a => a.w === w);
+
+/* ---------------- small helpers ---------------- */
+const gid = id => document.getElementById(id);
+function el(tag, cls, html){ const e = document.createElement(tag); if(cls) e.className = cls; if(html!==undefined) e.innerHTML = html; return e; }
+function shuffle(a){ a = a.slice(); for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; }
+const GWORD = {m:'masculine &middot; पुल्लिंग', f:'feminine &middot; स्त्रीलिंग'};
+
+/* ---------------- bank pages: nouns, adjectives, time words, pairs ---------------- */
+function makeBank(o){
+  const st = {cat:'all', g:'all', q:'', cover:false};
+  function render(){
+    const grid = gid(o.grid); grid.innerHTML = '';
+    const q = st.q.trim().toLowerCase();
+    const list = o.items.filter(it => o.match(it, st, q));
+    list.forEach(it => {
+      const c = o.card(it);
+      if(st.cover){
+        c.classList.add('cover');
+        c.addEventListener('click', ()=>c.classList.toggle('shown'));
+      }
+      grid.appendChild(c);
+    });
+    if(!list.length) grid.appendChild(el('div','vempty','Nothing matches that. Try the English word, or fewer letters.'));
+    gid(o.count).textContent = list.length + ' of ' + o.items.length;
+  }
+  function chips(host, cats, key){
+    const h = gid(host);
+    cats.forEach(c => {
+      const b = el('button','bchip' + (c[0]==='all' ? ' sel' : ''), c[1]); b.type = 'button'; b.dataset.k = c[0];
+      b.addEventListener('click', ()=>{
+        st[key] = c[0];
+        h.querySelectorAll('.bchip').forEach(x=>x.classList.toggle('sel', x===b));
+        render();
+      });
+      h.appendChild(b);
+    });
+  }
+  chips(o.cats, o.catList, 'cat');
+  if(o.gHost) chips(o.gHost, o.gList, 'g');
+  if(o.q) gid(o.q).addEventListener('input', e=>{ st.q = e.target.value; render(); });
+  gid(o.cover).addEventListener('change', e=>{ st.cover = e.target.checked; render(); });
+  render();
+  return {render, st};
+}
+
+function nounCard(N){
+  const R = nounRule(N.w, N.g), C = clueOf(N.w, N.g);
+  const c = el('button','vcard' + (C.ok===false ? ' exc' : '')); c.type = 'button';
+  const many = N.pl === null ? '&mdash; (not counted)' : N.pl;
+  const marker = N.pl === null ? (R.so !== N.w ? 'one: ' + R.so : 'no change') : ((R.so !== N.w ? 'one: ' + R.so + ' &middot; ' : '') + 'many: ' + R.po);
+  const clue = C.ok === null ? '<div class="clue">' + C.t + '</div>'
+    : (C.ok ? '<div class="clue">clue: ' + C.t + ' &#10003;</div>' : '<div class="clue exc">exception: ' + C.t + ', but this word is ' + (N.g==='m' ? 'masculine' : 'feminine') + '</div>');
+  c.innerHTML = '<span class="gbadge ' + N.g + '">' + (N.g==='m' ? 'M' : 'F') + '</span><div class="vh">' + N.w + '</div><div class="ve">' + N.en + '</div>' +
+    '<div class="vf"><span><b>gender</b><span class="' + (N.g==='m' ? 'gm' : 'gf') + '">' + GWORD[N.g] + '</span></span>' +
+    '<span><b>many</b>' + many + '</span><span><b>+ marker</b>' + marker + '</span>' + clue + '</div>';
+  return c;
+}
+function adjCard(A){
+  const F = adjForms(A.w, A.t);
+  const c = el('button','vcard'); c.type = 'button';
+  const body = A.t === 'V'
+    ? '<span><b>type</b><span class="wn">never changes</span></span><span><b>all forms</b>' + A.w + '</span>'
+    : '<span><b>type</b><span class="wa">changes</span></span><span><b>masc. one</b>' + F.ms + '</span><span><b>masc. many / marker</b>' + F.mo + '</span><span><b>feminine</b>' + F.f + '</span>';
+  c.innerHTML = '<span class="gbadge ' + (A.t==='V' ? 'v' : 'a') + '">' + (A.t==='V' ? 'FIXED' : 'CHANGES') + '</span><div class="vh">' + A.w + '</div><div class="ve">' + A.en + '</div><div class="vf">' + body + '</div>';
+  return c;
+}
+function timeCard(T){
+  const c = el('button','vcard'); c.type = 'button';
+  const ex = T[3] ? '<span style="font-size:16px"><span class="dv">' + T[3] + '</span></span><span style="font-size:14px;color:var(--ink-soft)">' + T[4] + '</span>' : '';
+  c.innerHTML = '<span class="gbadge t">' + ({now:'WHEN',often:'HOW OFTEN',part:'PART OF DAY',day:'DAY',month:'MONTH'})[T[0]] + '</span><div class="vh">' + T[1] + '</div>' +
+    '<div class="vf"><span style="font-size:16px;font-weight:600">' + T[2] + '</span>' + ex + '</div>';
+  return c;
+}
+function pairCard(P){
+  const c = el('button','pcard'); c.type = 'button'; c.style.textAlign = 'left';
+  c.innerHTML = '<div class="pr">' + P[0] + '</div>' +
+    '<div><div class="pw">' + P[1] + '</div><div class="pm">' + P[2] + '</div></div><div><div class="pw">' + P[3] + '</div><div class="pm">' + P[4] + '</div></div>';
+  return c;
+}
+function banksInit(){
+  makeBank({grid:'n-grid', count:'n-count', cats:'n-cats', gHost:'n-g', q:'n-q', cover:'n-cover',
+    items:NOUNOBJ, catList:THEMES, gList:[['all','All genders'],['m','Masculine'],['f','Feminine'],['x','Exceptions only']],
+    match:(N, st, q) => (st.cat==='all' || N.th===st.cat) && (st.g==='all' || (st.g==='x' ? clueOf(N.w,N.g).ok===false : N.g===st.g)) &&
+      (!q || N.w.indexOf(q)>=0 || N.en.toLowerCase().indexOf(q)>=0),
+    card:nounCard});
+  makeBank({grid:'j-grid', count:'j-count', cats:'j-cats', q:'j-q', cover:'j-cover',
+    items:ADJOBJ, catList:ACATS,
+    match:(A, st, q) => (st.cat==='all' || A.t===st.cat || A.grp===st.cat) && (!q || A.w.indexOf(q)>=0 || A.en.toLowerCase().indexOf(q)>=0),
+    card:adjCard});
+  makeBank({grid:'m-grid', count:'m-count', cats:'m-cats', q:'m-q', cover:'m-cover',
+    items:TIMEW, catList:TCATS,
+    match:(T, st, q) => (st.cat==='all' || T[0]===st.cat) && (!q || T[1].indexOf(q)>=0 || T[2].toLowerCase().indexOf(q)>=0),
+    card:timeCard});
+  makeBank({grid:'p-grid', count:'p-count', cats:'p-cats', cover:'p-cover',
+    items:PAIRS, catList:PRULES,
+    match:(P, st) => st.cat==='all' || P[0]===st.cat,
+    card:pairCard});
+}
+
+/* ---------------- tool 1: the agreement machine ---------------- */
+const T1 = {theme:'school', w:'कक्षा', guess:null, adj:'बड़ा', num:'s', mk:''};
+let t1Puz = null, t1Tries = 0, t1Done = false;
+const MKEN = {'':'', 'में':'in', 'को':'to', 'पर':'on', 'से':'from / with'};
+function t1Noun(){ return nounByW(T1.w); }
+function t1Result(){
+  const N = t1Noun(), A = adjByW(T1.adj);
+  const useG = T1.guess || N.g;
+  const P = buildPhrase(N, A, useG, T1.num, T1.mk);
+  const truth = buildPhrase(N, A, N.g, T1.num, T1.mk);
+  return {N, A, P, truth, said: T1.guess, right: T1.guess === N.g};
+}
+function t1Why(R){
+  const N = R.N, A = R.A, g = N.g, C = clueOf(N.w, g), F = adjForms(A.w, A.t), Rn = nounRule(N.w, g), ob = !!T1.mk;
+  const lines = [];
+  if(T1.guess){
+    const gw = g==='m' ? 'masculine' : 'feminine', sw = T1.guess==='m' ? 'masculine' : 'feminine';
+    let cl = C.ok===null ? 'The ending gives no clue &mdash; this is one to know, or to check against the meaning.'
+      : (C.ok ? 'The ending clue works here: ' + C.t + '.' : 'This word <strong>breaks its ending clue</strong> (' + C.t + ') &mdash; it is one of the exceptions.');
+    lines.push(R.right ? '<strong>Gender: right.</strong> ' + N.w + ' is ' + gw + '. ' + cl
+      : '<strong>Gender: no.</strong> You said ' + sw + '; ' + N.w + ' is <strong>' + gw + '</strong>. ' + cl);
+  } else lines.push('<strong>Gender first.</strong> Decide it, then tap masculine or feminine. The machine will use your answer, not the right one.');
+  if(T1.num==='p' && N.pl===null) lines.push('<strong>Noun:</strong> ' + N.w + ' is not normally counted, so it has no natural plural. Choose <em>one</em>.');
+  else if(ob && T1.num==='s' && g==='m' && R.P.noun !== N.w) lines.push('<strong>Noun:</strong> masculine -ा, one, before a marker: -ा becomes -े (' + N.w + ' &rarr; <strong>' + Rn.so + '</strong>).');
+  else if(ob && T1.num==='p') lines.push('<strong>Noun:</strong> many, before a marker: the plural takes -ों. ' + (N.pl || N.w) + ' &rarr; <strong>' + Rn.po + '</strong>.');
+  else if(T1.num==='p') lines.push('<strong>Noun:</strong> many: ' + N.w + ' &rarr; <strong>' + Rn.p + '</strong>' + (Rn.p===N.w ? ' (this kind of noun does not change in the plain plural)' : '') + '.');
+  else lines.push('<strong>Noun:</strong> one, no change needed' + (ob ? ' (only masculine -ा nouns change for one)' : '') + ': <strong>' + N.w + '</strong>.');
+  const use = T1.guess || g;
+  if(A.t==='V') lines.push('<strong>Adjective:</strong> ' + A.w + ' never changes &mdash; it does not end in -ा.');
+  else if(use==='f') lines.push('<strong>Adjective:</strong> feminine, so <strong>' + F.f + '</strong> (one or many, marker or not).');
+  else if(T1.num==='p' || ob) lines.push('<strong>Adjective:</strong> masculine and ' + (T1.num==='p' ? 'many' : 'before a marker') + ', so <strong>' + F.mo + '</strong>.');
+  else lines.push('<strong>Adjective:</strong> masculine, one, plain: <strong>' + F.ms + '</strong>.');
+  return lines.map(l=>'<p>' + l + '</p>').join('');
+}
+function t1Render(){
+  const N = t1Noun();
+  if(T1.num==='p' && N.pl===null) T1.num = 's';
+  const th = gid('t1-th'); th.innerHTML = '';
+  THEMES.slice(1).forEach(t => { const b = el('button','bchip' + (T1.theme===t[0] ? ' sel' : ''), t[1]); b.type = 'button'; b.dataset.k = t[0]; th.appendChild(b); });
+  const nh = gid('t1-noun'); nh.innerHTML = '';
+  NOUNOBJ.filter(n=>n.th===T1.theme).forEach(n => {
+    const b = el('button','bchip hin' + (n.w===T1.w ? ' sel' : ''), n.w + ' <small style="font-family:var(--body);font-weight:400;opacity:.75">' + n.en.split(',')[0] + '</small>');
+    b.type = 'button'; b.dataset.w = n.w; nh.appendChild(b);
+  });
+  const gh = gid('t1-g'); gh.innerHTML = '';
+  [['m','पुल्लिंग &middot; masculine'],['f','स्त्रीलिंग &middot; feminine']].forEach(c => {
+    const b = el('button','bchip gbtn' + (T1.guess===c[0] ? ' sel' : ''), c[1]); b.type = 'button'; b.dataset.g = c[0]; gh.appendChild(b);
+  });
+  const ah = gid('t1-adj'); ah.innerHTML = '';
+  ACHIPS.forEach(a => { const b = el('button','bchip hin' + (a===T1.adj ? ' sel' : ''), a + ' <small style="font-family:var(--body);font-weight:400;opacity:.75">' + adjByW(a).en + '</small>'); b.type = 'button'; b.dataset.a = a; ah.appendChild(b); });
+  const nu = gid('t1-num'); nu.innerHTML = '';
+  [['s','one &mdash; एकवचन'],['p','many &mdash; बहुवचन']].forEach(c => {
+    const b = el('button','bchip' + (T1.num===c[0] ? ' sel' : ''), c[1]); b.type = 'button'; b.dataset.n = c[0];
+    if(c[0]==='p' && N.pl===null){ b.disabled = true; b.title = 'no natural plural'; }
+    nu.appendChild(b);
+  });
+  const mh = gid('t1-mk'); mh.innerHTML = '';
+  MARKS.forEach(m => { const b = el('button','bchip hin' + (m[0]===T1.mk ? ' sel' : ''), m[0]==='' ? '<span style="font-family:var(--body);font-weight:400;font-size:15px">no marker</span>' : m[1]); b.type = 'button'; b.dataset.m = m[0]; mh.appendChild(b); });
+  const R = t1Result(), out = gid('t1-out');
+  const gloss = R.A.en + ' &middot; ' + R.N.en.split(',')[0] + (T1.num==='p' ? ' (many)' : '') + (T1.mk ? ' &mdash; ' + MKEN[T1.mk] : '');
+  out.className = 'built aout' + (T1.guess ? (R.right ? ' ok' : ' wrong') : '');
+  out.innerHTML = '<span class="wa">' + R.P.adj + '</span> <span class="wn">' + R.P.noun + '</span>' + (T1.mk ? ' <span class="wm">' + T1.mk + '</span>' : '') + '<span class="men">' + gloss + '</span>' +
+    (T1.guess && !R.right ? '<span class="men" style="color:var(--no);font-style:normal">with the right gender it would read: <strong class="dv">' + R.truth.text + '</strong></span>' : '');
+  gid('t1-why').innerHTML = t1Why(R);
+  const p = gid('t1-pill');
+  if(!T1.guess){ p.className = 'pill hold'; p.textContent = 'Pick a gender'; }
+  else if(R.right){ p.className = 'pill bal'; p.textContent = 'Gender right'; }
+  else { p.className = 'pill in'; p.textContent = 'Wrong gender'; }
+}
+function t1Init(){
+  gid('t1-th').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; T1.theme = b.dataset.k; T1.w = NOUNOBJ.find(n=>n.th===T1.theme).w; T1.guess = null; t1Render(); });
+  gid('t1-noun').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; T1.w = b.dataset.w; T1.guess = null; t1Render(); });
+  gid('t1-g').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; T1.guess = b.dataset.g; t1Render(); });
+  gid('t1-adj').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; T1.adj = b.dataset.a; t1Render(); });
+  gid('t1-num').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b || b.disabled) return; T1.num = b.dataset.n; t1Render(); });
+  gid('t1-mk').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; T1.mk = b.dataset.m; t1Render(); });
+  gid('newquiz').addEventListener('click', ()=>{
+    const box = gid('quizbox'); box.classList.add('on');
+    const open = TPZ.filter(p=>!S.pzSeen['t1' + p.id]);
+    if(!open.length){ box.innerHTML = '<strong>All ' + TPZ.length + ' machine puzzles solved.</strong> Now the spelling doctor below.'; t1Puz = null; return; }
+    t1Puz = open[Math.floor(Math.random()*open.length)]; t1Tries = 0; t1Done = false;
+    box.innerHTML = '<strong>Puzzle.</strong> Set the machine so that it says &ldquo;<em>' + t1Puz.ask + '</em>&rdquo;. Choose the noun, your gender, the adjective, one or many, and the marker above, then press Check. It counts only if the <strong>first</strong> Check is right, and the gender has to be right too.' +
+      '<div class="qrow"><button class="btn ghost small" type="button" id="t1-check">Check the machine</button></div><div id="t1-pzfb" style="margin-top:9px"></div>';
+    gid('t1-check').addEventListener('click', t1CheckPuzzle);
+  });
+  t1Render();
+}
+function t1CheckPuzzle(){
+  if(!t1Puz || t1Done) return;
+  const P = t1Puz, R = t1Result(), fb = gid('t1-pzfb');
+  t1Tries++;
+  const textOk = R.P.text === P.t, gOk = T1.guess === P.g && T1.w === P.n;
+  const nounOk = T1.w === P.n;
+  if(textOk && gOk){
+    t1Done = true;
+    let msg;
+    if(t1Tries===1 && !S.pzSeen['t1' + P.id]){
+      S.pzSeen['t1' + P.id] = true; S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+      msg = '<strong>Right &mdash; ' + P.t + '.</strong> First Check, so it counts.';
+    } else msg = '<strong>Right &mdash; ' + P.t + '</strong>, but not on the first Check, so it does not count. Press <em>Set me a puzzle</em> for another.';
+    fb.innerHTML = msg + ' <button class="btn ghost small" type="button" id="t1-again">Another one</button>';
+    gid('t1-again').addEventListener('click', ()=>gid('newquiz').click());
+  } else {
+    let why;
+    if(!nounOk) why = 'The noun is not the one the puzzle needs.';
+    else if(!T1.guess) why = 'You have not chosen a gender yet.';
+    else if(T1.guess !== P.g) why = 'The gender you chose is wrong for this noun.';
+    else why = 'The gender is right, but the phrase is not: check the adjective form, one or many, and the marker.';
+    fb.innerHTML = '<strong>The machine says <span class="hline">' + R.P.text + '</span>, which is not what the puzzle asks.</strong> ' + why + ' (You can keep trying, but only a first-Check success counts.)';
+  }
+}
+
+/* ---------------- tool 2: the spelling doctor ---------------- */
+const SWAP = [['ि','ी'],['ी','ि'],['ु','ू'],['ू','ु'],['े','ै'],['ै','े'],['ो','ौ'],['ौ','ो'],['ँ','ं'],['ं','ँ']];
+const ALLDOC = DOC.concat(DPZ);
+/* confusable variants of ANY tile, so the repair chips never reveal which tile is the damaged one */
+function tileVariants(t){
+  const out = [];
+  SWAP.forEach(s => { const i = t.indexOf(s[0]); if(i >= 0){ const v = t.slice(0,i) + s[1] + t.slice(i + s[0].length); if(out.indexOf(v) < 0 && v !== t) out.push(v); } });
+  if(/[जफ]/.test(t) && t.indexOf('़') < 0){ const v = t.replace(/([जफ])/, '$1़'); if(out.indexOf(v) < 0) out.push(v); }
+  if(t.indexOf('़') >= 0){ const v = t.replace('़',''); if(out.indexOf(v) < 0 && v !== t) out.push(v); }
+  if(/[डढ]/.test(t) && t.indexOf('़') < 0){ const v = t.replace(/([डढ])/, '$1़'); if(out.indexOf(v) < 0) out.push(v); }
+  return out;
+}
+function fixOptions(item, idx, shownTile){
+  if(idx === item.i) return shuffle(item.opts);
+  const v = tileVariants(shownTile);
+  const opts = [shownTile];
+  v.forEach(x => { if(opts.length < 3 && opts.indexOf(x) < 0) opts.push(x); });
+  const pad = ['ा','ि','ी','ु','े','ो'];
+  let k = 0;
+  while(opts.length < 3 && k < pad.length){
+    const base = shownTile.replace(/[ािीुूेैोौंँः]/g,'');
+    const x = base + pad[k++]; if(opts.indexOf(x) < 0) opts.push(x);
+  }
+  return shuffle(opts);
+}
+let sCur = null, sMode = 'main', sTiles = [], sSel = null, sFix = null, sOpts = [], sTries = 0, sDone = false, sIdx = 0;
+const S2_NOTE = 'Say the word aloud first. Then find the tile whose sound does not match.';
+function sStore(){ S.store = S.store || {}; S.store.doc = S.store.doc || {}; S.store.docFirst = S.store.docFirst || {}; return S.store; }
+function sCounts(){
+  const st = sStore();
+  const d = DOC.filter(x=>st.doc[x.id]).length, f = DOC.filter(x=>st.docFirst[x.id]).length;
+  gid('s-count').textContent = d + ' / ' + f + ' of ' + DOC.length;
+}
+function sSetPill(kind, text, note){
+  const p = gid('s-pill'); p.className = 'pill ' + kind; p.textContent = text;
+  if(note !== undefined) gid('s-note').innerHTML = note;
+}
+function sLoad(item, mode){
+  sCur = item; sMode = mode; sDone = false; sTries = 0; sSel = null; sFix = null; sOpts = [];
+  sTiles = item.parts.slice(); sTiles[item.i] = item.bad;
+  gid('s-num').textContent = mode==='puzzle' ? 'Puzzle' : (DOC.indexOf(item) + 1) + ' of ' + DOC.length;
+  sSetPill('hold', 'Not checked yet', S2_NOTE);
+  sRender(); sCounts();
+}
+function sShown(idx){ return (idx === sSel && sFix !== null) ? sFix : sTiles[idx]; }
+function sRender(){
+  const item = sCur;
+  gid('s-en').innerHTML = item.en;
+  gid('s-rule').textContent = sDone ? 'rule: ' + item.rule : '';
+  const bar = gid('s-tiles'); bar.innerHTML = '';
+  sTiles.forEach((t, idx) => {
+    const b = el('button','stile' + (idx===sSel ? (sDone ? ' fixed' : ' sus') : ''), sShown(idx)); b.type = 'button'; b.dataset.i = idx;
+    if(sDone) b.disabled = true;
+    bar.appendChild(b);
+  });
+  gid('s-now').textContent = sTiles.map((t, idx) => sShown(idx)).join('');
+  const fx = gid('s-fix'); fx.innerHTML = '';
+  if(sSel === null) fx.appendChild(el('span', '', '<span style="color:var(--ink-soft);font-style:italic;font-size:15px">Tap a tile first.</span>'));
+  else sOpts.forEach(o => { const b = el('button','bchip hin' + (o===sFix ? ' sel' : ''), o); b.type = 'button'; b.dataset.o = o; if(sDone) b.disabled = true; fx.appendChild(b); });
+}
+function sCheck(){
+  if(sDone) return;
+  const item = sCur;
+  if(sSel === null){ sSetPill('hold','Not finished','Tap the tile you think is wrong, then choose the repair.'); return; }
+  if(sFix === null){ sSetPill('hold','Not finished','You tapped a tile. Now choose the repair for it.'); return; }
+  sTries++;
+  const tileOk = sSel === item.i, fixOk = sFix === item.parts[item.i];
+  if(tileOk && fixOk){
+    sDone = true; sRender();
+    let extra = sTries===1 ? ' First time.' : ' Took ' + sTries + ' checks.';
+    const st = sStore();
+    if(sMode === 'main'){
+      st.doc[item.id] = true;
+      if(sTries === 1) st.docFirst[item.id] = true;
+    } else {
+      const key = 's' + item.id;
+      if(sTries === 1 && !S.pzSeen[key]){
+        S.pzSeen[key] = true; S.puzzles = (S.puzzles||0) + 1; extra = ' First time right &mdash; puzzle solved.';
+        gid('quizbox2').innerHTML = '<strong>Puzzle solved.</strong> That is one on the counter. Press <em>Set me a puzzle</em> for another.';
+      } else if(sTries > 1){
+        extra = ' Right, but not on the first Check &mdash; no point for this one. Press <em>Set me a puzzle</em> for another.';
+        gid('quizbox2').innerHTML = '<strong>Not counted.</strong> A puzzle needs the first Check to be right.';
+      }
+    }
+    save(); refresh(); sCounts();
+    sSetPill('bal', 'Repaired: ' + item.parts.join(''), item.why + extra);
+  } else if(!tileOk){
+    sSetPill('in', 'Not yet', '<strong>That tile is not the damaged one.</strong> Say the whole word slowly, one tile at a time, and listen for the sound that does not match the meaning.');
+  } else if(sFix === item.bad){
+    sSetPill('in', 'Not yet', '<strong>Right tile, but you left it as it was.</strong> Choose a different repair.');
+  } else {
+    sSetPill('in', 'Not yet', '<strong>Right tile, wrong repair.</strong> The choices are all close; the meaning of the word decides.');
+  }
+}
+function sInit(){
+  gid('s-tiles').addEventListener('click', e=>{
+    const b = e.target.closest('.stile'); if(!b || sDone) return;
+    const i = +b.dataset.i;
+    sSel = i; sFix = null; sOpts = fixOptions(sCur, i, sTiles[i]); sSetPill('hold','Not checked yet', S2_NOTE); sRender();
+  });
+  gid('s-fix').addEventListener('click', e=>{
+    const b = e.target.closest('.bchip'); if(!b || sDone || sSel === null) return;
+    sFix = b.dataset.o; sRender();
+  });
+  gid('s-check').addEventListener('click', sCheck);
+  gid('s-reset').addEventListener('click', ()=>{ if(sDone) return; sSel = null; sFix = null; sOpts = []; sSetPill('hold','Not checked yet', S2_NOTE); sRender(); });
+  gid('s-next').addEventListener('click', ()=>{
+    if(sMode === 'main') sIdx = (sIdx + 1) % DOC.length;
+    gid('quizbox2').classList.remove('on');
+    sLoad(DOC[sIdx], 'main');
+  });
+  gid('newquiz2').addEventListener('click', ()=>{
+    const box = gid('quizbox2'); box.classList.add('on');
+    const open = DPZ.filter(p=>!S.pzSeen['s' + p.id]);
+    if(!open.length){ box.innerHTML = '<strong>All ' + DPZ.length + ' doctor puzzles solved.</strong> Go back through the 28 words and aim for first-time-right on all of them.'; return; }
+    const P = open[Math.floor(Math.random()*open.length)];
+    sLoad(P, 'puzzle');
+    box.innerHTML = '<strong>Puzzle.</strong> Find the damaged tile, choose the repair, and get it right on your <strong>first</strong> Check. A second attempt still teaches you something, but it does not count.';
+  });
+  sLoad(DOC[sIdx], 'main');
+}
+
+/* ---------------- drill (not counted in the 30) ---------------- */
+function drillStore(){ S.store = S.store || {}; S.store.drill = S.store.drill || {}; return S.store.drill; }
+function drillScore(){
+  const dr = drillStore();
+  const right = DRILL.filter((D,i)=>dr[i]===D.a).length;
+  gid('d-score').textContent = right + ' of ' + DRILL.length + ' right';
+}
+function drillAnswer(i, j){
+  const D = DRILL[i], host = document.querySelector('[data-dr="' + i + '"]');
+  drillStore()[i] = j;
+  host.querySelectorAll('.bchip').forEach((b,k)=>{
+    b.disabled = true;
+    if(k===D.a) b.classList.add('right');
+    else if(k===j) b.classList.add('wrong');
+  });
+  const ok = j===D.a, gap = gid('gap' + i);
+  gap.textContent = D.o[D.a];
+  gap.className = 'gap ' + (ok ? 'ok' : 'no');
+  const fb = gid('dfb' + i);
+  fb.className = 'fb on ' + (ok ? 'good' : 'bad');
+  fb.innerHTML = '<strong>' + (ok ? 'Right.' : 'Not this time.') + '</strong> ' + D.why;
+  drillScore();
+}
+function drillRender(){
+  const host = gid('d-list'); host.innerHTML = '';
+  DRILL.forEach((D,i)=>{
+    const c = el('div','qcard');
+    c.innerHTML = '<div class="qhead"><span class="qn">D' + (i+1) + '</span><span class="mk" style="font-family:var(--body)">' + D.en + '</span></div>' +
+      '<p class="dline">' + D.s.replace('___', '<span class="gap" id="gap' + i + '">&nbsp;&nbsp;&nbsp;</span>') + '</p>' +
+      '<div class="bchips" data-dr="' + i + '">' + D.o.map((o,j)=>'<button type="button" class="bchip hin" data-j="' + j + '">' + o + '</button>').join('') + '</div>' +
+      '<div class="fb" id="dfb' + i + '"></div>';
+    host.appendChild(c);
+  });
+  host.addEventListener('click', e=>{
+    const b = e.target.closest('.bchip'); if(!b || b.disabled) return;
+    const i = +b.parentElement.dataset.dr;
+    drillAnswer(i, +b.dataset.j); save();
+  });
+  Object.keys(drillStore()).forEach(i=>{ if(DRILL[i]) drillAnswer(+i, drillStore()[i]); });
+  drillScore();
+}
+
+function boot(){
+  banksInit();
+  t1Init();
+  sInit();
+  drillRender();
+}
+
+
+(async ()=>{ await loadState(); restore(); boot(); })();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='wordbank', SUBJECT='hindi', TITLE="Words and Spelling / शब्द और वर्तनी", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>
