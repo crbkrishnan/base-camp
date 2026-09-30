@@ -484,7 +484,7 @@ input[type=search]{flex:1 1 220px;border:1px solid var(--line);border-radius:99p
 <!-- ============ THE HUNDRED VERBS ============ -->
 <section id="verbs">
   <div class="shead"><h2>The hundred verbs</h2><span class="tag" id="v-count">100 of 100</span></div>
-  <p class="snote">Each card shows the verb and three forms you will need every time you write: <strong>every day</strong> (वह ___ता है), <strong>done</strong> (past) and <strong>will do</strong> (future). The badge is the one that matters for Lesson 4: <span class="vt T" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">T</span> takes an object and uses <em>ने</em> in the past; <span class="vt I" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">I</span> has no object and never does; <span class="vt B" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">B</span> can be either. Do not try to learn a hundred in one sitting &mdash; ten a day, covered, is ten days.</p>
+  <p class="snote">Each card shows the verb and three forms you will need every time you write: <strong>every day</strong> (वह ___ता है), <strong>done</strong> (past) and <strong>will do</strong> (future). The badge is the one that matters for Lesson 4: <span class="vt T" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">T</span> takes an object and uses <em>ने</em> in the past; <span class="vt I" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">I</span> has no object and never does; <span class="vt B" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">B</span> can be either. The cards show the <strong>he</strong> forms (वह खाता है). You will write the <strong>she</strong> forms: -ता becomes -ती, and a past ending -आ or -या becomes -ई (गया &rarr; गई, आया &rarr; आई, सोया &rarr; सोई). A few, like जीना, need looking up. Do not try to learn a hundred in one sitting &mdash; ten a day, covered, is ten days.</p>
   <div class="vctl">
     <div class="bchips" id="v-cats" role="group" aria-label="Filter verbs by group"></div>
     <div class="vrow">
@@ -641,11 +641,11 @@ const LESSONS = [
     <p>The sentence builder above uses exactly these colours, and so does the rest of this page. A colour means the same job everywhere.</p>
     <table class="data">
       <tr><th>English (who / verb / rest)</th><th>Hindi (who / rest / verb)</th></tr>
-      <tr><td>I eat rice</td><td><span class="kt">मैं</span> <span class="ko">चावल</span> <span class="kv">खाता हूँ</span></td></tr>
+      <tr><td>I eat rice</td><td><span class="kt">मैं</span> <span class="ko">चावल</span> <span class="kv">खाती हूँ</span></td></tr>
       <tr><td>The boys play in the garden</td><td><span class="kt">लड़के</span> <span class="ko">बगीचे में</span> <span class="kv">खेलते हैं</span></td></tr>
       <tr><td>She reads a book every evening</td><td><span class="kt">वह</span> <span class="ko">हर शाम किताब</span> <span class="kv">पढ़ती है</span></td></tr>
     </table>
-    <p>Two small things follow from &ldquo;the verb is last&rdquo;. <strong>नहीं</strong> (not) goes straight in front of the verb: <em>मैं चावल नहीं खाता।</em> And a question word like <em>क्या</em> or <em>कहाँ</em> goes near the front or in the middle, but the verb still holds the end: <em>तुम कहाँ जा रहे हो?</em></p>
+    <p>Two small things follow from &ldquo;the verb is last&rdquo;. <strong>नहीं</strong> (not) goes straight in front of the verb: <em>मैं चावल नहीं खाती।</em> And a question word like <em>क्या</em> or <em>कहाँ</em> goes near the front or in the middle, but the verb still holds the end: <em>तुम कहाँ जा रही हो?</em></p>
     <p>The way to make this automatic is to stop translating word by word. Split the English into three chunks &mdash; <strong>who | the rest | verb</strong> &mdash; then say them in that order.</p>`,
   demo:"Take the first paragraph of anything you wrote in English this week. Put two vertical lines in every sentence, splitting it into who | the rest | verb. Now read each sentence aloud with the last chunk moved to the end. It will sound strange in English. That strangeness is what Hindi order feels like from the inside.",
   cliff:"<em>रवि आम खाता है</em> &mdash; and <em>Ravi eats a mango in the garden</em> is <em>रवि बगीचे में आम खाता है</em>. Where did the English word &lsquo;in&rsquo; go? It moved behind the noun. And the noun had to change its shape to let it in."},
@@ -672,8 +672,8 @@ const LESSONS = [
       <tr><td>girl</td><td>लड़की</td><td>लड़की को <em>(no change)</em></td><td>लड़कियों को</td></tr>
       <tr><td>book</td><td>किताब</td><td>किताब पर <em>(no change)</em></td><td>किताबों पर</td></tr>
     </table>
-    <p><strong>Rule 2 &mdash; less than English, sometimes.</strong> Going <em>to</em> a place takes no marker (<em>स्कूल जाता हूँ</em>). A clock time takes none (<em>पाँच बजे</em>). A day takes को (<em>रविवार को</em>). Do not translate every English &lsquo;to&rsquo; and &lsquo;at&rsquo; that you see.</p>
-    <p><strong>Rule 3 &mdash; the verb picks the marker.</strong> Not the English. बात करना, पूछना, मिलना and डरना all take <span class="kc">से</span> (<em>अध्यापक से पूछा</em>, <em>दोस्त से मिला</em>, <em>साँप से डरता हूँ</em>); फ़ोन करना takes <span class="kc">को</span> (<em>दादी को फ़ोन किया</em>). Learn the verb and its marker as one unit.</p>`,
+    <p><strong>Rule 2 &mdash; less than English, sometimes.</strong> Going <em>to</em> a place takes no marker (<em>स्कूल जाती हूँ</em>). A clock time takes none (<em>पाँच बजे</em>). A day takes को (<em>रविवार को</em>). Do not translate every English &lsquo;to&rsquo; and &lsquo;at&rsquo; that you see.</p>
+    <p><strong>Rule 3 &mdash; the verb picks the marker.</strong> Not the English. बात करना, पूछना, मिलना and डरना all take <span class="kc">से</span> (<em>अध्यापक से पूछा</em>, <em>दोस्त से मिली</em>, <em>साँप से डरती हूँ</em>); फ़ोन करना takes <span class="kc">को</span> (<em>दादी को फ़ोन किया</em>). Learn the verb and its marker as one unit.</p>`,
   demo:"Stand in your room and say six Hindi sentences aloud: three that say something is <em>on</em> something (कुर्सी पर&hellip;) and three that say something is <em>in</em> something (अलमारी में&hellip;). Then say each one again with the noun in the plural, and listen for the -ों.",
   cliff:"The marker is stuck on and the noun has changed. But look at the verb: <em>लड़का जाता है</em>, <em>लड़की जाती है</em>, <em>लड़के जाते हैं</em>. The verb changes too. Who is it copying &mdash; and what about का, की and के, which change as well?"},
 
@@ -685,10 +685,11 @@ const LESSONS = [
       <tr><td>girl</td><td>लड़की जाती है</td></tr>
       <tr><td>boys</td><td>लड़के जाते हैं</td></tr>
       <tr><td>girls</td><td>लड़कियाँ जाती हैं</td></tr>
-      <tr><td>I (a boy / a girl)</td><td>मैं जाता हूँ / मैं जाती हूँ</td></tr>
+      <tr><td>I (<strong>you</strong>, a girl &middot; a boy)</td><td><strong>मैं जाती हूँ</strong> &middot; मैं जाता हूँ</td></tr>
       <tr><td>you (तुम)</td><td>तुम जाते हो / तुम जाती हो</td></tr>
       <tr><td>you, respectfully (आप) &middot; a respected teacher</td><td>आप जाते हैं / आप जाती हैं &middot; अध्यापक जाते हैं</td></tr>
     </table>
+    <p><strong>When you write about yourself, you are the doer.</strong> You are a girl, so your own sentences take the feminine ending: <em>मैं जाती हूँ, मैं थकी थी, मैं जाऊँगी, मैं सो गई</em>. Every first-person example on this page is written that way. A boy would write <em>जाता हूँ, थका था, जाऊँगा, सो गया</em>. You will meet those in books, so recognise them, but do not copy them. (One exception, coming in Lesson 4: in the past tense with <em>ने</em>, your gender disappears &mdash; <em>मैंने रोटी खाई</em> is the same for a boy and a girl.)</p>
     <p>Two habits come with it. The helper word changes with the person: <em>हूँ</em> (I), <em>है</em> (he/she/it), <em>हैं</em> (they, and respectful you), <em>हो</em> (तुम); in the past it is <em>था, थी, थे, थीं</em>. And adjectives copy too, but only the ones ending in <em>-ा</em>: <em>अच्छा लड़का, अच्छी लड़की, अच्छे लड़के</em>; <em>सुंदर</em> and other adjectives that do not end in <em>-ा</em> never change.</p>
     <p><strong>का, की, के copy the thing that is owned</strong> &mdash; not the owner. Ask <em>whose?</em>, then ignore the owner and look only at what is owned:</p>
     <table class="data">
@@ -724,19 +725,19 @@ const LESSONS = [
     <table class="data">
       <tr><th>Job</th><th>Word</th><th>Example</th></tr>
       <tr><td>and</td><td class="kc">और</td><td>मैंने खाना खाया और पढ़ाई शुरू की।</td></tr>
-      <tr><td>but</td><td class="kc">लेकिन / परंतु</td><td>मैं खेलना चाहता था, लेकिन बारिश हो रही थी।</td></tr>
+      <tr><td>but</td><td class="kc">लेकिन / परंतु</td><td>मैं खेलना चाहती थी, लेकिन बारिश हो रही थी।</td></tr>
       <tr><td>because</td><td class="kc">क्योंकि</td><td>हम बाहर नहीं गए क्योंकि बारिश हो रही थी।</td></tr>
-      <tr><td>so</td><td class="kc">इसलिए</td><td>मैं थका था, इसलिए जल्दी सो गया।</td></tr>
-      <tr><td>if &hellip; then</td><td class="kc">अगर &hellip; तो</td><td>अगर बारिश हुई, तो मैं नहीं आऊँगा।</td></tr>
-      <tr><td>when &hellip; then</td><td class="kc">जब &hellip; तब</td><td>जब मैं पहुँचा, तब घंटी बज चुकी थी।</td></tr>
-      <tr><td>so that</td><td class="kc">ताकि</td><td>मैं मेहनत करता हूँ ताकि अच्छे अंक ला सकूँ।</td></tr>
+      <tr><td>so</td><td class="kc">इसलिए</td><td>मैं थकी थी, इसलिए जल्दी सो गई।</td></tr>
+      <tr><td>if &hellip; then</td><td class="kc">अगर &hellip; तो</td><td>अगर बारिश हुई, तो मैं नहीं आऊँगी।</td></tr>
+      <tr><td>when &hellip; then</td><td class="kc">जब &hellip; तब</td><td>जब मैं पहुँची, तब घंटी बज चुकी थी।</td></tr>
+      <tr><td>so that</td><td class="kc">ताकि</td><td>मैं मेहनत करती हूँ ताकि अच्छे अंक ला सकूँ।</td></tr>
       <tr><td>even so</td><td class="kc">फिर भी</td><td>वह बीमार था, फिर भी स्कूल आया।</td></tr>
       <tr><td>that (reported speech)</td><td class="kc">कि</td><td>उसने कहा कि वह कल आएगा।</td></tr>
     </table>
     <p><strong>Pick one direction.</strong> <em>क्योंकि</em> looks back (result first, then the reason); <em>इसलिए</em> looks forward (reason first, then the result). Use one or the other in a sentence, never both &mdash; it is the same mistake as writing &ldquo;because &hellip; so&rdquo; in English.</p>
     <p>In every example the verb still finishes each half, and the marker and agreement rules from Lessons 2&ndash;4 still apply on both sides of the connector. A connector joins two sentences; it does not excuse either of them.</p>
     <p>Hindi punctuation: the full stop is <em>।</em> (the <em>पूर्ण विराम</em>), and a comma goes before a connector that starts a new clause.</p>`,
-  demo:"Take two short sentences from your day (<em>मैं थका था। मैं सो गया।</em>). Join them three different ways: with और, with इसलिए, with लेकिन. Read all three aloud. The pieces stayed the same and the meaning did not &mdash; notice how much the small word decides.",
+  demo:"Take two short sentences from your day (<em>मैं थकी थी। मैं सो गई।</em>). Join them three different ways: with और, with इसलिए, with लेकिन. Read all three aloud. The pieces stayed the same and the meaning did not &mdash; notice how much the small word decides.",
   cliff:"Connectors turn three sentences into a paragraph. What turns a paragraph into something that reads like an essay is <em>order</em> &mdash; and it is much easier than it sounds."},
 
  {t:"Paragraph, then essay", len:"8 min",
@@ -748,8 +749,8 @@ const LESSONS = [
       <tr><td><strong>निष्कर्ष</strong></td><td>1&ndash;2 sentences</td><td>Say what you think, or what you learned</td><td>इसलिए मैं&hellip; / अंत में&hellip; / मैं बड़ा होकर&hellip;</td></tr>
     </table>
     <p>Here is one that follows it exactly. It is <strong>55 words</strong>, which is about what four or five sentences make:</p>
-    <p class="hline">मेरा सबसे प्रिय खेल क्रिकेट है। मैं रोज़ शाम को अपने दोस्तों के साथ मैदान में खेलता हूँ। इस खेल से शरीर मज़बूत बनता है और टीम में मिलकर काम करना भी आता है। पिछले रविवार मैंने पहली बार छक्का मारा था, इसलिए सबने ताली बजाई। मैं बड़ा होकर देश के लिए खेलना चाहता हूँ।</p>
-    <p>The first sentence is the परिचय; the next two are the विस्तार (when he plays, and what the game gives him); the fourth is an example; the last is the निष्कर्ष. Find the ने in sentence 4: <em>मैंने छक्का मारा था</em> &mdash; छक्का is masculine, so the verb is masculine. Find the connector, the marker after <em>दोस्तों</em> and the one after <em>मैदान</em>.</p>
+    <p class="hline">मेरा सबसे प्रिय खेल क्रिकेट है। मैं रोज़ शाम को अपने दोस्तों के साथ मैदान में खेलती हूँ। इस खेल से शरीर मज़बूत बनता है और टीम में मिलकर काम करना भी आता है। पिछले रविवार मैंने पहली बार छक्का मारा था, इसलिए सबने ताली बजाई। मैं बड़ी होकर देश के लिए खेलना चाहती हूँ।</p>
+    <p>The first sentence is the परिचय; the next two are the विस्तार (when he plays, and what the game gives him); the fourth is an example; the last is the निष्कर्ष. Find the ने in sentence 4: <em>मैंने छक्का मारा था</em> &mdash; छक्का is masculine, so the verb is masculine &mdash; not feminine, even though the writer is a girl. Find the connector, the marker after <em>दोस्तों</em> and the one after <em>मैदान</em>.</p>
     <p><strong>Before you write the last line, check five things:</strong></p>
     <ol>
       <li>Is the verb last in every sentence?</li>
@@ -793,7 +794,7 @@ const MCQS = [
 const SHORTS = [
  {n:6, lvl:"warm-up", m:2, q:"Write in Hindi:<br><strong>(a)</strong> The girls play in the garden. <span class='num'>[1]</span><br><strong>(b)</strong> I go to school by bus. <span class='num'>[1]</span>",
   scheme:["(a) <strong>लड़कियाँ बगीचे में खेलती हैं।</strong> One mark for the whole sentence: बगीचे (not बगीचा) before में, the verb last, and <em>खेलती हैं</em> for girls, many. <span class='num'>[1]</span>",
-          "(b) <strong>मैं बस से स्कूल जाता / जाती हूँ।</strong> (or <em>मैं स्कूल बस से जाता हूँ</em>). One mark: से for &lsquo;by&rsquo;, <strong>no</strong> marker after स्कूल, the verb last, and -ता or -ती matching you. <span class='num'>[1]</span>"],
+          "(b) <strong>मैं बस से स्कूल जाती हूँ।</strong> (or <em>मैं स्कूल बस से जाती हूँ</em>). One mark: से for &lsquo;by&rsquo;, <strong>no</strong> marker after स्कूल, the verb last, and -ती because you are a girl. <span class='num'>[1]</span>"],
   tip:"Chunk each one before you write it: who | the rest | verb. If your first attempt has the verb in the middle, it is English wearing Hindi words."},
 
  {n:7, lvl:"standard", m:2, q:"Each blank needs the noun in the <strong>right form and</strong> the marker.<br><strong>(a)</strong> The prize was given to the boy: इनाम ___ दिया गया। (लड़का) <span class='num'>[1]</span><br><strong>(b)</strong> The farmer walks with the horses: किसान ___ चलता है। (घोड़ा, more than one) <span class='num'>[1]</span>",
@@ -818,11 +819,11 @@ const SHORTS = [
 ];
 
 const WORDS = [
- {n:11, lvl:"standard", m:3, q:"Join each pair into <strong>one</strong> sentence with the connector shown.<br><strong>(a)</strong> मैं थका था। मैं जल्दी सो गया। (इसलिए) <span class='num'>[1]</span><br><strong>(b)</strong> हम खेलने नहीं गए। बारिश हो रही थी। (क्योंकि) <span class='num'>[1]</span><br><strong>(c)</strong> तुम मेहनत करोगे। तुम पास हो जाओगे। (अगर &hellip; तो) <span class='num'>[1]</span>",
+ {n:11, lvl:"standard", m:3, q:"Join each pair into <strong>one</strong> sentence with the connector shown.<br><strong>(a)</strong> मैं थकी थी। मैं जल्दी सो गई। (इसलिए) <span class='num'>[1]</span><br><strong>(b)</strong> हम खेलने नहीं गए। बारिश हो रही थी। (क्योंकि) <span class='num'>[1]</span><br><strong>(c)</strong> तुम मेहनत करोगे। तुम पास हो जाओगे। (अगर &hellip; तो) <span class='num'>[1]</span>",
   hints:["Decide first which half is the <em>reason</em> and which is the <em>result</em>. That decides where the connector sits.",
          "इसलिए sits at the start of the result. क्योंकि sits at the start of the reason. अगर goes at the very front of the whole sentence, and तो starts the second half.",
          "In (c) you can drop the second तुम &mdash; Hindi does not repeat the doer once it is clear. The verb still finishes each half."],
-  sol:["<strong>(a)</strong> मैं थका था, इसलिए जल्दी सो गया। <em>(the second मैं is dropped; इसलिए starts the result)</em>",
+  sol:["<strong>(a)</strong> मैं थकी थी, इसलिए जल्दी सो गई। <em>(the second मैं is dropped; इसलिए starts the result)</em>",
        "<strong>(b)</strong> हम खेलने नहीं गए क्योंकि बारिश हो रही थी। <em>(the result comes first, then क्योंकि and the reason &mdash; the order is the reverse of the English pair you were given)</em>",
        "<strong>(c)</strong> अगर तुम मेहनत करोगे, तो पास हो जाओगे। <em>(अगर opens the sentence, तो opens the second half, and both verbs stay last in their half)</em>",
        "Worth noticing: (a) and (b) say the same thing in opposite orders, and neither uses both इसलिए and क्योंकि. Picking one direction and staying with it is what makes them correct."]},
@@ -832,7 +833,7 @@ const WORDS = [
          "(a) has two markers, and the room comes first because it is where the table is. (b) &lsquo;to&rsquo; a city takes nothing, but &lsquo;with&rsquo; friends needs the two-word marker. (c) &lsquo;than&rsquo; is one of the four jobs of से.",
          "In (a), check the noun in front of में: कमरा is a masculine -ा word, and a marker is about to arrive."],
   sol:["<strong>(a)</strong> किताब मेरे कमरे में मेज़ पर है। <em>(कमरे, not कमरा, before में; मेरे matches कमरे)</em>",
-       "<strong>(b)</strong> मैं अपने दोस्तों के साथ मैसूर जाऊँगा / जाऊँगी। <em>(no marker after मैसूर; दोस्तों takes -ों before के साथ; the verb agrees with you)</em>",
+       "<strong>(b)</strong> मैं अपने दोस्तों के साथ मैसूर जाऊँगी। <em>(no marker after मैसूर; दोस्तों takes -ों before के साथ; -ऊँगी because you are a girl)</em>",
        "<strong>(c)</strong> वह अपने भाई से लंबा है। <em>(से for &lsquo;than&rsquo;; भाई ends in ई so it does not change)</em>",
        "One mark each, and one wrong word in a sentence loses that mark. The most common slip is in (a): writing कमरा में."]},
 
@@ -858,7 +859,7 @@ const WORDS = [
   hints:["Skeleton first, words second: sentence 1 (what and when), sentences 2&ndash;3 (what you do, what you eat or see), last sentence (why you like it, or what it teaches).",
          "Reuse verbs from the verb bank rather than reaching for new ones. Stick to <em>खाना, बनाना, सजाना, खेलना, देखना, जाना, मिलना</em> &mdash; you know the forms.",
          "Use two linking words from Lesson 5 &mdash; और, लेकिन, इसलिए, क्योंकि. Before you finish, run the five-point checklist from Lesson 6, and read the paragraph aloud."],
-  sol:["<strong>A top-band version:</strong> मेरा प्रिय त्योहार दीपावली है। इस दिन हम घर को दीयों और रंगोली से सजाते हैं। माँ स्वादिष्ट मिठाइयाँ बनाती हैं और हम सब मिलकर पूजा करते हैं। मुझे पटाखे जलाना पसंद है, लेकिन मैं ध्यान रखता हूँ कि किसी को चोट न लगे। यह त्योहार हमें सिखाता है कि अँधेरा कितना भी गहरा हो, रोशनी की जीत होती है।",
+  sol:["<strong>A top-band version:</strong> मेरा प्रिय त्योहार दीपावली है। इस दिन हम घर को दीयों और रंगोली से सजाते हैं। माँ स्वादिष्ट मिठाइयाँ बनाती हैं और हम सब मिलकर पूजा करते हैं। मुझे पटाखे जलाना पसंद है, लेकिन मैं ध्यान रखती हूँ कि किसी को चोट न लगे। यह त्योहार हमें सिखाता है कि अँधेरा कितना भी गहरा हो, रोशनी की जीत होती है।",
        "<strong>Structure:</strong> sentence 1 is the introduction; 2&ndash;4 are the points (decorating, food and prayer, fireworks); sentence 5 is the ending. Notice how the verbs are all last: <em>सजाते हैं, बनाती हैं, करते हैं, पसंद है, लगे, होती है</em>.",
        "<strong>Markers to find:</strong> <em>घर को, दीयों और रंगोली से</em> (दीयों takes -ों before से), <em>हमें, मुझे, किसी को</em>. Connectors: <em>और, लेकिन, कि</em>.",
        "<strong>You do not need to match this.</strong> Five plain sentences, correct in the rules and joined by two connectors, earn three marks. The version above is what the top of the band looks like, not the minimum."]}
@@ -883,8 +884,8 @@ const TASKS = [
   why:'पर goes behind बोर्ड. In लिख रही है, रही carries the gender that -ती carried before.'}
 ];
 const TASKS_B = [
- {id:'t6', en:'I go to school by bus.', tiles:[['मैं','k'],['बस','o'],['से','m'],['स्कूल','o'],['जाता','v'],['हूँ','v']],
-  alts:[['मैं','स्कूल','बस','से','जाता','हूँ']],
+ {id:'t6', en:'I go to school by bus.', tiles:[['मैं','k'],['बस','o'],['से','m'],['स्कूल','o'],['जाती','v'],['हूँ','v']],
+  alts:[['मैं','स्कूल','बस','से','जाती','हूँ']],
   why:'No marker after स्कूल &mdash; &lsquo;to&rsquo; a place is free. से is doing the &lsquo;by means of&rsquo; job.'},
  {id:'t7', en:'My brother&rsquo;s book is on the table.', tiles:[['मेरे','x'],['भाई','x'],['की','m'],['किताब','k'],['मेज़','o'],['पर','m'],['है','v']],
   why:'की copies <strong>किताब</strong> (feminine), not भाई. And it is मेरे, not मेरा, because भाई is about to take a marker.'},
@@ -1064,13 +1065,13 @@ const VERBS = [
 
 /* ---------------- marker drill: one blank per sentence ---------------- */
 const DRILL = [
- {s:'मैं रोज़ स्कूल ___ जाता हूँ।', en:'I go to school every day.', o:['को','में','(nothing)','पर'], a:2,
-  why:'Going <em>to</em> a place takes no marker in everyday Hindi: स्कूल जाता हूँ. को is for people (माँ को), not places.'},
+ {s:'मैं रोज़ स्कूल ___ जाती हूँ।', en:'I go to school every day.', o:['को','में','(nothing)','पर'], a:2,
+  why:'Going <em>to</em> a place takes no marker in everyday Hindi: स्कूल जाती हूँ. को is for people (माँ को), not places.'},
  {s:'किताब मेज़ ___ रखी है।', en:'The book is on the table.', o:['में','पर','से','तक'], a:1,
   why:'<strong>पर</strong> is &lsquo;on the surface of&rsquo;. में would put the book inside the table.'},
  {s:'बच्चे कमरे ___ सो रहे हैं।', en:'The children are sleeping in the room.', o:['में','पर','को','से'], a:0,
   why:'<strong>में</strong> is &lsquo;inside&rsquo;. Notice कमरा has already become कमरे.'},
- {s:'मैं बस ___ स्कूल जाता हूँ।', en:'I go to school by bus.', o:['में','पर','से','को'], a:2,
+ {s:'मैं बस ___ स्कूल जाती हूँ।', en:'I go to school by bus.', o:['में','पर','से','को'], a:2,
   why:'<strong>से</strong> does the &lsquo;by means of&rsquo; job. English &lsquo;by&rsquo; has no single Hindi word; से covers it.'},
  {s:'वह दिल्ली ___ आया है।', en:'He has come from Delhi.', o:['से','को','में','तक'], a:0,
   why:'<strong>से</strong> again &mdash; this time &lsquo;from&rsquo;. One marker, several English jobs.'},
@@ -1084,17 +1085,17 @@ const DRILL = [
   why:'दोस्त is masculine and many (आएँगे tells you), so <strong>के</strong>.'},
  {s:'वह कलम ___ लिखता है।', en:'He writes with a pen.', o:['से','के साथ','में','पर'], a:0,
   why:'A tool takes <strong>से</strong>. के साथ is for a person or company you go along with.'},
- {s:'मैं दोस्तों ___ फ़िल्म देखने गया।', en:'I went to see a film with my friends.', o:['से','के साथ','को','में'], a:1,
+ {s:'मैं दोस्तों ___ फ़िल्म देखने गई।', en:'I went to see a film with my friends.', o:['से','के साथ','को','में'], a:1,
   why:'Company takes <strong>के साथ</strong>. Notice दोस्तों has the plural -ों before it.'},
  {s:'यह उपहार तुम्हारे ___ है।', en:'This gift is for you.', o:['लिए','साथ','पर','तक'], a:0,
   why:'<strong>के लिए</strong> means &lsquo;for&rsquo;. तुम्हारे already carries the के, so only <em>लिए</em> is left to write.'},
  {s:'वह मुझ ___ लंबा है।', en:'He is taller than me.', o:['से','को','में','पर'], a:0,
   why:'&lsquo;Than&rsquo; is the fourth job of <strong>से</strong>. (मुझ is the form मैं takes before a marker.)'},
- {s:'मैं पाँच बजे ___ उठता हूँ।', en:'I get up at five o&rsquo;clock.', o:['को','पर','(nothing)','में'], a:2,
+ {s:'मैं पाँच बजे ___ उठती हूँ।', en:'I get up at five o&rsquo;clock.', o:['को','पर','(nothing)','में'], a:2,
   why:'A clock time takes <strong>no</strong> marker: पाँच बजे already says &lsquo;at five o&rsquo;clock&rsquo;.'},
  {s:'हम रविवार ___ घूमने जाएँगे।', en:'We will go out on Sunday.', o:['को','पर','में','से'], a:0,
   why:'A day takes <strong>को</strong>. (A time on the clock takes nothing; a day of the week takes को.)'},
- {s:'मैं शाम ___ पढ़ूँगा।', en:'I will study until evening.', o:['तक','में','से','को'], a:0,
+ {s:'मैं शाम ___ पढ़ूँगी।', en:'I will study until evening.', o:['तक','में','से','को'], a:0,
   why:'<strong>तक</strong> is &lsquo;up to, until&rsquo;.'},
  {s:'चिड़िया पेड़ ___ बैठी है।', en:'The bird is sitting on the tree.', o:['पर','से','तक','का'], a:0,
   why:'<strong>पर</strong>: on top of, resting on.'},
