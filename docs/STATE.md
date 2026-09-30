@@ -22,6 +22,7 @@ Last updated: 18 September 2026.
 | Gas pressure and diffusion | Physics | `gaspressure.html` | gas box, diffusion tube | A–D + scheme |
 | Magnets and magnetic fields | Physics | `magnetism.html` | field plotter, two-magnet bench | A–D + scheme |
 | Reading comprehension | English | `reading.html` | evidence bench, mark machine | A–D + scheme |
+| Hindi sentence construction | Hindi | `hindi.html` | sentence builder, marker machine | **none yet** |
 | Pure substances and mixtures | Chemistry | `mixtures.html` | particle builder, melting-point test | A–D + scheme |
 | Separating mixtures | Chemistry | `separating.html` | separation bench, chromatogram | A–D + scheme |
 | Solutions and solubility | Chemistry | `solutions.html` | dissolving tank, solubility curves | A–D + scheme |
@@ -161,6 +162,19 @@ Notes for whoever touches these next:
   KayScience, Straight Science, The Organic Chemistry Tutor). YouTube itself rate-limited every direct fetch during the build, so
   the pages were not opened in a browser. Worth a two-minute click-through of the eighteen links before the student is sent to them.
 - **The hub bridge key** for each page is `<id>-progress-v1` (`mixtures-progress-v1`, `separating-progress-v1`, `solutions-progress-v1`).
+
+## Hindi — a sixth subject
+
+Added 30 September 2026 for a student who is fluent in English but weak at Hindi sentence construction and essays.
+`hindi.html` was built on the `reading.html` engine. Three small edits made Hindi a subject (`--hindi` in `index.html`,
+one row in `SUBJECTS`, `'hindi'` in the `register_topic.py` allowlist).
+
+- **Two tools:** the sentence builder (tap tiles into Hindi order; the machine names the rule broken; 10 sentences + 6 first-time-right puzzles) and the marker machine (noun + number + marker, showing the oblique change; 8 state-checked puzzles).
+- **Extras that are not marks:** a 100-verb bank (`VERBS`; every-day/past/future forms, T/I/B badge for ने) and a 24-sentence marker drill (`DRILL`). Neither counts towards the 30.
+- **The 30 marks are unchanged:** 5 MCQ + 5 short + 5 word. Progress key `hindi-progress-v1`.
+- **No papers yet.** The `#papers` section is deliberately absent and the manifest has no `papers` count. Generating Hindi PDFs needs a Devanagari font: `paper_lib.py` uses DejaVu, which has no Devanagari glyphs. Register Noto Sans/Serif Devanagari before writing `tools/papers/hindi_*.py`.
+- **Videos** were found by search, not opened. Channel names were not confirmed, so `ch` is descriptive. Click through the six links.
+- **The Hindi text has not been read by a native proofreader.** Verb forms were checked against an independent rule table and the page passes a jsdom click-through, but a Hindi reader should look over the lessons and Q14/Q15 model answers before the student uses it.
 
 ## Next
 

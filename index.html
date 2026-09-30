@@ -20,6 +20,7 @@
   --biology:#17693F; --biology-t:#E6F1EA;
   --chemistry:#B4560B; --chemistry-t:#FBEFE3;
   --english:#9B2C3F; --english-t:#F8E9EC;
+  --hindi:#3B4CA8;   --hindi-t:#ECEEF9;
   --ok:#1B7F4B;  --ok-t:#E6F3EC;
   --no:#98241B;  --no-t:#FBEAE8;
   --steel:#9A968D;
@@ -354,6 +355,10 @@ let S = { puzzles:{}, filter:'all', pIdx:null };
    The printed papers live on each topic page, in its #papers section — set papers
    to how many that page links, and this hub signposts them.                      */
 const TOPICS = [
+ {id:'hindi', file:'hindi.html', subject:'hindi', status:'ready',
+  title:'Build the Sentence', sub:'Hindi · sentence construction',
+  blurb:'Hindi puts the verb last, glues small words onto the back of nouns and makes the verb copy things English never asks about. Tap tiles into order and see which rule you broke, stick markers onto nouns and watch them change shape, then learn a hundred verbs by the job they do.',
+  meta:['30 marks', '6 lessons', 'sentence builder']},
  {id:'mixtures', file:'mixtures.html', subject:'chemistry', status:'ready', papers:4,
   title:'One Thing, or Many?', sub:'Chemistry · pure substances and mixtures',
   blurb:'Build a box of particles from five substances and let the machine rule on whether it is an element, a compound or a mixture — then add impurities to a sample and watch its sharp melting point smear into a range. The one test examiners always ask for.',
@@ -487,7 +492,8 @@ const SUBJECTS = {
   physics:{label:'Physics', colour:'var(--physics)', tint:'var(--physics-t)'},
   biology:{label:'Biology', colour:'var(--biology)', tint:'var(--biology-t)'},
   chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'},
-  english:{label:'English', colour:'var(--english)', tint:'var(--english-t)'}
+  english:{label:'English', colour:'var(--english)', tint:'var(--english-t)'},
+  hindi:{label:'Hindi', colour:'var(--hindi)', tint:'var(--hindi-t)'}
 };
 
 const BANDS = [

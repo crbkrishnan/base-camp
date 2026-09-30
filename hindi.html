@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build the Sentence &mdash; Grade 7 IGCSE Hindi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@500;700&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "hindi",
+  "file": "hindi.html",
+  "subject": "hindi",
+  "status": "ready",
+  "title": "Build the Sentence",
+  "sub": "Hindi · sentence construction",
+  "blurb": "Hindi puts the verb last, glues small words onto the back of nouns and makes the verb copy things English never asks about. Tap tiles into order and see which rule you broke, stick markers onto nouns and watch them change shape, then learn a hundred verbs by the job they do.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "sentence builder"
+  ]
+}
+</script>
+<style>
+:root{
+  --ink:#1C1A26;
+  --ink-soft:#5A566B;
+  --paper:#EDEBF2;
+  --card:#FFFFFF;
+  --line:#D6D2E0;
+  --line-soft:#E8E5EF;
+  /* the semantic accents for this page: the four jobs a word can do in a Hindi sentence.
+     A job keeps its colour for the whole page. The shared CSS calls the first two --o2 / --co2. */
+  --karta:#6B3FA0;      /* कर्ता · who does it · always violet */
+  --karta-tint:#F0EAF7;
+  --karm:#0B6E75;       /* कर्म · what it acts on, where, when · always teal */
+  --karm-tint:#E3F1F2;
+  --kriya:#B4560B;      /* क्रिया · the verb, always last · always amber */
+  --kriya-tint:#FBEFE3;
+  --chihn:#A3285A;      /* marker · को से में पर का की के · always rose */
+  --chihn-tint:#FAE8F0;
+  --o2:var(--kriya);   --o2-tint:var(--kriya-tint);
+  --co2:var(--karta);  --co2-tint:var(--karta-tint);
+  /* names the shared reading-page classes expect */
+  --shows:var(--kriya);  --shows-tint:var(--kriya-tint);
+  --sowhat:var(--karta); --sowhat-tint:var(--karta-tint);
+  --says:#6B6370;
+  --muscle:#7A5A86;
+  --steel:#9A94A0;
+  --steel-dark:#6E6876;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Noto Sans Devanagari','Trebuchet MS',sans-serif;
+  --body:'Newsreader','Noto Serif Devanagari',Georgia,serif;
+  --mono:'JetBrains Mono','Noto Sans Devanagari',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--co2)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(230,235,231,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--o2);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--o2);font-weight:700}
+.co2txt{color:var(--co2);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- the passage ---------- */
+.pbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.pbox > summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:12px;align-items:center;
+  font-family:var(--display);font-weight:700;font-size:15.5px}
+.pbox > summary::-webkit-details-marker{display:none}
+.pbox > summary .tagx{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-left:auto}
+.pbody{padding:4px 16px 16px;border-top:1px solid var(--line-soft)}
+.pintro{font-style:italic;font-size:15.5px;margin:14px 0 10px;color:var(--ink)}
+.pline{display:grid;grid-template-columns:34px 1fr;gap:6px;font-size:16px;line-height:1.52}
+.pline .pno{font-family:var(--mono);font-size:11.5px;color:var(--steel);text-align:right;padding-top:5px;user-select:none}
+.pline .ptx{padding:1px 0}
+.pline.blank{height:9px}
+
+/* ---------- tool chips ---------- */
+.claimbar{padding:13px 16px;border-top:1px solid var(--line);background:var(--sowhat-tint);
+  font-size:16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.claimbar .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.claimbar strong{font-family:var(--display);font-size:17px}
+.chipwrap{display:grid;gap:7px;padding:13px 16px}
+.echip{text-align:left;width:100%;background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:9px 13px;cursor:pointer;font-family:var(--body);font-size:16px;color:var(--ink);
+  display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start}
+.echip:hover:not([disabled]){border-color:var(--ink)}
+.echip .box{width:17px;height:17px;border:1.5px solid var(--steel);border-radius:5px;margin-top:4px;flex:0 0 auto}
+.echip.sel{background:var(--sowhat-tint);border-color:var(--sowhat)}
+.echip.sel .box{background:var(--sowhat);border-color:var(--sowhat)}
+.echip.hit{background:var(--ok-tint);border-color:var(--ok)}
+.echip.hit .box{background:var(--ok);border-color:var(--ok)}
+.echip.miss{background:var(--no-tint);border-color:var(--no)}
+.echip.miss .box{background:var(--no);border-color:var(--no)}
+.echip .verd{grid-column:2;font-family:var(--display);font-size:13px;margin-top:5px;color:var(--ink-soft)}
+.echip[disabled]{cursor:default}
+
+.brow{padding:12px 16px;border-top:1px solid var(--line-soft)}
+.brow .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:8px}
+.bchips{display:flex;gap:7px;flex-wrap:wrap}
+.bchip{font-family:var(--body);font-size:15.5px;background:var(--paper);border:1px solid var(--line);
+  border-radius:99px;padding:6px 13px;cursor:pointer;color:var(--ink);text-align:left}
+.bchip:hover{border-color:var(--ink)}
+.bchip.sel{background:var(--ink);border-color:var(--ink);color:#fff}
+.bchip.mono{font-family:var(--mono);font-size:14px}
+.built{padding:13px 16px;border-top:1px solid var(--line);background:var(--paper);font-size:16px;min-height:52px}
+.built em{color:var(--ink-soft);font-style:italic}
+.scorebar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:13px 16px;border-top:1px solid var(--line)}
+.scorebar .sc{font-family:var(--mono);font-weight:700;font-size:26px;line-height:1;padding:7px 14px;border-radius:10px;
+  background:var(--paper);color:var(--ink-soft)}
+.scorebar .sc.two{background:var(--ok-tint);color:var(--ok)}
+.scorebar .sc.one{background:var(--shows-tint);color:var(--shows)}
+.scorebar .sc.zero{background:var(--no-tint);color:var(--no)}
+.scorebar .why{flex:1 1 240px;font-size:15.5px}
+
+.ladder{display:grid;gap:8px;margin:12px 0}
+.rung{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-left:4px solid var(--says);border-radius:0 10px 10px 0;padding:10px 13px;font-size:15.5px}
+.rung .rn{font-family:var(--display);font-weight:700;font-size:15px}
+.rung.shows{border-left-color:var(--shows)}
+.rung.shows .rn{color:var(--shows)}
+.rung.sowhat{border-left-color:var(--sowhat)}
+.rung.sowhat .rn{color:var(--sowhat)}
+.tells{counter-reset:tell;display:grid;gap:7px;margin:10px 0}
+.tell{background:var(--paper);border-radius:9px;padding:9px 13px;font-size:15.5px}
+.tell b{font-family:var(--display)}
+.wrongright{display:grid;gap:8px;margin:11px 0}
+.wr{border-radius:9px;padding:10px 13px;font-size:15.5px}
+.wr.bad{background:var(--no-tint)}
+.wr.good{background:var(--ok-tint)}
+.wr .mk{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.quoteline{font-family:var(--body);font-style:italic}
+
+
+/* ---------- Hindi page additions ---------- */
+body{font-size:18px;line-height:1.7}
+nav.jump{background:rgba(237,235,242,.93)}
+.mast .hsub{font-family:var(--display);font-size:clamp(22px,4vw,30px);font-weight:700;color:var(--ink-soft);margin:-2px 0 10px}
+.rung{grid-template-columns:118px 1fr}
+.rung.karta{border-left-color:var(--karta)} .rung.karta .rn{color:var(--karta)}
+.rung.karm{border-left-color:var(--karm)}   .rung.karm .rn{color:var(--karm)}
+.rung.kriya{border-left-color:var(--kriya)} .rung.kriya .rn{color:var(--kriya)}
+.rung.chihn{border-left-color:var(--chihn)} .rung.chihn .rn{color:var(--chihn)}
+.kt{color:var(--karta);font-weight:700} .ko{color:var(--karm);font-weight:700}
+.kv{color:var(--kriya);font-weight:700} .kc{color:var(--chihn);font-weight:700}
+.hline{font-family:var(--display);font-weight:600;font-size:1.12em;line-height:1.6}
+.hbig{font-family:var(--display);font-weight:700;font-size:1.3em;line-height:1.5;background:var(--paper);padding:10px 14px;border-radius:9px;margin:10px 0;overflow-x:auto}
+
+/* tiles */
+.tilepool{display:flex;flex-wrap:wrap;gap:9px;padding:14px 16px;min-height:66px}
+.tileline{display:flex;flex-wrap:wrap;gap:9px;align-items:center;min-height:72px;padding:13px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.tileline .ph{color:var(--ink-soft);font-style:italic;font-size:15.5px}
+.tile{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.5;padding:5px 15px;border-radius:10px;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tileline .tile{background:var(--card)}
+.tile:hover:not([disabled]){border-color:var(--ink)}
+.tile[disabled]{cursor:default}
+.tile.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.tile.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.tile.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.tile.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.tile.x,.tile.c{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 13px}
+.lg{font-family:var(--display);font-size:13px;font-weight:700;padding:3px 11px;border-radius:99px;border:1.5px solid}
+.lg.k{background:var(--karta-tint);border-color:var(--karta);color:var(--karta)}
+.lg.o{background:var(--karm-tint);border-color:var(--karm);color:var(--karm)}
+.lg.m{background:var(--chihn-tint);border-color:var(--chihn);color:var(--chihn)}
+.lg.v{background:var(--kriya-tint);border-color:var(--kriya);color:var(--kriya)}
+.lg.x{background:#EEF0F4;border-color:var(--steel-dark);color:var(--steel-dark)}
+
+/* verb bank */
+.vctl{border:1px solid var(--line);border-radius:var(--r);background:var(--card);margin-bottom:14px;display:block;padding:13px 16px}
+.vctl .bchips{margin-bottom:11px}
+.vctl .vrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+input[type=search]{flex:1 1 220px;border:1px solid var(--line);border-radius:99px;padding:8px 15px;font-family:var(--body);font-size:16px;background:var(--paper);color:var(--ink)}
+.vctl label{font-family:var(--display);font-size:13.5px;color:var(--ink-soft);display:flex;gap:8px;align-items:center;cursor:pointer}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:10px}
+.vcard{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+  font-family:var(--body);color:var(--ink);cursor:default;display:block;width:100%}
+.vcard .vh{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.35}
+.vcard .ve{font-size:14.5px;color:var(--ink-soft);margin-bottom:7px}
+.vcard .vf{display:grid;gap:1px;font-size:17px;line-height:1.55}
+.vcard .vf b{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-right:9px}
+.vcard .vt{float:right;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px}
+.vt.T{background:var(--karm-tint);color:var(--karm)}
+.vt.I{background:var(--karta-tint);color:var(--karta)}
+.vt.B{background:var(--kriya-tint);color:var(--kriya)}
+.vcard.cover{cursor:pointer}
+.vcard.cover:not(.shown) .vf{filter:blur(7px);user-select:none}
+.vempty{padding:26px;text-align:center;color:var(--ink-soft);font-style:italic}
+
+/* marker machine + drill */
+.mout{font-family:var(--display);font-size:clamp(30px,6vw,44px);font-weight:700;text-align:center;padding:20px 16px;min-height:96px;line-height:1.4}
+.mout .mn{color:var(--karm)} .mout .mm{color:var(--chihn)}
+.mout .men{display:block;font-size:14.5px;font-weight:500;font-family:var(--body);color:var(--ink-soft);font-style:italic;margin-top:2px}
+.gap{display:inline-block;min-width:3em;border-bottom:2.5px solid var(--ink);text-align:center;font-weight:700;color:var(--ink-soft)}
+.gap.ok{color:var(--ok);border-color:var(--ok)} .gap.no{color:var(--no);border-color:var(--no)}
+.dline{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.6;margin:0 0 11px}
+.bchip[disabled]{cursor:default;opacity:.85}
+.bchip.right{background:var(--ok-tint);border-color:var(--ok);color:var(--ok);font-weight:700}
+.bchip.wrong{background:var(--no-tint);border-color:var(--no);color:var(--no)}
+.bchip.hin{font-family:var(--display);font-size:18px;font-weight:600}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Hindi &middot; Grade 7 &middot; Sentences and paragraphs</div>
+  <h1>Build the <em>Sentence</em></h1>
+  <div class="hsub" lang="hi">वाक्य रचना</div>
+  <p class="lede">You read English like a native and write Hindi like a translator. The gap is not vocabulary. Hindi builds a sentence in a different order, glues small words onto the <strong>back</strong> of nouns, and makes the verb copy things English never asks about. Four rules, a hundred verbs and twenty-four small markers &mdash; that is the whole trick, and it is the same trick in a sentence, a paragraph and an essay.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of <span class="num">30</span>, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme &mdash; otherwise you're just reading, and reading feels like learning without being learning. Type your Hindi or write it in a notebook, but write it: nobody has ever got better at sentence construction by nodding at one.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#bench">Sentence builder</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#verbs">100 verbs</a>
+  <a href="#machine">Marker machine</a>
+  <a href="#drill">Marker drill</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Long answers</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+
+<!-- ============ HERO 1: THE SENTENCE BUILDER ============ -->
+<section id="bench">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The sentence builder</h2>
+      <p>An English sentence, and its Hindi words scrambled. <strong>Tap the tiles into the order Hindi wants</strong>, then press Check. When you are wrong the machine says <em>which rule</em> you broke, not just that you did. Tap a tile in your sentence to send it back. When you are right, the tiles light up in the colour of the job each word does.</p>
+    </div>
+
+    <div class="claimbar">
+      <span class="lab">Say it in Hindi</span>
+      <strong id="b-en">&nbsp;</strong>
+    </div>
+
+    <div class="tilepool" id="b-pool" role="group" aria-label="Hindi word tiles: tap to add to your sentence"></div>
+    <div class="tileline" id="b-line" role="group" aria-label="Your sentence: tap a tile to remove it"></div>
+    <div class="legend" id="b-legend" aria-label="What the colours mean">
+      <span class="lg k">कर्ता &middot; who</span><span class="lg o">कर्म &middot; what / where / when</span><span class="lg m">marker</span><span class="lg v">क्रिया &middot; verb</span><span class="lg x">other</span>
+    </div>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="b-check">Check my sentence</button>
+      <button class="btn ghost small" type="button" id="b-clear">Clear</button>
+      <button class="btn ghost small" type="button" id="b-next">Different sentence</button>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">Sentence</div><div class="val mono" id="b-num">1 of 10</div></div>
+      <div class="cell"><div class="lab">Solved / first time right</div><div class="val mono" id="b-count">0 / 0 of 10</div></div>
+      <div class="phasebar">
+        <span class="pill hold" id="b-pill">Not checked yet</span>
+        <span id="b-note">Normal order: who &rarr; everything else &rarr; the verb, last. Markers sit straight behind their noun.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">6 videos</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was a screensaver with Hindi on it. If a link is dead or a video is too slow, skip it &mdash; the lessons below stand on their own, and that is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~40 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ THE HUNDRED VERBS ============ -->
+<section id="verbs">
+  <div class="shead"><h2>The hundred verbs</h2><span class="tag" id="v-count">100 of 100</span></div>
+  <p class="snote">Each card shows the verb and three forms you will need every time you write: <strong>every day</strong> (वह ___ता है), <strong>done</strong> (past) and <strong>will do</strong> (future). The badge is the one that matters for Lesson 4: <span class="vt T" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">T</span> takes an object and uses <em>ने</em> in the past; <span class="vt I" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">I</span> has no object and never does; <span class="vt B" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">B</span> can be either. Do not try to learn a hundred in one sitting &mdash; ten a day, covered, is ten days.</p>
+  <div class="vctl">
+    <div class="bchips" id="v-cats" role="group" aria-label="Filter verbs by group"></div>
+    <div class="vrow">
+      <input type="search" id="v-q" placeholder="Search in English or Hindi&hellip;" aria-label="Search verbs">
+      <label><input type="checkbox" id="v-cover"> Cover the forms &mdash; test yourself, tap a card to check</label>
+    </div>
+  </div>
+  <div class="vgrid" id="v-grid"></div>
+</section>
+
+<!-- ============ HERO 2: THE MARKER MACHINE ============ -->
+<section id="machine">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The marker machine</h2>
+      <p>Pick a noun, choose one or many, and stick a marker on the back of it. Watch the noun. The single most common mistake in Hindi sentences is writing <em>लड़का को</em> &mdash; and the machine shows you, live, why it becomes <em>लड़के को</em>.</p>
+    </div>
+
+    <div class="brow">
+      <div class="lab">1 &middot; choose a noun</div>
+      <div class="bchips" id="m-nouns" role="group" aria-label="Choose a noun"></div>
+    </div>
+    <div class="brow">
+      <div class="lab">2 &middot; one or many</div>
+      <div class="bchips" id="m-num" role="group" aria-label="Choose singular or plural"></div>
+    </div>
+    <div class="brow">
+      <div class="lab">3 &middot; stick on a marker</div>
+      <div class="bchips" id="m-marks" role="group" aria-label="Choose a marker"></div>
+    </div>
+
+    <div class="built mout" id="m-out" aria-live="polite"></div>
+
+    <div class="scorebar">
+      <span class="why" id="m-why"></span>
+    </div>
+
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill bal">noun + marker</span>
+        <span>The noun changes <strong>before</strong> the marker arrives. Only masculine <em>-ा</em> nouns change shape in the singular; every noun changes in the plural.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newquiz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="quizbox2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKER DRILL ============ -->
+<section id="drill">
+  <div class="shead"><h2>Marker drill</h2><span class="tag" id="d-score">0 of 24 right</span></div>
+  <p class="snote">Twenty-four sentences, one blank each. These do not count towards your 30 &mdash; they are the repetitions. One try per sentence, and the explanation appears either way. Watch items 22&ndash;24: the <em>verb</em> chooses the marker, not the English.</p>
+  <div id="d-list"></div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. Q5 catches people who have just learned the rule and are now over-applying it.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. A mark is for a <strong>whole correct sentence</strong> &mdash; one wrong verb ending and it is gone, exactly as it would be in an exam.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Long answers</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. Hint 1 chunks the sentence, hint 2 names the rule, hint 3 narrows it to the word &mdash; none of them writes the Hindi for you. Q14 and Q15 are the two that separate a 21 from a 26. Get someone who reads Hindi to look at those two.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Translating word by word</h4><p><em>मैं जाता हूँ स्कूल को</em> is English wearing a Hindi costume. The instinct is to keep the English order and swap in Hindi words, because that is how the sentence arrived in your head. Translate in three chunks instead &mdash; <strong>who | the rest | verb</strong> &mdash; and say them in that order. The verb is the last thing you write, unless the sentence carries a second verb or a question word to finish.</p></div>
+    <div class="trap"><h4>&ldquo;लड़का को&rdquo;</h4><p>The marker arrives and the noun forgets to change. A masculine <em>-ा</em> word becomes <em>-े</em> in front of <strong>any</strong> marker (लड़के को, कमरे में, घोड़े से) and every plural takes <em>-ों</em> (लड़कों को, किताबों में). It is the easiest mark on the page to lose, because it looks almost right.</p></div>
+    <div class="trap"><h4>का, की, के copy the wrong noun</h4><p><em>सीता का भाई</em> is right, and the instinct says <em>की</em> because Sita is a girl. The marker copies the thing that is <strong>owned</strong> &mdash; भाई, masculine &mdash; and pays no attention to the owner. Ask &ldquo;whose?&rdquo; first, then look only at the second noun.</p></div>
+    <div class="trap"><h4>The verb copies the doer after ने</h4><p><em>राम ने रोटी खाया</em>. Once ने appears, the verb stops copying the doer and copies the <strong>object</strong> (रोटी, feminine &rarr; खाई). If the object carries को, the verb gives up on both and stays in the plain masculine singular (<em>राम ने सीता को बुलाया</em>).</p></div>
+    <div class="trap"><h4>One English word, one Hindi word</h4><p>It does not work that way, in either direction. <em>से</em> is doing four English jobs (from, by, with-a-tool, than), <em>with</em> is two Hindi words (से for a tool, के साथ for company), and <em>to</em> is को for a person but <strong>nothing at all</strong> for a place. Ask what job the word is doing before you reach for its usual translation.</p></div>
+  </div>
+</section>
+
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'hindi-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, drill:{}, bDone:{}, bFirst:{}, pzSeen:{} };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+
+/* ---------------- videos ----------------
+   Found by web search (titles as listed there). Not opened in a browser during the build:
+   worth a two-minute click-through before the student is sent to them. */
+const VIDEOS = [
+ {t:"Karak | कारक | Hindi Grammar | Vyakaran Saar for Class 7", ch:"YouTube &middot; Class 7 Hindi grammar", url:"https://www.youtube.com/watch?v=iuI4ChSEqu8",
+  why:"<em>Karak</em> is the school-grammar name for what this page calls markers &mdash; को, से, में, पर and the rest. It is pitched at your year, so watch it at 1.5&times; and treat its names as labels for things you can already see happening in the marker machine.",
+  task:"Write down the karak names it gives, one under the other. Beside each, write one marker from the marker machine that does that job. Any karak you cannot match to a marker, circle &mdash; that is your question for whoever checks your Hindi."},
+
+ {t:"Class 7 Hindi Grammar &mdash; हिन्दी व्याकरण | Sangya, Visheshan, Kaal, Kriya, Karak", ch:"YouTube &middot; Class 7 Hindi grammar", url:"https://www.youtube.com/watch?v=g1XcTXNTlHk",
+  why:"A survey rather than a deep dive: noun, adjective, tense, verb, case, in one sitting. Its use is as a map. The detail you actually need for sentence construction is in the six lessons below, so watch it once, fast, and do not take notes on everything.",
+  task:"Write the five topic names from the title in Hindi &mdash; संज्ञा, विशेषण, काल, क्रिया, कारक. Put a star by the two this page spends most time on. Then write one Hindi sentence that uses all five ideas at once and underline each one."},
+
+ {t:"100 Verbs with meaning in Hindi | Verbs in English and Hindi", ch:"YouTube &middot; verbs with Hindi meanings", url:"https://www.youtube.com/watch?v=IPQ2z21jrMY",
+  why:"A second voice for the hundred verbs on this page. Many of the verbs will overlap, and hearing a word said out loud sticks far better than reading it. Watch it with the verb bank open, not instead of it.",
+  task:"Note ten verbs from it that you did <strong>not</strong> already know. Write each one in a Hindi sentence with at least one marker (में, से, को&hellip;). Then look each up in the verb bank and check the ending you used."},
+
+ {t:"Kriya (Verb) क्रिया &mdash; Learn Hindi Grammar", ch:"YouTube &middot; Hindi grammar", url:"https://www.youtube.com/watch?v=QhKY40_O3wk",
+  why:"क्रिया is the last word of almost every sentence you will write, so it is the word that carries the most marks when it goes wrong. This one is about what a verb is and how it changes.",
+  task:"Write three sentences about what you did today &mdash; one every-day (वह खाता है type), one past, one future &mdash; about the <strong>same</strong> action. Underline only the part of the verb that changed between them."},
+
+ {t:"लिंग | Gender in Hindi grammar | पुल्लिंग और स्त्रीलिंग", ch:"YouTube &middot; Hindi grammar", url:"https://www.youtube.com/watch?v=WyZfSFH5qZA",
+  why:"Gender is where three separate words in a sentence all get their endings from one noun: the verb, the adjective and का/की/के. Get the gender wrong and three words are wrong, not one. This is the least logical part of Hindi, so it is the part to learn by looking, not by guessing.",
+  task:"Write down ten things you can see from where you are sitting, each in Hindi, and mark each पु or स्त्री. Then get someone who reads Hindi to check. The ones you got wrong are the ones no rule can help you with &mdash; that is your learning list."},
+
+ {t:"Anuchhed Lekhan | अनुच्छेद-लेखन | Hindi Grammar | Vyakaran Saar for Class 7", ch:"YouTube &middot; Class 7 Hindi grammar", url:"https://www.youtube.com/watch?v=bxLMU1FdFvw",
+  why:"How a Hindi paragraph is laid out: what goes first, how many points, how to close. Lesson 6 on this page gives you the skeleton; this shows one being filled in, which is different from being told about it.",
+  task:"After watching, write a five-sentence paragraph titled मेरा घर using the skeleton from Lesson 6. Underline one connector, circle every verb, and check that each circle is at the end of its sentence."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"Hindi builds the sentence backwards", len:"6 min",
+  body:`<p>English says who, then what they did, then to what: <em>Ravi eats a mango.</em> Hindi says who, then to what, and holds the action back until the very end:</p>
+    <div class="hbig">रवि आम खाता है।</div>
+    <p>The verb is the last thing you say. Not usually &mdash; in an ordinary sentence, <em>every time</em>. Everything else sits in between, and every word in between does one of three jobs:</p>
+    <div class="ladder">
+      <div class="rung karta"><span class="rn">कर्ता &middot; who</span><span>The doer. Comes first. <span class="kt">रवि</span>, <span class="kt">लड़कियाँ</span>, <span class="kt">मैं</span>.</span></div>
+      <div class="rung karm"><span class="rn">कर्म &middot; the rest</span><span>What it acts on, and where, when or how. <span class="ko">आम</span>, <span class="ko">बगीचे में</span>, <span class="ko">कल</span>. Everything between the doer and the verb.</span></div>
+      <div class="rung kriya"><span class="rn">क्रिया &middot; verb</span><span>The action, and its helper (है, हैं, हूँ, था&hellip;). Always <span class="kv">last</span>. Together, as one block.</span></div>
+    </div>
+    <p>The sentence builder above uses exactly these colours, and so does the rest of this page. A colour means the same job everywhere.</p>
+    <table class="data">
+      <tr><th>English (who / verb / rest)</th><th>Hindi (who / rest / verb)</th></tr>
+      <tr><td>I eat rice</td><td><span class="kt">मैं</span> <span class="ko">चावल</span> <span class="kv">खाता हूँ</span></td></tr>
+      <tr><td>The boys play in the garden</td><td><span class="kt">लड़के</span> <span class="ko">बगीचे में</span> <span class="kv">खेलते हैं</span></td></tr>
+      <tr><td>She reads a book every evening</td><td><span class="kt">वह</span> <span class="ko">हर शाम किताब</span> <span class="kv">पढ़ती है</span></td></tr>
+    </table>
+    <p>Two small things follow from &ldquo;the verb is last&rdquo;. <strong>नहीं</strong> (not) goes straight in front of the verb: <em>मैं चावल नहीं खाता।</em> And a question word like <em>क्या</em> or <em>कहाँ</em> goes near the front or in the middle, but the verb still holds the end: <em>तुम कहाँ जा रहे हो?</em></p>
+    <p>The way to make this automatic is to stop translating word by word. Split the English into three chunks &mdash; <strong>who | the rest | verb</strong> &mdash; then say them in that order.</p>`,
+  demo:"Take the first paragraph of anything you wrote in English this week. Put two vertical lines in every sentence, splitting it into who | the rest | verb. Now read each sentence aloud with the last chunk moved to the end. It will sound strange in English. That strangeness is what Hindi order feels like from the inside.",
+  cliff:"<em>रवि आम खाता है</em> &mdash; and <em>Ravi eats a mango in the garden</em> is <em>रवि बगीचे में आम खाता है</em>. Where did the English word &lsquo;in&rsquo; go? It moved behind the noun. And the noun had to change its shape to let it in."},
+
+ {t:"Markers go behind, and the noun changes shape", len:"9 min",
+  body:`<p>English puts small words <em>in front</em> of a noun: in the room, on the table, with a pen. Hindi puts them <strong>behind</strong>: कमरे <span class="kc">में</span>, मेज़ <span class="kc">पर</span>, कलम <span class="kc">से</span>. This page calls them <strong>markers</strong> (the textbook word is <em>कारक चिह्न</em>, or <em>परसर्ग</em>).</p>
+    <table class="data">
+      <tr><th>English idea</th><th>Hindi marker</th><th>Example</th></tr>
+      <tr><td>in, inside</td><td class="kc">में</td><td>कमरे में, पानी में</td></tr>
+      <tr><td>on, at a spot</td><td class="kc">पर</td><td>मेज़ पर, छत पर</td></tr>
+      <tr><td>to (a person) &middot; on (a day)</td><td class="kc">को</td><td>माँ को, सोमवार को</td></tr>
+      <tr><td>from &middot; by &middot; with (a tool) &middot; than</td><td class="kc">से</td><td>दिल्ली से, बस से, कलम से, राम से लंबा</td></tr>
+      <tr><td>of, &lsquo;s</td><td class="kc">का / की / के</td><td>राम का घर, राम की किताब</td></tr>
+      <tr><td>up to, until</td><td class="kc">तक</td><td>शाम तक, स्कूल तक</td></tr>
+      <tr><td>for</td><td class="kc">के लिए</td><td>तुम्हारे लिए</td></tr>
+      <tr><td>together with</td><td class="kc">के साथ</td><td>दोस्तों के साथ</td></tr>
+      <tr><td>(the doer, past tense only)</td><td class="kc">ने</td><td>राम ने</td></tr>
+    </table>
+    <p><strong>Rule 1 &mdash; the noun changes shape first.</strong> When a marker is coming, a masculine noun ending in <em>-ा</em> changes it to <em>-े</em>, and any noun in the plural takes <em>-ों</em>:</p>
+    <table class="data">
+      <tr><th>Noun</th><th>Plain</th><th>+ marker, singular</th><th>+ marker, plural</th></tr>
+      <tr><td>boy</td><td>लड़का</td><td>लड़के को</td><td>लड़कों को</td></tr>
+      <tr><td>room</td><td>कमरा</td><td>कमरे में</td><td>कमरों में</td></tr>
+      <tr><td>girl</td><td>लड़की</td><td>लड़की को <em>(no change)</em></td><td>लड़कियों को</td></tr>
+      <tr><td>book</td><td>किताब</td><td>किताब पर <em>(no change)</em></td><td>किताबों पर</td></tr>
+    </table>
+    <p><strong>Rule 2 &mdash; less than English, sometimes.</strong> Going <em>to</em> a place takes no marker (<em>स्कूल जाता हूँ</em>). A clock time takes none (<em>पाँच बजे</em>). A day takes को (<em>रविवार को</em>). Do not translate every English &lsquo;to&rsquo; and &lsquo;at&rsquo; that you see.</p>
+    <p><strong>Rule 3 &mdash; the verb picks the marker.</strong> Not the English. बात करना, पूछना, मिलना and डरना all take <span class="kc">से</span> (<em>अध्यापक से पूछा</em>, <em>दोस्त से मिला</em>, <em>साँप से डरता हूँ</em>); फ़ोन करना takes <span class="kc">को</span> (<em>दादी को फ़ोन किया</em>). Learn the verb and its marker as one unit.</p>`,
+  demo:"Stand in your room and say six Hindi sentences aloud: three that say something is <em>on</em> something (कुर्सी पर&hellip;) and three that say something is <em>in</em> something (अलमारी में&hellip;). Then say each one again with the noun in the plural, and listen for the -ों.",
+  cliff:"The marker is stuck on and the noun has changed. But look at the verb: <em>लड़का जाता है</em>, <em>लड़की जाती है</em>, <em>लड़के जाते हैं</em>. The verb changes too. Who is it copying &mdash; and what about का, की and के, which change as well?"},
+
+ {t:"The verb copies someone", len:"8 min",
+  body:`<p>A Hindi verb ending is not fixed. It copies the <strong>doer</strong> in gender and number:</p>
+    <table class="data">
+      <tr><th>Who</th><th>Hindi</th></tr>
+      <tr><td>boy</td><td>लड़का जाता है</td></tr>
+      <tr><td>girl</td><td>लड़की जाती है</td></tr>
+      <tr><td>boys</td><td>लड़के जाते हैं</td></tr>
+      <tr><td>girls</td><td>लड़कियाँ जाती हैं</td></tr>
+      <tr><td>I (a boy / a girl)</td><td>मैं जाता हूँ / मैं जाती हूँ</td></tr>
+      <tr><td>you (तुम)</td><td>तुम जाते हो / तुम जाती हो</td></tr>
+      <tr><td>you, respectfully (आप) &middot; a respected teacher</td><td>आप जाते हैं / आप जाती हैं &middot; अध्यापक जाते हैं</td></tr>
+    </table>
+    <p>Two habits come with it. The helper word changes with the person: <em>हूँ</em> (I), <em>है</em> (he/she/it), <em>हैं</em> (they, and respectful you), <em>हो</em> (तुम); in the past it is <em>था, थी, थे, थीं</em>. And adjectives copy too, but only the ones ending in <em>-ा</em>: <em>अच्छा लड़का, अच्छी लड़की, अच्छे लड़के</em>; <em>सुंदर</em> and other adjectives that do not end in <em>-ा</em> never change.</p>
+    <p><strong>का, की, के copy the thing that is owned</strong> &mdash; not the owner. Ask <em>whose?</em>, then ignore the owner and look only at what is owned:</p>
+    <table class="data">
+      <tr><th>Sentence</th><th>Owned noun</th><th>So</th></tr>
+      <tr><td>सीता <span class="kc">का</span> भाई</td><td>भाई (masculine, one)</td><td>का</td></tr>
+      <tr><td>राम <span class="kc">की</span> बहन</td><td>बहन (feminine)</td><td>की</td></tr>
+      <tr><td>राम <span class="kc">के</span> दोस्त</td><td>दोस्त (masculine, many)</td><td>के</td></tr>
+      <tr><td>राम <span class="kc">के</span> घर में</td><td>घर (about to take में, so it goes oblique)</td><td>के</td></tr>
+    </table>
+    <p>That last row is the same rule from Lesson 2: when the owned noun is itself about to take a marker, का turns into के.</p>`,
+  demo:"Write &lsquo;goes to school every day&rsquo; four times, with four different doers: मेरा भाई, मेरी बहन, मेरे दोस्त, मेरी सहेलियाँ. Underline the letters that changed in the verb, in the helper word and in मेरा/मेरी/मेरे. Three words changing at once is the whole rule.",
+  cliff:"So far the verb copies the doer. Now the past tense of a verb that takes an object: <em>राम ने रोटी खाई</em>. राम is masculine. रोटी is feminine. The verb is feminine. Who did it just copy?"},
+
+ {t:"ने: the verb switches sides", len:"8 min",
+  body:`<p>Present and future tenses follow lessons 1&ndash;3. The past tense of a verb that takes an object plays by different rules, and it is the single biggest place a Hindi sentence goes wrong for someone who is fluent in English.</p>
+    <p><strong>The rule.</strong> Past tense + a verb that takes an object (the <span class="vt T" style="float:none;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 9px;border-radius:99px">T</span> verbs in the bank): the doer gets <span class="kc">ने</span>, and the verb copies the <strong>object</strong>, not the doer.</p>
+    <table class="data">
+      <tr><th>Sentence</th><th>Doer</th><th>Object</th><th>Verb copies</th></tr>
+      <tr><td>राम ने रोटी <b>खाई</b>।</td><td>राम (m)</td><td>रोटी (f)</td><td>रोटी &rarr; खाई</td></tr>
+      <tr><td>राम ने फल <b>खाया</b>।</td><td>राम (m)</td><td>फल (m)</td><td>फल &rarr; खाया</td></tr>
+      <tr><td>सीता ने पत्र <b>लिखा</b>।</td><td>सीता (f)</td><td>पत्र (m)</td><td>पत्र &rarr; लिखा</td></tr>
+      <tr><td>सीता ने चिट्ठियाँ <b>लिखीं</b>।</td><td>सीता (f)</td><td>चिट्ठियाँ (f, many)</td><td>चिट्ठियाँ &rarr; लिखीं</td></tr>
+      <tr><td>अध्यापक ने लड़के को <b>बुलाया</b>।</td><td>अध्यापक</td><td>लड़के <em>को</em></td><td>object has a marker &rarr; plain masculine singular</td></tr>
+    </table>
+    <p><strong>What ने is not for.</strong> There is no ने with the present or future (<em>राम रोटी खाता है</em>, <em>राम रोटी खाएगा</em>), and none with verbs that take no object &mdash; <em>वह गया</em>, <em>लड़की आई</em>, <em>बच्चे सो गए</em>. That is the T / I badge on the verb cards: ask if the verb has something it acts on.</p>
+    <p><strong>The pronouns join in.</strong> <em>मैंने, तुमने, उसने, हमने, उन्होंने</em>. Notice they are written as one word.</p>
+    <p><strong>Three irregular past forms</strong> you need before you write anything: जाना &rarr; <em>गया</em>, करना &rarr; <em>किया</em>, देना &rarr; <em>दिया</em>. The verb bank lists every one.</p>`,
+  demo:"Take six T verbs from the verb bank. For each, write one past sentence with a <em>feminine</em> object and one with a <em>masculine</em> object (उसने रोटी खाई / उसने आम खाया). Only the last letter or two of the verb should change between each pair.",
+  cliff:"You can now build one correct sentence. A paragraph needs sentences that lean on each other &mdash; and the words that do the leaning are the cheapest marks on the page."},
+
+ {t:"Glue words: joining sentences", len:"6 min",
+  body:`<p>A page of short correct sentences reads like a list. The marks for a paragraph go to sentences that <strong>depend on each other</strong>, and a small set of words does the joining:</p>
+    <table class="data">
+      <tr><th>Job</th><th>Word</th><th>Example</th></tr>
+      <tr><td>and</td><td class="kc">और</td><td>मैंने खाना खाया और पढ़ाई शुरू की।</td></tr>
+      <tr><td>but</td><td class="kc">लेकिन / परंतु</td><td>मैं खेलना चाहता था, लेकिन बारिश हो रही थी।</td></tr>
+      <tr><td>because</td><td class="kc">क्योंकि</td><td>हम बाहर नहीं गए क्योंकि बारिश हो रही थी।</td></tr>
+      <tr><td>so</td><td class="kc">इसलिए</td><td>मैं थका था, इसलिए जल्दी सो गया।</td></tr>
+      <tr><td>if &hellip; then</td><td class="kc">अगर &hellip; तो</td><td>अगर बारिश हुई, तो मैं नहीं आऊँगा।</td></tr>
+      <tr><td>when &hellip; then</td><td class="kc">जब &hellip; तब</td><td>जब मैं पहुँचा, तब घंटी बज चुकी थी।</td></tr>
+      <tr><td>so that</td><td class="kc">ताकि</td><td>मैं मेहनत करता हूँ ताकि अच्छे अंक ला सकूँ।</td></tr>
+      <tr><td>even so</td><td class="kc">फिर भी</td><td>वह बीमार था, फिर भी स्कूल आया।</td></tr>
+      <tr><td>that (reported speech)</td><td class="kc">कि</td><td>उसने कहा कि वह कल आएगा।</td></tr>
+    </table>
+    <p><strong>Pick one direction.</strong> <em>क्योंकि</em> looks back (result first, then the reason); <em>इसलिए</em> looks forward (reason first, then the result). Use one or the other in a sentence, never both &mdash; it is the same mistake as writing &ldquo;because &hellip; so&rdquo; in English.</p>
+    <p>In every example the verb still finishes each half, and the marker and agreement rules from Lessons 2&ndash;4 still apply on both sides of the connector. A connector joins two sentences; it does not excuse either of them.</p>
+    <p>Hindi punctuation: the full stop is <em>।</em> (the <em>पूर्ण विराम</em>), and a comma goes before a connector that starts a new clause.</p>`,
+  demo:"Take two short sentences from your day (<em>मैं थका था। मैं सो गया।</em>). Join them three different ways: with और, with इसलिए, with लेकिन. Read all three aloud. The pieces stayed the same and the meaning did not &mdash; notice how much the small word decides.",
+  cliff:"Connectors turn three sentences into a paragraph. What turns a paragraph into something that reads like an essay is <em>order</em> &mdash; and it is much easier than it sounds."},
+
+ {t:"Paragraph, then essay", len:"8 min",
+  body:`<p>Every Hindi paragraph you will be asked for at this level has the same three parts. Learn the skeleton, and the blank page stops being frightening:</p>
+    <table class="data">
+      <tr><th>Part</th><th>Size</th><th>Job</th><th>Starters</th></tr>
+      <tr><td><strong>परिचय</strong></td><td>1&ndash;2 sentences</td><td>Say what it is and give one fact</td><td>मेरा प्रिय &hellip; है। / हमारे जीवन में &hellip;</td></tr>
+      <tr><td><strong>विस्तार</strong></td><td>2&ndash;3 sentences</td><td>One point each, each with an example</td><td>सबसे पहले&hellip; / इसके अलावा&hellip; / उदाहरण के लिए&hellip;</td></tr>
+      <tr><td><strong>निष्कर्ष</strong></td><td>1&ndash;2 sentences</td><td>Say what you think, or what you learned</td><td>इसलिए मैं&hellip; / अंत में&hellip; / मैं बड़ा होकर&hellip;</td></tr>
+    </table>
+    <p>Here is one that follows it exactly. It is <strong>55 words</strong>, which is about what four or five sentences make:</p>
+    <p class="hline">मेरा सबसे प्रिय खेल क्रिकेट है। मैं रोज़ शाम को अपने दोस्तों के साथ मैदान में खेलता हूँ। इस खेल से शरीर मज़बूत बनता है और टीम में मिलकर काम करना भी आता है। पिछले रविवार मैंने पहली बार छक्का मारा था, इसलिए सबने ताली बजाई। मैं बड़ा होकर देश के लिए खेलना चाहता हूँ।</p>
+    <p>The first sentence is the परिचय; the next two are the विस्तार (when he plays, and what the game gives him); the fourth is an example; the last is the निष्कर्ष. Find the ने in sentence 4: <em>मैंने छक्का मारा था</em> &mdash; छक्का is masculine, so the verb is masculine. Find the connector, the marker after <em>दोस्तों</em> and the one after <em>मैदान</em>.</p>
+    <p><strong>Before you write the last line, check five things:</strong></p>
+    <ol>
+      <li>Is the verb last in every sentence?</li>
+      <li>Did the noun change shape in front of every marker?</li>
+      <li>Does each verb copy the right person (or the object, after ने)?</li>
+      <li>Do का/की/के match the thing owned?</li>
+      <li>Does every sentence end with <em>।</em>?</li>
+    </ol>`,
+  demo:"Set a timer for eight minutes. Write four or five sentences on <em>मेरा प्रिय खेल</em> or <em>मेरा प्रिय त्योहार</em>: one introduction, two points, one ending. Then read it aloud slowly, pointing at each verb. Anywhere you stumble is an error, and the checklist above is where to look for it.",
+  cliff:"Q15 asks for exactly this. Q14 asks for something harder: four sentences about a scenario you did not choose, which <em>must</em> include a ने sentence and a connector. Those two are the pair that separate a 21 from a 26."}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which sentence has the words in normal Hindi order for <em>The girl reads a book</em>?",
+  o:["लड़की पढ़ती है किताब","लड़की किताब पढ़ती है","किताब लड़की पढ़ती है","पढ़ती है लड़की किताब"],
+  a:1,
+  why:"Who, then the rest, then the verb &mdash; Lesson 1 in one line. A is English order carried over. C puts the book first, which Hindi can do for emphasis but which reads as a different sentence, and D opens with the verb, which is for questions and poetry. The neutral sentence keeps the doer first and the verb last."},
+
+ {n:2, lvl:"warm-up", q:"<em>The book is lying on the table.</em> &nbsp; किताब मेज़ ___ रखी है।",
+  o:["में","पर","को","तक"],
+  a:1,
+  why:"<strong>पर</strong> is &lsquo;on the surface of&rsquo;. में would put the book <em>inside</em> the table, in a drawer, and तक means &lsquo;as far as&rsquo;. को is for people and days. The marker goes <em>behind</em> the noun: मेज़ पर."},
+
+ {n:3, lvl:"standard", q:"<em>The teacher gave a prize to the boy.</em> &nbsp; अध्यापक ने ___ इनाम दिया।",
+  o:["लड़का को","लड़के को","लड़के से","लड़कों को"],
+  a:1,
+  why:"The boy is a person receiving something, so the marker is <strong>को</strong>, and one boy in front of a marker is <strong>लड़के</strong>, not लड़का. The first option forgets to change the noun. The third has the wrong marker (से would mean &lsquo;from&rsquo; or &lsquo;by&rsquo;). The fourth is right for <em>boys</em>, and the English said one."},
+
+ {n:4, lvl:"standard", q:"<em>My sister goes to school every day.</em> &nbsp; मेरी बहन रोज़ स्कूल ___।",
+  o:["जाता है","जाती है","जाते हैं","जाती हैं"],
+  a:1,
+  why:"The verb copies the doer, and the doer is बहन: feminine, one. So <strong>-ती</strong> and <strong>है</strong>. Notice that मेरी has already told you it is feminine &mdash; the sentence gives you the gender before it asks for it. जाती हैं is for more than one sister, or a very respectful one."},
+
+ {n:5, lvl:"trap", q:"<em>This is Seema&rsquo;s brother.</em> &nbsp; यह सीमा ___ भाई है।",
+  o:["का","की","के","ने"],
+  a:0,
+  why:"<strong>का</strong>. का, की and के copy the thing that is <em>owned</em> &mdash; भाई, masculine and one &mdash; and ignore the owner completely. The trap is <strong>की</strong>, because Seema is a girl: half the class picks it. Ask &ldquo;whose?&rdquo;, then look only at the second noun."}
+];
+
+const SHORTS = [
+ {n:6, lvl:"warm-up", m:2, q:"Write in Hindi:<br><strong>(a)</strong> The girls play in the garden. <span class='num'>[1]</span><br><strong>(b)</strong> I go to school by bus. <span class='num'>[1]</span>",
+  scheme:["(a) <strong>लड़कियाँ बगीचे में खेलती हैं।</strong> One mark for the whole sentence: बगीचे (not बगीचा) before में, the verb last, and <em>खेलती हैं</em> for girls, many. <span class='num'>[1]</span>",
+          "(b) <strong>मैं बस से स्कूल जाता / जाती हूँ।</strong> (or <em>मैं स्कूल बस से जाता हूँ</em>). One mark: से for &lsquo;by&rsquo;, <strong>no</strong> marker after स्कूल, the verb last, and -ता or -ती matching you. <span class='num'>[1]</span>"],
+  tip:"Chunk each one before you write it: who | the rest | verb. If your first attempt has the verb in the middle, it is English wearing Hindi words."},
+
+ {n:7, lvl:"standard", m:2, q:"Each blank needs the noun in the <strong>right form and</strong> the marker.<br><strong>(a)</strong> The prize was given to the boy: इनाम ___ दिया गया। (लड़का) <span class='num'>[1]</span><br><strong>(b)</strong> The farmer walks with the horses: किसान ___ चलता है। (घोड़ा, more than one) <span class='num'>[1]</span>",
+  scheme:["(a) <strong>लड़के को</strong> &mdash; the noun changes (-ा &rarr; -े) <em>and</em> the marker is को. Either half wrong scores nothing. <span class='num'>[1]</span>",
+          "(b) <strong>घोड़ों के साथ</strong> &mdash; plural takes -ों, and &lsquo;together with&rsquo; is के साथ (not से, which is for a tool). <span class='num'>[1]</span>"],
+  tip:"The two things are separate mistakes, so check them separately. First ask &ldquo;does the noun change?&rdquo;, then ask &ldquo;which marker does this job?&rdquo;."},
+
+ {n:8, lvl:"standard", m:2, q:"Each sentence has <strong>one</strong> mistake. Write it out correctly.<br><strong>(a)</strong> लड़का को किताब दो। <span class='num'>[1]</span><br><strong>(b)</strong> मेरा भाई स्कूल जाती है। <span class='num'>[1]</span>",
+  scheme:["(a) <strong>लड़के को किताब दो।</strong> The noun did not change before the marker. <span class='num'>[1]</span>",
+          "(b) <strong>मेरा भाई स्कूल जाता है।</strong> भाई is masculine, so the verb ends -ता, not -ती. <span class='num'>[1]</span>"],
+  tip:"Say what the rule is <em>before</em> you fix it: (a) is a marker rule, (b) is an agreement rule. Knowing which one broke tells you which chart to look at."},
+
+ {n:9, lvl:"standard", m:2, q:"Rewrite each sentence in the <strong>past tense</strong>, using ने:<br><strong>(a)</strong> राम रोटी खाता है। <span class='num'>[1]</span><br><strong>(b)</strong> सीता गाना गाती है। <span class='num'>[1]</span>",
+  scheme:["(a) <strong>राम ने रोटी खाई।</strong> रोटी is feminine, so the verb is <em>खाई</em>. <span class='num'>[1]</span>",
+          "(b) <strong>सीता ने गाना गाया।</strong> गाना is masculine, so the verb is <em>गाया</em> &mdash; even though Sita is a girl. <span class='num'>[1]</span>"],
+  tip:"In both, the doer and the verb ending do <em>not</em> match, and that is correct. The verb has switched to copying the object."},
+
+ {n:10, lvl:"trap", m:2, q:"Give the <strong>past form</strong> (masculine, one) of each verb: <strong>जाना, करना, पीना, लेना</strong>. <span class='num'>[2]</span>",
+  scheme:["<strong>गया, किया, पिया, लिया.</strong> All four right: <span class='num'>[2]</span>. Two or three right: <span class='num'>[1]</span>. One or none: <span class='num'>[0]</span>.",
+          "A regular verb just adds -ा or -या to its root (खाना &rarr; खाया, पढ़ना &rarr; पढ़ा). These four do not: जाना &rarr; गया has a different stem altogether."],
+  tip:"These are irregular, so no rule can save you: learn them. All four are in the verb bank, and so are the other three most common irregular ones (देना &rarr; दिया, होना &rarr; हुआ, and जीना &rarr; जिया)."}
+];
+
+const WORDS = [
+ {n:11, lvl:"standard", m:3, q:"Join each pair into <strong>one</strong> sentence with the connector shown.<br><strong>(a)</strong> मैं थका था। मैं जल्दी सो गया। (इसलिए) <span class='num'>[1]</span><br><strong>(b)</strong> हम खेलने नहीं गए। बारिश हो रही थी। (क्योंकि) <span class='num'>[1]</span><br><strong>(c)</strong> तुम मेहनत करोगे। तुम पास हो जाओगे। (अगर &hellip; तो) <span class='num'>[1]</span>",
+  hints:["Decide first which half is the <em>reason</em> and which is the <em>result</em>. That decides where the connector sits.",
+         "इसलिए sits at the start of the result. क्योंकि sits at the start of the reason. अगर goes at the very front of the whole sentence, and तो starts the second half.",
+         "In (c) you can drop the second तुम &mdash; Hindi does not repeat the doer once it is clear. The verb still finishes each half."],
+  sol:["<strong>(a)</strong> मैं थका था, इसलिए जल्दी सो गया। <em>(the second मैं is dropped; इसलिए starts the result)</em>",
+       "<strong>(b)</strong> हम खेलने नहीं गए क्योंकि बारिश हो रही थी। <em>(the result comes first, then क्योंकि and the reason &mdash; the order is the reverse of the English pair you were given)</em>",
+       "<strong>(c)</strong> अगर तुम मेहनत करोगे, तो पास हो जाओगे। <em>(अगर opens the sentence, तो opens the second half, and both verbs stay last in their half)</em>",
+       "Worth noticing: (a) and (b) say the same thing in opposite orders, and neither uses both इसलिए and क्योंकि. Picking one direction and staying with it is what makes them correct."]},
+
+ {n:12, lvl:"standard", m:3, q:"Translate into Hindi. Every sentence needs at least one marker:<br><strong>(a)</strong> The book is on the table in my room. <span class='num'>[1]</span><br><strong>(b)</strong> I will go to Mysore with my friends. <span class='num'>[1]</span><br><strong>(c)</strong> He is taller than his brother. <span class='num'>[1]</span>",
+  hints:["Chunk each one: who | the rest | verb. Then, inside &lsquo;the rest&rsquo;, put each marker <em>behind</em> its noun.",
+         "(a) has two markers, and the room comes first because it is where the table is. (b) &lsquo;to&rsquo; a city takes nothing, but &lsquo;with&rsquo; friends needs the two-word marker. (c) &lsquo;than&rsquo; is one of the four jobs of से.",
+         "In (a), check the noun in front of में: कमरा is a masculine -ा word, and a marker is about to arrive."],
+  sol:["<strong>(a)</strong> किताब मेरे कमरे में मेज़ पर है। <em>(कमरे, not कमरा, before में; मेरे matches कमरे)</em>",
+       "<strong>(b)</strong> मैं अपने दोस्तों के साथ मैसूर जाऊँगा / जाऊँगी। <em>(no marker after मैसूर; दोस्तों takes -ों before के साथ; the verb agrees with you)</em>",
+       "<strong>(c)</strong> वह अपने भाई से लंबा है। <em>(से for &lsquo;than&rsquo;; भाई ends in ई so it does not change)</em>",
+       "One mark each, and one wrong word in a sentence loses that mark. The most common slip is in (a): writing कमरा में."]},
+
+ {n:13, lvl:"trap", m:3, q:"Each sentence has <strong>one</strong> mistake. Say what it is and correct it.<br><strong>(a)</strong> सीता का किताब मेज़ पर है। <span class='num'>[1]</span><br><strong>(b)</strong> लड़कियाँ बगीचे में खेलती है। <span class='num'>[1]</span><br><strong>(c)</strong> मैंने रोटी खाया। <span class='num'>[1]</span>",
+  hints:["Before you fix anything, say <em>which rule</em> is broken. There are three different rules across the three sentences.",
+         "(a) Ask &lsquo;whose?&rsquo; and look only at the second noun. (b) Count who is playing. (c) Look for ने; that changes who the verb copies.",
+         "(a) is a का/की/के slip, (b) is number, (c) is the ने rule. Name the rule first; the fix is one letter each time."],
+  sol:["<strong>(a)</strong> सीता <strong>की</strong> किताब मेज़ पर है। <em>का/की copies the owned noun: किताब is feminine, so की.</em>",
+       "<strong>(b)</strong> लड़कियाँ बगीचे में खेलती <strong>हैं</strong>। <em>Girls, many &mdash; the helper word must be हैं, not है.</em>",
+       "<strong>(c)</strong> मैंने रोटी <strong>खाई</strong>। <em>After ने the verb copies the object, and रोटी is feminine.</em>",
+       "All three are one-letter mistakes, and all three cost a full mark. That is why the checklist at the end of Lesson 6 exists."]},
+
+ {n:14, lvl:"hard", m:3, q:"Write <strong>four connected sentences</strong> about this: <em>Arjun got caught in the rain on the way home. His mother gave him hot tea.</em><br><br>Your four sentences must include: <strong>one ने sentence</strong>, <strong>one connector</strong> (और, इसलिए, क्योंकि, लेकिन&hellip;) and <strong>at least two different markers</strong>.<br><br><span class='num'>[1]</span> every verb is last and copies the right person &nbsp; <span class='num'>[1]</span> the ने sentence is correct &nbsp; <span class='num'>[1]</span> a connector and two different markers, used correctly",
+  hints:["Sketch it in English first, as four short sentences: what happened, what the result was, what mother did, what he did. Then translate one at a time.",
+         "For the ने sentence, use a past-tense verb that takes an object: <em>माँ ने &hellip; दी</em> or <em>उसने &hellip; पी</em>. The object decides the verb ending, so name its gender first.",
+         "For the connector, इसलिए is the easiest: the first sentence is the reason, इसलिए begins the second. Markers you could use: में (in the rain), से (late), को (to him)."],
+  sol:["<strong>One correct version:</strong> आज अर्जुन बारिश में भीग गया। इसलिए वह देर से घर पहुँचा। माँ ने उसे गरम चाय दी। उसने चाय पी और जल्दी सो गया।",
+       "<strong>Check the verbs:</strong> <em>भीग गया</em> and <em>पहुँचा</em> take no ने (no object), so they copy Arjun. <em>दी</em> copies चाय (feminine); <em>पी</em> also copies चाय. In the last sentence, <em>सो गया</em> is back to copying Arjun because there is no object.",
+       "<strong>Check the marks:</strong> the ने sentence is <em>माँ ने उसे गरम चाय दी</em> (and also <em>उसने चाय पी</em>); the connector is <em>इसलिए</em> (and <em>और</em>); the markers are में, से, ने and उसे. Any correct version is fine &mdash; there is no single right answer, only sentences the rules allow.",
+       "<strong>What makes this a hard question:</strong> you are choosing your own words, so there is no line to copy. The marks come from the rules holding, sentence by sentence, in words you picked."]},
+
+ {n:15, lvl:"hard", m:3, q:"Write a paragraph of <strong>four or five sentences (about 50 words)</strong> on <em>मेरा प्रिय त्योहार</em> (my favourite festival).<br><br><span class='num'>[1]</span> it has an introduction, at least two points, and an ending &nbsp; <span class='num'>[1]</span> the grammar holds: verb last, nouns change before markers, verbs copy the right person &nbsp; <span class='num'>[1]</span> at least two connectors or linking phrases, and every sentence ends in <em>।</em>",
+  hints:["Skeleton first, words second: sentence 1 (what and when), sentences 2&ndash;3 (what you do, what you eat or see), last sentence (why you like it, or what it teaches).",
+         "Reuse verbs from the verb bank rather than reaching for new ones. Stick to <em>खाना, बनाना, सजाना, खेलना, देखना, जाना, मिलना</em> &mdash; you know the forms.",
+         "Use two linking words from Lesson 5 &mdash; और, लेकिन, इसलिए, क्योंकि. Before you finish, run the five-point checklist from Lesson 6, and read the paragraph aloud."],
+  sol:["<strong>A top-band version:</strong> मेरा प्रिय त्योहार दीपावली है। इस दिन हम घर को दीयों और रंगोली से सजाते हैं। माँ स्वादिष्ट मिठाइयाँ बनाती हैं और हम सब मिलकर पूजा करते हैं। मुझे पटाखे जलाना पसंद है, लेकिन मैं ध्यान रखता हूँ कि किसी को चोट न लगे। यह त्योहार हमें सिखाता है कि अँधेरा कितना भी गहरा हो, रोशनी की जीत होती है।",
+       "<strong>Structure:</strong> sentence 1 is the introduction; 2&ndash;4 are the points (decorating, food and prayer, fireworks); sentence 5 is the ending. Notice how the verbs are all last: <em>सजाते हैं, बनाती हैं, करते हैं, पसंद है, लगे, होती है</em>.",
+       "<strong>Markers to find:</strong> <em>घर को, दीयों और रंगोली से</em> (दीयों takes -ों before से), <em>हमें, मुझे, किसी को</em>. Connectors: <em>और, लेकिन, कि</em>.",
+       "<strong>You do not need to match this.</strong> Five plain sentences, correct in the rules and joined by two connectors, earn three marks. The version above is what the top of the band looks like, not the minimum."]}
+];
+
+/* ---------------- tool data ----------------
+   TASKS / PZ: [hindi word, role] in the canonical order. Roles: k doer, o the rest, m marker,
+   v verb (all verb tiles are checked as one block at the end), x other, c connector.
+   alts: other orders the machine also accepts (a permutation of the same tiles).
+   multi: two clauses, so "the verb goes last" is not a fair test of the whole line. */
+const TASKS = [
+ {id:'t1', en:'Ravi eats a mango.', tiles:[['रवि','k'],['आम','o'],['खाता','v'],['है','v']],
+  why:'Who, the rest, the verb &mdash; and the verb pair खाता है travels together at the end.'},
+ {id:'t2', en:'Sita reads a book.', tiles:[['सीता','k'],['किताब','o'],['पढ़ती','v'],['है','v']],
+  why:'Same order, and the doer is feminine, so the verb ends -ती, not -ता.'},
+ {id:'t3', en:'The boys play in the garden.', tiles:[['लड़के','k'],['बगीचे','o'],['में','m'],['खेलते','v'],['हैं','v']],
+  why:'में sits <em>behind</em> बगीचे, and बगीचा became बगीचे to let it in. Many boys, so खेलते हैं.'},
+ {id:'t4', en:'Mother gives Meena a gift.', tiles:[['माँ','k'],['मीना','o'],['को','m'],['उपहार','o'],['देती','v'],['है','v']],
+  alts:[['माँ','उपहार','मीना','को','देती','है']],
+  why:'को is the person-receiving marker, straight behind मीना. Mother is feminine, so देती है.'},
+ {id:'t5', en:'The teacher (a woman) is writing on the board.', tiles:[['शिक्षिका','k'],['बोर्ड','o'],['पर','m'],['लिख','v'],['रही','v'],['है','v']],
+  why:'पर goes behind बोर्ड. In लिख रही है, रही carries the gender that -ती carried before.'}
+];
+const TASKS_B = [
+ {id:'t6', en:'I go to school by bus.', tiles:[['मैं','k'],['बस','o'],['से','m'],['स्कूल','o'],['जाता','v'],['हूँ','v']],
+  alts:[['मैं','स्कूल','बस','से','जाता','हूँ']],
+  why:'No marker after स्कूल &mdash; &lsquo;to&rsquo; a place is free. से is doing the &lsquo;by means of&rsquo; job.'},
+ {id:'t7', en:'My brother&rsquo;s book is on the table.', tiles:[['मेरे','x'],['भाई','x'],['की','m'],['किताब','k'],['मेज़','o'],['पर','m'],['है','v']],
+  why:'की copies <strong>किताब</strong> (feminine), not भाई. And it is मेरे, not मेरा, because भाई is about to take a marker.'},
+ {id:'t8', en:'Arjun ate the apple.', tiles:[['अर्जुन','k'],['ने','m'],['सेब','o'],['खाया','v']],
+  why:'Past tense, and खाना takes an object, so ने. The verb copies सेब (masculine): खाया.'},
+ {id:'t9', en:'It was raining, so we did not go out.', multi:true,
+  tiles:[['बारिश','k'],['हो','v'],['रही','v'],['थी','v'],['इसलिए','c'],['हम','k'],['बाहर','o'],['नहीं','x'],['गए','v']],
+  why:'Two clauses, joined by इसलिए, which starts the <em>result</em>. Each clause finishes on its own verb, and नहीं sits right in front of गए.'},
+ {id:'t10', en:'Tomorrow we will go to Mysore by train.', tiles:[['कल','x'],['हम','k'],['रेलगाड़ी','o'],['से','m'],['मैसूर','o'],['जाएँगे','v']],
+  alts:[['हम','कल','रेलगाड़ी','से','मैसूर','जाएँगे'],['कल','हम','मैसूर','रेलगाड़ी','से','जाएँगे'],['हम','कल','मैसूर','रेलगाड़ी','से','जाएँगे']],
+  why:'Time first is normal. से stays behind रेलगाड़ी, मैसूर takes no marker, and the verb is last.'}
+];
+const PZ = [
+ {id:'p1', en:'The boys gave the teacher a gift.', tiles:[['लड़कों','k'],['ने','m'],['अध्यापक','o'],['को','m'],['उपहार','o'],['दिया','v']],
+  alts:[['लड़कों','ने','उपहार','अध्यापक','को','दिया']],
+  why:'Boys, many, before ने: लड़कों. उपहार is masculine, so दिया.'},
+ {id:'p2', en:'My sister&rsquo;s friend is in the kitchen.', tiles:[['मेरी','x'],['बहन','x'],['की','m'],['सहेली','k'],['रसोई','o'],['में','m'],['है','v']],
+  why:'की copies सहेली (feminine). में goes behind रसोई.'},
+ {id:'p3', en:'The girl did not eat the apple.', tiles:[['लड़की','k'],['ने','m'],['सेब','o'],['नहीं','x'],['खाया','v']],
+  why:'ने because it is past tense; the verb copies सेब, not लड़की; नहीं sits right in front of the verb.'},
+ {id:'p4', en:'We will go to the market tomorrow.', tiles:[['हम','k'],['कल','x'],['बाज़ार','o'],['जाएँगे','v']],
+  alts:[['कल','हम','बाज़ार','जाएँगे']],
+  why:'No marker after बाज़ार. The verb is last.'},
+ {id:'p5', en:'The children are playing in the field.', tiles:[['बच्चे','k'],['मैदान','o'],['में','m'],['खेल','v'],['रहे','v'],['हैं','v']],
+  why:'में behind मैदान; खेल रहे हैं for many children.'},
+ {id:'p6', en:'Rohan asked his teacher a question.', tiles:[['रोहन','k'],['ने','m'],['अपने','x'],['अध्यापक','o'],['से','m'],['प्रश्न','o'],['पूछा','v']],
+  alts:[['रोहन','ने','प्रश्न','अपने','अध्यापक','से','पूछा']],
+  why:'पूछना takes <strong>से</strong> for the person you ask, and the verb copies प्रश्न (masculine): पूछा.'}
+];
+
+const NOUNS = [
+ {w:'लड़का', ty:'aa', s:'लड़का', so:'लड़के', p:'लड़के', po:'लड़कों', en:'boy', enp:'boys'},
+ {w:'कमरा', ty:'aa', s:'कमरा', so:'कमरे', p:'कमरे', po:'कमरों', en:'room', enp:'rooms'},
+ {w:'घोड़ा', ty:'aa', s:'घोड़ा', so:'घोड़े', p:'घोड़े', po:'घोड़ों', en:'horse', enp:'horses'},
+ {w:'लड़की', ty:'f', s:'लड़की', so:'लड़की', p:'लड़कियाँ', po:'लड़कियों', en:'girl', enp:'girls'},
+ {w:'किताब', ty:'f', s:'किताब', so:'किताब', p:'किताबें', po:'किताबों', en:'book', enp:'books'},
+ {w:'आदमी', ty:'m0', s:'आदमी', so:'आदमी', p:'आदमी', po:'आदमियों', en:'man', enp:'men'},
+ {w:'घर', ty:'m0', s:'घर', so:'घर', p:'घर', po:'घरों', en:'house', enp:'houses'}
+];
+
+const MARKS = [
+ {m:'', none:true, label:'no marker', en:''},
+ {m:'ने', label:'ने', en:'marks the doer &mdash; past tense only'},
+ {m:'को', label:'को', en:'to (a person) &middot; on (a day)'},
+ {m:'से', label:'से', en:'from &middot; by &middot; with (a tool) &middot; than'},
+ {m:'में', label:'में', en:'in &middot; inside'},
+ {m:'पर', label:'पर', en:'on &middot; at a spot'},
+ {m:'तक', label:'तक', en:'up to &middot; until'},
+ {m:'के लिए', label:'के लिए', en:'for'},
+ {m:'के साथ', label:'के साथ', en:'together with'}
+];
+
+const MPZ = [
+ {id:'m1', ask:'in the room', t:'कमरे में', why:'कमरा is a masculine -ा noun, so it becomes कमरे in front of any marker.'},
+ {id:'m2', ask:'for the girls', t:'लड़कियों के लिए', why:'Plural: लड़कियाँ becomes लड़कियों before a marker, and &ldquo;for&rdquo; is के लिए.'},
+ {id:'m3', ask:'on the books', t:'किताबों पर', why:'Plural takes -ों: किताबें becomes किताबों. पर for &ldquo;on&rdquo;.'},
+ {id:'m4', ask:'together with the boys', t:'लड़कों के साथ', why:'Plural लड़कों, and &ldquo;together with&rdquo; is the two-word marker के साथ.'},
+ {id:'m5', ask:'the horse (as the doer, past tense)', t:'घोड़े ने', why:'ने is the doer marker, and घोड़ा changes to घोड़े in front of it.'},
+ {id:'m6', ask:'from the man (one man)', t:'आदमी से', why:'The trap: आदमी ends in <em>-ई</em>, not <em>-ा</em>, so it does <strong>not</strong> change in the singular. से is &ldquo;from&rdquo;.'},
+ {id:'m7', ask:'to the horses (more than one)', t:'घोड़ों को', why:'Plural: घोड़े becomes घोड़ों. को for &ldquo;to&rdquo; a person or animal.'},
+ {id:'m8', ask:'up to the house (one house)', t:'घर तक', why:'घर is masculine but does not end in -ा, so it is unchanged in the singular. तक is &ldquo;up to&rdquo;.'}
+];
+
+/* ---------------- the hundred verbs ----------------
+   [infinitive, English, T/I/B, group, past (masculine, one), future (he/it)].
+   T = takes an object, so ने in the past. I = no object. B = can be either.
+   The every-day form is built in code: root + ता है. */
+const VCATS = [['all','All'],['move','Movement'],['daily','Daily life'],['mind','Mind &amp; speech'],['make','Make &amp; handle'],['nature','Nature &amp; science'],['money','Money &amp; numbers']];
+const VERBS = [
+ /* movement */
+ ['जाना','to go','I','move','गया','जाएगा'],
+ ['आना','to come','I','move','आया','आएगा'],
+ ['चलना','to walk, to move','I','move','चला','चलेगा'],
+ ['दौड़ना','to run','I','move','दौड़ा','दौड़ेगा'],
+ ['भागना','to run away','I','move','भागा','भागेगा'],
+ ['कूदना','to jump','I','move','कूदा','कूदेगा'],
+ ['बैठना','to sit','I','move','बैठा','बैठेगा'],
+ ['उठना','to get up','I','move','उठा','उठेगा'],
+ ['गिरना','to fall','I','move','गिरा','गिरेगा'],
+ ['रुकना','to stop','I','move','रुका','रुकेगा'],
+ ['पहुँचना','to reach','I','move','पहुँचा','पहुँचेगा'],
+ ['लौटना','to return','I','move','लौटा','लौटेगा'],
+ ['चढ़ना','to climb','I','move','चढ़ा','चढ़ेगा'],
+ ['उतरना','to get down','I','move','उतरा','उतरेगा'],
+ ['तैरना','to swim','I','move','तैरा','तैरेगा'],
+ ['उड़ना','to fly','I','move','उड़ा','उड़ेगा'],
+ ['नाचना','to dance','I','move','नाचा','नाचेगा'],
+ ['मुड़ना','to turn','I','move','मुड़ा','मुड़ेगा'],
+ ['रहना','to stay, to live','I','move','रहा','रहेगा'],
+ ['ठहरना','to halt, to stay','I','move','ठहरा','ठहरेगा'],
+ /* daily life */
+ ['होना','to be, to become','I','daily','हुआ','होगा'],
+ ['खाना','to eat','T','daily','खाया','खाएगा'],
+ ['पीना','to drink','T','daily','पिया','पिएगा'],
+ ['सोना','to sleep','I','daily','सोया','सोएगा'],
+ ['जागना','to wake up','I','daily','जागा','जागेगा'],
+ ['नहाना','to bathe','I','daily','नहाया','नहाएगा'],
+ ['धोना','to wash','T','daily','धोया','धोएगा'],
+ ['पहनना','to wear','T','daily','पहना','पहनेगा'],
+ ['पकाना','to cook','T','daily','पकाया','पकाएगा'],
+ ['खेलना','to play','B','daily','खेला','खेलेगा'],
+ ['हँसना','to laugh','I','daily','हँसा','हँसेगा'],
+ ['रोना','to cry','I','daily','रोया','रोएगा'],
+ ['गाना','to sing','T','daily','गाया','गाएगा'],
+ ['सजाना','to decorate','T','daily','सजाया','सजाएगा'],
+ ['खोलना','to open','T','daily','खोला','खोलेगा'],
+ ['रखना','to keep, to put','T','daily','रखा','रखेगा'],
+ ['उठाना','to lift, to pick up','T','daily','उठाया','उठाएगा'],
+ ['डालना','to pour, to put in','T','daily','डाला','डालेगा'],
+ ['भरना','to fill','T','daily','भरा','भरेगा'],
+ ['काटना','to cut','T','daily','काटा','काटेगा'],
+ /* mind and speech */
+ ['देखना','to see, to watch','T','mind','देखा','देखेगा'],
+ ['सुनना','to hear, to listen','T','mind','सुना','सुनेगा'],
+ ['बोलना','to speak','T','mind','बोला','बोलेगा'],
+ ['कहना','to say','T','mind','कहा','कहेगा'],
+ ['पूछना','to ask (a question)','T','mind','पूछा','पूछेगा'],
+ ['बताना','to tell','T','mind','बताया','बताएगा'],
+ ['समझना','to understand','T','mind','समझा','समझेगा'],
+ ['समझाना','to explain','T','mind','समझाया','समझाएगा'],
+ ['सोचना','to think','T','mind','सोचा','सोचेगा'],
+ ['मानना','to accept, to believe','T','mind','माना','मानेगा'],
+ ['सीखना','to learn','T','mind','सीखा','सीखेगा'],
+ ['सिखाना','to teach (a skill)','T','mind','सिखाया','सिखाएगा'],
+ ['पढ़ना','to read, to study','T','mind','पढ़ा','पढ़ेगा'],
+ ['पढ़ाना','to teach (a subject)','T','mind','पढ़ाया','पढ़ाएगा'],
+ ['लिखना','to write','T','mind','लिखा','लिखेगा'],
+ ['बुलाना','to call, to invite','T','mind','बुलाया','बुलाएगा'],
+ ['चाहना','to want','T','mind','चाहा','चाहेगा'],
+ ['डरना','to be afraid','I','mind','डरा','डरेगा'],
+ ['दिखाना','to show','T','mind','दिखाया','दिखाएगा'],
+ ['मिलना','to meet, to get','I','mind','मिला','मिलेगा'],
+ /* make and handle */
+ ['करना','to do','T','make','किया','करेगा'],
+ ['बनाना','to make','T','make','बनाया','बनाएगा'],
+ ['तोड़ना','to break (something)','T','make','तोड़ा','तोड़ेगा'],
+ ['टूटना','to break (by itself)','I','make','टूटा','टूटेगा'],
+ ['फेंकना','to throw','T','make','फेंका','फेंकेगा'],
+ ['पकड़ना','to catch, to hold','T','make','पकड़ा','पकड़ेगा'],
+ ['छोड़ना','to leave, to let go','T','make','छोड़ा','छोड़ेगा'],
+ ['गिराना','to drop','T','make','गिराया','गिराएगा'],
+ ['भेजना','to send','T','make','भेजा','भेजेगा'],
+ ['लाना','to bring','T','make','लाया','लाएगा'],
+ ['देना','to give','T','make','दिया','देगा'],
+ ['लेना','to take','T','make','लिया','लेगा'],
+ ['खोजना','to search for','T','make','खोजा','खोजेगा'],
+ ['ढूँढ़ना','to look for, to find','T','make','ढूँढ़ा','ढूँढ़ेगा'],
+ ['पाना','to get, to find','T','make','पाया','पाएगा'],
+ ['बदलना','to change','B','make','बदला','बदलेगा'],
+ /* nature and science */
+ ['बहना','to flow','I','nature','बहा','बहेगा'],
+ ['बरसना','to rain, to pour','I','nature','बरसा','बरसेगा'],
+ ['चमकना','to shine','I','nature','चमका','चमकेगा'],
+ ['खिलना','to bloom','I','nature','खिला','खिलेगा'],
+ ['उगना','to sprout, to rise','I','nature','उगा','उगेगा'],
+ ['बढ़ना','to grow, to increase','I','nature','बढ़ा','बढ़ेगा'],
+ ['मरना','to die','I','nature','मरा','मरेगा'],
+ ['जीना','to live','I','nature','जिया','जिएगा'],
+ ['जलना','to burn','I','nature','जला','जलेगा'],
+ ['उबलना','to boil','I','nature','उबला','उबलेगा'],
+ ['पिघलना','to melt','I','nature','पिघला','पिघलेगा'],
+ ['जमना','to freeze, to set','I','nature','जमा','जमेगा'],
+ ['घुलना','to dissolve','I','nature','घुला','घुलेगा'],
+ ['सूखना','to dry','I','nature','सूखा','सूखेगा'],
+ /* money and numbers */
+ ['खरीदना','to buy','T','money','खरीदा','खरीदेगा'],
+ ['बेचना','to sell','T','money','बेचा','बेचेगा'],
+ ['माँगना','to ask for','T','money','माँगा','माँगेगा'],
+ ['गिनना','to count','T','money','गिना','गिनेगा'],
+ ['नापना','to measure','T','money','नापा','नापेगा'],
+ ['तौलना','to weigh','T','money','तौला','तौलेगा'],
+ ['जोड़ना','to add, to join','T','money','जोड़ा','जोड़ेगा'],
+ ['घटाना','to subtract, to reduce','T','money','घटाया','घटाएगा'],
+ ['बाँटना','to divide, to share','T','money','बाँटा','बाँटेगा'],
+ ['सुलझाना','to solve, to untangle','T','money','सुलझाया','सुलझाएगा']
+];
+
+/* ---------------- marker drill: one blank per sentence ---------------- */
+const DRILL = [
+ {s:'मैं रोज़ स्कूल ___ जाता हूँ।', en:'I go to school every day.', o:['को','में','(nothing)','पर'], a:2,
+  why:'Going <em>to</em> a place takes no marker in everyday Hindi: स्कूल जाता हूँ. को is for people (माँ को), not places.'},
+ {s:'किताब मेज़ ___ रखी है।', en:'The book is on the table.', o:['में','पर','से','तक'], a:1,
+  why:'<strong>पर</strong> is &lsquo;on the surface of&rsquo;. में would put the book inside the table.'},
+ {s:'बच्चे कमरे ___ सो रहे हैं।', en:'The children are sleeping in the room.', o:['में','पर','को','से'], a:0,
+  why:'<strong>में</strong> is &lsquo;inside&rsquo;. Notice कमरा has already become कमरे.'},
+ {s:'मैं बस ___ स्कूल जाता हूँ।', en:'I go to school by bus.', o:['में','पर','से','को'], a:2,
+  why:'<strong>से</strong> does the &lsquo;by means of&rsquo; job. English &lsquo;by&rsquo; has no single Hindi word; से covers it.'},
+ {s:'वह दिल्ली ___ आया है।', en:'He has come from Delhi.', o:['से','को','में','तक'], a:0,
+  why:'<strong>से</strong> again &mdash; this time &lsquo;from&rsquo;. One marker, several English jobs.'},
+ {s:'मैंने माँ ___ पैसे दिए।', en:'I gave money to mother.', o:['से','को','में','पर'], a:1,
+  why:'A person receiving something takes <strong>को</strong>.'},
+ {s:'यह मेरे भाई ___ किताब है।', en:'This is my brother&rsquo;s book.', o:['का','की','के','को'], a:1,
+  why:'का/की/के copy the thing owned. किताब is feminine, so <strong>की</strong> &mdash; even though भाई is a boy.'},
+ {s:'सीता ___ भाई कल आएगा।', en:'Sita&rsquo;s brother will come tomorrow.', o:['का','की','के','ने'], a:0,
+  why:'The owned noun is भाई (masculine, one), so <strong>का</strong>. Sita being a girl is irrelevant.'},
+ {s:'राम ___ दोस्त कल आएँगे।', en:'Ram&rsquo;s friends will come tomorrow.', o:['का','की','के','को'], a:2,
+  why:'दोस्त is masculine and many (आएँगे tells you), so <strong>के</strong>.'},
+ {s:'वह कलम ___ लिखता है।', en:'He writes with a pen.', o:['से','के साथ','में','पर'], a:0,
+  why:'A tool takes <strong>से</strong>. के साथ is for a person or company you go along with.'},
+ {s:'मैं दोस्तों ___ फ़िल्म देखने गया।', en:'I went to see a film with my friends.', o:['से','के साथ','को','में'], a:1,
+  why:'Company takes <strong>के साथ</strong>. Notice दोस्तों has the plural -ों before it.'},
+ {s:'यह उपहार तुम्हारे ___ है।', en:'This gift is for you.', o:['लिए','साथ','पर','तक'], a:0,
+  why:'<strong>के लिए</strong> means &lsquo;for&rsquo;. तुम्हारे already carries the के, so only <em>लिए</em> is left to write.'},
+ {s:'वह मुझ ___ लंबा है।', en:'He is taller than me.', o:['से','को','में','पर'], a:0,
+  why:'&lsquo;Than&rsquo; is the fourth job of <strong>से</strong>. (मुझ is the form मैं takes before a marker.)'},
+ {s:'मैं पाँच बजे ___ उठता हूँ।', en:'I get up at five o&rsquo;clock.', o:['को','पर','(nothing)','में'], a:2,
+  why:'A clock time takes <strong>no</strong> marker: पाँच बजे already says &lsquo;at five o&rsquo;clock&rsquo;.'},
+ {s:'हम रविवार ___ घूमने जाएँगे।', en:'We will go out on Sunday.', o:['को','पर','में','से'], a:0,
+  why:'A day takes <strong>को</strong>. (A time on the clock takes nothing; a day of the week takes को.)'},
+ {s:'मैं शाम ___ पढ़ूँगा।', en:'I will study until evening.', o:['तक','में','से','को'], a:0,
+  why:'<strong>तक</strong> is &lsquo;up to, until&rsquo;.'},
+ {s:'चिड़िया पेड़ ___ बैठी है।', en:'The bird is sitting on the tree.', o:['पर','से','तक','का'], a:0,
+  why:'<strong>पर</strong>: on top of, resting on.'},
+ {s:'मछली पानी ___ रहती है।', en:'The fish lives in water.', o:['पर','में','से','को'], a:1,
+  why:'<strong>में</strong>: inside something that surrounds it.'},
+ {s:'सीता ___ पत्र लिखा।', en:'Sita wrote a letter.', o:['ने','को','से','का'], a:0,
+  why:'Past tense, and लिखना takes an object, so the doer takes <strong>ने</strong>. The verb copies पत्र (masculine): लिखा.'},
+ {s:'उस ___ मुझे बुलाया।', en:'He called me.', o:['ने','को','से','का'], a:0,
+  why:'<strong>ने</strong>, again in the past. उस is the form वह takes in front of a marker. The verb stays plain masculine because the object (मुझे) already carries a marker.'},
+ {s:'वह पेड़ ___ गिर गया।', en:'He fell from the tree.', o:['से','में','को','पर'], a:0,
+  why:'&lsquo;Falling from&rsquo; is the <strong>से</strong> job again.'},
+ {s:'मैंने अध्यापक ___ प्रश्न पूछा।', en:'I asked the teacher a question.', o:['को','से','में','का'], a:1,
+  why:'The verb picks the marker: <strong>पूछना</strong> takes से for the person you ask. The English word &lsquo;to&rsquo; is not in the sentence and would have misled you.'},
+ {s:'वह मुझ ___ बात कर रहा है।', en:'He is talking to me.', o:['को','से','में','पर'], a:1,
+  why:'<strong>बात करना</strong> takes से, however much English says &lsquo;to&rsquo;.'},
+ {s:'मैंने दादी ___ फ़ोन किया।', en:'I phoned grandmother.', o:['को','से','में','का'], a:0,
+  why:'<strong>फ़ोन करना</strong> takes को. Compare the last one: बात करना takes से, फ़ोन करना takes को. The verbs decide &mdash; learn each verb with its marker.'}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const pre = e.target.closest('[data-preset]');
+  if(pre && typeof window.setPreset==='function'){ window.setPreset(pre.dataset.preset); return; }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, drill:{}, bDone:{}, bFirst:{}, pzSeen:{} };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the puzzle engine (shared by both tools) ---------------- */
+function mkPuzzles(btnId, boxId, list){
+  let cur = null;
+  const btn = document.getElementById(btnId), box = document.getElementById(boxId);
+  if(!btn || !box) return;
+  btn.addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*list.length);
+    if(cur===i) i = (i+1)%list.length;
+    cur = i;
+    const P = list[i];
+    box.classList.add('on');
+    box.innerHTML = `<strong>Puzzle.</strong> ${P.q}
+      <div class="qrow">${P.o.map((o,j)=>`<button class="btn ghost small" type="button" data-pz="${j}">${o}</button>`).join('')}</div>`;
+    box.querySelectorAll('[data-pz]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const ok = +b.dataset.pz === P.a;
+        if(ok){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+        box.innerHTML = `<strong>${ok?'Right.':'Not quite.'}</strong> ${P.why}
+          <div class="qrow"><button class="btn ghost small" type="button" class="again">Another one</button></div>`;
+        box.querySelector('button').addEventListener('click', ()=>btn.click());
+      });
+    });
+  });
+}
+
+
+
+/* ---------------- small helpers ---------------- */
+const gid = id => document.getElementById(id);
+function el(tag, cls, html){ const e = document.createElement(tag); if(cls) e.className = cls; if(html!==undefined) e.innerHTML = html; return e; }
+function shuffleIdx(n){
+  const a = [...Array(n).keys()];
+  for(let t=0;t<25;t++){
+    for(let i=n-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; }
+    if(n<3 || a.some((v,i)=>v!==i)) break;
+  }
+  return a;
+}
+function setPill(kind, text, note){
+  const p = gid('b-pill'); p.className = 'pill ' + kind; p.textContent = text;
+  if(note!==undefined) gid('b-note').innerHTML = note;
+}
+
+/* ---------------- tool 1: the sentence builder ---------------- */
+const ALLTASKS = TASKS.concat(TASKS_B);
+let bTask = 0, bCur = null, bPool = [], bLine = [], bTries = 0, bDone = false, bMode = 'main';
+const B_DEFAULT_NOTE = 'Normal order: who &rarr; everything else &rarr; the verb, last. Markers sit straight behind their noun.';
+
+function bCounts(){
+  const d = ALLTASKS.filter(t=>S.bDone[t.id]).length;
+  const f = ALLTASKS.filter(t=>S.bFirst[t.id]).length;
+  gid('b-count').textContent = d + ' / ' + f + ' of ' + ALLTASKS.length;
+}
+function bLoad(T, mode){
+  bCur = T; bMode = mode; bTries = 0; bDone = false; bLine = [];
+  bPool = shuffleIdx(T.tiles.length);
+  gid('b-num').textContent = mode==='puzzle' ? 'Puzzle' : (ALLTASKS.indexOf(T)+1) + ' of ' + ALLTASKS.length;
+  setPill('hold', 'Not checked yet', B_DEFAULT_NOTE);
+  bRender(); bCounts();
+}
+function bRender(){
+  const T = bCur;
+  gid('b-en').innerHTML = T.en;
+  const pool = gid('b-pool'); pool.innerHTML = '';
+  bPool.forEach(i=>{
+    const b = el('button','tile'); b.type = 'button'; b.textContent = T.tiles[i][0];
+    b.dataset.i = i; if(bDone) b.disabled = true; pool.appendChild(b);
+  });
+  const line = gid('b-line'); line.innerHTML = '';
+  if(!bLine.length) line.appendChild(el('span','ph','Tap tiles above, in Hindi order, to build your sentence here.'));
+  bLine.forEach(i=>{
+    const b = el('button','tile' + (bDone ? ' ' + T.tiles[i][1] : '')); b.type = 'button';
+    b.textContent = T.tiles[i][0]; b.dataset.i = i; if(bDone) b.disabled = true; line.appendChild(b);
+  });
+}
+function bDiagnose(T, line){
+  const words = line.map(i=>T.tiles[i]);
+  if(!T.multi){
+    const nv = T.tiles.filter(t=>t[1]==='v').length;
+    if(words.slice(-nv).some(t=>t[1]!=='v'))
+      return '<strong>The verb has to be last.</strong> In Hindi the whole verb block finishes the sentence &mdash; you have something after it, or a verb tile in the middle.';
+  }
+  for(let j=0;j<T.tiles.length;j++){
+    if(T.tiles[j][1]==='m'){
+      const a = line.indexOf(j-1), b = line.indexOf(j);
+      if(b !== a+1)
+        return '<strong>The marker ' + T.tiles[j][0] + ' must sit straight behind its noun</strong> (' + T.tiles[j-1][0] + '), with nothing in between. A marker at the front is English thinking.';
+    }
+  }
+  return '<strong>Right words, wrong order.</strong> Split the English into who | the rest | verb, then build the Hindi in that order, and keep each marker glued behind its noun.';
+}
+function bCheck(){
+  if(bDone) return;
+  const T = bCur;
+  if(bLine.length < T.tiles.length){
+    setPill('hold','Not finished', 'Use every tile &mdash; ' + (T.tiles.length-bLine.length) + ' still waiting in the pool.');
+    return;
+  }
+  bTries++;
+  const got = bLine.map(i=>T.tiles[i][0]).join(' ');
+  const oks = [T.tiles.map(t=>t[0]).join(' ')].concat((T.alts||[]).map(a=>a.join(' ')));
+  if(oks.indexOf(got) >= 0){
+    bDone = true; bRender();
+    let extra = bTries===1 ? ' First time.' : ' Took ' + bTries + ' checks.';
+    if(bMode==='main'){
+      S.bDone[T.id] = true;
+      if(bTries===1) S.bFirst[T.id] = true;
+    } else {
+      const key = 'b' + T.id;
+      if(bTries===1 && !S.pzSeen[key]){
+        S.pzSeen[key] = true; S.puzzles = (S.puzzles||0) + 1; extra = ' First time right &mdash; puzzle solved.';
+        gid('quizbox').innerHTML = '<strong>Puzzle solved.</strong> That is one on the counter. Press <em>Set me a puzzle</em> for another.';
+      } else if(bTries>1){
+        extra = ' Right, but not on the first check &mdash; no point for this one. Press <em>Set me a puzzle</em> for another.';
+        gid('quizbox').innerHTML = '<strong>Not counted.</strong> A puzzle needs the first Check to be right.';
+      }
+    }
+    save(); refresh(); bCounts();
+    setPill('bal', 'Correct', T.why + extra);
+  } else {
+    setPill('in', 'Not yet', bDiagnose(T, bLine));
+  }
+}
+function bInit(){
+  gid('b-pool').addEventListener('click', e=>{
+    const t = e.target.closest('.tile'); if(!t || bDone) return;
+    const i = +t.dataset.i; bPool = bPool.filter(x=>x!==i); bLine.push(i); bRender();
+  });
+  gid('b-line').addEventListener('click', e=>{
+    const t = e.target.closest('.tile'); if(!t || bDone) return;
+    const i = +t.dataset.i; bLine = bLine.filter(x=>x!==i); bPool.push(i); bRender();
+  });
+  gid('b-check').addEventListener('click', bCheck);
+  gid('b-clear').addEventListener('click', ()=>{ if(bDone) return; bPool = bPool.concat(bLine); bLine = []; bRender(); setPill('hold','Not checked yet', B_DEFAULT_NOTE); });
+  gid('b-next').addEventListener('click', ()=>{
+    if(bMode==='main') bTask = (bTask+1) % ALLTASKS.length;
+    gid('quizbox').classList.remove('on');
+    bLoad(ALLTASKS[bTask], 'main');
+  });
+  gid('newquiz').addEventListener('click', ()=>{
+    const box = gid('quizbox'); box.classList.add('on');
+    const open = PZ.filter(p=>!S.pzSeen['b'+p.id]);
+    if(!open.length){ box.innerHTML = '<strong>All six sentence puzzles solved.</strong> Try the marker machine puzzles below, or go back through the ten sentences and aim for first-time-right on all of them.'; return; }
+    const P = open[Math.floor(Math.random()*open.length)];
+    bLoad(P, 'puzzle');
+    box.innerHTML = '<strong>Puzzle.</strong> Build the sentence above and get it right on your <strong>first</strong> Check. A second attempt still teaches you something, but it does not count.';
+  });
+  bLoad(ALLTASKS[bTask], 'main');
+}
+
+/* ---------------- the hundred verbs ---------------- */
+let vCat = 'all', vQuery = '', vCover = false;
+function verbForms(V){
+  const root = V[0].slice(0,-2);
+  const pres = 'वह ' + root + 'ता है';
+  const past = V[2]==='T' ? 'उसने ' + V[4] : (V[2]==='I' ? 'वह ' + V[4] : 'वह ' + V[4] + ' / उसने ' + V[4]);
+  const fut = 'वह ' + V[5];
+  return {pres, past, fut};
+}
+function verbsRender(){
+  const grid = gid('v-grid'); grid.innerHTML = '';
+  const q = vQuery.trim().toLowerCase();
+  const list = VERBS.filter(V=>(vCat==='all' || V[3]===vCat) && (!q || V[0].indexOf(q)>=0 || V[1].toLowerCase().indexOf(q)>=0));
+  list.forEach(V=>{
+    const f = verbForms(V);
+    const c = el('button','vcard' + (vCover ? ' cover' : '')); c.type = 'button';
+    c.innerHTML = '<span class="vt ' + V[2] + '">' + V[2] + '</span><div class="vh">' + V[0] + '</div><div class="ve">' + V[1] + '</div>' +
+      '<div class="vf"><span><b>every day</b>' + f.pres + '</span><span><b>done</b>' + f.past + '</span><span><b>will do</b>' + f.fut + '</span></div>';
+    c.addEventListener('click', ()=>{ if(vCover) c.classList.toggle('shown'); });
+    grid.appendChild(c);
+  });
+  if(!list.length) grid.appendChild(el('div','vempty','No verb matches that. Try the English word, or fewer letters.'));
+  gid('v-count').textContent = list.length + ' of ' + VERBS.length;
+}
+function verbsInit(){
+  const host = gid('v-cats');
+  VCATS.forEach(c=>{
+    const b = el('button','bchip' + (c[0]==='all' ? ' sel' : ''), c[1]); b.type = 'button'; b.dataset.cat = c[0];
+    b.addEventListener('click', ()=>{
+      vCat = c[0];
+      host.querySelectorAll('.bchip').forEach(x=>x.classList.toggle('sel', x===b));
+      verbsRender();
+    });
+    host.appendChild(b);
+  });
+  gid('v-q').addEventListener('input', e=>{ vQuery = e.target.value; verbsRender(); });
+  gid('v-cover').addEventListener('change', e=>{ vCover = e.target.checked; verbsRender(); });
+  verbsRender();
+}
+
+/* ---------------- tool 2: the marker machine ---------------- */
+let mN = 0, mNum = 's', mMk = 0, mCur = null;
+function mResult(){
+  const N = NOUNS[mN], M = MARKS[mMk], pl = mNum==='p';
+  const noun = M.none ? (pl ? N.p : N.s) : (pl ? N.po : N.so);
+  const text = M.none ? noun : noun + ' ' + M.m;
+  let why;
+  if(M.none){
+    why = 'No marker, so the noun stays in its ordinary form: <strong>' + noun + '</strong>. Add a marker and watch it.';
+  } else if(pl){
+    why = 'Plural + marker: the noun takes <strong>-ों</strong>. <em>' + N.p + '</em> is the plain plural; in front of a marker it becomes <strong>' + N.po + '</strong>.';
+  } else if(N.ty==='aa'){
+    why = 'Masculine <em>-ा</em> noun, singular: <strong>-ा becomes -े</strong> in front of any marker. ' + N.s + ' &rarr; <strong>' + N.so + '</strong>.';
+  } else if(N.ty==='f'){
+    why = 'Feminine, singular: <strong>no change</strong>. Only masculine -ा nouns change in the singular &mdash; ' + N.s + ' takes the marker as it is.';
+  } else {
+    why = 'Masculine, but it does not end in <em>-ा</em>, so it has <strong>no change</strong> in the singular. The -ा rule is narrower than it looks.';
+  }
+  const gloss = M.none ? (pl ? N.enp : N.en) : (pl ? N.enp : 'the ' + N.en) + ' &mdash; ' + M.en;
+  const html = '<span class="mn">' + noun + '</span>' + (M.none ? '' : ' <span class="mm">' + M.m + '</span>') + '<span class="men">' + gloss + '</span>';
+  return {text, html, why};
+}
+function machineRender(){
+  const nh = gid('m-nouns'); nh.innerHTML = '';
+  NOUNS.forEach((N,i)=>{ const b = el('button','bchip hin' + (i===mN ? ' sel' : ''), N.w + ' <small style="font-family:var(--body);font-weight:400;opacity:.75">' + N.en + '</small>'); b.type = 'button'; b.dataset.i = i; nh.appendChild(b); });
+  const nu = gid('m-num'); nu.innerHTML = '';
+  [['s','one &mdash; एकवचन'],['p','many &mdash; बहुवचन']].forEach(c=>{ const b = el('button','bchip' + (mNum===c[0] ? ' sel' : ''), c[1]); b.type = 'button'; b.dataset.n = c[0]; nu.appendChild(b); });
+  const mh = gid('m-marks'); mh.innerHTML = '';
+  MARKS.forEach((M,i)=>{ const b = el('button','bchip hin' + (i===mMk ? ' sel' : ''), M.none ? '<span style="font-family:var(--body);font-weight:400;font-size:15px">no marker</span>' : M.label); b.type = 'button'; b.dataset.i = i; mh.appendChild(b); });
+  const R = mResult();
+  gid('m-out').innerHTML = R.html;
+  gid('m-why').innerHTML = R.why;
+}
+function machineInit(){
+  gid('m-nouns').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; mN = +b.dataset.i; machineRender(); });
+  gid('m-num').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; mNum = b.dataset.n; machineRender(); });
+  gid('m-marks').addEventListener('click', e=>{ const b = e.target.closest('.bchip'); if(!b) return; mMk = +b.dataset.i; machineRender(); });
+  gid('newquiz2').addEventListener('click', ()=>{
+    const box = gid('quizbox2'); box.classList.add('on');
+    const open = MPZ.filter(p=>!S.pzSeen[p.id]);
+    if(!open.length){ box.innerHTML = '<strong>All eight machine puzzles solved.</strong> Marker drill next.'; mCur = null; return; }
+    mCur = open[Math.floor(Math.random()*open.length)];
+    box.innerHTML = '<strong>Puzzle.</strong> Set the machine so that it says: <em>' + mCur.ask + '</em>. Choose the noun, one or many, and the marker above, then press Check.' +
+      '<div class="qrow"><button class="btn ghost small" type="button" id="m-check">Check the machine</button></div><div id="m-pzfb" style="margin-top:9px"></div>';
+    gid('m-check').addEventListener('click', ()=>{
+      const R = mResult(), fb = gid('m-pzfb');
+      if(R.text === mCur.t){
+        S.pzSeen[mCur.id] = true; S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+        fb.innerHTML = '<strong>Right &mdash; ' + R.text + '.</strong> ' + mCur.why + ' <button class="btn ghost small" type="button" id="m-again">Another one</button>';
+        gid('m-again').addEventListener('click', ()=>gid('newquiz2').click());
+      } else {
+        fb.innerHTML = '<strong>The machine says <span class="hline">' + (R.text || '&hellip;') + '</span>, which is not what the puzzle asks.</strong> Check the noun, one-or-many and the marker again.';
+      }
+    });
+  });
+  machineRender();
+}
+
+/* ---------------- marker drill ---------------- */
+function drillScore(){
+  const right = DRILL.filter((D,i)=>S.drill[i]===D.a).length;
+  gid('d-score').textContent = right + ' of ' + DRILL.length + ' right';
+}
+function drillAnswer(i, j){
+  const D = DRILL[i], host = document.querySelector('[data-dr="' + i + '"]');
+  S.drill[i] = j;
+  host.querySelectorAll('.bchip').forEach((b,k)=>{
+    b.disabled = true;
+    if(k===D.a) b.classList.add('right');
+    else if(k===j) b.classList.add('wrong');
+  });
+  const ok = j===D.a, gap = gid('gap' + i);
+  gap.textContent = D.o[D.a]==='(nothing)' ? '–' : D.o[D.a];
+  gap.className = 'gap ' + (ok ? 'ok' : 'no');
+  const fb = gid('dfb' + i);
+  fb.className = 'fb on ' + (ok ? 'good' : 'bad');
+  fb.innerHTML = '<strong>' + (ok ? 'Right.' : 'Not this time.') + '</strong> ' + D.why;
+  drillScore();
+}
+function drillRender(){
+  const host = gid('d-list'); host.innerHTML = '';
+  DRILL.forEach((D,i)=>{
+    const c = el('div','qcard');
+    c.innerHTML = '<div class="qhead"><span class="qn">D' + (i+1) + '</span><span class="mk" style="font-family:var(--body)">' + D.en + '</span></div>' +
+      '<p class="dline">' + D.s.replace('___', '<span class="gap" id="gap' + i + '">&nbsp;&nbsp;&nbsp;</span>') + '</p>' +
+      '<div class="bchips" data-dr="' + i + '">' + D.o.map((o,j)=>'<button type="button" class="bchip hin" data-j="' + j + '">' + o + '</button>').join('') + '</div>' +
+      '<div class="fb" id="dfb' + i + '"></div>';
+    host.appendChild(c);
+  });
+  host.addEventListener('click', e=>{
+    const b = e.target.closest('.bchip'); if(!b || b.disabled) return;
+    const i = +b.parentElement.dataset.dr;
+    drillAnswer(i, +b.dataset.j); save();
+  });
+  Object.keys(S.drill).forEach(i=>{ if(DRILL[i]) drillAnswer(+i, S.drill[i]); });
+  drillScore();
+}
+
+function boot(){
+  bInit();
+  verbsInit();
+  machineInit();
+  drillRender();
+}
+
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  boot();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='hindi', SUBJECT='hindi', TITLE="Build the Sentence", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

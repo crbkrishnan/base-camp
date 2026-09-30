@@ -2,7 +2,7 @@
 
 A static site of interactive study pages and printable test papers, built by a tutor for **one student**: Grade 7 IGCSE, scoring around **10 out of 15**, smart but lazy. Every design decision follows from that. The site's job is to make him *do* things rather than read things.
 
-Subjects: Maths, Physics, Biology, Chemistry, English.
+Subjects: Maths, Physics, Biology, Chemistry, English, Hindi.
 
 ## Read these before working
 
@@ -56,6 +56,7 @@ mixtures.html           Chemistry · pure substances and mixtures
 separating.html         Chemistry · separating mixtures, Rf
 solutions.html          Chemistry · solutions and solubility
 reading.html            English   · reading comprehension (25-mark papers, not 30)
+hindi.html              Hindi     · sentence construction (verb order, markers, agreement, ने, paragraphs)
 sheets/*.pdf            test papers + mark schemes (generated — never edit a PDF)
 .nojekyll               stops GitHub Pages hiding underscore paths
 tools/
