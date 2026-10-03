@@ -16,7 +16,8 @@
   "title": "Skeleton, Skin and Box",
   "sub": "Computing · HTML and CSS",
   "blurb": "Type HTML and CSS into a live editor that draws the page and flags unclosed tags, then stretch a box-model diagram until the arithmetic works. A 27-problem lab marks your code with a real parser.",
-  "meta": ["30 marks", "6 lessons", "Code & see editor", "27 lab problems"]
+  "meta": ["30 marks", "6 lessons", "Code & see editor", "27 lab problems"],
+  "papers": 4
 }
 </script>
 <style>
@@ -259,6 +260,13 @@ textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:1
 .unit{font-family:var(--mono);font-size:14px;color:var(--ink-soft);margin-left:6px}
 .seen{font-size:14.5px;color:var(--no);margin-top:8px}
 
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--o2)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
 .traps{display:grid;gap:11px;grid-template-columns:minmax(0,1fr)}
 .trap{min-width:0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
 .trap h4{margin:0 0 5px;font-size:16.5px}
@@ -340,6 +348,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
   <a href="#short">Short answers</a>
   <a href="#word">Word problems</a>
   <a href="#problems">Problem lab</a>
+  <a href="#papers">Test papers</a>
   <a href="#traps">Exam traps</a>
 </nav>
 
@@ -460,6 +469,21 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
   <div class="shead"><h2>Problem lab</h2><span class="tag">27 extra · not in the 30</span></div>
   <p class="snote">These are on top of the fifteen questions, and harder: the first third is medium, the last third is properly hard. Most of them are marked by a program that reads your code, so you get told <em>what</em> is wrong, not just that something is. Each one gives you a hint before it gives you the answer. A problem only counts as solved if you did not open the solution first.</p>
   <div id="labList"></div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with the computer shut and your phone in another room. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/computing-htmlcss-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Naming the parts of a link, the four missing tags in a page skeleton, headings and a paragraph, an ordered list, an image tag, predicting what the browser draws, labelling the box-model layers, a CSS rule, and a box total with the border in it.</p></a>
+    <a class="paper" href="sheets/computing-htmlcss-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Hex to rgb, the colour spelling that fails silently, the four-value shorthand, a three-link navigation list, three faults to find, predicting what a misspelt CSS rule does, box widths from a diagram, padding against margin, and a font with a safety net.</p></a>
+    <a class="paper" href="sheets/computing-htmlcss-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">The box layers from memory, hex and rgb both ways, a picture that is its own link, five faults in a page and four in a stylesheet, a recipe page to write from a specification, and the horizontal and vertical space of a card.</p></a>
+    <a class="paper" href="sheets/computing-htmlcss-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">A page skeleton from memory, a CSS rule with a hex colour, fitting a box into a column, the border with no style, a three-page navigation, three boxes that fit or do not, three faults in a list, and two wrong notebook entries to diagnose.</p></a>
+  </div>
 </section>
 
 <section id="traps">

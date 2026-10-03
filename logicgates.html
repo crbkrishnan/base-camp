@@ -297,6 +297,13 @@ table.data.tt{width:auto}
 .pkbody{min-width:0}
 .qcard{min-width:0}
 
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--inv)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
 </style>
 <script type="application/json" id="hub-card">
 {
@@ -307,6 +314,7 @@ table.data.tt{width:auto}
   "title": "Logic Gates: Switches That Decide",
   "sub": "Computing · logic gates",
   "blurb": "Flip switches on a live gate until its truth table fills itself in, then wire a three-input circuit that must match a real scenario such as a car buzzer or a school bell. The machine marks every circuit and table against all the input combinations.",
+  "papers": 4,
   "meta": [
     "30 marks",
     "6 lessons",
@@ -370,6 +378,7 @@ table.data.tt{width:auto}
   <a href="#short">Short answers</a>
   <a href="#word">Word problems</a>
   <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
 </nav>
 
 <!-- ============ HERO 1: THE GATE LAB ============ -->
@@ -499,6 +508,19 @@ table.data.tt{width:auto}
     <div class="trap"><h4>"NAND is just AND with a circle, so it gives 1 when both inputs are 1."</h4><p>The circle flips the output of the AND. AND gives 1 only on 1 1, so NAND gives <strong>0</strong> only on 1 1 and 1 on the other three rows. Its table is AND's with every output reversed.</p></div>
     <div class="trap"><h4>"I wrote the rows in whatever order I thought of them."</h4><p>You will skip one or write one twice, and you will not notice. Count in binary: 00, 01, 10, 11, and for three inputs 000, 001, 010, 011, 100, 101, 110, 111. Then check the count is 2<sup>n</sup>.</p></div>
     <div class="trap"><h4>"NOT A AND B means NOT (A AND B)."</h4><p>NOT applies only to the thing straight after it, so NOT A AND B means (NOT A) AND B. With A = 1 and B = 0, (NOT A) AND B gives 0 but NOT (A AND B) gives 1. If you mean the whole AND flipped, write the brackets.</p></div>
+  </div>
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room, and no calculator. Paper A and B show a reminder box of the five gates; the hard papers do not, and use scenarios you have not seen before. Medium first; move to the hard ones once you are clearing 21 on a medium paper.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/computing-logicgates-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Writing rows in binary order, AND, OR, NAND and NOR tables, naming gates from their symbols, reading (A OR B) AND (NOT C), a water-tank pump, an auto-rickshaw meter light that turns out to be a NOR, and a NAND with its inputs joined.</p></a>
+    <a class="paper" href="sheets/computing-logicgates-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Three-input AND and OR tables, how many rows 4 and 6 inputs need and how many inputs give 32 rows, naming gates from their columns, drawing NOT, NAND and NOR by hand, a railway-crossing barrier and an ATM with a circuit to draw.</p></a>
+    <a class="paper" href="sheets/computing-logicgates-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">Three-input gates, NOT A AND B AND C against NOT (A AND B AND C), a two-gate circuit with a NOR inside, three look-alike circuits where only one fits, a trace table with a mistake to find, a four-input greenhouse, and an OR built from NAND gates only.</p></a>
+    <a class="paper" href="sheets/computing-logicgates-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">A NOR of a NOR, row numbering, why three 1s in a column means OR or NAND, a circuit of three NANDs, three look-alike expressions, a school bell to draw, an AND built from NANDs, and two wrong notebook statements to diagnose.</p></a>
   </div>
 </section>
 

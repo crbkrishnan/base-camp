@@ -261,6 +261,14 @@ table.dst td.bad{background:var(--no-tint)}
 .trap p{margin:0 0 6px;font-size:15.5px;color:var(--ink-soft)}
 .trap p:last-child{margin-bottom:0}
 
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--txt)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
 footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
 
 @media (max-width:600px){
@@ -279,6 +287,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
   "file": "spreadsheets.html",
   "subject": "computing",
   "status": "ready",
+  "papers": 4,
   "title": "Let the Sheet Do the Work",
   "sub": "Computing · data handling in Google Sheets",
   "blurb": "A mini sheet that runs real Google Sheets formulas, a sort, filter and validation lab, and a Problem Lab of 26 extra questions on four Indian datasets you paste straight into your own Sheet.",
@@ -343,6 +352,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
   <a href="#word">Word problems</a>
   <a href="#problems">Problem lab</a>
   <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
 </nav>
 
 <!-- ============ HERO: THE FORMULA BENCH ============ -->
@@ -543,6 +553,21 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
 <section id="traps">
   <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
   <div class="traps" id="trapList"></div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room and the laptop shut: every question works without Sheets. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/computing-spreadsheets-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">A tuck-shop sheet read cell by cell (SUM, MAX, AVERAGE), COUNT against COUNTA on a column with two &ldquo;absent&rdquo;s and a blank, a Pass/Fail IF at the boundary, COUNTIF and SUMIF to write, a three-way nested IF, DIVIDE and MINUS, then a one-column sort, a filter and a validation rule for marks out of 50.</p></a>
+    <a class="paper" href="sheets/computing-spreadsheets-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">The six steps of data analytics in order, data against information, five functions read off a rainfall sheet, COUNTIF and SUMIF by category, a nested IF to complete and a wrong-order one to trace, a Subject column spoiled by typing, a group average, and choosing a chart.</p></a>
+    <a class="paper" href="sheets/computing-spreadsheets-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">No function list. A library sheet where &ldquo;lost&rdquo; and a blank break some formulas and not others, a filter and a sort on cricket scores, a strike-rate formula and a COUNTIF criterion, a four-band river-gauge IF, a star-rating validation rule, and a tuck-shop sheet that gives two different answers to two different questions.</p></a>
+    <a class="paper" href="sheets/computing-spreadsheets-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">No function list. A two-condition filter and two kinds of sort on rainfall, a broken COUNTIF and a broken SUMIF to mend, a nested IF that tests in the wrong order, a heights column with a typo to catch, a dropdown validation rule, and two wrong statements about validation and filters to diagnose.</p></a>
+  </div>
 </section>
 
 <footer>

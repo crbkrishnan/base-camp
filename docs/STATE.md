@@ -27,11 +27,11 @@ Last updated: 3 October 2026.
 | Tenses and pronouns (काल और सर्वनाम) | Hindi | `tenses.html` | tense forge, pronoun switchboard | **none yet** |
 | Essay writing (निबंध) | Hindi | `essay.html` | outline builder, sentence upgrader | **none yet** |
 | Words and spelling (शब्द और वर्तनी) | Hindi | `wordbank.html` | agreement machine, spelling doctor | **none yet** |
-| Our digital world (Unit 1) | Computing | `digital.html` | fact-check bench, brute-force bench | **none yet** |
-| Data handling in Google Sheets (Unit 2) | Computing | `spreadsheets.html` | formula bench, data gate | **none yet** |
-| Logic gates (Unit 3) | Computing | `logicgates.html` | gate lab, circuit builder | **none yet** |
-| Designing with the double diamond (Unit 4a) | Computing | `uxdesign.html` | double-diamond sorter, wireframe studio | **none yet** |
-| HTML and CSS (Unit 4b) | Computing | `htmlcss.html` | code-and-see editor, box-model explorer | **none yet** |
+| Our digital world (Unit 1) | Computing | `digital.html` | fact-check bench, brute-force bench | A–D + scheme |
+| Data handling in Google Sheets (Unit 2) | Computing | `spreadsheets.html` | formula bench, data gate | A–D + scheme |
+| Logic gates (Unit 3) | Computing | `logicgates.html` | gate lab, circuit builder | A–D + scheme |
+| Designing with the double diamond (Unit 4a) | Computing | `uxdesign.html` | double-diamond sorter, wireframe studio | A–D + scheme |
+| HTML and CSS (Unit 4b) | Computing | `htmlcss.html` | code-and-see editor, box-model explorer | A–D + scheme |
 | Pure substances and mixtures | Chemistry | `mixtures.html` | particle builder, melting-point test | A–D + scheme |
 | Separating mixtures | Chemistry | `separating.html` | separation bench, chromatogram | A–D + scheme |
 | Solutions and solubility | Chemistry | `solutions.html` | dissolving tank, solubility curves | A–D + scheme |
@@ -181,77 +181,6 @@ one row in `SUBJECTS`, `'hindi'` in the `register_topic.py` allowlist).
 - **Two tools:** the sentence builder (tap tiles into Hindi order; the machine names the rule broken; 10 sentences + 6 first-time-right puzzles) and the marker machine (noun + number + marker, showing the oblique change; 8 state-checked puzzles).
 - **Extras that are not marks:** a 100-verb bank (`VERBS`; every-day/past/future forms, T/I/B badge for ने) and a 24-sentence marker drill (`DRILL`). Neither counts towards the 30.
 - **The 30 marks are unchanged:** 5 MCQ + 5 short + 5 word. Progress key `hindi-progress-v1`.
-- **No papers yet.** The `#papers` section is deliberately absent and the manifest has no `papers` count. Generating Hindi PDFs needs a Devanagari font: `paper_lib.py` uses DejaVu, which has no Devanagari glyphs. Register Noto Sans/Serif Devanagari before writing `tools/papers/hindi_*.py`.
-- **Videos** were found by search, not opened. Channel names were not confirmed, so `ch` is descriptive. Click through the six links.
-- **The Hindi text has not been read by a native proofreader.** Verb forms were checked against an independent rule table and the page passes a jsdom click-through, but a Hindi reader should look over the lessons and Q14/Q15 model answers before the student uses it.
-
-## Next
-
-1. **`moments.html` has no videos section.** It predates the format. Add six videos with written tasks, matching the other five pages.
-2. **Acids and alkalis** (Chemistry) — flagged `next`.
-
-Grade 7 maths, the Grade 7 physics units above and chemistry Unit 5 are complete, so the roadmap is now biology- and chemistry-led. Nine further topics are listed as `planned` in `TOPICS` in `index.html`; that array is the roadmap. The two remaining maths entries there (`geometry`, `averages`) are beyond the Grade 7 portions above and are not blocking anything.
-
-## Known issues
-
-- **Puzzle overlap.** The hub's weekly puzzle rotation includes a metre-rule balance problem close to Q11 on `moments.html`. Swap one out when convenient.
-- **No cross-device sync.** Progress is per-browser by design. Only revisit if the student count grows past a handful, since it needs a backend.
-- **The six `sheets/*-answers.pdf` mark schemes are not linked anywhere**, deliberately. If a future tutor-facing page is added, link them there rather than from a topic page.
-- ~~**`<b>` inside mark-scheme text does not render bold.**~~ **Fixed 17 September 2026.**
-  `paper_lib.py` now calls `registerFontFamily` for `Body`, `UI` and `Mono`, so `<b>` and `<i>` are
-  no longer silently dropped. Every generator was re-run and **not one question paper changed page
-  count** — the fix affects glyphs, not pagination. (The booklet number column was widened 21pt →
-  32pt at the same time so that `1(a)` stops wrapping, which added one page to three of the answer
-  booklets.) It mattered enough to do now because the English papers
-  carry their instructions in bold (*give **two** things*, *one **word***), and losing that loses the
-  instruction. If you edit a paper, expect bold to work.
-
-- **`&#10003;` does not exist in DejaVu Serif.** A tick in body text renders as an empty box. Wrap it:
-  `Tick (<font name="UI">&#10003;</font>) one box`. `english_reading.py` does this everywhere.
-
-- **The paper generators need reportlab and pypdf, which the system Python usually does not have.** On the machine this was last built on they live in a gitignored `.venv` at the repo root: run `.venv/bin/python tools/papers/<topic>.py`, not `python3 tools/papers/<topic>.py`. `CLAUDE.md`, `README.md` and `WRITING-PAPERS.md` all still document the bare form.
-- **`node tools/smoke.js` fails with no argument.** It defaults to `/home/claude/hub`, a path from the environment the project started in. Pass the directory: `node tools/smoke.js .`. `CLAUDE.md`, `README.md` and `package.json`'s `check` script all still document the bare form.
-
-## Decisions already made — don't relitigate without reason
-
-- **No Jekyll.** The pages are finished HTML; Jekyll would wrap them in a theme and hide underscore paths. `.nojekyll` is committed.
-- **Answers ship as one booklet per topic**, not one key per paper. Five files per topic instead of nine, and marking usually means flipping between papers anyway.
-- **Papers are per topic page, not per subject.** Physics has two topics and therefore eight papers.
-- **The heating curve uses true energy proportions**, which makes the boiling plateau 73% of the graph. That looks lopsided and is the point — do not "fix" it.
-- **Self-marking over auto-marking** for written answers. He types an answer, opens the scheme, awards himself 0–3. Immediate auto-marking would let him skip the writing.
-- **Staged hints, never a single reveal.** Three escalating hints before the full solution.
-
-### Hindi follow-on pages (30 September 2026)
-
-Four more Hindi pages, built from `hindi.html`'s engine and registered with `register_topic.py`: `letters`, `tenses`, `essay`, `wordbank`. Each has 2 tools with machine-checked puzzles, 6 lessons, 6 videos, 15 questions = 30 marks, 5 traps, and an uncounted drill. The student is a girl: first-person Hindi is feminine throughout (the older site pages and docs still say "him").
-
-- `wordbank.html` holds the 178-noun bank with gender and plural, 68 adjectives, 40 time words, and the matras/nukta/chandrabindu spelling doctor. The verb bank in `hindi.html` still shows he-forms only; a she-column is not built yet.
-- All the videos came from search-result titles and were never opened. Click through all 24 Hindi videos before the student uses them.
-- Each page lists Hindi items it wants a native reader to check (idioms, chandrabindu vs anusvara spellings, letter conventions, time-word framing). None has been proofread.
-- `tools/build_page.py` is not in the repo: pages were assembled by a scratch builder in `$HOME/hb/`. Fix any further page by editing the `.html` directly.
-- No papers: still blocked on a Devanagari font in `paper_lib.py`.
-- Still wanted from the tutor: the school's real Hindi reference paper or syllabus, to calibrate all five pages.
-
-## Computing — a seventh subject
-
-Added 3 October 2026 from the school's Computer Science unit list (Units 1–4). Three small edits made
-it possible, as with Hindi: `--computing` / `--computing-t` in `index.html`, one row in `SUBJECTS`, and
-`'computing'` in the allowlist in `tools/register_topic.py`.
-
-Departures, recorded so they are not "fixed" back:
-
-- **Unit 4 is two pages, not one.** The syllabus lists the double diamond, Figma, UI/UX elements,
-  wireframing, HTML tags, text, lists, links, images, CSS colour/text and the box model. That is two
-  sessions of work. `uxdesign.html` takes the design half (ends on wireframing a 3-page site);
-  `htmlcss.html` takes the build half (ends on linking three pages). Each cliffhangs into the other.
-- **A Problem Lab on three pages.** `spreadsheets.html`, `uxdesign.html` and `htmlcss.html` each carry
-  a `<section id="problems">` of extra problems (26 / 23 / 27) on top of the standard 15 questions,
-  at the tutor's request. They are **outside the 30 marks**, are tracked by a separate `#s-lab` stat
-  that the hub does not read, and persist in `S.lab`. The 30-mark rule (CLAUDE.md #5) is untouched.
-- **Spreadsheet work is Google Sheets**, because that is what the student uses. `spreadsheets.html`
-  carries its own formula evaluator (no `eval`) for the formula bench and the formula-type lab
-  problems, and each lab dataset has a "Copy for Google Sheets" button (tab-separated).
-- **No papers yet.** None of the five pages has a `#papers` section or a `papers` key in its manifest.
-  Per `ADDING-A-TOPIC.md` step 6, add both once the PDFs exist.
+- **Papers: A–D + scheme on all five**, in `tools/papers/computing_<page>.py` → `sheets/computing-<page>-paper-a..d.pdf` plus `-answers.pdf`. Each generator carries its own independent evaluator (spreadsheet formulas, truth tables, HTML/CSS checkers, WCAG contrast) and asserts 30 marks. They monkeypatch layout helpers inside the generator rather than editing `paper_lib.py` (keep-stem-with-first-part, taller grids, drawn gate symbols, code listings); folding those into `paper_lib.py` would be a tidy-up, but re-render every paper if you do.
 - **Video durations are unchecked.** Every URL was confirmed to exist via YouTube oEmbed, but nobody
   has watched them; skim all 30 before the student does.

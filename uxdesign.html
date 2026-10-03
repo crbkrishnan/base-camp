@@ -16,7 +16,8 @@
   "title": "Design Before You Build",
   "sub": "Computing · designing with the double diamond",
   "blurb": "The double diamond, UI versus UX, a first hour in Figma, and a three-page site planned as a sitemap and wireframes. A diamond sorter and a wireframe checker mark you as you go, and a 23-problem lab sits outside the 30 marks.",
-  "meta": ["30 marks", "6 lessons", "Wireframe studio", "23 lab problems"]
+  "meta": ["30 marks", "6 lessons", "Wireframe studio", "23 lab problems"],
+  "papers": 4
 }
 </script>
 <style>
@@ -332,6 +333,15 @@ textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:1
 .trap p:last-child{margin-bottom:0}
 .trap p strong{color:var(--ink)}
 
+/* ---------- test papers ---------- */
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--warn)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
 footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
 
 @media (max-width:600px){
@@ -402,6 +412,7 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
   <a href="#word">Word problems</a>
   <a href="#problems">Problem Lab</a>
   <a href="#traps">Exam traps</a>
+  <a href="#papers">Test papers</a>
 </nav>
 
 <!-- ============ HERO 1: THE DOUBLE-DIAMOND SORTER ============ -->
@@ -621,6 +632,21 @@ footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display
       <p><strong>The sentence you write:</strong> "I made the wireframe look nice with the real colours and photos so the client would be impressed."</p>
       <p><strong>Why it loses the mark:</strong> a polished draft makes people argue about the colour of a button when the problem is that the page has no button. Grey boxes and labels keep everyone looking at structure, and they take minutes to change.</p>
       <p><strong>Write instead:</strong> "A low-fidelity wireframe uses plain boxes and labels so feedback is about layout and flow, not decoration."</p></div>
+  </div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">30 marks each</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room: no calculator, and no Figma, because every screen you need is printed on the paper. Medium first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/computing-uxdesign-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">Labelling a blank double diamond, placing four activities in their phases, UI or UX with a reason, contrast ratios on two printed colour samples, tap-target padding, card positions in a Figma frame, a sign-in screen with mismatched buttons, and a Home wireframe to sketch.</p></a>
+    <a class="paper" href="sheets/computing-uxdesign-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">35 min</span>
+      <p class="pd">A straight-line &ldquo;double diamond&rdquo; to correct, Define or Develop, contrast on two button labels, buttons across a toolbar, rows in a Figma frame, a train-app persona and journey, and a three-page wireframe to sketch.</p></a>
+    <a class="paper" href="sheets/computing-uxdesign-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">A blank double diamond with a loop back, a team that skipped Define, three awkward UI or UX fixes, contrast from luminance on three samples, a 4-column Figma grid, a flawed three-page wireframe to mark up, a wireframe polished too early, and a problem statement written from bus-survey figures.</p></a>
+    <a class="paper" href="sheets/computing-uxdesign-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">45 min</span>
+      <p class="pd">A four-page sitemap and its link count, which phase each diary entry belongs to, large-text contrast, frame arithmetic with a tab bar and a component edit, two journey fixes compared, a handover note, and two wrong answers to diagnose.</p></a>
   </div>
 </section>
 
