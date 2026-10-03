@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let the Sheet Do the Work — Grade 7 IGCSE Computing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12201D;
+  --ink-soft:#435853;
+  --paper:#DAE6E2;
+  --card:#FFFFFF;
+  --line:#B9CCC5;
+  --line-soft:#CFDDD7;
+  --num:#1E5AA8;         /* numbers and results · always blue */
+  --num-tint:#E3EDF9;
+  --rng:#0B7A68;         /* ranges and cell references · always teal */
+  --rng-tint:#DDF1EC;
+  --txt:#A9520A;         /* text, quotes and criteria · always amber */
+  --txt-tint:#FBEBDC;
+  --fr:var(--num);  --fr-tint:var(--num-tint);
+  --de:var(--rng);  --de-tint:var(--rng-tint);
+  --pc:var(--txt);  --pc-tint:var(--txt-tint);
+  --steel:#8FA39B;
+  --steel-dark:#5F746C;
+  --ok:#1B7F4B;
+  --ok-tint:#E2F2E8;
+  --no:#98241B;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--fr)}
+:focus-visible{outline:3px solid var(--fr);outline-offset:2px;border-radius:4px}
+code.f,.code{font-family:var(--mono);font-size:.88em;background:var(--paper);padding:1px 6px;border-radius:5px;white-space:normal;overflow-wrap:anywhere}
+.code{display:block;white-space:pre-wrap;word-break:break-word;padding:9px 12px;border-radius:8px;margin:8px 0;font-size:14px}
+.tn{color:var(--num);font-weight:700}
+.tr{color:var(--rng);font-weight:700}
+.tt{color:var(--txt);font-weight:700}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--pc)}
+.mast h1 b{font-weight:800;color:var(--fr)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 140px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--fr);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(218,230,226,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--fr);color:var(--fr)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0 0 8px;font-size:15.5px;color:var(--ink-soft)}
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover:not([disabled]){background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;display:inline-block}
+.pill.in{background:var(--pc-tint);color:var(--pc)}
+.pill.out{background:var(--fr-tint);color:var(--fr)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.pill.bad{background:var(--no-tint);color:var(--no)}
+.quizbox{background:var(--fr-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+.gsub{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);
+  padding:12px 16px 2px;border-top:1px solid var(--line);margin-top:6px}
+.gsub b{color:var(--ink)}
+
+/* ---------- formula bench ---------- */
+.fbar{display:flex;gap:8px;align-items:center;padding:10px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.fbar .cellname{font-family:var(--mono);font-weight:700;font-size:14px;min-width:42px;text-align:center;
+  background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:5px 8px}
+.fbar .fx{font-family:var(--mono);font-style:italic;color:var(--ink-soft);font-size:14px}
+input[type=text],input[type=number],select{font-family:var(--mono);font-size:14px;color:var(--ink);background:var(--card);
+  border:1px solid var(--steel);border-radius:8px;padding:7px 10px;min-width:0}
+.fbar input{flex:1 1 220px}
+.gridwrap{overflow-x:auto;padding:0 16px 8px}
+table.grid{border-collapse:collapse;font-family:var(--mono);font-size:13.5px;width:100%;min-width:480px;table-layout:fixed}
+table.grid th{background:var(--paper);border:1px solid var(--line);font-family:var(--display);font-size:12px;color:var(--ink-soft);padding:4px;font-weight:700}
+table.grid th[scope=row]{width:34px}
+table.grid td{border:1px solid var(--line);padding:0;height:34px}
+.gc{display:block;width:100%;height:100%;min-height:34px;border:0;background:var(--card);font:inherit;color:var(--ink);
+  text-align:right;padding:4px 8px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gc.t{text-align:left}
+.gc:hover{background:var(--fr-tint)}
+.gc.sel{outline:3px solid var(--fr);outline-offset:-3px;background:var(--fr-tint)}
+.gc.hl{background:var(--de-tint);box-shadow:inset 0 0 0 2px var(--de);border-radius:0}
+.gc.hl.sel{box-shadow:none}
+.gc.err{color:var(--no);font-weight:700}
+.bout{padding:10px 16px;font-size:15.5px;border-top:1px solid var(--line)}
+.tryrow{display:flex;gap:7px;flex-wrap:wrap;padding:0 16px 12px}
+.chipbtn{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:99px;padding:5px 11px;cursor:pointer}
+.chipbtn:hover{border-color:var(--ink)}
+.tryrow .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);align-self:center}
+
+/* ---------- data gate ---------- */
+.frow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 16px}
+.frow label,.frow legend{font-family:var(--display);font-size:13px;color:var(--ink-soft)}
+.frow fieldset{border:0;margin:0;padding:0;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.frow input[type=radio]{accent-color:var(--fr);width:17px;height:17px}
+.frow .rad{display:flex;gap:6px;align-items:center;font-family:var(--display);font-size:13.5px;cursor:pointer}
+.frow input[type=text]{width:120px}
+.tablewrap{overflow-x:auto;padding:4px 16px 4px}
+table.gtable{border-collapse:collapse;width:100%;min-width:430px;font-size:14px}
+table.gtable th,table.gtable td{border:1px solid var(--line);padding:6px 9px;text-align:left}
+table.gtable th{background:var(--paper);font-family:var(--display);font-size:12.5px}
+table.gtable td.n{font-family:var(--mono);text-align:right}
+table.gtable td.rn,table.gtable th.rn{font-family:var(--mono);color:var(--ink-soft);width:44px;text-align:center}
+table.gtable tr.skipped td{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:repeating-linear-gradient(135deg,var(--paper),var(--paper) 6px,var(--card) 6px,var(--card) 12px);text-align:center}
+.gstatus{padding:8px 16px 12px;font-size:15px}
+.gstatus .warn{margin-top:6px;background:var(--no-tint);color:#6E1D17;border-radius:8px;padding:8px 11px}
+.vok{font-family:var(--mono);font-weight:700}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--pc);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--pc-tint)}
+.vid h3 a:hover{border-bottom-color:var(--pc)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--fr);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--pc)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--fr);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--pc);background:var(--pc-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto;white-space:pre}
+table.data{display:block;overflow-x:auto;max-width:100%;width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+.scroll{overflow-x:auto}
+
+/* ---------- questions ---------- */
+.qcard,.prob{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px;flex-wrap:wrap}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--pc-tint);color:var(--pc)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt,.lopt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]),.lopt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k,.lopt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right,.lopt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong,.lopt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.fb.info{background:var(--fr-tint);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--fr-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+/* ---------- problem lab ---------- */
+.dsbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.dsbox > summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.dsbox > summary::-webkit-details-marker{display:none}
+.dsbox .dsn{font-family:var(--display);font-weight:700;font-size:16.5px}
+.dsbox .dsm{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+.dsbox[open] > summary{border-bottom:1px solid var(--line-soft)}
+.dsbody{padding:12px 16px 14px}
+.dsbody .scroll{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:8px}
+table.dst{border-collapse:collapse;font-family:var(--mono);font-size:12.5px;width:100%;min-width:420px}
+table.dst th,table.dst td{border:1px solid var(--line-soft);padding:4px 8px;text-align:left;white-space:nowrap}
+table.dst th{background:var(--paper);font-family:var(--display);font-size:12px;position:sticky;top:0}
+table.dst th.rn,table.dst td.rn{color:var(--ink-soft);text-align:center;width:36px;background:var(--paper)}
+table.dst td.n{text-align:right}
+table.dst td.bad{background:var(--no-tint)}
+.copyrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:14.5px}
+.prob .dsline{font-size:14px;color:var(--ink-soft);margin:-4px 0 10px}
+.prob .qhead .done-badge{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--ok);background:var(--ok-tint);border-radius:99px;padding:2px 9px;display:none}
+.prob.solved{border-left:4px solid var(--ok)}
+.prob.solved .qhead .done-badge{display:inline-block}
+.prob .ansrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.prob .ansrow input{flex:1 1 240px;font-size:15px}
+.prob .broken{margin:8px 0}
+.prob .lockhint{font-size:13px;color:var(--ink-soft)}
+.copybox{width:100%;min-height:90px;font-family:var(--mono);font-size:12px;margin-top:8px}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0 0 6px;font-size:15.5px;color:var(--ink-soft)}
+.trap p:last-child{margin-bottom:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+  .frow input[type=text]{width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<script type="application/json" id="hub-card">
+{
+  "id": "spreadsheets",
+  "file": "spreadsheets.html",
+  "subject": "computing",
+  "status": "ready",
+  "title": "Let the Sheet Do the Work",
+  "sub": "Computing · data handling in Google Sheets",
+  "blurb": "A mini sheet that runs real Google Sheets formulas, a sort, filter and validation lab, and a Problem Lab of 26 extra questions on four Indian datasets you paste straight into your own Sheet.",
+  "meta": ["30 marks", "6 lessons", "Formula bench + data gate", "26 lab problems"]
+}
+</script>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Computer Science · Grade 7 · Unit 2 · Data handling and analysis using spreadsheets</div>
+  <h1>Let the <em>Sheet</em> Do the <b>Work</b></h1>
+  <p class="lede">Two ideas run through this page. First: a spreadsheet does exactly what the formula says and nothing it meant, so a wrong formula gives a confident wrong number with no warning. Second: the data is usually messier than the formula. Everything below is Google Sheets, with its menus and its commas.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of 30, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme — otherwise you're just reading, and reading feels like learning without being learning. The Problem Lab further down is extra: no marks, just harder questions and a counter.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>sheet puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+    <div class="stat"><b class="num" id="s-lab">0<span style="font-size:15px;color:var(--ink-soft)">/26</span></b><span>lab problems solved</span><div class="bar"><i id="bar-lab"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#bench">Formula bench</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#gate">Data gate</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#problems">Problem lab</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+<!-- ============ HERO: THE FORMULA BENCH ============ -->
+<section id="bench">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The formula bench</h2>
+      <p>A small sheet that runs real Google Sheets formulas. Click a cell, type in the formula bar, press Enter. Break things on purpose: the error messages are the lesson. Then press <strong>Set me a puzzle</strong> and the bench checks what you actually built, including what happens when the marks change.</p>
+    </div>
+
+    <div class="fbar">
+      <span class="cellname num" id="bcell" aria-live="polite">E2</span>
+      <span class="fx" aria-hidden="true">fx</span>
+      <input type="text" id="finput" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Formula bar. Type a value or a formula starting with =, then press Enter" placeholder="Type a number, a word or a formula, then Enter">
+      <button class="btn small" type="button" id="fenter">Enter</button>
+    </div>
+
+    <div class="gridwrap"><table class="grid" id="grid" aria-label="Formula bench: a small sheet, columns A to F, rows 1 to 9">
+<thead><tr><th scope="col"></th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">E</th><th scope="col">F</th></tr></thead><tbody>
+<tr><th scope="row">1</th><td><button type="button" class="gc" data-ref="A1" aria-label="A1"></button></td><td><button type="button" class="gc" data-ref="B1" aria-label="B1"></button></td><td><button type="button" class="gc" data-ref="C1" aria-label="C1"></button></td><td><button type="button" class="gc" data-ref="D1" aria-label="D1"></button></td><td><button type="button" class="gc" data-ref="E1" aria-label="E1"></button></td><td><button type="button" class="gc" data-ref="F1" aria-label="F1"></button></td></tr>
+<tr><th scope="row">2</th><td><button type="button" class="gc" data-ref="A2" aria-label="A2"></button></td><td><button type="button" class="gc" data-ref="B2" aria-label="B2"></button></td><td><button type="button" class="gc" data-ref="C2" aria-label="C2"></button></td><td><button type="button" class="gc" data-ref="D2" aria-label="D2"></button></td><td><button type="button" class="gc" data-ref="E2" aria-label="E2"></button></td><td><button type="button" class="gc" data-ref="F2" aria-label="F2"></button></td></tr>
+<tr><th scope="row">3</th><td><button type="button" class="gc" data-ref="A3" aria-label="A3"></button></td><td><button type="button" class="gc" data-ref="B3" aria-label="B3"></button></td><td><button type="button" class="gc" data-ref="C3" aria-label="C3"></button></td><td><button type="button" class="gc" data-ref="D3" aria-label="D3"></button></td><td><button type="button" class="gc" data-ref="E3" aria-label="E3"></button></td><td><button type="button" class="gc" data-ref="F3" aria-label="F3"></button></td></tr>
+<tr><th scope="row">4</th><td><button type="button" class="gc" data-ref="A4" aria-label="A4"></button></td><td><button type="button" class="gc" data-ref="B4" aria-label="B4"></button></td><td><button type="button" class="gc" data-ref="C4" aria-label="C4"></button></td><td><button type="button" class="gc" data-ref="D4" aria-label="D4"></button></td><td><button type="button" class="gc" data-ref="E4" aria-label="E4"></button></td><td><button type="button" class="gc" data-ref="F4" aria-label="F4"></button></td></tr>
+<tr><th scope="row">5</th><td><button type="button" class="gc" data-ref="A5" aria-label="A5"></button></td><td><button type="button" class="gc" data-ref="B5" aria-label="B5"></button></td><td><button type="button" class="gc" data-ref="C5" aria-label="C5"></button></td><td><button type="button" class="gc" data-ref="D5" aria-label="D5"></button></td><td><button type="button" class="gc" data-ref="E5" aria-label="E5"></button></td><td><button type="button" class="gc" data-ref="F5" aria-label="F5"></button></td></tr>
+<tr><th scope="row">6</th><td><button type="button" class="gc" data-ref="A6" aria-label="A6"></button></td><td><button type="button" class="gc" data-ref="B6" aria-label="B6"></button></td><td><button type="button" class="gc" data-ref="C6" aria-label="C6"></button></td><td><button type="button" class="gc" data-ref="D6" aria-label="D6"></button></td><td><button type="button" class="gc" data-ref="E6" aria-label="E6"></button></td><td><button type="button" class="gc" data-ref="F6" aria-label="F6"></button></td></tr>
+<tr><th scope="row">7</th><td><button type="button" class="gc" data-ref="A7" aria-label="A7"></button></td><td><button type="button" class="gc" data-ref="B7" aria-label="B7"></button></td><td><button type="button" class="gc" data-ref="C7" aria-label="C7"></button></td><td><button type="button" class="gc" data-ref="D7" aria-label="D7"></button></td><td><button type="button" class="gc" data-ref="E7" aria-label="E7"></button></td><td><button type="button" class="gc" data-ref="F7" aria-label="F7"></button></td></tr>
+<tr><th scope="row">8</th><td><button type="button" class="gc" data-ref="A8" aria-label="A8"></button></td><td><button type="button" class="gc" data-ref="B8" aria-label="B8"></button></td><td><button type="button" class="gc" data-ref="C8" aria-label="C8"></button></td><td><button type="button" class="gc" data-ref="D8" aria-label="D8"></button></td><td><button type="button" class="gc" data-ref="E8" aria-label="E8"></button></td><td><button type="button" class="gc" data-ref="F8" aria-label="F8"></button></td></tr>
+<tr><th scope="row">9</th><td><button type="button" class="gc" data-ref="A9" aria-label="A9"></button></td><td><button type="button" class="gc" data-ref="B9" aria-label="B9"></button></td><td><button type="button" class="gc" data-ref="C9" aria-label="C9"></button></td><td><button type="button" class="gc" data-ref="D9" aria-label="D9"></button></td><td><button type="button" class="gc" data-ref="E9" aria-label="E9"></button></td><td><button type="button" class="gc" data-ref="F9" aria-label="F9"></button></td></tr>
+</tbody></table></div>
+
+    <div class="bout" id="bout" aria-live="polite">Click a cell.</div>
+
+    <div class="tryrow">
+      <span class="lab">Try</span>
+      <button class="chipbtn" type="button" data-f="=SUM(B2:D2)">=SUM(B2:D2)</button>
+      <button class="chipbtn" type="button" data-f="=AVERAGE(B2:B7)">=AVERAGE(B2:B7)</button>
+      <button class="chipbtn" type="button" data-f="=COUNT(B4:D4)">=COUNT(B4:D4)</button>
+      <button class="chipbtn" type="button" data-f="=COUNTA(B4:D4)">=COUNTA(B4:D4)</button>
+      <button class="chipbtn" type="button" data-f="=B4+D4">=B4+D4</button>
+      <button class="chipbtn" type="button" data-f='=IF(B2>=10,"high","low")'>=IF(B2>=10,"high","low")</button>
+      <button class="chipbtn" type="button" data-f="=IF(B2>=10,high,low)">=IF(B2>=10,high,low)</button>
+      <button class="chipbtn" type="button" data-f='=COUNTIF(B2:B7,">=15")'>=COUNTIF(B2:B7,"&gt;=15")</button>
+      <button class="chipbtn" type="button" data-f="=B2/0">=B2/0</button>
+    </div>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="bpose">Set me a puzzle</button>
+      <button class="btn ghost small" type="button" id="bcheck" disabled>Check my sheet</button>
+      <button class="btn ghost small" type="button" id="breset">Reset the sheet</button>
+    </div>
+    <div class="quizbox" id="bpuz" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">Pause-and-write</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was just a screensaver. Pause and write — don't rewind at the end. If you are not going to write the lines the job asks for, skip the video and go straight to the questions instead. That is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">One per syllabus bullet</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: THE DATA GATE ============ -->
+<section id="gate">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The data gate</h2>
+      <p>Twelve students, four columns. Filter them, sort them, then set a validation rule and throw good and bad entries at it. Everything here mirrors the Google Sheets menus: <strong>Data &gt; Create a filter</strong>, <strong>Data &gt; Sort range</strong>, <strong>Data &gt; Data validation</strong>.</p>
+    </div>
+
+    <div class="gsub"><b>1 · Filter</b> — conditions on different columns combine with AND</div>
+    <div class="frow">
+      <label for="fc1">Column</label>
+      <select id="fc1"><option value="">(no filter)</option><option value="name">Name</option><option value="subject">Subject</option><option value="marks">Marks</option><option value="att">Attendance %</option></select>
+      <label for="fo1">Condition</label>
+      <select id="fo1"></select>
+      <label for="fv1">Value</label>
+      <input type="text" id="fv1" autocomplete="off" aria-label="Value for the first filter condition">
+    </div>
+    <div class="frow">
+      <label for="fc2">Column</label>
+      <select id="fc2"><option value="">(no filter)</option><option value="name">Name</option><option value="subject">Subject</option><option value="marks">Marks</option><option value="att">Attendance %</option></select>
+      <label for="fo2">Condition</label>
+      <select id="fo2"></select>
+      <label for="fv2">Value</label>
+      <input type="text" id="fv2" autocomplete="off" aria-label="Value for the second filter condition">
+    </div>
+
+    <div class="gsub"><b>2 · Sort</b></div>
+    <div class="frow">
+      <label for="sc">Sort by</label>
+      <select id="sc"><option value="name">Name</option><option value="subject">Subject</option><option value="marks" selected>Marks</option><option value="att">Attendance %</option></select>
+      <select id="so" aria-label="Sort order"><option value="asc">A to Z / low to high</option><option value="desc" selected>Z to A / high to low</option></select>
+      <fieldset>
+        <legend class="sr" style="position:absolute;left:-9999px">What gets sorted</legend>
+        <label class="rad"><input type="radio" name="smode" value="whole" checked> Select the whole table, then Sort range</label>
+        <label class="rad"><input type="radio" name="smode" value="col"> Select only this column, then Sort range</label>
+      </fieldset>
+    </div>
+    <div class="frow">
+      <button class="btn small" type="button" id="sapply">Apply sort</button>
+      <button class="btn ghost small" type="button" id="greset">Reset the data</button>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gtable" id="gtable">
+        <caption class="sr" style="position:absolute;left:-9999px">Twelve students with subject, marks and attendance</caption>
+        <thead><tr><th class="rn" scope="col">#</th><th scope="col">Name</th><th scope="col">Subject</th><th scope="col">Marks</th><th scope="col">Attendance %</th></tr></thead>
+        <tbody id="gbody"></tbody>
+      </table>
+    </div>
+    <div class="gstatus" id="gstatus" aria-live="polite"></div>
+
+    <div class="gsub"><b>3 · Validate</b> — what the column will accept from now on</div>
+    <div class="frow">
+      <label for="vf">Column to protect</label>
+      <select id="vf"><option value="marks">Marks (out of 50)</option><option value="subject">Subject</option><option value="att">Attendance %</option></select>
+      <label for="vt">Criteria</label>
+      <select id="vt">
+        <option value="between">Number between</option>
+        <option value="gt">Number greater than</option>
+        <option value="lt">Number less than</option>
+        <option value="list">Dropdown (list of items)</option>
+      </select>
+    </div>
+    <div class="frow">
+      <span id="vnum">
+        <label for="va" id="valab">Minimum</label> <input type="text" id="va" value="0" autocomplete="off" inputmode="decimal" aria-label="Minimum value for the rule">
+        <span id="vbwrap"><label for="vb">Maximum</label> <input type="text" id="vb" value="100" autocomplete="off" inputmode="decimal" aria-label="Maximum value for the rule"></span>
+      </span>
+      <span id="vlist" hidden>
+        <label for="vl">Items, separated by commas</label> <input type="text" id="vl" value="Maths, Science" style="width:240px" autocomplete="off" aria-label="Dropdown items separated by commas">
+      </span>
+    </div>
+    <div class="frow">
+      <fieldset>
+        <legend>On invalid data:</legend>
+        <label class="rad"><input type="radio" name="vmode" value="warn" checked> Show a warning</label>
+        <label class="rad"><input type="radio" name="vmode" value="reject"> Reject the input</label>
+      </fieldset>
+    </div>
+    <div class="tablewrap">
+      <table class="gtable" id="vtable">
+        <caption class="sr" style="position:absolute;left:-9999px">Test entries and what the current rule does with each</caption>
+        <thead><tr><th scope="col">Entry typed</th><th scope="col">It should be</th><th scope="col">The sheet does</th><th scope="col">Verdict</th></tr></thead>
+        <tbody id="vbody"></tbody>
+      </table>
+    </div>
+    <div class="frow">
+      <label for="vcustom">Your own entry</label>
+      <input type="text" id="vcustom" autocomplete="off" aria-label="Type any entry to test against the rule">
+      <button class="btn ghost small" type="button" id="vtry">Try it</button>
+      <span id="vcres" aria-live="polite"></span>
+    </div>
+    <div class="gstatus" id="vexisting" aria-live="polite"></div>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="gpose">Set me a puzzle</button>
+      <button class="btn ghost small" type="button" id="gcheck" disabled>Check my setup</button>
+    </div>
+    <div class="quizbox" id="gpuz" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes open. These are the marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<!-- ============ PROBLEM LAB ============ -->
+<section id="problems">
+  <div class="shead"><h2>The problem lab</h2><span class="tag">26 extra · no marks</span></div>
+  <p class="snote">These do not count towards the 30. They are here because you are capable of more than 10 out of 15 and some of these are properly hard. Four datasets below: open one, press <strong>Copy for Google Sheets</strong>, click cell A1 of a blank sheet and paste. Then answer in one of four ways: type a number you got from your own sheet, type a formula and the page runs it, pick an option, or hunt a bug.</p>
+  <p class="snote" style="margin-top:-4px"><strong>How the lab behaves:</strong> Check gives feedback that says what you did, not just that it is wrong. A hint unlocks the next hint. The solution unlocks once you have taken a hint or made an attempt — not before. Formulas are tested on the data as it stands, filled down every row where that is part of the task, and on a copy where the numbers have been changed, so a typed-in answer will not pass.</p>
+  <div id="dsList"></div>
+  <div id="probList" style="margin-top:18px"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps" id="trapList"></div>
+</section>
+
+<footer>
+  <span>Your answers, marks, finished lessons and solved lab problems are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ================= FORMULA ENGINE =================
+   A small, safe Google-Sheets-style evaluator. No eval, no Function.
+   Values: number | string | boolean | null (blank) | {err, msg}
+   ================================================== */
+const Fx = (function(){
+  const E = (err, msg) => ({err: err, msg: msg || ''});
+  const isErr = v => v !== null && typeof v === 'object' && 'err' in v;
+  const isRange = v => v !== null && typeof v === 'object' && v.range === true;
+
+  function colToNum(s){ let n = 0; s = s.toUpperCase(); for(let i=0;i<s.length;i++) n = n*26 + (s.charCodeAt(i)-64); return n; }
+  function numToCol(n){ let s = ''; while(n > 0){ const m = (n-1)%26; s = String.fromCharCode(65+m) + s; n = Math.floor((n-1)/26); } return s; }
+
+  /* ---------- tokenizer ---------- */
+  const RX_RANGE   = /^\$?([A-Za-z]{1,3})\$?(\d+):\$?([A-Za-z]{1,3})\$?(\d+)(?![A-Za-z0-9_.(])/;
+  const RX_OPENEND = /^\$?([A-Za-z]{1,3})\$?(\d+):\$?([A-Za-z]{1,3})(?![A-Za-z0-9_.(])/;
+  const RX_COLS    = /^\$?([A-Za-z]{1,3}):\$?([A-Za-z]{1,3})(?![A-Za-z0-9_.(])/;
+  const RX_CELL    = /^\$?([A-Za-z]{1,3})\$?(\d+)(?![A-Za-z0-9_.(])/;
+  const RX_FUNC    = /^[A-Za-z][A-Za-z0-9_.]*(?=\s*\()/;
+  const RX_WORD    = /^[A-Za-z_][A-Za-z0-9_.]*/;
+  const RX_NUM     = /^(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?/;
+
+  function tokenize(src){
+    const out = []; let i = 0; const n = src.length;
+    while(i < n){
+      const c = src[i];
+      if(/\s/.test(c)){ i++; continue; }
+      if(c === '"'){
+        let j = i+1, s = '';
+        for(;;){
+          if(j >= n) throw E('#ERROR!', 'A piece of text is missing its closing quotation mark.');
+          if(src[j] === '"'){ if(src[j+1] === '"'){ s += '"'; j += 2; continue; } break; }
+          s += src[j++];
+        }
+        out.push({k:'str', v:s}); i = j+1; continue;
+      }
+      const rest = src.slice(i);
+      let m;
+      if(/[0-9.]/.test(c)){
+        m = RX_NUM.exec(rest);
+        if(!m) throw E('#ERROR!', 'A stray "." is not a number.');
+        out.push({k:'num', v:parseFloat(m[0])}); i += m[0].length; continue;
+      }
+      if(/[A-Za-z_$]/.test(c)){
+        if((m = RX_RANGE.exec(rest))){
+          let a = colToNum(m[1]), r1 = +m[2], b = colToNum(m[3]), r2 = +m[4];
+          out.push({k:'range', c1:Math.min(a,b), r1:Math.min(r1,r2), c2:Math.max(a,b), r2:Math.max(r1,r2)}); i += m[0].length; continue;
+        }
+        if((m = RX_OPENEND.exec(rest))){
+          let a = colToNum(m[1]), b = colToNum(m[3]);
+          out.push({k:'range', c1:Math.min(a,b), r1:+m[2], c2:Math.max(a,b), r2:Infinity}); i += m[0].length; continue;
+        }
+        if((m = RX_COLS.exec(rest))){
+          let a = colToNum(m[1]), b = colToNum(m[2]);
+          out.push({k:'range', c1:Math.min(a,b), r1:1, c2:Math.max(a,b), r2:Infinity}); i += m[0].length; continue;
+        }
+        if((m = RX_CELL.exec(rest))){
+          out.push({k:'ref', c:colToNum(m[1]), r:+m[2]}); i += m[0].length; continue;
+        }
+        if((m = RX_FUNC.exec(rest))){ out.push({k:'func', v:m[0].toUpperCase()}); i += m[0].length; continue; }
+        if((m = RX_WORD.exec(rest))){
+          const w = m[0], u = w.toUpperCase();
+          if(u === 'TRUE' || u === 'FALSE') out.push({k:'bool', v:u === 'TRUE'});
+          else out.push({k:'name', v:w});
+          i += w.length; continue;
+        }
+      }
+      const two = src.substr(i,2);
+      if(two === '<=' || two === '>=' || two === '<>'){ out.push({k:'op', v:two}); i += 2; continue; }
+      if('+-*/^&=<>%(),'.indexOf(c) >= 0){ out.push({k:'op', v:c}); i++; continue; }
+      if(c === ';') throw E('#ERROR!', 'Google Sheets (English) separates arguments with commas, not semicolons.');
+      if(c === ':') throw E('#ERROR!', 'A colon belongs between two cells, like B2:B9.');
+      throw E('#ERROR!', 'Sheets does not understand the character "' + c + '".');
+    }
+    return out;
+  }
+
+  /* ---------- parser ---------- */
+  function parse(tokens){
+    let p = 0;
+    const peek = () => tokens[p];
+    const isOp = v => tokens[p] && tokens[p].k === 'op' && tokens[p].v === v;
+    function expect(v, why){ if(!isOp(v)) throw E('#ERROR!', why || ('Expected "' + v + '" here.')); p++; }
+
+    function cmp(){
+      let l = concat();
+      while(tokens[p] && tokens[p].k === 'op' && ['=','<>','<','>','<=','>='].indexOf(tokens[p].v) >= 0){
+        const op = tokens[p++].v; const r = concat(); l = {t:'bin', op:op, l:l, r:r};
+      }
+      return l;
+    }
+    function concat(){
+      let l = add();
+      while(isOp('&')){ p++; const r = add(); l = {t:'bin', op:'&', l:l, r:r}; }
+      return l;
+    }
+    function add(){
+      let l = mul();
+      while(isOp('+') || isOp('-')){ const op = tokens[p++].v; const r = mul(); l = {t:'bin', op:op, l:l, r:r}; }
+      return l;
+    }
+    function mul(){
+      let l = pow();
+      while(isOp('*') || isOp('/')){ const op = tokens[p++].v; const r = pow(); l = {t:'bin', op:op, l:l, r:r}; }
+      return l;
+    }
+    function pow(){
+      let l = unary();
+      while(isOp('^')){ p++; const r = unary(); l = {t:'bin', op:'^', l:l, r:r}; }
+      return l;
+    }
+    function unary(){
+      if(isOp('-')){ p++; return {t:'neg', e:unary()}; }
+      if(isOp('+')){ p++; return unary(); }
+      return postfix();
+    }
+    function postfix(){
+      let e = primary();
+      while(isOp('%')){ p++; e = {t:'bin', op:'/', l:e, r:{t:'num', v:100}}; }
+      return e;
+    }
+    function primary(){
+      const tk = tokens[p];
+      if(!tk) throw E('#ERROR!', 'The formula ends too soon: something is missing after the last symbol.');
+      if(tk.k === 'num'){ p++; return {t:'num', v:tk.v}; }
+      if(tk.k === 'str'){ p++; return {t:'str', v:tk.v}; }
+      if(tk.k === 'bool'){ p++; return {t:'bool', v:tk.v}; }
+      if(tk.k === 'ref'){ p++; return {t:'ref', c:tk.c, r:tk.r}; }
+      if(tk.k === 'range'){ p++; return {t:'range', c1:tk.c1, r1:tk.r1, c2:tk.c2, r2:tk.r2}; }
+      if(tk.k === 'name'){ p++; return {t:'name', v:tk.v}; }
+      if(tk.k === 'func'){
+        p++; expect('(');
+        const args = [];
+        if(isOp(')')){ p++; return {t:'func', name:tk.v, args:args}; }
+        for(;;){
+          if(isOp(',') || isOp(')')) args.push({t:'blank'}); else args.push(cmp());
+          if(isOp(',')){ p++; continue; }
+          if(isOp(')')){ p++; break; }
+          throw E('#ERROR!', 'In ' + tk.v + '(...) the arguments must be separated by commas, and every bracket needs a partner.');
+        }
+        return {t:'func', name:tk.v, args:args};
+      }
+      if(isOp('(')){ p++; const e = cmp(); expect(')', 'A bracket was opened but never closed: every ( needs a ).'); return e; }
+      if(tk.k === 'op') throw E('#ERROR!', 'Unexpected "' + tk.v + '" here: an operator needs a value on both sides.');
+      throw E('#ERROR!', 'The formula could not be read.');
+    }
+    const ast = cmp();
+    if(p < tokens.length) throw E('#ERROR!', 'Something is left over after "' + (tokens[p].v !== undefined ? tokens[p].v : '?') + '". Check brackets and commas.');
+    return ast;
+  }
+
+  function parseFormula(text){
+    let t = String(text).trim();
+    if(t[0] !== '=') throw E('#ERROR!', 'A formula must start with =.');
+    return parse(tokenize(t.slice(1)));
+  }
+
+  /* ---------- sheet ---------- */
+  function Sheet(rows){ this.rows = rows; this.cache = {}; this.busy = {}; }
+  Sheet.prototype.maxRow = function(){ return this.rows.length; };
+  Sheet.prototype.maxCol = function(){ let m = 0; this.rows.forEach(r => { if(r.length > m) m = r.length; }); return m; };
+  Sheet.prototype.raw = function(c, r){
+    const row = this.rows[r-1]; if(!row) return null; const v = row[c-1];
+    return (v === undefined || v === '') ? null : v;
+  };
+  Sheet.prototype.value = function(c, r){
+    const raw = this.raw(c, r);
+    if(typeof raw === 'string' && raw[0] === '='){
+      const key = c + ',' + r;
+      if(key in this.cache) return this.cache[key];
+      if(this.busy[key]) return E('#REF!', 'This formula refers to itself, directly or through other cells.');
+      this.busy[key] = true;
+      let v;
+      try { v = evalText(this, raw); } finally { delete this.busy[key]; }
+      this.cache[key] = v; return v;
+    }
+    return raw;
+  };
+  Sheet.prototype.clone = function(){ return new Sheet(this.rows.map(r => r.slice())); };
+  Sheet.prototype.set = function(c, r, v){
+    while(this.rows.length < r) this.rows.push([]);
+    const row = this.rows[r-1]; while(row.length < c) row.push(null);
+    row[c-1] = v; this.cache = {};
+  };
+
+  /* ---------- coercion helpers ---------- */
+  function fmtNum(x){
+    if(!isFinite(x)) return String(x);
+    if(Number.isInteger(x)) return String(x);
+    return String(parseFloat(x.toPrecision(12)));
+  }
+  function fmt(v){
+    if(v === null || v === undefined) return '';
+    if(isErr(v)) return v.err;
+    if(typeof v === 'number') return fmtNum(v);
+    if(typeof v === 'boolean') return v ? 'TRUE' : 'FALSE';
+    return String(v);
+  }
+  function scalar(v){
+    if(isRange(v)){
+      if(v.c1 === v.c2 && v.r1 === v.r2) return v.sheet.value(v.c1, v.r1);
+      throw E('#VALUE!', 'A whole range was used where one value was expected. Wrap it in a function such as SUM(...).');
+    }
+    return v;
+  }
+  function toNum(v){
+    v = scalar(v);
+    if(isErr(v)) throw v;
+    if(v === null) return 0;
+    if(typeof v === 'number') return v;
+    if(typeof v === 'boolean') return v ? 1 : 0;
+    const s = String(v).trim();
+    if(s !== '' && isFinite(Number(s))) return Number(s);
+    throw E('#VALUE!', '"' + v + '" is text, so it cannot be used in arithmetic. Range functions such as SUM skip text, but + - * / do not.');
+  }
+  function toBool(v){
+    v = scalar(v);
+    if(isErr(v)) throw v;
+    if(v === null) return false;
+    if(typeof v === 'boolean') return v;
+    if(typeof v === 'number') return v !== 0;
+    const u = String(v).toUpperCase();
+    if(u === 'TRUE') return true; if(u === 'FALSE') return false;
+    throw E('#VALUE!', 'The test in IF must give TRUE or FALSE; "' + v + '" is text.');
+  }
+  function toText(v){ v = scalar(v); if(isErr(v)) throw v; return fmt(v); }
+  function rank(v){ return typeof v === 'number' ? 1 : (typeof v === 'string' ? 2 : 3); }
+  function compare(a, b){
+    a = scalar(a); b = scalar(b);
+    if(isErr(a)) throw a; if(isErr(b)) throw b;
+    if(a === null && b === null) return 0;
+    if(a === null) a = (typeof b === 'string') ? '' : (typeof b === 'boolean' ? false : 0);
+    if(b === null) b = (typeof a === 'string') ? '' : (typeof a === 'boolean' ? false : 0);
+    const ra = rank(a), rb = rank(b);
+    if(ra !== rb) return ra < rb ? -1 : 1;
+    if(ra === 2){ const x = a.toLowerCase(), y = b.toLowerCase(); return x < y ? -1 : (x > y ? 1 : 0); }
+    if(ra === 3){ a = a ? 1 : 0; b = b ? 1 : 0; }
+    return a < b ? -1 : (a > b ? 1 : 0);
+  }
+
+  /* ---------- range iteration ---------- */
+  function cellsOf(rg){
+    const sh = rg.sheet, last = Math.min(rg.r2, sh.maxRow()), out = [];
+    for(let r = rg.r1; r <= last; r++) for(let c = rg.c1; c <= rg.c2; c++) out.push(sh.value(c, r));
+    return out;
+  }
+  function dims(rg){ const last = Math.min(rg.r2, rg.sheet.maxRow()); return {w: rg.c2-rg.c1+1, h: Math.max(0, last-rg.r1+1)}; }
+
+  /* ---------- criteria (COUNTIF / SUMIF) ---------- */
+  function makeCrit(c){
+    c = scalar(c);
+    if(isErr(c)) throw c;
+    if(typeof c === 'number') return v => typeof v === 'number' && v === c;
+    if(typeof c === 'boolean') return v => v === c;
+    if(c === null) return v => v === null || v === 0;
+    let s = String(c), op = '=';
+    const m = /^(<=|>=|<>|<|>|=)/.exec(s);
+    if(m){ op = m[1]; s = s.slice(op.length); }
+    const t = s.trim();
+    if(t !== '' && isFinite(Number(t))){
+      const x = Number(t);
+      return v => {
+        if(op === '<>') return !(typeof v === 'number' && v === x);
+        if(typeof v !== 'number') return false;
+        switch(op){ case '=': return v === x; case '>': return v > x; case '<': return v < x; case '>=': return v >= x; case '<=': return v <= x; }
+        return false;
+      };
+    }
+    if(s === ''){
+      if(op === '=') return v => v === null || v === '';
+      if(op === '<>') return v => !(v === null || v === '');
+      return () => false;
+    }
+    const lower = s.toLowerCase();
+    if(op === '=' || op === '<>'){
+      const re = new RegExp('^' + lower.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.') + '$', 'i');
+      return v => { const hit = (typeof v === 'string') && re.test(v); return op === '=' ? hit : !hit; };
+    }
+    return v => {
+      if(typeof v !== 'string') return false;
+      const x = v.toLowerCase();
+      switch(op){ case '>': return x > lower; case '<': return x < lower; case '>=': return x >= lower; case '<=': return x <= lower; }
+      return false;
+    };
+  }
+
+  /* ---------- evaluation ---------- */
+  function argRange(node, ctx){
+    const v = ev(node, ctx);
+    if(!isRange(v)) throw E('#VALUE!', 'This function needs a range of cells here (like B2:B21), not a single value.');
+    return v;
+  }
+
+  function flatten(args, ctx, mode){
+    // returns {nums:[], ...}. In ranges only true numbers count; direct values are coerced.
+    const nums = [];
+    for(const a of args){
+      if(a.t === 'blank'){ continue; }
+      const v = ev(a, ctx);
+      if(isRange(v)){
+        for(const x of cellsOf(v)){
+          if(isErr(x)) throw x;
+          if(typeof x === 'number') nums.push(x);
+        }
+      } else {
+        if(isErr(v)) throw v;
+        if(typeof v === 'number') nums.push(v);
+        else if(typeof v === 'boolean') nums.push(v ? 1 : 0);
+        else if(v === null) { /* blank */ }
+        else {
+          const s = String(v).trim();
+          if(s !== '' && isFinite(Number(s))) nums.push(Number(s));
+          else if(mode !== 'count') throw E('#VALUE!', '"' + v + '" is text, so ' + mode + ' cannot use it when you type it in directly.');
+        }
+      }
+    }
+    return nums;
+  }
+
+  function need(name, args, lo, hi){
+    if(args.length < lo || (hi !== undefined && args.length > hi)){
+      const want = hi === undefined ? 'at least ' + lo : (lo === hi ? 'exactly ' + lo : lo + ' to ' + hi);
+      throw E('#N/A', name + ' needs ' + want + ' argument' + (lo === 1 && hi === 1 ? '' : 's') + ', but you gave it ' + args.length + '.');
+    }
+  }
+
+  function roundHalfAway(x, d){
+    const f = Math.pow(10, d);
+    const y = Math.abs(x) * f;
+    const r = Math.floor(y + 0.5 + 1e-9);
+    return Math.sign(x) * r / f;
+  }
+
+  const FUNCS = {
+    SUM(a, ctx){ return flatten(a, ctx, 'SUM').reduce((s, x) => s + x, 0); },
+    PRODUCT(a, ctx){ const n = flatten(a, ctx, 'PRODUCT'); return n.length ? n.reduce((s, x) => s * x, 1) : 0; },
+    AVERAGE(a, ctx){
+      const n = flatten(a, ctx, 'AVERAGE');
+      if(!n.length) throw E('#DIV/0!', 'AVERAGE found no numbers to average. It skips text and blank cells.');
+      return n.reduce((s, x) => s + x, 0) / n.length;
+    },
+    MIN(a, ctx){ const n = flatten(a, ctx, 'MIN'); return n.length ? Math.min.apply(null, n) : 0; },
+    MAX(a, ctx){ const n = flatten(a, ctx, 'MAX'); return n.length ? Math.max.apply(null, n) : 0; },
+    COUNT(a, ctx){ return flatten(a, ctx, 'count').length; },
+    COUNTA(a, ctx){
+      let k = 0;
+      for(const x of a){
+        if(x.t === 'blank') continue;
+        const v = ev(x, ctx);
+        if(isRange(v)){ for(const c of cellsOf(v)) if(c !== null && c !== '') k++; }
+        else if(v !== null) k++;
+      }
+      return k;
+    },
+    COUNTBLANK(a, ctx){
+      need('COUNTBLANK', a, 1, 1); let k = 0; const rg = argRange(a[0], ctx);
+      const d = dims(rg); const total = d.w * d.h; let nb = 0;
+      for(const c of cellsOf(rg)) if(c !== null && c !== '') nb++;
+      return total - nb;
+    },
+    ADD(a, ctx){ need('ADD', a, 2, 2); return toNum(ev(a[0], ctx)) + toNum(ev(a[1], ctx)); },
+    MINUS(a, ctx){ need('MINUS', a, 2, 2); return toNum(ev(a[0], ctx)) - toNum(ev(a[1], ctx)); },
+    MULTIPLY(a, ctx){ need('MULTIPLY', a, 2, 2); return toNum(ev(a[0], ctx)) * toNum(ev(a[1], ctx)); },
+    DIVIDE(a, ctx){
+      need('DIVIDE', a, 2, 2); const x = toNum(ev(a[0], ctx)), y = toNum(ev(a[1], ctx));
+      if(y === 0) throw E('#DIV/0!', 'DIVIDE was asked to divide by zero.');
+      return x / y;
+    },
+    POW(a, ctx){ need('POW', a, 2, 2); return Math.pow(toNum(ev(a[0], ctx)), toNum(ev(a[1], ctx))); },
+    ABS(a, ctx){ need('ABS', a, 1, 1); return Math.abs(toNum(ev(a[0], ctx))); },
+    ROUND(a, ctx){
+      need('ROUND', a, 1, 2);
+      const x = toNum(ev(a[0], ctx)); const d = a.length > 1 ? Math.trunc(toNum(ev(a[1], ctx))) : 0;
+      return roundHalfAway(x, d);
+    },
+    IF(a, ctx){
+      need('IF', a, 2, 3);
+      const c = toBool(ev(a[0], ctx));
+      if(c) return a[1].t === 'blank' ? 0 : scalar(ev(a[1], ctx));
+      if(a.length < 3) return false;
+      return a[2].t === 'blank' ? 0 : scalar(ev(a[2], ctx));
+    },
+    IFERROR(a, ctx){
+      need('IFERROR', a, 1, 2);
+      try { const v = scalar(ev(a[0], ctx)); if(!isErr(v)) return v; } catch(e){ if(!isErr(e)) throw e; }
+      return a.length > 1 ? scalar(ev(a[1], ctx)) : null;
+    },
+    AND(a, ctx){ need('AND', a, 1); return logicAll(a, ctx, true); },
+    OR(a, ctx){ need('OR', a, 1); return logicAll(a, ctx, false); },
+    NOT(a, ctx){ need('NOT', a, 1, 1); return !toBool(ev(a[0], ctx)); },
+    COUNTIF(a, ctx){
+      need('COUNTIF', a, 2, 2);
+      const rg = argRange(a[0], ctx); const f = makeCrit(ev(a[1], ctx)); let k = 0;
+      for(const v of cellsOf(rg)){ if(isErr(v)) continue; if(f(v)) k++; }
+      return k;
+    },
+    SUMIF(a, ctx){
+      need('SUMIF', a, 2, 3);
+      const rg = argRange(a[0], ctx); const f = makeCrit(ev(a[1], ctx));
+      const sr = a.length > 2 ? argRange(a[2], ctx) : rg;
+      const d = dims(rg); let s = 0;
+      for(let i = 0; i < d.h; i++) for(let j = 0; j < d.w; j++){
+        const v = rg.sheet.value(rg.c1 + j, rg.r1 + i);
+        if(isErr(v) || !f(v)) continue;
+        const t = sr.sheet.value(sr.c1 + j, sr.r1 + i);
+        if(isErr(t)) throw t;
+        if(typeof t === 'number') s += t;
+      }
+      return s;
+    },
+    AVERAGEIF(a, ctx){
+      need('AVERAGEIF', a, 2, 3);
+      const rg = argRange(a[0], ctx); const f = makeCrit(ev(a[1], ctx));
+      const sr = a.length > 2 ? argRange(a[2], ctx) : rg;
+      const d = dims(rg); let s = 0, k = 0;
+      for(let i = 0; i < d.h; i++) for(let j = 0; j < d.w; j++){
+        const v = rg.sheet.value(rg.c1 + j, rg.r1 + i);
+        if(isErr(v) || !f(v)) continue;
+        const t = sr.sheet.value(sr.c1 + j, sr.r1 + i);
+        if(typeof t === 'number'){ s += t; k++; }
+      }
+      if(!k) throw E('#DIV/0!', 'AVERAGEIF found no matching numbers.');
+      return s / k;
+    },
+    COUNTIFS(a, ctx){
+      if(a.length < 2 || a.length % 2) throw E('#N/A', 'COUNTIFS needs range and criterion in pairs.');
+      const pairs = []; for(let i = 0; i < a.length; i += 2) pairs.push([argRange(a[i], ctx), makeCrit(ev(a[i+1], ctx))]);
+      const d = dims(pairs[0][0]); let k = 0;
+      for(let i = 0; i < d.h; i++) for(let j = 0; j < d.w; j++){
+        if(pairs.every(p => p[1](p[0].sheet.value(p[0].c1 + j, p[0].r1 + i)))) k++;
+      }
+      return k;
+    },
+    SUMIFS(a, ctx){
+      if(a.length < 3 || a.length % 2 === 0) throw E('#N/A', 'SUMIFS needs the sum range first, then range and criterion in pairs.');
+      const sr = argRange(a[0], ctx); const pairs = [];
+      for(let i = 1; i < a.length; i += 2) pairs.push([argRange(a[i], ctx), makeCrit(ev(a[i+1], ctx))]);
+      const d = dims(pairs[0][0]); let s = 0;
+      for(let i = 0; i < d.h; i++) for(let j = 0; j < d.w; j++){
+        if(!pairs.every(p => p[1](p[0].sheet.value(p[0].c1 + j, p[0].r1 + i)))) continue;
+        const t = sr.sheet.value(sr.c1 + j, sr.r1 + i); if(typeof t === 'number') s += t;
+      }
+      return s;
+    }
+  };
+  function logicAll(a, ctx, isAnd){
+    let res = isAnd, seen = false;
+    for(const x of a){
+      const v = ev(x, ctx);
+      const vals = isRange(v) ? cellsOf(v).filter(c => typeof c === 'boolean' || typeof c === 'number') : [v];
+      for(const q of vals){
+        if(isErr(q)) throw q;
+        seen = true; const b = toBool(q);
+        if(isAnd) res = res && b; else res = res || b;
+      }
+    }
+    if(!seen) throw E('#VALUE!', (isAnd ? 'AND' : 'OR') + ' found no TRUE/FALSE values to test.');
+    return res;
+  }
+
+  function ev(n, ctx){
+    switch(n.t){
+      case 'num': case 'str': case 'bool': return n.v;
+      case 'blank': return null;
+      case 'ref': return {range:true, sheet:ctx.sheet, c1:n.c, r1:n.r, c2:n.c, r2:n.r};
+      case 'range': return {range:true, sheet:ctx.sheet, c1:n.c1, r1:n.r1, c2:n.c2, r2:n.r2};
+      case 'name': throw E('#NAME?', '"' + n.v + '" is not a number, a cell or a function. If it is a word, put it in quotation marks: "' + n.v + '".');
+      case 'neg': return -toNum(ev(n.e, ctx));
+      case 'bin': {
+        const op = n.op;
+        if(op === '&') return toText(ev(n.l, ctx)) + toText(ev(n.r, ctx));
+        if(op === '+' || op === '-' || op === '*' || op === '/' || op === '^'){
+          const x = toNum(ev(n.l, ctx)), y = toNum(ev(n.r, ctx));
+          if(op === '+') return x + y; if(op === '-') return x - y; if(op === '*') return x * y;
+          if(op === '/'){ if(y === 0) throw E('#DIV/0!', 'You divided by zero (or by an empty cell).'); return x / y; }
+          return Math.pow(x, y);
+        }
+        const c = compare(ev(n.l, ctx), ev(n.r, ctx));
+        switch(op){ case '=': return c === 0; case '<>': return c !== 0; case '<': return c < 0; case '>': return c > 0; case '<=': return c <= 0; case '>=': return c >= 0; }
+        throw E('#ERROR!', 'Unknown operator.');
+      }
+      case 'func': {
+        const f = FUNCS[n.name];
+        if(!f) throw E('#NAME?', 'Unknown function ' + n.name + '. Check the spelling, or use one from this topic.');
+        return f(n.args, ctx);
+      }
+    }
+    throw E('#ERROR!', 'Could not evaluate this.');
+  }
+
+  /* ---------- public helpers ---------- */
+  function evalAst(sheet, ast){
+    try {
+      let v = ev(ast, {sheet: sheet});
+      if(isRange(v)){
+        if(v.c1 === v.c2 && v.r1 === v.r2) v = sheet.value(v.c1, v.r1);
+        else return E('#VALUE!', 'A range on its own cannot show in one cell. Put it inside a function such as SUM(...).');
+      }
+      return v === undefined ? null : v;
+    } catch(e){
+      if(isErr(e)) return e;
+      return E('#ERROR!', 'Could not work this out (' + (e && e.message) + ').');
+    }
+  }
+  function evalText(sheet, text){
+    let ast;
+    try { ast = parseFormula(text); } catch(e){ if(isErr(e)) return e; return E('#ERROR!', 'Could not read this formula.'); }
+    return evalAst(sheet, ast);
+  }
+  function walk(ast, fn){
+    fn(ast);
+    if(ast.args) ast.args.forEach(a => walk(a, fn));
+    if(ast.l) walk(ast.l, fn); if(ast.r) walk(ast.r, fn); if(ast.e) walk(ast.e, fn);
+  }
+  function analyse(text){
+    // {ok, funcs:[...names in order], refs:[{c,r}], ranges:[...], hasName, consts}
+    let ast; try { ast = parseFormula(text); } catch(e){ return {ok:false, err:e, funcs:[], refs:[], ranges:[]}; }
+    const info = {ok:true, funcs:[], refs:[], ranges:[]};
+    walk(ast, n => {
+      if(n.t === 'func') info.funcs.push(n.name);
+      if(n.t === 'ref') info.refs.push({c:n.c, r:n.r});
+      if(n.t === 'range') info.ranges.push({c1:n.c1, r1:n.r1, c2:n.c2, r2:n.r2});
+    });
+    return info;
+  }
+  // Move relative row references down by d rows (as "fill down" does). Text in quotes is left alone.
+  function shift(text, d){
+    if(!d) return text;
+    return String(text).split('"').map((part, i) => {
+      if(i % 2) return part;
+      return part.replace(/(\$?)([A-Za-z]{1,3})(\$?)(\d+)(?![A-Za-z0-9_.(])/g, (m, a, col, b, row, off, whole) => {
+        const prev = off > 0 ? whole[off-1] : '';
+        if(/[A-Za-z0-9_.]/.test(prev)) return m;
+        return a + col + b + (b === '$' ? row : (+row + d));
+      });
+    }).join('"');
+  }
+  function equal(a, b){
+    if(isErr(a) || isErr(b)) return isErr(a) && isErr(b) && a.err === b.err;
+    if(a === null) a = ''; if(b === null) b = '';
+    if(typeof a === 'number' && typeof b === 'number') return Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b));
+    return a === b;
+  }
+  function parseEntry(s){
+    if(typeof s !== 'string') return s;
+    const t = s.trim();
+    if(t === '') return null;
+    if(t[0] === '=') return t;
+    if(/^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/.test(t)) return parseFloat(t);
+    const u = t.toUpperCase(); if(u === 'TRUE') return true; if(u === 'FALSE') return false;
+    return s;
+  }
+  function address(c, r){ return numToCol(c) + r; }
+
+  return {Sheet:Sheet, evalText:evalText, parseFormula:parseFormula, analyse:analyse, shift:shift, equal:equal,
+          fmt:fmt, isErr:isErr, parseEntry:parseEntry, numToCol:numToCol, colToNum:colToNum, address:address, makeCrit:makeCrit};
+})();
+if(typeof module !== 'undefined') module.exports = Fx;
+
+</script>
+
+<script>
+const DATASETS = {"canteen":[["Item","Category","Price (₹)","Sold","Revenue (₹)"],["Samosa","Snack",15,120,"=C2*D2"],["Vada Pav","Snack",20,95,"=C3*D3"],["Veg Puff","Snack",25,60,"=C4*D4"],["Bread Pakora","Snack",12,48,"=C5*D5"],["Sandwich","Snack",30,72,"=C6*D6"],["Idli Plate","Meal",40,85,"=C7*D7"],["Poha","Meal",35,64,"=C8*D8"],["Masala Dosa","Meal",60,52,"=C9*D9"],["Veg Biryani","Meal",70,38,"=C10*D10"],["Rajma Chawal","Meal",65,44,"=C11*D11"],["Veg Thali","Meal",90,30,"=C12*D12"],["Masala Chai","Drink",10,150,"=C13*D13"],["Lemonade","Drink",20,110,"=C14*D14"],["Cold Coffee","Drink",40,58,"=C15*D15"],["Buttermilk","Drink",15,90,"=C16*D16"],["Mango Frooti","Drink",20,75,"=C17*D17"],["Lassi","Drink",30,46,"=C18*D18"],["Fruit Cup","Snack",35,25,"=C19*D19"],["Paneer Roll","Meal",55,41,"=C20*D20"],["Chocolate Milk","Drink",25,33,"=C21*D21"]],"marks":[["Name","Subject","Marks (out of 50)","Attendance %"],["Aarav Sharma","Maths",42,96],["Diya Patel","Maths",38,92],["Rohan Iyer","maths",27,78],["Ananya Reddy","Maths",45,98],["Kabir Singh","Maths ",31,85],["Meera Nair","Math",36,90],["Ishaan Gupta","Science",29,74],["Saanvi Rao","Science",44,97],["Vihaan Mehta","Science",33,88],["Aditi Joshi","Science","absent",60],["Arjun Menon","science",40,94],["Kavya Pillai","Science",22,70],["Neha Kulkarni","English",41,91],["Pranav Desai","English",35,82],["Riya Banerjee","English",null,87],["Siddharth Das","English",47,99],["Tara Bhat","English",26,72],["Yash Chopra","English",39,89],["Zoya Khan","Maths",48,100],["Dev Malhotra","Maths",19,55],["Lakshmi Venkat","Science",37,93],["Harsh Vardhan","English",300,80]],"cricket":[["Player","Team","Innings","Not out","Runs","Balls"],["Aryan Kapoor","Nilgiri",8,1,312,280],["Vivaan Shetty","Nilgiri",8,2,245,198],["Krish Naidu","Nilgiri",7,0,156,170],["Samar Bose","Nilgiri",8,3,118,140],["Reyansh Pillai","Nilgiri",6,1,205,160],["Dhruv Hegde","Aravalli",8,0,271,300],["Atharv Joshi","Aravalli",7,1,188,175],["Yuvraj Chauhan","Aravalli",8,2,342,262],["Nikhil Verma","Aravalli",5,1,64,90],["Laksh Menon","Aravalli",6,0,133,150],["Rudra Patil","Sahyadri",8,1,226,215],["Shaurya Kulkarni","Sahyadri",7,3,175,130],["Parth Deshmukh","Sahyadri",8,0,198,241],["Om Gaikwad","Sahyadri",6,2,99,120],["Tanish Rane","Sahyadri",7,1,250,208],["Advait Sawant","Sahyadri",5,0,87,110]],"rain":[["City","Region","Jun","Jul","Aug","Sep","Total"],["Mumbai","West",540,840,590,370,"=SUM(C2:F2)"],["Pune","West",130,190,130,120,"=SUM(C3:F3)"],["Ahmedabad","West",100,280,230,140,"=SUM(C4:F4)"],["Surat","West",360,520,330,210,"=SUM(C5:F5)"],["Bengaluru","South",80,110,130,160,"=SUM(C6:F6)"],["Chennai","South",55,95,115,120,"=SUM(C7:F7)"],["Hyderabad","South",100,160,170,150,"=SUM(C8:F8)"],["Kochi","South",650,700,430,290,"=SUM(C9:F9)"],["Kolkata","East",300,370,340,290,"=SUM(C10:F10)"],["Bhubaneswar","East",230,320,340,260,"=SUM(C11:F11)"],["Guwahati","East",330,350,300,250,"=SUM(C12:F12)"],["Delhi","North",75,210,245,125,"=SUM(C13:F13)"],["Lucknow","North",150,300,290,220,"=SUM(C14:F14)"],["Jaipur","North",70,200,230,100,"=SUM(C15:F15)"],["Chandigarh","North",140,360,330,170,"=SUM(C16:F16)"]]};
+</script>
+
+<script>
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"What is Data Analytics? The truth about data analysis for beginners", ch:"MediData Perspectives", url:"https://www.youtube.com/watch?v=KcGU9Wt7I10",
+  why:"The big-picture one, and the only video here that is not about Sheets. It is the outside view of what lesson 1 says: data is not the finish line.",
+  task:"Write, in order, every step the video says happens to data between being collected and being used for a decision. Beside each one, note which of the six steps in lesson 1 it matches, and circle any step the video names that lesson 1 does not."},
+ {t:"Learn the Basic Functions in Google Sheets", ch:"Simon Sez IT", url:"https://www.youtube.com/watch?v=Zo6WvqCuPp8",
+  why:"Lesson 2 in the actual tool you will use: the functions typed into the same formula bar, with commas, not semicolons.",
+  task:"Every time a function is typed, pause and write its name and the range it was given. At the end, tick the ones that are among the nine in lesson 2 and underline any that are not."},
+ {t:"Creating Basic IF and Nested IFs in Google Sheets", ch:"Excel Insights", url:"https://www.youtube.com/watch?v=ICMEt1EDSM0",
+  why:"IF and nested IF built live in Sheets. Watch where each new IF is placed, because that placement is the whole of the nested-IF skill.",
+  task:"Before the video builds the nested IF, pause and write your own for these bands out of 50: 42 or more Distinction, 35 to 41 Merit, 20 to 34 Pass, otherwise Fail. Then compare: did you test the highest band first? Afterwards watch https://www.youtube.com/watch?v=PkUddmTXuvc (Sum IF and Count IF in Google Sheets, WSU Computer Literacy Center) and write the formula it uses for each, with the quotation marks."},
+ {t:"Google Sheets Charts Tutorial: create charts and graphs in Google Sheets", ch:"Loves Data", url:"https://www.youtube.com/watch?v=eyv7SSKnlgU",
+  why:"Lesson 4 ends with the picture. This is Insert > Chart and the Chart editor, which is where you correct the type Sheets guesses.",
+  task:"Decide on a chart type for each, and write one sentence of why: (a) units sold by Drink, Meal and Snack; (b) Mumbai rainfall in each month from June to September. Then check what the video recommends for each kind of data."},
+ {t:"Google Sheets Basics #5: Sort and Filter", ch:"Prolific Oaktree", url:"https://www.youtube.com/watch?v=5S2y_7tzJZU",
+  why:"Both menus on screen, one after the other, so you can see which one moves rows and which one hides them.",
+  task:"Write the menu path the video clicks for each of the two. Then finish this sentence for each: 'After this, the rows I did not choose have been ______.'"},
+ {t:"Google Sheets: More ways to use Data Validation (require email or specific numbers; reject others)", ch:"DoIT Training at Stony Brook University", url:"https://www.youtube.com/watch?v=k2bX5fhlh6o",
+  why:"The title promises 'reject others', which is the setting Q10 and Q15 depend on and the one most students never open.",
+  task:"Write the two choices Sheets offers for invalid data and which one actually stops the entry. Then, for a Marks column out of 50, write the rule you would set: the criteria, the numbers, and the setting."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"Data is not information", len:"5 min",
+  body:`<p><strong>Data</strong> is raw facts with no question attached: <span class="num">Masala Chai, 150</span>. <strong>Information</strong> is what you get when you process data to answer a question: "Masala Chai sold more units than anything else on the menu." The syllabus wants those two words kept apart, and an answer that treats them as synonyms drops the mark.</p>
+        <p><strong>Data analytics</strong> is the whole chain from raw facts to a decision. Six steps, and a spreadsheet is involved in every one:</p>
+        <ol>
+          <li><strong>Collect</strong> — till slips, a survey, a sensor.</li>
+          <li><strong>Clean</strong> — fix the blank, the typo, the "Maths" that is also "maths".</li>
+          <li><strong>Organise</strong> — one row per thing, one column per fact, a header row on top.</li>
+          <li><strong>Process</strong> — formulas: totals, averages, counts.</li>
+          <li><strong>Analyse</strong> — compare, find the pattern, find the odd one out.</li>
+          <li><strong>Present</strong> — a chart or a sentence that someone can act on.</li>
+        </ol>
+        <p>The question you ask decides the answer you get. On the canteen sheet, Masala Chai sold the most units (<span class="num">150</span>). Idli Plate earned the most rupees: <span class="num">85 × 40 = ₹3,400</span>, against <span class="num">150 × 10 = ₹1,500</span> for the chai. Same data, two different decisions about what to stock. That is why an analyst writes the question down first.</p>
+        <p>Underneath all six steps sits one rule: <strong>garbage in, garbage out</strong>. A spreadsheet never says "that number looks wrong". It just adds it.</p>`,
+  demo:`<strong>Do this:</strong> find three receipts, or screenshots of payments from this week. For each, write the data (one fact). Then write one piece of information you could get from all three together, as a question with an answer. If you cannot think of a question, you have just found out why step 1 exists.`,
+  cliff:`Revenue is price × units, added up over 20 items. There are nine standard functions for that sort of job, and one of them counts the wrong thing so often that it has its own trap. Which one? Lesson 2.`},
+
+ {t:"Nine functions and one rule about ranges", len:"6 min",
+  body:`<p>Every formula starts with <code class="f">=</code>. Arguments are separated by <strong>commas</strong>. A range is two corners and a colon: <code class="f">B2:B21</code> is every cell from B2 down to B21.</p>
+        <div class="scroll"><table class="data">
+          <tr><th>Function</th><th>What it does</th><th>Example</th></tr>
+          <tr><td>SUM</td><td>adds</td><td>=SUM(B2:B21)</td></tr>
+          <tr><td>MINUS</td><td>first value minus second (exactly two)</td><td>=MINUS(B2,C2)</td></tr>
+          <tr><td>PRODUCT</td><td>multiplies</td><td>=PRODUCT(B2,C2)</td></tr>
+          <tr><td>DIVIDE</td><td>first value divided by second</td><td>=DIVIDE(B2,C2)</td></tr>
+          <tr><td>AVERAGE</td><td>sum ÷ how many <em>numbers</em> there are</td><td>=AVERAGE(B2:B21)</td></tr>
+          <tr><td>MIN, MAX</td><td>smallest, largest</td><td>=MAX(B2:B21)</td></tr>
+          <tr><td>COUNT</td><td>how many cells hold a <em>number</em></td><td>=COUNT(B2:B21)</td></tr>
+          <tr><td>COUNTA</td><td>how many cells are <em>not empty</em></td><td>=COUNTA(B2:B21)</td></tr>
+        </table></div>
+        <p>MINUS and DIVIDE are real Google Sheets functions, and so is MULTIPLY. The symbols <code class="f">-</code>, <code class="f">/</code> and <code class="f">*</code> do the same jobs; use whichever the question asks for. ADD exists too, but like MINUS it takes exactly two values, so <code class="f">=ADD(B2:B10)</code> is an error where <code class="f">=SUM(B2:B10)</code> is not.</p>
+        <p><strong>The rule about ranges.</strong> SUM, AVERAGE, MIN, MAX and COUNT skip text and blank cells. Take five cells holding <span class="num">4, 8, "absent", (blank), 6</span>:</p>
+        <div class="scroll"><table class="data">
+          <tr><th>Formula</th><th>Shows</th><th>Why</th></tr>
+          <tr><td>=SUM(A1:A5)</td><td class="num">18</td><td>4 + 8 + 6</td></tr>
+          <tr><td>=AVERAGE(A1:A5)</td><td class="num">6</td><td>18 ÷ 3 numbers, not ÷ 5 cells</td></tr>
+          <tr><td>=COUNT(A1:A5)</td><td class="num">3</td><td>only the numbers</td></tr>
+          <tr><td>=COUNTA(A1:A5)</td><td class="num">4</td><td>everything except the blank, so "absent" counts</td></tr>
+        </table></div>
+        <p>The + operator is not so forgiving. If A3 holds the word "absent", then <code class="f">=A3+1</code> gives <code class="f">#VALUE!</code>. Functions skip text; symbols choke on it. That one difference explains a lot of wrong answers.</p>
+        <p>One habit to start now. Fill a formula down a column and every <em>relative</em> reference moves with it: <code class="f">=B2*C2</code> becomes <code class="f">=B3*C3</code>. A <code class="f">$</code> in front of the row number, as in <code class="f">B$2</code>, pins that part in place.</p>`,
+  demo:`<strong>Do this:</strong> write five numbers on paper, with one word among them and one gap. Predict SUM, AVERAGE, COUNT and COUNTA before you type anything. Then type them into a blank sheet. Any prediction you got wrong is the one to repeat tomorrow.`,
+  cliff:`SUM adds the whole column. But how would you add only the Drinks, or count only the marks that are 35 or more? SUM has no way to ask. Lesson 3.`},
+
+ {t:"If this, then that", len:"7 min",
+  body:`<p><strong>IF</strong> asks a question and gives one of two answers:</p>
+        <div class="eqline">=IF(C2>=40,"Pass","Fail")</div>
+        <p>Three slots, separated by commas: the test, the answer if true, the answer if false. Words in an answer go in quotation marks. Numbers and cell references do not.</p>
+        <p><strong>Nested IF</strong> puts a second IF into the "false" slot, and a third into that one's. For a mark out of 50 — 42 or more Distinction, 35 to 41 Merit, 20 to 34 Pass, below 20 Fail:</p>
+        <div class="eqline">=IF(C2>=42,"Distinction",IF(C2>=35,"Merit",IF(C2>=20,"Pass","Fail")))</div>
+        <p>Order is the whole trick. Sheets stops at the first test that is true, so test the <strong>highest</strong> band first. That gives 42 Distinction, 35 Merit, 27 Pass, 19 Fail. Put <code class="f">C2>=20</code> first and every mark from 20 upwards is "Pass", including 42, and the other two bands can never happen.</p>
+        <p><strong>COUNTIF</strong> counts the cells that meet a condition. <strong>SUMIF</strong> adds the ones that do. On the canteen sheet:</p>
+        <div class="eqline">=COUNTIF(B2:B21,"Snack")           → 6 items
+=SUMIF(B2:B21,"Snack",D2:D21)      → 420 units</div>
+        <p>SUMIF has three parts: the range to test, the criterion, then the range to add up. Leave out the third and it adds the range it tested, which is column B, which is words, so you get 0.</p>
+        <p>A criterion with an operator goes inside the quotation marks, operator and number together: <code class="f">=COUNTIF(D2:D21,">=60")</code>. Text criteria need quotes as well. Capital letters do not matter ("snack" finds "Snack"), but spaces do: "Snack " with a space on the end is a different word to Sheets.</p>`,
+  demo:`<strong>Do this:</strong> on paper, write a nested IF for the grade bands above. Then test it with five marks that sit on the boundaries: 42, 41, 35, 34 and 20. The right answers are Distinction, Merit, Merit, Pass, Pass. If your formula gets all five, it is right. If it gets four, the bug is on a boundary.`,
+  cliff:`COUNTIF found 6 Maths students in a class that has 8 of them, and the formula was typed correctly. Where did two students go? Lesson 4 starts there.`},
+
+ {t:"Analysis starts with distrust", len:"6 min",
+  body:`<p>Before you calculate anything, look at the data. <strong>MIN and MAX are the cheapest sanity check there is.</strong> If a test is out of 50 and MAX says 300, you have found a typo before it ruined an average. The two missing Maths students from lesson 3 were hiding the same way: one was typed "Math", the other "Maths" with a space on the end. The formula was fine. The data was not.</p>
+        <p>So analysis has an order: <strong>check, clean, calculate, show.</strong></p>
+        <ul>
+          <li><strong>Check</strong> with MIN, MAX, COUNT and COUNTA. If COUNT and COUNTA disagree, something in that column is not a number.</li>
+          <li><strong>Clean</strong> the cells: fix the spelling, decide what to do with blanks and "absent".</li>
+          <li><strong>Calculate</strong>: totals, averages, counts, percentages. A percentage is part ÷ total × 100, so an average of 38 in a test out of 50 is <span class="num">38 ÷ 50 × 100 = 76%</span>.</li>
+          <li><strong>Compare groups.</strong> You can build "average of this group" from two functions you already know: SUMIF ÷ COUNTIF. On the canteen sheet, Drinks average <span class="num">562 ÷ 7 = 80.3</span> units per item and Meals average <span class="num">354 ÷ 7 = 50.6</span>.</li>
+          <li><strong>Show.</strong> Select the data, then <strong>Insert &gt; Chart</strong>. Sheets guesses a type; change it in the Chart editor if the guess is wrong. A column chart compares categories (Drinks, Meals, Snacks). A line chart shows change over time (rainfall month by month). A chart with no title and no axis labels is the usual way to lose marks on one.</li>
+        </ul>`,
+  demo:`<strong>Do this:</strong> on paper, sketch the chart you would choose for each of these, and name the type. (a) Units sold by Drinks, Meals and Snacks. (b) Mumbai rainfall in June, July, August and September: 540, 840, 590 and 370 mm. Then ask of each: could someone read the answer without asking you what it means?`,
+  cliff:`The Marks column has 22 rows. How do you look at only the Science students without deleting anybody, and put them in order without breaking the link between each name and its mark? Lesson 5.`},
+
+ {t:"Rearrange, do not destroy", len:"6 min",
+  body:`<p>Two tools, two jobs. <strong>Sort</strong> puts rows in order. <strong>Filter</strong> hides the rows you do not want to look at right now. Neither deletes anything.</p>
+        <p><strong>To sort:</strong> select the whole table, then <strong>Data &gt; Sort range &gt; Advanced range sorting options</strong>. Tick <em>Data has header row</em>, choose the column, choose A to Z or Z to A. Every row moves as one unit, so each mark stays beside its name.</p>
+        <p><strong>To filter:</strong> click inside the table, then <strong>Data &gt; Create a filter</strong>. Each header gets a filter icon. Open it, choose <em>Filter by condition</em> (for example <em>Text is exactly</em> or <em>Greater than or equal to</em>), type the value, press OK. The row numbers skip the hidden rows because the rows are still there. <strong>Data &gt; Remove filter</strong> shows everything again.</p>
+        <p>Filters on different columns combine: Subject is "Maths" <em>and</em> Marks is below 35 shows only rows that satisfy both.</p>
+        <p>Two ways this goes wrong:</p>
+        <ul>
+          <li><strong>Sorting one column.</strong> Select only the Marks cells and Sort range sorts only those cells. The marks go into order and the names stay where they were, so every student now owns somebody else's mark. The data gate above does exactly this when you choose "Select only this column".</li>
+          <li><strong>Trusting a total over filtered rows.</strong> A SUM still adds the hidden rows. The filter changes what you see, not what the function reads. (A function called SUBTOTAL can skip hidden rows. It is not on this syllabus.)</li>
+        </ul>`,
+  demo:`<strong>Do this:</strong> in the data gate above, filter to Science only, then clear the filter and count the rows before and after. Then sort by Marks with "Select only this column" and read out the first row: a name and a mark. Is that the real mark for that student? Press Reset the data.`,
+  cliff:`Everything so far trusted the data. Somebody typed 300 into a column that stops at 50 and nothing complained. Can the sheet refuse an entry before it happens? Lesson 6.`},
+
+ {t:"Stop bad data at the door", len:"6 min",
+  body:`<p><strong>Data validation</strong> checks what is typed into a cell at the moment it is typed. Set it up with <strong>Data &gt; Data validation &gt; Add rule</strong>. Choose the cells, choose the criteria, then open <em>Advanced options</em> and choose what happens when the entry is invalid.</p>
+        <ul>
+          <li><strong>Criteria</strong> — <em>Dropdown</em> (a fixed list such as Maths, Science, English), <em>Number</em> with <em>between</em>, <em>greater than</em>, <em>less than</em> and so on, <em>Text</em>, <em>Date</em>.</li>
+          <li><strong>Show a warning</strong> — the bad entry goes in anyway, with a flag. A warning is advice, not a barrier.</li>
+          <li><strong>Reject the input</strong> — the bad entry does not go in. This is the setting you want for marks out of 50.</li>
+        </ul>
+        <p>A dropdown is the best cure for the spelling problem from lesson 3. Nobody can type "Math" or "maths " if the only way in is to pick from the list.</p>
+        <p>To design a rule, write the entries first. Good: <span class="num">0, 23, 42.5, 50</span>. Bad: <span class="num">51, −4, 300, "absent"</span>. Then find the criteria that separate them. "Number between 0 and 50" with Reject does. "Number greater than 0" refuses the perfectly valid 0 and lets 300 straight in.</p>
+        <p>The catch that catches everyone: <strong>validation does not clean what is already there.</strong> It checks entries from now on. A 300 already sitting in the column stays at 300 until somebody changes it by hand.</p>`,
+  demo:`<strong>Do this:</strong> pick one column from a table you know: attendance, shoe size, a mobile number. Write three entries it should accept and three it should refuse. Then write the rule that separates them.`,
+  cliff:`Q15 gives you a Subject column spelt four ways, a formula that counts four Maths rows out of six, and a validation rule added afterwards. Predict what COUNTIF shows once the rule is in, before you scroll down. Then explain why.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which formula adds up every number from B2 down to B10?",
+  o:[`<code class="f">=SUM(B2,B10)</code>`,
+     `<code class="f">=SUM(B2:B10)</code>`,
+     `<code class="f">=SUM B2:B10</code>`,
+     `<code class="f">=ADD(B2:B10)</code>`], a:1,
+  why:"B2:B10 is the whole range, and SUM adds all of it. SUM(B2,B10) adds only those two cells. Leaving out the brackets is not a formula at all. ADD is a real function but takes exactly two values, so ADD(B2:B10) is an error."},
+ {n:2, lvl:"standard", q:"Cells B1 to B6 hold 10, 20, the word n/a, 30, an empty cell, and 40. What does <code class=\"f\">=AVERAGE(B1:B6)</code> show?",
+  o:["20","25","16.67","#VALUE!"], a:1,
+  why:"AVERAGE skips the text and the blank, so it adds 10 + 20 + 30 + 40 = 100 and divides by the 4 numbers: 25. The 20 divides by 5, which is how many cells COUNTA would find. The 16.67 divides by all 6 cells, which AVERAGE never does."},
+ {n:3, lvl:"standard", q:"Which formula shows the word Pass if C2 is 40 or more, and Fail otherwise?",
+  o:[`<code class="f">=IF(C2>=40,Pass,Fail)</code>`,
+     `<code class="f">=IF(C2>=40,"Pass","Fail")</code>`,
+     `<code class="f">=IF(C2=>40,"Pass","Fail")</code>`,
+     `<code class="f">=IF("Pass","Fail",C2>=40)</code>`], a:1,
+  why:"The slots go test, answer if true, answer if false, and words need quotation marks. Without quotes, Sheets hunts for something called Pass and shows #NAME?. The operator is >=, never =>. The last option has the slots in the wrong order."},
+ {n:4, lvl:"trap", q:"Which formula counts the cells in B2:B30 that hold a number greater than 50?",
+  o:[`<code class="f">=COUNTIF(B2:B30,>50)</code>`,
+     `<code class="f">=COUNTIF(B2:B30,"&gt;50")</code>`,
+     `<code class="f">=COUNTIF("&gt;50",B2:B30)</code>`,
+     `<code class="f">=COUNT(B2:B30,"&gt;50")</code>`], a:1,
+  why:"The operator and the number travel together as one piece of text, so they sit inside quotation marks. Without quotes, Sheets reads the bare > as a broken comparison. The range comes first and the criterion second. COUNT has no criterion slot; it only counts numbers."},
+ {n:5, lvl:"trap", q:"You use Data > Create a filter to show only the Science rows. What has happened to the other rows?",
+  o:["They are deleted, and Undo is the only way back.",
+     "They are hidden. They are still in the sheet.",
+     "They have been moved to a new sheet.",
+     "They have been sorted to the bottom."], a:1,
+  why:"A filter hides rows; it never deletes or moves them. The row numbers skip, which is the clue that they are still there, and Data > Remove filter brings them back. Deleting is a different command. And note that a SUM still adds hidden rows."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"Cells B2 to B6 hold 12, 15, 9, 20 and 14. A student types <code class=\"f\">=SUM(B2:B6)</code> in B7 and <code class=\"f\">=B7/5</code> in B8. State the value that appears in B7 and in B8, and say what B8 is measuring.",
+  scheme:["B7 shows 70 and B8 shows 14. <span class='num'>[1]</span>",
+          "B8 is the average (mean) of the five numbers. <span class='num'>[1]</span>"],
+  tip:"The 5 in =B7/5 is typed in by hand, so it breaks the moment a sixth number is added. =AVERAGE(B2:B6) counts for you."},
+ {n:7, m:2, lvl:"standard", q:"Write the formula for C2 that shows Pass if B2 is 40 or more, and Fail otherwise. Explain why the words Pass and Fail have quotation marks round them.",
+  scheme:["<code class='f'>=IF(B2>=40,\"Pass\",\"Fail\")</code> — correct order of test, true answer, false answer; commas; >= and the quotation marks on both words. <span class='num'>[1]</span>",
+          "The quotation marks tell Sheets it is text to display. Without them Sheets looks for a cell or function with that name and shows #NAME?. <span class='num'>[1]</span>"],
+  tip:"Write the formula on paper, then read it aloud as 'if B2 is at least 40, then Pass, otherwise Fail'. If the sentence does not make sense, the formula will not either."},
+ {n:8, m:2, lvl:"standard", q:"Cells D1 to D6 hold 5, the word x, 9, an empty cell, 7 and the word y. State the value of <code class=\"f\">=COUNT(D1:D6)</code> and of <code class=\"f\">=COUNTA(D1:D6)</code>, and explain the difference.",
+  scheme:["COUNT = 3 and COUNTA = 5. <span class='num'>[1]</span>",
+          "COUNT counts only the cells that contain a number, whereas COUNTA counts every cell that is not empty, including text. <span class='num'>[1]</span>"],
+  tip:"Give both values before the explanation. The explanation mark needs the words 'number' for COUNT and 'not empty' for COUNTA."},
+ {n:9, m:2, lvl:"trap", q:"A student selects only the Marks cells, C2 to C9, and uses Data > Sort range, A to Z. Describe what goes wrong with the table, and say how to sort it safely.",
+  scheme:["The marks go into order but the names and other columns do not move, so each mark is now beside the wrong student. <span class='num'>[1]</span>",
+          "Select the whole table (every column, with the header row ticked) before Data > Sort range, so each row moves as one unit. <span class='num'>[1]</span>"],
+  tip:"'The data gets messed up' scores nothing. Say what is separated from what: marks from names."},
+ {n:10, m:2, lvl:"trap", q:"A rule is added to a Marks column: Number between 0 and 50, with Reject the input. The column already contains a 300. State what happens to the 300, and what happens when someone now types 51.",
+  scheme:["The 300 stays in the cell, because validation only checks entries made from now on and does not change existing data. <span class='num'>[1]</span>",
+          "The 51 is rejected and does not enter the cell, because it is outside 0 to 50 and the setting is Reject. <span class='num'>[1]</span>"],
+  tip:"Validation is a gatekeeper, not a cleaner. If you write that it 'removes' or 'fixes' the 300, you lose the first mark."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"standard", q:"A canteen sheet has this table in A1:D4. Column D is meant to hold the revenue of each item.<br><br><table class='data'><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><td>1</td><td>Item</td><td>Price (₹)</td><td>Sold</td><td>Revenue (₹)</td></tr><tr><td>2</td><td>Samosa</td><td>15</td><td>120</td><td></td></tr><tr><td>3</td><td>Vada Pav</td><td>20</td><td>95</td><td></td></tr><tr><td>4</td><td>Lemonade</td><td>20</td><td>110</td><td></td></tr></table><strong>(a)</strong> Write the formula for D2 that works out the revenue for the Samosa, and state its value. <span class='num'>[1]</span><br><strong>(b)</strong> The formulas in D3 and D4 are filled in the same way. Write the formula that gives the total revenue, and state its value. <span class='num'>[1]</span><br><strong>(c)</strong> Write the formula for the average revenue per item and state its value to 1 decimal place. <span class='num'>[1]</span>",
+  hints:["Revenue is price × sold. Which two columns hold those, and what symbol or function multiplies?",
+         "Work out all three revenues first: 15 × 120, then 20 × 95, then 20 × 110. The total and the average are built from those three.",
+         "For (b) use a function over D2:D4. For (c) use a function that divides by the count for you, and round only at the very end."],
+  sol:["(a) <code class='f'>=B2*C2</code> (or <code class='f'>=PRODUCT(B2,C2)</code>) = 15 × 120 = <strong>1800</strong>.",
+       "(b) The revenues are 1800, 1900 and 2200, so <code class='f'>=SUM(D2:D4)</code> = <strong>5900</strong>.",
+       "(c) <code class='f'>=AVERAGE(D2:D4)</code> = 5900 ÷ 3 = 1966.666… = <strong>1966.7</strong> (1 d.p.)."]},
+
+ {n:12, m:3, lvl:"standard", q:"Marks out of 50 are in B2:B20. A tutor wants column C to show a grade: <strong>42 or more</strong> Distinction, <strong>35 to 41</strong> Merit, <strong>20 to 34</strong> Pass, <strong>below 20</strong> Fail.<br><br><strong>(a)</strong> Write the formula for C2 using nested IF. <span class='num'>[2]</span><br><strong>(b)</strong> State what your formula shows for a mark of 35, and for a mark of 19. <span class='num'>[1]</span>",
+  hints:["Sheets stops at the first test that is true. Which band should you test first so that a high mark cannot be caught by a lower band?",
+         "Start with <code class='f'>=IF(B2&gt;=42,\"Distinction\",</code> then put the next IF in the 'false' slot.",
+         "Three tests need three IFs. The last IF's 'false' answer is the word Fail. Count your closing brackets: one per IF."],
+  sol:["(a) <code class='f'>=IF(B2&gt;=42,\"Distinction\",IF(B2&gt;=35,\"Merit\",IF(B2&gt;=20,\"Pass\",\"Fail\")))</code>. One mark for the highest band tested first with a correct IF, one mark for the nested structure completing all four grades.",
+       "(b) 35 gives <strong>Merit</strong> (it passes B2>=35 and failed B2>=42). 19 gives <strong>Fail</strong> (it fails all three tests).",
+       "Reversed order, with B2>=20 first, would show 'Pass' for every mark from 20 up and no one would ever get Merit or Distinction."]},
+
+ {n:13, m:3, lvl:"standard", q:"A table has Class in column B and Marks in column C, rows 2 to 7.<br><br><table class='data'><tr><th>Row</th><th>Name</th><th>Class</th><th>Marks</th></tr><tr><td>2</td><td>Aarav</td><td>A</td><td>42</td></tr><tr><td>3</td><td>Diya</td><td>B</td><td>38</td></tr><tr><td>4</td><td>Rohan</td><td>A</td><td>27</td></tr><tr><td>5</td><td>Meera</td><td>B</td><td>36</td></tr><tr><td>6</td><td>Kabir</td><td>A</td><td>31</td></tr><tr><td>7</td><td>Zoya</td><td>B</td><td>48</td></tr></table><strong>(a)</strong> Write a formula that counts the students in Class A, and state its value. <span class='num'>[1]</span><br><strong>(b)</strong> Write a formula that adds up the marks of Class B only, and state its value. <span class='num'>[1]</span><br><strong>(c)</strong> Using your answers to build one formula, find the average mark of Class B, and state it to 1 decimal place. <span class='num'>[1]</span>",
+  hints:["A condition on text means COUNTIF and SUMIF, and the text goes in quotation marks.",
+         "SUMIF has three parts: the range you test (Class), the criterion (\"B\"), and the range you add (Marks).",
+         "An average is a total divided by a count. You already have a SUMIF for the total; what is the COUNTIF for Class B?"],
+  sol:["(a) <code class='f'>=COUNTIF(B2:B7,\"A\")</code> = <strong>3</strong> (Aarav, Rohan, Kabir).",
+       "(b) <code class='f'>=SUMIF(B2:B7,\"B\",C2:C7)</code> = 38 + 36 + 48 = <strong>122</strong>.",
+       "(c) <code class='f'>=SUMIF(B2:B7,\"B\",C2:C7)/COUNTIF(B2:B7,\"B\")</code> = 122 ÷ 3 = 40.666… = <strong>40.7</strong> (1 d.p.)."]},
+
+ {n:14, m:3, lvl:"hard", q:"Marks out of 50 are in C2:C9. Two of the entries are not what they should be.<br><br><table class='data'><tr><th>Row</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th></tr><tr><td>Marks</td><td>42</td><td>38</td><td>absent</td><td>300</td><td>27</td><td></td><td>45</td><td>31</td></tr></table>Cell C7 is empty and C4 holds the word <em>absent</em>.<br><br><strong>(a)</strong> State the values of <code class='f'>=COUNT(C2:C9)</code> and <code class='f'>=COUNTA(C2:C9)</code>. <span class='num'>[1]</span><br><strong>(b)</strong> State the value of <code class='f'>=AVERAGE(C2:C9)</code> and explain how you can tell from the answer that the data is wrong. <span class='num'>[1]</span><br><strong>(c)</strong> Without deleting anything, write one formula that averages only the valid marks (50 or less), and state its value. <span class='num'>[1]</span>",
+  hints:["COUNT counts numbers. COUNTA counts every cell that is not empty. Mark each of the eight cells as number, text or empty before you count.",
+         "For (b), add the numbers COUNT found and divide by how many there are. Then ask: could a class average in a test out of 50 be that value?",
+         "For (c) you cannot use AVERAGE alone. Build the average from SUMIF and COUNTIF, with a criterion that only lets in marks of 50 or less. Text and blanks do not satisfy a number criterion."],
+  sol:["(a) The numbers are 42, 38, 300, 27, 45 and 31, so COUNT = <strong>6</strong>. COUNTA adds the word absent: <strong>7</strong> (only the empty cell is skipped).",
+       "(b) 42 + 38 + 300 + 27 + 45 + 31 = 483, and 483 ÷ 6 = <strong>80.5</strong>. An average above the maximum of 50 is impossible, so at least one entry is wrong: the 300.",
+       "(c) <code class='f'>=SUMIF(C2:C9,\"&lt;=50\")/COUNTIF(C2:C9,\"&lt;=50\")</code> = 183 ÷ 5 = <strong>36.6</strong>. The operator and 50 sit together inside quotation marks, and neither the word absent nor the empty cell satisfies a numeric criterion, so they are left out."]},
+
+ {n:15, m:3, lvl:"hard", q:"Rows 2 to 9 of a class sheet. Column B is Subject, column C is Marks. The tutor types <code class='f'>=COUNTIF(B2:B9,\"Maths\")</code> to count the Maths students.<br><br><table class='data'><tr><th>Row</th><th>B: Subject</th><th>C: Marks</th></tr><tr><td>2</td><td>Maths</td><td>42</td></tr><tr><td>3</td><td>maths</td><td>27</td></tr><tr><td>4</td><td>Maths␣ <em>(a space after the s)</em></td><td>31</td></tr><tr><td>5</td><td>Math</td><td>36</td></tr><tr><td>6</td><td>Science</td><td>29</td></tr><tr><td>7</td><td>Maths</td><td>38</td></tr><tr><td>8</td><td>science</td><td>40</td></tr><tr><td>9</td><td>Maths</td><td>45</td></tr></table><strong>(a)</strong> State what the formula shows, and name the rows it does not count. <span class='num'>[1]</span><br><strong>(b)</strong> The tutor wants to stop this happening again. Give the criteria for a validation rule on column B, and the setting for invalid data. <span class='num'>[1]</span><br><strong>(c)</strong> The rule is added. The tutor looks at the COUNTIF cell again and it has not changed. Explain why, and say what must be done to make it show the correct number. <span class='num'>[1]</span>",
+  hints:["COUNTIF ignores capital letters, so row 3 is not a problem. Look for the rows whose text is genuinely a different string: one has an extra character, the other is a different word.",
+         "For (b) think about the fix that makes typing a spelling impossible: a fixed list the user must choose from. Which invalid-data setting stops the entry rather than flagging it?",
+         "For (c), what does validation do to cells that were typed before the rule existed? Then find the two rows that need correcting by hand, and count again."],
+  sol:["(a) It shows <strong>4</strong>: rows 2, 3, 7 and 9. Row 3 ('maths') is counted because COUNTIF ignores capitals. Rows <strong>4</strong> ('Maths' with a trailing space) and <strong>5</strong> ('Math') are not counted: they are different strings.",
+       "(b) Criteria: <strong>Dropdown (list of items)</strong> with Maths, Science and English as the items. Invalid data: <strong>Reject the input</strong>.",
+       "(c) Validation checks only what is typed from now on; it does not change cells that already hold data, so rows 4 and 5 still contain the wrong text. Correct those two cells by hand (choose Maths from the new dropdown) and COUNTIF then shows <strong>6</strong>."]}
+];
+
+/* ---------------- traps ---------------- */
+const TRAPS = [
+ {h:"COUNT and COUNTA are not twins",
+  w:`"<code class="f">=COUNT(C2:C23)</code> tells me how many students sat the test."`,
+  why:"COUNT counts only cells that hold a number. An 'absent' typed as a word is skipped, and a blank is skipped, so COUNT quietly under-counts. COUNTA counts everything that is not empty, so it quietly over-counts by including the word.",
+  fix:`Say which you mean. Numbers only: COUNT. Anything that is not empty: COUNTA. When the two disagree on a column, something in that column is not a number, so go and find it.`},
+ {h:"Leaving the quotation marks off",
+  w:`<code class="f">=COUNTIF(C2:C23,&gt;=35)</code> and <code class="f">=IF(B2&gt;=40,Pass,Fail)</code>`,
+  why:"Words, and criteria that begin with an operator, are text, and text goes in quotation marks. Without them Sheets looks for a function or a name called Pass and shows #NAME?, or finds a broken comparison.",
+  fix:`<code class="f">=COUNTIF(C2:C23,"&gt;=35")</code> and <code class="f">=IF(B2&gt;=40,"Pass","Fail")</code>. The operator and the number share one pair of quotes. A cell reference never gets quotes.`},
+ {h:"Nested IF tested in the wrong order",
+  w:`<code class="f">=IF(C2&gt;=20,"Pass",IF(C2&gt;=35,"Merit",IF(C2&gt;=42,"Distinction","Fail")))</code>`,
+  why:"Sheets stops at the first test that is true. A mark of 47 is at least 20, so it gets 'Pass' on the first test and never reaches the other two. Merit and Distinction can never appear.",
+  fix:`Test the highest band first and work down: <code class="f">=IF(C2&gt;=42,"Distinction",IF(C2&gt;=35,"Merit",IF(C2&gt;=20,"Pass","Fail")))</code>. Check it with a mark on each boundary.`},
+ {h:"Sorting one column on its own",
+  w:`"I sorted the Marks column from highest to lowest."`,
+  why:"If only the Marks cells were selected, only the Marks cells moved. Names, subjects and attendance stayed put, so every student now has someone else's mark and nothing on screen warns you.",
+  fix:`Select the whole table, then Data &gt; Sort range &gt; Advanced range sorting options, tick 'Data has header row', and choose the column. Every row moves as a unit.`},
+ {h:"Believing validation tidies up old data",
+  w:`"I added the rule, so the 300 and the 'Math' have been fixed."`,
+  why:"Validation checks entries made after the rule exists. Cells that already hold a bad value are left exactly as they were, and any formula reading them still reads the bad value.",
+  fix:`Clean the existing cells by hand first, or straight after, then add the rule so the mess cannot come back. And remember the other half: a rule set to 'Show a warning' lets the bad entry in. Only 'Reject the input' keeps it out.`}
+];
+
+/* ---------------- problem lab ---------------- */
+const DS_META = {
+  canteen:{name:"School canteen sales", sub:"20 items · column E is a formula (price × sold)", cols:"A Item · B Category · C Price (₹) · D Sold · E Revenue (₹)"},
+  marks:{name:"Class test marks, and it is messy", sub:"22 students · one blank, one word in the marks, one typo, four spellings of Maths", cols:"A Name · B Subject · C Marks (out of 50) · D Attendance %",
+         note:"Kabir Singh's Subject ends with a space you cannot see. If your Sheets trimmed it when you pasted, click that cell, press End, press the space bar once, then Enter."},
+  cricket:{name:"Inter-house cricket batting", sub:"16 players · made-up figures", cols:"A Player · B Team · C Innings · D Not out · E Runs · F Balls"},
+  rain:{name:"Monsoon rainfall by city (mm)", sub:"15 cities · illustrative figures, not official records · column G is a formula", cols:"A City · B Region · C Jun · D Jul · E Aug · F Sep · G Total"}
+};
+
+const LAB_LEVELS = {medium:'medium', harder:'harder', hard:'hard'};
+
+const PROBLEMS = [
+ /* ---------- medium ---------- */
+ {id:'units-sum', type:'formula', lvl:'medium', ds:'canteen',
+  q:`Add up the <strong>Sold</strong> column for every item. One formula, using SUM.`,
+  ref:`=SUM(D2:D21)`, need:['SUM'],
+  traps:[{ref:`=SUM(C2:C21)`, msg:`That adds column C, the prices. The question wants how many were sold: column D.`},
+         {ref:`=SUM(E2:E21)`, msg:`That adds the Revenue column (E), which is rupees. The question is about units sold, column D.`}],
+  hints:[`Which column holds how many were sold? Read the header before you pick the letter.`,
+         `The items run from row 2 to row 21. Row 1 is the header.`],
+  sol:`<code class="f">=SUM(D2:D21)</code> gives <strong>1336</strong>. <code class="f">=SUM(D:D)</code> also works, because SUM skips the header text.`},
+
+ {id:'avg-price', type:'num', lvl:'medium', ds:'canteen', dp:2,
+  q:`What is the average price of an item on the menu (column C), in rupees to 2 decimal places? Work it out in your own copy of the sheet and type the number.`,
+  ref:`=AVERAGE(C2:C21)`,
+  traps:[{ref:`=SUM(C2:C21)/21`, msg:`You divided by 21. The header row is not an item; there are 20 items. AVERAGE counts for you and cannot make that slip.`}],
+  hints:[`Use the function that does the dividing for you.`,
+         `Check that your range starts at C2 and ends at C21, not C1.`],
+  sol:`<code class="f">=AVERAGE(C2:C21)</code> = 712 ÷ 20 = <strong>35.60</strong>.`},
+
+ {id:'max-units', type:'mcq', lvl:'medium', ds:'canteen',
+  q:`Which formula gives the <strong>largest number of units sold</strong> by any single item?`,
+  o:[{t:`=MAX(C2:C21)`, why:`Column C is the price. This finds the most expensive item (₹90, the Veg Thali), not the best seller.`},
+     {t:`=MAX(D2:D21)`, why:`MAX over the Sold column. The answer is 150, the Masala Chai.`},
+     {t:`=COUNT(D2:D21)`, why:`COUNT tells you how many cells in D hold a number (20), not how big the biggest one is.`},
+     {t:`=SUM(D2:D21)/20`, why:`That is the average number sold (66.8), not the maximum.`}], a:1,
+  hints:[`MAX and MIN pick one value out of a range. First decide which column the question is about.`],
+  sol:`<code class="f">=MAX(D2:D21)</code> = <strong>150</strong> (Masala Chai).`},
+
+ {id:'count-drink', type:'formula', lvl:'medium', ds:'canteen',
+  q:`How many items are in the <strong>Drink</strong> category? Use COUNTIF.`,
+  ref:`=COUNTIF(B2:B21,"Drink")`, need:['COUNTIF'],
+  traps:[{re:/(^|[^A-Z])COUNT\(/i, msg:`COUNT only counts numbers, and column B is all words, so it finds none. You need to count the cells that match a condition.`},
+         {ref:`=COUNTA(B2:B21)`, msg:`COUNTA counts every non-empty cell: all 20 items, not just the drinks. You need a condition.`}],
+  hints:[`COUNTIF(range to test, criterion). Which column says the category?`,
+         `The criterion is a word, so it needs quotation marks.`],
+  sol:`<code class="f">=COUNTIF(B2:B21,"Drink")</code> gives <strong>7</strong>.`},
+
+ {id:'total-rev', type:'num', lvl:'medium', ds:'canteen', dp:0,
+  q:`Column E already holds price × sold for every item. How many rupees did the canteen take in total?`,
+  ref:`=SUM(E2:E21)`,
+  traps:[{ref:`=SUM(C2:C21)*SUM(D2:D21)`, msg:`You multiplied the total of the prices by the total of the units. That is not the same as multiplying price × units item by item and then adding.`},
+         {ref:`=SUM(D2:D21)`, msg:`That is the total number of units sold, not rupees. The revenue is in column E.`}],
+  hints:[`Column E has already done the multiplying. Only the adding up is left.`,
+         `If your answer has six digits, you multiplied two totals.`],
+  sol:`<code class="f">=SUM(E2:E21)</code> = <strong>39121</strong> rupees.`},
+
+ {id:'count-marks', type:'formula', lvl:'medium', ds:'marks',
+  q:`How many students have an actual <strong>number</strong> in the Marks column? Use COUNT.`,
+  ref:`=COUNT(C2:C23)`, need:['COUNT'],
+  traps:[{ref:`=COUNTA(C2:C23)`, msg:`COUNTA also counts the word "absent", so it is one too high. Which function counts numbers only?`},
+         {ref:`=COUNTA(A2:A23)`, msg:`That counts every student (22). Two of them have no usable number in Marks.`}],
+  hints:[`Two rows have no usable mark. Find them first.`,
+         `COUNT skips text and blanks. COUNTA only skips blanks.`],
+  sol:`<code class="f">=COUNT(C2:C23)</code> gives <strong>20</strong>: 22 students, minus Riya's blank and Aditi's "absent".`},
+
+ {id:'avg-marks', type:'num', lvl:'medium', ds:'marks', dp:2,
+  q:`Use AVERAGE on the Marks column as it stands (C2:C23). What does Sheets show, to 2 decimal places? Paste the data into your own sheet and try it.`,
+  ref:`=AVERAGE(C2:C23)`,
+  traps:[{ref:`=SUM(C2:C23)/22`, msg:`You divided by 22, which counts every student. AVERAGE skips the blank and the word, so it divides by fewer.`},
+         {ref:`=SUM(C2:C23)/21`, msg:`You divided by 21, which treats "absent" as a mark. AVERAGE divides by the 20 cells that are numbers.`}],
+  hints:[`AVERAGE divides by how many numbers it found, not by how many rows there are.`,
+         `Look at your answer. Is it believable for a test out of 50 where most students score in the 20s and 30s? Find the cell responsible.`],
+  sol:`<strong>48.95</strong>. One of the 20 numbers is 300 (Harsh Vardhan), almost certainly a slip, and it drags the average far above anything a test out of 50 could produce. Problems 20 and 21 deal with it.`},
+
+ {id:'value-error', type:'mcq', lvl:'medium', ds:'marks',
+  q:`Cell C11 holds the word "absent". Which of these formulas shows <code class="f">#VALUE!</code>?`,
+  o:[{t:`=SUM(C2:C23)`, why:`SUM skips text inside a range, so it just adds the numbers and shows a total.`},
+     {t:`=C11+5`, why:`The + symbol needs numbers on both sides. "absent" + 5 cannot be worked out, so Sheets shows #VALUE!.`},
+     {t:`=AVERAGE(C2:C23)`, why:`AVERAGE skips text inside a range, so it shows an average (a silly one, but a number).`},
+     {t:`=COUNT(C2:C23)`, why:`COUNT skips text and counts the numbers. It shows 20.`}], a:1,
+  hints:[`Three of these hand the text to a function that ignores it. One hands it to a symbol that cannot.`],
+  sol:`<code class="f">=C11+5</code>. Functions skip text in a range; the + symbol does not. This is why <code class="f">=C2+C3+C4</code> is more fragile than <code class="f">=SUM(C2:C4)</code> on messy data.`},
+
+ /* ---------- harder ---------- */
+ {id:'sumif-drink', type:'formula', lvl:'harder', ds:'canteen',
+  q:`Total <strong>revenue</strong> (column E) from the Drink category, in one formula. Use SUMIF.`,
+  ref:`=SUMIF(B2:B21,"Drink",E2:E21)`, need:['SUMIF'],
+  traps:[{ref:`=SUMIF(B2:B21,"Drink")`, msg:`With no third argument SUMIF adds the cells it tested, which is column B, which is words, so you get 0. Tell it which column to add up: the sum range.`},
+         {ref:`=SUMIF(B2:B21,"Drink",D2:D21)`, msg:`That adds units sold (column D). The question wants rupees, which is column E.`}],
+  hints:[`SUMIF(range to test, criterion, range to add).`,
+         `You test the Category column and you add up the Revenue column.`],
+  sol:`<code class="f">=SUMIF(B2:B21,"Drink",E2:E21)</code> gives <strong>11075</strong>.`},
+
+ {id:'count-ge60', type:'num', lvl:'harder', ds:'canteen', dp:0,
+  q:`How many items sold <strong>60 units or more</strong>? Use COUNTIF with the operator inside the criterion, and type the number you get.`,
+  ref:`=COUNTIF(D2:D21,">=60")`,
+  traps:[{ref:`=COUNTIF(D2:D21,">60")`, msg:`That is "more than 60". The question says 60 or more, and the Veg Puff sold exactly 60. Use >=, not >.`},
+         {ref:`=COUNTIF(D2:D21,60)`, msg:`That counts only the items that sold exactly 60. The operator has to go inside the quotation marks: ">=60".`}],
+  hints:[`The criterion is the operator and the number together, in quotes.`,
+         `Which is it: > or >=? Look for an item sitting exactly on the boundary.`],
+  sol:`<code class="f">=COUNTIF(D2:D21,"&gt;=60")</code> gives <strong>10</strong>. With <code class="f">"&gt;60"</code> you would get 9, losing the Veg Puff.`},
+
+ {id:'if-hot', type:'formula', lvl:'harder', ds:'canteen', fill:true,
+  q:`In F2, write a formula that shows <strong>Hot</strong> if D2 is 100 or more, and <strong>Normal</strong> otherwise (exactly those words). It will be filled down, so it must give the right word on every row from 2 to 21.`,
+  ref:`=IF(D2>=100,"Hot","Normal")`, need:['IF'],
+  traps:[],
+  hints:[`IF(test, answer if true, answer if false). The test compares D2 with a number.`,
+         `Words in the answers go in quotation marks. The 100 and the D2 do not.`],
+  sol:`<code class="f">=IF(D2&gt;=100,"Hot","Normal")</code>. Three items come out Hot: Samosa (120), Masala Chai (150) and Lemonade (110).`},
+
+ {id:'mcq-quotes', type:'mcq', lvl:'harder', ds:'canteen',
+  q:`Which formula counts the items priced <strong>over ₹30</strong>? (Column C is the price.)`,
+  o:[{t:`=COUNTIF(C2:C21,>30)`, why:`The criterion has no quotation marks, so Sheets cannot read it. The operator and the number go inside quotes together.`},
+     {t:`=COUNTIF(C2:C21,">30")`, why:`Operator and number inside one pair of quotes. It counts the 9 items priced above ₹30 (the Sandwich and the Lassi, both exactly ₹30, are not among them).`},
+     {t:`=COUNTIF(C2:C21,">=30")`, why:`That also counts the Sandwich and the Lassi, both exactly ₹30, so you get 11 instead of 9. "Over" means >, not >=.`},
+     {t:`=COUNT(C2:C21,">30")`, why:`COUNT has no criterion slot. It just counts the numbers it can find, which is not what the question asked.`}], a:1,
+  hints:[`Two things to check: are the quotation marks there, and is it > or >=?`],
+  sol:`<code class="f">=COUNTIF(C2:C21,"&gt;30")</code> = <strong>9</strong>.`},
+
+ {id:'bug-avg-range', type:'bug', mode:'formula', lvl:'harder', ds:'canteen',
+  q:`Priya wants the average number sold per item across <strong>all 20 items</strong>. She wrote the formula below.`,
+  broken:`=AVERAGE(D2:D20)`,
+  sym:{t:`It shows {0}. The true average is {1}.`, f:[`=AVERAGE(D2:D20)`,`=AVERAGE(D2:D21)`], dp:2},
+  ask:`Type the corrected formula.`,
+  ref:`=AVERAGE(D2:D21)`, need:['AVERAGE'],
+  traps:[],
+  hints:[`Count the rows she included. Then count the rows the menu has.`,
+         `Row 21 is the last item: Chocolate Milk.`],
+  sol:`The range stops at row 20, so the 20th item (Chocolate Milk, 33 sold) is left out and the total is divided by 19. <code class="f">=AVERAGE(D2:D21)</code> gives <strong>66.8</strong>. A formula that returns a believable number is the dangerous kind of wrong.`},
+
+ {id:'sumif-east', type:'formula', lvl:'harder', ds:'rain',
+  q:`Total rainfall for the <strong>East</strong> region, June to September, using the Total column (G) that is already filled in. Use SUMIF.`,
+  ref:`=SUMIF(B2:B16,"East",G2:G16)`, need:['SUMIF'],
+  traps:[{ref:`=SUMIF(B2:B16,"East",D2:D16)`, msg:`That adds July only (column D). The Total column, G, already covers all four months.`},
+         {ref:`=SUMIF(B2:B16,"East")`, msg:`With no sum range SUMIF adds the Region column, which is words, so you get 0.`}],
+  hints:[`Test the Region column, add up the Total column.`,
+         `Both ranges must cover rows 2 to 16, the same number of rows.`],
+  sol:`<code class="f">=SUMIF(B2:B16,"East",G2:G16)</code> gives <strong>3680</strong> mm: Kolkata 1300, Bhubaneswar 1150 and Guwahati 1230.`},
+
+ {id:'bug-maths-countif', type:'bug', mode:'mcq', lvl:'harder', ds:'marks',
+  q:`The formula below was meant to count the Maths students. It shows <strong>6</strong>, but eight students take Maths. A classmate says: "It missed the lowercase <em>maths</em>." What is really going on?`,
+  broken:`=COUNTIF(B2:B23,"Maths")`,
+  o:[{t:`Your classmate is right: COUNTIF is case-sensitive, so "maths" was skipped.`, why:`COUNTIF ignores capitals. "maths" was counted, and it is part of the 6.`},
+     {t:`COUNTIF ignores capitals, so "maths" was counted. The two it missed are "Maths " (with a space on the end) and "Math".`, why:`Five cells say exactly Maths and one says maths: 6. Kabir's "Maths " has a trailing space and Meera's "Math" is a different word, so neither matches.`},
+     {t:`COUNTIF only counts the first six matches.`, why:`There is no such limit. It counts every match.`},
+     {t:`The range B2:B23 is too short.`, why:`It covers all 22 students, rows 2 to 23.`}], a:1,
+  hints:[`Filter the Subject column and look at every row that mentions Maths in any form.`,
+         `Two cells look right but are not identical to the text "Maths".`],
+  sol:`The count of <strong>6</strong> is five exact "Maths" plus "maths" (capitals do not matter). It misses Kabir ("Maths " with a trailing space) and Meera ("Math"). The formula is correct; the data is dirty.`},
+
+ {id:'bug-batting-avg', type:'bug', mode:'formula', lvl:'harder', ds:'cricket', fill:true,
+  q:`A batting average is runs divided by the number of times the batter was <strong>dismissed</strong>. Dismissals are innings minus not-outs. Neel wrote the formula below for G2.`,
+  broken:`=E2/C2`,
+  sym:{t:`For Aryan Kapoor it shows {0}. It should show {1}.`, f:[`=E2/C2`,`=E2/(C2-D2)`], dp:2},
+  ask:`Type the corrected formula. It will be filled down, so it must work on every row.`,
+  ref:`=E2/(C2-D2)`,
+  traps:[],
+  hints:[`An innings in which the batter stayed not out is not a dismissal. Which two columns give dismissals?`,
+         `Brackets matter: without them the division happens before the subtraction.`],
+  sol:`<code class="f">=E2/(C2-D2)</code>. Aryan: 312 ÷ (8 − 1) = <strong>44.57</strong>, not 312 ÷ 8 = 39. <code class="f">=DIVIDE(E2,MINUS(C2,D2))</code> does the same job.`},
+
+ /* ---------- hard ---------- */
+ {id:'strike-rate', type:'formula', lvl:'hard', ds:'cricket', fill:true,
+  q:`Strike rate is runs per 100 balls. In G2, write a formula for strike rate <strong>rounded to 1 decimal place</strong> that fills down. Use ROUND.`,
+  ref:`=ROUND(E2/F2*100,1)`, need:['ROUND'],
+  traps:[{ref:`=E2/F2*100`, msg:`Right ratio, but not rounded: the cell shows many decimal places. Wrap the whole calculation in ROUND(…,1).`},
+         {ref:`=E2/F2`, msg:`That is runs per ball, about 1.1. Strike rate is per 100 balls, so multiply by 100.`},
+         {ref:`=ROUND(E2/F2,1)*100`, msg:`You rounded before multiplying: 1.1 × 100 = 110. Round last, so the rounding applies to the final answer.`}],
+  hints:[`Runs ÷ balls × 100 first. ROUND wraps around the lot.`,
+         `ROUND(number, places). Here places is 1.`],
+  sol:`<code class="f">=ROUND(E2/F2*100,1)</code>. For Aryan Kapoor: 312 ÷ 280 × 100 = 111.428…, which rounds to <strong>111.4</strong>.`},
+
+ {id:'nested-star', type:'formula', lvl:'hard', ds:'cricket', fill:true,
+  q:`In H2, show <strong>Star</strong> for 250 runs or more, <strong>Solid</strong> for 150 to 249, and <strong>Developing</strong> for under 150. It fills down. Use nested IF on the Runs column (E).`,
+  ref:`=IF(E2>=250,"Star",IF(E2>=150,"Solid","Developing"))`, need:['IF'], min:{IF:2},
+  traps:[{re:/E2>=?150.*E2>=?250/i, msg:`Order matters. Every score of 250 or more is also 150 or more, so this stops at "Solid" and "Star" can never appear. Test the highest band first.`}],
+  hints:[`Test the highest band first.`,
+         `The second IF goes in the "false" slot of the first.`,
+         `Three outcomes need two IFs. Count your closing brackets.`],
+  sol:`<code class="f">=IF(E2&gt;=250,"Star",IF(E2&gt;=150,"Solid","Developing"))</code>. Across the 16 players: 4 Star (Tanish Rane is exactly 250), 7 Solid and 5 Developing.`},
+
+ {id:'south-helper', type:'num', lvl:'hard', ds:'rain', dp:0,
+  q:`In column H, work out July + August for every city (<code class="f">=D2+E2</code>, filled down). Then use SUMIF on Region to total column H for the <strong>South</strong> region. Type the answer in mm.`,
+  ref:`=SUMIF(B2:B16,"South",D2:D16)+SUMIF(B2:B16,"South",E2:E16)`,
+  traps:[{ref:`=SUMIF(B2:B16,"South",D2:D16)`, msg:`That is July alone for the South. Your helper column should be July + August.`},
+         {ref:`=SUM(D2:E16)`, msg:`That is July + August for every region. The criterion should pick out "South" only.`}],
+  hints:[`Build column H first. Then it is a SUMIF over Region with H as the range to add.`,
+         `Check your criterion is the word South in quotes, and your ranges both run from row 2 to row 16.`],
+  sol:`South cities: Bengaluru 240, Chennai 210, Hyderabad 330 and Kochi 1130 (July + August each). <code class="f">=SUMIF(B2:B16,"South",H2:H16)</code> = <strong>1910</strong> mm.`},
+
+ {id:'maths-clean', type:'num', lvl:'hard', ds:'marks', dp:2,
+  q:`The Subject column is messy: "Maths", "maths", "Maths " (space on the end) and "Math" all mean Maths. Clean them up, then find the average mark of the <strong>eight Maths students</strong>, to 2 decimal places.`,
+  ref:`=(SUMIF(B2:B23,"Maths",C2:C23)+C6+C7)/8`,
+  traps:[{ref:`=SUMIF(B2:B23,"Maths",C2:C23)/COUNTIF(B2:B23,"Maths")`, msg:`You only averaged the six rows that match "Maths" exactly (capitals ignored). Kabir ("Maths ") and Meera ("Math") are Maths students too, so there are eight.`}],
+  hints:[`COUNTIF finds six Maths students and there are eight. Filter the Subject column to find the two that are hiding.`,
+         `Fix those two cells (or add their marks by hand), then average all eight.`],
+  sol:`The eight marks are 42, 38, 27, 45, 31, 36, 48 and 19. Their total is 286 and 286 ÷ 8 = <strong>35.75</strong>.`},
+
+ {id:'validation-count', type:'num', lvl:'hard', ds:'marks', dp:0,
+  q:`A validation rule "Number between 0 and 50" is about to be added to the Marks column (C2:C23). Ignoring blank cells, how many cells <strong>already in C2:C23</strong> would fail that rule?`,
+  ref:`=COUNTIF(C2:C23,">50")+COUNTIF(C2:C23,"<0")+COUNTA(C2:C23)-COUNT(C2:C23)`,
+  traps:[{ref:`=COUNTIF(C2:C23,">50")`, msg:`That finds the 300, but COUNTIF with ">50" does not count text. A word is not a number between 0 and 50 either, so there is a second bad cell.`},
+         {ref:`=COUNTIF(C2:C23,">50")+COUNTA(C2:C23)-COUNT(C2:C23)+1`, msg:`You counted the blank cell. An empty cell is not an entry that breaks the rule. Validation never complains about nothing.`}],
+  hints:[`There are two different ways to break "a number between 0 and 50": being a number outside the range, and not being a number at all.`,
+         `COUNTA − COUNT counts the cells that are not empty and not numbers.`],
+  sol:`<strong>2</strong>: the 300 (too big) and the word "absent" (not a number). The blank is not an entry. After the rule goes in, both stay in the column, because validation does not clean existing data.`},
+
+ {id:'validation-design', type:'mcq', lvl:'hard', ds:'marks',
+  q:`Design the rule. The Marks column must <strong>accept</strong> 0, 23, 42.5 and 50, and <strong>refuse</strong> 51, −4, 300 and the word "absent". Which setup does exactly that?`,
+  o:[{t:`Number greater than 0, Reject the input`, why:`It refuses 0, which is a valid mark, and it lets 51 and 300 straight in.`},
+     {t:`Number between 0 and 50, Show a warning`, why:`The criteria are right but the setting is wrong. A warning lets 51, −4, 300 and "absent" in with a flag; nothing is refused.`},
+     {t:`Number between 0 and 50, Reject the input`, why:`Accepts 0 to 50 including 42.5, and rejects 51, −4, 300 and text. A text entry is not a number, so it fails a number rule.`},
+     {t:`Dropdown list of 0, 10, 20, 30, 40, 50, Reject the input`, why:`It refuses 23 and 42.5, which are valid marks. A dropdown suits a few fixed choices, not every mark from 0 to 50.`}], a:2,
+  hints:[`Two things have to be right: the criteria and the invalid-data setting. Test each option against all eight entries.`],
+  sol:`<strong>Number between 0 and 50, Reject the input.</strong> The data gate above will let you check that rule against the same entries.`},
+
+ {id:'bug-nested-order', type:'bug', mode:'mcq', lvl:'hard', ds:'marks',
+  q:`This formula should grade a mark out of 50: 42+ Distinction, 35 to 41 Merit, 20 to 34 Pass, below 20 Fail. For a mark of 47 it shows <strong>"Pass"</strong>. What is the bug?`,
+  broken:`=IF(C2>=20,"Pass",IF(C2>=35,"Merit",IF(C2>=42,"Distinction","Fail")))`,
+  o:[{t:`The quotation marks round "Pass" are wrong.`, why:`The quotes are fine: words in an answer need them.`},
+     {t:`The tests are in the wrong order: 47 passes the first test (>=20), so Sheets never reaches the others.`, why:`Sheets stops at the first true test. Every mark from 20 up is caught by the first IF, so Merit and Distinction cannot appear. Test the highest band first.`},
+     {t:`IF cannot be nested three deep.`, why:`Nesting three deep is fine. The depth is not the problem; the order is.`},
+     {t:`It should use > instead of >=.`, why:`That would only move each boundary by one mark. The wrong order would still catch everything at the first test.`}], a:1,
+  hints:[`Take a mark of 47 and walk it through the tests, top to bottom. Where does it stop?`],
+  sol:`The corrected formula is <code class="f">=IF(C2&gt;=42,"Distinction",IF(C2&gt;=35,"Merit",IF(C2&gt;=20,"Pass","Fail")))</code>. Always check a nested IF with one mark on each boundary.`},
+
+ {id:'bug-fill-drift', type:'bug', mode:'formula', lvl:'hard', ds:'rain', fill:true,
+  q:`Column H should show each city's July rainfall (column D) as a <strong>fraction of the July total for all 15 cities</strong>, as a decimal such as 0.17 (no × 100). Arjun's formula for H2 is below. Row 2 looks right, but after he fills down, row 3 is wrong.`,
+  broken:`=D2/SUM(D2:D16)`,
+  sym:{t:`Row 2 shows {0}, which is right. Filled down to row 3 the formula becomes =D3/SUM(D3:D17) and shows {1}. It should show {2}.`, f:[`=D2/SUM(D2:D16)`,`=D3/SUM(D3:D17)`,`=D3/SUM(D$2:D$16)`], dp:3},
+  ask:`Type a version that survives being filled down.`,
+  ref:`=D2/SUM(D$2:D$16)`, need:['SUM'],
+  traps:[],
+  hints:[`Look at which cells the SUM covers in row 3 after the fill. The range moved down with the formula.`,
+         `A $ in front of a row number freezes that part when you fill down. Which part of the formula should not move?`],
+  sol:`<code class="f">=D2/SUM(D$2:D$16)</code> (or <code class="f">$D$2:$D$16</code>). The July total is 5005, so Mumbai's share is 840 ÷ 5005 = 0.168. Without the $ the total's range slides down one row per row and the 'total' shrinks, then spills past the data.`},
+
+ {id:'drinks-share', type:'num', lvl:'hard', ds:'canteen', dp:1,
+  q:`What <strong>percentage of the canteen's total revenue</strong> came from the Drink category? One decimal place. (Percentage = part ÷ total × 100.)`,
+  ref:`=SUMIF(B2:B21,"Drink",E2:E21)/SUM(E2:E21)*100`,
+  traps:[{ref:`=SUMIF(B2:B21,"Drink",D2:D21)/SUM(D2:D21)*100`, msg:`That is the Drinks' share of units sold (562 of 1336), not of rupees. Use the Revenue column, E.`},
+         {ref:`=COUNTIF(B2:B21,"Drink")/COUNTA(B2:B21)*100`, msg:`That is the share of items (7 of 20), not the share of revenue.`}],
+  hints:[`Two numbers needed: Drink revenue, and total revenue. Both come from column E.`,
+         `Divide the part by the total, then multiply by 100, then round at the very end.`],
+  sol:`Drink revenue 11075 ÷ total 39121 × 100 = 28.31…, so <strong>28.3%</strong>. Drinks were 7 of the 20 items (35%) and sold 42.1% of the units but earned only 28.3% of the money, because they are cheap.`},
+
+ {id:'count-band', type:'formula', lvl:'hard', ds:'cricket',
+  q:`How many players scored <strong>from 150 to 249 runs</strong> (both ends included)? One formula, using COUNTIF twice with operators in the criteria.`,
+  ref:`=COUNTIF(E2:E17,">=150")-COUNTIF(E2:E17,">=250")`, need:['COUNTIF'], min:{COUNTIF:2},
+  traps:[{ref:`=COUNTIF(E2:E17,">=150")`, msg:`That is everyone with 150 or more, which still includes the four players on 250 or above. Take those off.`},
+         {ref:`=COUNTIF(E2:E17,">=150")-COUNTIF(E2:E17,">250")`, msg:`You subtracted ">250", which leaves Tanish Rane (exactly 250) inside your band. The band ends at 249, so subtract ">=250".`},
+         {ref:`=COUNTIF(E2:E17,">=250")`, msg:`That counts the 250-and-above group, not the band below it.`}],
+  hints:[`Count everyone at 150 or more, then take away everyone at 250 or more.`,
+         `Both operators go inside quotation marks, and the second one is >=, not >.`],
+  sol:`<code class="f">=COUNTIF(E2:E17,"&gt;=150")-COUNTIF(E2:E17,"&gt;=250")</code> = 11 − 4 = <strong>7</strong>.`}
+];
+
+/* the page shows these counts in prose, so keep them honest */
+const LAB_TOTAL = PROBLEMS.length;
+
+</script>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'spreadsheets-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, lab:{} };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+  if(!S.lab) S.lab = {};
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const $ = id => document.getElementById(id);
+
+/* ---------------- render videos ---------------- */
+const videoList = $('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = $('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = $('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = $('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = $('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+/* ---------------- render traps ---------------- */
+$('trapList').innerHTML = TRAPS.map(T=>`
+  <div class="trap"><h4>${T.h}</h4>
+    <p><strong>The wrong version:</strong> ${T.w}</p>
+    <p><strong>Why it fails:</strong> ${T.why}</p>
+    <p><strong>The right version:</strong> ${T.fix}</p></div>`).join('');
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ $(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = $('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = $('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+$('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark, finished lesson and solved lab problem on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, lab:{} };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const lab = PROBLEMS.filter(p=>S.lab[p.id]).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  $('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  $('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  $('s-puzzles').textContent = S.puzzles||0;
+  $('s-lab').innerHTML = lab + `<span style="${small}">/${PROBLEMS.length}</span>`;
+  $('bar-marks').style.width = (marks/30*100)+'%';
+  $('bar-lessons').style.width = (lessons/6*100)+'%';
+  $('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+  $('bar-lab').style.width = (lab/PROBLEMS.length*100)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  PROBLEMS.forEach(p=>{ if(S.lab[p.id]) markSolved(p.id, true); });
+  refresh();
+}
+
+function bumpPuzzles(){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* =====================================================================
+   TOOL 1 · THE FORMULA BENCH
+   ===================================================================== */
+const BENCH0 = [
+  ["Name","Test 1","Test 2","Test 3","Total","Result"],
+  ["Aarav",12,5,9,null,null],
+  ["Diya",15,14,18,null,null],
+  ["Rohan",8,11,"abs",null,null],
+  ["Meera",17,19,16,null,null],
+  ["Kabir",6,9,12,null,null],
+  ["Zoya",20,13,15,null,null],
+  ["Class total",null,null,null,null,null],
+  ["Highest",null,null,null,null,null]
+];
+const BROWS = 9, BCOLS = 6;
+let bench = BENCH0.map(r=>r.slice());
+let bsel = {c:5, r:2};
+let bsheet = null;
+const gcs = {};
+document.querySelectorAll('#grid .gc').forEach(b=>{ gcs[b.dataset.ref] = b; });
+const finput = $('finput');
+
+function rawText(v){ return v===null||v===undefined ? '' : String(v); }
+function benchRender(){
+  bsheet = new Fx.Sheet(bench.map(r=>r.slice()));
+  for(let r=1;r<=BROWS;r++) for(let c=1;c<=BCOLS;c++){
+    const addr = Fx.address(c,r), el = gcs[addr], v = bsheet.value(c,r);
+    const txt = Fx.fmt(v);
+    el.textContent = txt;
+    el.classList.toggle('t', typeof v === 'string' || v === null);
+    el.classList.toggle('err', Fx.isErr(v));
+    const raw = bench[r-1][c-1];
+    el.setAttribute('aria-label', addr + ': ' + (txt === '' ? 'empty' : txt) + (typeof raw === 'string' && raw[0] === '=' ? ' (formula)' : ''));
+    el.title = (typeof raw === 'string' && raw[0] === '=') ? raw : '';
+  }
+}
+function benchSelect(c, r, focusBar){
+  bsel = {c:c, r:r};
+  Object.keys(gcs).forEach(k=>gcs[k].classList.remove('sel','hl'));
+  gcs[Fx.address(c,r)].classList.add('sel');
+  $('bcell').textContent = Fx.address(c,r);
+  const raw = bench[r-1][c-1];
+  finput.value = rawText(raw);
+  benchExplain();
+  if(focusBar){ finput.focus(); }
+}
+function kindOf(v){ return Fx.isErr(v) ? 'error' : (typeof v === 'number' ? 'number' : (typeof v === 'boolean' ? 'TRUE/FALSE' : 'text')); }
+function benchExplain(){
+  const {c, r} = bsel, addr = Fx.address(c,r), raw = bench[r-1][c-1], out = $('bout');
+  if(raw === null){ out.innerHTML = `<strong>${addr}</strong> is empty.`; return; }
+  if(typeof raw === 'string' && raw[0] === '='){
+    const v = bsheet.value(c,r), info = Fx.analyse(raw);
+    if(Fx.isErr(v)){
+      out.innerHTML = `<strong>${addr}</strong> shows <span class="pill bad">${esc(v.err)}</span> ${esc(v.msg)}`;
+    } else {
+      out.innerHTML = `<strong>${addr}</strong> shows <span class="num"><strong>${esc(Fx.fmt(v)) || '(empty text)'}</strong></span> <span class="pill hold">${kindOf(v)}</span>` +
+        (info.ok && (info.refs.length || info.ranges.length) ? ' · it reads the cells outlined in teal.' : '');
+    }
+    if(info.ok){
+      info.refs.forEach(x=>{ const el = gcs[Fx.address(x.c,x.r)]; if(el) el.classList.add('hl'); });
+      info.ranges.forEach(g=>{ for(let rr=g.r1; rr<=Math.min(g.r2,BROWS); rr++) for(let cc=g.c1; cc<=Math.min(g.c2,BCOLS); cc++){ const el = gcs[Fx.address(cc,rr)]; if(el) el.classList.add('hl'); } });
+    }
+  } else {
+    out.innerHTML = `<strong>${addr}</strong> holds a typed ${typeof raw === 'number' ? 'number' : 'word'}. It is not a formula, so it will never change by itself.`;
+  }
+}
+function benchCommit(){
+  const {c, r} = bsel;
+  bench[r-1][c-1] = Fx.parseEntry(finput.value.replace(/[“”]/g,'"'));
+  benchRender();
+  if(r < BROWS) benchSelect(c, r+1, true); else benchSelect(c, r, true);
+}
+$('fenter').addEventListener('click', benchCommit);
+finput.addEventListener('keydown', e=>{
+  if(e.key === 'Enter'){ e.preventDefault(); benchCommit(); }
+  else if(e.key === 'Escape'){ benchSelect(bsel.c, bsel.r, false); }
+});
+document.querySelector('#grid').addEventListener('click', e=>{
+  const b = e.target.closest('.gc'); if(!b) return;
+  const m = /^([A-Z]+)(\d+)$/.exec(b.dataset.ref);
+  benchSelect(Fx.colToNum(m[1]), +m[2], true);
+});
+document.querySelector('#grid').addEventListener('keydown', e=>{
+  const b = e.target.closest('.gc'); if(!b) return;
+  let dc = 0, dr = 0;
+  if(e.key === 'ArrowUp') dr = -1; else if(e.key === 'ArrowDown') dr = 1; else if(e.key === 'ArrowLeft') dc = -1; else if(e.key === 'ArrowRight') dc = 1;
+  if(dc || dr){
+    e.preventDefault();
+    const nc = Math.max(1, Math.min(BCOLS, bsel.c+dc)), nr = Math.max(1, Math.min(BROWS, bsel.r+dr));
+    benchSelect(nc, nr, false); gcs[Fx.address(nc,nr)].focus();
+  } else if(e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey){
+    finput.focus(); finput.value = ''; // the character then lands in the formula bar
+  }
+});
+document.querySelectorAll('.chipbtn').forEach(b=>b.addEventListener('click', ()=>{ finput.value = b.dataset.f; finput.focus(); }));
+$('breset').addEventListener('click', ()=>{
+  bench = BENCH0.map(r=>r.slice()); benchRender(); benchSelect(5,2,false);
+  $('bpuz').classList.remove('on'); bpuz = null; $('bcheck').disabled = true;
+});
+
+/* ---- bench puzzles: they check the real state of the sheet ---- */
+function benchCheck(spec){
+  // spec: {cell:[c,r], need:[names], base:value, scen:[{set:[[c,r,v]], exp}], what}
+  const [c, r] = spec.cell, addr = Fx.address(c,r), raw = bench[r-1][c-1];
+  if(typeof raw !== 'string' || raw[0] !== '='){
+    return {ok:false, msg: raw === null ? `${addr} is still empty.` : `${addr} holds a typed value, not a formula. Start with = so the sheet does the work.`};
+  }
+  const info = Fx.analyse(raw);
+  if(!info.ok) return {ok:false, msg:`${addr} is not a valid formula: ${info.err.msg}`};
+  const v = bsheet.value(c,r);
+  if(Fx.isErr(v)) return {ok:false, msg:`${addr} shows ${v.err}. ${v.msg}`};
+  if(!info.refs.length && !info.ranges.length) return {ok:false, msg:`${addr} does not read any cells, so it is a typed answer wearing a formula costume. Refer to the cells.`};
+  if(!Fx.equal(v, spec.base)) return {ok:false, msg:`${addr} shows ${Fx.fmt(v)}${typeof v === 'string' ? ' (text)' : ''}; the puzzle wants ${Fx.fmt(spec.base)}.`};
+  for(const fn of (spec.need||[])) if(info.funcs.indexOf(fn) < 0) return {ok:false, msg:`${addr} gives the right value but the puzzle asks you to use ${fn}.`};
+  for(const sc of (spec.scen||[])){
+    const sh = new Fx.Sheet(bench.map(x=>x.slice()));
+    sc.set.forEach(s=>sh.set(s[0], s[1], s[2]));
+    const got = sh.value(c,r);
+    if(!Fx.equal(got, sc.exp)){
+      const what = sc.set.map(s=>Fx.address(s[0],s[1]) + ' = ' + Fx.fmt(s[2])).join(', ');
+      return {ok:false, msg:`Right for the marks as they are, but when I set ${what}, ${addr} showed ${Fx.fmt(got)} instead of ${Fx.fmt(sc.exp)}. It has to follow the marks, not just match today's numbers.`};
+    }
+  }
+  return {ok:true};
+}
+const BP = [
+ {t:`Make <strong>E2</strong> show <span class="num">7</span>, using a formula that reads at least one cell.`, cell:[5,2], base:7, scen:[]},
+ {t:`In <strong>E3</strong>, show the word <strong>Pass</strong> if Diya's Test 1 (B3) is 15 or more, and <strong>Fail</strong> otherwise. It must still be right when B3 changes.`, cell:[5,3], base:'Pass', need:['IF'],
+  scen:[{set:[[2,3,14]],exp:'Fail'},{set:[[2,3,20]],exp:'Pass'},{set:[[2,3,3]],exp:'Fail'}]},
+ {t:`In <strong>B8</strong>, total all six Test 1 marks (B2 to B7) with one function.`, cell:[2,8], base:78, need:['SUM'],
+  scen:[{set:[[2,4,100]],exp:170}]},
+ {t:`In <strong>D9</strong>, show the highest Test 3 mark. Rohan's Test 3 is the word <em>abs</em>; see what the function does with it.`, cell:[4,9], base:18, need:['MAX'],
+  scen:[{set:[[4,5,99]],exp:99}]},
+ {t:`In <strong>E4</strong>, use the <strong>MINUS</strong> function to show Rohan's Test 2 minus his Test 1.`, cell:[5,4], base:3, need:['MINUS'],
+  scen:[{set:[[2,4,1]],exp:10}]},
+ {t:`In <strong>F2</strong>, use <strong>COUNTIF</strong> to count how many of Aarav's three tests (B2 to D2) are 9 or more.`, cell:[6,2], base:2, need:['COUNTIF'],
+  scen:[{set:[[3,2,20]],exp:3},{set:[[2,2,1]],exp:1}]},
+ {t:`In <strong>E5</strong>, show the average of Meera's three tests, <strong>rounded to 1 decimal place</strong>. Use ROUND.`, cell:[5,5], base:17.3, need:['ROUND'],
+  scen:[{set:[[2,5,20]],exp:18.3}]}
+];
+let bpuz = null, lastB = -1;
+$('bpose').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*BP.length); if(i === lastB) i = (i+1) % BP.length; lastB = i;
+  bpuz = {i:i, done:false};
+  const P = BP[i], [c, r] = P.cell;
+  bench[r-1][c-1] = null; benchRender(); benchSelect(c, r, false);
+  const box = $('bpuz'); box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> ${P.t} <div class="qrow"><span class="lockhint">Type it in the formula bar, press Enter, then press Check my sheet.</span></div>`;
+  $('bcheck').disabled = false;
+});
+$('bcheck').addEventListener('click', ()=>{
+  if(!bpuz) return;
+  const P = BP[bpuz.i], res = benchCheck(P), box = $('bpuz');
+  if(res.ok){
+    if(!bpuz.done){ bpuz.done = true; bumpPuzzles(); }
+    box.innerHTML = `<strong>Solved.</strong> The bench checked the formula against changed marks, not just today's. <div class="qrow"><button class="btn ghost small" type="button" id="bagain">Another one</button></div>`;
+    $('bagain').addEventListener('click', ()=>$('bpose').click());
+    $('bcheck').disabled = true;
+  } else {
+    box.innerHTML = `<strong>Not yet.</strong> ${esc(res.msg)}<div class="qrow"><span class="lockhint">Puzzle: ${P.t.replace(/<[^>]+>/g,'')}</span></div>`;
+  }
+});
+
+/* =====================================================================
+   TOOL 2 · THE DATA GATE
+   ===================================================================== */
+const GATE0 = [
+ {id:0,  name:"Aarav Sharma", subject:"Maths",   marks:42, att:96},
+ {id:1,  name:"Diya Patel",   subject:"Maths",   marks:38, att:92},
+ {id:2,  name:"Rohan Iyer",   subject:"Science", marks:27, att:78},
+ {id:3,  name:"Ananya Reddy", subject:"English", marks:45, att:98},
+ {id:4,  name:"Kabir Singh",  subject:"Science", marks:31, att:85},
+ {id:5,  name:"Meera Nair",   subject:"Maths",   marks:36, att:90},
+ {id:6,  name:"Ishaan Gupta", subject:"English", marks:29, att:74},
+ {id:7,  name:"Saanvi Rao",   subject:"Science", marks:44, att:97},
+ {id:8,  name:"Vihaan Mehta", subject:"Maths",   marks:33, att:88},
+ {id:9,  name:"Aditi Joshi",  subject:"English", marks:22, att:60},
+ {id:10, name:"Arjun Menon",  subject:"Science", marks:40, att:94},
+ {id:11, name:"Kavya Pillai", subject:"Maths",   marks:25, att:70}
+];
+let gate = GATE0.map(r=>Object.assign({}, r));
+const COLNAMES = {name:'Name', subject:'Subject', marks:'Marks', att:'Attendance %'};
+const NUMCOL = {marks:true, att:true};
+const OPS = [['eq','is equal to'],['ne','is not equal to'],['gt','is greater than'],['ge','is greater than or equal to'],
+             ['lt','is less than'],['le','is less than or equal to'],['has','text contains'],['starts','text starts with']];
+['fo1','fo2'].forEach(id=>{ $(id).innerHTML = OPS.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join(''); });
+
+function condOf(n){
+  const col = $('fc'+n).value, op = $('fo'+n).value, val = $('fv'+n).value.trim();
+  if(!col || val === '') return null;
+  return {col:col, op:op, val:val};
+}
+function rowPasses(row, cd){
+  if(!cd) return true;
+  const cell = row[cd.col];
+  if(cd.op === 'has') return String(cell).toLowerCase().indexOf(cd.val.toLowerCase()) >= 0;
+  if(cd.op === 'starts') return String(cell).toLowerCase().indexOf(cd.val.toLowerCase()) === 0;
+  if(NUMCOL[cd.col]){
+    const x = Number(cd.val); if(!isFinite(x)) return false;
+    switch(cd.op){ case 'eq': return cell === x; case 'ne': return cell !== x; case 'gt': return cell > x; case 'ge': return cell >= x; case 'lt': return cell < x; case 'le': return cell <= x; }
+  } else {
+    const a = String(cell).toLowerCase(), b = cd.val.toLowerCase();
+    switch(cd.op){ case 'eq': return a === b; case 'ne': return a !== b; case 'gt': return a > b; case 'ge': return a >= b; case 'lt': return a < b; case 'le': return a <= b; }
+  }
+  return true;
+}
+function gateVisible(){ const c1 = condOf(1), c2 = condOf(2); return gate.filter(r=>rowPasses(r,c1) && rowPasses(r,c2)); }
+function scrambled(){ return gate.filter(r=>{ const o = GATE0[r.id]; return r.name !== o.name || r.subject !== o.subject || r.marks !== o.marks || r.att !== o.att; }); }
+function renderGate(){
+  const vis = new Set(gateVisible().map(r=>r.id)), body = $('gbody');
+  let html = '', hidden = [];
+  gate.forEach((r,i)=>{
+    if(vis.has(r.id)) html += `<tr><td class="rn">${i+2}</td><td>${esc(r.name)}</td><td>${esc(r.subject)}</td><td class="n">${r.marks}</td><td class="n">${r.att}</td></tr>`;
+    else hidden.push(i+2);
+  });
+  if(!html) html = `<tr class="skipped"><td colspan="5">No rows match. Nothing has been deleted.</td></tr>`;
+  body.innerHTML = html;
+  const shown = vis.size, bad = scrambled().length;
+  $('gstatus').innerHTML = `Showing <strong class="num">${shown}</strong> of <strong class="num">${gate.length}</strong> rows.` +
+    (hidden.length ? ` <strong class="num">${hidden.length}</strong> hidden, not deleted. Row numbers skip: <span class="num">${hidden.join(', ')}</span>.` : ' Nothing is hidden.') +
+    (bad ? `<div class="warn"><strong>Warning: the columns no longer line up.</strong> <span class="num">${bad}</span> of 12 rows now mix one student's name or subject with another student's marks. This is what sorting a single column does. Press Reset the data and sort the whole table.</div>` : '');
+}
+['fc1','fo1','fv1','fc2','fo2','fv2'].forEach(id=>{ $(id).addEventListener('input', renderGate); $(id).addEventListener('change', renderGate); });
+
+function cmpBy(field, dir){
+  return (a,b)=>{
+    let x = a[field], y = b[field];
+    if(typeof x === 'string'){ x = x.toLowerCase(); y = y.toLowerCase(); }
+    const c = x < y ? -1 : (x > y ? 1 : 0);
+    return dir === 'desc' ? -c : c;
+  };
+}
+function applySort(field, dir, mode){
+  if(mode === 'col'){
+    const vals = gate.map(r=>r[field]);
+    vals.sort(cmpBy_val(dir));
+    gate.forEach((r,i)=>{ r[field] = vals[i]; });
+  } else {
+    gate = gate.map((r,i)=>({r:r,i:i})).sort((p,q)=>cmpBy(field,dir)(p.r,q.r) || (p.i-q.i)).map(p=>p.r);
+  }
+  renderGate();
+}
+function cmpBy_val(dir){
+  return (x,y)=>{
+    if(typeof x === 'string'){ x = x.toLowerCase(); y = y.toLowerCase(); }
+    const c = x < y ? -1 : (x > y ? 1 : 0); return dir === 'desc' ? -c : c;
+  };
+}
+$('sapply').addEventListener('click', ()=>{
+  const mode = document.querySelector('input[name=smode]:checked').value;
+  applySort($('sc').value, $('so').value, mode);
+});
+function resetGate(){
+  gate = GATE0.map(r=>Object.assign({}, r));
+  ['fc1','fc2'].forEach(id=>{ $(id).value = ''; }); ['fv1','fv2'].forEach(id=>{ $(id).value = ''; });
+  ['fo1','fo2'].forEach(id=>{ $(id).value = 'eq'; });
+  document.querySelector('input[name=smode][value=whole]').checked = true;
+  renderGate();
+}
+$('greset').addEventListener('click', resetGate);
+
+/* ---- validation ---- */
+const GFIELDS = {
+  marks:{label:'Marks (out of 50)', existing:`300`, tests:[[0,true],[23,true],[42.5,true],[50,true],[51,false],[-4,false],[300,false],['absent',false]],
+         hint:`Good marks are 0 to 50 and may include half marks. Everything else is bad.`},
+  subject:{label:'Subject', existing:`Math`, tests:[['Maths',true],['Science',true],['English',true],['Hindi',true],['Math',false],['Sci',false],['Physics',false],[7,false]],
+         hint:`The only valid subjects are Maths, Science, English and Hindi.`},
+  att:{label:'Attendance %', existing:`150`, tests:[[0,true],[87,true],[99.5,true],[100,true],[101,false],[-1,false],['ninety',false]],
+         hint:`Attendance is a percentage from 0 to 100, decimals allowed.`}
+};
+function readRule(){
+  const type = $('vt').value, mode = document.querySelector('input[name=vmode]:checked').value;
+  if(type === 'list'){
+    const items = $('vl').value.split(',').map(s=>s.trim()).filter(Boolean);
+    return {type:type, items:items, mode:mode, ok:items.length>0};
+  }
+  const a = parseFloat($('va').value), b = parseFloat($('vb').value);
+  return {type:type, a:a, b:b, mode:mode, ok: isFinite(a) && (type !== 'between' || isFinite(b))};
+}
+function isValid(rule, entry){
+  if(!rule.ok) return true;                       // no usable rule yet: everything goes in
+  const s = String(entry);
+  if(rule.type === 'list') return rule.items.indexOf(s) >= 0;
+  const t = s.trim(); if(t === '' || !isFinite(Number(t))) return false;   // text fails every number rule
+  const x = Number(t);
+  if(rule.type === 'between') return x >= Math.min(rule.a,rule.b) && x <= Math.max(rule.a,rule.b);
+  if(rule.type === 'gt') return x > rule.a;
+  if(rule.type === 'lt') return x < rule.a;
+  return true;
+}
+function outcome(rule, entry){
+  if(isValid(rule, entry)) return {txt:'Accepted', acc:true, rej:false};
+  return rule.mode === 'reject' ? {txt:'Rejected ✖', acc:false, rej:true} : {txt:'Accepted, with a warning ⚠', acc:true, rej:false};
+}
+function verdictOf(good, o){
+  if(good) return o.acc ? {ok:true, txt:'✔ right'} : {ok:false, txt:'✖ refused a good entry'};
+  return o.rej ? {ok:true, txt:'✔ right'} : {ok:false, txt:'✖ let a bad entry in'};
+}
+function showEntry(e){ return typeof e === 'string' ? `"${e}"` : String(e); }
+function renderValidation(){
+  const f = GFIELDS[$('vf').value], rule = readRule(), type = rule.type;
+  $('vnum').hidden = type === 'list'; $('vlist').hidden = type !== 'list';
+  $('vbwrap').hidden = type !== 'between';
+  $('valab').textContent = type === 'between' ? 'Minimum' : 'Value';
+  $('va').setAttribute('aria-label', type === 'between' ? 'Minimum value for the rule' : 'Value for the rule');
+  $('vbody').innerHTML = f.tests.map(t=>{
+    const o = outcome(rule, t[0]), v = verdictOf(t[1], o);
+    return `<tr><td class="num">${esc(showEntry(t[0]))}</td><td>${t[1] ? 'good' : 'bad'}</td><td>${o.txt}</td><td><span class="pill ${v.ok?'bal':'bad'}">${v.txt}</span></td></tr>`;
+  }).join('');
+  const ex = f.existing, exo = outcome(rule, isFinite(Number(ex)) ? Number(ex) : ex);
+  $('vexisting').innerHTML = `<strong>${f.hint}</strong><br>An old entry already in the column: <span class="num">${esc(ex)}</span>. ` +
+    (isValid(rule, isFinite(Number(ex)) ? Number(ex) : ex) ? `It would pass this rule.` : `It would fail this rule, but it <strong>stays in its cell</strong> all the same: validation checks what is typed next and never cleans what is already there.`);
+  return rule;
+}
+['vf','vt','va','vb','vl'].forEach(id=>{ $(id).addEventListener('input', renderValidation); $(id).addEventListener('change', renderValidation); });
+document.querySelectorAll('input[name=vmode]').forEach(r=>r.addEventListener('change', renderValidation));
+$('vtry').addEventListener('click', ()=>{
+  const s = $('vcustom').value; const rule = readRule();
+  if(s.trim() === ''){ $('vcres').textContent = 'Blank: validation does not check an empty entry.'; return; }
+  const o = outcome(rule, isFinite(Number(s)) ? Number(s) : s);
+  $('vcres').innerHTML = `<span class="pill ${o.rej?'bad':(o.txt==='Accepted'?'bal':'hold')}">${o.txt}</span>`;
+});
+$('vcustom').addEventListener('keydown', e=>{ if(e.key === 'Enter') $('vtry').click(); });
+
+/* ---- gate puzzles ---- */
+const GP = [
+ {k:'filter', q:`Filter so that only the <strong>Maths</strong> students with marks <strong>below 35</strong> are showing.`, target:['Vihaan Mehta','Kavya Pillai']},
+ {k:'filter', q:`Filter so that only students with attendance of <strong>90 or more</strong> and marks <strong>below 40</strong> are showing.`, target:['Diya Patel','Meera Nair']},
+ {k:'filter', q:`Show only the <strong>Science</strong> students. Nothing else.`, target:['Rohan Iyer','Kabir Singh','Saanvi Rao','Arjun Menon']},
+ {k:'sort', q:`Sort so the <strong>highest marks are at the top</strong> and every row still matches its student.`, field:'marks', dir:'desc'},
+ {k:'sort', q:`Sort so the <strong>names run A to Z</strong>, with every row intact.`, field:'name', dir:'asc'},
+ {k:'sort', q:`Sort by <strong>attendance, lowest first</strong>, without scrambling any row.`, field:'att', dir:'asc'},
+ {k:'valid', field:'marks', q:`Set a rule on <strong>Marks</strong> so that <strong>every bad entry is rejected and every good one accepted</strong>. Good: 0, 23, 42.5, 50. Bad: 51, −4, 300, "absent".`},
+ {k:'valid', field:'subject', q:`Set a rule on <strong>Subject</strong> so that every bad entry is rejected and every good one accepted. Only Maths, Science, English and Hindi are valid.`},
+ {k:'valid', field:'att', q:`Set a rule on <strong>Attendance %</strong> so that every bad entry is rejected and every good one accepted. Attendance runs from 0 to 100.`}
+];
+let gpuz = null, lastG = -1;
+$('gpose').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*GP.length); if(i === lastG) i = (i+1) % GP.length; lastG = i;
+  gpuz = {i:i, done:false};
+  const P = GP[i];
+  resetGate();
+  if(P.k === 'valid'){
+    $('vf').value = P.field; $('vt').value = 'between'; $('va').value = '0'; $('vb').value = '100'; $('vl').value = 'Maths, Science';
+    document.querySelector('input[name=vmode][value=warn]').checked = true; renderValidation();
+  }
+  const box = $('gpuz'); box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> ${P.q} <div class="qrow"><span class="lockhint">Set it up above, then press Check my setup.</span></div>`;
+  $('gcheck').disabled = false;
+  renderGate();
+});
+function gateCheck(P){
+  if(P.k === 'filter'){
+    const vis = gateVisible().map(r=>r.name);
+    if(vis.length === gate.length) return {ok:false, msg:`Nothing is filtered out yet: all ${gate.length} rows are showing.`};
+    const extra = vis.filter(n=>P.target.indexOf(n) < 0).length, missing = P.target.filter(n=>vis.indexOf(n) < 0).length;
+    if(!extra && !missing) return {ok:true};
+    const parts = [];
+    if(extra) parts.push(`${extra} row${extra>1?'s are':' is'} showing that should be hidden`);
+    if(missing) parts.push(`${missing} row${missing>1?'s that should':' that should'} show ${missing>1?'are':'is'} hidden`);
+    return {ok:false, msg:`Showing ${vis.length} rows; the target has ${P.target.length}. ${parts.join(', and ')}.`};
+  }
+  if(P.k === 'sort'){
+    const bad = scrambled().length;
+    if(bad) return {ok:false, msg:`The columns no longer line up (${bad} rows are mixed up), so this is not a valid sort. Reset the data and sort the whole table.`};
+    const sorted = gate.every((r,i)=> i === 0 || cmpBy(P.field, P.dir)(gate[i-1], r) <= 0);
+    return sorted ? {ok:true} : {ok:false, msg:`The rows are not in order by ${COLNAMES[P.field]} yet, ${P.dir === 'desc' ? 'highest first' : 'lowest or A first'}.`};
+  }
+  const f = GFIELDS[P.field], rule = readRule();
+  if($('vf').value !== P.field) return {ok:false, msg:`The puzzle is about the ${COLNAMES[P.field]} column. Choose it under "Column to protect".`};
+  const fails = f.tests.map(t=>({t:t, v:verdictOf(t[1], outcome(rule, t[0]))})).filter(x=>!x.v.ok);
+  if(!fails.length) return {ok:true};
+  return {ok:false, msg:`Still wrong for ${fails.map(x=>showEntry(x.t[0]) + ' (' + x.v.txt.replace('✖ ','') + ')').join(', ')}.` + (rule.mode !== 'reject' && fails.some(x=>!x.t[1]) ? ' Check the setting for invalid data too: a warning lets the entry in.' : '')};
+}
+$('gcheck').addEventListener('click', ()=>{
+  if(!gpuz) return;
+  const P = GP[gpuz.i], res = gateCheck(P), box = $('gpuz');
+  if(res.ok){
+    if(!gpuz.done){ gpuz.done = true; bumpPuzzles(); }
+    box.innerHTML = `<strong>Solved.</strong> That was checked against the real state of the gate, not a multiple-choice answer. <div class="qrow"><button class="btn ghost small" type="button" id="gagain">Another one</button></div>`;
+    $('gagain').addEventListener('click', ()=>$('gpose').click());
+    $('gcheck').disabled = true;
+  } else {
+    box.innerHTML = `<strong>Not yet.</strong> ${esc(res.msg)}<div class="qrow"><span class="lockhint">Puzzle: ${P.q.replace(/<[^>]+>/g,'')}</span></div>`;
+  }
+});
+
+/* =====================================================================
+   THE PROBLEM LAB
+   ===================================================================== */
+const SHEETS_BASE = {}, SHEETS_MUT = {};
+function baseSheet(k){ return SHEETS_BASE[k] || (SHEETS_BASE[k] = new Fx.Sheet(DATASETS[k].map(r=>r.slice()))); }
+function mutSheet(k){
+  if(SHEETS_MUT[k]) return SHEETS_MUT[k];
+  const rows = DATASETS[k].map((r,i)=> i === 0 ? r.slice() : r.map((v,j)=> typeof v === 'number' ? v + ((i*3 + j*5) % 7) : v));
+  return (SHEETS_MUT[k] = new Fx.Sheet(rows));
+}
+function refValue(p, sheet, d){ return Fx.evalText(sheet || baseSheet(p.ds), Fx.shift(p.ref, d||0)); }
+function roundTo(x, dp){ const f = Math.pow(10, dp); return Math.round((x + Number.EPSILON*Math.sign(x)) * f) / f; }
+function lastRow(k){ return DATASETS[k].length; }
+function tsv(k){ return DATASETS[k].map(r=>r.map(v=>v === null ? '' : String(v)).join('\t')).join('\n'); }
+
+async function copyText(txt){
+  try{ if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(txt); return true; } }catch(e){}
+  try{
+    const ta = document.createElement('textarea');
+    ta.value = txt; ta.setAttribute('readonly',''); ta.style.position = 'fixed'; ta.style.top = '-1000px';
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand('copy'); document.body.removeChild(ta); return ok;
+  }catch(e){ return false; }
+}
+
+/* ---- datasets ---- */
+(function renderDatasets(){
+  const host = $('dsList');
+  Object.keys(DS_META).forEach(k=>{
+    const sh = baseSheet(k), rows = DATASETS[k], M = DS_META[k];
+    const ncol = rows[0].length;
+    let head1 = '<th class="rn"></th>', head2 = '<th class="rn">1</th>';
+    for(let c=1;c<=ncol;c++){ head1 += `<th scope="col">${Fx.numToCol(c)}</th>`; head2 += `<th scope="col">${esc(rows[0][c-1])}</th>`; }
+    let body = '';
+    for(let r=2;r<=rows.length;r++){
+      body += `<tr><td class="rn">${r}</td>`;
+      for(let c=1;c<=ncol;c++){
+        const v = sh.value(c,r);
+        body += `<td${typeof v === 'number' ? ' class="n"' : ''}>${esc(Fx.fmt(v))}</td>`;
+      }
+      body += '</tr>';
+    }
+    const d = document.createElement('details');
+    d.className = 'dsbox'; d.id = 'ds-' + k;
+    d.innerHTML = `<summary><span class="dsn">${M.name}</span><span class="dsm">${M.sub}</span></summary>
+      <div class="dsbody">
+        <p style="margin:0 0 8px;font-size:15px;color:var(--ink-soft)">Columns: <span class="num">${M.cols}</span>. Header in row 1, data in rows 2 to ${rows.length}.</p>
+        ${M.note ? `<p style="margin:0 0 8px;font-size:14.5px;color:var(--ink-soft)">${M.note}</p>` : ''}
+        <div class="scroll"><table class="dst"><thead><tr>${head1}</tr><tr>${head2}</tr></thead><tbody>${body}</tbody></table></div>
+        <div class="copyrow"><button class="btn small" type="button" data-copy="${k}">Copy for Google Sheets</button>
+          <span aria-live="polite" id="copyst-${k}">Then click cell A1 in a blank sheet and paste (Ctrl+V, or Cmd+V on a Mac).</span></div>
+        <div id="copybox-${k}"></div>
+      </div>`;
+    host.appendChild(d);
+  });
+  host.addEventListener('click', async e=>{
+    const b = e.target.closest('[data-copy]'); if(!b) return;
+    const k = b.dataset.copy, st = $('copyst-'+k), box = $('copybox-'+k);
+    const ok = await copyText(tsv(k));
+    if(ok){ st.textContent = 'Copied. Click cell A1 in a blank sheet and paste.'; box.innerHTML = ''; }
+    else {
+      st.textContent = 'Your browser blocked copying. Select everything in the box below, copy it yourself, and paste into cell A1.';
+      box.innerHTML = `<textarea class="copybox" readonly aria-label="Tab-separated data for ${esc(DS_META[k].name)}">${esc(tsv(k))}</textarea>`;
+      const ta = box.querySelector('textarea'); ta.focus(); ta.select();
+    }
+  });
+})();
+
+/* ---- problem rendering ---- */
+const TYPE_LABEL = {formula:'formula', num:'number', mcq:'multiple choice', bug:'bug hunt'};
+const state = {};   // id -> {attempts, hints}
+function kindOf2(p){ return p.type === 'bug' ? p.mode : p.type; }
+function fmtDp(x, dp){ return String(parseFloat(Number(x).toFixed(dp))); }
+function symText(p){
+  const sh = baseSheet(p.ds), dp = p.sym.dp;
+  return p.sym.t.replace(/\{(\d)\}/g, (m,i)=>{ const v = Fx.evalText(sh, p.sym.f[+i]); return `<span class="num"><strong>${Fx.isErr(v) ? v.err : fmtDp(v, dp)}</strong></span>`; });
+}
+function renderProblems(){
+  const host = $('probList');
+  PROBLEMS.forEach((p,idx)=>{
+    state[p.id] = {attempts:0, hints:0};
+    const k = kindOf2(p), n = idx + 1, rows = lastRow(p.ds);
+    let input = '';
+    if(k === 'mcq'){
+      input = `<div class="opts" data-lopts="${p.id}">${p.o.map((o,j)=>`<button type="button" class="lopt" data-j="${j}"><span class="k">${'ABCD'[j]}</span><span>${esc(o.t)}</span></button>`).join('')}</div>`;
+    } else if(k === 'formula'){
+      input = `<div class="ansrow"><input type="text" class="finp" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="=…" aria-label="Your formula for problem ${n}"><button class="btn small" type="button" data-act="check">Check</button></div>`;
+    } else {
+      input = `<div class="ansrow"><input type="text" class="finp" inputmode="decimal" autocomplete="off" placeholder="Your number" aria-label="Your answer for problem ${n}"><button class="btn small" type="button" data-act="check">Check</button></div>`;
+    }
+    const broken = p.broken ? `<div class="code broken" role="group" aria-label="The broken formula">${esc(p.broken)}</div>` : '';
+    const sym = p.sym ? `<p class="qtext sym">${symText(p)}</p>` : '';
+    const ask = p.ask ? `<p class="qtext"><strong>${p.ask}</strong></p>` : '';
+    const card = document.createElement('div');
+    card.className = 'prob'; card.id = 'prob-' + p.id; card.dataset.id = p.id;
+    card.innerHTML = `
+      <div class="qhead"><span class="qn">P${n}</span><span class="lvl${p.lvl==='hard'?' hard':''}">${LAB_LEVELS[p.lvl]}</span><span class="lvl">${TYPE_LABEL[p.type]}</span><span class="done-badge">Solved ✓</span></div>
+      <p class="qtext">${p.q}</p>
+      ${broken}${sym}${ask}
+      <p class="dsline">Data: <a href="#ds-${p.ds}" data-open="${p.ds}">${DS_META[p.ds].name}</a>, pasted at A1, rows 2 to ${rows}.</p>
+      ${input}
+      <div class="row"><button class="btn ghost small" type="button" data-act="hint">Give me a hint</button>
+        <button class="btn ghost small" type="button" data-act="sol" disabled>Show solution</button>
+        <span class="lockhint" data-lock>The solution unlocks after a hint or an attempt.</span></div>
+      <div class="fb" aria-live="polite"></div><div data-hints></div>
+      <div class="solbox" data-solbox hidden></div>`;
+    host.appendChild(card);
+  });
+}
+function cardOf(id){ return $('prob-' + id); }
+function unlock(id){
+  const c = cardOf(id), b = c.querySelector('[data-act=sol]');
+  b.disabled = false; const l = c.querySelector('[data-lock]'); if(l) l.hidden = true;
+}
+function markSolved(id, quiet){
+  const c = cardOf(id); if(!c) return;
+  c.classList.add('solved'); unlock(id);
+}
+function showFb(card, ok, html){
+  const fb = card.querySelector('.fb'); fb.className = 'fb on ' + (ok ? 'good' : 'bad'); fb.innerHTML = html;
+}
+function solved(p, card, html){
+  const was = !!S.lab[p.id];
+  S.lab[p.id] = true; markSolved(p.id); save(); refresh();
+  showFb(card, true, `<strong>Correct.</strong> ${html || ''}${was ? '' : ''}`);
+}
+
+/* number problems */
+function checkNum(p, text){
+  let s = String(text).replace(/[,\s₹%]/g,'').replace(/^rs\.?/i,'');
+  if(s === '' || !isFinite(Number(s))) return {ok:false, msg:`Type a number only (no words). Work it out in your own copy of the sheet first.`};
+  const x = Number(s), dp = p.dp || 0, tol = (dp ? 0.5*Math.pow(10,-dp) : 0) + 1e-9;
+  const want = refValue(p); if(Fx.isErr(want)) return {ok:false, msg:'Internal: reference failed.'};
+  if(Math.abs(x - roundTo(want, dp)) <= tol) return {ok:true};
+  for(const t of (p.traps||[])){
+    const tv = Fx.evalText(baseSheet(p.ds), t.ref);
+    if(!Fx.isErr(tv) && Math.abs(x - roundTo(tv, dp)) <= tol) return {ok:false, msg:t.msg};
+  }
+  const w = roundTo(want, dp);
+  if(dp > 0 && w !== 0 && (Math.abs(x / w - 10) < 1e-6 || Math.abs(x / w - 0.1) < 1e-6)) return {ok:false, msg:`Your digits are right but the decimal point is in the wrong place. Check the units.`};
+  return {ok:false, msg:`${s} is not it. Check which column and which rows your formula used (the data runs from row 2 to row ${lastRow(p.ds)}), then try again.`};
+}
+
+/* formula problems */
+function checkFormula(p, raw){
+  const f = String(raw).replace(/[“”]/g,'"').replace(/[‘’]/g,"'").trim();
+  if(!f) return {ok:false, msg:`Type your formula first.`};
+  if(f[0] !== '=') return {ok:false, msg:`Start with =. Without it Sheets treats what you typed as plain text, not a formula.`};
+  const info = Fx.analyse(f), base = baseSheet(p.ds);
+  if(info.ok && !info.refs.length && !info.ranges.length) return {ok:false, msg:`That is a typed answer, not a formula. The sheet has to do the work, so refer to the cells.`};
+  const v = Fx.evalText(base, f);
+  if(Fx.isErr(v)) return {ok:false, shown:v.err, msg:`Sheets would show <strong>${esc(v.err)}</strong>. ${esc(v.msg)}`};
+  const shown = Fx.fmt(v), want = refValue(p, base, 0), compact = f.replace(/\s+/g,'');
+  if(!Fx.equal(v, want)){
+    for(const t of (p.traps||[])){
+      if(t.re){ if(t.re.test(compact)) return {ok:false, shown, msg:t.msg}; }
+      else {
+        const tv = Fx.evalText(base, t.ref);
+        if(Fx.equal(v, tv)) return {ok:false, shown, msg:t.msg};
+      }
+    }
+    let msg;
+    if(typeof want === 'string' && typeof v === 'string' && want.toLowerCase() === v.toLowerCase()) msg = `The word is right but the capitals are not. The task asks for exactly "${esc(want)}".`;
+    else if(typeof want === 'number' && typeof v === 'string') msg = `Your formula returns the text "${esc(shown)}". The task needs a number.`;
+    else if(typeof want === 'string' && typeof v === 'number') msg = `Your formula returns the number ${esc(shown)}. The task wants one of the words, in quotation marks, as its result.`;
+    else if(typeof want === 'string') msg = `Your formula returns "${esc(shown)}" for row 2, which is not the word the task asks for there. Re-read the bands and which comparison (> or >=) each one needs.`;
+    else msg = `Your formula gives ${esc(shown)}. That is not the value the task asks for. Check the column letter and that your range covers rows 2 to ${lastRow(p.ds)}.`;
+    return {ok:false, shown, msg};
+  }
+  const n = lastRow(p.ds) - 1, offs = p.fill ? Array.from({length:n}, (_,i)=>i) : [0], mut = mutSheet(p.ds);
+  for(const sh of [base, mut]) for(const d of offs){
+    if(sh === base && d === 0) continue;
+    const a = Fx.evalText(sh, Fx.shift(f, d)), b = refValue(p, sh, d);
+    if(!Fx.equal(a, b)){
+      if(sh === base) return {ok:false, shown, msg:`Right in row 2, but filled down to row ${2+d} your formula gives ${esc(Fx.fmt(a))} where it should give ${esc(Fx.fmt(b))}. Check what moves when you fill down: a $ before a row number pins that part in place.`};
+      return {ok:false, shown, msg:`Right for the numbers as they are, but when I changed the numbers in the sheet your formula did not follow${p.fill ? ' (row ' + (2+d) + ')' : ''}. It has to be a calculation that reads the cells, not a shortcut that only works for today's values.`};
+    }
+  }
+  for(const fn of (p.need||[])) if(info.funcs.indexOf(fn) < 0) return {ok:false, shown, msg:`<strong>${esc(shown)}</strong> is the right value, but the task asks you to use <strong>${fn}</strong>. Your formula uses ${info.funcs.length ? info.funcs.join(', ') : 'no function'}.`};
+  for(const fn of Object.keys(p.min||{})){
+    const k = info.funcs.filter(x=>x === fn).length;
+    if(k < p.min[fn]) return {ok:false, shown, msg:`<strong>${esc(shown)}</strong> is the right value, but the task needs at least ${p.min[fn]} uses of ${fn} (yours has ${k}).`};
+  }
+  return {ok:true, shown};
+}
+
+/* multiple choice (and diagnosis bug hunts) */
+function pickOption(p, card, j){
+  const st = state[p.id]; st.attempts++; unlock(p.id);
+  const opts = card.querySelectorAll('.lopt'), ok = j === p.a;
+  opts.forEach((b,i)=>{ b.classList.remove('right','wrong'); if(i === j) b.classList.add(ok ? 'right' : 'wrong'); });
+  if(ok){ opts.forEach(b=>b.disabled = true); solved(p, card, esc(p.o[j].why)); }
+  else showFb(card, false, `<strong>Not that one.</strong> ${esc(p.o[j].why)} Pick again.`);
+}
+
+const probList = $('probList');
+renderProblems();
+probList.addEventListener('click', e=>{
+  const card = e.target.closest('.prob'); if(!card) return;
+  const p = PROBLEMS.find(x=>x.id === card.dataset.id), st = state[p.id];
+  const opt = e.target.closest('.lopt');
+  if(opt && !opt.disabled){ pickOption(p, card, +opt.dataset.j); return; }
+  const a = e.target.closest('[data-act]'); if(!a) return;
+  const act = a.dataset.act;
+  if(act === 'check') doCheck(p, card);
+  else if(act === 'hint'){
+    const host = card.querySelector('[data-hints]');
+    if(st.hints < p.hints.length){
+      const d = document.createElement('div'); d.className = 'hintbox';
+      d.innerHTML = `<strong>Hint ${st.hints+1}.</strong> ${p.hints[st.hints]}`; host.appendChild(d); st.hints++;
+      unlock(p.id);
+      if(st.hints === p.hints.length) a.textContent = 'No hints left';
+    }
+  } else if(act === 'sol' && !a.disabled){
+    const box = card.querySelector('[data-solbox]'); box.hidden = false; box.innerHTML = `<strong>Solution.</strong> ${p.sol}`; a.remove();
+  }
+});
+probList.addEventListener('keydown', e=>{
+  if(e.key === 'Enter' && e.target.classList.contains('finp')){ e.preventDefault(); doCheck(PROBLEMS.find(x=>x.id === e.target.closest('.prob').dataset.id), e.target.closest('.prob')); }
+});
+function doCheck(p, card){
+  const st = state[p.id], inp = card.querySelector('.finp'), k = kindOf2(p);
+  st.attempts++; unlock(p.id);
+  if(k === 'num'){
+    const r = checkNum(p, inp.value);
+    if(r.ok) solved(p, card, `Your number matches what the sheet gives. The solution is there if you want to compare methods.`);
+    else showFb(card, false, r.msg);
+  } else {
+    const r = checkFormula(p, inp.value);
+    const shown = r.shown !== undefined ? `<br><span class="lockhint">Your formula returned: <span class="num">${esc(r.shown)}</span></span>` : '';
+    if(r.ok) solved(p, card, `Your formula returned <span class="num">${esc(r.shown)}</span>${p.fill ? ' and works filled down all the way' : ''}, and it still works when the numbers change.`);
+    else showFb(card, false, r.msg + shown);
+  }
+}
+probList.addEventListener('click', e=>{
+  const a = e.target.closest('[data-open]'); if(!a) return;
+  const d = $('ds-' + a.dataset.open); if(d){ d.open = true; }
+});
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  benchRender(); benchSelect(5,2,false);
+  resetGate(); renderValidation();
+})();
+
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='spreadsheets', SUBJECT='computing', TITLE='Let the Sheet Do the Work', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

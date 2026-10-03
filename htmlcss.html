@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skeleton, Skin and Box — Grade 7 IGCSE Computing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/json" id="hub-card">
+{
+  "id": "htmlcss",
+  "file": "htmlcss.html",
+  "subject": "computing",
+  "status": "ready",
+  "title": "Skeleton, Skin and Box",
+  "sub": "Computing · HTML and CSS",
+  "blurb": "Type HTML and CSS into a live editor that draws the page and flags unclosed tags, then stretch a box-model diagram until the arithmetic works. A 27-problem lab marks your code with a real parser.",
+  "meta": ["30 marks", "6 lessons", "Code & see editor", "27 lab problems"]
+}
+</script>
+<style>
+:root{
+  --ink:#1B1630;
+  --ink-soft:#5B5473;
+  --paper:#ECE8F4;
+  --card:#FFFFFF;
+  --line:#D5CEE4;
+  --line-soft:#E5E0F0;
+  --tag:#4A3FB0;         /* HTML · structure · always violet */
+  --tag-tint:#ECEAFB;
+  --sty:#B0306A;         /* CSS · style · always magenta */
+  --sty-tint:#FBEAF1;
+  --box:#A15208;         /* margin and the box model · always amber */
+  --box-tint:#FBF0E1;
+  --steel:#9A94AE;
+  --steel-dark:#6F688A;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --code-bg:#1F1A33;
+  --code-ink:#EDE9FB;
+  /* generic aliases, so the shared stylesheet below is identical on every page */
+  --fr:var(--tag); --de:var(--sty); --pc:var(--box);
+  --o2:var(--sty);  --o2-tint:var(--sty-tint);
+  --co2:var(--tag); --co2-tint:var(--tag-tint);
+  --muscle:var(--box);
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--co2)}
+:focus-visible{outline:3px solid var(--co2);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--o2)}
+.mast h1 b{font-weight:800;color:var(--box)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--co2);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(236,232,244,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--co2);color:var(--co2)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0 0 10px;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 150px}
+.ctrl .rv{font-family:var(--mono);font-size:14px;font-weight:700;min-width:56px;text-align:right}
+input[type=range]{flex:1 1 200px;accent-color:var(--box);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.ghost[disabled]:hover{background:transparent;color:var(--ink)}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px;min-width:0}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15px}
+.cell.wide{grid-column:1/-1}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--o2-tint);color:var(--o2)}
+.pill.out{background:var(--co2-tint);color:var(--co2)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.pill.bad{background:var(--no-tint);color:var(--no)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--co2-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- code ---------- */
+code{font-family:var(--mono);font-size:.86em;background:var(--paper);border:1px solid var(--line-soft);border-radius:5px;padding:0 5px;overflow-wrap:anywhere}
+.opt > span:last-child,.lopt > span:last-child{min-width:0}
+pre.code{font-family:var(--mono);font-size:13.5px;line-height:1.5;background:var(--code-bg);color:var(--code-ink);
+  padding:12px 14px;border-radius:10px;overflow-x:auto;margin:10px 0;white-space:pre;tab-size:2}
+pre.code code{background:none;border:0;padding:0;font-size:inherit;color:inherit;overflow-wrap:normal}
+.opt code,.lopt code{background:var(--card)}
+textarea.codebox{font-family:var(--mono);font-size:13.5px;line-height:1.5;min-height:150px;background:var(--code-bg);color:var(--code-ink);
+  border:1px solid #3A3260;caret-color:#fff;tab-size:2;white-space:pre;overflow:auto;resize:vertical}
+textarea.codebox:focus-visible{outline:3px solid var(--tag);outline-offset:2px}
+textarea.codebox::placeholder{color:#9D96BD}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.split > div{background:var(--card);padding:12px 14px;min-width:0}
+.split .lab,.minilab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;display:block}
+iframe.pv{display:block;width:100%;height:270px;border:1px solid var(--line);border-radius:10px;background:#fff}
+iframe.pv.short{height:150px}
+ul.tree,ul.tree ul{list-style:none;margin:0;padding-left:15px;border-left:1px solid var(--line)}
+ul.tree{padding-left:0;border-left:0}
+ul.tree li{font-family:var(--mono);font-size:12.5px;line-height:1.55;margin:1px 0}
+ul.tree .tg{color:var(--tag);font-weight:700}
+ul.tree .at{color:var(--ink-soft)}
+ul.tree .tx{color:var(--sty)}
+.scrollbox{max-height:230px;overflow:auto}
+ul.lint{margin:0;padding-left:18px;font-size:14.5px}
+ul.lint li{margin-bottom:5px}
+ul.lint li.w{color:var(--ink-soft)}
+ul.lint b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;margin-right:4px}
+.toolbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+
+/* ---------- box explorer ---------- */
+.bx-m{fill:var(--box-tint);stroke:var(--box);stroke-width:1.5;stroke-dasharray:6 4}
+.bx-b{fill:var(--ink)}
+.bx-p{fill:var(--tag-tint);stroke:var(--tag);stroke-width:1}
+.bx-c{fill:#fff;stroke:var(--steel-dark);stroke-width:1}
+.bx-t{font-family:var(--mono);font-size:12px;font-weight:700}
+.legend{display:flex;gap:8px;flex-wrap:wrap;padding:4px 16px 12px}
+.legend span{font-family:var(--mono);font-size:11.5px;padding:3px 9px;border-radius:99px;border:1px solid var(--line)}
+.legend .lm{background:var(--box-tint);border-style:dashed;border-color:var(--box)}
+.legend .lb{background:var(--ink);color:#fff;border-color:var(--ink)}
+.legend .lp{background:var(--tag-tint);border-color:var(--tag)}
+.legend .lc{background:#fff}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--o2);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--o2-tint)}
+.vid h3 a:hover{border-bottom-color:var(--o2)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--co2);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--o2)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--co2);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--o2);background:var(--o2-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.tagtxt{color:var(--tag);font-weight:700}
+.stytxt{color:var(--sty);font-weight:700}
+.boxtxt{color:var(--box);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;border:1px solid var(--ink-soft);vertical-align:-2px;margin-right:6px}
+
+/* ---------- questions ---------- */
+.qcard,.prob{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px;flex-wrap:wrap}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--o2-tint);color:var(--o2)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt,.lopt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]),.lopt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k,.lopt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right,.lopt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong,.lopt.wrong{background:var(--no-tint);border-color:var(--no)}
+.lopt.sel{background:var(--tag-tint);border-color:var(--tag)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.fb ul{margin:6px 0 0;padding-left:20px}
+.fb li{margin-bottom:4px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--co2-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+/* ---------- problem lab ---------- */
+.prob.solved{border-left:4px solid var(--ok)}
+.prob .kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--ink-soft)}
+.prob .ok-badge{display:none;font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--ok);background:var(--ok-tint);border-radius:99px;padding:2px 9px}
+.prob.solved .ok-badge{display:inline-block}
+.prob .qtext p{margin:0 0 8px}
+.numin{font-family:var(--mono);font-size:16px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);width:min(100%,22ch)}
+.unit{font-family:var(--mono);font-size:14px;color:var(--ink-soft);margin-left:6px}
+.seen{font-size:14.5px;color:var(--no);margin-top:8px}
+
+.traps{display:grid;gap:11px;grid-template-columns:minmax(0,1fr)}
+.trap{min-width:0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--o2);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0 0 6px;font-size:15.5px;color:var(--ink-soft)}
+.trap p:last-child{margin-bottom:0}
+.trap .wrongline,.trap .rightline{font-family:var(--mono);font-size:13px;padding:6px 10px;border-radius:7px;margin:6px 0;overflow-x:auto;white-space:pre}
+.trap .wrongline{background:var(--no-tint);color:#6E1D17}
+.trap .rightline{background:var(--ok-tint);color:#14512F}
+.trap .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:700px){
+  .split{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+  .ctrl label{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Computing · Grade 7 · Unit 4 · Build it</div>
+  <h1>Skeleton, <em>Skin</em> and <b>Box</b></h1>
+  <p class="lede">Three ideas make a web page. <strong>HTML</strong> is the skeleton: it decides what is on the page. <strong>CSS</strong> is the skin: it decides how it looks. The <strong>box model</strong> decides how much room each thing takes. Your wireframes for Home, About and Contact are drawings; this page is where you start typing them for real.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of 30, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme — otherwise you're just reading, and reading feels like learning without being learning. The Problem Lab near the end is extra practice; it is not part of the 30.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>build-it puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+    <div class="stat"><b class="num" id="s-lab">0<span style="font-size:15px;color:var(--ink-soft)">/27</span></b><span>lab problems solved</span><div class="bar"><i id="bar-lab"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#machine">Code &amp; see</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#box">Box model</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#problems">Problem lab</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+<!-- ============ HERO 1: CODE & SEE ============ -->
+<section id="machine">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>Code &amp; see</h2>
+      <p>Type HTML or CSS on the left. The page redraws on the right as you type, and the outline underneath shows the tree the browser built from your tags, with plain-language warnings when a tag is left open or closed in the wrong order. It starts with a correct page: break it, read the warning, fix it.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <label class="lab" for="ed">Your code</label>
+        <textarea class="codebox" id="ed" rows="13" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="HTML and CSS editor. The page on the right redraws as you type."></textarea>
+        <div class="toolbtns">
+          <button class="btn ghost small" type="button" id="ed-starter">Reload starter page</button>
+          <button class="btn ghost small" type="button" id="ed-clear">Clear</button>
+        </div>
+      </div>
+      <div>
+        <span class="lab" id="pvlab">What the browser draws</span>
+        <iframe class="pv" id="pv" sandbox="allow-same-origin" title="Live preview of your code" aria-labelledby="pvlab"></iframe>
+      </div>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">Outline (how the browser read your tags)</div><div class="scrollbox" id="tree" aria-live="polite"></div></div>
+      <div class="cell"><div class="lab">Problems found</div><div class="scrollbox" id="lintbox" aria-live="polite"></div></div>
+      <div class="phasebar">
+        <span class="pill hold" id="edpill">Checking…</span>
+        <span id="edtext" style="font-weight:500;font-family:var(--body);font-size:15.5px">Nothing in the outline is guessed: if a tag shows up where you did not expect it, the browser read your code differently from how you meant it.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newpuz1">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="pbox1"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">one job each</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was a screensaver with code on it. Pause and write — don't rewind at the end. If you are not going to write the lines underneath, close the video and go straight to the questions instead. That is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~30 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: BOX-MODEL EXPLORER ============ -->
+<section id="box">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The box-model explorer</h2>
+      <p>Every element is a box with four layers. Drag the sliders and watch the total grow. Read the arithmetic line, not just the picture: <span class="num">width</span> in CSS is the content only, and everything else is added on top.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 700 372" role="img" aria-label="A box drawn to scale with its content, padding, border and margin layers. The numbers below the picture give the exact sizes.">
+      <rect id="bx-m" class="bx-m" x="0" y="0" width="10" height="10" rx="2"/>
+      <rect id="bx-b" class="bx-b" x="0" y="0" width="10" height="10"/>
+      <rect id="bx-p" class="bx-p" x="0" y="0" width="10" height="10"/>
+      <rect id="bx-c" class="bx-c" x="0" y="0" width="10" height="10"/>
+      <text id="bx-ct" class="bx-t" x="350" y="165" text-anchor="middle" fill="#5B5473">content</text>
+      <text id="bx-lm" class="bx-t" x="0" y="0" fill="#A15208"></text>
+      <text id="bx-lb" class="bx-t" x="0" y="0" fill="#FFFFFF"></text>
+      <text id="bx-lp" class="bx-t" x="0" y="0" fill="#4A3FB0"></text>
+      <line id="bx-dim" x1="0" y1="346" x2="0" y2="346" stroke="#1B1630" stroke-width="2"/>
+      <text id="bx-dt" class="bx-t" x="350" y="365" text-anchor="middle" fill="#1B1630"></text>
+    </svg>
+    <div class="legend" aria-label="Key to the layers"><span class="lc">content</span><span class="lp">padding</span><span class="lb">border</span><span class="lm">margin</span></div>
+
+    <div class="ctrl"><label for="s-cw">Content width</label><input id="s-cw" type="range" min="20" max="240" step="1" value="120" aria-label="Content width in pixels"><span class="rv" id="v-cw">120</span></div>
+    <div class="ctrl"><label for="s-ch">Content height</label><input id="s-ch" type="range" min="20" max="120" step="1" value="80" aria-label="Content height in pixels"><span class="rv" id="v-ch">80</span></div>
+    <div class="ctrl"><label for="s-p">Padding (all four sides)</label><input id="s-p" type="range" min="0" max="40" step="1" value="20" aria-label="Padding on every side in pixels"><span class="rv" id="v-p">20</span></div>
+    <div class="ctrl"><label for="s-b">Border (all four sides)</label><input id="s-b" type="range" min="0" max="20" step="1" value="5" aria-label="Border thickness on every side in pixels"><span class="rv" id="v-b">5</span></div>
+    <div class="ctrl"><label for="s-m">Margin (all four sides)</label><input id="s-m" type="range" min="0" max="40" step="1" value="10" aria-label="Margin on every side in pixels"><span class="rv" id="v-m">10</span></div>
+
+    <div class="rows">
+      <div class="cell wide"><div class="lab">Total width: the space it takes across the page</div><div class="val mono" id="r-tw"></div></div>
+      <div class="cell wide"><div class="lab">Total height</div><div class="val mono" id="r-th"></div></div>
+      <div class="cell"><div class="lab">Visible box (to the outer edge of the border)</div><div class="val mono" id="r-vis"></div></div>
+      <div class="cell"><div class="lab">Space inside the border (content + padding)</div><div class="val mono" id="r-in"></div></div>
+      <div class="cell wide"><div class="lab">The CSS this box is</div><pre class="code" id="r-css" style="margin:6px 0 0"></pre></div>
+      <div class="phasebar">
+        <span class="pill bal">Default content-box</span>
+        <span id="bx-note" style="font-weight:500;font-family:var(--body);font-size:15.5px">Margin is space around the box, not part of it, but it still takes up room. That is why it is in the total.</span>
+        <span class="push"><button class="btn ghost" type="button" id="newpuz2">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="pbox2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes open. These are the marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens. When the question asks for code, write the code by hand; typing it into the editor and copying it across is not the same exercise.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<!-- ============ PROBLEM LAB ============ -->
+<section id="problems">
+  <div class="shead"><h2>Problem lab</h2><span class="tag">27 extra · not in the 30</span></div>
+  <p class="snote">These are on top of the fifteen questions, and harder: the first third is medium, the last third is properly hard. Most of them are marked by a program that reads your code, so you get told <em>what</em> is wrong, not just that something is. Each one gives you a hint before it gives you the answer. A problem only counts as solved if you did not open the solution first.</p>
+  <div id="labList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Picking a heading because of its size</h4>
+      <p>The sentence students write: <em>"I used h4 because I wanted smaller text."</em> Headings are about <strong>structure</strong>, not size. <code>&lt;h1&gt;</code> is the title of the page, <code>&lt;h2&gt;</code> a main section, <code>&lt;h3&gt;</code> a part of a section. A screen reader and a search engine both read that outline, and a page that jumps from h1 to h4 has a hole in it. Choose the level by where it sits in the outline, then change the size with CSS.</p>
+      <div class="lbl">Wrong</div><div class="wrongline">&lt;h1&gt;Rohan's Cricket Club&lt;/h1&gt;
+&lt;h4&gt;Fixtures&lt;/h4&gt;</div>
+      <div class="lbl">Right</div><div class="rightline">&lt;h1&gt;Rohan's Cricket Club&lt;/h1&gt;
+&lt;h2&gt;Fixtures&lt;/h2&gt;</div></div>
+
+    <div class="trap"><h4>Swapping <code>href</code> and <code>src</code></h4>
+      <p>The sentence students write: <em>"I put src on the link and it did nothing."</em> <code>href</code> points to somewhere you <strong>go</strong>, so it belongs on <code>&lt;a&gt;</code>. <code>src</code> names a file the browser must <strong>fetch and show right here</strong>, so it belongs on <code>&lt;img&gt;</code>. A link with no <code>href</code> is just text; an image with no <code>src</code> is a blank space. Related slip: <code>&lt;img&gt;</code> and <code>&lt;br&gt;</code> have no closing tag. Writing <code>&lt;/img&gt;</code> is wrong.</p>
+      <div class="lbl">Wrong</div><div class="wrongline">&lt;a src="about.html"&gt;About&lt;/a&gt;
+&lt;img href="logo.png" alt="Club badge"&gt;</div>
+      <div class="lbl">Right</div><div class="rightline">&lt;a href="about.html"&gt;About&lt;/a&gt;
+&lt;img src="logo.png" alt="Club badge"&gt;</div></div>
+
+    <div class="trap"><h4>Alt text that says nothing, or is missing</h4>
+      <p>The sentences students write: <em>alt="image"</em>, <em>alt="photo1.jpg"</em>, or no alt at all. Alt text is what a blind visitor hears and what everyone sees when the picture fails to load. "Image" tells them there is an image, which they already knew. Describe what is <strong>in</strong> it, in about a short sentence. The mark scheme words are "describes the picture".</p>
+      <div class="lbl">Wrong</div><div class="wrongline">&lt;img src="team.jpg" alt="image"&gt;
+&lt;img src="team.jpg"&gt;</div>
+      <div class="lbl">Right</div><div class="rightline">&lt;img src="team.jpg" alt="Eleven players in blue shirts holding a trophy"&gt;</div></div>
+
+    <div class="trap"><h4>CSS is American, and it is picky about punctuation</h4>
+      <p>CSS is spelt <code>color</code>. Write <code>colour</code> and the browser ignores the line, with no error message, so the text just stays black and you think it is broken. Same for <code>centre</code>: the value is <code>center</code>. Then the punctuation: a colon between property and value, a semicolon after every value, and a different property for text (<code>color</code>) and what is behind it (<code>background-color</code>). Leave out one semicolon and the next line is swallowed as well.</p>
+      <div class="lbl">Wrong</div><div class="wrongline">p { colour: red
+    background-color: yellow; text-align: centre; }</div>
+      <div class="lbl">Right</div><div class="rightline">p { color: red;
+    background-color: yellow; text-align: center; }</div></div>
+
+    <div class="trap"><h4>Treating <code>width</code> as the whole box</h4>
+      <p>The sentence students write: <em>"The box is 200 px wide, so it takes 200 px."</em> In the default box model, <code>width: 200px</code> sets the <strong>content only</strong>. Padding and border are added on both sides, and margin too: <span class="num">200 + 2×20 + 2×5 + 2×10 = 270</span>. Two smaller slips come with it: the border adds to the size just like padding does, and <strong>padding</strong> is the gap <em>inside</em> the border (the background colour fills it) while <strong>margin</strong> is the gap <em>outside</em> (it never has a background).</p>
+      <div class="lbl">Wrong</div><div class="wrongline">width 200 + padding 20 + border 5 = 225   (one side each, and no margin)</div>
+      <div class="lbl">Right</div><div class="rightline">200 + 2×20 + 2×5 + 2×10 = 270   (two sides of every layer)</div></div>
+  </div>
+</section>
+
+<footer>
+  <span>Your answers, marks, code and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+<script>
+/* ---------------- helpers: show code safely ---------------- */
+const esc  = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const c    = s => '<code>' + esc(s) + '</code>';
+const code = s => '<pre class="code"><code>' + esc(s) + '</code></pre>';
+const N = t => "<span class='num'>[" + t + "]</span>";
+
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'htmlcss-progress-v1';
+const FRESH = () => ({ lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, lab:{}, labCode:{}, labHints:{}, labTries:{}, labSeen:{}, editor:null });
+let S = FRESH();
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"HTML Tags, Attributes and Elements", ch:"John Morris", url:"https://www.youtube.com/watch?v=vNOyRZIkC7o",
+  why:"Tag, element and attribute are three different words, and the exam uses all three. This is the one for the vocabulary.",
+  task:"Pause each time a new tag appears and add a row to a three-column table on paper: the tag, what it does, and whether it needs a closing tag. Five rows minimum. Then write one example each of a tag, an element and an attribute in your own words."},
+ {t:"HTML Headings & Paragraphs Explained (h1–h6)", ch:"Self Taught Hub with Ridwan", url:"https://www.youtube.com/watch?v=Uyd2DXR2Z4o",
+  why:"The six heading levels and the paragraph tag, and what each is for. Watch it as the page outline, not as a size chart.",
+  task:"Write the six heading tags down the side of a page. Next to each, write one real thing on a real page that would use it (the title of the page, a section, a sub-section). If you run out at h4, that is the lesson: most pages never need more than three."},
+ {t:"HTML Lists and Hyperlinks", ch:"Shanna Roberts", url:"https://www.youtube.com/watch?v=MCJzOK8QEF4",
+  why:"Both halves of lesson 3 in one video: bullets and numbers, then the link tag with its href.",
+  task:"Write a ul with three items, an ol with three items, and one link to a page called about.html. Then pause on the video's version and compare it character by character with yours: quotes, slashes, and the word href."},
+ {t:"How to Add Images in HTML (and Why ALT Text Matters!)", ch:"Optimistic Web", url:"https://www.youtube.com/watch?v=7-2K0U5aYjY",
+  why:"The img tag, the two attributes it needs, and why one of them is not optional. Q4, Q9 and trap 3 live here.",
+  task:"Write the two attributes every img needs, with a one-line reason for each. Then write alt text for a photo of your own school gate in under ten words, without using the word 'image' or 'photo'."},
+ {t:"CSS Colors Tutorial for Beginners", ch:"Dave Gray", url:"https://www.youtube.com/watch?v=Ddc-IIrIot0",
+  why:"Named colours, hex and rgb, side by side. This is the video behind the conversion questions in the lab.",
+  task:"Write one colour three ways: by name, in hex and in rgb. Before the video shows it, convert #FF0000, #00FF00 and #0000FF to rgb on paper. Check yourself against what the video says, not the other way round."},
+ {t:"CSS box model explained (padding, border, margin)", ch:"Coder Coder", url:"https://www.youtube.com/watch?v=ZaiIDH0qp1c",
+  why:"The four layers of the box model drawn out. Watch it for the picture, then do the arithmetic yourself in the explorer.",
+  task:"Draw four nested rectangles and label them from the middle outwards: content, padding, border, margin. Underneath, write the formula for total width. Then open lesson 6 and check your formula against it before you touch the explorer."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"The web is made of tags", len:"5 min",
+  body:`<p>A web page is a plain text file. Your browser asks a server for it, the server sends the text, and the browser works out how to draw it. The language the text is written in is <strong>HTML</strong>, which stands for HyperText Markup Language. "Markup" means the text is labelled: this bit is a heading, this bit is a paragraph, this bit is a link.</p>
+        <p>The labels are <strong>tags</strong>, written inside angle brackets. Most come in pairs: an <strong>opening tag</strong>, the content, then a <strong>closing tag</strong> with a slash. Together the three parts are an <strong>element</strong>.</p>
+        ${code('<p>Match on Sunday</p>')}
+        <p>A few tags have no content, so they have no closing tag: ${c('<br>')} (a line break) and ${c('<img>')} (a picture). Writing ${c('</img>')} is a mistake.</p>
+        <p>Every page has the same skeleton:</p>
+        ${code(`<!DOCTYPE html>
+<html>
+<head>
+  <title>Rohan's Cricket Club</title>
+</head>
+<body>
+  <h1>Rohan's Cricket Club</h1>
+</body>
+</html>`)}
+        <ul>
+          <li>${c('<!DOCTYPE html>')} tells the browser this is modern HTML. It is not a tag in a pair.</li>
+          <li>${c('<html>')} wraps everything.</li>
+          <li>${c('<head>')} holds information <em>about</em> the page. Nothing in it is drawn in the window. The ${c('<title>')} inside it is the text on the browser tab.</li>
+          <li>${c('<body>')} holds everything you can see.</li>
+        </ul>
+        <p>Tags sit <em>inside</em> each other like boxes, and the inner one must close first. That nesting is what the outline in Code &amp; see draws for you.</p>`,
+  demo:`<strong>Do this:</strong> on paper, draw the skeleton as boxes inside boxes: html containing head and body, with title inside head. Do not copy the code above; draw from memory. The nesting is the lesson, and drawing it is the quickest way to find out you do not have it yet.`,
+  cliff:`The browser shows ${c('<h1>')} big and ${c('<h4>')} small. So why is choosing a heading because of its size the wrong reason? Lesson 2.`},
+
+ {t:"Headings and paragraphs: the outline of a page", len:"5 min",
+  body:`<p>There are six heading tags, ${c('<h1>')} to ${c('<h6>')}, and one paragraph tag, ${c('<p>')}.</p>
+        ${code(`<h1>Rohan's Cricket Club</h1>
+<h2>Fixtures</h2>
+<p>Every Sunday at 7 am in Cubbon Park.</p>
+<h2>Kit</h2>
+<p>Whites, please.</p>`)}
+        <p>Read the headings alone and you get the outline of the page: one title, two sections. That is what they are for. The rules:</p>
+        <ul>
+          <li><strong>One ${c('<h1>')} per page.</strong> It is the title.</li>
+          <li><strong>Do not skip levels.</strong> After an h1, the next heading is an h2, not an h4.</li>
+          <li><strong>Size is not the reason.</strong> Browsers happen to draw h1 biggest and h6 smallest, but you pick the level by where it sits in the outline. If the size is wrong, fix it with CSS.</li>
+          <li>A ${c('<p>')} holds text only. A heading, a list or another paragraph cannot sit inside one. The browser quietly closes the paragraph early and your page is no longer what you typed.</li>
+        </ul>
+        <p>Also: the browser ignores how you lay the code out. Press Enter three times between two sentences and it still draws one gap. Ten spaces in a row become one. Layout comes from tags, not from the keyboard.</p>`,
+  demo:`<strong>Do this:</strong> take the contents page of any school textbook and write it out as an outline on paper: the book title as level 1, the chapters as level 2, the sections as level 3. That is a page structure. Count how many levels you needed. It will be three or four, not six.`,
+  cliff:`A shopping list, a recipe, a menu, a row of page links: all lists. How do you tell the browser which of them is in a set order, and which is not? Lesson 3.`},
+
+ {t:"Lists and links", len:"6 min",
+  body:`<p><strong>Unordered list</strong> ${c('<ul>')}: bullets, order does not matter. <strong>Ordered list</strong> ${c('<ol>')}: numbers, order matters. Either way, each item is an ${c('<li>')} and the only things allowed directly inside the list are ${c('<li>')} tags.</p>
+        ${code(`<ol>
+  <li>Warm up</li>
+  <li>Nets</li>
+  <li>Match</li>
+</ol>`)}
+        <p>Swap ${c('<ol>')} for ${c('<ul>')} and the same three items get bullets instead of 1, 2, 3. You never type the numbers: the browser counts.</p>
+        <p>A <strong>hyperlink</strong> is the anchor tag ${c('<a>')} with an <strong>href</strong> attribute, short for hypertext reference. The text between the tags is what the visitor clicks.</p>
+        ${code('<a href="about.html">About us</a>')}
+        <p>An attribute is a name and a value, <span class="num">name="value"</span>, with the value in quotes, inside the opening tag. For another page on your own site, the value is just the file name. For a page somewhere else it is the full address, starting <span class="num">https://</span>. File names must match exactly: <span class="num">About.html</span> and <span class="num">about.html</span> are different files on most web servers.</p>
+        <p>Put the two together and you get the navigation bar of nearly every website: a list of links.</p>
+        ${code(`<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>`)}
+        <p>Good link text says where it goes: "the fixtures page", not "click here". Read the link on its own and it should still make sense.</p>`,
+  demo:`<strong>Do this:</strong> write Home, About and Contact on three sticky notes. Give every note a navigation list that links to all three pages, including itself, and count the arrows or links you need in total. The answer is 9. Now decide whether the page you are on should link to itself. That is a design decision, and it is the kind your wireframe already made.`,
+  cliff:`A link is text that points somewhere. What if you want a picture there instead, and what does the browser do when it cannot find the picture? Lesson 4.`},
+
+ {t:"Pictures, and the words behind them", len:"5 min",
+  body:`<p>A picture is the ${c('<img>')} tag. It has no content and no closing tag, because there is nothing to put between two tags. All the information goes in attributes:</p>
+        ${code('<img src="team.jpg" alt="Eleven players in blue shirts holding a trophy">')}
+        <ul>
+          <li><strong>src</strong> (source): which file to fetch. It is a file name or path, like the href of a link. Wrong name, and you get a broken-picture icon.</li>
+          <li><strong>alt</strong> (alternative text): words that stand in for the picture. A screen reader reads them aloud. They appear if the picture fails to load or the connection is slow. Search engines read them too.</li>
+        </ul>
+        <p>Good alt text describes what is <em>in</em> the picture, in a short sentence. These do not: ${c('alt="image"')}, ${c('alt="photo"')} and ${c('alt="team.jpg"')} all say nothing the visitor could not guess. No alt at all is worse, because a screen reader then reads out the file name.</p>
+        <p>Do not mix up the two attribute names you have met. <strong>href</strong> says where to <em>go</em> and belongs on a link. <strong>src</strong> says what to <em>show here</em> and belongs on a picture. Link and picture can be combined: put the ${c('<img>')} inside the ${c('<a>')} and the picture becomes the thing you click.</p>
+        ${code('<a href="index.html"><img src="logo.png" alt="Rohan\'s Cricket Club badge"></a>')}`,
+  demo:`<strong>Do this:</strong> describe a photo to someone sitting next to you, who cannot see it, in one sentence, well enough that they could draw it. That sentence is your alt text. If your sentence began "An image of...", delete those three words and read it again.`,
+  cliff:`All of this is black text on white, in whatever font the browser feels like. Which language adds colour, and where do its instructions go? Lesson 5.`},
+
+ {t:"CSS: colour and text", len:"7 min",
+  body:`<p><strong>CSS</strong> (Cascading Style Sheets) is a second language that says how HTML should look. It is made of <strong>rules</strong>, and every rule has the same shape:</p>
+        ${code(`selector {
+  property: value;
+}`)}
+        <p>The <strong>selector</strong> says which elements. The <strong>property</strong> says what to change. The <strong>value</strong> says what to change it to. A colon sits between property and value; a <strong>semicolon</strong> ends the line.</p>
+        ${code(`h1 {
+  color: red;
+  background-color: yellow;
+  text-align: center;
+}`)}
+        <p>Four properties for this topic:</p>
+        <ul>
+          <li>${c('color')}: the colour of the <em>text</em>. It is spelt the American way, and ${c('colour')} does nothing.</li>
+          <li>${c('background-color')}: the colour <em>behind</em> the text.</li>
+          <li>${c('text-align')}: ${c('left')}, ${c('center')} or ${c('right')}. Again, ${c('centre')} fails.</li>
+          <li>${c('font-family')}: a list of fonts to try, ending with a <strong>generic family</strong> as a safety net: ${c('font-family: Georgia, serif;')}. If the visitor has no Georgia, the browser uses any serif font. The generic ones are ${c('serif')}, ${c('sans-serif')} and ${c('monospace')}.</li>
+        </ul>
+        <p><strong>Where the rules go.</strong> Either inline, on one tag: ${c('<p style="color: red;">')}, or in a ${c('<style>')} element in the head, which covers the whole page at once. Use the second; inline is only for emergencies.</p>
+        <p><strong>Three ways to write a colour.</strong> By name (${c('red')}), in hex, or as ${c('rgb(255, 0, 0)')}. Hex is rgb in disguise: ${c('#')} then three pairs of digits, one pair each for red, green and blue. Each pair is a base-16 number from 00 (none) to FF (full), and FF is 15×16 + 15 = 255. So 80 is 8×16 = 128, half strength.</p>
+        <table class="data">
+          <tr><th>Colour</th><th>Hex</th><th>rgb</th></tr>
+          <tr><td><span class="sw" style="background:#FF0000"></span>red</td><td>#FF0000</td><td>rgb(255, 0, 0)</td></tr>
+          <tr><td><span class="sw" style="background:#00FF00"></span>lime (pure green)</td><td>#00FF00</td><td>rgb(0, 255, 0)</td></tr>
+          <tr><td><span class="sw" style="background:#0000FF"></span>blue</td><td>#0000FF</td><td>rgb(0, 0, 255)</td></tr>
+          <tr><td><span class="sw" style="background:#FFFFFF"></span>white</td><td>#FFFFFF</td><td>rgb(255, 255, 255)</td></tr>
+          <tr><td><span class="sw" style="background:#000000"></span>black</td><td>#000000</td><td>rgb(0, 0, 0)</td></tr>
+          <tr><td><span class="sw" style="background:#808080"></span>grey</td><td>#808080</td><td>rgb(128, 128, 128)</td></tr>
+        </table>
+        <p>One honest warning: CSS accepts the name ${c('green')} but it means ${c('#008000')}, a dark green. Pure bright green is ${c('lime')} or ${c('#00FF00')}.</p>`,
+  demo:`<strong>Do this:</strong> on paper, with no screen, convert #800000 to rgb. Split it into three pairs, work out each pair, then write it as rgb(…). Then put it in the editor and see whether the colour you get looks like what half-strength red ought to look like. (Answer: rgb(128, 0, 0), a dark red called maroon.)`,
+  cliff:`You can now change what is <em>inside</em> a box: its text, its colour. But how do you make room around a box, so that two of them do not touch? Lesson 6.`},
+
+ {t:"The box model", len:"7 min",
+  body:`<p>To a browser, every element is a rectangle, and every rectangle is built from four layers. From the inside out:</p>
+        <ol>
+          <li><strong>Content</strong>: the text or picture itself. Its size is what ${c('width')} and ${c('height')} set.</li>
+          <li><strong>Padding</strong>: space <em>inside</em> the border, between content and border. The element's background colour fills it.</li>
+          <li><strong>Border</strong>: a line round the outside of the padding. A border needs a width <em>and</em> a style: ${c('border: 2px solid black;')}. A width with no style draws nothing.</li>
+          <li><strong>Margin</strong>: space <em>outside</em> the border, pushing other elements away. It is always see-through. It is not part of the visible box, but it does take up room.</li>
+        </ol>
+        <p><strong>The arithmetic.</strong> In the default box model, ${c('width')} is the content alone, and every other layer is added on <em>both</em> sides:</p>
+        <div class="eqline">total width = content + 2×padding + 2×border + 2×margin</div>
+        <p>Example: content 200, padding 20, border 5, margin 10 gives 200 + 40 + 10 + 20 = <span class="num">270</span>. The <em>visible</em> box stops at the outer edge of the border: 200 + 40 + 10 = <span class="num">250</span>. Height works the same way.</p>
+        <p><strong>Shorthand.</strong> One value sets all four sides: ${c('padding: 10px;')}. Two values are top-and-bottom, then left-and-right: ${c('padding: 10px 20px;')}. Four values go clockwise from the top, <strong>top, right, bottom, left</strong>:</p>
+        ${code(`margin: 10px 20px 30px 40px;
+/*      top  right bottom left  */`)}
+        <p>Everything on this page uses the default box model. You will meet a switch called ${c('box-sizing')} later, which changes what ${c('width')} means. Until then, content only.</p>`,
+  demo:`<strong>Do this:</strong> on squared paper, one square is 10 px. Draw a box with content 10 squares wide (100 px), then a ring of padding 2 squares thick, a border 1 square thick and a margin 1 square thick. Count the squares across the whole drawing, including margin. Check it against the formula: 100 + 40 + 20 + 20 = 180 px, which is 18 squares.`,
+  cliff:`You now have every part of one page. Rohan's club site has three: Home, About and Contact, and each should link to the other two. What happens when a link points at a file that does not exist yet, and how many links does a three-page site really need? That is the next thing you build.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which tag holds the text that appears on the browser tab?",
+  o:[c('<head>'), c('<title>'), c('<h1>'), c('<body>')], a:1,
+  why:`The ${c('<title>')} tag holds the words on the tab. It sits <em>inside</em> ${c('<head>')}, which is why ${c('<head>')} is the tempting wrong answer: head is the container, title is the text. The ${c('<h1>')} is the big heading you see on the page itself, not on the tab.`},
+ {n:2, lvl:"standard", q:"Which of these is a correct unordered list with two items?",
+  o:[c('<ul><p>Chai</p><p>Samosa</p></ul>'), c('<ul>Chai, Samosa</ul>'), c('<ul><li>Chai</li><li>Samosa</li></ul>'), c('<ol><li>Chai</li><li>Samosa</li></ul>')], a:2,
+  why:`Items go in ${c('<li>')} tags, directly inside the list. A and B put something else inside the list. D opens an ${c('<ol>')} but closes a ${c('<ul>')}: the tags must match, and an ${c('<ol>')} would give numbers anyway. The trap is D: it has the right li tags and the wrong ending, so it looks correct at a glance.`},
+ {n:3, lvl:"standard", q:"Which line makes a working link to a page called contact.html?",
+  o:[c('<a src="contact.html">Contact</a>'), c('<a href="contact.html">Contact</a>'), c('<a>contact.html</a>'), c('<link href="contact.html">Contact</link>')], a:1,
+  why:`A link is ${c('<a>')} with an ${c('href')} attribute. A swaps in ${c('src')}, which is for pictures: it is the most common slip in this topic. C has the file name as text but nothing for the browser to follow, so it is not a link at all.`},
+ {n:4, lvl:"trap", q:"Which image tag is written correctly, and sensible for a photo of a rangoli pattern?",
+  o:[c('<img href="rangoli.jpg" alt="Rangoli pattern in red and yellow powder">'), c('<img src="rangoli.jpg" alt="image">'), c('<img src="rangoli.jpg" alt="Rangoli pattern in red and yellow powder">'), c('<img src="rangoli.jpg">')], a:2,
+  why:`Three different mistakes, one in each wrong answer. A uses ${c('href')} where a picture needs ${c('src')}. B has both attributes, but ${c('alt="image"')} describes nothing, so it earns no credit. D has no alt at all. Only C has the right attribute names <em>and</em> alt text that describes the picture.`},
+ {n:5, lvl:"trap", q:"Which CSS rule makes the text of every paragraph dark red?",
+  o:[c('p { colour: darkred; }'), c('p { color: darkred; }'), c('p { background-color: darkred; }'), c('p ( color: darkred; )')], a:1,
+  why:`CSS is spelt ${c('color')}. Answer A is the classic: write ${c('colour')} and the browser ignores the line without telling you. C colours the space <em>behind</em> the text, not the text. D uses round brackets where CSS needs curly braces.`}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:`Write one paragraph element containing the words "Match on Sunday". Then say what the <span class="num">/</span> in the closing tag does.`,
+  scheme:[`${c('<p>Match on Sunday</p>')}: an opening tag, the words, and a matching closing tag. ${N(1)}`,
+          `The slash marks the closing tag: it tells the browser where the paragraph ends. ${N(1)}`],
+  tip:"If you forgot the closing tag you lose the first mark, and the second as well if your explanation is just 'it closes it' with no mention of where the element stops."},
+ {n:7, m:2, lvl:"standard", q:`Explain the difference between the ${c('<head>')} and the ${c('<body>')} of an HTML page. Give one thing that goes in each.`,
+  scheme:[`The head holds information about the page that is not drawn in the window; for example the ${c('<title>')}. ${N(1)}`,
+          `The body holds everything the visitor sees on the page; for example headings, paragraphs, lists or images. ${N(1)}`],
+  tip:"One example without the idea scores nothing. 'The title goes in the head' is a fact; 'the head is information about the page, not shown in it' is the explanation."},
+ {n:8, m:2, lvl:"standard", q:`A student uses an ${c('<h4>')} for the heading of a section, straight after her ${c('<h1>')}, because she likes the smaller text. Explain what is wrong, and say what she should do instead.`,
+  scheme:[`Heading levels show the structure (outline) of the page, not the size of the text; skipping from h1 to h4 leaves gaps that screen readers and search engines read as missing sections. ${N(1)}`,
+          `She should use an ${c('<h2>')} (the next level down) and change how it looks with CSS. ${N(1)}`],
+  tip:"'Because h4 is too small' is the answer the question is built to catch. The word 'structure' is what the mark scheme looks for."},
+ {n:9, m:2, lvl:"standard", q:`State the purpose of the ${c('alt')} attribute on an image, and write good alt text for a photo of a cricket team holding a trophy.`,
+  scheme:[`Alt text is shown, or read aloud, in place of the picture: for screen-reader users, or when the picture fails to load. ${N(1)}`,
+          `Alt text that describes the picture, for example "Eleven players in blue shirts holding a trophy". Not "image", "photo" or a file name. ${N(1)}`],
+  tip:"'For search engines' alone is not the main purpose, and it is the answer examiners see most. Lead with people who cannot see the picture."},
+ {n:10, m:2, lvl:"standard", q:`Write a CSS rule that makes the text of every ${c('<h1>')} white, on a black background, centred.`,
+  scheme:[`A rule of the right shape: selector ${c('h1')}, curly braces, and every line written as property, colon, value, semicolon. ${N(1)}`,
+          `All three properties correct: ${c('color: white;')} (or #FFFFFF), ${c('background-color: black;')} (or #000000) and ${c('text-align: center;')}. ${N(1)}`],
+  tip:"Spell it color and center. The marks go to the property names as much as the values, and an English spelling in a CSS answer is a lost mark."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"standard", q:`Rohan styles a team-sheet box with this rule:${code(`.sheet {
+  width: 150px;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 10px;
+}`)}<strong>(a)</strong> Calculate the total width the box takes up across the page, in px. ${N(1)}<br><strong>(b)</strong> Calculate the width of the visible box, from the outer edge of the border on one side to the outer edge on the other. ${N(1)}<br><strong>(c)</strong> Rohan wants more space between this box and the next one, without making the coloured box any bigger. Which layer should he increase, and why? ${N(1)}`,
+  hints:["Draw it from the middle outwards: content, then padding on both sides, then border on both sides, then margin on both sides.",
+         "The visible box stops at the outer edge of the border. Leave margin out of (b).",
+         "For (c): which layer sits outside the border, and is never coloured in?"],
+  sol:[`(a) 150 + 2×20 + 2×5 + 2×10 = 150 + 40 + 10 + 20 = <strong>220 px</strong>.`,
+       `(b) 150 + 40 + 10 = <strong>200 px</strong>.`,
+       `(c) <strong>Margin.</strong> It is space outside the border, so it pushes the next box away and leaves the coloured box exactly as it was. Padding would grow the coloured area.`,
+       `If you wrote 175, you added each layer once: 150 + 20 + 5. Every layer has a left and a right side.`]},
+
+ {n:12, m:3, lvl:"standard", q:`Rohan's site has three pages: index.html, about.html and contact.html.<br><br><strong>(a)</strong> Write the HTML for a navigation list: an unordered list with three items, each item being a link to one of the pages. Use the link text Home, About and Contact. ${N(2)}<br><strong>(b)</strong> Rohan saves his second page as <span class="num">About.html</span>, but his link says ${c('href="about.html"')}. It works on his laptop but shows "page not found" once the site is online. Suggest why, and the fix. ${N(1)}`,
+  hints:["Outer tag first, then three inner tags, and the link goes inside each inner tag, not next to it.",
+         "ul, then li, then a. The words people click go between the opening and closing a.",
+         "For (b): a computer that hosts websites is fussier about names than your laptop is."],
+  sol:[`(a) ${c('<ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>')} One mark for the list structure (ul containing three li), one mark for three correct links: href in quotes, right file names, link text between the tags.`,
+       `(b) <strong>Most web servers treat capital letters as different letters</strong>, so About.html and about.html are two different file names. His laptop ignores the difference. Fix: make the file name and the href match exactly, in lower case.`,
+       `A habit that avoids the whole problem: file names all lower case, no spaces, every time.`]},
+
+ {n:13, m:3, lvl:"standard", q:`<strong>(a)</strong> Write #FF0000 and #00FF00 as rgb() values. ${N(1)}<br><strong>(b)</strong> Give the hex code for black, and the rgb value for white. ${N(1)}<br><strong>(c)</strong> A student writes ${c('color: #FF000;')} and the text stays black. Explain why. ${N(1)}`,
+  hints:["A hex colour is three pairs of digits: red, green, blue. FF is the strongest a pair can be, and the strongest is 255.",
+         "Black is no light at all. White is all three lights at full strength.",
+         "Count the digits after the #."],
+  sol:[`(a) #FF0000 = <strong>rgb(255, 0, 0)</strong>; #00FF00 = <strong>rgb(0, 255, 0)</strong>.`,
+       `(b) Black is <strong>#000000</strong> (rgb(0, 0, 0)). White is <strong>rgb(255, 255, 255)</strong> (#FFFFFF).`,
+       `(c) A hex colour needs six digits (three pairs). #FF000 has five, so the whole line is invalid and the browser ignores it, leaving the default black. No error message appears.`,
+       `The same silent failure happens with ${c('colour')} and ${c('centre')}: CSS ignores what it does not understand and carries on.`]},
+
+ {n:14, m:3, lvl:"hard", q:`A box in Rohan's page is styled like this:${code(`.panel {
+  width: 200px;
+  padding: 10px 20px;
+  border: 5px solid black;
+  margin: 0 15px;
+}`)}<strong>(a)</strong> State the left padding, the right padding, the left margin and the right margin. ${N(1)}<br><strong>(b)</strong> Calculate the total width the box takes up. ${N(1)}<br><strong>(c)</strong> The column it sits in is exactly 300 px wide. Changing only the <span class="num">width</span>, what value makes the box fill the column exactly? ${N(1)}`,
+  hints:["With two values in a shorthand, the first is top and bottom, and the second is left and right.",
+         "The border is 5 px on every side, so it adds 10 across. Add every layer across: content, both paddings, both borders, both margins.",
+         "For (c): add up everything that is not the width first, then take it away from 300."],
+  sol:[`(a) Padding is 10px top and bottom, <strong>20px left and right</strong>. Margin is 0 top and bottom, <strong>15px left and right</strong>.`,
+       `(b) 200 + (20 + 20) + (5 + 5) + (15 + 15) = 200 + 40 + 10 + 30 = <strong>280 px</strong>.`,
+       `(c) Everything except the width is 40 + 10 + 30 = 80 px, so width = 300 − 80 = <strong>220 px</strong>. Check: 220 + 80 = 300.`,
+       `If you read ${c('padding: 10px 20px')} as 10 on the left and right, you get 200 + 20 + 10 + 30 = 260. The first value is the vertical one.`]},
+
+ {n:15, m:3, lvl:"hard", q:`Here is part of Rohan's page:${code(`<h1>Bangalore Tigers</h1>
+<h4>Fixtures</h4>
+<p>Next match: <a src="fixtures.html">click here</a>
+<img href="tigers.jpg">`)}There are six faults. <strong>(a)</strong> Two tags have the right idea but the wrong attribute name. Find both and write each tag correctly. ${N(1)}<br><strong>(b)</strong> One element is never closed, and one tag is missing an attribute that every image needs. Fix both. ${N(1)}<br><strong>(c)</strong> The last two faults would not make the browser complain, but they would still lose marks. Name them and say how to fix each. ${N(1)}`,
+  hints:["Go line by line. Six faults in four lines, and the question has told you the shape of all six.",
+         "For (a): href is for going somewhere, src is for showing something here.",
+         "For (c): read the headings alone, as an outline, then read the link on its own, as a screen reader would."],
+  sol:[`(a) ${c('<a href="fixtures.html">')} (href, not src, on a link) and ${c('<img src="tigers.jpg">')} (src, not href, on a picture).`,
+       `(b) Add ${c('</p>')} after the link. Add alt text to the picture, for example ${c('alt="Bangalore Tigers squad in their blue kit"')}.`,
+       `(c) The <strong>heading level</strong>: an h4 straight after an h1 skips two levels; it should be ${c('<h2>')}. The <strong>link text</strong>: "click here" says nothing on its own; it should say where the link goes, such as "the fixtures page".`,
+       `Faults (a) and (b) break the page; fault (c) only makes it worse. That is why a program that only checks the browser's output can never tell you the work is good.`]}
+];
+/* ======================================================================
+   The checking engine: an HTML linter, a small CSS reader, and the
+   computed-style bridge. Every Problem Lab answer and both tools use it.
+   ====================================================================== */
+const T    = el => (el && el.textContent || '').replace(/\s+/g,' ').trim();
+const Q    = (d,s) => Array.prototype.slice.call(d.querySelectorAll(s));
+const attr = (el,a) => el.getAttribute(a);
+const kids = (el,tag) => Array.prototype.filter.call(el.children, x => x.tagName === tag.toUpperCase());
+const before = (a,b) => !!(a.compareDocumentPosition(b) & 4);
+const parseHtml = src => new DOMParser().parseFromString(src, 'text/html');
+const badAlt = v => ['image','picture','photo','img','pic'].indexOf(String(v).trim().toLowerCase()) >= 0 || /\.(jpe?g|png|gif|svg|webp)$/i.test(String(v).trim());
+const tagName = el => '<' + el.tagName.toLowerCase() + '>';
+
+/* ---------------- HTML linter: plain-language, no guessing ---------------- */
+const VOID = ['area','base','br','col','embed','hr','img','input','link','meta','source','track','wbr'];
+const NOT_IN_P = ['p','h1','h2','h3','h4','h5','h6','ul','ol','div','table','pre','form','blockquote'];
+
+function lintHtml(src){
+  const errors = [], warns = [], stack = [], forced = [];
+  const n = src.length;
+  const tagRe  = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)((?:\s+[^\s"'<>\/=]+(?:\s*=\s*(?:"[^"<>]*"|'[^'<>]*'|[^\s"'<>=`]+))?)*)\s*(\/?)>/y;
+  const attrRe = /([^\s"'<>\/=]+)(?:\s*=\s*("[^"]*"|'[^']*'|[^\s"'<>=`]+))?/g;
+  let i = 0;
+  while(i < n){
+    const lt = src.indexOf('<', i);
+    if(lt < 0) break;
+    i = lt;
+    if(src.startsWith('<!--', i)){
+      const e = src.indexOf('-->', i+4);
+      if(e < 0){ errors.push('A comment starts with <!-- but never ends with -->.'); break; }
+      i = e + 3; continue;
+    }
+    if(/^<!doctype/i.test(src.slice(i, i+9))){ const e = src.indexOf('>', i); i = e < 0 ? n : e+1; continue; }
+    const nx = src.charAt(i+1);
+    if(!nx || !/[a-zA-Z\/]/.test(nx)){ i++; continue; }          // a lone < in text
+    tagRe.lastIndex = i;
+    const m = tagRe.exec(src);
+    if(!m){
+      const gt = src.indexOf('>', i), nl = src.indexOf('<', i+1);
+      const end = gt < 0 ? Math.min(n, i+40) : (nl >= 0 && nl < gt ? nl : gt+1);
+      const seg = src.slice(i, end).trim();
+      const shown = seg.length > 42 ? seg.slice(0,42) + '…' : seg;
+      const quotes = (seg.match(/"/g) || []).length;
+      let why;
+      if(quotes % 2)                    why = 'is missing a closing quote mark';
+      else if(/=\s*(>|$)/.test(seg))    why = 'has an = but no value after it';
+      else if(!/>$/.test(seg))          why = 'is missing its closing >';
+      else                              why = 'is not written correctly';
+      errors.push('The tag ' + shown + ' ' + why + '.');
+      const nm = /^<([a-zA-Z][a-zA-Z0-9]*)/.exec(seg);
+      if(nm && VOID.indexOf(nm[1].toLowerCase()) < 0) stack.push({name:nm[1].toLowerCase(), rep:true});
+      i = Math.max(end, i+1); continue;
+    }
+    i = tagRe.lastIndex;
+    const closing = m[1] === '/', name = m[2].toLowerCase(), raw = m[3] || '';
+
+    if(!closing){
+      const attrs = {}; let am; attrRe.lastIndex = 0;
+      while((am = attrRe.exec(raw))) attrs[am[1].toLowerCase()] = am[2] === undefined ? null : am[2];
+      Object.keys(attrs).forEach(k => {
+        const v = attrs[k];
+        if(v === null){ if(k === 'href' || k === 'src') errors.push('The ' + k + ' attribute on <' + name + '> has no value. It needs ="..." after it.'); return; }
+        const quoted = /^["']/.test(v), val = quoted ? v.slice(1,-1) : v;
+        if(!quoted) errors.push(k + '=' + v + ' on <' + name + '> is not in quotes. Write ' + k + '="' + v + '".');
+        if((k === 'href' || k === 'src') && !val.trim()) errors.push('The ' + k + ' on <' + name + '> is empty. Put the file name or address between the quotes.');
+      });
+      if(name === 'a' && !('href' in attrs)) errors.push('An <a> with no href is not a link. Add href="..." with the page it goes to.');
+      if(name === 'img'){
+        if(!('src' in attrs)) errors.push('This <img> has no src, so the browser has no picture to fetch.' + ('alt' in attrs ? '' : ' It has no alt either.'));
+        else if(!('alt' in attrs)) errors.push('Your <img> has a src but no alt. Add alt="..." describing the picture.');
+        else {
+          const av = attrs.alt === null ? '' : (/^["']/.test(attrs.alt) ? attrs.alt.slice(1,-1) : attrs.alt);
+          if(!av.trim()) warns.push('The alt on this <img> is empty. Describe what is in the picture.');
+          else if(badAlt(av)) warns.push('alt="' + av + '" says nothing about what is in the picture. Describe it instead.');
+        }
+      }
+      if(VOID.indexOf(name) >= 0) continue;
+
+      const top = stack.length ? stack[stack.length-1] : null;
+      if(NOT_IN_P.indexOf(name) >= 0 && stack.some(s => s.name === 'p')){
+        if(name === 'p'){ errors.push('A new <p> starts while the previous <p> is still open. Close it with </p> first.'); stack.filter(s=>s.name==='p').forEach(s=>s.rep=true); }
+        else errors.push('<' + name + '> is inside a <p>. A paragraph cannot contain that: the browser quietly closes the <p> first, so the page is not what you typed.');
+      }
+      if(name === 'li' && top && top.name === 'li'){ errors.push('A new <li> starts while the previous <li> is still open. Close it with </li> first.'); top.rep = true; }
+      else if(name === 'li' && !(top && (top.name === 'ul' || top.name === 'ol'))) errors.push('<li> must sit directly inside a <ul> or an <ol>.');
+      if(top && (top.name === 'ul' || top.name === 'ol') && name !== 'li') errors.push('<' + name + '> sits directly inside a <' + top.name + '>. Only <li> items go there.');
+      stack.push({name:name, rep:false});
+      if(name === 'style' || name === 'script' || name === 'title'){
+        const k = src.toLowerCase().indexOf('</' + name, i);
+        if(k >= 0) i = k;
+      }
+      continue;
+    }
+
+    /* closing tag */
+    if(VOID.indexOf(name) >= 0){ errors.push('<' + name + '> has no closing tag. Delete </' + name + '>.'); continue; }
+    let k = -1;
+    for(let j = stack.length-1; j >= 0; j--) if(stack[j].name === name){ k = j; break; }
+    if(k >= 0 && k === stack.length-1) stack.pop();
+    else if(k >= 0){
+      for(let j = stack.length-1; j > k; j--){
+        errors.push('<' + stack[j].name + '> is still open when </' + name + '> arrives. Tags must close in the reverse order they opened.');
+        forced.push(stack[j].name);
+      }
+      stack.length = k;
+    } else {
+      const f = forced.indexOf(name);
+      if(f >= 0) forced.splice(f,1);
+      else errors.push('</' + name + '> closes a tag that was never opened, or was already closed.');
+    }
+  }
+  stack.forEach(s => {
+    if(s.rep) return;
+    errors.push('<' + s.name + '> is never closed. Add </' + s.name + '>.' + ((s.name === 'p' || s.name === 'li') ? ' (Browsers forgive this one. The exam does not.)' : ''));
+  });
+  return {errors:errors, warns:warns};
+}
+
+/* ---------------- colours ---------------- */
+const NAMED = {black:[0,0,0],white:[255,255,255],red:[255,0,0],lime:[0,255,0],green:[0,128,0],blue:[0,0,255],yellow:[255,255,0],
+  gray:[128,128,128],grey:[128,128,128],silver:[192,192,192],maroon:[128,0,0],purple:[128,0,128],navy:[0,0,128],teal:[0,128,128],
+  orange:[255,165,0],pink:[255,192,203],aqua:[0,255,255],cyan:[0,255,255],fuchsia:[255,0,255],magenta:[255,0,255],olive:[128,128,0],
+  darkred:[139,0,0],darkblue:[0,0,139],darkgreen:[0,100,0],lightgrey:[211,211,211],lightgray:[211,211,211],brown:[165,42,42],gold:[255,215,0],crimson:[220,20,60]};
+const rgbStr = a => 'rgb(' + a[0] + ', ' + a[1] + ', ' + a[2] + ')';
+function normColor(v){
+  v = String(v).trim().toLowerCase(); let m;
+  if(v === 'transparent') return 'rgba(0, 0, 0, 0)';
+  if(NAMED[v]) return rgbStr(NAMED[v]);
+  if((m = /^#([0-9a-f]{3})$/.exec(v))) return rgbStr(m[1].split('').map(x => parseInt(x+x,16)));
+  if((m = /^#([0-9a-f]{6})$/.exec(v))) return rgbStr([0,2,4].map(i => parseInt(m[1].substr(i,2),16)));
+  if((m = /^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/.exec(v))) return rgbStr([+m[1],+m[2],+m[3]]);
+  return v;
+}
+const hexToRgb = h => { const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(h); return m ? [parseInt(m[1],16),parseInt(m[2],16),parseInt(m[3],16)] : null; };
+
+/* ---------------- a small CSS reader (rules + plain-language diagnosis) ---------------- */
+function parseCss(text){
+  const clean = String(text).replace(/\/\*[\s\S]*?\*\//g, '');
+  const rules = [], diag = [];
+  const o = (clean.match(/\{/g)||[]).length, cl = (clean.match(/\}/g)||[]).length;
+  if(o > cl) diag.push('A rule is missing its closing } .');
+  if(cl > o) diag.push('There is a } with no matching { .');
+  const re = /([^{}]+)\{([^{}]*)\}/g; let m;
+  while((m = re.exec(clean))){
+    const sels = m[1].split(',').map(s => s.trim()).filter(Boolean);
+    const decls = [];
+    m[2].split(';').forEach(d => {
+      if(!d.trim()) return;
+      const ix = d.indexOf(':');
+      if(ix < 0){
+        diag.push(/=/.test(d) ? '"' + d.trim() + '" uses = where CSS needs a colon, as in color: red;' : '"' + d.trim() + '" is not a declaration. It needs a colon, as in color: red;');
+        return;
+      }
+      const prop = d.slice(0,ix).trim().toLowerCase(), val = d.slice(ix+1).trim().replace(/\s*!important\s*$/,'');
+      decls.push({prop:prop, val:val});
+      if(/^(background-)?colou?r$/.test(prop) && /colour/.test(prop)) diag.push('"' + prop + '" is British spelling. CSS only understands color and background-color, so the browser ignored that line.');
+      if(/:/.test(val)) diag.push('A semicolon is missing: "' + d.trim().replace(/\s+/g,' ') + '" has two declarations run together, so the browser threw the whole line away.');
+      if(val.toLowerCase() === 'centre') diag.push('"centre" is British spelling. The CSS value is center.');
+      if(/color$/.test(prop) && /^[0-9a-f]{6}$/i.test(val)) diag.push('A hex colour must start with #. "' + val + '" on its own is not a colour.');
+    });
+    rules.push({sels:sels, decls:decls});
+  }
+  return {rules:rules, diag:diag};
+}
+
+const BSTYLES = ['none','solid','dashed','dotted','double','groove','ridge','inset','outset','hidden'];
+const SIDES = ['top','right','bottom','left'];
+const validLen = v => /^-?\d+(\.\d+)?px$/.test(v) || v === '0';
+const pxv = v => v === '0' ? '0px' : v;
+function expandDecl(prop, val, out){
+  val = String(val).trim();
+  if(prop === 'color' || prop === 'background-color'){ if(normColor(val).indexOf('rgb') === 0) out[prop] = normColor(val); return; }
+  if(prop === 'text-align'){ if(['left','right','center','justify','start','end'].indexOf(val) >= 0) out[prop] = val; return; }
+  if(prop === 'font-family'){ if(val) out[prop] = val; return; }
+  if(prop === 'width' || prop === 'height'){ if(validLen(val)) out[prop] = pxv(val); return; }
+  if(prop === 'box-sizing'){ if(val === 'content-box' || val === 'border-box') out[prop] = val; return; }
+  if(prop === 'margin' || prop === 'padding'){
+    const p = val.split(/\s+/);
+    if(p.length > 4 || !p.every(validLen)) return;
+    const t = p.map(pxv);
+    const q = t.length === 1 ? [t[0],t[0],t[0],t[0]] : t.length === 2 ? [t[0],t[1],t[0],t[1]] : t.length === 3 ? [t[0],t[1],t[2],t[1]] : t;
+    SIDES.forEach((s,i) => out[prop + '-' + s] = q[i]);
+    return;
+  }
+  if(/^(margin|padding)-(top|right|bottom|left)$/.test(prop)){ if(validLen(val)) out[prop] = pxv(val); return; }
+  if(prop === 'border'){
+    const parts = val.split(/\s+/);
+    const w = parts.filter(validLen)[0], st = parts.filter(x => BSTYLES.indexOf(x) >= 0)[0];
+    const col = parts.filter(x => x !== w && x !== st)[0];
+    SIDES.forEach(s => {
+      out['border-' + s + '-width'] = w ? pxv(w) : '3px';
+      out['border-' + s + '-style'] = st || 'none';
+      if(col && normColor(col).indexOf('rgb') === 0) out['border-' + s + '-color'] = normColor(col);
+    });
+    return;
+  }
+  if(prop === 'border-width'){ if(validLen(val)) SIDES.forEach(s => out['border-' + s + '-width'] = pxv(val)); return; }
+  if(prop === 'border-style'){ if(BSTYLES.indexOf(val) >= 0) SIDES.forEach(s => out['border-' + s + '-style'] = val); return; }
+}
+function specificity(sel){
+  const a = (sel.match(/#[\w-]+/g)||[]).length;
+  const b = (sel.match(/\.[\w-]+|\[[^\]]+\]/g)||[]).length;
+  const t = sel.replace(/#[\w-]+|\.[\w-]+|\[[^\]]+\]|:not\(|\)|[>+~*]/g,' ').split(/\s+/).filter(Boolean).length;
+  return a*10000 + b*100 + t;
+}
+/* the fallback when a real iframe cannot be measured (jsdom, locked-down embeds) */
+function parsedStyle(html, css){
+  const doc = parseHtml(html);
+  const rules = parseCss(css + '\n' + Q(doc,'style').map(x => x.textContent).join('\n')).rules;
+  const INH = ['color','font-family','text-align'];
+  function declared(el){
+    const hits = []; let order = 0;
+    rules.forEach(r => r.sels.forEach(s => {
+      let ok = false; try{ ok = el.matches(s); }catch(e){}
+      if(ok) r.decls.forEach(d => hits.push({sp:specificity(s), o:order++, prop:d.prop, val:d.val}));
+    }));
+    const inl = el.getAttribute('style');
+    if(inl) inl.split(';').forEach(d => { const ix = d.indexOf(':'); if(ix > 0) hits.push({sp:1e9, o:order++, prop:d.slice(0,ix).trim().toLowerCase(), val:d.slice(ix+1).trim()}); });
+    hits.sort((x,y) => x.sp - y.sp || x.o - y.o);
+    const out = {}; hits.forEach(h => expandDecl(h.prop, h.val, out)); return out;
+  }
+  function own(el, prop){
+    const d = declared(el);
+    const bw = /^border-(top|right|bottom|left)-width$/.exec(prop);
+    if(bw){ const st = d['border-' + bw[1] + '-style'] || 'none'; return (st === 'none' || st === 'hidden') ? '0px' : (d[prop] || '3px'); }
+    return d[prop];
+  }
+  return {
+    mode:'parse',
+    get:function(sel, prop){
+      const el = doc.querySelector(sel); if(!el) return null;
+      let v = own(el, prop);
+      if(v === undefined && INH.indexOf(prop) >= 0){ let p = el.parentElement; while(p && v === undefined){ v = own(p, prop); p = p.parentElement; } }
+      if(v !== undefined) return v;
+      if(prop === 'color') return 'rgb(0, 0, 0)';
+      if(prop === 'background-color') return 'rgba(0, 0, 0, 0)';
+      if(prop === 'text-align') return 'start';
+      if(prop === 'box-sizing') return 'content-box';
+      if(/^(margin|padding)-/.test(prop) || /^border-.*-width$/.test(prop)) return '0px';
+      if(/^border-.*-style$/.test(prop)) return 'none';
+      return '';
+    }
+  };
+}
+/* what goes into every preview iframe: the student's page, with links switched off and with relative picture files
+   (logo.png does not exist here) held back, so a missing file shows its alt text instead of failing on the network */
+function previewDoc(src){
+  const d = parseHtml(src);
+  Q(d,'img[src]').forEach(i => { const v = i.getAttribute('src'); if(!/^(https?:|data:)/i.test(v)){ i.setAttribute('data-src', v); i.removeAttribute('src'); } });
+  const b = d.createElement('base'); b.setAttribute('target', '_blank'); d.head.insertBefore(b, d.head.firstChild);
+  const st = d.createElement('style'); st.textContent = 'a{pointer-events:none}'; d.head.appendChild(st);
+  return (/^\s*<!doctype/i.test(src) ? '<!DOCTYPE html>' : '') + d.documentElement.outerHTML;
+}
+/* the real thing: render in a hidden sandboxed iframe, read getComputedStyle, throw it away */
+function withLive(html, fn){
+  return new Promise((res, rej) => {
+    let f;
+    try{
+      f = document.createElement('iframe');
+      f.setAttribute('sandbox', 'allow-same-origin');
+      f.setAttribute('aria-hidden', 'true'); f.tabIndex = -1;
+      f.style.cssText = 'position:absolute;left:-9999px;top:0;width:640px;height:320px;border:0;visibility:hidden';
+    }catch(e){ return rej(e); }
+    const timer = setTimeout(() => { try{ f.remove(); }catch(e){} rej(new Error('timeout')); }, 1500);
+    f.onload = () => {
+      clearTimeout(timer);
+      try{
+        const w = f.contentWindow, d = f.contentDocument;
+        if(!w || !d || typeof w.getComputedStyle !== 'function') throw new Error('no cssom');
+        const probe = d.createElement('i'); probe.style.color = 'rgb(1, 2, 3)'; d.body.appendChild(probe);
+        const ok = w.getComputedStyle(probe).color === 'rgb(1, 2, 3)'; probe.remove();
+        if(!ok) throw new Error('probe failed');
+        const out = fn({mode:'live', get:function(sel, prop){ const el = d.querySelector(sel); return el ? w.getComputedStyle(el).getPropertyValue(prop) : null; }});
+        f.remove(); res(out);
+      }catch(e){ try{ f.remove(); }catch(_){} rej(e); }
+    };
+    try{ f.srcdoc = previewDoc(html); (document.body || document.documentElement).appendChild(f); }catch(e){ clearTimeout(timer); rej(e); }
+  });
+}
+let CSS_LIVE = null;   // null = untried, true = iframe works, false = fall back to the reader
+async function cssRun(P, css, mode){
+  const html = '<!doctype html><html><head><meta charset="utf-8"><style>' + css + '</style></head><body>' + P.html + '</body></html>';
+  let msgs = null;
+  if(mode !== 'parse' && CSS_LIVE !== false){
+    try{ msgs = await withLive(html, s => P.expect(s.get, css)); CSS_LIVE = true; }
+    catch(e){ if(mode === 'live') throw e; CSS_LIVE = false; }
+  }
+  if(!msgs){ const s = parsedStyle(P.html, css); msgs = P.expect(s.get, css); }
+  if(msgs.length) msgs = parseCss(css).diag.concat(msgs);
+  return msgs;
+}
+/* expectation helpers shared by the CSS problems and puzzles */
+const fontList = s => String(s).split(',').map(x => x.trim().replace(/^["']|["']$/g,'').toLowerCase()).filter(Boolean);
+function want(get, sel, prop, expected, say){
+  const raw = get(sel, prop);
+  if(raw === null) return ['There is no ' + sel + ' on the page to style.'];
+  const nz = x => /color$/.test(prop) ? normColor(x) : String(x).trim().toLowerCase();
+  if(nz(raw) === nz(expected)) return [];
+  return [say + ' is ' + (raw === '' ? 'not set' : raw) + ', but it should be ' + expected + '.'];
+}
+const px = s => parseFloat(s) || 0;
+/* ======================================================================
+   THE PROBLEM LAB: 27 problems, medium to hard, none in the 30 marks.
+   Types: html (write), fix (repair), css (write, rendered and measured),
+   mc (choose), num (a number), rgb (a colour value).
+   Every problem carries a reference answer (ref) and at least one
+   deliberately wrong one (bad); the test harness runs both through check().
+   ====================================================================== */
+const PROBLEMS = [
+
+/* ---------- medium ---------- */
+{id:'p01', lvl:'medium', kind:'write the code', type:'html',
+ q:`<p>Write the skeleton of a page called "About Me": the doctype, the html element, a head containing a title, and a body containing one heading. Write every tag yourself.</p>`,
+ start:'', rows:9,
+ hints:[`Five things, outside in: the doctype, then <span class="num">html</span> wrapping a <span class="num">head</span> and a <span class="num">body</span>.`,
+        `The title goes <em>inside the head</em>, and the heading goes in the body. The head is never drawn on the page.`],
+ sol:code(`<!DOCTYPE html>
+<html>
+<head>
+  <title>About Me</title>
+</head>
+<body>
+  <h1>About me</h1>
+</body>
+</html>`),
+ ref:`<!DOCTYPE html>\n<html>\n<head>\n  <title>About Me</title>\n</head>\n<body>\n  <h1>About me</h1>\n</body>\n</html>`,
+ bad:[`<html><body><h1>About me</h1></body></html>`, `<!DOCTYPE html>\n<html>\n<head></head>\n<body>\n  <title>About Me</title>\n  <h1>About me</h1>\n</body>\n</html>`],
+ check:(s,d)=>{ const m=[];
+   if(!/^\s*<!doctype html>/i.test(s)) m.push('The page should start with <!DOCTYPE html>.');
+   ['html','head','body'].forEach(t=>{ if(!new RegExp('<'+t+'[\\s>]','i').test(s)) m.push('There is no <'+t+'> tag. Write it yourself; do not let the browser add it for you.'); });
+   const ti = d.querySelector('title');
+   if(!ti) m.push('There is no <title>.');
+   else if(ti.closest('body')) m.push('Your <title> is inside the <body>. It belongs in the <head>.');
+   else if(!T(ti)) m.push('Your <title> is empty. Put the page name between the tags.');
+   const h = Q(d,'body h1');
+   if(h.length !== 1) m.push('The body needs exactly one <h1>; yours has ' + h.length + '.'); else if(!T(h[0])) m.push('Your <h1> is empty.');
+   return m; }},
+
+{id:'p02', lvl:'medium', kind:'write the code', type:'html',
+ q:`<p>Write the headings for a page: one <span class="num">h1</span>, followed by two <span class="num">h2</span> headings, in that order. Give each one some text.</p>`,
+ start:'', rows:5,
+ hints:[`You need three heading elements, and the order matters: the title first, then the two sections.`,
+        `The pattern is <span class="num">h1, h2, h2</span>. Do not use any other heading level.`],
+ sol:code(`<h1>Rohan's Cricket Club</h1>
+<h2>Fixtures</h2>
+<h2>Kit</h2>`),
+ ref:`<h1>Rohan's Cricket Club</h1>\n<h2>Fixtures</h2>\n<h2>Kit</h2>`,
+ bad:[`<h2>Fixtures</h2>\n<h1>Rohan's Cricket Club</h1>\n<h2>Kit</h2>`, `<h1>Club</h1>\n<h3>Fixtures</h3>\n<h3>Kit</h3>`],
+ check:(s,d)=>{
+   const hs = Q(d,'h1,h2,h3,h4,h5,h6').map(h => h.tagName.toLowerCase());
+   if(!hs.length) return ['There are no headings yet.'];
+   if(hs.join() === 'h1,h2,h2') return Q(d,'h1,h2').some(h => !T(h)) ? ['One of your headings has no text in it.'] : [];
+   const m = [], cnt = t => hs.filter(x => x === t).length;
+   if(cnt('h1') !== 1) m.push('You have ' + cnt('h1') + ' <h1>; the page needs exactly one.');
+   if(cnt('h2') !== 2) m.push('You have ' + cnt('h2') + ' <h2>; the page needs two.');
+   const other = hs.filter(x => x !== 'h1' && x !== 'h2');
+   if(other.length) m.push('Only h1 and h2 are wanted. You also used ' + other.filter((x,i,a)=>a.indexOf(x)===i).map(x=>'<'+x+'>').join(', ') + '.');
+   if(!m.length) m.push('The order is ' + hs.join(', ') + '. It must be h1 first, then h2, then h2.');
+   return m; }},
+
+{id:'p03', lvl:'medium', kind:'write the code', type:'html',
+ q:`<p>Write an ordered list with exactly three items. The <strong>second</strong> item must contain a link to <span class="num">about.html</span>, with some link text.</p>`,
+ start:'', rows:7,
+ hints:[`Ordered means numbers, so the outer tag is <span class="num">ol</span>. Each item is an <span class="num">li</span>.`,
+        `The link goes <em>inside</em> the second li, not after it. The pattern is li, then a, with the href in quotes, then the words people click.`],
+ sol:code(`<ol>
+  <li>Warm up</li>
+  <li><a href="about.html">Meet the coach</a></li>
+  <li>Match</li>
+</ol>`),
+ ref:`<ol>\n  <li>Warm up</li>\n  <li><a href="about.html">Meet the coach</a></li>\n  <li>Match</li>\n</ol>`,
+ bad:[`<ul>\n  <li>Warm up</li>\n  <li><a href="about.html">About</a></li>\n  <li>Match</li>\n</ul>`, `<ol>\n  <li>Warm up</li>\n  <li>Nets</li>\n  <a href="about.html">About</a>\n</ol>`],
+ check:(s,d)=>{ const m = [];
+   if(Q(d,'ul').length) m.push('You used <ul>, which gives bullets. Numbers need <ol>.');
+   const ols = Q(d,'ol');
+   if(ols.length !== 1){ m.push('You need exactly one <ol>; yours has ' + ols.length + '.'); return m; }
+   const lis = kids(ols[0],'li');
+   if(lis.length !== 3){ m.push('The list needs exactly three items; yours has ' + lis.length + '.'); return m; }
+   const a = lis[1].querySelector('a');
+   if(!a) m.push('The second item has no link inside it. Put an <a> inside that <li>.');
+   else { if(attr(a,'href') !== 'about.html') m.push('The link in item 2 goes to "' + attr(a,'href') + '", not about.html.'); if(!T(a)) m.push('The link has no text between <a> and </a>, so there is nothing to click.'); }
+   return m; }},
+
+{id:'p04', lvl:'medium', kind:'write the code', type:'html',
+ q:`<p>Add the club's badge to a page: one image whose file is <span class="num">logo.png</span>, with alt text that describes it. (The badge is a blue shield with a cricket bat across it.)</p>`,
+ start:'', rows:3,
+ hints:[`The picture tag has no closing tag. Everything goes in attributes: one for the file, one for the words.`,
+        `The two attributes are <span class="num">src</span> and <span class="num">alt</span>. The alt must say what is <em>in</em> the picture, so "image" will not pass.`],
+ sol:code(`<img src="logo.png" alt="Blue shield with a cricket bat across it">`),
+ ref:`<img src="logo.png" alt="Blue shield with a cricket bat across it">`,
+ bad:[`<img src="logo.png" alt="image">`, `<img src="logo.png">`, `<img href="logo.png" alt="badge">`],
+ check:(s,d)=>{ const im = Q(d,'img');
+   if(im.length !== 1) return ['You need exactly one <img>; yours has ' + im.length + '.'];
+   const i = im[0], m = [], a = attr(i,'alt');
+   if(attr(i,'src') !== 'logo.png') m.push('The src is "' + attr(i,'src') + '". It should be logo.png.');
+   if(a === null) m.push('Your <img> has no alt.');
+   else if(!a.trim()) m.push('Your alt is empty. Describe what is in the picture.');
+   else if(badAlt(a)) m.push('alt="' + a + '" tells a blind visitor nothing. Describe what is in the picture.');
+   return m; }},
+
+{id:'p05', lvl:'medium', kind:'fix it', type:'fix',
+ q:`<p>This page has tags left open. Fix them without deleting any of the text: it should still have a heading, two paragraphs and a list of two items.</p>`,
+ start:`<h1>Chai stall</h1>
+<p>Open from 6 am.
+<p>Closed on Sundays.</p>
+<ul>
+  <li>Masala chai
+  <li>Ginger chai
+</ul>`, rows:9,
+ hints:[`Read it line by line and ask of every opening tag: where is its closing tag? Three are missing.`,
+        `The first paragraph, and both list items. Browsers forgive these, which is why this page "works" and still loses marks.`],
+ sol:code(`<h1>Chai stall</h1>
+<p>Open from 6 am.</p>
+<p>Closed on Sundays.</p>
+<ul>
+  <li>Masala chai</li>
+  <li>Ginger chai</li>
+</ul>`),
+ ref:`<h1>Chai stall</h1>\n<p>Open from 6 am.</p>\n<p>Closed on Sundays.</p>\n<ul>\n  <li>Masala chai</li>\n  <li>Ginger chai</li>\n</ul>`,
+ bad:[`<h1>Chai stall</h1>\n<p>Open from 6 am.\n<p>Closed on Sundays.</p>\n<ul>\n  <li>Masala chai\n  <li>Ginger chai\n</ul>`, `<h1>Chai stall</h1>\n<p>Open from 6 am.</p>`],
+ check:(s,d)=>{ const m = [];
+   if(Q(d,'p').length !== 2) m.push('The page should still have two paragraphs; it has ' + Q(d,'p').length + '.');
+   if(Q(d,'ul > li').length !== 2) m.push('The list should still have two items; it has ' + Q(d,'ul > li').length + '.');
+   ['Chai stall','Open from 6 am.','Closed on Sundays.','Masala chai','Ginger chai'].forEach(t => { if(T(d.body).indexOf(t) < 0) m.push('The text "' + t + '" has gone. Fix the tags; do not delete content.'); });
+   return m; }},
+
+{id:'p06', lvl:'medium', kind:'fix it', type:'fix',
+ q:`<p>Two nesting mistakes. Fix both. The heading must stay a heading, and the word "Sundays" must still be bold <em>and</em> italic.</p>`,
+ start:`<p><h1>Welcome to Rohan's Cricket Club</h1></p>
+<p>We play on <b><i>Sundays</b></i>.</p>`, rows:5,
+ hints:[`A paragraph cannot contain a heading. Which of the two tags is the outer one that should not be there?`,
+        `Tags must close in the reverse order they opened, like brackets in maths: the last one opened is the first one closed.`],
+ sol:code(`<h1>Welcome to Rohan's Cricket Club</h1>
+<p>We play on <b><i>Sundays</i></b>.</p>`),
+ ref:`<h1>Welcome to Rohan's Cricket Club</h1>\n<p>We play on <b><i>Sundays</i></b>.</p>`,
+ bad:[`<p><h1>Welcome to Rohan's Cricket Club</h1></p>\n<p>We play on <b><i>Sundays</b></i>.</p>`, `<h1>Welcome to Rohan's Cricket Club</h1>\n<p>We play on <b>Sundays</b>.</p>`],
+ check:(s,d)=>{ const m = [], h = Q(d,'h1');
+   if(h.length !== 1) m.push('The page should still have exactly one <h1>.');
+   else if(h[0].closest('p')) m.push('The <h1> is still inside a <p>.');
+   const t = Q(d,'b,i').filter(e => T(e) === 'Sundays').map(e => e.tagName);
+   if(t.indexOf('B') < 0 || t.indexOf('I') < 0) m.push('"Sundays" should still be both bold and italic: it needs a <b> and an <i> around it.');
+   return m; }},
+
+{id:'p07', lvl:'medium', kind:'fix it', type:'fix',
+ q:`<p>Three attribute mistakes. Fix them. The Contact link must go to <span class="num">contact.html</span>, and the picture needs alt text that describes it (a blue shield).</p>`,
+ start:`<a href=about.html>About</a>
+<a href>Contact</a>
+<img src="logo.png">`, rows:5,
+ hints:[`An attribute value goes in quotes. Look at each tag and ask: is there a value, and is it in quotes?`,
+        `The second link has the word href but nothing after it. The picture has a src but no <span class="num">alt</span>.`],
+ sol:code(`<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<img src="logo.png" alt="Blue shield with a cricket bat">`),
+ ref:`<a href="about.html">About</a>\n<a href="contact.html">Contact</a>\n<img src="logo.png" alt="Blue shield with a cricket bat">`,
+ bad:[`<a href=about.html>About</a>\n<a href>Contact</a>\n<img src="logo.png">`, `<a href="about.html">About</a>\n<a href="index.html">Contact</a>\n<img src="logo.png" alt="logo.png">`],
+ check:(s,d)=>{ const m = [];
+   const ab = Q(d,'a').filter(a => T(a) === 'About')[0], co = Q(d,'a').filter(a => T(a) === 'Contact')[0], im = d.querySelector('img');
+   if(!ab || attr(ab,'href') !== 'about.html') m.push('The About link should go to about.html.');
+   if(!co) m.push('The Contact link has disappeared.'); else if(attr(co,'href') !== 'contact.html') m.push('The Contact link goes to "' + attr(co,'href') + '". It should go to contact.html.');
+   if(!im) m.push('The picture has disappeared.');
+   else { const a = attr(im,'alt'); if(!a || !a.trim()) m.push('The picture needs alt text.'); else if(badAlt(a)) m.push('alt="' + a + '" describes nothing. Say what is in the picture.'); }
+   return m; }},
+
+{id:'p08', lvl:'medium', kind:'predict', type:'mc',
+ q:`<p>A browser reads this code:</p>${code('<ol>\n  <li>Chai</li>\n  <li>Samosa</li>\n  <li>Jalebi</li>\n</ol>')}<p>What appears immediately to the left of the word "Samosa"?</p>`,
+ o:['A bullet point','The number 2','The letter B','Nothing: the browser needs the number typed inside the li'], a:1,
+ fb:['Bullets come from <ul>. This is <ol>, an ordered list, so the browser numbers the items.',null,'Letters are possible, but only if you ask for them with another attribute. The default for <ol> is numbers.','You never type the numbers. Counting is the browser\'s job, which is the whole point of <ol>.'],
+ hints:[`Look at the outer tag. Is it the one for bullets, or the one for numbers?`,`Samosa is the second item, and the browser counts from 1 by default.`],
+ sol:`<p>The outer tag is <span class="num">ol</span>, so the items are numbered 1, 2, 3 by the browser. Samosa is second, so it gets <strong>2</strong>.</p>`,
+ ref:1, bad:[0,3]},
+
+{id:'p09', lvl:'medium', kind:'spot the error', type:'mc',
+ q:`<p>A student wants the second and third headings to be smaller than the first, so she writes:</p>${code('<h1>Welcome</h1>\n<h4>Our menu</h4>\n<h4>Contact</h4>')}<p>It looks right on screen. What is actually wrong?</p>`,
+ o:['Nothing. h4 is smaller than h1, so it works.','The headings are chosen for size, not structure: the page skips h2 and h3, so its outline has holes.','A page may only have one heading.','h4 is not a real tag.'], a:1,
+ fb:['It looks fine, and that is exactly why it is a trap. Headings describe the outline of the page; how they look is a separate job for CSS.',null,'A page can have as many headings as it needs. It should have only one h1, and these are not h1.','h4 is real: there are six heading levels, h1 to h6.'],
+ hints:[`The page looks correct. So the fault is not in how it looks. Think about who else reads headings: a screen reader, a search engine.`,`What heading level should come straight after an h1?`],
+ sol:`<p>Headings give a page its <strong>structure</strong>. After an h1, the next level is an h2, and sections inside that are h3. Skipping to h4 leaves an outline with holes in it. If the size is wrong, change it with CSS.</p>`,
+ ref:1, bad:[0,2]},
+
+/* ---------- harder ---------- */
+{id:'p10', lvl:'harder', kind:'arithmetic', type:'num',
+ q:`<p>A box is styled with:</p>${code('width: 120px;\npadding: 15px;\nborder: 5px solid black;\nmargin: 10px;')}<p>Calculate the total width it takes up across the page, in px.</p>`,
+ ans:120 + 2*15 + 2*5 + 2*10, unit:'px',
+ wrong:{120:'That is the content alone. Padding, border and margin are all added on top.',160:'You stopped at the outer edge of the border. Margin is also room the box takes up, on both sides: add 2 × 10.',170:'The border is missing. It adds to the width just as padding does: 2 × 5.',150:'You added each layer once. Every layer has a left and a right side, so each one counts twice.'},
+ hints:[`Content first, then add each layer. Each layer has two sides across, left and right.`,`Padding gives 2 × 15, border gives 2 × 5, and margin gives 2 × 10.`],
+ sol:`<p>120 + 2×15 + 2×5 + 2×10 = 120 + 30 + 10 + 20 = <strong>180 px</strong>.</p>`,
+ ref:'180', bad:['160','150']},
+
+{id:'p11', lvl:'harder', kind:'which layer', type:'mc',
+ q:`<p>The text inside a coloured box touches the edge of the box. You want a gap between the text and the edge, and you want the coloured background to grow to fill it. Which property do you change?</p>`,
+ o:['margin','padding','border','width'], a:1,
+ fb:['Margin is outside the border. It would push the box away from its neighbours, but the text would still touch the edge of the colour.',null,'A border is a line. A thicker border does add a little space, but it is a black line, not the coloured gap you asked for.','Width changes how wide the content is. The text would wrap differently, but it would still touch the edge.'],
+ hints:[`You need space on the <em>inside</em> of the line that makes the edge of the box.`,`Which of the four layers sits between the content and the border, and takes the background colour?`],
+ sol:`<p><strong>Padding</strong> is the space between the content and the border, and the background colour fills it. Margin is outside the border, and is always see-through.</p>`,
+ ref:1, bad:[0,2,3]},
+
+{id:'p12', lvl:'harder', kind:'colour value', type:'rgb',
+ q:`<p>Write the colour <span class="num">#808080</span> as an rgb value, in the form <span class="num">rgb(r, g, b)</span>.</p>`,
+ hex:'#808080', ans:[128,128,128],
+ wrong:{'80,80,80':'Hex is base 16, so 80 is not eighty. It is 8 × 16 + 0 = 128.', '8,8,8':'Each pair of hex digits is one number: 80 is a single value, not two digits.', '255,255,255':'That is white (FF is 255). 80 is half of that, near enough.'},
+ hints:[`#808080 is three pairs: red, green, blue. Each pair is a base-16 number. Here all three pairs are the same.`,`80 in base 16 is 8 × 16 + 0.`],
+ sol:`<p>Each pair is 80, which is 8 × 16 + 0 = 128. So <span class="num">rgb(128, 128, 128)</span>, a mid grey: half strength of all three lights.</p>`,
+ ref:'rgb(128, 128, 128)', bad:['rgb(80, 80, 80)','rgb(255, 255, 255)']},
+
+{id:'p13', lvl:'harder', kind:'write the CSS', type:'css',
+ html:`<h1>Match day</h1><p>Nets at 7 am.</p>`,
+ q:`<p>Write one CSS rule so that the <span class="num">h1</span> has red text on a yellow background. The paragraph must stay as it is.</p>`,
+ start:'', rows:5,
+ hints:[`The selector is the tag name. Inside the braces you need two properties: one for the text colour and one for the colour behind it.`,`The properties are <span class="num">color</span> and <span class="num">background-color</span>, and both are spelt the American way. Every line ends with a semicolon.`],
+ sol:code(`h1 {
+  color: red;
+  background-color: yellow;
+}`),
+ ref:`h1 {\n  color: red;\n  background-color: yellow;\n}`,
+ bad:[`h1 {\n  colour: red;\n  background-colour: yellow;\n}`, `h1 {\n  color: yellow;\n  background-color: red;\n}`, `p {\n  color: red;\n  background-color: yellow;\n}`],
+ expect:(g)=>[].concat(
+   want(g,'h1','color','rgb(255, 0, 0)','The h1 text colour'),
+   want(g,'h1','background-color','rgb(255, 255, 0)','The h1 background colour'),
+   want(g,'p','color','rgb(0, 0, 0)','The paragraph text colour (it should be left alone, so)'),
+   want(g,'p','background-color','rgba(0, 0, 0, 0)','The paragraph background (it should be left alone, so)'))},
+
+{id:'p14', lvl:'harder', kind:'colour value', type:'mc',
+ q:`<p>Four rules, each meant to give blue text. <strong>Which one does not?</strong></p>`,
+ o:[c('color: blue;'), c('color: #0000FF;'), c('color: rgb(0, 0, 255);'), c('color: #00FF00;')], a:3,
+ colours:['blue','#0000FF','rgb(0, 0, 255)','#00FF00'],
+ fb:['That is the named colour blue: rgb(0, 0, 255). It does give blue.','#0000FF is red 00, green 00, blue FF, which is full blue and nothing else. It does give blue.','rgb(0, 0, 255) is red 0, green 0, blue 255. It does give blue.',null],
+ hints:[`Convert each one to the same form, rgb, and see which one is not (0, 0, 255).`,`In hex the three pairs are red, green, blue in that order. Which pair carries FF in the odd one out?`],
+ sol:`<p>#00FF00 is red 0, green 255, blue 0: <strong>pure green</strong>. The other three are all rgb(0, 0, 255).</p>`,
+ ref:3, bad:[0,1,2]},
+
+{id:'p15', lvl:'harder', kind:'arithmetic', type:'num',
+ q:`<p>A box has padding <span class="num">20px</span>, border <span class="num">5px</span> and margin <span class="num">10px</span> on every side. You want it to take up exactly <span class="num">300px</span> across the page, margin included. What width should you give it?</p>`,
+ ans:300 - 2*20 - 2*5 - 2*10, unit:'px',
+ wrong:{300:'That is the total you want, not the width. The width is the content alone, and the other layers are added on top of it.',250:'You took off the padding and border but forgot the margin: 300 − 40 − 10 = 250. Margin counts too.',265:'You subtracted each layer once. There are two sides to every layer, so take off double.'},
+ hints:[`Work out the total of everything that is not the width first, counting both sides.`,`The extras are 2×20 + 2×5 + 2×10. Take that away from 300.`],
+ sol:`<p>Extras: 40 + 10 + 20 = 70. So width = 300 − 70 = <strong>230 px</strong>. Check: 230 + 70 = 300.</p>`,
+ ref:'230', bad:['300','250']},
+
+{id:'p16', lvl:'harder', kind:'write the CSS', type:'css',
+ html:`<h1>Fixtures</h1><p>Sunday: Cubbon Park.</p><p class="note">Bring your own water.</p>`,
+ q:`<p>Write CSS so that: the <span class="num">h1</span> is centred; every paragraph uses Georgia with a generic serif fallback; and <strong>only</strong> the paragraph with class <span class="num">note</span> is grey <span class="num">#808080</span>.</p>`,
+ start:'', rows:8,
+ hints:[`Three rules. The third needs a selector that matches a class, which is a dot followed by the class name.`,`<span class="num">text-align: center;</span> for the heading. For the font, a list: the font you want first, then <span class="num">serif</span> last as the safety net.`],
+ sol:code(`h1 {
+  text-align: center;
+}
+p {
+  font-family: Georgia, serif;
+}
+.note {
+  color: #808080;
+}`),
+ ref:`h1 {\n  text-align: center;\n}\np {\n  font-family: Georgia, serif;\n}\n.note {\n  color: #808080;\n}`,
+ bad:[`h1 { text-align: centre; }\np { font-family: Georgia; }\n.note { color: #808080; }`, `h1 { text-align: center; }\np { font-family: Georgia, serif; color: #808080; }`],
+ expect:(g,css)=>{ let m = [].concat(
+     want(g,'h1','text-align','center','The h1 text-align'),
+     want(g,'.note','color','rgb(128, 128, 128)','The .note colour'),
+     want(g,'p','color','rgb(0, 0, 0)','The ordinary paragraph is grey too. Its colour (it should stay black)'));
+   const ff = fontList(g('p','font-family') || '');
+   if(ff[0] !== 'georgia') m.push('The paragraph font-family should start with Georgia; it is ' + (ff.join(', ') || 'not set') + '.');
+   else if(ff[ff.length-1] !== 'serif') m.push('Georgia needs a fallback: end the font list with the generic family serif.');
+   return m; }},
+
+{id:'p17', lvl:'harder', kind:'tiny site', type:'html',
+ q:`<p>Write the navigation for Rohan's three-page site: an unordered list of three links, in this order: <span class="num">index.html</span>, <span class="num">about.html</span>, <span class="num">contact.html</span>. Give each link some text.</p>`,
+ start:'', rows:7,
+ hints:[`Outer list, three items, and a link <em>inside</em> each item. Three files, three links.`,`Check the order: Home first, then About, then Contact. The href goes in quotes, the file name in lower case.`],
+ sol:code(`<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>`),
+ ref:`<ul>\n  <li><a href="index.html">Home</a></li>\n  <li><a href="about.html">About</a></li>\n  <li><a href="contact.html">Contact</a></li>\n</ul>`,
+ bad:[`<ul>\n  <li><a href="about.html">About</a></li>\n  <li><a href="index.html">Home</a></li>\n  <li><a href="contact.html">Contact</a></li>\n</ul>`, `<ul>\n  <li><a href="index.html">Home</a></li>\n  <li><a href="About.html">About</a></li>\n  <li><a href="contact.html">Contact</a></li>\n</ul>`],
+ check:(s,d)=>{ const ul = Q(d,'ul');
+   if(ul.length !== 1) return ['You need exactly one <ul>; yours has ' + ul.length + '.'];
+   const lis = kids(ul[0],'li');
+   if(lis.length !== 3) return ['The list needs three items; yours has ' + lis.length + '.'];
+   const w = ['index.html','about.html','contact.html'], m = [];
+   lis.forEach((li,k) => { const a = li.querySelector('a');
+     if(!a) m.push('Item ' + (k+1) + ' has no link inside it.');
+     else { if(attr(a,'href') !== w[k]) m.push('Item ' + (k+1) + ' links to "' + attr(a,'href') + '" but should link to ' + w[k] + '.'); if(!T(a)) m.push('The link in item ' + (k+1) + ' has no text.'); } });
+   return m; }},
+
+{id:'p18', lvl:'harder', kind:'write the code', type:'html',
+ q:`<p>Write the body of a Fixtures page: one <span class="num">h1</span>, then an <span class="num">h2</span> called Fixtures, and under it an ordered list of three upcoming matches. Give the headings some text.</p>`,
+ start:'', rows:9,
+ hints:[`Three kinds of element, in this order: h1, then h2, then ol containing three li.`,`Order is checked, so the list has to come after the h2, as the fixtures under their heading.`],
+ sol:code(`<h1>Bangalore Tigers</h1>
+<h2>Fixtures</h2>
+<ol>
+  <li>Sunday 5th: Tigers v Lions</li>
+  <li>Sunday 12th: Tigers v Hawks</li>
+  <li>Sunday 19th: Tigers v Royals</li>
+</ol>`),
+ ref:`<h1>Bangalore Tigers</h1>\n<h2>Fixtures</h2>\n<ol>\n  <li>Sunday 5th: Tigers v Lions</li>\n  <li>Sunday 12th: Tigers v Hawks</li>\n  <li>Sunday 19th: Tigers v Royals</li>\n</ol>`,
+ bad:[`<h1>Bangalore Tigers</h1>\n<ol>\n  <li>One</li>\n  <li>Two</li>\n  <li>Three</li>\n</ol>\n<h2>Fixtures</h2>`, `<h1>Tigers</h1>\n<h2>Fixtures</h2>\n<ul>\n  <li>One</li>\n  <li>Two</li>\n  <li>Three</li>\n</ul>`],
+ check:(s,d)=>{ const m = [], h1 = Q(d,'h1'), h2 = Q(d,'h2'), ol = Q(d,'ol');
+   if(h1.length !== 1) m.push('You need exactly one <h1>; you have ' + h1.length + '.');
+   if(h2.length !== 1) m.push('You need exactly one <h2>; you have ' + h2.length + '.');
+   if(ol.length !== 1) m.push('You need exactly one <ol>; you have ' + ol.length + '.' + (Q(d,'ul').length ? ' (<ul> gives bullets, not numbers.)' : ''));
+   if(m.length) return m;
+   const n = kids(ol[0],'li').length;
+   if(n !== 3) m.push('The list needs exactly three items; yours has ' + n + '.');
+   if(!before(h1[0],h2[0])) m.push('The <h1> must come before the <h2>.');
+   if(!before(h2[0],ol[0])) m.push('The list must come after the <h2>: the fixtures sit under their heading.');
+   [h1[0],h2[0]].forEach(h => { if(!T(h)) m.push('Your ' + tagName(h) + ' is empty.'); });
+   return m; }},
+
+/* ---------- hard ---------- */
+{id:'p19', lvl:'hard', kind:'write the CSS', type:'css',
+ html:`<div class="box">Team sheet</div>`,
+ q:`<p>Style the element with class <span class="num">box</span>: <span class="num">10px</span> padding above and below, <span class="num">30px</span> padding left and right, a <span class="num">2px</span> solid border, and a <span class="num">20px</span> margin underneath. Use the shortest correct shorthand you can.</p>`,
+ start:'', rows:7,
+ hints:[`Two values in a padding shorthand are vertical first, then horizontal. The margin is bottom only, so it needs the longhand property.`,`A border needs a width <em>and</em> a style. Write it as <span class="num">border: 2px solid black;</span> (or any colour).`],
+ sol:code(`.box {
+  padding: 10px 30px;
+  border: 2px solid black;
+  margin-bottom: 20px;
+}`),
+ ref:`.box {\n  padding: 10px 30px;\n  border: 2px solid black;\n  margin-bottom: 20px;\n}`,
+ bad:[`.box {\n  padding: 10px 30px;\n  border: 2px;\n  margin-bottom: 20px;\n}`, `.box {\n  padding: 30px 10px;\n  border: 2px solid black;\n  margin-bottom: 20px;\n}`],
+ expect:(g)=>{ let m = [];
+   [['top','10px'],['bottom','10px'],['left','30px'],['right','30px']].forEach(p => { m = m.concat(want(g,'.box','padding-'+p[0],p[1],'The padding-' + p[0])); });
+   m = m.concat(want(g,'.box','margin-bottom','20px','The margin-bottom'));
+   const st = g('.box','border-top-style'), bw = g('.box','border-top-width');
+   if(st === 'none' && bw === '0px') m.push('The border does not draw: a width on its own is not enough, it needs a style as well, such as solid.');
+   else { m = m.concat(want(g,'.box','border-top-width','2px','The border width')); m = m.concat(want(g,'.box','border-top-style','solid','The border style')); }
+   return m; }},
+
+{id:'p20', lvl:'hard', kind:'spot the error', type:'mc',
+ q:`<p>Exactly one of these four lines has a fault, and it is not a typing mistake: the browser would draw all four without complaint. Which line is it?</p>${code(`1  <h1>Rohan's Cricket Club</h1>
+2  <p>Fixtures are on <a href="fixtures.html">the fixtures page</a>.</p>
+3  <img src="team.jpg" alt="image">
+4  <ul><li>Nets</li><li>Match</li></ul>`)}`,
+ o:['Line 1','Line 2','Line 3','Line 4'], a:2,
+ fb:['One h1 holding the title is exactly right.','The link text says where the link goes, and it reads well on its own. This is the good version of "click here".',null,'A list of two items, built correctly: ul, li, closing tags in order.'],
+ hints:[`None of them breaks the page. So you are looking for a line that is valid, but unhelpful to someone who cannot see.`,`Read each line aloud as a screen reader would. One of them says something that tells you nothing.`],
+ sol:`<p><strong>Line 3.</strong> alt="image" is valid code, so the browser is happy, but it describes nothing. A visitor who cannot see the picture learns only that there is a picture. It should say what is in it.</p>`,
+ ref:2, bad:[0,1,3]},
+
+{id:'p21', lvl:'hard', kind:'fix it', type:'fix',
+ q:`<p>A whole page, with six faults in it. Fix them all without deleting content. When you are done, the title must be in the head, the link must go to <span class="num">https://example.com</span>, the list must have two items, and the picture needs alt text that describes it (Lalbagh's glass house).</p>`,
+ start:`<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bangalore Page
+</head>
+<body>
+  <h1>Bangalore<h1>
+  <p>Best <a href="https://example.com>places</a> to eat:</p>
+  <ul>
+    <li>Idli at MTR</li>
+    <p>Dosa at CTR</p>
+  </ul>
+  <img src=lalbagh.jpg alt>
+</body>
+</html>`, rows:16,
+ hints:[`Work from the top, one fault at a time. Each fault is a tag that is open, closed wrongly, or in the wrong place; or an attribute that is missing something.`,`The faults, in order: an unclosed title; a second h1 where a closing tag should be; a missing quote on the link; a paragraph inside a list; and an image with an unquoted src and no alt text.`],
+ sol:code(`<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bangalore Page</title>
+</head>
+<body>
+  <h1>Bangalore</h1>
+  <p>Best <a href="https://example.com">places</a> to eat:</p>
+  <ul>
+    <li>Idli at MTR</li>
+    <li>Dosa at CTR</li>
+  </ul>
+  <img src="lalbagh.jpg" alt="Lalbagh glass house with flower beds in front">
+</body>
+</html>`),
+ ref:`<!DOCTYPE html>\n<html>\n<head>\n  <title>My Bangalore Page</title>\n</head>\n<body>\n  <h1>Bangalore</h1>\n  <p>Best <a href="https://example.com">places</a> to eat:</p>\n  <ul>\n    <li>Idli at MTR</li>\n    <li>Dosa at CTR</li>\n  </ul>\n  <img src="lalbagh.jpg" alt="Lalbagh glass house with flower beds in front">\n</body>\n</html>`,
+ bad:[`<!DOCTYPE html>\n<html>\n<head>\n  <title>My Bangalore Page\n</head>\n<body>\n  <h1>Bangalore<h1>\n  <p>Best <a href="https://example.com>places</a> to eat:</p>\n  <ul>\n    <li>Idli at MTR</li>\n    <p>Dosa at CTR</p>\n  </ul>\n  <img src=lalbagh.jpg alt>\n</body>\n</html>`,
+      `<!DOCTYPE html>\n<html>\n<head>\n  <title>My Bangalore Page</title>\n</head>\n<body>\n  <h1>Bangalore</h1>\n  <p>Best <a href="https://example.com">places</a> to eat:</p>\n  <ul>\n    <li>Idli at MTR</li>\n    <li>Dosa at CTR</li>\n  </ul>\n  <img src="lalbagh.jpg" alt="image">\n</body>\n</html>`],
+ check:(s,d)=>{ const m = [], ti = d.querySelector('head > title');
+   if(!ti || !T(ti)) m.push('The page needs a non-empty <title> inside the <head>.');
+   const h = Q(d,'h1'); if(h.length !== 1 || T(h[0]) !== 'Bangalore') m.push('The page needs exactly one <h1>, reading Bangalore.');
+   const a = Q(d,'a'); if(a.length !== 1 || attr(a[0],'href') !== 'https://example.com') m.push('The link should go to https://example.com.');
+   if(Q(d,'ul > li').length !== 2 || Q(d,'ul > p').length) m.push('The list should be a ul holding exactly two li items.');
+   ['Idli at MTR','Dosa at CTR'].forEach(t => { if(T(d.body).indexOf(t) < 0) m.push('"' + t + '" has gone missing.'); });
+   const im = Q(d,'img');
+   if(im.length !== 1 || attr(im[0],'src') !== 'lalbagh.jpg') m.push('The picture should be lalbagh.jpg.');
+   else { const al = attr(im[0],'alt'); if(!al || !al.trim()) m.push('The picture needs alt text.'); else if(badAlt(al)) m.push('alt="' + al + '" describes nothing. Say what is in the picture.'); }
+   return m; }},
+
+{id:'p22', lvl:'hard', kind:'write the CSS', type:'css',
+ html:`<h1>Ground rules</h1><h2>Nets</h2><p>Bring a bat.</p><p>Bring water.</p>`,
+ q:`<p>Two jobs, with a rule on how. (1) Make the <span class="num">h1</span> and the <span class="num">h2</span> purple (<span class="num">#800080</span>) using <strong>one</strong> rule, with a selector list. (2) Make the whole page use Verdana with a generic sans-serif fallback, by setting it <strong>once</strong>: you may not write a rule for <span class="num">p</span>. The paragraphs must still come out in Verdana.</p>`,
+ start:'', rows:8,
+ hints:[`A selector list separates selectors with a comma: two names, one set of braces. For the font, ask which element contains everything else on the page.`,`font-family is inherited, which means children copy their parent's value unless told otherwise. Set it on <span class="num">body</span> and let the paragraphs inherit it.`],
+ sol:code(`body {
+  font-family: Verdana, sans-serif;
+}
+h1, h2 {
+  color: #800080;
+}`),
+ ref:`body {\n  font-family: Verdana, sans-serif;\n}\nh1, h2 {\n  color: #800080;\n}`,
+ bad:[`h1 { color: #800080; }\nh2 { color: #800080; }\np { font-family: Verdana, sans-serif; }`, `body { font-family: Verdana; }\nh1, h2 { color: #800080; }`],
+ expect:(g,css)=>{ let m = [].concat(want(g,'h1','color','rgb(128, 0, 128)','The h1 colour'), want(g,'h2','color','rgb(128, 0, 128)','The h2 colour'));
+   const R = parseCss(css).rules;
+   if(!R.some(r => r.sels.indexOf('h1') >= 0 && r.sels.indexOf('h2') >= 0)) m.push('Use one rule with a selector list: h1, h2 { ... } rather than two separate rules.');
+   if(R.some(r => r.sels.some(x => /(^|\s)p$/.test(x)))) m.push('You wrote a rule for p. The brief says to set the font once, on the page, and let the paragraphs inherit it.');
+   const ff = fontList(g('p','font-family') || '');
+   if(ff[0] !== 'verdana') m.push('The paragraphs are not coming out in Verdana (they get: ' + (ff.join(', ') || 'the default') + '). Is the font-family set on an element that contains them?');
+   else if(ff[ff.length-1] !== 'sans-serif') m.push('Verdana needs a fallback: end the list with the generic family sans-serif.');
+   return m; }},
+
+{id:'p23', lvl:'hard', kind:'write the CSS', type:'css',
+ html:`<div class="banner">Match tomorrow</div>`,
+ q:`<p>Write a rule for <span class="num">.banner</span> with padding <span class="num">20px</span>, a <span class="num">5px</span> solid border and a margin of <span class="num">10px</span> on every side, so that the banner takes up exactly <span class="num">300px</span> across the page, margin included. You must choose the width. Do not use <span class="num">box-sizing</span>: this is the default box model.</p>`,
+ start:'', rows:7,
+ hints:[`Work out the extras across first: 2×20 + 2×5 + 2×10. The width is whatever is left of 300.`,`Extras = 40 + 10 + 20 = 70, so the width is 300 − 70. Write it as a px value on the width property.`],
+ sol:code(`.banner {
+  width: 230px;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 10px;
+}`),
+ ref:`.banner {\n  width: 230px;\n  padding: 20px;\n  border: 5px solid black;\n  margin: 10px;\n}`,
+ bad:[`.banner {\n  width: 300px;\n  padding: 20px;\n  border: 5px solid black;\n  margin: 10px;\n}`, `.banner {\n  box-sizing: border-box;\n  width: 300px;\n  padding: 20px;\n  border: 5px solid black;\n  margin: 10px;\n}`, `.banner {\n  width: 250px;\n  padding: 20px;\n  border: 5px solid black;\n}`],
+ expect:(g)=>{ let m = [];
+   const b = g('.banner','box-sizing'); if(b === null) return ['There is no .banner on the page to style.'];
+   if(b !== 'content-box') return ['box-sizing is ' + b + '. This problem uses the default, content-box, where width is the content alone.'];
+   ['left','right'].forEach(s => {
+     m = m.concat(want(g,'.banner','padding-'+s,'20px','The padding-' + s), want(g,'.banner','margin-'+s,'10px','The margin-' + s), want(g,'.banner','border-'+s+'-width','5px','The border-' + s + ' width'));
+   });
+   if(!m.length){
+     const w = px(g('.banner','width'));
+     const tot = w + 2*20 + 2*5 + 2*10;
+     if(tot !== 300) m.push('Your total is ' + tot + ' (' + w + ' + 2×20 + 2×5 + 2×10). It needs to be 300.');
+   }
+   return m; }},
+
+{id:'p24', lvl:'hard', kind:'arithmetic', type:'num',
+ q:`<p>Read this carefully, shorthand and all:</p>${code(`.b {
+  width: 100px;
+  padding: 10px 20px;
+  border: 4px solid black;
+  margin: 5px 0 5px 15px;
+}`)}<p>Calculate the total <strong>horizontal</strong> space the box takes up, in px.</p>`,
+ ans:100 + (20+20) + (4+4) + (15+0), unit:'px',
+ wrong:{138:'You read padding: 10px 20px as 10 on the left and right. The first value is top and bottom; the second, 20, is left and right.',178:'You gave the margin 15 on both sides. Four values go top, right, bottom, left, so the margin is 0 on the right and 15 on the left.',155:'The border is missing. It is 4 px on each of two sides, so it adds 8.',159:'You counted the border once. It is 4 px on each of two sides, so it adds 8.'},
+ hints:[`Take each shorthand apart before you add anything. Two values: vertical then horizontal. Four values: top, right, bottom, left.`,`Across the page: padding left 20 and right 20, border 4 and 4, margin left 15 and right 0. Then add the width.`],
+ sol:`<p>Padding left and right: 20 + 20 = 40. Border: 4 + 4 = 8. Margin: left 15, right 0 = 15. Total = 100 + 40 + 8 + 15 = <strong>163 px</strong>.</p>`,
+ ref:'163', bad:['138','178']},
+
+{id:'p25', lvl:'hard', kind:'predict', type:'mc',
+ q:`<p>A box is styled with ${c('padding: 10px 30px 20px 40px;')}. How far is the text from the <strong>right-hand</strong> border?</p>`,
+ o:['10px','20px','30px','40px'], a:2,
+ fb:['10px is the top, the first value. Four values go clockwise: top, right, bottom, left.','20px is the bottom, the third value.',null,'40px is the left, the last value. You counted the right-hand side from the wrong end: clockwise from the top is top, right, bottom, left.'],
+ hints:[`Four values go round the box like a clock, starting at the top.`,`Top, right, bottom, left. Count to the second value.`],
+ sol:`<p>Clockwise from the top: top 10, <strong>right 30</strong>, bottom 20, left 40. It reads like a clock face: 12, 3, 6, 9.</p>`,
+ ref:2, bad:[0,1,3]},
+
+{id:'p26', lvl:'hard', kind:'tiny site', type:'html',
+ q:`<p>The logo should be clickable. Write a <strong>single</strong> picture, <span class="num">logo.png</span>, with good alt text, that is itself the link to <span class="num">index.html</span>. There must be no separate text link.</p>`,
+ start:'', rows:4,
+ hints:[`A link wraps what is clicked. Usually that is words; here it is a picture.`,`Put the <span class="num">img</span> between the opening and closing <span class="num">a</span> tags. The href stays on the a, the src and alt stay on the img.`],
+ sol:code(`<a href="index.html"><img src="logo.png" alt="Rohan's Cricket Club badge"></a>`),
+ ref:`<a href="index.html"><img src="logo.png" alt="Rohan's Cricket Club badge"></a>`,
+ bad:[`<a href="index.html">Home</a>\n<img src="logo.png" alt="badge">`, `<img src="logo.png" href="index.html" alt="badge">`, `<a href="index.html"><img src="logo.png" alt="logo.png"></a>`],
+ check:(s,d)=>{ const m = [], a = Q(d,'a'), im = Q(d,'img');
+   if(im.length !== 1) return ['You need exactly one <img>; yours has ' + im.length + '.'];
+   if(a.length !== 1) return ['You need exactly one <a>; yours has ' + a.length + '.'];
+   if(attr(a[0],'href') !== 'index.html') m.push('The link goes to "' + attr(a[0],'href') + '". It should go to index.html.');
+   if(!a[0].contains(im[0])) m.push('The picture is not inside the link. Put the <img> between <a> and </a>.');
+   if(attr(im[0],'src') !== 'logo.png') m.push('The picture should be logo.png.');
+   const al = attr(im[0],'alt'); if(!al || !al.trim()) m.push('The picture needs alt text.'); else if(badAlt(al)) m.push('alt="' + al + '" describes nothing about the picture.');
+   if(T(d.body)) m.push('There is text on the page. The picture alone should be the link.');
+   return m; }},
+
+{id:'p27', lvl:'hard', kind:'tiny site', type:'html',
+ q:`<p>Capstone: write the whole of <span class="num">index.html</span> for Rohan's club. It needs: the doctype and the html, head and body; a title; one <span class="num">h1</span>; <strong>after</strong> the heading, a navigation list of three links to index.html, about.html and contact.html (in that order); at least one paragraph; and the badge <span class="num">logo.png</span> with alt text.</p>`,
+ start:'', rows:20,
+ hints:[`Build it outside in: doctype, html, head with title, body. Then fill the body in the order the question lists it.`,`Heading, then the list of three links, then a paragraph, then the picture. Check every tag you open has its partner, closing in reverse order, and every attribute value is in quotes.`],
+ sol:code(`<!DOCTYPE html>
+<html>
+<head>
+  <title>Rohan's Cricket Club</title>
+</head>
+<body>
+  <h1>Rohan's Cricket Club</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <p>We play every Sunday at 7 am in Cubbon Park.</p>
+  <img src="logo.png" alt="Blue shield with a cricket bat across it">
+</body>
+</html>`),
+ ref:`<!DOCTYPE html>\n<html>\n<head>\n  <title>Rohan's Cricket Club</title>\n</head>\n<body>\n  <h1>Rohan's Cricket Club</h1>\n  <ul>\n    <li><a href="index.html">Home</a></li>\n    <li><a href="about.html">About</a></li>\n    <li><a href="contact.html">Contact</a></li>\n  </ul>\n  <p>We play every Sunday at 7 am in Cubbon Park.</p>\n  <img src="logo.png" alt="Blue shield with a cricket bat across it">\n</body>\n</html>`,
+ bad:[`<!DOCTYPE html>\n<html>\n<head>\n  <title>Club</title>\n</head>\n<body>\n  <ul>\n    <li><a href="index.html">Home</a></li>\n    <li><a href="about.html">About</a></li>\n    <li><a href="contact.html">Contact</a></li>\n  </ul>\n  <h1>Club</h1>\n  <p>Hello.</p>\n  <img src="logo.png" alt="badge">\n</body>\n</html>`,
+      `<!DOCTYPE html>\n<html>\n<head>\n  <title>Club</title>\n</head>\n<body>\n  <h1>Club</h1>\n  <ul>\n    <li><a href="index.html">Home</a></li>\n    <li><a href="contact.html">Contact</a></li>\n    <li><a href="about.html">About</a></li>\n  </ul>\n  <p>Hello.</p>\n  <img src="logo.png" alt="badge">\n</body>\n</html>`],
+ check:(s,d)=>{ const m = [];
+   if(!/^\s*<!doctype html>/i.test(s)) m.push('Start with <!DOCTYPE html>.');
+   ['html','head','body'].forEach(t => { if(!new RegExp('<'+t+'[\\s>]','i').test(s)) m.push('There is no <' + t + '> tag.'); });
+   const ti = d.querySelector('head > title'); if(!ti || !T(ti)) m.push('The head needs a <title> with some text in it.');
+   const h = Q(d,'body h1'); if(h.length !== 1) m.push('The body needs exactly one <h1>; yours has ' + h.length + '.');
+   const ul = Q(d,'body ul');
+   if(ul.length !== 1) m.push('You need exactly one navigation <ul>; yours has ' + ul.length + '.');
+   else {
+     const lis = kids(ul[0],'li');
+     if(lis.length !== 3) m.push('The navigation list needs three items; yours has ' + lis.length + '.');
+     else { const w = ['index.html','about.html','contact.html'];
+       lis.forEach((li,k) => { const a = li.querySelector('a'); if(!a || attr(a,'href') !== w[k] || !T(a)) m.push('Navigation item ' + (k+1) + ' should be a link, with text, to ' + w[k] + '.'); }); }
+     if(h.length === 1 && !before(h[0], ul[0])) m.push('The navigation list should come after the heading.');
+   }
+   if(!Q(d,'body p').length) m.push('Add at least one paragraph.');
+   const im = Q(d,'body img');
+   if(im.length !== 1 || attr(im[0],'src') !== 'logo.png') m.push('You need the badge: one <img> with src logo.png.');
+   else { const al = attr(im[0],'alt'); if(!al || !al.trim()) m.push('The badge needs alt text.'); else if(badAlt(al)) m.push('alt="' + al + '" describes nothing.'); }
+   return m; }}
+];
+
+/* ---------------- run one problem against one answer ---------------- */
+async function runProblem(P, input, opts){
+  opts = opts || {};
+  if(P.type === 'html' || P.type === 'fix'){
+    const src = String(input == null ? '' : input);
+    if(!src.trim()) return {ok:false, msgs:['The box is empty. Write something first.']};
+    const L = lintHtml(src);
+    if(L.errors.length) return {ok:false, msgs:L.errors.slice(0,4), lint:true};
+    const msgs = P.check(src, parseHtml(src), L);
+    return {ok:!msgs.length, msgs:msgs.slice(0,4), warns:L.warns};
+  }
+  if(P.type === 'css'){
+    const css = String(input == null ? '' : input);
+    if(!css.trim()) return {ok:false, msgs:['The box is empty. Write a rule first.']};
+    const msgs = await cssRun(P, css, opts.mode);
+    return {ok:!msgs.length, msgs:msgs.slice(0,4)};
+  }
+  if(P.type === 'mc'){
+    if(input == null || input === '') return {ok:false, msgs:['Choose an answer first.']};
+    const i = +input;
+    return i === P.a ? {ok:true, msgs:[]} : {ok:false, msgs:[P.fb[i] || 'Not that one.']};
+  }
+  if(P.type === 'num'){
+    const n = parseFloat(String(input == null ? '' : input).replace(/[^\d.\-]/g,''));
+    if(isNaN(n)) return {ok:false, msgs:['Type a number.']};
+    if(n === P.ans) return {ok:true, msgs:[]};
+    return {ok:false, msgs:[P.wrong[n] || (n + ' is not it. Write the sum out layer by layer, both sides of each, before you add.')]};
+  }
+  if(P.type === 'rgb'){
+    const nums = String(input == null ? '' : input).match(/\d+/g);
+    if(/^\s*#/.test(String(input))) return {ok:false, msgs:['That is the hex code you were given. The question asks for rgb(r, g, b).']};
+    if(!nums || nums.length !== 3) return {ok:false, msgs:['Write it as rgb(r, g, b): three numbers.']};
+    const key = nums.map(Number).join(',');
+    if(key === P.ans.join(',')) return {ok:true, msgs:[]};
+    return {ok:false, msgs:[P.wrong[key] || ('rgb(' + nums.join(', ') + ') is not it. Convert each pair of hex digits separately: each pair is one number from 0 to 255.')]};
+  }
+  return {ok:false, msgs:['Unknown problem type.']};
+}
+const LAB_N = PROBLEMS.length;
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const el = document.createElement('div');
+  el.className = 'vid';
+  el.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(el);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q_=>{
+  const el = document.createElement('div');
+  el.className='qcard';
+  el.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q_.n}</span><span class="lvl${Q_.lvl==='hard'?' hard':''}">${Q_.lvl}</span><span class="mk">1 mark</span></div>
+    <div class="qtext">${Q_.q}</div>
+    <div class="opts" data-mcq="${Q_.n}">
+      ${Q_.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q_.n}" role="status"></div>`;
+  mcqList.appendChild(el);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q_=>{
+  const el = document.createElement('div');
+  el.className='qcard';
+  el.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q_.n}</span><span class="lvl">${Q_.lvl}</span><span class="mk">${Q_.m} marks</span></div>
+    <div class="qtext">${Q_.q}</div>
+    <textarea data-note="${Q_.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q_.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q_.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q_.n}" style="display:none">
+      <ol>${Q_.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q_.tip}</p>
+    </div>
+    ${markRow(Q_.n,Q_.m)}`;
+  shortList.appendChild(el);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q_=>{
+  const el = document.createElement('div');
+  el.className='qcard';
+  el.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q_.n}</span><span class="lvl${Q_.lvl==='hard'?' hard':''}">${Q_.lvl}</span><span class="mk">${Q_.m} marks</span></div>
+    <div class="qtext">${Q_.q}</div>
+    <textarea data-note="${Q_.n}" placeholder="Your working…" aria-label="Your working for question ${Q_.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q_.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q_.n}">Show full solution</button>
+    </div>
+    <div id="h${Q_.n}"></div>
+    <div class="solbox" id="w${Q_.n}" style="display:none">
+      <ol>${Q_.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q_.n,Q_.m)}`;
+  wordList.appendChild(el);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- render the problem lab ---------------- */
+const labList = document.getElementById('labList');
+function labCard(P, i){
+  const n = i+1, id = P.id;
+  const el = document.createElement('div');
+  el.className = 'prob'; el.id = 'pr-' + id;
+  let body = '';
+  if(P.type === 'html' || P.type === 'fix' || P.type === 'css'){
+    body = `<textarea class="codebox" data-code="${id}" rows="${P.rows||8}" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Your code for problem ${n}" placeholder="${P.type==='css'?'Write your CSS here…':(P.type==='fix'?'Fix the code here…':'Write your HTML here…')}"></textarea>`;
+    if(P.type === 'css') body += `<span class="minilab" style="margin-top:12px">What your CSS does to this page</span><iframe class="pv short" sandbox="allow-same-origin" title="Preview for problem ${n}" data-pv="${id}"></iframe>`;
+  } else if(P.type === 'mc'){
+    body = `<div class="opts" data-lopts="${id}">${P.o.map((o,j)=>`<button type="button" class="lopt" data-lo="${id}" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}</div>`;
+  } else {
+    body = `<label class="minilab" for="in-${id}">Your answer</label><input class="numin" id="in-${id}" data-num="${id}" type="text" inputmode="${P.type==='num'?'decimal':'text'}" autocomplete="off" aria-label="Your answer to problem ${n}">${P.unit?`<span class="unit">${P.unit}</span>`:''}`;
+  }
+  el.innerHTML = `
+    <div class="qhead"><span class="qn">P${n}</span><span class="lvl${P.lvl==='hard'?' hard':''}">${P.lvl}</span><span class="kind">${P.kind}</span><span class="ok-badge">Solved</span><span class="mk">lab</span></div>
+    <div class="qtext">${P.q}</div>
+    ${body}
+    <div class="row">
+      <button class="btn" type="button" data-lcheck="${id}">Check</button>
+      <button class="btn ghost" type="button" data-lhint="${id}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-lsol="${id}" disabled title="Take a hint or make an attempt first">Show solution</button>
+      <button class="btn ghost small" type="button" data-lreset="${id}" style="display:none">Start again</button>
+    </div>
+    <div class="fb" id="fb-${id}" role="status"></div>
+    <div id="lh-${id}"></div>
+    <div class="solbox" id="ls-${id}" style="display:none"></div>`;
+  return el;
+}
+PROBLEMS.forEach((P,i)=> labList.appendChild(labCard(P,i)));
+
+const pById = id => PROBLEMS.find(p => p.id === id);
+function labInput(P){
+  const el = document.getElementById('pr-' + P.id);
+  if(P.type === 'mc'){ const s = el.querySelector('.lopt.sel'); return s ? +s.dataset.i : null; }
+  if(P.type === 'num' || P.type === 'rgb') return el.querySelector('.numin').value;
+  return el.querySelector('textarea.codebox').value;
+}
+function labPreview(P){
+  const f = document.querySelector(`[data-pv="${P.id}"]`); if(!f) return;
+  const css = (document.querySelector(`[data-code="${P.id}"]`)||{}).value || '';
+  f.srcdoc = previewDoc('<!doctype html><html><head><meta charset="utf-8"><style>' + css + '</style></head><body>' + P.html + '</body></html>');
+}
+function showFb(id, ok, msgs, extra){
+  const fb = document.getElementById('fb-' + id);
+  fb.className = 'fb on ' + (ok ? 'good' : 'bad');
+  fb.textContent = '';
+  const head = document.createElement('strong'); head.textContent = ok ? 'Correct.' : 'Not yet.';
+  fb.appendChild(head);
+  if(extra){ fb.appendChild(document.createTextNode(' ' + extra)); }
+  if(msgs.length){
+    const ul = document.createElement('ul');
+    msgs.forEach(m => { const li = document.createElement('li'); li.textContent = m; ul.appendChild(li); });
+    fb.appendChild(ul);
+  }
+}
+function updateSolBtn(P){
+  const b = document.querySelector(`[data-lsol="${P.id}"]`); if(!b) return;
+  const open = (S.labHints[P.id]||0) > 0 || (S.labTries[P.id]||0) > 0 || S.lab[P.id];
+  b.disabled = !open;
+  b.title = open ? '' : 'Take a hint or make an attempt first';
+}
+function markSolved(P){
+  const el = document.getElementById('pr-' + P.id);
+  el.classList.toggle('solved', !!S.lab[P.id]);
+}
+function renderHints(P){
+  const host = document.getElementById('lh-' + P.id); host.textContent = '';
+  const k = Math.min(S.labHints[P.id]||0, P.hints.length);
+  for(let j=0;j<k;j++){ const d = document.createElement('div'); d.className = 'hintbox'; d.innerHTML = `<strong>Hint ${j+1}.</strong> ${P.hints[j]}`; host.appendChild(d); }
+  const hb = document.querySelector(`[data-lhint="${P.id}"]`);
+  if(hb && k >= P.hints.length) hb.textContent = 'No hints left';
+}
+function showSolution(P){
+  const box = document.getElementById('ls-' + P.id);
+  box.style.display = 'block';
+  box.innerHTML = `<strong>Solution.</strong> ${P.sol}` + (S.lab[P.id] ? '' : `<p class="seen">You have read the solution, so this one will not count as solved. Press Start again to redo it from scratch.</p>`);
+  const r = document.querySelector(`[data-lreset="${P.id}"]`); if(r && !S.lab[P.id]) r.style.display = '';
+  const sb = document.querySelector(`[data-lsol="${P.id}"]`); if(sb) sb.style.display = 'none';
+}
+
+async function labCheck(P){
+  const input = labInput(P);
+  let res;
+  try{ res = await runProblem(P, input); }catch(e){ res = {ok:false, msgs:['Something went wrong while checking: ' + e.message]}; }
+  const typed = (P.type==='mc') ? (input!==null) : String(input||'').trim().length>0;
+  if(typed){ S.labTries[P.id] = (S.labTries[P.id]||0) + 1; }
+  if(res.ok){
+    if(S.labSeen[P.id] && !S.lab[P.id]){
+      showFb(P.id, false, [], 'That passes, but you read the solution first, so it does not count. Start again and redo it from a blank box.');
+    } else {
+      const wasSolved = !!S.lab[P.id];
+      S.lab[P.id] = true;
+      const ex = (res.warns && res.warns.length) ? 'One thing the exam would ding: ' + res.warns[0] : (wasSolved ? '' : 'That counts.');
+      showFb(P.id, true, [], ex);
+      markSolved(P);
+      if(P.type === 'mc'){ const o = document.querySelector(`[data-lo="${P.id}"][data-i="${P.a}"]`); if(o){ o.classList.remove('sel','wrong'); o.classList.add('right'); } }
+    }
+  } else {
+    showFb(P.id, false, res.msgs);
+    if(P.type === 'mc'){ const o = document.querySelector(`[data-lo="${P.id}"].sel`); if(o){ o.classList.remove('sel'); o.classList.add('wrong'); } }
+  }
+  updateSolBtn(P); save(); refresh();
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q_ = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q_.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q_.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q_.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+
+  /* problem lab */
+  const lo = e.target.closest('.lopt');
+  if(lo){
+    lo.parentElement.querySelectorAll('.lopt').forEach(b => b.classList.remove('sel','wrong'));
+    lo.classList.add('sel'); return;
+  }
+  const lc = e.target.closest('[data-lcheck]');
+  if(lc){ labCheck(pById(lc.dataset.lcheck)); return; }
+  const lh = e.target.closest('[data-lhint]');
+  if(lh){
+    const P = pById(lh.dataset.lhint);
+    if((S.labHints[P.id]||0) < P.hints.length){ S.labHints[P.id] = (S.labHints[P.id]||0) + 1; renderHints(P); updateSolBtn(P); save(); }
+    return;
+  }
+  const ls = e.target.closest('[data-lsol]');
+  if(ls && !ls.disabled){
+    const P = pById(ls.dataset.lsol);
+    if(!S.lab[P.id]) S.labSeen[P.id] = true;
+    showSolution(P); save(); return;
+  }
+  const lr = e.target.closest('[data-lreset]');
+  if(lr){
+    const P = pById(lr.dataset.lreset);
+    delete S.labSeen[P.id]; delete S.labCode[P.id];
+    const ta = document.querySelector(`[data-code="${P.id}"]`); if(ta){ ta.value = P.start || ''; labPreview(P); }
+    const inp = document.querySelector(`[data-num="${P.id}"]`); if(inp) inp.value = '';
+    document.querySelectorAll(`[data-lo="${P.id}"]`).forEach(b => b.classList.remove('sel','wrong','right'));
+    document.getElementById('ls-' + P.id).style.display = 'none';
+    const sb = document.querySelector(`[data-lsol="${P.id}"]`); if(sb) sb.style.display = '';
+    lr.style.display = 'none';
+    document.getElementById('fb-' + P.id).className = 'fb';
+    save(); return;
+  }
+});
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Enter' && e.target.dataset && e.target.dataset.num !== undefined){ e.preventDefault(); labCheck(pById(e.target.dataset.num)); }
+});
+
+function answerMcq(n, choice){
+  const Q_ = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q_.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q_.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q_.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+let pvTimers = {};
+document.addEventListener('input', e=>{
+  const t = e.target;
+  if(t.dataset.note!==undefined){ S.notes[t.dataset.note] = t.value; save(); }
+  if(t.dataset.code!==undefined){
+    S.labCode[t.dataset.code] = t.value; save();
+    const P = pById(t.dataset.code);
+    if(P.type === 'css'){ clearTimeout(pvTimers[P.id]); pvTimers[P.id] = setTimeout(()=>labPreview(P), 180); }
+  }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark, lab problem and finished lesson on this page?')) return;
+  S = FRESH();
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q_=>{ if(S.mcq[Q_.n]===Q_.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q_=>{ if(typeof S.marks[Q_.n]==='number') marks += S.marks[Q_.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const lab = PROBLEMS.filter(P => S.lab[P.id]).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('s-lab').innerHTML = lab + `<span style="${small}">/${LAB_N}</span>`;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+  document.getElementById('bar-lab').style.width = (lab/LAB_N*100)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  PROBLEMS.forEach(P=>{
+    const ta = document.querySelector(`[data-code="${P.id}"]`);
+    if(ta) ta.value = (typeof S.labCode[P.id] === 'string') ? S.labCode[P.id] : (P.start || '');
+    if(P.type === 'css') labPreview(P);
+    renderHints(P);
+    markSolved(P);
+    if(S.lab[P.id] && P.type === 'mc'){ const o = document.querySelector(`[data-lo="${P.id}"][data-i="${P.a}"]`); if(o) o.classList.add('right'); }
+    if(S.labSeen[P.id] && !S.lab[P.id]) showSolution(P);
+    updateSolBtn(P);
+  });
+  refresh();
+}
+
+/* ======================================================================
+   TOOL 1: CODE & SEE
+   ====================================================================== */
+const STARTER = `<!DOCTYPE html>
+<html>
+<head>
+  <title>Rohan's Cricket Club</title>
+</head>
+<body>
+  <h1>Rohan's Cricket Club</h1>
+  <p>We play every Sunday at 7 am in Cubbon Park.</p>
+  <ul>
+    <li>Nets on Saturday</li>
+    <li>Match on Sunday</li>
+  </ul>
+</body>
+</html>`;
+
+const ed = document.getElementById('ed'), pv = document.getElementById('pv');
+let edTimer = null;
+
+function buildTree(src){
+  const doc = parseHtml(src);
+  const ul = document.createElement('ul'); ul.className = 'tree';
+  let count = 0;
+  function node(el){
+    const li = document.createElement('li');
+    const tg = document.createElement('span'); tg.className = 'tg'; tg.textContent = '<' + el.tagName.toLowerCase() + '>'; li.appendChild(tg);
+    const at = [];
+    ['href','src','alt','class'].forEach(a => { if(el.hasAttribute(a)) at.push(a + '="' + el.getAttribute(a) + '"'); });
+    if(at.length){ const s = document.createElement('span'); s.className = 'at'; s.textContent = ' ' + at.join(' '); li.appendChild(s); }
+    const own = Array.prototype.filter.call(el.childNodes, n => n.nodeType === 3).map(n => n.nodeValue).join(' ').replace(/\s+/g,' ').trim();
+    if(own){ const s = document.createElement('span'); s.className = 'tx'; s.textContent = ' "' + (own.length > 30 ? own.slice(0,30) + '…' : own) + '"'; li.appendChild(s); }
+    return li;
+  }
+  function walk(el, parent){
+    if(count++ > 160) return;
+    const li = node(el); parent.appendChild(li);
+    if(el.children.length){ const sub = document.createElement('ul'); li.appendChild(sub); Array.prototype.forEach.call(el.children, c => walk(c, sub)); }
+  }
+  if(/<html[\s>]/i.test(src)) walk(doc.documentElement, ul);
+  else {
+    Array.prototype.forEach.call(doc.head.children, c => walk(c, ul));
+    Array.prototype.forEach.call(doc.body.children, c => walk(c, ul));
+  }
+  return ul;
+}
+function edUpdate(){
+  const src = ed.value;
+  pv.srcdoc = previewDoc(src);
+  const treeBox = document.getElementById('tree'); treeBox.textContent = '';
+  const tr = buildTree(src);
+  if(tr.children.length){
+    treeBox.appendChild(tr);
+    if(!/<html[\s>]/i.test(src) && src.trim()){ const p = document.createElement('p'); p.style.cssText = 'font-size:13px;color:var(--ink-soft);margin:8px 0 0'; p.textContent = 'You did not write html, head or body, so the browser added them and this list starts below them.'; treeBox.appendChild(p); }
+  } else { const p = document.createElement('p'); p.style.cssText = 'margin:0;color:var(--ink-soft);font-size:14.5px'; p.textContent = 'Nothing yet. Type a tag.'; treeBox.appendChild(p); }
+  const L = lintHtml(src);
+  const lb = document.getElementById('lintbox'); lb.textContent = '';
+  if(!L.errors.length && !L.warns.length){
+    const p = document.createElement('p'); p.style.cssText = 'margin:0;font-size:14.5px'; p.textContent = src.trim() ? 'No problems found. Every tag that opens is closed in the right order.' : 'Nothing to check yet.'; lb.appendChild(p);
+  } else {
+    const ul = document.createElement('ul'); ul.className = 'lint';
+    L.errors.forEach(m => { const li = document.createElement('li'); const b = document.createElement('b'); b.textContent = 'PROBLEM'; li.appendChild(b); li.appendChild(document.createTextNode(m)); ul.appendChild(li); });
+    L.warns.forEach(m => { const li = document.createElement('li'); li.className = 'w'; const b = document.createElement('b'); b.textContent = 'NOTE'; li.appendChild(b); li.appendChild(document.createTextNode(m)); ul.appendChild(li); });
+    lb.appendChild(ul);
+  }
+  const pill = document.getElementById('edpill');
+  if(L.errors.length){ pill.className = 'pill bad'; pill.textContent = L.errors.length + (L.errors.length === 1 ? ' problem' : ' problems'); }
+  else { pill.className = 'pill bal'; pill.textContent = src.trim() ? 'Clean' : 'Empty'; }
+}
+ed.addEventListener('input', ()=>{
+  S.editor = ed.value; save();
+  clearTimeout(edTimer); edTimer = setTimeout(edUpdate, 120);
+});
+document.getElementById('ed-starter').addEventListener('click', ()=>{ ed.value = STARTER; S.editor = STARTER; save(); edUpdate(); });
+document.getElementById('ed-clear').addEventListener('click', ()=>{ ed.value = ''; S.editor = ''; save(); edUpdate(); ed.focus(); });
+
+/* ---- build-it puzzles for tool 1: the machine checks the parsed DOM of what is in the editor ---- */
+async function pageStyles(src, fn, mode){
+  if(mode !== 'parse' && CSS_LIVE !== false){
+    try{ const r = await withLive(src, s => fn(s.get)); CSS_LIVE = true; return r; }
+    catch(e){ if(mode === 'live') throw e; CSS_LIVE = false; }
+  }
+  return fn(parsedStyle(src, '').get);
+}
+const cnt = (d,s) => Q(d,s).length;
+const PUZ1 = [
+ {q:`Build a page body with exactly one h1, one paragraph and an ordered list of three items. Delete everything else.`,
+  ref:`<h1>Nets</h1>\n<p>Bring a bat.</p>\n<ol>\n  <li>Warm up</li>\n  <li>Bat</li>\n  <li>Field</li>\n</ol>`,
+  check:(d)=>{ const m = [];
+    if(cnt(d,'body h1') !== 1) m.push('The body has ' + cnt(d,'body h1') + ' h1. It needs exactly one.');
+    if(cnt(d,'body p') !== 1) m.push('The body has ' + cnt(d,'body p') + ' paragraphs. It needs exactly one.');
+    const ol = Q(d,'body ol');
+    if(ol.length !== 1) m.push('You need one ordered list (ol)' + (cnt(d,'body ul') ? '. A ul gives bullets, not numbers.' : '.'));
+    else if(kids(ol[0],'li').length !== 3) m.push('The list has ' + kids(ol[0],'li').length + ' items. It needs three.');
+    const extra = Array.prototype.filter.call(d.body.children, e => ['H1','P','OL'].indexOf(e.tagName) < 0);
+    if(extra.length) m.push('Remove the extra ' + extra.map(tagName).join(', ') + '. The brief says nothing else.');
+    return m; }},
+ {q:`Build two sections: one h1, then two h2 headings, each of them followed by a paragraph.`,
+  ref:`<h1>Club</h1>\n<h2>Fixtures</h2>\n<p>Sundays.</p>\n<h2>Kit</h2>\n<p>Whites.</p>`,
+  check:(d)=>{ const seq = Array.prototype.map.call(d.body.children, e => e.tagName.toLowerCase()).filter(t => ['h1','h2','h3','h4','p'].indexOf(t) >= 0);
+    return seq.join() === 'h1,h2,p,h2,p' ? [] : ['Your headings and paragraphs run in this order: ' + (seq.join(', ') || 'none') + '. They need to run h1, h2, p, h2, p.']; }},
+ {q:`Build a menu: an unordered list of three links, to index.html, about.html and contact.html, in that order.`,
+  ref:`<ul>\n  <li><a href="index.html">Home</a></li>\n  <li><a href="about.html">About</a></li>\n  <li><a href="contact.html">Contact</a></li>\n</ul>`,
+  check:(d)=>{ const ul = Q(d,'body ul'); if(ul.length !== 1) return ['You need exactly one ul; you have ' + ul.length + '.'];
+    const lis = kids(ul[0],'li'); if(lis.length !== 3) return ['The list needs three items; it has ' + lis.length + '.'];
+    const w = ['index.html','about.html','contact.html'], m = [];
+    lis.forEach((li,k) => { const a = li.querySelector('a'); if(!a) m.push('Item ' + (k+1) + ' has no link.'); else if(attr(a,'href') !== w[k]) m.push('Item ' + (k+1) + ' goes to "' + attr(a,'href') + '", not ' + w[k] + '.'); else if(!T(a)) m.push('Item ' + (k+1) + ' has no link text.'); });
+    return m; }},
+ {q:`Build a picture page: a title in the head, and one image of team.jpg whose alt text describes it.`,
+  ref:`<html>\n<head><title>Team</title></head>\n<body>\n  <img src="team.jpg" alt="Eleven players in blue shirts holding a trophy">\n</body>\n</html>`,
+  check:(d)=>{ const m = [], t = d.querySelector('head > title'); if(!t || !T(t)) m.push('The head needs a title with some text in it.');
+    const im = Q(d,'body img'); if(im.length !== 1) m.push('You need exactly one image; you have ' + im.length + '.');
+    else { if(attr(im[0],'src') !== 'team.jpg') m.push('The image src should be team.jpg.'); const a = attr(im[0],'alt'); if(!a || !a.trim()) m.push('The image needs alt text.'); else if(badAlt(a)) m.push('alt="' + a + '" describes nothing. Say what is in the picture.'); }
+    return m; }},
+ {q:`Write a new skeleton from memory: the doctype, html, head with a title reading "My Mumbai Trip", and a body with one h1 reading "Mumbai" and one paragraph.`,
+  ref:`<!DOCTYPE html>\n<html>\n<head>\n  <title>My Mumbai Trip</title>\n</head>\n<body>\n  <h1>Mumbai</h1>\n  <p>Hello.</p>\n</body>\n</html>`,
+  check:(d,src)=>{ const m = [];
+    if(!/^\s*<!doctype html>/i.test(src)) m.push('Start with <!DOCTYPE html>.');
+    ['html','head','body'].forEach(t => { if(!new RegExp('<'+t+'[\\s>]','i').test(src)) m.push('There is no <' + t + '> tag in what you wrote.'); });
+    const t = d.querySelector('head > title'); if(!t || T(t).toLowerCase() !== 'my mumbai trip') m.push('The head needs a title reading My Mumbai Trip.');
+    const h = Q(d,'body h1'); if(h.length !== 1 || T(h[0]).toLowerCase() !== 'mumbai') m.push('The body needs exactly one h1 reading Mumbai.');
+    if(cnt(d,'body p') < 1) m.push('The body needs a paragraph.');
+    return m; }},
+ {q:`Put a link inside a sentence: one paragraph containing a link to about.html. The link text must not be "click here".`,
+  ref:`<p>Read more <a href="about.html">about the club</a> today.</p>`,
+  check:(d)=>{ const p = Q(d,'body p a'); if(p.length !== 1) return ['You need exactly one link inside a paragraph; you have ' + p.length + '.'];
+    const m = []; if(attr(p[0],'href') !== 'about.html') m.push('The link goes to "' + attr(p[0],'href') + '", not about.html.');
+    if(!T(p[0])) m.push('The link has no text.'); else if(/click\s*here/i.test(T(p[0]))) m.push('"click here" says nothing. Make the link text say where it goes.');
+    return m; }},
+ {q:`Style it: add a style element to the head so every h1 has red text and every paragraph is centred. The page needs at least an h1 and a paragraph.`,
+  ref:`<!DOCTYPE html>\n<html>\n<head>\n  <title>Styled</title>\n  <style>\n    h1 { color: red; }\n    p { text-align: center; }\n  </style>\n</head>\n<body>\n  <h1>Match day</h1>\n  <p>Nets at 7 am.</p>\n</body>\n</html>`,
+  check:async (d,src,mode)=>{
+    if(!cnt(d,'body h1') || !cnt(d,'body p')) return ['The page needs an h1 and a paragraph to style.'];
+    if(!cnt(d,'head style')) return ['Put a <style> element in the <head> and write the rules inside it.'];
+    return pageStyles(src, g => [].concat(want(g,'h1','color','rgb(255, 0, 0)','The h1 text colour'), want(g,'p','text-align','center','The paragraph text-align')), mode); }}
+];
+async function puz1Run(P, src, mode){
+  const L = lintHtml(src);
+  if(L.errors.length) return {ok:false, msgs:['Fix the problems listed in the panel first. The first: ' + L.errors[0]]};
+  const msgs = await P.check(parseHtml(src), src, mode);
+  return {ok:!msgs.length, msgs:msgs};
+}
+let p1cur = -1, p1done = false;
+function puzFrame(box, q, status, extraHtml){
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> <span class="q"></span>${extraHtml||''}<div class="qrow"></div><div class="pzfb" role="status" style="margin-top:9px"></div>`;
+  box.querySelector('.q').textContent = q;
+}
+document.getElementById('newpuz1').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*PUZ1.length); if(i === p1cur) i = (i+1) % PUZ1.length;
+  p1cur = i; p1done = false;
+  const box = document.getElementById('pbox1');
+  puzFrame(box, PUZ1[i].q);
+  box.querySelector('.qrow').innerHTML = `<button class="btn small" type="button" id="p1check">Check my page</button><button class="btn ghost small" type="button" id="p1skip">Different puzzle</button>`;
+  document.getElementById('p1skip').addEventListener('click', ()=>document.getElementById('newpuz1').click());
+  document.getElementById('p1check').addEventListener('click', async ()=>{
+    if(p1done) return;
+    const fb = box.querySelector('.pzfb');
+    const res = await puz1Run(PUZ1[p1cur], ed.value);
+    fb.textContent = '';
+    if(res.ok){
+      p1done = true; S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+      const s = document.createElement('strong'); s.textContent = 'Right. '; fb.appendChild(s);
+      fb.appendChild(document.createTextNode('The parsed page matches the brief. That is one more puzzle on the counter.'));
+      box.querySelector('.qrow').innerHTML = `<button class="btn ghost small" type="button" id="p1again">Another one</button>`;
+      document.getElementById('p1again').addEventListener('click', ()=>document.getElementById('newpuz1').click());
+    } else {
+      const s = document.createElement('strong'); s.textContent = 'Not yet.'; fb.appendChild(s);
+      const ul = document.createElement('ul'); ul.style.cssText = 'margin:6px 0 0;padding-left:20px';
+      res.msgs.forEach(m => { const li = document.createElement('li'); li.textContent = m; ul.appendChild(li); }); fb.appendChild(ul);
+    }
+  });
+});
+
+/* ======================================================================
+   TOOL 2: BOX-MODEL EXPLORER
+   ====================================================================== */
+const BX = {cw:120, ch:80, p:20, b:5, m:10};
+const bxIds = {cw:'s-cw', ch:'s-ch', p:'s-p', b:'s-b', m:'s-m'};
+function boxTotals(s){
+  s = s || BX;
+  return {tw:s.cw+2*s.p+2*s.b+2*s.m, th:s.ch+2*s.p+2*s.b+2*s.m, vw:s.cw+2*s.p+2*s.b, vh:s.ch+2*s.p+2*s.b, iw:s.cw+2*s.p, ih:s.ch+2*s.p};
+}
+function boxDraw(){
+  const t = boxTotals(), {cw,ch,p,b,m} = BX;
+  const set = (id, o) => { const el = document.getElementById(id); Object.keys(o).forEach(k => el.setAttribute(k, o[k])); };
+  const x0 = 350 - t.tw/2, y0 = 8 + (330 - t.th)/2;
+  set('bx-m', {x:x0, y:y0, width:t.tw, height:t.th, visibility: m>0 ? 'visible' : 'hidden'});
+  set('bx-b', {x:x0+m, y:y0+m, width:t.vw, height:t.vh});
+  set('bx-p', {x:x0+m+b, y:y0+m+b, width:t.iw, height:t.ih});
+  set('bx-c', {x:x0+m+b+p, y:y0+m+b+p, width:cw, height:ch});
+  const ct = document.getElementById('bx-ct');
+  ct.textContent = cw >= 90 ? 'content ' + cw + '×' + ch : cw + '×' + ch;
+  ct.setAttribute('x', 350); ct.setAttribute('y', y0+m+b+p+ch/2+4);
+  const lab = (id, show, x, y, txt) => { const el = document.getElementById(id); el.textContent = show ? txt : ''; el.setAttribute('x', x); el.setAttribute('y', y); };
+  lab('bx-lm', m >= 14, x0+5, y0+13, 'margin ' + m);
+  lab('bx-lb', b >= 14, x0+m+4, y0+m+13, 'border ' + b);
+  lab('bx-lp', p >= 14, x0+m+b+5, y0+m+b+13, 'padding ' + p);
+  set('bx-dim', {x1:x0, x2:x0+t.tw, y1:348, y2:348});
+  document.getElementById('bx-dt').textContent = 'total width ' + t.tw + ' px';
+  Object.keys(bxIds).forEach(k => { document.getElementById('v-' + bxIds[k].slice(2)).textContent = BX[k]; });
+  document.getElementById('r-tw').textContent = cw + ' + 2×' + p + ' + 2×' + b + ' + 2×' + m + ' = ' + t.tw + ' px';
+  document.getElementById('r-th').textContent = ch + ' + 2×' + p + ' + 2×' + b + ' + 2×' + m + ' = ' + t.th + ' px';
+  document.getElementById('r-vis').textContent = cw + ' + 2×' + p + ' + 2×' + b + ' = ' + t.vw + ' px wide, ' + t.vh + ' px tall';
+  document.getElementById('r-in').textContent = cw + ' + 2×' + p + ' = ' + t.iw + ' px wide, ' + t.ih + ' px tall';
+  document.getElementById('r-css').textContent = 'width: ' + cw + 'px;\nheight: ' + ch + 'px;\npadding: ' + p + 'px;\nborder: ' + b + 'px solid;\nmargin: ' + m + 'px;';
+}
+function boxSet(o){ Object.keys(o).forEach(k => { BX[k] = o[k]; document.getElementById(bxIds[k]).value = o[k]; }); boxDraw(); }
+Object.keys(bxIds).forEach(k => {
+  document.getElementById(bxIds[k]).addEventListener('input', e => { BX[k] = +e.target.value; boxDraw(); });
+});
+
+const PUZ2 = [
+ {q:'Set padding 20, border 5 and margin 10. Then make the total width exactly 300 px.',
+  rules:[['padding is 20',s=>s.p===20],['border is 5',s=>s.b===5],['margin is 10',s=>s.m===10],['total width is 300',(s,t)=>t.tw===300]], ref:{cw:230,ch:80,p:20,b:5,m:10}},
+ {q:'Set padding 15, border 10 and margin 0. Then make the visible box (out to the edge of the border) exactly 200 px wide.',
+  rules:[['padding is 15',s=>s.p===15],['border is 10',s=>s.b===10],['margin is 0',s=>s.m===0],['visible width is 200',(s,t)=>t.vw===200]], ref:{cw:150,ch:80,p:15,b:10,m:0}},
+ {q:'Set padding 30. Then make the space inside the border (content plus padding) exactly 160 px wide. Border and margin are up to you.',
+  rules:[['padding is 30',s=>s.p===30],['inside-the-border width is 160',(s,t)=>t.iw===160]], ref:{cw:100,ch:80,p:30,b:5,m:10}},
+ {q:'Set padding 10, border 5, margin 5 and content width 100. Then choose the content height that makes the total height equal to the total width.',
+  rules:[['padding is 10',s=>s.p===10],['border is 5',s=>s.b===5],['margin is 5',s=>s.m===5],['content width is 100',s=>s.cw===100],['total height equals total width',(s,t)=>t.th===t.tw]], ref:{cw:100,ch:100,p:10,b:5,m:5}},
+ {q:'Set content height 100, border 10 and margin 10. Then choose the padding that makes the total height exactly 200 px.',
+  rules:[['content height is 100',s=>s.ch===100],['border is 10',s=>s.b===10],['margin is 10',s=>s.m===10],['total height is 200',(s,t)=>t.th===200]], ref:{cw:120,ch:100,p:30,b:10,m:10}},
+ {q:'Set content width 120, border 5 and margin 0. Then choose the padding that makes the total width exactly 200 px.',
+  rules:[['content width is 120',s=>s.cw===120],['border is 5',s=>s.b===5],['margin is 0',s=>s.m===0],['total width is 200',(s,t)=>t.tw===200]], ref:{cw:120,ch:80,p:35,b:5,m:0}},
+ {q:'Set margin 20, padding 0 and border 0. Then make the total width exactly 280 px. (Margin counts, even though you cannot see it.)',
+  rules:[['margin is 20',s=>s.m===20],['padding is 0',s=>s.p===0],['border is 0',s=>s.b===0],['total width is 280',(s,t)=>t.tw===280]], ref:{cw:240,ch:80,p:0,b:0,m:20}}
+];
+function boxCheck(P, s){
+  s = s || BX; const t = boxTotals(s);
+  const unmet = P.rules.filter(r => !r[1](s,t)).map(r => r[0]);
+  return {ok:!unmet.length, unmet:unmet, t:t};
+}
+let p2cur = -1, p2done = false;
+document.getElementById('newpuz2').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*PUZ2.length); if(i === p2cur) i = (i+1) % PUZ2.length;
+  p2cur = i; p2done = false;
+  const box = document.getElementById('pbox2');
+  puzFrame(box, PUZ2[i].q);
+  box.querySelector('.qrow').innerHTML = `<button class="btn small" type="button" id="p2check">Check my box</button><button class="btn ghost small" type="button" id="p2skip">Different puzzle</button>`;
+  document.getElementById('p2skip').addEventListener('click', ()=>document.getElementById('newpuz2').click());
+  document.getElementById('p2check').addEventListener('click', ()=>{
+    if(p2done) return;
+    const fb = box.querySelector('.pzfb'), r = boxCheck(PUZ2[p2cur]);
+    fb.textContent = '';
+    if(r.ok){
+      p2done = true; S.puzzles = (S.puzzles||0) + 1; save(); refresh();
+      const s = document.createElement('strong'); s.textContent = 'Right. '; fb.appendChild(s);
+      fb.appendChild(document.createTextNode('Total width ' + r.t.tw + ' px, total height ' + r.t.th + ' px. The arithmetic holds.'));
+      box.querySelector('.qrow').innerHTML = `<button class="btn ghost small" type="button" id="p2again">Another one</button>`;
+      document.getElementById('p2again').addEventListener('click', ()=>document.getElementById('newpuz2').click());
+    } else {
+      const s = document.createElement('strong'); s.textContent = 'Not yet. '; fb.appendChild(s);
+      fb.appendChild(document.createTextNode('Still wrong: ' + r.unmet.join('; ') + '. Right now the total is ' + r.t.tw + ' wide by ' + r.t.th + ' tall.'));
+    }
+  });
+});
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  ed.value = (typeof S.editor === 'string') ? S.editor : STARTER;
+  edUpdate();
+  boxDraw();
+})();
+
+window.LAB = {PROBLEMS, runProblem, lintHtml, parseCss, parsedStyle, normColor, hexToRgb, PUZ1, puz1Run, PUZ2, BX, boxTotals, boxSet, boxCheck, STARTER,
+  getS:()=>S, setCssLive:v=>{ CSS_LIVE = v; }, pageStyles, edUpdate};
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='htmlcss', SUBJECT='computing', TITLE='Skeleton, Skin and Box', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

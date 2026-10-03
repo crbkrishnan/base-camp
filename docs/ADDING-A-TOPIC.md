@@ -11,6 +11,7 @@ Roughly a full session's work. Do not try to shortcut the interactive tools — 
 | Biology | `respiration.html` |
 | Chemistry | `particles.html` |
 | English | `reading.html` — and read `READING-COMPREHENSION.md` first; the papers are 25 marks, not 30 |
+| Computing | `respiration.html` (that is what the five Computing pages were copied from); for a Problem Lab see `spreadsheets.html` or `htmlcss.html` |
 
 Copying preserves the shared CSS, the question engine, the storage shim and both hub-bridge blocks. Write the new file from the copy; do not author one from scratch.
 
@@ -88,7 +89,7 @@ python3 tools/register_topic.py ratio.html    # no third-party imports; system p
 
 It locates `TOPICS` by brace matching that understands quoted strings, so it cannot run past the end of the array — which is exactly how the blank-homepage outage happened (`CLAUDE.md` non-negotiable 2). It is idempotent: a second run updates the entry instead of duplicating it, and replaces a `planned` or `next` placeholder with the same `id` in place. It refuses to write if the subject or status is invalid, if `file` is not in the repo root, or if the manifest `id` disagrees with the bridge `ID` in the page — the mistake that fails silently in the browser, leaving a card whose progress bar never fills.
 
-`status` is `ready`, `next` or `planned`. `subject` must be one of `maths`, `physics`, `biology`, `chemistry`, `english`.
+`status` is `ready`, `next` or `planned`. `subject` must be one of `maths`, `physics`, `biology`, `chemistry`, `english`, `hindi`, `computing`.
 
 Adding a *sixth* subject takes three edits and nothing else, because the hub is data-driven off `SUBJECTS`: two CSS custom properties in `index.html`, one row in `SUBJECTS`, and the name added to the allowlist in `register_topic.py`.
 

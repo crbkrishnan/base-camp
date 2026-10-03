@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Before You Build — Grade 7 IGCSE Computing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/json" id="hub-card">
+{
+  "id": "uxdesign",
+  "file": "uxdesign.html",
+  "subject": "computing",
+  "status": "ready",
+  "title": "Design Before You Build",
+  "sub": "Computing · designing with the double diamond",
+  "blurb": "The double diamond, UI versus UX, a first hour in Figma, and a three-page site planned as a sitemap and wireframes. A diamond sorter and a wireframe checker mark you as you go, and a 23-problem lab sits outside the 30 marks.",
+  "meta": ["30 marks", "6 lessons", "Wireframe studio", "23 lab problems"]
+}
+</script>
+<style>
+:root{
+  --ink:#2A1F22;
+  --ink-soft:#6A585C;
+  --paper:#F0E7E4;
+  --card:#FFFFFF;
+  --line:#DBC9C4;
+  --line-soft:#EBDFDB;
+  --wide:#A8325E;        /* diverge · open up · always raspberry */
+  --wide-tint:#FBEAF0;
+  --narrow:#1D6A6A;      /* converge · narrow down · always teal */
+  --narrow-tint:#E5F1F0;
+  --warn:#8A5300;        /* caution · feedback · always ochre */
+  --warn-tint:#FBF0DC;
+  --fr:var(--wide);   --de:var(--narrow);   --pc:var(--warn);
+  --fr-tint:var(--wide-tint); --de-tint:var(--narrow-tint); --pc-tint:var(--warn-tint);
+  --steel:#9C8F92;
+  --steel-dark:#6F6064;
+  --ok:#156B3C;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--de)}
+:focus-visible{outline:3px solid var(--de);outline-offset:2px;border-radius:4px}
+code{font-family:var(--mono);font-size:.9em;background:var(--paper);padding:1px 5px;border-radius:5px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--fr)}
+.mast h1 b{font-weight:800;color:var(--de)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--de);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(240,231,228,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--de);color:var(--de)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--fr);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn[aria-pressed=true]{background:var(--ink);color:#fff}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--fr-tint);color:var(--fr)}
+.pill.out{background:var(--de-tint);color:var(--de)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--de-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- diamond sorter ---------- */
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);border-top:1px solid var(--line)}
+.dcol{background:var(--card);padding:10px 11px 12px;min-width:0}
+.dcol h3{font-size:14.5px;margin:0 0 2px}
+.dcol .kind{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.dcol .kind.wd{color:var(--fr)} .dcol .kind.nr{color:var(--de)}
+.dcol .put{width:100%;margin-bottom:8px}
+.dtray{display:grid;gap:6px;min-height:20px}
+.placed{font-size:13.5px;line-height:1.35;background:var(--ok-tint);border:1px solid var(--ok);border-radius:8px;padding:6px 8px}
+.placed b{font-family:var(--display);font-size:11.5px;color:var(--ok);display:block;margin-bottom:2px}
+.cards{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-top:1px solid var(--line)}
+.dcard{font-family:var(--body);font-size:15px;line-height:1.35;text-align:left;cursor:pointer;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 11px;flex:1 1 210px;max-width:100%}
+.dcard:hover{border-color:var(--ink)}
+.dcard[aria-pressed=true]{border:2px solid var(--ink);background:var(--card);padding:7px 10px;box-shadow:0 0 0 3px var(--warn-tint)}
+.dcard[disabled]{display:none}
+.say{padding:11px 16px;font-size:15.5px;border-top:1px solid var(--line-soft);min-height:50px}
+.say.good{background:var(--ok-tint);color:#14512F}
+.say.bad{background:var(--no-tint);color:#6E1D17}
+.mk-readout{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border-top:1px solid var(--line)}
+@media (max-width:700px){.dgrid{grid-template-columns:1fr 1fr}.mk-readout{grid-template-columns:1fr}}
+
+/* ---------- wireframe studio ---------- */
+.tabs{display:flex;gap:6px;padding:12px 16px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;cursor:pointer;padding:8px 16px;border:1px solid var(--line);
+  border-bottom:none;border-radius:10px 10px 0 0;background:var(--paper);color:var(--ink)}
+.tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.studio{display:grid;grid-template-columns:200px 1fr;gap:0;border-top:2px solid var(--ink)}
+.palette{padding:12px;background:var(--paper);border-right:1px solid var(--line);display:grid;gap:6px;align-content:start}
+.palette h3{font-size:13px;margin:0 0 2px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
+.pal{font-family:var(--display);font-size:13.5px;font-weight:700;text-align:left;cursor:pointer;color:var(--ink);
+  background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 10px}
+.pal:hover{border-color:var(--ink)}
+.pal[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.canvas{padding:14px;background:#EFEAE8}
+.page{background:#fff;border:2px solid var(--steel-dark);border-radius:6px;max-width:420px;margin:0 auto;padding:6px}
+.page ol{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.slot{display:grid;grid-template-columns:22px 1fr;gap:6px;align-items:stretch;min-height:36px}
+.slot .sn{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);padding-top:8px;text-align:right}
+.slot .empty{font-family:var(--display);font-size:12.5px;font-weight:700;color:var(--ink-soft);background:transparent;
+  border:1.5px dashed var(--steel);border-radius:6px;cursor:pointer;padding:6px;text-align:center}
+.slot .empty:hover:not([disabled]){border-color:var(--ink);color:var(--ink)}
+.slot .empty[disabled]{cursor:default;opacity:.8}
+.slot .filled{display:grid;grid-template-columns:1fr auto;gap:5px;align-items:center}
+.slot .ctl{display:flex;gap:3px}
+.slot .ctl button{font-family:var(--mono);font-size:12px;font-weight:700;width:30px;height:30px;border-radius:6px;border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.slot .ctl button:hover:not([disabled]){border-color:var(--ink)}
+.slot .ctl button[disabled]{opacity:.35;cursor:default}
+.blk{border:1.5px solid var(--steel-dark);border-radius:6px;background:#F6F2F0;font-family:var(--mono);font-size:11.5px;color:var(--ink);padding:5px 8px;min-height:32px;display:flex;align-items:center;gap:8px;overflow:hidden}
+.blk .bl{font-weight:700;white-space:nowrap}
+.blk.logo{width:92px;border-style:dashed}
+.blk.navbar{background:#E6DFDC}
+.blk.navbar .lk{display:flex;gap:10px;margin-left:auto;color:var(--ink-soft)}
+.blk.menu{width:120px}
+.blk.hero{min-height:44px;background:#E6DFDC}
+.blk.hero .bar2{flex:1;height:12px;background:var(--steel-dark);border-radius:3px}
+.blk.para{flex-direction:column;align-items:stretch;gap:3px}
+.blk.para i{display:block;height:4px;background:var(--steel);border-radius:2px}
+.blk.para i:nth-child(3){width:60%}
+.blk.img{min-height:64px;justify-content:center;background:repeating-linear-gradient(135deg,#F6F2F0 0 8px,#E6DFDC 8px 9px)}
+.blk.btn2{width:130px;border-radius:99px;justify-content:center;background:#E6DFDC;border-width:2px}
+.blk.field{background:#fff}
+.blk.field .ln{flex:1;height:14px;border:1px solid var(--steel);border-radius:3px;background:#fff}
+.blk.footer{background:#D9D0CD}
+.rulebox{padding:12px 16px;border-top:1px solid var(--line);font-size:15px;display:none}
+.rulebox.on{display:block}
+.rulebox ul{margin:6px 0 10px;padding-left:20px}
+.rule{margin:0 0 8px;padding:9px 12px;border-radius:9px;border:1px solid var(--line)}
+.rule.ok{background:var(--ok-tint);border-color:var(--ok)}
+.rule.bad{background:var(--no-tint);border-color:var(--no)}
+.rule b{font-family:var(--display)}
+.rule .st{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em;margin-right:6px}
+.rule ul{margin:5px 0 0}
+@media (max-width:700px){.studio{grid-template-columns:1fr}.palette{grid-template-columns:1fr 1fr;border-right:none;border-bottom:1px solid var(--line)}.palette h3{grid-column:1/-1}}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--fr);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--fr-tint)}
+.vid h3 a:hover{border-bottom-color:var(--fr)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--de);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--fr)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--de);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--fr);background:var(--fr-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.widetxt{color:var(--fr);font-weight:700}
+.narrowtxt{color:var(--de);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+.tblwrap{overflow-x:auto}
+.mocks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.mockbox{border:1px solid var(--line);border-radius:10px;padding:9px;background:var(--paper);font-size:13.5px;line-height:1.35}
+.mockbox h4{margin:0 0 6px;font-size:12.5px;font-family:var(--mono);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.phone{border:2px solid var(--steel-dark);border-radius:10px;background:#fff;padding:8px;min-height:104px;font-family:var(--display);font-size:12.5px}
+.phone .bt{display:block;margin-top:7px;padding:6px 8px;border-radius:6px;text-align:center;font-weight:700}
+@media (max-width:600px){.mocks{grid-template-columns:1fr}}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--fr-tint);color:var(--fr)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.fb.meh{background:var(--warn-tint);color:#5E3800}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--de-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+/* ---------- problem lab ---------- */
+.lgroup{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:26px 0 10px;
+  display:flex;gap:10px;align-items:center}
+.lgroup::after{content:"";flex:1;height:1px;background:var(--line)}
+.lcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.lcard.solved{border-color:var(--ok);border-left:5px solid var(--ok)}
+.lhead{display:flex;gap:9px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.lhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.lhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.lhead .lvl.hard{background:var(--fr-tint);color:var(--fr)}
+.lhead .typ{font-family:var(--mono);font-size:11px;color:var(--ink-soft);border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.lhead .typ.hon{background:var(--warn-tint);color:#5E3800;border-color:var(--warn)}
+.lhead .sv{margin-left:auto;font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--ok)}
+.lcard h3{margin:0 0 6px;font-size:17.5px}
+.lprompt{margin:0 0 12px}
+.lprompt p{margin:0 0 9px}
+.lw{display:grid;gap:8px;margin:4px 0 4px}
+.lw .itm{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:15.5px}
+.lw select,.lw input[type=text],.lw input[type=number],.num-in{font-family:var(--mono);font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--steel-dark);border-radius:8px;padding:6px 8px;min-height:36px}
+.lw input[type=number]{width:110px}
+.lw .itm.fieldrow{grid-template-columns:1fr auto}
+.lw .itm>*{min-width:0}
+.lw select{max-width:100%}
+.lw label.tick{display:flex;gap:10px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:15.5px;cursor:pointer}
+.lw label.tick input{margin-top:5px;width:17px;height:17px;accent-color:var(--ink);flex:0 0 auto}
+.lw .unit{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);margin-left:5px}
+.ltable{width:auto;font-size:13px}
+.honest{background:var(--warn-tint);border-left:3px solid var(--warn);padding:9px 12px;border-radius:0 8px 8px 0;font-size:14.5px;margin:0 0 10px}
+.wmock{border:1px dashed var(--steel-dark);border-radius:10px;padding:10px;background:#fff;margin:6px 0}
+.wmock svg{display:block;width:100%;height:auto;max-width:520px;margin:0 auto}
+.flagm{background:#fff;border:2px solid var(--steel-dark);border-radius:12px;padding:12px;max-width:430px;margin:6px auto;font-family:Arial,Helvetica,sans-serif;color:#222}
+.flagm .fl{white-space:nowrap;display:inline-block;font:inherit;color:inherit;background:transparent;border:1.5px dashed transparent;border-radius:6px;padding:2px 4px;cursor:pointer;text-align:left;margin:0}
+.flagm .fl:hover{border-color:var(--steel-dark)}
+.flagm .fl[aria-pressed=true]{border-color:var(--no);background:#FFF1EF;box-shadow:0 0 0 2px var(--no);position:relative}
+.flagm .fl[aria-pressed=true]::after{content:"flagged";position:absolute;top:-9px;right:-4px;background:var(--no);color:#fff;font:700 9.5px/1 var(--mono);padding:2px 5px;border-radius:99px}
+.flagm .flrow{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;margin:6px 0}
+.flagm h5{margin:0;font-size:18px}
+.chk{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.swatch{display:grid;place-items:center;min-height:86px;padding:10px;text-align:center;font-family:Arial,Helvetica,sans-serif}
+.chkres{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line);align-items:center}
+.verdict{font-family:var(--mono);font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:99px;border:1px solid}
+.verdict.p{background:var(--ok-tint);color:var(--ok);border-color:var(--ok)}
+.verdict.f{background:var(--no-tint);color:var(--no);border-color:var(--no)}
+.hexin{display:flex;gap:6px;align-items:center}
+.hexin input[type=text]{font-family:var(--mono);font-size:15px;width:108px;border:1px solid var(--steel-dark);border-radius:8px;padding:6px 8px;background:#fff;color:var(--ink)}
+.hexin input[type=color]{width:42px;height:36px;border:1px solid var(--steel-dark);border-radius:8px;padding:2px;background:#fff;cursor:pointer}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--fr);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0 0 6px;font-size:15.5px;color:var(--ink-soft)}
+.trap p:last-child{margin-bottom:0}
+.trap p strong{color:var(--ink)}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+  .chk{grid-template-columns:1fr}
+  .lw .itm,.lw .itm.fieldrow{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Computing · Grade 7 · Unit 4, the design half</div>
+  <h1>Design <em>before</em> you <b>build</b></h1>
+  <p class="lede">Two ideas run through this page. First: good design is a process, not a talent, and the <strong>double diamond</strong> is the process: open up, narrow down, open up, narrow down. Second: every screen has a <strong>UI</strong> half (what you see) and a <strong>UX</strong> half (how it works and feels), and the exam wants you to stop swapping them. The code comes on the next page. This one is about not building the wrong thing.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> You have been scoring about 10 out of 15. This page is out of 30, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme — otherwise you're just reading, and reading feels like learning without being learning. The Problem Lab near the bottom is extra: no marks, nothing to lose, and the place where the hard-question habit gets built.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>design-machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+    <div class="stat"><b class="num" id="s-lab">0<span style="font-size:15px;color:var(--ink-soft)">/23</span></b><span>lab problems solved (no marks)</span><div class="bar"><i id="bar-lab"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#sorter">Diamond sorter</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#studio">Wireframe studio</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#problems">Problem Lab</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+<!-- ============ HERO 1: THE DOUBLE-DIAMOND SORTER ============ -->
+<section id="sorter">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The double-diamond sorter</h2>
+      <p>Eight things a design team might do on one project: a homework-deadline app for your school. Click a card, then click the phase it belongs to. The machine rules on every placement and tells you why. Drag the slider to walk along the diamond and watch the options open up and close down.</p>
+    </div>
+
+    <svg class="stage" viewBox="0 0 760 300" role="img" aria-label="The double diamond: two diamonds side by side. The left diamond is Discover, which widens, then Define, which narrows. The right diamond is Develop, which widens, then Deliver, which narrows. A vertical marker shows how many options are open at the point you choose with the slider.">
+      <g id="qp-discover" class="qp" data-phase="discover" style="cursor:pointer"><polygon points="30,150 205,50 205,250" fill="var(--wide-tint)" stroke="var(--wide)" stroke-width="2.5"/></g>
+      <g id="qp-define" class="qp" data-phase="define" style="cursor:pointer"><polygon points="205,50 380,150 205,250" fill="var(--narrow-tint)" stroke="var(--narrow)" stroke-width="2.5"/></g>
+      <g id="qp-develop" class="qp" data-phase="develop" style="cursor:pointer"><polygon points="380,150 555,50 555,250" fill="var(--wide-tint)" stroke="var(--wide)" stroke-width="2.5"/></g>
+      <g id="qp-deliver" class="qp" data-phase="deliver" style="cursor:pointer"><polygon points="555,50 730,150 555,250" fill="var(--narrow-tint)" stroke="var(--narrow)" stroke-width="2.5"/></g>
+
+      <g font-family="var(--display)" font-weight="700" font-size="25" text-anchor="middle" fill="var(--ink)" pointer-events="none">
+        <text x="132" y="146">Discover</text><text x="268" y="146">Define</text><text x="482" y="146">Develop</text><text x="618" y="146">Deliver</text>
+      </g>
+      <g font-family="var(--mono)" font-size="18" text-anchor="middle" fill="var(--ink)" pointer-events="none">
+        <text id="cnt-discover" x="132" y="176">0 / 2</text><text id="cnt-define" x="268" y="176">0 / 2</text>
+        <text id="cnt-develop" x="482" y="176">0 / 2</text><text id="cnt-deliver" x="618" y="176">0 / 2</text>
+      </g>
+      <g font-family="var(--mono)" font-size="18" font-weight="700" text-anchor="middle" pointer-events="none">
+        <text x="118" y="36" fill="var(--wide)">&#8596; DIVERGE</text>
+        <text x="293" y="36" fill="var(--narrow)">&#8594;&#8592; CONVERGE</text>
+        <text x="468" y="36" fill="var(--wide)">&#8596; DIVERGE</text>
+        <text x="643" y="36" fill="var(--narrow)">&#8594;&#8592; CONVERGE</text>
+      </g>
+      <g font-family="var(--mono)" font-size="17" fill="var(--ink-soft)" text-anchor="middle" pointer-events="none">
+        <text x="205" y="286">Diamond 1: the right problem</text>
+        <text x="555" y="286">Diamond 2: the right solution</text>
+      </g>
+      <line id="mk-line" x1="30" y1="150" x2="30" y2="150" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+      <circle id="mk-dot" cx="30" cy="150" r="7" fill="var(--ink)" stroke="#fff" stroke-width="2"/>
+    </svg>
+
+    <div class="ctrl">
+      <label for="mslider">Walk along the process</label>
+      <input id="mslider" type="range" min="0" max="100" value="0" aria-label="Position along the double diamond, 0 is the start of Discover and 100 is the end of Deliver">
+    </div>
+    <div class="mk-readout" aria-live="polite">
+      <div class="cell"><div class="lab">You are in</div><div class="val" id="m-phase">Discover</div></div>
+      <div class="cell"><div class="lab">Direction</div><div class="val" id="m-dir">diverging, opening up</div></div>
+      <div class="cell"><div class="lab">Options still open</div><div class="val mono" id="m-open">0%</div></div>
+    </div>
+
+    <div class="dgrid">
+      <div class="dcol"><h3>Discover</h3><div class="kind wd">diverge</div><button class="btn ghost small put" type="button" data-put="discover" aria-label="Put the selected card in Discover">Put it here</button><div class="dtray" id="tray-discover"></div></div>
+      <div class="dcol"><h3>Define</h3><div class="kind nr">converge</div><button class="btn ghost small put" type="button" data-put="define" aria-label="Put the selected card in Define">Put it here</button><div class="dtray" id="tray-define"></div></div>
+      <div class="dcol"><h3>Develop</h3><div class="kind wd">diverge</div><button class="btn ghost small put" type="button" data-put="develop" aria-label="Put the selected card in Develop">Put it here</button><div class="dtray" id="tray-develop"></div></div>
+      <div class="dcol"><h3>Deliver</h3><div class="kind nr">converge</div><button class="btn ghost small put" type="button" data-put="deliver" aria-label="Put the selected card in Deliver">Put it here</button><div class="dtray" id="tray-deliver"></div></div>
+    </div>
+
+    <div class="cards" id="dcards" role="group" aria-label="Activity cards waiting to be placed">
+      <button class="dcard" type="button" data-c="0" aria-pressed="false">Shadow six students for a day and note where they get stuck</button>
+      <button class="dcard" type="button" data-c="1" aria-pressed="false">Group all your notes and find the pattern: the same pain keeps repeating</button>
+      <button class="dcard" type="button" data-c="2" aria-pressed="false">Sketch twenty different ideas in ten minutes, however silly</button>
+      <button class="dcard" type="button" data-c="3" aria-pressed="false">Pick the one design that tested best and fix its last bugs</button>
+      <button class="dcard" type="button" data-c="4" aria-pressed="false">Read forty survey answers and note what the existing apps get wrong</button>
+      <button class="dcard" type="button" data-c="5" aria-pressed="false">Write one sentence: "Students miss deadlines because the list is buried in three apps"</button>
+      <button class="dcard" type="button" data-c="6" aria-pressed="false">Build three rough prototypes of different ideas and watch five students try them</button>
+      <button class="dcard" type="button" data-c="7" aria-pressed="false">Launch to the whole school and track whether deadlines are still being missed</button>
+    </div>
+    <div class="say" id="say" aria-live="polite">Pick a card. Nothing is marked until you place it.</div>
+
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill hold" id="d-pill">Mistakes: 0</span>
+        <span id="d-text">Placed 0 of 8.</span>
+        <span class="push"><button class="btn ghost" type="button" id="d-reset">Reset the sorter</button><button class="btn ghost" type="button" id="d-newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="d-quiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">6 videos</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was just a screensaver. Pause and write — don't rewind at the end. If you are not going to write the lines the job asks for, close the video and go straight to the questions instead. That is a legitimate choice.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">each one is short</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: WIREFRAME STUDIO ============ -->
+<section id="studio">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The wireframe studio</h2>
+      <p>Plan a three-page site for a school coding club. Pick a block from the palette, then click a slot to place it. Use the arrow buttons to reorder. When you press <strong>Check against the brief</strong> the machine lists exactly which rule is broken, on which page.</p>
+      <p style="margin-top:8px"><strong>The brief:</strong> <span class="num">Rule 1</span> every page has the same navigation, at the top. <span class="num">Rule 2</span> every page has exactly one heading, before the content. <span class="num">Rule 3</span> form fields appear only on Contact, with at least two fields and a button. <span class="num">Rule 4</span> Home has a button (the call to action) after its heading. <span class="num">Rule 5</span> every page ends with a footer, and the footer is last.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Pages of the site">
+      <button class="tab" type="button" role="tab" id="tab-home" data-page="home" aria-selected="true" aria-controls="wf-panel">Home</button>
+      <button class="tab" type="button" role="tab" id="tab-about" data-page="about" aria-selected="false" aria-controls="wf-panel" tabindex="-1">About</button>
+      <button class="tab" type="button" role="tab" id="tab-contact" data-page="contact" aria-selected="false" aria-controls="wf-panel" tabindex="-1">Contact</button>
+    </div>
+
+    <div class="studio">
+      <div class="palette" role="group" aria-label="Block palette">
+        <h3>Blocks</h3>
+        <button class="pal" type="button" data-b="logo" aria-pressed="false">Logo</button>
+        <button class="pal" type="button" data-b="navbar" aria-pressed="false">Nav bar</button>
+        <button class="pal" type="button" data-b="menu" aria-pressed="false">Menu icon (&#9776;)</button>
+        <button class="pal" type="button" data-b="hero" aria-pressed="false">Hero heading</button>
+        <button class="pal" type="button" data-b="para" aria-pressed="false">Paragraph</button>
+        <button class="pal" type="button" data-b="img" aria-pressed="false">Image box</button>
+        <button class="pal" type="button" data-b="btn" aria-pressed="false">Button</button>
+        <button class="pal" type="button" data-b="field" aria-pressed="false">Form field</button>
+        <button class="pal" type="button" data-b="footer" aria-pressed="false">Footer</button>
+      </div>
+      <div class="canvas">
+        <div class="page" id="wf-panel" role="tabpanel" aria-labelledby="tab-home">
+          <ol id="slots" aria-label="Ten slots, top to bottom"></ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctrl">
+      <button class="btn ghost small" type="button" id="wf-add">Add selected block to the next free slot</button>
+      <button class="btn small" type="button" id="wf-check">Check against the brief</button>
+      <button class="btn ghost small" type="button" id="wf-sample">Load a flawed draft</button>
+      <button class="btn ghost small" type="button" id="wf-clear">Clear all pages</button>
+    </div>
+    <div class="rulebox" id="rulebox" aria-live="polite"></div>
+    <div class="rows">
+      <div class="phasebar">
+        <span class="pill hold" id="wf-pill">0 blocks placed</span>
+        <span id="wf-text">Select a block, then click an empty slot.</span>
+        <span class="push"><button class="btn ghost" type="button" id="wf-newquiz">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="wf-quiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes open. These are the marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<!-- ============ PROBLEM LAB ============ -->
+<section id="problems">
+  <div class="shead"><h2>Problem Lab</h2><span class="tag">23 extra · no marks</span></div>
+  <p class="snote">Twenty-three more problems, medium first and properly hard at the end. None of it counts towards the 30, which is the point: you can get one wrong in private and nothing happens except that you learn it. Take a hint before you take the solution. Read a solution without trying and that problem will not count.</p>
+  <p class="honest"><strong>What is marked by what.</strong> The machine marks the sorting, the numbers, the multiple-choice and the spot-the-mistake problems. The two design-brief problems are <strong>self-marked against a rubric</strong>, because no program can honestly mark a sentence. The Figma tasks that say <strong>honour system</strong> cannot be checked either: the page cannot see your Figma file. Where it can, it checks a number that only someone who did the task would get right.</p>
+
+  <div class="panel" id="checker" style="margin-bottom:6px">
+    <div class="panel-top">
+      <h2>Contrast checker</h2>
+      <p>Type or pick any two colours. The ratio is calculated the way WCAG does it. You need <span class="num">4.5</span> for ordinary text, <span class="num">3</span> for large text, and <span class="num">7</span> for the strictest level. Several problems below ask you to use this.</p>
+    </div>
+    <div class="ctrl">
+      <label for="cx-fg">Text colour</label>
+      <span class="hexin"><input type="text" id="cx-fg" value="#767676" maxlength="7" spellcheck="false" aria-label="Text colour as a hex code, for example #767676"><input type="color" id="cx-fgc" value="#767676" aria-label="Pick the text colour"></span>
+      <label for="cx-bg">Background</label>
+      <span class="hexin"><input type="text" id="cx-bg" value="#FFFFFF" maxlength="7" spellcheck="false" aria-label="Background colour as a hex code, for example #FFFFFF"><input type="color" id="cx-bgc" value="#ffffff" aria-label="Pick the background colour"></span>
+      <button class="btn ghost small" type="button" id="cx-swap">Swap them</button>
+    </div>
+    <div class="chk">
+      <div class="swatch" id="cx-s1" style="font-size:16px">Ordinary text, 16 px. The quick brown fox.</div>
+      <div class="swatch" id="cx-s2" style="font-size:24px;font-weight:700">Large text, 24 px bold</div>
+    </div>
+    <div class="chkres" aria-live="polite">
+      <span class="num" style="font-size:22px;font-weight:700" id="cx-ratio">4.54 : 1</span>
+      <span class="verdict p" id="cx-n">Ordinary text: PASS</span>
+      <span class="verdict p" id="cx-l">Large text: PASS</span>
+      <span class="verdict f" id="cx-a">Strictest (7:1): FAIL</span>
+      <span class="num" id="cx-note" style="font-size:12.5px;color:var(--ink-soft)"></span>
+    </div>
+  </div>
+
+  <div id="labList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Drawing the double diamond as a straight line</h4>
+      <p><strong>The sentence you write:</strong> "First you discover, then define, then develop, then deliver, and it's finished."</p>
+      <p><strong>Why it loses the mark:</strong> it hides the thing the shape is for. Each diamond opens up and then narrows, and a test result can send the team back to an earlier phase if it shows they solved the wrong problem.</p>
+      <p><strong>Write instead:</strong> "Two diamonds, each diverging then converging: the first finds the right problem, the second builds the right solution, and testing can send you back."</p></div>
+    <div class="trap"><h4>Putting ideas in Define</h4>
+      <p><strong>The sentence you write:</strong> "In Define the team comes up with lots of ideas."</p>
+      <p><strong>Why it loses the mark:</strong> Define <em>narrows</em>. It ends with one problem statement. Lots of ideas is Develop, the second diamond opening up. Students swap the two because both start with D and both sound like making things.</p>
+      <p><strong>Write instead:</strong> "Define converges on one clear problem statement; ideas are generated later, in Develop."</p></div>
+    <div class="trap"><h4>Swapping UI and UX</h4>
+      <p><strong>The sentence you write:</strong> "UX is how the app looks and UI is how it works."</p>
+      <p><strong>Why it loses the mark:</strong> it is backwards, and examiners see it constantly. UI is what you see and touch: colour, type, buttons, icons. UX is how the whole thing works and feels: how many taps, whether it tells you what happened, whether you can find things.</p>
+      <p><strong>Write instead:</strong> "UI is the visual interface; UX is the overall experience of using it, including how easy it is." A quick test: if the fix changes how a screen <em>looks</em>, it is UI; if it changes how the task <em>goes</em>, it is UX.</p></div>
+    <div class="trap"><h4>Using colour as the only signal</h4>
+      <p><strong>The sentence you write:</strong> "Errors are shown in red, so users can see them."</p>
+      <p><strong>Why it loses the mark:</strong> some users cannot tell red from green (roughly 1 in 12 men), screens get washed out in sunlight, and screen readers do not see colour at all. A signal that depends on colour alone fails all of them.</p>
+      <p><strong>Write instead:</strong> "Errors are shown in red <em>and</em> with an icon and a text message saying what to fix."</p></div>
+    <div class="trap"><h4>Polishing the wireframe too early</h4>
+      <p><strong>The sentence you write:</strong> "I made the wireframe look nice with the real colours and photos so the client would be impressed."</p>
+      <p><strong>Why it loses the mark:</strong> a polished draft makes people argue about the colour of a button when the problem is that the page has no button. Grey boxes and labels keep everyone looking at structure, and they take minutes to change.</p>
+      <p><strong>Write instead:</strong> "A low-fidelity wireframe uses plain boxes and labels so feedback is about layout and flow, not decoration."</p></div>
+  </div>
+</section>
+
+<footer>
+  <span>Your answers, marks, lab problems and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'uxdesign-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, lab:{}, labx:{}, wf:null };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+  if(!S.lab) S.lab = {};
+  if(!S.labx) S.labx = {};
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(flushSave, 350);
+}
+async function flushSave(){
+  clearTimeout(saveTimer);
+  try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+}
+window.addEventListener('pagehide', ()=>{ flushSave(); });
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) flushSave(); });
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"Double Diamond in 3 minutes", ch:"uxtoast · UX design process", url:"https://www.youtube.com/watch?v=fYOPjWWDZHk",
+  why:"The whole shape in one short sitting: four phases, and why each diamond opens up before it closes. The Design Council, who published the model, have their own video, linked in the job below.",
+  task:"Draw the two diamonds from memory under the video, name the four phases, and write <em>wide</em> or <em>narrow</em> beside each. Then, only if you have ten minutes to spare, watch the Design Council's own <a href=\"https://www.youtube.com/watch?v=5FpKuJSCbx0\" target=\"_blank\" rel=\"noopener\">Celebrating 20 years of the Double Diamond</a> and write down one idea in it that the first video did not mention."},
+ {t:"UX Design vs. UI Design: What's the Difference?", ch:"WebFX", url:"https://www.youtube.com/watch?v=ZUIeIx_7w_A",
+  why:"The two halves of one screen, the look and the experience. This is the video for Q3, Q7 and the swapped-sentence trap.",
+  task:"Pause and write two columns, <em>UI</em> and <em>UX</em>, with three words under each. Then pick one app on your phone and write one UI fact and one UX fact about it."},
+ {t:"Readability, Contrast & Hierarchy in Web Design (Typography for UX)", ch:"VirtualAddiction", url:"https://www.youtube.com/watch?v=SrOKue8Dl8o",
+  why:"Contrast and visual hierarchy: the two UI elements that cost students the most marks. Q11, Q15 and several Problem Lab questions rest on them.",
+  task:"Write the one rule about contrast you would give a friend, in one line. Then break it on purpose in the contrast checker in the Problem Lab: type two colours that go against your rule and read the ratio."},
+ {t:"What is a User Persona? Explained in five minutes", ch:"Beyond Design with Jelissa", url:"https://www.youtube.com/watch?v=9zl5Q1GP_wM",
+  why:"Personas: an invented person, built from real research, so a team argues about her instead of about themselves. Feeds Q12 and the persona problems in the Lab.",
+  task:"Write a six-line persona for a Grade 7 student who uses the school app on a shared family tablet: name, age, goal, frustration, device, and the one thing that would make her quit. Q12 asks you to use it."},
+ {t:"Figma For Beginners: Create designs (2/4)", ch:"Figma · the makers of Figma", url:"https://www.youtube.com/watch?v=wvFd-z7jSaA",
+  why:"Figma's own beginner video on creating designs, the exact tools lesson 5 sends you to click. Its sequel, <em>Build prototypes (3/4)</em>, covers the prototype links.",
+  task:"Open Figma beside the video and pause each time it makes something. Make that thing yourself. By the end you should have a 390 × 844 frame with a rectangle and a text layer in it. For prototype links afterwards: <a href=\"https://www.youtube.com/watch?v=lTIeZ2ahEkQ\" target=\"_blank\" rel=\"noopener\">Build prototypes (3/4)</a>."},
+ {t:"How to Create a Website Wireframe in Figma (Beginner Tutorial)", ch:"Megan Weeks", url:"https://www.youtube.com/watch?v=a8R0dzLTsoM",
+  why:"A website wireframe built from plain boxes in Figma, start to finish. It is the practical half of lesson 6, made in the tool lesson 5 introduces.",
+  task:"Before you press play, sketch a Home page on paper in under three minutes. Afterwards, compare: what did the video's wireframe have that yours lacked? Write that one thing on your sketch, then fix the sketch."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"The double diamond: wide, narrow, wide, narrow", len:"6 min",
+  body:`<p>A team that opens its design tool first is guessing. The <strong>double diamond</strong>, published by the UK Design Council in 2004, is a map for not guessing. It is two diamonds side by side. Each one <span class="widetxt">diverges</span> (opens up: many facts, many ideas) and then <span class="narrowtxt">converges</span> (narrows down: choose one).</p>
+        <div class="tblwrap"><table class="data">
+          <tr><th>Phase</th><th>Direction</th><th>What the team does</th><th>What it has at the end</th></tr>
+          <tr><td>Discover</td><td>diverge</td><td>interviews, watching people, surveys, looking at what already exists</td><td>a deliberately messy pile of insights</td></tr>
+          <tr><td>Define</td><td>converge</td><td>group the notes, find the pattern, choose the problem, write it down</td><td>one problem statement</td></tr>
+          <tr><td>Develop</td><td>diverge</td><td>sketch many ideas, build rough prototypes, test them, drop the weak ones</td><td>a few tested prototypes</td></tr>
+          <tr><td>Deliver</td><td>converge</td><td>pick the one that works, fix the last bugs, final testing, launch, measure</td><td>a finished thing in real hands</td></tr>
+        </table></div>
+        <p>The two diamonds ask two different questions. The first asks <em>are we solving the right problem?</em> The second asks <em>are we solving it well?</em> Skip the first and you can do a brilliant job of the wrong thing.</p>
+        <p>A problem statement is the product of Define: <em>"Students miss deadlines because the list is buried in three apps."</em> It names who, what goes wrong and why. It does not say "build an app". Ideas come later.</p>
+        <p><strong>It is not a straight line.</strong> If five testers all fail because nobody needed the feature, you do not fix a button. You go back to Discover. The arrows can point backwards.</p>
+        <p><em>One honest difficulty:</em> a usability test belongs to both diamonds. Early tests on rough prototypes are Develop; the last check before launch is Deliver. The sorter above only rules on cards where the answer is clear.</p>`,
+  demo:`<strong>Do this:</strong> pick one thing at home that annoys you, such as a shoe rack nobody uses. In ten minutes on paper: write ten facts about it (Discover), circle the one that matters most (Define), sketch five different fixes (Develop), pick one and test it on a family member (Deliver). You have just walked both diamonds.`,
+  cliff:`A team completes all four phases and ships an app whose Pay button is the same colour as the page. Did the process fail, or did the screen? Lesson 2 splits those two apart.`},
+
+ {t:"UI is what you see, UX is how it goes", len:"5 min",
+  body:`<p><strong>UI</strong> is the <strong>user interface</strong>: everything you see and touch, meaning colour, type, buttons, icons, layout. <strong>UX</strong> is the <strong>user experience</strong>: how the whole task works and feels, meaning how many steps, whether it tells you what happened, whether you can find things.</p>
+        <p>Take one bus-ticket app with two separate problems. The text on the "Buy" screen is pale grey, and buying takes six steps.</p>
+        <div class="mocks">
+          <div class="mockbox"><h4>Before</h4><div class="phone"><span style="color:#999999">Whitefield &rarr; Majestic</span><span class="bt" style="background:#EEEEEE;color:#BBBBBB">Buy ticket</span></div>6 steps to buy.</div>
+          <div class="mockbox"><h4>UI fix</h4><div class="phone"><span style="color:#222222">Whitefield &rarr; Majestic</span><span class="bt" style="background:#1D4ED8;color:#FFFFFF">Buy ticket</span></div>Looks clearer. Still 6 steps.</div>
+          <div class="mockbox"><h4>UX fix</h4><div class="phone"><span style="color:#999999">Whitefield &rarr; Majestic</span><span class="bt" style="background:#EEEEEE;color:#BBBBBB">Buy usual ticket</span></div>Still hard to read. Now 3 steps.</div>
+        </div>
+        <p>Neither fix alone rescues the app: a beautiful app that takes six steps loses people, and a fast one that people squint at loses them too. In real work most changes touch both. The exam asks which one a fix <em>is</em>, and one question settles it: <strong>did the screen change how it looks, or did the task change how it goes?</strong></p>
+        <p>Feedback is the tricky one. A spinner is something you see, but its job is to tell you that your tap worked, which makes it a UX decision.</p>`,
+  demo:`<strong>Do this:</strong> look at the fan regulator or a door lock at home. Write one UI fact (what you see and touch: its labels, size, colour) and one UX fact (how it works: how many steps, and what tells you it has worked).`,
+  cliff:`The "before" text in that mock is #999999 on white. It looks calm. There is a number for whether people can actually read it, and this one scores 2.85. What should it score? Lesson 3.`},
+
+ {t:"Elements of UI: eight things you can see", len:"7 min",
+  body:`<p>Eight elements, each with one rule worth remembering.</p>
+        <ol>
+          <li><strong>Colour and contrast.</strong> Contrast is the ratio between text and background, from 1 (identical) to 21 (black on white). The accessibility standard (WCAG) asks for at least <span class="num">4.5</span> for ordinary text, <span class="num">3</span> for large text (24 px or bigger, or 18.66 px bold), and <span class="num">7</span> for the strictest level.</li>
+          <li><strong>Typography.</strong> Body text of at least 16 px, one or two typefaces, and size and weight used to show importance.</li>
+          <li><strong>Spacing and alignment.</strong> Space groups related things; aligned edges look deliberate. Many designers use steps of 8 px (8, 16, 24) so spacing is never random.</li>
+          <li><strong>Buttons.</strong> They should look pressable, say a verb ("Pay ₹25", not "Submit"), and be big enough to tap: Apple suggests 44 px, Google's Material design 48 px, and the WCAG minimum is 24 px.</li>
+          <li><strong>Icons.</strong> Familiar, from one style, and paired with a word when you are not sure.</li>
+          <li><strong>Images.</strong> Relevant, sensibly sized, with a text description for people who cannot see them.</li>
+          <li><strong>Consistency.</strong> The same thing looks the same everywhere: one button style, one date format, one icon set.</li>
+          <li><strong>Visual hierarchy.</strong> Size, weight, colour and space tell the eye what to read first.</li>
+        </ol>
+        <p><strong>Never judge contrast by eye.</strong> The ratio is <span class="num">(L₁ + 0.05) ÷ (L₂ + 0.05)</span>, where L is a colour's relative luminance, from 0 (black) to 1 (white), and L₁ is the lighter one. Text with L = 0.10 on white gives 1.05 ÷ 0.15 = <span class="num">7.0</span>. And greys fool the eye: <span class="num">#767676</span> on white scores <span class="num">4.54</span>, a pass; <span class="num">#777777</span>, which you cannot tell apart, scores <span class="num">4.48</span>, a fail. One step in each colour channel changed the verdict.</p>`,
+  demo:`<strong>Do this:</strong> the squint test. Hold your phone at arm's length, squint at the home screen of any app, and note the first three things your eye lands on. That order <em>is</em> the visual hierarchy, whether the designer meant it or not.`,
+  cliff:`Picture a form with perfect contrast, type and spacing, and one person in three still gives up halfway through. The UI is fine. So what is broken? Lesson 4.`},
+
+ {t:"Elements of UX: the parts you feel", len:"7 min",
+  body:`<p>If UI is what you see, these are the parts you feel when they are wrong.</p>
+        <ul>
+          <li><strong>Navigation.</strong> At every moment a user should know where they are, where they can go, and how to get back, and the menu should sit in the same place on every page.</li>
+          <li><strong>Usability.</strong> Can a new person do the task, how fast, with how many mistakes? The only way to know is to watch real people. A rule of thumb: if each tester finds about 31% of the problems, five testers find 1 − 0.69⁵ ≈ <span class="num">0.84</span>, so roughly 84% of them. That is a rule of thumb, not a law.</li>
+          <li><strong>Feedback.</strong> Every tap should get an answer: a pressed state, a spinner, "Booked ✓". Wait about a second with nothing visible and people start to wonder whether it worked, which is how a parent pays school fees twice.</li>
+          <li><strong>Accessibility.</strong> Design for different eyes, hands and ears: enough contrast, readable sizes, targets big enough to hit, text labels a screen reader can speak, and never colour as the only signal.</li>
+          <li><strong>User research.</strong> Interviews, watching people, surveys, usability tests. Asking people, not guessing for them.</li>
+          <li><strong>Personas.</strong> An invented person built from research: name, goal, frustration, context. A detail earns its place only if it <em>changes a design decision</em>. "Favourite colour: green" changes nothing. "Shares one tablet, so she is often logged out" changes the login screen.</li>
+          <li><strong>User journeys.</strong> The steps a persona takes, with a feeling score at each. The lowest point is where you fix first.</li>
+        </ul>
+        <div class="tblwrap"><table class="data">
+          <tr><th>Meera checks homework</th><th>Opens the app</th><th>Logged out, types password</th><th>Forgot it, waits for reset email</th><th>Finds homework</th></tr>
+          <tr><td>Feeling (1 low, 5 high)</td><td>4</td><td>2</td><td>1</td><td>4</td></tr>
+        </table></div>
+        <p>The lowest point is the reset email. A prettier homework page would not touch it.</p>`,
+  demo:`<strong>Do this:</strong> ask a family member to find one setting on their phone, such as turning on dark mode, and say nothing. Count the taps and the seconds. Wherever they hesitate is a UX problem. It is not their fault.`,
+  cliff:`You now have the words for good design. Where do you try ideas out without writing a line of code? Lesson 5 puts a free tool in your hands.`},
+
+ {t:"Figma in one sitting: what to click", len:"8 min",
+  body:`<p><strong>Figma</strong> is a free, browser-based tool for drawing screens. It makes pictures of interfaces that you can click through. It does not make working software: a Figma button looks pressable and does nothing until you link it to another frame.</p>
+        <p><strong>Set-up.</strong> Go to <code>figma.com</code> and sign up for a free account. Ask your tutor to sort this out with you, since sign-ups ask for an age and Figma sets its own rules. Then, on the Figma home screen, create a <strong>Design file</strong>. The button's name and position move between updates; look for the word <em>Design</em>.</p>
+        <p><strong>The six things to learn, in order:</strong></p>
+        <ol>
+          <li><strong>Frame.</strong> Press <span class="num">F</span>, then drag. A frame is a screen. In the right-hand panel type the size yourself: width <span class="num">W</span>, height <span class="num">H</span>.</li>
+          <li><strong>Shapes.</strong> Press <span class="num">R</span> for a rectangle, <span class="num">O</span> for an ellipse. Drag inside the frame. The panel shows <span class="num">X</span> and <span class="num">Y</span>, measured from the frame's top-left corner, not from the canvas.</li>
+          <li><strong>Text.</strong> Press <span class="num">T</span>, click inside the frame, type. Set size and weight in the right panel.</li>
+          <li><strong>Layers.</strong> The left panel lists everything. Higher in the list sits in front. Double-click a name to rename it, drag to reorder, click the eye to hide. Naming layers properly is the habit that separates tidy files from swamps.</li>
+          <li><strong>Components.</strong> Select a rectangle and its text, then press <span class="num">Ctrl+Alt+K</span> (Mac: <span class="num">Cmd+Option+K</span>). It becomes a <em>main component</em>. Copy it and the copies are <em>instances</em>. Edit the main one and every instance changes.</li>
+          <li><strong>Prototype.</strong> Click the <strong>Prototype</strong> tab at the top of the right panel, select a layer, drag the small handle that appears onto another frame, and choose <em>On click</em> then <em>Navigate to</em>. Press the <strong>Present</strong> button (the triangle, top right) and click through.</li>
+        </ol>
+        <div class="tblwrap"><table class="data">
+          <tr><th>Common frame size</th><th>Width × height (px)</th></tr>
+          <tr><td>Phone</td><td>390 × 844</td></tr>
+          <tr><td>Tablet</td><td>768 × 1024</td></tr>
+          <tr><td>Desktop</td><td>1440 × 1024</td></tr>
+        </table></div>
+        <p>The preset menu's names and numbers change as phones do. The habit is to type the numbers yourself.</p>
+        <p><strong>Figma versus code.</strong> In Figma you draw what a page should look like and nothing runs. In code you describe the page and a browser builds the real, working thing, which you can only test on real devices. Figma is for deciding; code is for making. You decide first because it takes seconds to move a rectangle and an afternoon to move a coded layout.</p>`,
+  demo:`<strong>Do this:</strong> on paper, draw a phone screen at 1 mm per 10 px: <span class="num">39 × 84.4 mm</span> (390 × 844 px). Draw a card <span class="num">35.8 mm</span> wide (358 px) in the middle. Check that the margin each side is 1.6 mm, which is 16 px. That is exactly the sum you will do in Figma.`,
+  cliff:`A blank 390 × 844 frame will not tell you what to draw. For a whole site, do you plan the screens first, or how they connect? Lesson 6 has the answer, and it comes with a checker.`},
+
+ {t:"Planning a 3-page site: sitemap, wireframes, handover", len:"8 min",
+  body:`<p>Before any wireframe, draw the <strong>sitemap</strong>: which pages exist and how they connect. For a school coding club, three pages is enough.</p>
+        <svg viewBox="0 0 560 166" role="img" aria-label="Sitemap: Home at the top, with About and Contact below it. All three pages link to each other through the navigation." style="width:100%;max-width:560px;height:auto;display:block;margin:8px 0">
+          <rect x="220" y="10" width="120" height="40" rx="6" fill="#fff" stroke="var(--ink)" stroke-width="2"/><text x="280" y="35" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">Home</text>
+          <path d="M280 50 L280 70 L130 70 L130 95 M280 70 L430 70 L430 95" fill="none" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="70" y="95" width="120" height="40" rx="6" fill="#fff" stroke="var(--ink)" stroke-width="2"/><text x="130" y="120" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">About</text>
+          <rect x="370" y="95" width="120" height="40" rx="6" fill="#fff" stroke="var(--ink)" stroke-width="2"/><text x="430" y="120" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">Contact</text>
+          <text x="280" y="158" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--ink-soft)">the nav on every page links to every page</text>
+        </svg>
+        <p>Then <strong>low-fidelity wireframes</strong>: one per page, plain boxes and labels, no colour, no real photos. Low fidelity is the point. A grey box that says "Image" takes ten seconds to move, and nobody argues about its colour.</p>
+        <div style="overflow-x:auto"><svg viewBox="0 0 600 270" role="img" aria-label="Three low-fidelity wireframes side by side. Home: logo, nav bar, heading, image, paragraph, button, footer. About: logo, nav bar, heading, paragraph, image, footer. Contact: logo, nav bar, heading, two form fields, button, footer. The nav bar is in the same place on all three." style="width:100%;min-width:540px;max-width:640px;height:auto;display:block;margin:8px 0" font-family="var(--mono)" font-size="9.5">
+          <g fill="#F6F2F0" stroke="var(--steel-dark)" stroke-width="1.5">
+            <rect x="8" y="8" width="184" height="254" rx="6" fill="#fff"/><rect x="208" y="8" width="184" height="254" rx="6" fill="#fff"/><rect x="408" y="8" width="184" height="254" rx="6" fill="#fff"/>
+            <rect x="16" y="16" width="50" height="22" stroke-dasharray="4 3"/><rect x="72" y="16" width="112" height="22"/>
+            <rect x="216" y="16" width="50" height="22" stroke-dasharray="4 3"/><rect x="272" y="16" width="112" height="22"/>
+            <rect x="416" y="16" width="50" height="22" stroke-dasharray="4 3"/><rect x="472" y="16" width="112" height="22"/>
+            <rect x="16" y="46" width="168" height="26" fill="#E6DFDC"/><rect x="216" y="46" width="168" height="26" fill="#E6DFDC"/><rect x="416" y="46" width="168" height="26" fill="#E6DFDC"/>
+            <rect x="16" y="80" width="168" height="62"/><rect x="216" y="150" width="168" height="62"/>
+            <rect x="16" y="196" width="100" height="22" rx="11" fill="#E6DFDC"/>
+            <rect x="416" y="80" width="168" height="24" fill="#fff"/><rect x="416" y="110" width="168" height="24" fill="#fff"/><rect x="416" y="146" width="100" height="22" rx="11" fill="#E6DFDC"/>
+            <rect x="16" y="230" width="168" height="24" fill="#D9D0CD"/><rect x="216" y="230" width="168" height="24" fill="#D9D0CD"/><rect x="416" y="230" width="168" height="24" fill="#D9D0CD"/>
+          </g>
+          <g fill="var(--ink)">
+            <text x="22" y="31">LOGO</text><text x="78" y="31">Home About Contact</text><text x="22" y="63">HEADING</text><text x="22" y="115">IMAGE</text><text x="22" y="211">Join us</text><text x="22" y="246">FOOTER</text>
+            <text x="222" y="31">LOGO</text><text x="278" y="31">Home About Contact</text><text x="222" y="63">HEADING</text>
+            <rect x="216" y="80" width="168" height="4" fill="var(--steel)"/><rect x="216" y="90" width="168" height="4" fill="var(--steel)"/><rect x="216" y="100" width="100" height="4" fill="var(--steel)"/>
+            <text x="222" y="185">IMAGE</text><text x="222" y="246">FOOTER</text>
+            <text x="422" y="31">LOGO</text><text x="478" y="31">Home About Contact</text><text x="422" y="63">HEADING</text><text x="422" y="96">Name ______</text><text x="422" y="126">Message ______</text><text x="422" y="161">Send</text><text x="422" y="246">FOOTER</text>
+            <rect x="16" y="150" width="168" height="4" fill="var(--steel)"/><rect x="16" y="160" width="168" height="4" fill="var(--steel)"/><rect x="16" y="170" width="100" height="4" fill="var(--steel)"/>
+          </g>
+          <g font-weight="700" fill="#fff" text-anchor="middle" font-size="9">
+            <circle cx="190" cy="27" r="8" fill="var(--ink)"/><text x="190" y="30">1</text>
+            <circle cx="190" cy="59" r="8" fill="var(--ink)"/><text x="190" y="62">2</text>
+            <circle cx="190" cy="207" r="8" fill="var(--ink)"/><text x="190" y="210">3</text>
+            <circle cx="590" cy="122" r="8" fill="var(--ink)"/><text x="590" y="125">4</text>
+            <circle cx="190" cy="242" r="8" fill="var(--ink)"/><text x="190" y="245">5</text>
+          </g>
+        </svg></div>
+        <p><strong>Annotations</strong> are the notes that stop a wireframe being ambiguous. The numbers above match the five rules of the studio: <span class="num">1</span> same navigation, same place, every page. <span class="num">2</span> one heading, first in the content. <span class="num">3</span> one clear call to action on Home. <span class="num">4</span> the form lives on Contact only. <span class="num">5</span> a footer, last, everywhere.</p>
+        <p><strong>The handover.</strong> The wireframe goes to whoever builds it, so write down what a builder cannot guess: the page list and file names (<code>index.html</code>, <code>about.html</code>, <code>contact.html</code>), where each nav link goes, the order of blocks on each page, the frame size you designed at, which text is placeholder and which is final, and what each image is meant to show.</p>`,
+  demo:`<strong>Do this:</strong> on paper, draw three rectangles, each 39 × 84 mm, one per page. Rule the same nav strip across the top of all three, in exactly the same place. Hold them in a fan. If the strip does not line up, the navigation is not consistent.`,
+  cliff:`Your wireframe says "heading", "image" and "button". A browser has never heard of any of those words. What does it need instead? That is the whole of the next page: <a href="htmlcss.html">htmlcss.html</a>.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which row gives the four phases of the double diamond in the correct order?",
+  o:["Discover → Develop → Define → Deliver",
+     "Discover → Define → Develop → Deliver",
+     "Define → Discover → Develop → Deliver",
+     "Design → Define → Develop → Deploy"], a:1,
+  why:"Open up (Discover), narrow to one problem (Define), open up again (Develop), narrow to one solution (Deliver). Option A swaps the middle two: you cannot develop answers before you have defined the question. Option D uses real words from other frameworks, but not these four."},
+ {n:2, lvl:"standard", q:"A team writes: \"Students miss deadlines because the list is buried in three apps.\" Which phase produces this sentence?",
+  o:["Discover","Define","Develop","Deliver"], a:1,
+  why:"A problem statement is the output of Define, the phase that narrows the pile of research to one problem. The trap is Discover, because the sentence comes from research. Research is the raw material; picking one problem and writing it down is the converging step."},
+ {n:3, lvl:"standard", q:"A school-fees app has a Pay button. After a tap nothing changes for four seconds, so many parents tap again and pay twice. Which change is a UX fix?",
+  o:["Make the Pay button green to match the school logo",
+     "Switch the heading font to a rounder typeface",
+     "Show \"Processing…\" and disable the button after the first tap",
+     "Make the school logo larger"], a:2,
+  why:"The problem is how the task works and feels: the app gives no feedback. Only option C changes that. A, B and D change how the screen looks, which is UI, and none of them would stop a second payment."},
+ {n:4, lvl:"trap", q:"A sign-up form marks each wrong box by turning its border red, and does nothing else. Which change fixes the real problem?",
+  o:["Use a darker red","Add an icon and a message under each wrong box saying what to fix",
+     "Make the red borders thicker","Turn correct boxes green as well"], a:1,
+  why:"The real problem is colour as the only signal. Darker and thicker red are still colour; adding green makes it worse for the many people who cannot separate red from green. An icon plus a sentence works for colour-blind users and for screen readers."},
+ {n:5, lvl:"trap", q:"You are about to show a first wireframe to a client. Which is the best way to present it?",
+  o:["With real photos and brand colours, so it looks professional",
+     "As grey boxes and labels, so feedback is about layout",
+     "With all the final text filled in, so nothing looks unfinished",
+     "With the menu animated, so they can see how it works"], a:1,
+  why:"The trap is polishing too early. A polished draft pulls attention to colour and wording while the real question is whether the page has the right parts in the right order. Plain boxes take seconds to rearrange, and they keep the conversation on structure."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"The double diamond has two diamonds. State what happens to the number of options in the first half and in the second half of each diamond, and say what you end up with at the end of each diamond.",
+  scheme:["In the first half of each diamond the number of options increases (diverge: explore widely) and in the second half it decreases (converge: choose). <span class='num'>[1]</span>",
+          "The first diamond ends with one clearly defined problem; the second ends with one finished, delivered solution. <span class='num'>[1]</span>"],
+  tip:"Four phases, two directions. If you wrote only the names Discover, Define, Develop and Deliver, you described the labels and not the shape."},
+ {n:7, m:2, lvl:"standard", q:"A bus-ticket app has pale grey text that is hard to read, and it takes six screens to buy a ticket. State which problem is a UI problem and which is a UX problem, and give one fix for each.",
+  scheme:["Pale, hard-to-read text is a UI problem (how the screen looks); a fix such as darker text or higher contrast. <span class='num'>[1]</span>",
+          "Six screens to buy a ticket is a UX problem (how the task works); a fix such as cutting it to three screens or remembering the usual route. <span class='num'>[1]</span>"],
+  tip:"Label each problem UI or UX <em>and</em> give a matching fix. A correct fix attached to the wrong label gets nothing for that mark."},
+ {n:8, m:2, lvl:"standard", q:"In a three-page wireframe the navigation bar is at the top on Home, at the bottom on About and missing on Contact. Explain why this is a problem for users.",
+  scheme:["Users learn where the navigation is on the first page and expect it in the same place (consistency); when it moves they have to search for it again. <span class='num'>[1]</span>",
+          "This slows them down and causes frustration or mistakes, and a missing menu means they may not be able to leave the page or may give up. <span class='num'>[1]</span>"],
+  tip:"'Explain' needs the feature and the consequence. 'It is inconsistent' is a description. What happens to the user is the explanation."},
+ {n:9, m:2, lvl:"standard", q:"A team skips Discover and starts sketching screens straight away. Give two separate problems this can cause.",
+  scheme:["They may solve the wrong problem, because they have assumed what users need instead of finding out. <span class='num'>[1]</span>",
+          "They waste time and money building something nobody wants, or have to redo work once real users react. <span class='num'>[1]</span>"],
+  tip:"'Two problems' means two different ones. 'Wrong problem' and 'solves the wrong thing' is one idea written twice, and it scores once."},
+ {n:10, m:2, lvl:"standard", q:"Explain two benefits of making a button a component in Figma instead of copying and pasting rectangles.",
+  scheme:["Edit the main component once and every instance updates, which saves time. <span class='num'>[1]</span>",
+          "Every button stays identical, so the design is consistent and there are fewer mistakes. <span class='num'>[1]</span>"],
+  tip:"Name the mechanism, main component and instances. 'It is faster' alone is a claim, not an explanation."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"standard", q:"The WCAG contrast ratio is <span class='num'>(L₁ + 0.05) ÷ (L₂ + 0.05)</span>, where L₁ is the relative luminance of the lighter colour and L₂ of the darker one. Black has L = 0 and white has L = 1. Ordinary text needs a ratio of at least 4.5; large text (24 px or bigger) needs at least 3. Two text colours are on a white background: colour A has L = 0.10 and colour B has L = 0.30.<br><br><strong>(a)</strong> Calculate the contrast ratio for A on white. <span class='num'>[1]</span><br><strong>(b)</strong> Calculate it for B on white. <span class='num'>[1]</span><br><strong>(c)</strong> State which colour can be used for ordinary paragraphs and which for a 28 px heading. <span class='num'>[1]</span>",
+  hints:["White is L₁ = 1 and it is the lighter colour, so the top of the fraction is 1 + 0.05 = 1.05.",
+         "The bottom is the text's L plus 0.05. For A that is 0.10 + 0.05 = 0.15.",
+         "For (c), compare each ratio with 4.5 for paragraphs and with 3 for the heading. 'At least 3' includes exactly 3."],
+  sol:["(a) (1 + 0.05) ÷ (0.10 + 0.05) = 1.05 ÷ 0.15 = <strong>7.0</strong>.",
+       "(b) 1.05 ÷ (0.30 + 0.05) = 1.05 ÷ 0.35 = <strong>3.0</strong>.",
+       "(c) A (7.0 ≥ 4.5) passes for paragraphs and for headings. B (3.0) fails for paragraphs, since 3.0 is below 4.5, but it passes for the 28 px heading because 3.0 meets 'at least 3'.",
+       "Closing note: B passes by exactly nothing to spare. A heading that is allowed is not a heading that is comfortable."]},
+
+ {n:12, m:3, lvl:"standard", q:"A school canteen is building an ordering app. Its main user is Meera, 13, who shares one family tablet and has patchy mobile data in the evenings.<br><br><strong>(a)</strong> Write one goal and one frustration for Meera, each of which would change a design decision. <span class='num'>[1]</span><br><strong>(b)</strong> Write a four-step user journey for ordering lunch, with a feeling score from 1 (low) to 5 (high) at each step, and explain the lowest score using her frustration. <span class='num'>[1]</span><br><strong>(c)</strong> Propose one UX fix for the lowest point and say which step's score it should raise. <span class='num'>[1]</span>",
+  hints:["A detail only earns a place if you can finish the sentence 'so the design should…'. Favourite colours do not pass that test; a shared tablet does.",
+         "Steps like: open the app, log in, choose food, pay. Give each a number from 1 to 5, and check that the lowest one connects to something you wrote in (a).",
+         "A UX fix changes how the task goes (fewer steps, remembering things, giving feedback). Recolouring the login button is a UI fix and does not answer (c)."],
+  sol:["(a) Goal: order lunch before break in under a minute. Frustration: she is logged out every time because the tablet is shared. Decision it changes: a quick sign-in that does not depend on an email she may not have.",
+       "(b) Open the app (4) → log in (1) → choose food (4) → pay (3). The lowest is log in, 1: on a shared tablet she has to type a password every time, and with patchy data a failed login makes her start again.",
+       "(c) Replace the password with a four-digit PIN or a tap on her own name, and keep her order if the connection drops. It should raise the 'log in' step from 1 to about 3 or 4.",
+       "This is self-marked. Give yourself a mark for each part where your answer is specific and the scores, fix and frustration agree with each other."]},
+
+ {n:13, m:3, lvl:"trap", q:"In Figma you make a frame 390 wide and 844 high. You place three cards in a column, each 358 wide and 120 high. The top edge of the first card is at <span class='num'>Y = 100</span> and there is a 16 px gap between one card and the next. The cards are centred across the frame.<br><br><strong>(a)</strong> State the X position of each card. <span class='num'>[1]</span><br><strong>(b)</strong> Calculate the Y position of the third card. <span class='num'>[1]</span><br><strong>(c)</strong> Calculate the distance from the bottom of the third card to the bottom of the frame. <span class='num'>[1]</span>",
+  hints:["Centred means the same space on the left and the right. The space left over is 390 − 358, shared between two sides.",
+         "Each card down the column moves the next one by its own height plus one gap. The third card is two steps below the first, not three.",
+         "For (c), find the bottom edge of the third card first (its Y plus its height), then take that away from 844."],
+  sol:["(a) (390 − 358) ÷ 2 = <strong>X = 16</strong> for every card.",
+       "(b) Each step is 120 + 16 = 136. The third card is two steps below the first: 100 + 2 × 136 = <strong>Y = 372</strong>.",
+       "(c) Bottom of the third card = 372 + 120 = 492. 844 − 492 = <strong>352 px</strong>.",
+       "The trap is the gaps: 100 + 2 × 120 = 340 forgets them, and 100 + 3 × 136 = 508 counts one step too many. Open Figma and check 372 in the Y box."]},
+
+ {n:14, m:3, lvl:"hard", q:"A team of Grade 7 students wants to fix the long queue at the school canteen. After two interviews they open Figma and start drawing a mobile ordering app. They write their goal as \"Make a canteen app\".<br><br><strong>(a)</strong> Name the phase of the double diamond they skipped between interviewing and drawing, and state what it should have produced. <span class='num'>[1]</span><br><strong>(b)</strong> Give two things wrong with \"Make a canteen app\" as a problem statement. <span class='num'>[1]</span><br><strong>(c)</strong> Rewrite it as a better problem statement that names who is affected, what goes wrong and why it matters, and does not mention any solution. <span class='num'>[1]</span>",
+  hints:["Interviews are Discover. Drawing screens is a solution, so they are already in Develop. What sits between the two diamonds?",
+         "Ask of 'Make a canteen app': does it describe a problem or a solution? Does it say who is affected, or what goes wrong?",
+         "A good statement has three parts: who, what goes wrong, and why it matters. If your sentence contains the word 'app', it has smuggled in a solution."],
+  sol:["(a) They skipped <strong>Define</strong>. It should have produced one clear problem statement.",
+       "(b) Any two of: it is a solution (an app), not a problem; it does not say who is affected; it does not say what goes wrong or why it matters; it assumes an app is the right answer after only two interviews.",
+       "(c) Model answer: <strong>\"Grade 7 students sometimes skip lunch because the canteen queue takes up too much of a 25-minute break.\"</strong> It names who, what goes wrong and why, and an app, a second counter or a pre-order slip could all still solve it.",
+       "Self-marked. Mark (c) only if your sentence contains no solution. Ideas belong to the next diamond."]},
+
+ {n:15, m:3, lvl:"hard", q:"A designer puts white text (L = 1) on an orange button with a relative luminance of L = 0.20. Use <span class='num'>(L₁ + 0.05) ÷ (L₂ + 0.05)</span>; ordinary text needs a ratio of at least 4.5.<br><br><strong>(a)</strong> Calculate the contrast ratio. <span class='num'>[1]</span><br><strong>(b)</strong> The designer says \"4.2 is near enough to 4.5.\" State whether the button passes for ordinary text and explain why \"near enough\" is not an argument here. <span class='num'>[1]</span><br><strong>(c)</strong> The designer darkens the orange. Calculate the highest luminance it can have for white text to still reach 4.5, to two decimal places. <span class='num'>[1]</span>",
+  hints:["White is the lighter colour (L₁ = 1) so the top is 1.05. The bottom is the orange's L plus 0.05.",
+         "The rule says 'at least 4.5'. A ratio is either at or above the line or it is not, and the standard gives no marks for being close.",
+         "Work backwards: 1.05 ÷ (L + 0.05) = 4.5. First find L + 0.05 = 1.05 ÷ 4.5, then take 0.05 away."],
+  sol:["(a) 1.05 ÷ (0.20 + 0.05) = 1.05 ÷ 0.25 = <strong>4.2</strong>.",
+       "(b) <strong>It fails</strong>: 4.2 is below 4.5. The thresholds are minimums that were chosen so that people with weaker vision can read the text; text that misses the minimum is, for them, text that is not there. Nobody gets partial credit for being close.",
+       "(c) L + 0.05 = 1.05 ÷ 4.5 = 0.2333…, so L = 0.1833… The highest luminance is <strong>0.18</strong> to two decimal places. Check: at L = 0.18 the ratio is 1.05 ÷ 0.23 = 4.57, a pass; at L = 0.19 it is 1.05 ÷ 0.24 = 4.375, a fail.",
+       "Closing note: one hundredth of luminance separates a pass from a fail. This is why the lab's checker exists."]}
+];
+</script>
+
+<script>
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='trap'?' hard':''}">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'||Q.lvl==='trap'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}" aria-label="Score ${i} out of ${m} on question ${n}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark, lab problem and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, lab:{}, labx:{}, wf:null };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const lab = (typeof LAB!=='undefined') ? LAB.filter(p=>S.lab[p.id]).length : 0;
+  const labTotal = (typeof LAB!=='undefined') ? LAB.length : 23;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('s-lab').innerHTML = lab + `<span style="${small}">/${labTotal}</span>`;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+  document.getElementById('bar-lab').style.width = (lab/labTotal*100)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+function reducedMotion(){
+  try{ return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }catch(e){ return false; }
+}
+function puzzleWon(){ S.puzzles = (S.puzzles||0)+1; save(); refresh(); }
+</script>
+
+<script>
+/* ================= HERO 1: double-diamond sorter ================= */
+const PHN = {discover:'Discover', define:'Define', develop:'Develop', deliver:'Deliver'};
+const PH_ORDER = ['discover','define','develop','deliver'];
+const DC = [
+ {p:'discover', why:"Watching real people adds facts and widens what you know: diamond 1 opening up. That is Discover.",
+  no:{define:"Define narrows. Shadowing adds information, and you cannot narrow until you have it.",
+      develop:"Develop is about solutions. Here you are still finding out what the problem is.",
+      deliver:"Deliver is about finishing and launching something. There is nothing to launch yet."}},
+ {p:'define', why:"Grouping notes to find the pain that keeps repeating is converging: diamond 1 closing. That is Define.",
+  no:{discover:"Discover gathers the notes. Sorting them into a pattern is the narrowing that comes after.",
+      develop:"Develop starts from a problem you have already agreed on. Here you are still deciding what the problem is.",
+      deliver:"Nothing is being finished or launched; this is mid-project analysis."}},
+ {p:'develop', why:"Many options, none chosen yet: diamond 2 opening up. That is Develop.",
+  no:{discover:"Discover is about the problem and the people. Sketching solutions is already the second diamond.",
+      define:"Define narrows to one problem. Twenty ideas is the opposite of narrowing, and these are solutions, not a problem.",
+      deliver:"Deliver converges on one finished solution. Twenty rough ideas is the opposite."}},
+ {p:'deliver', why:"Choosing one design and finishing it is diamond 2 closing: Deliver.",
+  no:{discover:"Discover is early research. This is near the end of the project.",
+      define:"Define chooses a <em>problem</em>. Here you are choosing a <em>solution</em>, which belongs to the second diamond.",
+      develop:"Develop keeps several options alive. Picking one and fixing its bugs closes the others off."}},
+ {p:'discover', why:"Gathering existing evidence about the problem: Discover.",
+  no:{define:"Reading adds information. Define comes once you have enough to find a pattern.",
+      develop:"No solutions yet; this is about understanding the problem.",
+      deliver:"Nothing is being finished or launched."}},
+ {p:'define', why:"One sentence saying who has what problem and why is exactly what Define produces.",
+  no:{discover:"Discover collects facts. This sentence is a choice made from them.",
+      develop:"Develop is for solutions. This sentence says what is wrong, not how to fix it, and that is the classic Define versus Develop mix-up.",
+      deliver:"Deliver is the end of the project. This sentence comes midway."}},
+ {p:'develop', why:"Several rough solutions, tested early and cheaply: Develop (diverge, test, iterate).",
+  no:{discover:"You are testing solutions now, not learning about the problem.",
+      define:"Define picks a problem. Prototypes are solutions.",
+      deliver:"Three rough versions are still options. Deliver is the one finished thing."}},
+ {p:'deliver', why:"Launching and measuring is Deliver, the final narrowing.",
+  no:{discover:"Discover starts a project. What you learn from a launch could feed the next round, but the launch itself is the end of this one.",
+      define:"Nothing is being narrowed down to a problem; the product exists.",
+      develop:"Develop is for rough options. A launch to the whole school is the finished one."}}
+];
+const dState = { sel:null, placed:{}, mistakes:0, quiz:null };
+const dcardBtns = [...document.querySelectorAll('#dcards .dcard')];
+const sayEl = document.getElementById('say');
+
+function dPlacedCount(){ return Object.keys(dState.placed).length; }
+function dRefreshUI(){
+  PH_ORDER.forEach(ph=>{
+    const n = Object.values(dState.placed).filter(x=>x===ph).length;
+    document.getElementById('cnt-'+ph).textContent = n + ' / 2';
+    const poly = document.querySelector('#qp-'+ph+' polygon');
+    poly.setAttribute('stroke-width', n? '5':'2.5');
+    poly.setAttribute('fill-opacity', n===2? '1':'0.75');
+  });
+  const pill = document.getElementById('d-pill');
+  pill.textContent = 'Mistakes: ' + dState.mistakes;
+  pill.className = 'pill ' + (dState.mistakes? 'in' : 'hold');
+  document.getElementById('d-text').textContent = dPlacedCount()===8
+    ? (dState.mistakes? 'All eight placed, with '+dState.mistakes+' mistake'+(dState.mistakes>1?'s':'')+'.' : 'All eight placed, no mistakes.')
+    : 'Placed ' + dPlacedCount() + ' of 8.';
+}
+function selectCard(i){
+  if(dState.placed[i]!==undefined) return;
+  dState.sel = (dState.sel===i) ? null : i;
+  dcardBtns.forEach((b,j)=>b.setAttribute('aria-pressed', String(dState.sel===j)));
+  sayEl.className = 'say';
+  sayEl.innerHTML = dState.sel===null ? 'Pick a card. Nothing is marked until you place it.'
+    : `<strong>Selected.</strong> Now choose which phase it belongs to: use the four <em>Put it here</em> buttons, or click a quarter of the diamond.`;
+}
+function putIn(ph){
+  if(dState.sel===null){ sayEl.className='say'; sayEl.innerHTML='<strong>Pick a card first.</strong> Then choose its phase.'; return; }
+  const i = dState.sel, C = DC[i], txt = dcardBtns[i].textContent;
+  if(C.p===ph){
+    dState.placed[i] = ph;
+    dcardBtns[i].disabled = true; dcardBtns[i].setAttribute('aria-pressed','false');
+    dState.sel = null;
+    const t = document.createElement('div');
+    t.className = 'placed';
+    t.innerHTML = `<b>&#10003; ${PPHN(ph)}</b>${txt}`;
+    document.getElementById('tray-'+ph).appendChild(t);
+    sayEl.className = 'say good';
+    sayEl.innerHTML = `<strong>Yes, ${PHN[ph]}.</strong> ${C.why}`;
+  }else{
+    dState.mistakes++;
+    sayEl.className = 'say bad';
+    sayEl.innerHTML = `<strong>Not ${PHN[ph]}.</strong> ${C.no[ph]} <em>(It belongs in ${PHN[C.p]}; try again.)</em>`;
+    if(dState.quiz && dState.quiz.id==='sort' && !dState.quiz.failed){
+      dState.quiz.failed = true;
+      document.getElementById('d-quiz').innerHTML = '<strong>Puzzle failed:</strong> one mistake and the clean run is gone. Press <em>Set me a puzzle</em> for another, or keep sorting for practice.';
+    }
+  }
+  dRefreshUI();
+  if(dState.quiz && dState.quiz.id==='sort' && !dState.quiz.failed && dPlacedCount()===8 && dState.mistakes===0) dQuizWin();
+}
+function PPHN(ph){ return PHN[ph]; }
+dcardBtns.forEach((b,i)=>b.addEventListener('click', ()=>selectCard(i)));
+document.querySelectorAll('[data-put]').forEach(b=>b.addEventListener('click', ()=>putIn(b.dataset.put)));
+document.querySelectorAll('.qp').forEach(g=>g.addEventListener('click', ()=>putIn(g.dataset.phase)));
+
+function resetSorter(){
+  dState.sel = null; dState.placed = {}; dState.mistakes = 0;
+  dcardBtns.forEach(b=>{ b.disabled=false; b.setAttribute('aria-pressed','false'); });
+  PH_ORDER.forEach(ph=>{ document.getElementById('tray-'+ph).innerHTML=''; });
+  sayEl.className='say'; sayEl.textContent='Pick a card. Nothing is marked until you place it.';
+  dRefreshUI();
+}
+document.getElementById('d-reset').addEventListener('click', ()=>{ resetSorter(); });
+
+/* ---- marker slider ---- */
+const mSlider = document.getElementById('mslider');
+function openAt(v){ const x = 30 + 7*v; const f = x<=380 ? 1-Math.abs(x-205)/175 : 1-Math.abs(x-555)/175; return Math.max(0, Math.min(1, f)); }
+function phaseAt(v){ return v<25 ? 'discover' : v<50 ? 'define' : v<75 ? 'develop' : 'deliver'; }
+function drawMarker(){
+  const v = +mSlider.value, x = 30 + 7*v, f = openAt(v), h = 100*f, ph = phaseAt(v);
+  const line = document.getElementById('mk-line');
+  line.setAttribute('x1', x); line.setAttribute('x2', x);
+  line.setAttribute('y1', 150-h); line.setAttribute('y2', 150+h);
+  const dot = document.getElementById('mk-dot'); dot.setAttribute('cx', x);
+  document.getElementById('m-phase').textContent = v===0 ? 'The very start' : v===100 ? 'Launched' : v===50 ? 'The pinch point' : PHN[ph];
+  const wide = (ph==='discover'||ph==='develop');
+  document.getElementById('m-dir').textContent = v===50 ? 'one problem chosen' : v===0 ? 'nothing known yet' : v===100 ? 'one solution delivered' : (wide ? 'diverging, opening up' : 'converging, narrowing down');
+  document.getElementById('m-open').textContent = Math.round(f*100) + '%';
+}
+mSlider.addEventListener('input', drawMarker);
+
+/* ---- machine puzzles ---- */
+const DPUZ = [
+ {id:'sort', q:"Place all eight cards with no mistakes. The sorter has been reset for you. One wrong placement and the puzzle is gone.", btn:false},
+ {id:'wide', q:"Park the marker at the widest point of the <em>second</em> diamond: at least 90% of the options open, in diamond 2. Then press Check.", btn:true,
+  ok:()=>{ const v=+mSlider.value; return v>=50 && openAt(v)>=0.9; }},
+ {id:'pinch', q:"Park the marker at the pinch point between the two diamonds, where you have committed to <em>one</em> problem: 10% or less open, and not at either end. Then press Check.", btn:true,
+  ok:()=>{ const v=+mSlider.value; return openAt(v)<=0.1 && v>25 && v<75; }},
+ {id:'half', q:"Park the marker in <em>Define</em> with the options about half open (40% to 60%). Then press Check.", btn:true,
+  ok:()=>{ const v=+mSlider.value; return phaseAt(v)==='define' && openAt(v)>=0.4 && openAt(v)<=0.6; }}
+];
+let lastD = -1;
+function dNewQuiz(forceIdx){
+  let i = (typeof forceIdx==='number') ? forceIdx : Math.floor(Math.random()*DPUZ.length);
+  if(typeof forceIdx!=='number' && i===lastD) i = (i+1)%DPUZ.length;
+  lastD = i;
+  const P = DPUZ[i], box = document.getElementById('d-quiz');
+  dState.quiz = {id:P.id, failed:false};
+  if(P.id==='sort') resetSorter();
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> ${P.q}` + (P.btn ? `<div class="qrow"><button class="btn ghost small" type="button" id="d-qcheck">Check my marker</button></div>` : '');
+  if(P.btn) document.getElementById('d-qcheck').addEventListener('click', ()=>{
+    if(!dState.quiz) return;
+    if(P.ok()){
+      box.innerHTML = `<strong>Right.</strong> That is where it should be: ${document.getElementById('m-open').textContent} open, in ${document.getElementById('m-phase').textContent}.<div class="qrow"><button class="btn ghost small" type="button" id="d-again">Another one</button></div>`;
+      document.getElementById('d-again').addEventListener('click', ()=>dNewQuiz());
+      dState.quiz = null; puzzleWon();
+    }else{
+      const v=+mSlider.value;
+      box.querySelector('.qrow').insertAdjacentHTML('afterend', `<div style="margin-top:8px"><strong>Not there.</strong> The marker is in ${PHN[phaseAt(v)]} with ${Math.round(openAt(v)*100)}% open. Move it and check again.</div>`);
+      const extra = box.querySelectorAll('div[style]'); if(extra.length>1) extra[0].remove();
+    }
+  });
+}
+function dQuizWin(){
+  const box = document.getElementById('d-quiz');
+  box.innerHTML = `<strong>Right.</strong> Eight cards, no mistakes. That is what a clean run through both diamonds looks like.<div class="qrow"><button class="btn ghost small" type="button" id="d-again">Another one</button></div>`;
+  document.getElementById('d-again').addEventListener('click', ()=>dNewQuiz());
+  dState.quiz = null; puzzleWon();
+}
+document.getElementById('d-newquiz').addEventListener('click', ()=>dNewQuiz());
+</script>
+
+<script>
+/* ================= HERO 2: wireframe studio ================= */
+const SLOTS = 10;
+const PAGES = ['home','about','contact'];
+const PN = {home:'Home', about:'About', contact:'Contact'};
+const BLK = {logo:'logo', navbar:'nav bar', menu:'menu icon', hero:'hero heading', para:'paragraph', img:'image box', btn:'button', field:'form field', footer:'footer'};
+const RULE_T = {1:'Same navigation, at the top, on every page', 2:'Exactly one heading per page, before the content',
+                3:'Form fields only on Contact (two or more, plus a button)', 4:'Home has a button after its heading',
+                5:'Every page ends with exactly one footer, last'};
+function emptyPages(){ const o={}; PAGES.forEach(p=>o[p]=Array(SLOTS).fill(null)); return o; }
+let WF = emptyPages(), wfCur = 'home', wfSel = null;
+
+function blkHTML(b){
+  switch(b){
+    case 'logo': return '<div class="blk logo"><span class="bl">LOGO</span></div>';
+    case 'navbar': return '<div class="blk navbar"><span class="bl">NAV BAR</span><span class="lk"><span>Home</span><span>About</span><span>Contact</span></span></div>';
+    case 'menu': return '<div class="blk menu"><span class="bl">&#9776; MENU</span></div>';
+    case 'hero': return '<div class="blk hero"><span class="bl">HEADING</span><span class="bar2"></span></div>';
+    case 'para': return '<div class="blk para"><span class="bl">PARAGRAPH</span><i></i><i></i><i></i></div>';
+    case 'img': return '<div class="blk img"><span class="bl">IMAGE</span></div>';
+    case 'btn': return '<div class="blk btn2"><span class="bl">BUTTON</span></div>';
+    case 'field': return '<div class="blk field"><span class="bl">FIELD</span><span class="ln"></span></div>';
+    case 'footer': return '<div class="blk footer"><span class="bl">FOOTER</span></div>';
+  }
+  return '';
+}
+
+/* ---- pure rule checker (no DOM) ---- */
+function evalRules(W){
+  const P = {}; PAGES.forEach(p=>{ P[p] = W[p].filter(Boolean); });
+  const bad = {1:[],2:[],3:[],4:[],5:[]};
+  const isContent = b => b==='para'||b==='img'||b==='btn'||b==='field';
+  const isNav = b => b==='navbar'||b==='menu';
+  const navKind = {};
+  /* Rule 1 */
+  PAGES.forEach(p=>{
+    const idx = []; P[p].forEach((b,i)=>{ if(isNav(b)) idx.push(i); });
+    if(idx.length===0){ bad[1].push([p,'has no navigation. Add a nav bar or a menu icon.']); return; }
+    if(idx.length>1){ bad[1].push([p,'has '+idx.length+' navigation blocks; it needs exactly one.']); return; }
+    navKind[p] = P[p][idx[0]];
+    const above = P[p].slice(0, idx[0]).filter(b=>b!=='logo');
+    if(above.length) bad[1].push([p,'has a '+BLK[above[0]]+' above the navigation; only the logo may sit above it.']);
+  });
+  const withNav = Object.keys(navKind);
+  if(withNav.length>=2){
+    const kinds = {}; withNav.forEach(p=>{ (kinds[navKind[p]] = kinds[navKind[p]]||[]).push(p); });
+    const ks = Object.keys(kinds);
+    if(ks.length>1){
+      ks.sort((a,b)=>kinds[b].length-kinds[a].length);
+      if(kinds[ks[0]].length>kinds[ks[1]].length){
+        const majority = kinds[ks[0]].map(p=>PN[p]).join(' and ');
+        ks.slice(1).forEach(k=>kinds[k].forEach(p=>bad[1].push([p,'uses a '+BLK[k]+' but '+majority+' use'+(kinds[ks[0]].length>1?'':'s')+' a '+BLK[ks[0]]+'; use the same navigation everywhere.'])));
+      }else{
+        const a = kinds[ks[0]][0], b = kinds[ks[1]][0];
+        const later = PAGES.indexOf(a) > PAGES.indexOf(b) ? a : b, earlier = later===a ? b : a;
+        bad[1].push([later,'uses a '+BLK[navKind[later]]+' but '+PN[earlier]+' uses a '+BLK[navKind[earlier]]+'; use the same navigation everywhere.']);
+      }
+    }
+  }
+  /* Rule 2 */
+  PAGES.forEach(p=>{
+    const heroes = []; P[p].forEach((b,i)=>{ if(b==='hero') heroes.push(i); });
+    if(heroes.length===0){ bad[2].push([p,'has no heading. Add a hero heading.']); return; }
+    if(heroes.length>1){ bad[2].push([p,'has '+heroes.length+' headings; it needs exactly one.']); return; }
+    const fc = P[p].findIndex(isContent);
+    if(fc!==-1 && fc<heroes[0]) bad[2].push([p,'has a '+BLK[P[p][fc]]+' above its heading; the heading should come before the content.']);
+  });
+  /* Rule 3 */
+  PAGES.forEach(p=>{
+    const nf = P[p].filter(b=>b==='field').length, nb = P[p].filter(b=>b==='btn').length;
+    if(p!=='contact'){
+      if(nf>0) bad[3].push([p,'has '+nf+' form field'+(nf>1?'s':'')+'; forms belong only on Contact.']);
+    }else{
+      if(nf<2) bad[3].push([p,'has '+nf+' form field'+(nf===1?'':'s')+'; a contact form needs at least two (a name and a message).']);
+      if(nb<1) bad[3].push([p,'has no button, so the form cannot be sent.']);
+    }
+  });
+  /* Rule 4 */
+  (function(){
+    const h = P.home, hi = h.indexOf('hero'), bi = []; h.forEach((b,i)=>{ if(b==='btn') bi.push(i); });
+    if(bi.length===0) bad[4].push(['home','has no button, so there is no call to action.']);
+    else if(hi!==-1 && !bi.some(i=>i>hi)) bad[4].push(['home','has its button above the heading; the call to action should come after the heading.']);
+  })();
+  /* Rule 5 */
+  PAGES.forEach(p=>{
+    const f = []; P[p].forEach((b,i)=>{ if(b==='footer') f.push(i); });
+    if(f.length===0) bad[5].push([p,'has no footer.']);
+    else if(f.length>1) bad[5].push([p,'has '+f.length+' footers; it needs exactly one.']);
+    else if(f[0]!==P[p].length-1) bad[5].push([p,'has a '+BLK[P[p][P[p].length-1]]+' below its footer; the footer must be last.']);
+  });
+  return [1,2,3,4,5].map(n=>({n, title:RULE_T[n], ok:bad[n].length===0, bad:bad[n]}));
+}
+
+/* ---- rendering ---- */
+let wfFocus = null;
+function wfSave(){ S.wf = {pages:WF, cur:wfCur}; save(); }
+function renderSlots(){
+  const ol = document.getElementById('slots');
+  ol.innerHTML = '';
+  const arr = WF[wfCur];
+  document.getElementById('wf-panel').setAttribute('aria-labelledby','tab-'+wfCur);
+  arr.forEach((b,i)=>{
+    const li = document.createElement('li'); li.className = 'slot';
+    if(!b){
+      const label = wfSel ? 'Place '+BLK[wfSel]+' here' : 'empty';
+      li.innerHTML = `<span class="sn">${i+1}</span><button type="button" class="empty" data-slot="${i}" ${wfSel?'':'disabled'} aria-label="Slot ${i+1}, empty${wfSel?'. Place the '+BLK[wfSel]+' here':'. Select a block first'}">${label}</button>`;
+    }else{
+      li.innerHTML = `<span class="sn">${i+1}</span><div class="filled">${blkHTML(b)}<div class="ctl">
+        <button type="button" data-mv="-1" data-slot="${i}" ${i===0?'disabled':''} aria-label="Move the ${BLK[b]} in slot ${i+1} up">&uarr;</button>
+        <button type="button" data-mv="1" data-slot="${i}" ${i===SLOTS-1?'disabled':''} aria-label="Move the ${BLK[b]} in slot ${i+1} down">&darr;</button>
+        <button type="button" data-rm="1" data-slot="${i}" aria-label="Remove the ${BLK[b]} from slot ${i+1}">&times;</button></div></div>`;
+    }
+    ol.appendChild(li);
+  });
+  PAGES.forEach(p=>{
+    const t = document.getElementById('tab-'+p);
+    t.setAttribute('aria-selected', String(p===wfCur)); t.tabIndex = (p===wfCur) ? 0 : -1;
+  });
+  document.querySelectorAll('.pal').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.b===wfSel)));
+  const total = PAGES.reduce((n,p)=>n+WF[p].filter(Boolean).length,0);
+  document.getElementById('wf-pill').textContent = total + ' block' + (total===1?'':'s') + ' placed';
+  document.getElementById('wf-text').textContent = wfSel ? 'Selected: '+BLK[wfSel]+'. Click an empty slot, or use Add.' : 'Select a block, then click an empty slot.';
+  if(wfFocus){
+    const q = document.querySelector(wfFocus);
+    if(q && !q.disabled) q.focus();
+    else{ const alt = document.querySelector(wfFocus.replace(/\[data-(mv="-?1"|rm="1")\]/,'[data-rm="1"]')); if(alt) alt.focus(); }
+    wfFocus = null;
+  }
+}
+function place(i, focusSel){
+  if(!wfSel) return;
+  WF[wfCur][i] = wfSel;
+  const nx = WF[wfCur].indexOf(null);
+  wfFocus = focusSel || (nx>=0 ? `.empty[data-slot="${nx}"]` : `[data-rm="1"][data-slot="${i}"]`);
+  wfSave(); renderSlots();
+}
+function addNext(){
+  if(!wfSel){ document.getElementById('wf-text').textContent = 'Select a block from the palette first.'; return; }
+  const i = WF[wfCur].indexOf(null);
+  if(i===-1){ document.getElementById('wf-text').textContent = 'This page has no free slots. Remove a block first.'; return; }
+  place(i, '#wf-add');
+}
+document.getElementById('wf-add').addEventListener('click', addNext);
+document.querySelectorAll('.pal').forEach(b=>b.addEventListener('click', ()=>{
+  wfSel = (wfSel===b.dataset.b) ? null : b.dataset.b; renderSlots();
+}));
+document.getElementById('slots').addEventListener('click', e=>{
+  const t = e.target.closest('button'); if(!t) return;
+  const i = +t.dataset.slot;
+  if(t.classList.contains('empty')){ place(i); return; }
+  if(t.dataset.rm){ WF[wfCur][i] = null; wfFocus = null; wfSave(); renderSlots();
+    const el = document.querySelector(`.empty[data-slot="${i}"]`); if(el && !el.disabled) el.focus(); else document.querySelector('.pal')?.focus(); return; }
+  if(t.dataset.mv){
+    const d = +t.dataset.mv, j = i + d;
+    if(j<0 || j>=SLOTS) return;
+    const a = WF[wfCur]; const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    wfFocus = `[data-mv="${d}"][data-slot="${j}"]`;
+    wfSave(); renderSlots();
+  }
+});
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>{ wfCur = t.dataset.page; wfSave(); renderSlots(); });
+  t.addEventListener('keydown', e=>{
+    if(e.key!=='ArrowRight' && e.key!=='ArrowLeft') return;
+    const k = PAGES.indexOf(wfCur) + (e.key==='ArrowRight'?1:-1);
+    wfCur = PAGES[(k+PAGES.length)%PAGES.length]; wfSave(); renderSlots();
+    document.getElementById('tab-'+wfCur).focus(); e.preventDefault();
+  });
+});
+
+function rulesHTML(res){
+  const nfail = res.filter(r=>!r.ok).length;
+  let h = `<strong>${5-nfail} of 5 rules pass.</strong>` + (nfail? '' : ' Every page does what the brief asks.');
+  h += '<div style="margin-top:8px">';
+  res.forEach(r=>{
+    h += `<div class="rule ${r.ok?'ok':'bad'}"><span class="st">${r.ok?'PASS':'FAIL'}</span><b>Rule ${r.n}.</b> ${r.title}` +
+         (r.ok ? '' : `<ul>${r.bad.map(x=>`<li><strong>${PN[x[0]]}</strong> ${x[1]}</li>`).join('')}</ul>`) + '</div>';
+  });
+  return h + '</div>';
+}
+document.getElementById('wf-check').addEventListener('click', ()=>{
+  const box = document.getElementById('rulebox');
+  box.innerHTML = rulesHTML(evalRules(WF)); box.classList.add('on');
+});
+const SAMPLE = {
+  home:['logo','navbar','hero','para','field','img','footer',null,null,null],
+  about:['logo','menu','hero','hero','para','footer',null,null,null,null],
+  contact:['logo','navbar','hero','field','field','btn',null,null,null,null]
+};
+document.getElementById('wf-sample').addEventListener('click', ()=>{
+  WF = JSON.parse(JSON.stringify(SAMPLE)); wfCur='home'; wfSave(); renderSlots();
+  const box = document.getElementById('rulebox'); box.innerHTML = '<strong>A flawed draft is loaded.</strong> Press Check against the brief, then fix every failure.'; box.classList.add('on');
+});
+document.getElementById('wf-clear').addEventListener('click', ()=>{
+  WF = emptyPages(); wfSave(); renderSlots(); document.getElementById('rulebox').classList.remove('on');
+});
+
+/* ---- studio puzzles ---- */
+const allPass = r => r.every(x=>x.ok);
+const WPUZ = [
+ {id:'pass', q:()=> "Pass all five rules, on all three pages.", ok:(r)=>allPass(r)},
+ {id:'rich', q:()=> "Pass all five rules, and also give Home an image box <em>and</em> a paragraph.", ok:(r,W)=>allPass(r) && W.home.includes('img') && W.home.includes('para')},
+ {id:'break', q:(k)=> `Break <strong>exactly one</strong> rule, Rule ${k} (${RULE_T[k].toLowerCase()}), and keep the other four passing. Deliberate failure is harder than it sounds.`,
+  ok:(r,W,k)=> r.filter(x=>!x.ok).length===1 && !r[k-1].ok}
+];
+let lastW = -1, wq = null;
+function wNewQuiz(forceIdx, forceK){
+  let i = (typeof forceIdx==='number') ? forceIdx : Math.floor(Math.random()*WPUZ.length);
+  if(typeof forceIdx!=='number' && i===lastW) i = (i+1)%WPUZ.length;
+  lastW = i;
+  const P = WPUZ[i], k = (typeof forceK==='number') ? forceK : 1+Math.floor(Math.random()*5);
+  wq = {id:P.id, k};
+  const box = document.getElementById('wf-quiz'); box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> ${P.q(k)}<div class="qrow"><button class="btn ghost small" type="button" id="wf-qcheck">Check my wireframe</button></div><div id="wf-qmsg" style="margin-top:8px"></div>`;
+  document.getElementById('wf-qcheck').addEventListener('click', ()=>{
+    const res = evalRules(WF), msg = document.getElementById('wf-qmsg');
+    if(P.ok(res, WF, k)){
+      box.innerHTML = `<strong>Right.</strong> ${P.id==='break' ? 'Exactly Rule '+k+' is broken and nothing else.' : 'All five rules pass.'}<div class="qrow"><button class="btn ghost small" type="button" id="wf-again">Another one</button></div>`;
+      document.getElementById('wf-again').addEventListener('click', ()=>wNewQuiz());
+      wq = null; puzzleWon();
+    }else{
+      const failing = res.filter(x=>!x.ok).map(x=>x.n);
+      if(P.id==='break') msg.innerHTML = `<strong>Not yet.</strong> ${failing.length? 'Rules failing now: '+failing.join(', ')+'.' : 'Every rule passes right now.'} You need exactly Rule ${k} failing and the rest passing.`;
+      else if(P.id==='rich' && allPass(res)) msg.innerHTML = '<strong>Not yet.</strong> The rules pass, but Home still needs both an image box and a paragraph.';
+      else msg.innerHTML = `<strong>Not yet.</strong> Rules still failing: ${failing.join(', ')}. Press Check against the brief for the detail.`;
+    }
+  });
+}
+document.getElementById('wf-newquiz').addEventListener('click', ()=>wNewQuiz());
+function wfRestore(){
+  try{
+    if(S.wf && S.wf.pages){
+      const o = emptyPages();
+      PAGES.forEach(p=>{ const a = S.wf.pages[p]; if(Array.isArray(a)) for(let i=0;i<SLOTS;i++) o[p][i] = (a[i] && BLK[a[i]]) ? a[i] : null; });
+      WF = o; if(PAGES.includes(S.wf.cur)) wfCur = S.wf.cur;
+    }
+  }catch(e){}
+  renderSlots();
+}
+</script>
+
+<script>
+/* ================= PROBLEM LAB: helpers ================= */
+const _lin = c => { c /= 255; return c <= 0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4); };
+function hex2rgb(h){
+  h = String(h||'').trim().replace(/^#/,'');
+  if(/^[0-9a-f]{3}$/i.test(h)) h = h.split('').map(x=>x+x).join('');
+  if(!/^[0-9a-f]{6}$/i.test(h)) return null;
+  return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16));
+}
+function lumOf(h){ const c = hex2rgb(h); if(!c) return null; const [r,g,b] = c.map(_lin); return 0.2126*r + 0.7152*g + 0.0722*b; }
+function ratioOf(a,b){ const x = lumOf(a), y = lumOf(b); if(x===null||y===null) return null; return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05); }
+const f2 = v => v.toFixed(2);
+const f3 = v => v.toFixed(3);
+function swatch(fg,bg,txt){ return `<span style="background:${bg};color:${fg};padding:3px 9px;border-radius:5px;border:1px solid #9a9a9a;font-family:Arial,Helvetica,sans-serif;font-weight:700">${txt||'Sample text'}</span>`; }
+function cpair(fg,bg){ const r = ratioOf(fg,bg); return {fg, bg, r, pass: r >= 4.5 - 1e-9}; }
+
+/* data for the contrast problems, calculated, never typed */
+const P3PAIRS = [['#000000','#FFFFFF'],['#999999','#FFFFFF'],['#FFFFFF','#1D4ED8'],['#FFFFFF','#F59E0B']].map(p=>cpair(p[0],p[1]));
+const P17GREYS = ['#6B6B6B','#767676','#777777','#808080'].map(h=>cpair(h,'#FFFFFF'));
+const P17LIN = {}; [0x6B,0x76,0x77,0x80].forEach(c=>{ P17LIN[c] = _lin(c); });
+const P20A = cpair('#FFFFFF','#E85D3A'), P20B = cpair('#1976D2','#FFFFFF');
+
+/* a wireframe drawn in SVG for the critique problem */
+const WF_CRIT = `<div class="wmock"><svg viewBox="0 0 260 330" role="img" aria-label="A Home page wireframe, top to bottom: a logo at top left, a heading, a large image box, a paragraph, a button labelled Contact us, and a footer that contains the only links: Home, About, Contact." font-family="var(--mono)" font-size="11">
+  <rect x="30" y="6" width="200" height="318" rx="6" fill="#fff" stroke="var(--steel-dark)" stroke-width="2"/>
+  <rect x="40" y="16" width="56" height="26" fill="#F6F2F0" stroke="var(--steel-dark)" stroke-dasharray="4 3"/><text x="48" y="33" fill="var(--ink)">LOGO</text>
+  <rect x="40" y="52" width="180" height="30" fill="#E6DFDC" stroke="var(--steel-dark)"/><text x="48" y="71" fill="var(--ink)">HEADING: Welcome</text>
+  <rect x="40" y="92" width="180" height="96" fill="#F6F2F0" stroke="var(--steel-dark)"/><path d="M40 92 L220 188 M220 92 L40 188" stroke="var(--steel)"/><text x="108" y="144" fill="var(--ink)" style="paint-order:stroke" stroke="#F6F2F0" stroke-width="4">IMAGE</text>
+  <rect x="40" y="198" width="180" height="5" fill="var(--steel)"/><rect x="40" y="209" width="180" height="5" fill="var(--steel)"/><rect x="40" y="220" width="110" height="5" fill="var(--steel)"/>
+  <rect x="40" y="238" width="104" height="26" rx="13" fill="#E6DFDC" stroke="var(--steel-dark)" stroke-width="2"/><text x="52" y="255" fill="var(--ink)">Contact us</text>
+  <rect x="40" y="276" width="180" height="40" fill="#D9D0CD" stroke="var(--steel-dark)"/><text x="48" y="292" fill="var(--ink)">FOOTER</text><text x="48" y="307" fill="var(--ink)">Home · About · Contact</text>
+</svg></div>`;
+
+/* spot-the-inconsistency mocks (static markup; each .fl is a toggle) */
+const MOCK_LIB = `<div class="flagm" role="group" aria-label="Mock library screen with three borrowed books">
+  <div class="flrow"><button type="button" class="fl" data-f="c1" aria-pressed="false" aria-label="Heading, My books"><h5>My books</h5></button></div>
+  <div class="flrow"><button type="button" class="fl" data-f="c2" aria-pressed="false" aria-label="Row 1 title, Maths textbook, bold sans-serif" style="font-weight:700;font-size:15px">Maths textbook</button><span style="font-size:14px">Due 12 Oct</span><span style="background:#1D4ED8;color:#fff;padding:5px 12px;border-radius:99px;font-weight:700;font-size:14px;margin-left:auto">Renew</span></div>
+  <div class="flrow"><button type="button" class="fl" data-f="c3" aria-pressed="false" aria-label="Row 2 title, Atlas of India, bold serif" style="font-weight:700;font-size:15px;font-family:Georgia,'Times New Roman',serif">Atlas of India</button><span style="font-size:14px">Due 14 Oct</span><span style="background:#1D4ED8;color:#fff;padding:5px 12px;border-radius:99px;font-weight:700;font-size:14px;margin-left:auto">Renew</span></div>
+  <div class="flrow"><span style="font-weight:700;font-size:15px;display:inline-block;padding:2px 4px;border:1.5px solid transparent">Hindi reader</span><button type="button" class="fl" data-f="c4" aria-pressed="false" aria-label="Row 3 due date, written 15 slash 10" style="font-size:14px">Due 15/10</button><button type="button" class="fl" data-f="c5" aria-pressed="false" aria-label="Row 3 Renew button, square and green" style="margin-left:auto"><span style="background:#2E7D32;color:#fff;padding:5px 12px;border-radius:2px;font-weight:700;font-size:14px;display:inline-block">Renew</span></button></div>
+  <div class="flrow" style="font-size:13px;color:#555;border-top:1px solid #ccc;padding-top:6px"><button type="button" class="fl" data-f="c6" aria-pressed="false" aria-label="Footer links, Help and Library rules, same colour as everything else" style="font-size:13px">Help · Library rules</button></div>
+</div>`;
+const MOCK_PRICE = `<div class="flagm" role="group" aria-label="Mock pricing screen with three plans" style="max-width:500px">
+  <div class="flrow"><button type="button" class="fl" data-f="h" aria-pressed="false" aria-label="Heading, Choose a plan"><h5>Choose a plan</h5></button></div>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;align-items:start;margin-top:14px">
+    <div style="border:1px solid #999;border-radius:8px;padding:8px"><div style="font-weight:700;font-size:14px">Basic</div>
+      <button type="button" class="fl" data-f="p1" aria-pressed="false" aria-label="Basic price, rupee sign 199" style="font-size:18px;font-weight:700">₹199</button><br>
+      <button type="button" class="fl" data-f="b1" aria-pressed="false" aria-label="Basic Choose button, rounded corners 8 pixels"><span style="display:inline-block;background:#1D4ED8;color:#fff;padding:6px 10px;border-radius:8px;font-weight:700;font-size:13px">Choose</span></button></div>
+    <div style="position:relative;border:3px solid #1D4ED8;border-radius:8px;padding:6px"><button type="button" class="fl" data-f="bd" aria-pressed="false" aria-label="Standard plan badge, Most popular, with a thicker border" style="position:absolute;top:-13px;left:6px;background:#fff;font-size:10.5px;font-weight:700;color:#1D4ED8;white-space:nowrap;padding:1px 4px">MOST POPULAR</button><div style="font-weight:700;font-size:14px">Standard</div>
+      <button type="button" class="fl" data-f="p2" aria-pressed="false" aria-label="Standard price, written Rs dot 399" style="font-size:18px;font-weight:700">Rs. 399</button><br>
+      <button type="button" class="fl" data-f="b2" aria-pressed="false" aria-label="Standard Choose button, fully pill shaped"><span style="display:inline-block;background:#1D4ED8;color:#fff;padding:6px 14px;border-radius:99px;font-weight:700;font-size:13px">Choose</span></button></div>
+    <div style="border:1px solid #999;border-radius:8px;padding:8px"><button type="button" class="fl" data-f="t3" aria-pressed="false" aria-label="Premium plan title, sitting 14 pixels lower than the other two titles" style="font-weight:700;font-size:14px;margin-top:14px;display:block">Premium</button>
+      <button type="button" class="fl" data-f="p3" aria-pressed="false" aria-label="Premium price, rupee sign 799" style="font-size:18px;font-weight:700">₹799</button><br>
+      <button type="button" class="fl" data-f="b3" aria-pressed="false" aria-label="Premium button, labelled SELECT in capitals"><span style="display:inline-block;background:#1D4ED8;color:#fff;padding:6px 10px;border-radius:8px;font-weight:700;font-size:13px">SELECT</span></button></div>
+  </div>
+  <div class="flrow" style="font-size:13px;border-top:1px solid #ccc;margin-top:10px;padding-top:6px"><button type="button" class="fl" data-f="l1" aria-pressed="false" aria-label="Footer link, Privacy, blue underlined" style="font-size:13px;color:#1D4ED8;text-decoration:underline">Privacy</button><button type="button" class="fl" data-f="l2" aria-pressed="false" aria-label="Footer link, Terms, red and not underlined" style="font-size:13px;color:#C62828">Terms</button></div>
+</div>`;
+
+/* ================= PROBLEM LAB: the 23 problems ================= */
+const PHASES4 = ['Discover','Define','Develop','Deliver'];
+const LAB = [
+
+/* ---------- medium (1-8) ---------- */
+{id:'P01', t:'Four activities, one phase each', lvl:'medium', typ:'Sort', kind:'assign',
+ prompt:`<p>A team is fixing one school problem: <em>students cannot see timetable changes</em>. Put each activity in the phase of the double diamond where it belongs. There is one of each.</p>`,
+ cats:PHASES4,
+ items:[
+  {t:'Watch five students try to find their timetable, and take notes', a:0, why:'Collecting facts about real people is diamond 1 opening up: Discover.'},
+  {t:'Decide that the real problem is "students cannot see timetable changes" and write it down', a:1, why:'Choosing one problem and writing it down is diamond 1 closing: Define.'},
+  {t:'Sketch eight different timetable layouts', a:2, why:'Many options and none chosen yet is diamond 2 opening up: Develop.'},
+  {t:'Release the final design to every student on Monday', a:3, why:'Finishing and launching is diamond 2 closing: Deliver.'}],
+ hints:['Two phases open things up and two narrow them down. Which two narrow?','Define closes the first diamond with one problem. Deliver closes the second with one solution.'],
+ sol:['Discover, Define, Develop, Deliver, in the order the activities are listed: watching, deciding, sketching, releasing.','A quick test: an activity that adds information or options is Discover or Develop; one that picks is Define or Deliver. Then ask whether it is about the problem (diamond 1) or the solution (diamond 2).']},
+
+{id:'P02', t:'Look or task?', lvl:'medium', typ:'UI or UX', kind:'assign',
+ prompt:`<p>Each change is made to a bus-ticket app. Is it a UI fix (changes how a screen <em>looks</em>) or a UX fix (changes how the task <em>goes</em>)?</p>`,
+ cats:['UI fix','UX fix'],
+ items:[
+  {t:'Darken the grey text on the white card so it can be read outdoors', a:0, why:'Colour and contrast change how the screen looks.'},
+  {t:'Cut the ticket-booking steps from six screens to three', a:1, why:'Fewer steps change how the task goes.'},
+  {t:'Make the Pay button the same shape and size as the other buttons', a:0, why:'A matching look is visual consistency.'},
+  {t:'Show "Checking your seat…" while the booking loads', a:1, why:'Feedback tells the user their tap worked. That is about how it feels to use, which is UX, even though you can see the message.'},
+  {t:'Replace three different icon styles with one set', a:0, why:'One icon style is a visual-consistency fix.'}],
+ hints:['Ask of each change: did the screen change how it looks, or did the task change how it goes?','The "Checking your seat…" message is something you see, but ask what its job is.'],
+ sol:['UI: darker text, matching buttons, one icon set. UX: three screens instead of six, and the loading message.','Real fixes often touch both. In an exam, decide which one the change <em>primarily</em> does, and say why.']},
+
+{id:'P03', t:'Pass or fail, by eye first', lvl:'medium', typ:'Contrast', kind:'assign',
+ prompt:`<p>Each pair is text colour on background colour. Ordinary text needs a contrast ratio of at least <span class="num">4.5 : 1</span>. Guess first, by eye. The feedback gives the exact ratios, calculated the WCAG way, and you can check any pair in the contrast checker above.</p>`,
+ cats:['Passes 4.5 : 1','Fails 4.5 : 1'],
+ items:P3PAIRS.map(p=>({t:`${swatch(p.fg,p.bg)} <span class="num">${p.fg} on ${p.bg}</span>`, a:p.pass?0:1,
+   why:`The ratio is ${f2(p.r)} : 1, so it ${p.pass?'passes':'fails'}.`})),
+ hints:['Contrast is about the difference in lightness. Very dark on very light passes; pale on pale or mid on mid fails.','Bright, cheerful colours such as amber are light. White text on a light colour has very little to stand out against.'],
+ sol:P3PAIRS.map(p=>`<span class="num">${p.fg} on ${p.bg}</span> = <strong>${f2(p.r)} : 1</strong>, ${p.pass?'passes':'fails'}.`).concat(['Bright does not mean readable. The amber pair looks lively and fails by a wide margin.'])},
+
+{id:'P04', t:'Three rectangles in a phone frame', lvl:'medium', typ:'Figma numbers', kind:'fields',
+ prompt:`<p>Do it in Figma if you can (press <code>F</code>, drag, type W <span class="num">390</span> and H <span class="num">844</span>; press <code>R</code> and draw a rectangle inside it). Make three rectangles, each <span class="num">358</span> wide and <span class="num">80</span> high. The first has <span class="num">Y = 60</span>. Each of the others sits 16 px below the one above. Y is measured from the top of the frame to the top of the rectangle.</p>`,
+ fields:[
+  {k:'num', label:'Y position of the third rectangle', unit:'px', ans:60+2*(80+16), tol:0.01,
+   wrong:[{v:60+2*80, msg:'That is 60 + 2 × 80: you added the heights and forgot the two 16 px gaps.'},
+          {v:60+3*(80+16), msg:'That is three steps down. The third rectangle is only two steps below the first.'},
+          {v:60+2*16, msg:'That is 60 + 2 × 16: you added the gaps and forgot the rectangle heights.'}]},
+  {k:'num', label:'Space between the bottom of the third rectangle and the bottom of the frame', unit:'px', ans:844-(60+2*(80+16)+80), tol:0.01,
+   wrong:[{v:844-(60+2*(80+16)), msg:'That measures from the <em>top</em> of the third rectangle. Add its height first to find the bottom edge.'}]}],
+ hints:['Each step down is one rectangle height plus one gap: 80 + 16.','The third rectangle is two steps below the first, not three.','For the second answer, bottom edge = Y + height, then subtract from 844.'],
+ sol:[`Each step is 80 + 16 = 96. Third Y = 60 + 2 × 96 = <strong>${60+2*96}</strong>.`,`Bottom of the third = ${60+2*96} + 80 = ${60+2*96+80}. Space below = 844 − ${60+2*96+80} = <strong>${844-(60+2*96+80)}</strong>.`,'Check it in Figma: click the third rectangle and read the Y box.']},
+
+{id:'P05', t:'How much padding makes a tap target?', lvl:'medium', typ:'Tap target', kind:'fields',
+ prompt:`<p>An icon button is drawn <span class="num">20 × 20</span> px. A finger needs a bigger target than the icon itself, so designers add invisible padding. Material design asks for a target at least <span class="num">48 × 48</span> px. The WCAG 2.2 minimum is <span class="num">24 × 24</span> px. The padding is the same on every side.</p>`,
+ fields:[
+  {k:'num', label:'Padding on each side to reach 48 px', unit:'px', ans:(48-20)/2, tol:0.01,
+   wrong:[{v:48-20, msg:'That is the total extra, 48 − 20. It is shared between two sides, so each side gets half.'}]},
+  {k:'num', label:'Padding on each side to reach 24 px', unit:'px', ans:(24-20)/2, tol:0.01,
+   wrong:[{v:24-20, msg:'That is the total extra, 24 − 20. Each side gets half of it.'}]}],
+ hints:['Target size = icon + padding on the left + padding on the right.','The padding is the same on both sides, so halve the extra.'],
+ sol:['(48 − 20) ÷ 2 = <strong>14 px</strong> each side. Check: 14 + 20 + 14 = 48.','(24 − 20) ÷ 2 = <strong>2 px</strong> each side. Check: 2 + 20 + 2 = 24.','Notice how small the legal minimum is next to the recommended one. Meeting the minimum is not the same as being easy to tap.']},
+
+{id:'P06', t:'What belongs on a persona?', lvl:'medium', typ:'Persona', kind:'multi',
+ prompt:`<p>Meera is 13, uses the school app, shares one family tablet and has patchy mobile data. Tick every detail that belongs on her persona card. The test: a detail belongs only if you can name a <em>design decision it changes</em>.</p>`,
+ items:[
+  {t:'She shares one tablet with her brother, so she is often logged out', ok:true, why:'It changes the login design: quick sign-in, no long passwords.'},
+  {t:'She wants to check tomorrow\'s homework in under 30 seconds before the bus', ok:true, why:'It sets a speed target for the main task.'},
+  {t:'Her favourite colour is green', ok:false, why:'No decision depends on it. If you could not defend green with research, you are decorating, not designing.'},
+  {t:'Mobile data is patchy in the evenings', ok:true, why:'It tells you to keep pages light and to save work if the connection drops.'},
+  {t:'Her favourite snack is masala dosa', ok:false, why:'Colourful, but it changes nothing in a homework app.'},
+  {t:'She gets frustrated when apps demand an email address, because she does not have one', ok:true, why:'It changes sign-up: do not make email compulsory.'},
+  {t:'Her father works in banking', ok:false, why:'No design decision hangs on it.'}],
+ hints:['Try finishing the sentence "so the design should…" for each detail. If it goes nowhere, the detail is decoration.'],
+ sol:['Keep: shared tablet, 30-second goal, patchy data, no email. Drop: green, dosa, father\'s job.','A persona is short on purpose. Four useful lines beat fourteen true ones.']},
+
+{id:'P07', t:'Spot the inconsistencies: library screen', lvl:'medium', typ:'Spot the mistakes', kind:'flag',
+ prompt:`<p>This screen has some inconsistencies. Click each element you think breaks the pattern the others set; click again to unflag. Six elements can be clicked, and <strong>some of them are fine</strong>. Flagging a fine one counts against you.</p>`,
+ mock:MOCK_LIB,
+ flags:{
+  c1:{bad:false, label:'the heading "My books"', why:'There is only one heading, so there is nothing for it to be inconsistent with.'},
+  c2:{bad:false, label:'row 1 title (bold sans-serif)', why:'This is the pattern the other titles should match.'},
+  c3:{bad:true, label:'row 2 title (serif)', why:'Every other title is a bold sans-serif. This one is a serif font.'},
+  c4:{bad:true, label:'row 3 date ("15/10")', why:'The other rows write "12 Oct" and "14 Oct". This one switches date format.'},
+  c5:{bad:true, label:'row 3 Renew button (green, square corners)', why:'The other Renew buttons are blue with fully rounded ends.'},
+  c6:{bad:false, label:'the footer links', why:'They are the only footer links, in the plain style the rest of the page uses.'}},
+ hints:['Compare like with like: the three titles, the three dates, the three Renew buttons.','Look at font, format and shape. Colour is only one of the differences.'],
+ sol:['Three problems: the serif title in row 2, the date format in row 3, and the green square Renew button in row 3.','The heading, the row 1 title and the footer links are fine. A good critique includes knowing what <em>not</em> to flag.']},
+
+{id:'P08', t:'Critique this wireframe', lvl:'medium', typ:'Critique', kind:'pick',
+ prompt:`<p>This is a first-draft Home wireframe for a school coding club. Which single critique is the most useful to the designer?</p>${WF_CRIT}`,
+ opts:[
+  {t:'It needs colour and real photos before anyone can judge it.', why:'This is the polish-too-early trap. A low-fidelity wireframe is grey on purpose; colour comes much later.'},
+  {t:'The only links to other pages are in the footer, so a visitor must scroll to the bottom to leave Home.', why:'Right: Rule 1 of the studio. Navigation belongs at the top, in the same place on every page.'},
+  {t:'The image box is bigger than the paragraph.', why:'A big image over a short paragraph is ordinary. It does not stop anyone doing anything.'},
+  {t:'The logo is on the left, not in the middle.', why:'Top left is the convention, and users look for it there.'}],
+ a:1,
+ hints:['Ask: could a first-time visitor get to the About page? How far would they have to scroll?','Where should navigation sit, and does it sit there?'],
+ sol:['The most useful critique is B: navigation is hidden at the bottom of the page.','The other three are either decoration (A), a non-problem (C) or a convention (D). A useful critique names something that stops a visitor doing something.']},
+
+/* ---------- harder (9-15) ---------- */
+{id:'P09', t:'Define or Develop?', lvl:'harder', typ:'Sort', kind:'assign',
+ prompt:`<p>The team's research shows that Meera keeps getting logged out of the school app. Sort these six activities into their phases. Two of them are the classic Define versus Develop mix-up.</p>`,
+ cats:PHASES4,
+ items:[
+  {t:'Write "How might we help Meera check homework without logging in?"', a:1, why:'Framing the problem as one sentence is Define. It says what to solve, not how.'},
+  {t:'List every idea for the login screen, including the ridiculous ones', a:2, why:'Many ideas for a solution: Develop (diverge).'},
+  {t:'Group fourteen interview quotes into three themes', a:1, why:'Grouping to find the pattern narrows the research: Define.'},
+  {t:'Draw a "tap your name" login on paper and try it on three classmates', a:2, why:'A rough prototype, tested early, keeps several options alive: Develop.'},
+  {t:'Read what parents posted in the school WhatsApp group about the old app', a:0, why:'Gathering evidence about the problem: Discover.'},
+  {t:'Fix the two bugs found in the final test, then publish', a:3, why:'Finishing and launching: Deliver.'}],
+ hints:['Define says <em>what</em> is wrong. Develop says <em>how</em> to fix it. Which activities are about the "what"?','Both "group" and "frame" are narrowing. Both "list" and "draw" keep options open.'],
+ sol:['Define: the "How might we" sentence and the grouping of quotes. Develop: the idea list and the paper login. Discover: reading the parents\' posts. Deliver: the bug fixes and the launch.','If it narrows towards a problem, Define. If it generates or tests solutions, Develop.']},
+
+{id:'P10', t:'Contrast from luminance', lvl:'harder', typ:'Contrast', kind:'fields',
+ prompt:`<p>Use <span class="num">(L₁ + 0.05) ÷ (L₂ + 0.05)</span>, with L₁ the lighter colour. Give each ratio to 2 decimal places. Ordinary text needs at least 4.5.</p>
+  <p><strong>A:</strong> text with L = 0.05 on a background with L = 0.40.<br><strong>B:</strong> text with L = 0.12 on white (L = 1).</p>`,
+ fields:[
+  {k:'num', label:'Ratio for A', unit:': 1', ans:(0.40+0.05)/(0.05+0.05), tol:0.05,
+   wrong:[{v:0.40/0.05, msg:'That is 0.40 ÷ 0.05: you left out the + 0.05 on both parts of the fraction.'},
+          {v:(0.05+0.05)/(0.40+0.05), msg:'You divided the wrong way round. The lighter colour goes on top.'}]},
+  {k:'num', label:'Ratio for B', unit:': 1', ans:(1+0.05)/(0.12+0.05), tol:0.05,
+   wrong:[{v:1/0.12, msg:'That is 1 ÷ 0.12: you left out the + 0.05 on both parts.'}]},
+  {k:'sel', label:'Does A pass for ordinary text?', opts:['Yes, it passes','No, it fails'], a:0,
+   why:'The ratio is exactly 4.5, and the rule is "at least 4.5". A pass on the line is still a pass.'}],
+ hints:['The lighter colour is on top: its L plus 0.05. For A that is 0.40 + 0.05.','For A the bottom is 0.05 + 0.05 = 0.10. For B the top is 1.05 and the bottom is 0.17.'],
+ sol:[`A: (0.40 + 0.05) ÷ (0.05 + 0.05) = 0.45 ÷ 0.10 = <strong>4.50</strong>. It passes because the rule is "at least 4.5".`,`B: 1.05 ÷ (0.12 + 0.05) = 1.05 ÷ 0.17 = <strong>${f2(1.05/0.17)}</strong>. It passes ordinary text, but not the strictest 7 : 1.`]},
+
+{id:'P11', t:'Make one component, copy it, change it', lvl:'harder', typ:'Figma task', kind:'honour', honour:true,
+ prompt:`<p class="honest"><strong>Honour system.</strong> This page cannot see your Figma file. It checks one number that only someone who did the task would get right.</p>
+  <ol><li>In a frame, draw a rectangle <span class="num">160 × 48</span>, corner radius <span class="num">8</span>, any fill. Add a text layer "Pay" on top.</li>
+  <li>Select both (click one, shift-click the other). Press <code>Ctrl+Alt+K</code> (Mac: <code>Cmd+Option+K</code>) to create a component.</li>
+  <li>Hold <code>Alt</code> (Mac: <code>Option</code>) and drag the component twice to make two copies. You now have three buttons.</li>
+  <li>Select the <em>original</em>, change its fill to a new colour.</li></ol>`,
+ fields:[{k:'num', label:'How many of the three buttons changed colour?', unit:'', ans:3, tol:0.01,
+   wrong:[{v:1, msg:'Only one changed, so the copies are not instances. The component step was skipped or done after copying. Select the rectangle and text, press Ctrl+Alt+K, and copy again.'},
+          {v:2, msg:'Two changed. One copy was probably made before the component existed. Delete it and copy the component again.'}]}],
+ confirm:'I did this in Figma myself.',
+ hints:['After creating the component, the layers panel shows a purple diamond icon on the original. The copies show a hollow diamond: they are instances.'],
+ sol:['All <strong>3</strong> change. Edit the main component and every instance follows. That is the point of components, and it is why Q10 asks for two benefits.','If you got 1, you copied rectangles. That is the exact mistake components exist to prevent.']},
+
+{id:'P12', t:'UI or UX, the awkward ones', lvl:'harder', typ:'UI or UX', kind:'assign',
+ prompt:`<p>Some of these look like decoration but change how a task goes, and some look like usability but only change a look. UI fix or UX fix?</p>`,
+ cats:['UI fix','UX fix'],
+ items:[
+  {t:'Add a progress bar to the five-step sign-up', a:1, why:'It tells people how far they are and how much is left, which changes whether they finish. That is how it feels to use, so UX.'},
+  {t:'Round every card to 12 px corners instead of a mix of 4 and 12', a:0, why:'A visual-consistency change.'},
+  {t:'Let people sign in with a phone number instead of a long password', a:1, why:'It changes how the task goes.'},
+  {t:'Change the body text from 12 px to 16 px', a:0, why:'Typography is a UI element. It helps readability, but it is a change to how the text looks.'},
+  {t:'Add an "Are you sure?" step before "Delete account"', a:1, why:'It prevents a costly mistake, which changes the flow of the task.'},
+  {t:'Make the Next button blue to match the brand', a:0, why:'Pure colour: UI.'}],
+ hints:['Ask: would a user who never saw the screen change still have a different <em>task</em>? If yes, UX.','The progress bar looks like a picture. Its job is to tell people where they are.'],
+ sol:['UX: progress bar, phone-number sign-in, "Are you sure?". UI: 12 px corners, 16 px text, blue Next button.','The trap is judging by what you can see. Judge by what the change is <em>for</em>.']},
+
+{id:'P13', t:'Write a problem statement: the canteen queue', lvl:'harder', typ:'Brief (self-marked)', kind:'brief',
+ prompt:`<p class="honest"><strong>Self-marked.</strong> No program can honestly mark a sentence. The page checks the length and looks for solution words; you mark yourself against the rubric. Be harsh.</p>
+  <p><strong>The research.</strong> In a survey of 40 students, 31 (77.5%) said they sometimes skip buying food because the canteen queue is too long. Those students said the queue takes about 15 minutes of a 25-minute break (60%).</p>
+  <p>Write <strong>one sentence</strong>, a problem statement for Define. It states a problem, not a solution.</p>`,
+ brief:{min:12, max:45, solIdx:3, must:[0,3], need:4,
+  rubric:['It names who is affected (a specific group, not "everyone")','It says what goes wrong, in plain words','It says why it matters (the consequence)','It contains no solution: no app, website, button, feature, "build" or "create"','It is one sentence']},
+ hints:['Three parts: who, what goes wrong, why it matters. Use a number from the research.','If your sentence contains "app" or "online ordering", you have written a solution.'],
+ sol:['A model answer: <strong>"Grade 7 students sometimes skip lunch because the canteen queue takes about 15 minutes of a 25-minute break."</strong>','It names who (Grade 7 students), what goes wrong (they skip lunch) and why (the queue eats 60% of the break). A pre-order slip, a second counter or an app could all still fix it.']},
+
+{id:'P14', t:'Read a user journey', lvl:'harder', typ:'Journey', kind:'fields',
+ prompt:`<p>Aarav buys a bus pass in an app. Feeling score: 1 is miserable, 5 is delighted.</p>
+  <div class="tblwrap"><table class="data ltable"><tr><th>Step</th><th>1 Hears about it</th><th>2 Finds the pass page</th><th>3 Creates an account</th><th>4 Pays with UPI</th><th>5 Gets the QR pass</th></tr><tr><td>Feeling</td><td>4</td><td>2</td><td>1</td><td>3</td><td>5</td></tr></table></div>`,
+ fields:[
+  {k:'sel', label:'Which step is the lowest point?', opts:['1 Hears about it','2 Finds the pass page','3 Creates an account','4 Pays with UPI','5 Gets the QR pass'], a:2,
+   why:'Step 3 scores 1, the lowest of the five.'},
+  {k:'num', label:'Average feeling across the five steps', unit:'', ans:(4+2+1+3+5)/5, tol:0.05,
+   wrong:[{v:(4+2+1+3+5), msg:'That is the total, 15. Divide by the number of steps.'}]},
+  {k:'sel', label:'Which fix addresses the lowest point?', opts:[
+    'Make the "Find the pass page" link bigger',
+    'Offer "Continue as guest" so a pass can be bought with just a phone number',
+    'Change the colour of the QR pass to match the brand',
+    'Add a loading animation to the payment step'], a:1,
+   why:'It attacks step 3 directly, the account hurdle. The others fix steps that score higher, or only decorate.'}],
+ hints:['The lowest point is simply the smallest number. Which step has it?','Average = total ÷ number of steps.','A fix has to be aimed at the lowest step, and it has to change how the task goes.'],
+ sol:['Lowest: <strong>step 3, Creates an account</strong> (1).','Average: (4 + 2 + 1 + 3 + 5) ÷ 5 = 15 ÷ 5 = <strong>3.0</strong>.','Best fix: guest purchase. Making a link bigger helps step 2 (a 2), the QR colour is decoration on a step that already scores 5, and an animation does not remove the account wall.','Notice that the average (3.0) looks acceptable. The journey hides the 1 that is actually losing customers.']},
+
+{id:'P15', t:'A list of rows in Figma', lvl:'harder', typ:'Figma numbers', kind:'fields',
+ prompt:`<p>In a <span class="num">390 × 844</span> frame you place a header <span class="num">64</span> px high at Y = 0. Directly below it, with no gaps, are rows each <span class="num">72</span> px high: row 1 starts at Y = 64. You add eight rows.</p>`,
+ fields:[
+  {k:'num', label:'Y position of row 5', unit:'px', ans:64+4*72, tol:0.01,
+   wrong:[{v:64+5*72, msg:'That is the Y of row 6. Row 5 is four rows below row 1, because row 1 is the first.'}]},
+  {k:'num', label:'How many more full rows would fit below row 8', unit:'', ans:Math.floor((844-(64+8*72))/72), tol:0.01,
+   wrong:[{v:(844-(64+8*72))/72, msg:'That has a fraction. A row either fits whole or it does not. Round <em>down</em>.'}]}],
+ hints:['Row 1 is at 64. Each row after it adds 72. How many rows sit above row 5?','Bottom of row 8 = 64 + 8 × 72. Subtract from 844, then divide by the row height and round down.'],
+ sol:[`Row 5 is four steps below row 1: 64 + 4 × 72 = <strong>${64+4*72}</strong>.`,`Bottom of row 8 = 64 + 8 × 72 = ${64+8*72}. Space left = 844 − ${64+8*72} = ${844-(64+8*72)}. ${844-(64+8*72)} ÷ 72 = 2.83, so <strong>2</strong> more full rows fit (144 px), with 60 px left over.`]},
+
+/* ---------- hard (16-23) ---------- */
+{id:'P16', t:'How many tap targets fit across a phone?', lvl:'hard', typ:'Tap target', kind:'fields',
+ prompt:`<p>A toolbar sits in a <span class="num">360</span> px wide screen with <span class="num">16</span> px margins on each side, so <span class="num">328</span> px is usable. Every button is exactly <span class="num">48</span> px wide. Buttons must fit whole.</p>`,
+ fields:[
+  {k:'num', label:'Most buttons that fit with 8 px gaps between them', unit:'', ans:6, tol:0.01,
+   wrong:[{v:5, msg:'Check again: n buttons need n × 48 + (n − 1) × 8. Try n = 6 before ruling it out.'},{v:7, msg:'Seven needs 7 × 48 + 6 × 8 = 384 px, more than 328.'}]},
+  {k:'num', label:'Most buttons that fit with 12 px gaps', unit:'', ans:5, tol:0.01,
+   wrong:[{v:6, msg:'Six needs 6 × 48 + 5 × 12 = 348 px, more than 328.'}]},
+  {k:'num', label:'Five icons share a full 360 px width, no margins, no gaps. Width of each target', unit:'px', ans:360/5, tol:0.01,
+   wrong:[{v:(328/5), msg:'That uses 328 px, which is the width with margins. This toolbar has none.'}]}],
+ hints:['n buttons and (n − 1) gaps: n × 48 + (n − 1) × gap must be 328 or less.','With 8 px gaps try n = 6: 6 × 48 = 288 and 5 × 8 = 40. Add them.','For the last part there are no margins at all: just divide.'],
+ sol:['8 px gaps: 6 buttons need 6 × 48 + 5 × 8 = 288 + 40 = 328 px, which fits exactly. Seven would need 384. Answer <strong>6</strong>.','12 px gaps: 6 buttons need 288 + 5 × 12 = 348 px, too wide; 5 need 240 + 4 × 12 = 288 px. Answer <strong>5</strong>.','360 ÷ 5 = <strong>72 px</strong> each, comfortably above 48.','Answer six fits to the exact pixel. A design that leaves no slack is a design that breaks on the next screen size.']},
+
+{id:'P17', t:'Greys that look the same', lvl:'hard', typ:'Contrast', kind:'assign',
+ prompt:`<p>Four greys on white. For a grey, all three colour channels are equal, so its luminance L is one number. For ordinary text you need at least <span class="num">4.5 : 1</span>. Here are the luminances, from the WCAG formula:</p>
+  <div class="tblwrap"><table class="data ltable"><tr><th>Grey</th>${P17GREYS.map(g=>`<th>${g.fg}</th>`).join('')}</tr><tr><td>L</td>${P17GREYS.map(g=>`<td>${f3(lumOf(g.fg))}</td>`).join('')}</tr></table></div>
+  <p>Work out each ratio with <span class="num">1.05 ÷ (L + 0.05)</span>, since white is the lighter colour. Decide which pass.</p>`,
+ cats:['Passes 4.5 : 1','Fails 4.5 : 1'],
+ items:P17GREYS.map(g=>({t:`${swatch(g.fg,'#FFFFFF')} <span class="num">${g.fg} on #FFFFFF</span>`, a:g.pass?0:1,
+   why:`1.05 ÷ (${f3(lumOf(g.fg))} + 0.05) = ${f2(g.r)} : 1, so it ${g.pass?'passes':'fails'}.`})),
+ hints:['Do all four sums with a calculator. Do not trust your eyes: two of these are neighbours.','The two middle greys are one step apart in each channel. One passes, one fails.'],
+ sol:P17GREYS.map(g=>`<span class="num">${g.fg}</span>: 1.05 ÷ (${f3(lumOf(g.fg))} + 0.05) = <strong>${f2(g.r)}</strong>, ${g.pass?'passes':'fails'}.`).concat(['The lightest grey that passes on white is #767676, at 4.54. One step lighter, #777777, fails at 4.48. You cannot see that edge, which is why the number exists.'])},
+
+{id:'P18', t:'Spot the inconsistencies: pricing screen', lvl:'hard', typ:'Spot the mistakes', kind:'flag',
+ prompt:`<p>Eleven elements can be clicked. Some break a pattern the others set; some are <em>deliberately</em> different, which is allowed; some are just fine. Flag only the mistakes.</p>`,
+ mock:MOCK_PRICE,
+ flags:{
+  h:{bad:false, label:'the heading', why:'One heading, nothing to clash with.'},
+  p1:{bad:false, label:'the Basic price "₹199"', why:'This sets the pattern: rupee sign, then the number.'},
+  b1:{bad:false, label:'the Basic Choose button', why:'This sets the pattern: blue, 8 px corners, "Choose".'},
+  bd:{bad:false, label:'the "Most popular" badge and thicker border', why:'Deliberate emphasis on one card is visual hierarchy, not a mistake. A designer chose to make it stand out.'},
+  p2:{bad:true, label:'the Standard price "Rs. 399"', why:'The other prices use ₹, and this one uses "Rs." Same money, two formats.'},
+  b2:{bad:true, label:'the Standard Choose button (pill shaped)', why:'The other two buttons have 8 px corners. This one is fully rounded.'},
+  t3:{bad:true, label:'the Premium title, sitting lower', why:'The other two titles sit at the top of their cards. This one is pushed down, so the row does not align.'},
+  p3:{bad:false, label:'the Premium price "₹799"', why:'It follows the ₹ pattern.'},
+  b3:{bad:true, label:'the Premium button reading "SELECT"', why:'The other buttons say "Choose". A different word and different capitals for the same action.'},
+  l1:{bad:false, label:'the Privacy link', why:'Blue and underlined is the link pattern here.'},
+  l2:{bad:true, label:'the Terms link (red, no underline)', why:'The other link is blue and underlined. Same job, different look.'}},
+ hints:['Compare the three prices, the three buttons, the three card titles and the two links, in that order.','One element looks different but is fine, because it is meant to stand out. A designer must be able to tell the two apart.'],
+ sol:['Five mistakes: "Rs. 399" (price format), the pill-shaped Standard button, the lowered Premium title, the "SELECT" label, and the red Terms link.','The "Most popular" badge looks like an inconsistency but is a deliberate use of hierarchy. Consistency means <em>same things look the same</em>, not <em>everything looks the same</em>.']},
+
+{id:'P19', t:'Which phase do you go back to?', lvl:'hard', typ:'Sort', kind:'assign',
+ prompt:`<p>The double diamond is not a straight line. For each situation, name the phase the team should return to.</p>`,
+ cats:PHASES4,
+ items:[
+  {t:'After launch, interviews show students want to compare menu prices first, a need nobody had considered', a:0, why:'A need nobody knew about is new research: back to Discover.'},
+  {t:'Testing shows the design works, but the team realises the real issue was not speed, it was fairness: students feel the queue is unfair', a:1, why:'The problem itself has been reframed, so go back to Define and write a new problem statement.'},
+  {t:'Five testers cannot find the Contact button, and the team has two untried layouts', a:2, why:'More solutions to try and test is Develop. The problem is right; the design is not yet.'},
+  {t:'A last check finds the Pay button does not work on older phones', a:3, why:'The design is chosen and finished. This is a bug fix before or just after release: Deliver.'}],
+ hints:['Ask in each case: is the <em>problem</em> wrong, or only the <em>solution</em>? If the problem is wrong, which phase fixes it?','New facts: Discover. A reframed problem: Define. Another try at a solution: Develop. A final fix: Deliver.'],
+ sol:['Discover (new need), Define (reframed problem), Develop (another design to test), Deliver (final bug fix).','The questions to ask are: do we know enough (Discover)? Are we solving the right problem (Define)? Is this the right design (Develop)? Is it finished (Deliver)?']},
+
+{id:'P20', t:'Use the checker: two real pairs', lvl:'hard', typ:'Contrast', kind:'fields',
+ prompt:`<p>Use the contrast checker above. Type each pair in and read the ratio. Give each to 1 decimal place (2 is fine).</p>
+  <p><strong>A:</strong> white text <span class="num">#FFFFFF</span> on an orange button <span class="num">#E85D3A</span>.<br><strong>B:</strong> blue text <span class="num">#1976D2</span> on white.</p>`,
+ fields:[
+  {k:'num', label:'Ratio for A', unit:': 1', ans:P20A.r, tol:0.1, wrong:[]},
+  {k:'num', label:'Ratio for B', unit:': 1', ans:P20B.r, tol:0.1, wrong:[]},
+  {k:'sel', label:'Which pair can be used for 16 px body text?', opts:['Only A','Only B','Both','Neither'], a:1,
+   why:`B's ratio is above 4.5. A's is below.`}],
+ hints:['The checker takes the text colour in the first box and the background in the second. Make sure you did not swap them for B: it does not change the answer, but it is a good habit.','Compare each ratio with 4.5.'],
+ sol:[`A: <span class="num">#FFFFFF</span> on <span class="num">#E85D3A</span> = <strong>${f2(P20A.r)} : 1</strong>. It fails ordinary text, and it passes only the 3 : 1 large-text level.`,`B: <span class="num">#1976D2</span> on white = <strong>${f2(P20B.r)} : 1</strong>. It passes, with only ${f2(P20B.r-4.5)} to spare.`,'Only B is allowed for 16 px body text. Orange buttons with white labels are everywhere on the web, and most of them fail.']},
+
+{id:'P21', t:'Write a problem statement: Kamala Patti and the clinic', lvl:'hard', typ:'Brief (self-marked)', kind:'brief',
+ prompt:`<p class="honest"><strong>Self-marked.</strong> Same deal as before: the page counts words and looks for solution words; you decide the rubric. This one has a constraint trap.</p>
+  <p><strong>The research.</strong> Kamala Patti, 72, lives in Coimbatore and wants to book clinic appointments herself on her phone. She cannot comfortably read text smaller than about 20 px, her mobile connection is slow, and a booking by phone call takes the receptionist about six minutes, during which the clinic's line is busy for everyone else.</p>
+  <p>Write <strong>one sentence</strong>, a problem statement for Define. A good one carries at least one real constraint from the research.</p>`,
+ brief:{min:12, max:45, solIdx:4, must:[0,4], need:5,
+  rubric:['It names who is affected','It says what goes wrong, in plain words','It carries at least one real constraint from the research (text size, slow connection or the six-minute call)','It says why it matters','It contains no solution: no app, website, button, feature, "build" or "create"','It is one sentence']},
+ hints:['The constraints are details a design would have to respect: 20 px text, a slow connection, six minutes of a busy line. Pick the one that matters most and use it.','Test your sentence: if the clinic could solve it with a different <em>phone</em> system, a printed form or a website, you have stated a problem and not a solution.'],
+ sol:['A model answer: <strong>"Kamala Patti, 72, cannot book clinic appointments herself because she cannot comfortably read small text, so she depends on a six-minute phone call that keeps the clinic\'s line busy for everyone else."</strong>','It names who, what goes wrong, a real constraint (small text) and why it matters (six minutes of a busy line). It does not say what to build.']},
+
+{id:'P22', t:'A 12-column layout grid', lvl:'hard', typ:'Figma numbers', kind:'fields',
+ prompt:`<p>In Figma make a frame <span class="num">1440 × 1024</span>. In the right panel find <strong>Layout grid</strong>, click <strong>+</strong>, change the grid type to <strong>Columns</strong>, and set Count <span class="num">12</span>, Margin <span class="num">120</span>, Gutter <span class="num">24</span>. Figma divides the rest equally. Work out the numbers first, then check them against the columns you see.</p>`,
+ fields:[
+  {k:'num', label:'Width of one column', unit:'px', ans:(1440-2*120-11*24)/12, tol:0.01,
+   wrong:[{v:1440/12, msg:'That is 1440 ÷ 12. It ignores the margins and the gutters.'},{v:(1440-240)/12, msg:'That ignores the eleven gutters between 12 columns.'}]},
+  {k:'num', label:'Width of a card that spans 4 columns', unit:'px', ans:4*((1440-2*120-11*24)/12)+3*24, tol:0.01,
+   wrong:[{v:4*78, msg:'That is 4 columns with no gutters. Four columns have three gutters inside them.'}]},
+  {k:'num', label:'X position where column 5 starts', unit:'px', ans:120+4*(78+24), tol:0.01,
+   wrong:[{v:120+4*78, msg:'That forgets the four gutters before column 5.'}]}],
+ hints:['Usable width = 1440 − 2 × 120. There are 12 columns and 11 gutters in that width.','Column = (usable − 11 × 24) ÷ 12. A 4-column card has 4 columns and 3 gutters inside it.','Column 5 starts after four columns and four gutters, measured from the left margin.'],
+ sol:['Usable = 1440 − 240 = 1200. Gutters take 11 × 24 = 264. Columns take 1200 − 264 = 936, so each is 936 ÷ 12 = <strong>78 px</strong>.','4 columns + 3 gutters = 4 × 78 + 3 × 24 = 312 + 72 = <strong>384 px</strong>.','Column 5 starts at 120 + 4 × (78 + 24) = 120 + 408 = <strong>528 px</strong>.','Check: three 4-column cards would end at 120 + 3 × 384 + 2 × 24 = 1320, which is 1440 − 120. They fill the grid exactly.']},
+
+{id:'P23', t:'Link three frames into a clickable site', lvl:'hard', typ:'Figma task', kind:'honour', honour:true,
+ prompt:`<p class="honest"><strong>Honour system.</strong> This page cannot see your Figma file. It checks one number that only someone who linked the frames would get right.</p>
+  <ol><li>Make three <span class="num">390 × 844</span> frames and name them <em>Home</em>, <em>About</em>, <em>Contact</em> (double-click the name in the layers panel).</li>
+  <li>On each frame put three text layers: Home, About, Contact, as a nav.</li>
+  <li>Click the <strong>Prototype</strong> tab (top of the right panel). On each frame, select the About text, drag the handle that appears onto the About frame, and choose <em>On click</em> and <em>Navigate to</em>. Do the same for the Contact text and the Home text, linking to the frame that matches each word.</li>
+  <li>Press <strong>Present</strong> (triangle, top right) and click round the site. Does each nav item go where it says?</li></ol>
+  <p>Each frame links to the <em>other</em> two pages; a page does not need a link to itself.</p>`,
+ fields:[{k:'num', label:'How many prototype links did you make in total?', unit:'', ans:3*2, tol:0.01,
+   wrong:[{v:9, msg:'Nine counts a link from every page to itself as well. A page does not need to link to itself, so each frame has two links.'},
+          {v:3, msg:'Three is one link per frame. Each frame needs one link to each of the other two pages.'}]}],
+ confirm:'I made the links in Figma and clicked round them in Present.',
+ hints:['Each of the 3 frames links to the other 2 pages. How many links is that?'],
+ sol:['3 frames × 2 other pages = <strong>6 links</strong>.','If clicking Contact on About took you to Home, your link points at the wrong frame. That is the wireframe equivalent of Rule 1: the navigation has to work the same way everywhere.']}
+];
+</script>
+
+<script>
+/* ================= PROBLEM LAB: engine ================= */
+const LGROUPS = {medium:'Medium · problems 1 to 8', harder:'Harder · problems 9 to 15', hard:'Properly hard · problems 16 to 23'};
+const labListEl = document.getElementById('labList');
+
+function labWidget(p){
+  const id = p.id;
+  const confirmBox = p.honour ? `<label class="tick"><input type="checkbox" data-confirm> <span>${p.confirm}</span></label>` : '';
+  switch(p.kind){
+    case 'assign':
+      return `<div class="lw">${p.items.map((it,i)=>`<div class="itm"><span>${it.t}</span><select data-i="${i}" aria-label="Your answer for item ${i+1} of ${p.items.length}"><option value="">choose…</option>${p.cats.map((c,j)=>`<option value="${j}">${c}</option>`).join('')}</select></div>`).join('')}</div>`;
+    case 'fields':
+    case 'honour':
+      return `<div class="lw">${p.fields.map((f,i)=> f.k==='num'
+        ? `<div class="itm fieldrow"><label for="${id}-f${i}">${f.label}</label><span><input type="number" step="any" inputmode="decimal" id="${id}-f${i}" data-fi="${i}">${f.unit?`<span class="unit">${f.unit}</span>`:''}</span></div>`
+        : `<div class="itm fieldrow"><label for="${id}-f${i}">${f.label}</label><select id="${id}-f${i}" data-fi="${i}"><option value="">choose…</option>${f.opts.map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select></div>`).join('')}${confirmBox}</div>`;
+    case 'multi':
+      return `<div class="lw" role="group" aria-label="Tick every detail that belongs">${p.items.map((it,i)=>`<label class="tick"><input type="checkbox" data-m="${i}"> <span>${it.t}</span></label>`).join('')}</div>`;
+    case 'pick':
+      return `<div class="lw" role="radiogroup" aria-label="Choose one answer">${p.opts.map((o,j)=>`<label class="tick"><input type="radio" name="${id}-r" value="${j}"> <span>${o.t}</span></label>`).join('')}</div>`;
+    case 'flag':
+      return p.mock;
+    case 'brief':
+      return `<div class="lw"><textarea data-brief aria-label="Your one-sentence problem statement" placeholder="One sentence…" style="min-height:64px"></textarea>
+        <div style="font-family:var(--display);font-size:13.5px;color:var(--ink-soft);margin-top:4px">Now mark yourself. Tick only what is honestly true of your sentence.</div>
+        ${p.brief.rubric.map((r,i)=>`<label class="tick"><input type="checkbox" data-r="${i}"> <span>${r}</span></label>`).join('')}</div>`;
+  }
+  return '';
+}
+
+LAB.forEach((p,k)=>{
+  if(k===0 || LAB[k-1].lvl!==p.lvl){
+    const g = document.createElement('div'); g.className = 'lgroup'; g.textContent = LGROUPS[p.lvl]; labListEl.appendChild(g);
+  }
+  const c = document.createElement('div');
+  c.className = 'lcard'; c.id = 'lab-'+p.id; c.dataset.id = p.id;
+  c.innerHTML = `
+    <div class="lhead"><span class="qn">L${String(k+1).padStart(2,'0')}</span><span class="lvl${p.lvl==='hard'?' hard':''}">${p.lvl==='harder'?'harder':p.lvl}</span><span class="typ${p.honour?' hon':''}">${p.typ}${p.honour?' · honour system':''}</span><span class="sv" style="display:none">&#10003; solved</span></div>
+    <h3>${p.t}</h3>
+    <div class="lprompt">${p.prompt}</div>
+    ${labWidget(p)}
+    <div class="row">
+      <button class="btn small" type="button" data-lcheck>Check</button>
+      <button class="btn ghost small" type="button" data-lhint>Give me a hint</button>
+      <button class="btn ghost small" type="button" data-lsol disabled title="Unlocks after a hint or a Check">Show solution</button>
+    </div>
+    <div class="lhints"></div>
+    <div class="fb" role="status"></div>
+    <div class="solbox" style="display:none"><strong>Solution</strong><ol>${p.sol.map(s=>`<li>${s}</li>`).join('')}</ol></div>`;
+  labListEl.appendChild(c);
+});
+
+/* ---- graders: each returns {incomplete?, ok, lines[]} ---- */
+function tick(ok){ return ok ? '&#10003;' : '&#10007;'; }
+function gradeAssign(p, c){
+  const sels = [...c.querySelectorAll('select[data-i]')];
+  if(sels.some(s=>s.value==='')) return {incomplete:'Choose an answer for every row first.'};
+  const lines = []; let right = 0;
+  p.items.forEach((it,i)=>{
+    const v = +sels[i].value;
+    if(v===it.a) right++;
+    else lines.push(`${tick(false)} <strong>${it.t}</strong> You said <em>${p.cats[v]}</em>. It is <em>${p.cats[it.a]}</em>. ${it.why}`);
+  });
+  if(lines.length) lines.unshift(`${right} of ${p.items.length} right. Fix these:`);
+  return {ok: right===p.items.length, lines, head: right===p.items.length ? 'Every row is right.' : null};
+}
+function gradeFields(p, c){
+  const lines = []; let ok = true;
+  for(let i=0;i<p.fields.length;i++){
+    const f = p.fields[i], el = c.querySelector(`[data-fi="${i}"]`);
+    if(el.value==='' ) return {incomplete:'Answer every box first.'};
+    if(f.k==='num'){
+      const v = parseFloat(el.value);
+      if(!isFinite(v)) return {incomplete:'Type a number in every number box.'};
+      const tol = (f.tol!==undefined) ? f.tol : 0.01;
+      if(Math.abs(v-f.ans) <= tol){ lines.push(`${tick(true)} ${f.label}: right.`); }
+      else{
+        ok = false;
+        const w = (f.wrong||[]).find(w=>Math.abs(v-w.v) <= Math.max(tol, 0.005));
+        lines.push(`${tick(false)} ${f.label}: ${v} is not it. ${w ? w.msg : 'Go back over your working; the hints show the method.'}`);
+      }
+    }else{
+      const v = +el.value;
+      if(v===f.a) lines.push(`${tick(true)} ${f.label}: right. ${f.why}`);
+      else{ ok = false; lines.push(`${tick(false)} ${f.label}: <em>${f.opts[v]}</em> is not it. ${f.why}`); }
+    }
+  }
+  if(p.honour){
+    if(!c.querySelector('[data-confirm]').checked) return {incomplete:'Tick the honour box when you have actually done it in Figma. The page cannot check, so it is on you.'};
+  }
+  return {ok, lines};
+}
+function gradeMulti(p, c){
+  const lines = []; let ok = true;
+  p.items.forEach((it,i)=>{
+    const t = c.querySelector(`[data-m="${i}"]`).checked;
+    if(t && !it.ok){ ok = false; lines.push(`${tick(false)} You ticked <strong>${it.t}</strong>. It does not belong. ${it.why}`); }
+    if(!t && it.ok){ ok = false; lines.push(`${tick(false)} You missed <strong>${it.t}</strong>. It belongs. ${it.why}`); }
+  });
+  return {ok, lines};
+}
+function gradePick(p, c){
+  const r = c.querySelector('input[type=radio]:checked');
+  if(!r) return {incomplete:'Choose an answer first.'};
+  const j = +r.value;
+  return {ok: j===p.a, lines:[`${tick(j===p.a)} ${p.opts[j].why}`]};
+}
+function gradeFlag(p, c){
+  const lines = []; let ok = true, found = 0, total = 0;
+  Object.keys(p.flags).forEach(id=>{
+    const F = p.flags[id], on = c.querySelector(`[data-f="${id}"]`).getAttribute('aria-pressed')==='true';
+    if(F.bad) total++;
+    if(F.bad && on) found++;
+    if(F.bad && !on){ ok = false; lines.push(`${tick(false)} <strong>Missed:</strong> ${F.label}. ${F.why}`); }
+    if(!F.bad && on){ ok = false; lines.push(`${tick(false)} <strong>False alarm:</strong> ${F.label}. ${F.why}`); }
+  });
+  if(!ok) lines.unshift(`You found ${found} of ${total} real mistakes.`);
+  return {ok, lines};
+}
+const SOLWORDS = /\b(app|apps|website|webpage|web page|button|feature|platform|software|system|build|create|design a|make a|online ordering)\b/ig;
+function gradeBrief(p, c){
+  const B = p.brief, txt = c.querySelector('[data-brief]').value.trim();
+  if(!txt) return {incomplete:'Write your sentence first.'};
+  const words = txt.split(/\s+/).length, lines = []; let ok = true;
+  if(words < B.min){ ok = false; lines.push(`${tick(false)} ${words} words is too short for a problem statement that names who, what and why. Aim for ${B.min} to ${B.max}.`); }
+  else if(words > B.max){ ok = false; lines.push(`${tick(false)} ${words} words is too long for one sentence. Aim for ${B.min} to ${B.max}.`); }
+  else lines.push(`${tick(true)} ${words} words: a workable length.`);
+  const sents = txt.split(/[.!?]+(?:\s+|$)/).filter(s=>s.trim()).length;
+  if(sents>1) lines.push(`&#9888; This looks like ${sents} sentences. The brief says one.`);
+  const found = [...new Set((txt.match(SOLWORDS)||[]).map(w=>w.toLowerCase()))];
+  const solTicked = c.querySelector(`[data-r="${B.solIdx}"]`).checked;
+  if(found.length){
+    lines.push(`&#9888; Solution words in your sentence: <em>${found.join(', ')}</em>. A problem statement says what is wrong, not what to build.`);
+    if(solTicked){ ok = false; lines.push(`${tick(false)} You ticked "no solution", but those words say otherwise. Reword, or untick it.`); }
+  }
+  const ticks = [...c.querySelectorAll('[data-r]')].map(x=>x.checked);
+  const n = ticks.filter(Boolean).length;
+  B.must.forEach(m=>{ if(!ticks[m]){ ok = false; lines.push(`${tick(false)} You did not tick: <em>${B.rubric[m]}</em>. That one is a must-have. Rewrite the sentence until it is honestly true.`); } });
+  if(n < B.need){ ok = false; lines.push(`${tick(false)} You ticked ${n} of ${B.rubric.length}; you need ${B.need}, including the must-haves. Improve the sentence and mark again.`); }
+  else if(ok) lines.push(`${tick(true)} Rubric: ${n} of ${B.rubric.length} ticked, must-haves included. Self-marked, so only as honest as you were.`);
+  return {ok, lines};
+}
+const GRADERS = {assign:gradeAssign, fields:gradeFields, honour:gradeFields, multi:gradeMulti, pick:gradePick, flag:gradeFlag, brief:gradeBrief};
+
+function labX(id){ return S.labx[id] = S.labx[id] || {h:0, a:0, p:false}; }
+function labSyncCard(p, c){
+  const x = labX(p.id), solved = !!S.lab[p.id];
+  c.classList.toggle('solved', solved);
+  c.querySelector('.sv').style.display = solved ? '' : 'none';
+  const sb = c.querySelector('[data-lsol]');
+  sb.disabled = !(x.h>0 || x.a>0 || solved);
+  if(solved || x.p){ c.querySelector('.solbox').style.display = 'block'; sb.style.display = 'none'; }
+  const hb = c.querySelector('[data-lhint]');
+  hb.textContent = x.h >= p.hints.length ? 'No hints left' : 'Give me a hint';
+  const hh = c.querySelector('.lhints');
+  if(hh.children.length !== x.h){
+    hh.innerHTML = '';
+    for(let i=0;i<x.h;i++){ const d = document.createElement('div'); d.className = 'hintbox'; d.innerHTML = `<strong>Hint ${i+1}.</strong> ${p.hints[i]}`; hh.appendChild(d); }
+  }
+}
+function labCheck(p, c){
+  const fb = c.querySelector('.fb');
+  const res = GRADERS[p.kind](p, c);
+  if(res.incomplete){ fb.className = 'fb on meh'; fb.innerHTML = res.incomplete; return; }
+  const x = labX(p.id); x.a++;
+  let head, cls;
+  if(res.ok){
+    if(x.p && !S.lab[p.id]){ head = 'Correct, but you read the solution first, so this one does not count.'; cls = 'meh'; }
+    else{ S.lab[p.id] = 1; head = 'Correct.'; cls = 'good'; }
+  }else{ head = 'Not yet.'; cls = 'bad'; }
+  fb.className = 'fb on ' + cls;
+  fb.innerHTML = `<strong>${head}</strong>` + (res.lines && res.lines.length ? `<ul style="margin:6px 0 0;padding-left:20px">${res.lines.map(l=>`<li style="margin-bottom:4px">${l}</li>`).join('')}</ul>` : '');
+  labSyncCard(p, c); save(); refresh();
+}
+
+labListEl.addEventListener('click', e=>{
+  const flag = e.target.closest('.fl');
+  const c = e.target.closest('.lcard'); if(!c) return;
+  const p = LAB.find(q=>q.id===c.dataset.id);
+  if(flag){ flag.setAttribute('aria-pressed', String(flag.getAttribute('aria-pressed')!=='true')); return; }
+  if(e.target.closest('[data-lcheck]')){ labCheck(p, c); return; }
+  if(e.target.closest('[data-lhint]')){
+    const x = labX(p.id);
+    if(x.h < p.hints.length){ x.h++; labSyncCard(p, c); save(); }
+    return;
+  }
+  const sb = e.target.closest('[data-lsol]');
+  if(sb && !sb.disabled){
+    if(!S.lab[p.id] && !sb.dataset.arm){ sb.dataset.arm = '1'; sb.textContent = 'Really? This problem will not count'; return; }
+    const x = labX(p.id); if(!S.lab[p.id]) x.p = true;
+    labSyncCard(p, c); save();
+  }
+});
+function labRestore(){
+  LAB.forEach(p=>{ labSyncCard(p, document.getElementById('lab-'+p.id)); });
+}
+
+/* ================= contrast checker widget ================= */
+function cxRead(){ return { fg: document.getElementById('cx-fg').value, bg: document.getElementById('cx-bg').value }; }
+function cxNormalise(v){ const c = hex2rgb(v); return c ? '#' + c.map(n=>n.toString(16).padStart(2,'0')).join('').toUpperCase() : null; }
+function cxUpdate(){
+  const {fg, bg} = cxRead(), nf = cxNormalise(fg), nb = cxNormalise(bg);
+  const out = document.getElementById('cx-ratio'), note = document.getElementById('cx-note');
+  const vn = document.getElementById('cx-n'), vl = document.getElementById('cx-l'), va = document.getElementById('cx-a');
+  if(!nf || !nb){
+    out.textContent = '— : 1'; note.textContent = 'Type a valid hex code, like #767676 or #FFF.';
+    [vn,vl,va].forEach(v=>{ v.className = 'verdict f'; });
+    vn.textContent = 'Ordinary text: —'; vl.textContent = 'Large text: —'; va.textContent = 'Strictest (7:1): —'; return;
+  }
+  const s1 = document.getElementById('cx-s1'), s2 = document.getElementById('cx-s2');
+  s1.style.color = s2.style.color = nf; s1.style.background = s2.style.background = nb;
+  const r = ratioOf(nf, nb);
+  out.textContent = f2(r) + ' : 1';
+  const set = (el, label, th)=>{ const pass = r >= th - 1e-9; el.className = 'verdict ' + (pass?'p':'f'); el.textContent = label + ': ' + (pass?'PASS':'FAIL'); return pass; };
+  set(vn, 'Ordinary text (4.5)', 4.5); set(vl, 'Large text (3)', 3); set(va, 'Strictest (7)', 7);
+  const near = [4.5,3,7].find(th=>r < th && parseFloat(f2(r)) >= th);
+  note.textContent = near ? 'Shows ' + f2(r) + ' but the real value is ' + r.toFixed(4) + ', below ' + near + ': it fails. Ratios are not rounded up.' : '';
+  document.getElementById('cx-fgc').value = nf.toLowerCase(); document.getElementById('cx-bgc').value = nb.toLowerCase();
+}
+function cxInit(){
+  ['fg','bg'].forEach(k=>{
+    document.getElementById('cx-'+k).addEventListener('input', cxUpdate);
+    document.getElementById('cx-'+k+'c').addEventListener('input', e=>{ document.getElementById('cx-'+k).value = e.target.value.toUpperCase(); cxUpdate(); });
+  });
+  document.getElementById('cx-swap').addEventListener('click', ()=>{
+    const a = document.getElementById('cx-fg'), b = document.getElementById('cx-bg'); const t = a.value; a.value = b.value; b.value = t; cxUpdate();
+  });
+  cxUpdate();
+}
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  labRestore();
+  dRefreshUI();
+  drawMarker();
+  wfRestore();
+  cxInit();
+  refresh();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='uxdesign', SUBJECT='computing', TITLE='Design Before You Build', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

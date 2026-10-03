@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Digital World — Grade 7 IGCSE Computer Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1D1B16;
+  --ink-soft:#5A5548;
+  --paper:#E9E3D2;
+  --card:#FFFEFA;
+  --line:#D3CAB4;
+  --line-soft:#E4DDCA;
+  --threat:#B3321F;      /* threat · red flag · always red */
+  --threat-tint:#FBECE8;
+  --guard:#0F6E63;       /* defence · safe habit · always teal */
+  --guard-tint:#E1F0EC;
+  --signal:#2F4E9E;      /* information · evidence · always indigo */
+  --signal-tint:#E8EDF8;
+  --fr:var(--signal);  --fr-tint:var(--signal-tint);
+  --de:var(--guard);   --de-tint:var(--guard-tint);
+  --pc:var(--threat);  --pc-tint:var(--threat-tint);
+  --steel:#A39B88;
+  --steel-dark:#6F6959;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#8F2118;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--fr)}
+:focus-visible{outline:3px solid var(--fr);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(36px,7.6vw,64px);font-weight:800;margin:12px 0 6px}
+.mast h1 em{font-style:normal;color:var(--pc)}
+.mast h1 b{font-weight:800;color:var(--fr)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--fr);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(233,227,210,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--fr);color:var(--fr)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--pc);min-width:150px}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft)}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--display);font-weight:700;font-size:16px;margin-top:3px}
+.cell .val.mono{font-family:var(--mono);font-size:15.5px}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.in{background:var(--pc-tint);color:var(--pc)}
+.pill.out{background:var(--fr-tint);color:var(--fr)}
+.pill.hold{background:var(--paper);color:var(--ink-soft)}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--fr-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--pc);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--pc-tint)}
+.vid h3 a:hover{border-bottom-color:var(--pc)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--fr);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--pc)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--fr);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--pc);background:var(--pc-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.o2txt{color:var(--pc);font-weight:700}
+.co2txt{color:var(--fr);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--pc-tint);color:var(--pc)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--fr-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--pc)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* ---------- digital.html additions ---------- */
+.txt-pc{color:var(--pc);font-weight:700}
+.txt-fr{color:var(--fr);font-weight:700}
+.txt-de{color:var(--de);font-weight:700}
+.pill.warn{background:var(--pc-tint);color:var(--pc)}
+.pill.good{background:var(--de-tint);color:var(--de)}
+.pill.mid{background:var(--fr-tint);color:var(--fr)}
+
+/* fact-check bench */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:6px 16px 12px}
+.tab{font-family:var(--mono);font-size:12.5px;font-weight:700;min-width:44px;height:38px;border-radius:9px;border:1px solid var(--line);
+  background:var(--paper);color:var(--ink);cursor:pointer;padding:0 8px}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab .st{font-weight:400;margin-left:3px}
+.post{margin:0 16px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:14px 16px}
+.post[hidden]{display:none}
+.post .fmt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.post .meta{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin:0 0 8px}
+.post p{margin:0 0 9px}
+.post .body{font-size:16.5px}
+.post .quote{border-left:3px solid var(--steel);padding-left:11px;font-style:italic}
+.post svg.photo{display:block;width:100%;max-width:420px;height:auto;border-radius:8px;border:1px solid var(--line);margin:0 0 9px}
+.lookup{margin-top:4px}
+.lookbox{margin-top:9px;background:var(--fr-tint);border-left:3px solid var(--fr);border-radius:0 8px 8px 0;padding:9px 12px;font-size:15px}
+.lookbox[hidden]{display:none}
+.checks{padding:2px 16px 10px}
+.checks h3{font-size:15px;margin:2px 0 8px}
+.crow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:7px 0;border-top:1px dashed var(--line)}
+.crow:first-of-type{border-top:none}
+.crow .cq{flex:1 1 230px;font-size:15.5px}
+.crow .cn{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-soft);margin-right:6px}
+.yn{display:flex;gap:6px}
+.ynb{font-family:var(--mono);font-weight:700;font-size:13px;min-width:54px;height:36px;border-radius:8px;border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.ynb:hover:not([disabled]){border-color:var(--ink)}
+.ynb[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ynb[disabled]{cursor:default;opacity:.75}
+.verdicts{display:flex;gap:7px;flex-wrap:wrap;padding:6px 16px 4px}
+.verdicts .lab2{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:1 1 100%}
+.vb{font-family:var(--display);font-weight:700;font-size:13.5px;border-radius:99px;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:7px 14px;cursor:pointer}
+.vb:hover:not([disabled]){background:var(--ink);color:#fff}
+.vb[aria-pressed="true"]{background:var(--ink);color:#fff}
+.vb[disabled]{cursor:default;opacity:.75}
+.ruling{margin:10px 16px 14px;border-radius:10px;padding:12px 14px;font-size:15.5px;display:none;border:1px solid var(--line);background:var(--paper)}
+.ruling.on{display:block}
+.ruling.good{background:var(--ok-tint);border-color:var(--ok)}
+.ruling.bad{background:var(--no-tint);border-color:var(--no)}
+.ruling ul{margin:7px 0 0;padding-left:20px}
+.ruling li{margin-bottom:3px}
+.tally{padding:2px 16px 12px;font-family:var(--mono);font-size:12.5px;color:var(--ink-soft)}
+.pzgrid{display:grid;gap:7px;margin-top:9px}
+.pzitem{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:15px;cursor:pointer}
+.pzitem[hidden]{display:none}
+.pzitem input{width:18px;height:18px;margin-top:3px;accent-color:var(--ink);flex:0 0 auto}
+.pzitem b{font-family:var(--mono);font-size:12px;margin-right:6px}
+.pzlock{margin-top:10px}
+
+/* matcher (lesson 6) */
+.matcher{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--paper);margin:14px 0 6px}
+.matcher .mrow{padding:10px 0;border-top:1px dashed var(--line)}
+.matcher .mrow:first-of-type{border-top:none}
+.matcher .mrow p{margin:0 0 7px;font-size:15.5px}
+.mopts{display:flex;gap:6px;flex-wrap:wrap}
+.mfb{margin-top:7px;font-size:14.5px;display:none}
+.mfb.on{display:block}
+.mscore{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);margin-top:8px}
+
+/* brute-force bench */
+.banner{margin:0 16px 8px;background:var(--pc-tint);border-left:4px solid var(--pc);border-radius:0 9px 9px 0;padding:10px 13px;font-size:15px}
+.pwrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:6px 16px 8px}
+.pwrow label{font-family:var(--display);font-size:13px;color:var(--ink-soft)}
+.pwrow input[type=text]{flex:1 1 220px;min-width:180px;font-family:var(--mono);font-size:17px;padding:9px 12px;border:1px solid var(--ink);border-radius:10px;background:#fff;color:var(--ink)}
+.chips{display:flex;gap:7px;flex-wrap:wrap;padding:2px 16px 10px}
+.chip2{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:99px;padding:4px 10px;background:var(--paper);color:var(--ink-soft)}
+.chip2.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.presets{display:flex;gap:7px;flex-wrap:wrap;padding:0 16px 12px;align-items:center}
+.presets span{font-family:var(--display);font-size:13px;color:var(--ink-soft)}
+.logbar{padding:8px 16px 16px;border-top:1px solid var(--line)}
+.logbar .cap{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.track{position:relative;height:16px;background:var(--line-soft);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.track i{position:absolute;left:0;top:0;bottom:0;width:2%;background:var(--pc);transition:width .35s ease,background .35s ease}
+.track i.mid{background:var(--fr)}
+.track i.good{background:var(--de)}
+.ticks{position:relative;height:30px;margin-top:3px}
+.ticks span{position:absolute;top:0;transform:translateX(-50%);font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);white-space:nowrap;text-align:center}
+.ticks span::before{content:"";display:block;width:1px;height:6px;background:var(--steel-dark);margin:0 auto 2px}
+.logbar .note{font-size:14px;color:var(--ink-soft);margin:6px 0 0}
+.honest{padding:2px 16px 14px;font-size:14.5px;color:var(--ink-soft)}
+
+</style>
+
+<script type="application/json" id="hub-card">
+{
+  "id": "digital",
+  "file": "digital.html",
+  "subject": "computing",
+  "status": "ready",
+  "title": "Our Digital World",
+  "sub": "Computing · our digital world",
+  "blurb": "Triage ten realistic posts on a fact-check bench, then type practice passwords into a brute-force bench that works out honestly how long each would survive. Six lessons cover digital footprints, misinformation, usage rights, cyberbullying, malware and network protection.",
+  "meta": ["30 marks", "6 lessons", "Fact-check bench"]
+}
+</script>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Computer Science · Grade 7 · Unit 1 · Responsible and ethical digital engagement</div>
+  <h1>Our <em>Digital</em> <b>World</b></h1>
+  <p class="lede">Two ideas run through this whole page. First: almost everything you do online leaves a copy somewhere you cannot reach, so the useful question is never <em>can I delete it</em> but <em>should I post it</em>. Second: online, nobody can see who is lying and who is guessing, so you have to check &mdash; sources, licences, identities, passwords. Everything else is detail hanging off those two.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> Last topic you banked 10 out of 15. This page is out of 30, and the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Marks only count if you write your answer <em>before</em> opening the mark scheme &mdash; otherwise you're just reading, and reading feels like learning without being learning.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>bench puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#bench1">Fact-check bench</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#bench2">Brute-force bench</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Scenarios</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+<!-- ============ HERO 1: THE FACT-CHECK BENCH ============ -->
+<section id="bench1">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The fact-check bench</h2>
+      <p>Ten posts have landed in your feed. Open each one, press <em>Search for it</em> to see what a quick search turns up, answer the five checks, then give your ruling. The checks gather evidence; the ruling is yours, and the bench tells you whether it agrees.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="The ten posts">
+      <button class="tab" role="tab" type="button" data-post="1" aria-selected="true" aria-label="Post 1, not yet ruled">1<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="2" aria-selected="false" aria-label="Post 2, not yet ruled">2<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="3" aria-selected="false" aria-label="Post 3, not yet ruled">3<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="4" aria-selected="false" aria-label="Post 4, not yet ruled">4<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="5" aria-selected="false" aria-label="Post 5, not yet ruled">5<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="6" aria-selected="false" aria-label="Post 6, not yet ruled">6<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="7" aria-selected="false" aria-label="Post 7, not yet ruled">7<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="8" aria-selected="false" aria-label="Post 8, not yet ruled">8<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="9" aria-selected="false" aria-label="Post 9, not yet ruled">9<span class="st">&middot;</span></button>
+      <button class="tab" role="tab" type="button" data-post="10" aria-selected="false" aria-label="Post 10, not yet ruled">10<span class="st">&middot;</span></button>
+    </div>
+
+    <!-- the ten posts -->
+    <article class="post" id="post1" data-id="1">
+      <div class="fmt">WhatsApp forward &middot; &ldquo;Forwarded many times&rdquo;</div>
+      <p class="body"><strong>*URGENT HEALTH ALERT*</strong> Doctors in a big hospital have confirmed: drinking hot water with turmeric and lemon every 2 hours cures dengue in 24 hours. No tablets needed. Doctors don't want you to know this. Forward to 10 groups right now. If you ignore this, you are putting your family at risk.</p>
+      <button class="btn ghost small lookup" type="button" data-look="1" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look1" hidden>You search the first sentence in quotation marks. It turns up on dozens of pages with the same wording and no hospital, doctor or study named on any of them. Dengue has no home cure: care means fluids, rest and a doctor.</div>
+    </article>
+
+    <article class="post" id="post2" data-id="2" hidden>
+      <div class="fmt">SMS from an unknown number</div>
+      <p class="body">Congratulations! For SwiftTel's 25th birthday every Class 7 student gets a <strong>FREE &#8377;2,000 recharge</strong>. Offer valid till 31 October. Claim now at <span class="num">swifttel-gift.example/claim</span>. Enter your phone number and the OTP we send you.</p>
+      <button class="btn ghost small lookup" type="button" data-look="2" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look2" hidden>SwiftTel's own website and app list no such offer, and its website address is a different one. The link above belongs to a site registered last week. An OTP is the one-time key to your account: anyone who has it can act as you.</div>
+    </article>
+
+    <article class="post" id="post3" data-id="3" hidden>
+      <div class="fmt">Social media post &middot; account <span class="num">@citywatch_77</span></div>
+      <svg class="photo" viewBox="0 0 420 190" role="img" aria-label="Photo: a road under brown floodwater with a car and an auto-rickshaw half under water and buildings behind">
+        <rect width="420" height="190" fill="#C9D3D8"/>
+        <rect x="0" y="40" width="420" height="60" fill="#9AA5A8"/>
+        <rect x="20" y="20" width="60" height="80" fill="#8B8F8C"/><rect x="95" y="34" width="50" height="66" fill="#A39B88"/>
+        <rect x="290" y="14" width="70" height="86" fill="#8B8F8C"/><rect x="370" y="40" width="50" height="60" fill="#A39B88"/>
+        <rect x="0" y="100" width="420" height="90" fill="#8C7A5B"/>
+        <path d="M0 112 Q30 104 60 112 T120 112 T180 112 T240 112 T300 112 T360 112 T420 112" fill="none" stroke="#B7A584" stroke-width="3"/>
+        <rect x="120" y="82" width="86" height="34" rx="8" fill="#3F4A63"/><rect x="134" y="72" width="52" height="16" rx="6" fill="#56627E"/>
+        <rect x="270" y="84" width="54" height="30" rx="8" fill="#B38A1E"/><rect x="278" y="72" width="38" height="16" rx="5" fill="#2A2A2A"/>
+        <rect x="0" y="116" width="420" height="74" fill="#8C7A5B" opacity=".85"/>
+      </svg>
+      <p class="body">Ring Road, Sector 9 &mdash; <strong>this morning</strong>. Cars floating, authorities fast asleep. Share so someone wakes up!!</p>
+      <p class="meta">Posted 3 Oct 2026 &middot; no photo credit</p>
+      <button class="btn ghost small lookup" type="button" data-look="3" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look3" hidden>A reverse image search finds the same photograph in a news report dated 14 August 2019, from a flood in a different city. No outlet reports any flooding on Ring Road today.</div>
+    </article>
+
+    <article class="post" id="post4" data-id="4" hidden>
+      <div class="fmt">Article &middot; The Bharat Bakwaas Bulletin</div>
+      <p class="body"><strong>Ministry announces parents will sit Class 7 exams from next year</strong></p>
+      <p class="body quote">&ldquo;Students are relieved,&rdquo; the Ministry said. Parents could not be reached for comment, as they were revising.</p>
+      <p class="meta">By Staff Reporter &middot; 1 Oct 2026</p>
+      <button class="btn ghost small lookup" type="button" data-look="4" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look4" hidden>The site's About page says: &ldquo;Everything here is made up. Please do not forward it to your uncle.&rdquo; No news outlet and no ministry notice mentions the idea.</div>
+    </article>
+
+    <article class="post" id="post5" data-id="5" hidden>
+      <div class="fmt">News report &middot; Kaveri News Network</div>
+      <p class="body"><strong>Karnataka beat Tamil Nadu by 14 runs in the under-16 final</strong></p>
+      <p class="body">Karnataka were all out for 182 in 49.2 overs. Tamil Nadu were all out for 168 in 47.5 overs. The full scorecard is on the state association's website.</p>
+      <p class="meta">By Ananya Rao &middot; 2 Oct 2026</p>
+      <button class="btn ghost small lookup" type="button" data-look="5" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look5" hidden>The state association's website lists the same scorecard, 182 against 168. Two other outlets carry the same result.</div>
+    </article>
+
+    <article class="post" id="post6" data-id="6" hidden>
+      <div class="fmt">Notice shared in a residents' group</div>
+      <p class="body"><strong>Water supply cut:</strong> Wards 12 and 13 will have no water from 9 am to 1 pm on Thursday 8 October 2026 for pipe repair. Please store water the evening before. Notice No. WS/114/2026, Municipal Corporation.</p>
+      <p class="meta">Posted 3 Oct 2026 by the ward office</p>
+      <button class="btn ghost small lookup" type="button" data-look="6" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look6" hidden>The Corporation's own website carries notice WS/114/2026 with the same wards, date and hours. No news outlet has picked it up yet.</div>
+    </article>
+
+    <article class="post" id="post7" data-id="7" hidden>
+      <div class="fmt">News report &middot; The Deccan Ledger</div>
+      <p class="body"><strong>Cyclone watch: fishing boats told to stay ashore until Monday</strong></p>
+      <p class="body">Three coastal districts are on alert. The bulletin was issued at 8:30 am by the State Weather Centre, whose full text is on its website.</p>
+      <p class="meta">3 Oct 2026</p>
+      <button class="btn ghost small lookup" type="button" data-look="7" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look7" hidden>The State Weather Centre's website shows the same 8:30 am bulletin and the same three districts. Two other outlets carry it.</div>
+    </article>
+
+    <article class="post" id="post8" data-id="8" hidden>
+      <div class="fmt">Post on a parenting page</div>
+      <p class="body"><strong>STUDY PROVES Wi-Fi routers cause headaches in 9 out of 10 children.</strong> Experts say switch yours off at night or your child's brain will be damaged. Share to protect your child!</p>
+      <button class="btn ghost small lookup" type="button" data-look="8" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look8" hidden>No study is named. Searching the claim finds the same words on many parenting pages and no published paper, no named expert and no health agency repeating it.</div>
+    </article>
+
+    <article class="post" id="post9" data-id="9" hidden>
+      <div class="fmt">Screenshot of a post &middot; <span class="num">@CricNews_Official_</span></div>
+      <p class="body"><strong>BREAKING:</strong> Star batter Rohan Verma retires from all cricket with immediate effect!! RT before they delete this.</p>
+      <p class="meta">Posted 2:14 pm today</p>
+      <button class="btn ghost small lookup" type="button" data-look="9" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look9" hidden>The real account is <span class="num">@CricNews</span>, with no trailing underscore, and has posted nothing like this. The account above was created two days ago. Rohan Verma's club says he is training today.</div>
+    </article>
+
+    <article class="post" id="post10" data-id="10" hidden>
+      <div class="fmt">Headline &middot; District Daily Post</div>
+      <p class="body"><strong>ALL SCHOOLS TO CLOSE FROM MONDAY, SAYS DISTRICT OFFICER</strong> &mdash; share with every parent now!</p>
+      <p class="meta">3 Oct 2026</p>
+      <button class="btn ghost small lookup" type="button" data-look="10" aria-expanded="false">Search for it</button>
+      <div class="lookbox" id="look10" hidden>The officer's full statement is on the district website, dated 3 October: &ldquo;Schools will close from Monday only if the cyclone warning is upgraded tonight. No decision has been made.&rdquo; Other outlets report it with the &ldquo;if&rdquo; included.</div>
+    </article>
+
+    <div class="checks" id="checks">
+      <h3>The five checks. Answer from what you can see and what the search found.</h3>
+      <div class="crow"><span class="cq"><span class="cn">1</span>Is the source named, and can you check who they are?</span>
+        <span class="yn"><button class="ynb" type="button" data-c="0" data-v="1" aria-pressed="false" aria-label="Check 1: yes">Yes</button><button class="ynb" type="button" data-c="0" data-v="0" aria-pressed="false" aria-label="Check 1: no">No</button></span></div>
+      <div class="crow"><span class="cq"><span class="cn">2</span>Is there a date, and does it fit the event? (No date counts as No.)</span>
+        <span class="yn"><button class="ynb" type="button" data-c="1" data-v="1" aria-pressed="false" aria-label="Check 2: yes">Yes</button><button class="ynb" type="button" data-c="1" data-v="0" aria-pressed="false" aria-label="Check 2: no">No</button></span></div>
+      <div class="crow"><span class="cq"><span class="cn">3</span>Can you trace the evidence (a link, the data, the full quote)?</span>
+        <span class="yn"><button class="ynb" type="button" data-c="2" data-v="1" aria-pressed="false" aria-label="Check 3: yes">Yes</button><button class="ynb" type="button" data-c="2" data-v="0" aria-pressed="false" aria-label="Check 3: no">No</button></span></div>
+      <div class="crow"><span class="cq"><span class="cn">4</span>Is it pushing you to react or forward it in a hurry?</span>
+        <span class="yn"><button class="ynb" type="button" data-c="3" data-v="1" aria-pressed="false" aria-label="Check 4: yes">Yes</button><button class="ynb" type="button" data-c="3" data-v="0" aria-pressed="false" aria-label="Check 4: no">No</button></span></div>
+      <div class="crow"><span class="cq"><span class="cn">5</span>Do other reliable outlets report the same thing?</span>
+        <span class="yn"><button class="ynb" type="button" data-c="4" data-v="1" aria-pressed="false" aria-label="Check 5: yes">Yes</button><button class="ynb" type="button" data-c="4" data-v="0" aria-pressed="false" aria-label="Check 5: no">No</button></span></div>
+    </div>
+
+    <div class="verdicts" id="verdicts" role="group" aria-label="Your ruling on this post">
+      <span class="lab2">Your ruling:</span>
+      <button class="vb" type="button" data-verdict="real" aria-pressed="false">Real report</button>
+      <button class="vb" type="button" data-verdict="fake" aria-pressed="false">Fake or invented</button>
+      <button class="vb" type="button" data-verdict="misleading" aria-pressed="false">Real but misleading</button>
+      <button class="vb" type="button" data-verdict="satire" aria-pressed="false">Satire</button>
+    </div>
+    <div class="row" style="padding:2px 16px 4px;margin-top:8px"><button class="btn" type="button" id="ruleBtn">Rule on this post</button></div>
+    <div class="ruling" id="ruling" role="status" aria-live="polite"></div>
+    <div class="tally" id="tally">Ruled 0 of 10 &middot; rulings the bench agreed with: 0</div>
+
+    <div class="rows" style="border-top:1px solid var(--line)">
+      <div class="phasebar" style="border-top:none">
+        <span class="pill hold" id="fcPill">Puzzle</span>
+        <span id="fcText">Ten posts, but only some of them are real. Can you pick the real ones without ruling on each?</span>
+        <span class="push"><button class="btn ghost" type="button" id="fcNew">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="fcQuiz">
+        <strong>Puzzle.</strong> Eight of the ten posts are shown below. <strong>Exactly two of them are real reports.</strong> Tick the two you trust, then lock in. Use the tabs above to open any post and search for it first.
+        <div class="pzgrid" role="group" aria-label="Tick the two real posts">
+          <label class="pzitem" data-pz="1"><input type="checkbox" value="1"><span><b>#1</b>WhatsApp forward: hot water, turmeric and lemon &ldquo;cures dengue in 24 hours&rdquo;. Forward to 10 groups.</span></label>
+          <label class="pzitem" data-pz="2"><input type="checkbox" value="2"><span><b>#2</b>SMS: SwiftTel's 25th birthday, free &#8377;2,000 recharge for every Class 7 student. Enter your OTP.</span></label>
+          <label class="pzitem" data-pz="3"><input type="checkbox" value="3"><span><b>#3</b>Social post: photo of a flooded Ring Road, Sector 9, captioned &ldquo;this morning&rdquo;, no photo credit.</span></label>
+          <label class="pzitem" data-pz="4"><input type="checkbox" value="4"><span><b>#4</b>The Bharat Bakwaas Bulletin: parents to sit Class 7 exams from next year.</span></label>
+          <label class="pzitem" data-pz="5"><input type="checkbox" value="5"><span><b>#5</b>Kaveri News Network: Karnataka beat Tamil Nadu by 14 runs in the under-16 final; scorecard on the state association's site.</span></label>
+          <label class="pzitem" data-pz="6"><input type="checkbox" value="6"><span><b>#6</b>Corporation notice: water cut in Wards 12 and 13, 9 am to 1 pm on Thursday 8 October, notice WS/114/2026.</span></label>
+          <label class="pzitem" data-pz="7"><input type="checkbox" value="7"><span><b>#7</b>The Deccan Ledger: cyclone watch, fishing boats told to stay ashore until Monday; bulletin from the State Weather Centre.</span></label>
+          <label class="pzitem" data-pz="8"><input type="checkbox" value="8"><span><b>#8</b>Parenting page: &ldquo;Study proves Wi-Fi routers cause headaches in 9 out of 10 children.&rdquo;</span></label>
+          <label class="pzitem" data-pz="9"><input type="checkbox" value="9"><span><b>#9</b>Screenshot: <span class="num">@CricNews_Official_</span> says star batter Rohan Verma retires. RT before they delete this.</span></label>
+          <label class="pzitem" data-pz="10"><input type="checkbox" value="10"><span><b>#10</b>District Daily Post: &ldquo;All schools to close from Monday, says district officer.&rdquo;</span></label>
+        </div>
+        <div class="qrow pzlock"><button class="btn small" type="button" id="fcLock">Lock in my two</button></div>
+        <div id="fcPzResult" role="status" aria-live="polite" style="margin-top:10px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">one job each</span></div>
+  <p class="snote">Watching is the easy part, so each video comes with one small job. Do the job, or the video was just a screensaver. Pause and write &mdash; don't rewind at the end.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~30 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: THE BRUTE-FORCE BENCH ============ -->
+<section id="bench2">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The brute-force bench</h2>
+      <p>Type a practice password and watch the bench count every combination an attacker would have to try. The three numbers that matter are the size of the character set, the length, and the guess rate. Length is the one you control most cheaply.</p>
+    </div>
+
+    <div class="banner" role="note"><strong>Practice passwords only.</strong> Never type a password you really use anywhere. Nothing you type here leaves this page: there is no server, and the page's code never saves the box.</div>
+
+    <div class="pwrow">
+      <label for="pw">Practice password</label>
+      <input id="pw" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="64" placeholder="type something to try" aria-label="Practice password. Do not type a real password.">
+    </div>
+
+    <div class="presets">
+      <span>Try one:</span>
+      <button class="btn ghost small" type="button" data-pre="monkey99">A common word</button>
+      <button class="btn ghost small" type="button" data-pre="Gn7#qLw2">8 random, mixed types</button>
+      <button class="btn ghost small" type="button" data-pre="mangoteacricketbus">Four words, no spaces</button>
+    </div>
+
+    <div class="chips" aria-label="Character types found in the password">
+      <span class="chip2" id="ch-lower">a&ndash;z &middot; 26</span>
+      <span class="chip2" id="ch-upper">A&ndash;Z &middot; 26</span>
+      <span class="chip2" id="ch-digit">0&ndash;9 &middot; 10</span>
+      <span class="chip2" id="ch-sym">symbols &middot; 32</span>
+    </div>
+
+    <div class="rows">
+      <div class="cell"><div class="lab">Length</div><div class="val mono" id="b-len">0 characters</div></div>
+      <div class="cell"><div class="lab">Character set size</div><div class="val mono" id="b-set">0</div></div>
+      <div class="cell"><div class="lab">Combinations (set<sup>length</sup>)</div><div class="val mono" id="b-key">&mdash;</div></div>
+      <div class="cell"><div class="lab">Guess rate assumed</div><div class="val mono">10 billion a second (10&sup1;&#8304;/s)</div></div>
+      <div class="cell"><div class="lab">Time to try everything (worst case)</div><div class="val mono" id="b-worst">&mdash;</div></div>
+      <div class="cell"><div class="lab">On average (half the combinations)</div><div class="val mono" id="b-avg">&mdash;</div></div>
+      <div class="phasebar">
+        <span class="pill hold" id="b-pill">Nothing typed</span>
+        <span id="b-text">Type a practice password above.</span>
+        <span class="push"><button class="btn ghost" type="button" id="bfNew">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="bfQuiz"></div>
+    </div>
+
+    <div class="logbar">
+      <div class="cap">Time to try every combination &middot; logarithmic scale</div>
+      <div class="track" id="b-track" role="img" aria-label="Log-scale bar of time to crack: nothing typed"><i id="b-fill"></i></div>
+      <div class="ticks" aria-hidden="true">
+        <span style="left:0%;transform:none">1 s</span>
+        <span style="left:25.4%">1 h</span>
+        <span style="left:35.3%">1 d</span>
+        <span style="left:53.6%">1 yr</span>
+        <span style="left:67.8%">100 yr</span>
+        <span style="left:96.4%;transform:translateX(-85%)">1M yr</span>
+      </div>
+      <p class="note">The scale is logarithmic: every step to the right is a much bigger jump than the one before it. That is why one extra character moves the bar further than it looks like it should.</p>
+    </div>
+    <div class="honest">Honest limits. Ten billion guesses a second is a fast attack on a stolen file of passwords; a normal login page allows far fewer, because it locks you out. Real attackers also try lists of common passwords, names and patterns first, which is why the bench checks a small list before it does the sums. The symbol count (32) is an assumption, and a year here is 365 days.</div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1&ndash;Q5 &middot; 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No notes open. These are the marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6&ndash;Q10 &middot; 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Scenario questions</h2><span class="tag">Q11&ndash;Q15 &middot; 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>&ldquo;If I delete it, it's gone.&rdquo;</h4><p>Wrong: deleting removes <em>your</em> copy. Anyone who took a screenshot, saved it or shared it still has theirs, and a lot of your footprint (browsing history, location, what other people post about you) was never yours to delete. Write: <strong>deleting removes my copy, but copies others made, and data collected passively, can remain.</strong></p></div>
+    <div class="trap"><h4>&ldquo;It's fine, I credited the photographer.&rdquo;</h4><p>Crediting is manners, not permission. The creator owns the copyright automatically; you need their permission or a licence that allows your use, and some licences allow credited reuse while others forbid it. Write: <strong>I need the owner's permission or a licence that allows this use, and I must follow its conditions, such as giving credit.</strong></p></div>
+    <div class="trap"><h4>&ldquo;Everybody's forwarding it, so it must be true.&rdquo;</h4><p>Forwards measure how shareable a message is, not whether anyone checked it. Misinformation spreads because the people passing it on believe it. Write: <strong>I would check the source, the date, the evidence and whether reliable independent outlets report it.</strong> Many forwards are not on that list.</p></div>
+    <div class="trap"><h4>Mixing up the four cyberbullying words</h4><p>&ldquo;Trolling is when someone pretends to be someone else&rdquo; is wrong: that is <strong>catfishing</strong>. Trolling is deliberately provocative posting to upset people. <strong>Fraping</strong> is using someone's logged-in account without permission; <strong>dissing</strong> is spreading hurtful material about someone. Four words, four different acts: say what the person <em>does</em>.</p></div>
+    <div class="trap"><h4>&ldquo;A firewall protects my computer from viruses.&rdquo;</h4><p>Wrong job. A firewall filters network traffic against rules; <strong>antivirus</strong> scans files and programs for malware; <strong>anti-spyware</strong> hunts programs that secretly record and send your data. Write the verb that belongs to each: block, scan, detect and remove.</p></div>
+  </div>
+</section>
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device. The practice password is never saved.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<!-- static markup for the lesson 6 matcher; moved into the lesson at boot -->
+<div id="matcherSrc" hidden>
+  <div class="matcher" id="matcher">
+    <div class="kicker" style="margin-top:0">Which defence stops this? One answer each.</div>
+
+    <div class="mrow" data-m="0"><p><strong>1.</strong> At 3 a.m. a stranger's computer keeps trying to open connections into your home network.</p>
+      <div class="mopts"><button class="btn ghost small" type="button" data-d="fw">Firewall</button><button class="btn ghost small" type="button" data-d="av">Antivirus</button><button class="btn ghost small" type="button" data-d="as">Anti-spyware</button><button class="btn ghost small" type="button" data-d="none">None of the three</button></div>
+      <div class="mfb" role="status" aria-live="polite"></div></div>
+
+    <div class="mrow" data-m="1"><p><strong>2.</strong> A downloaded game file has a known virus hidden inside it, and you are about to run it.</p>
+      <div class="mopts"><button class="btn ghost small" type="button" data-d="fw">Firewall</button><button class="btn ghost small" type="button" data-d="av">Antivirus</button><button class="btn ghost small" type="button" data-d="as">Anti-spyware</button><button class="btn ghost small" type="button" data-d="none">None of the three</button></div>
+      <div class="mfb" role="status" aria-live="polite"></div></div>
+
+    <div class="mrow" data-m="2"><p><strong>3.</strong> A free &ldquo;keyboard theme&rdquo; app is secretly recording every key you press and storing it to send to its owner. You want it found and removed.</p>
+      <div class="mopts"><button class="btn ghost small" type="button" data-d="fw">Firewall</button><button class="btn ghost small" type="button" data-d="av">Antivirus</button><button class="btn ghost small" type="button" data-d="as">Anti-spyware</button><button class="btn ghost small" type="button" data-d="none">None of the three</button></div>
+      <div class="mfb" role="status" aria-live="polite"></div></div>
+
+    <div class="mrow" data-m="3"><p><strong>4.</strong> Software tries ten thousand passwords against your email login, and one of them is your short, common password.</p>
+      <div class="mopts"><button class="btn ghost small" type="button" data-d="fw">Firewall</button><button class="btn ghost small" type="button" data-d="av">Antivirus</button><button class="btn ghost small" type="button" data-d="as">Anti-spyware</button><button class="btn ghost small" type="button" data-d="none">None of the three</button></div>
+      <div class="mfb" role="status" aria-live="polite"></div></div>
+
+    <div class="mrow" data-m="4"><p><strong>5.</strong> A scheduled scan finds a file that matches a known ransomware program and isolates it before it runs.</p>
+      <div class="mopts"><button class="btn ghost small" type="button" data-d="fw">Firewall</button><button class="btn ghost small" type="button" data-d="av">Antivirus</button><button class="btn ghost small" type="button" data-d="as">Anti-spyware</button><button class="btn ghost small" type="button" data-d="none">None of the three</button></div>
+      <div class="mfb" role="status" aria-live="polite"></div></div>
+
+    <div class="mrow" data-m="5"><p><strong>6.</strong> The office network blocks every connection to a website on a blocklist, whoever on the network asks for it.</p>
+      <div class="mopts"><button class="btn ghost small" type="button" data-d="fw">Firewall</button><button class="btn ghost small" type="button" data-d="av">Antivirus</button><button class="btn ghost small" type="button" data-d="as">Anti-spyware</button><button class="btn ghost small" type="button" data-d="none">None of the three</button></div>
+      <div class="mfb" role="status" aria-live="polite"></div></div>
+
+    <div class="mscore" id="mscore">Answered 0 of 6 &middot; correct 0</div>
+  </div>
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'digital-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, bench:{} };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+  if(!S.bench || typeof S.bench!=='object') S.bench = {};
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"What is a digital footprint and how to protect it", ch:"Malwarebytes · digital footprint", url:"https://www.youtube.com/watch?v=K9COIyN8rdI",
+  why:"The idea that a trail exists whether or not you meant to leave one. The exam words, active and passive, come from lesson 1, not from the video.",
+  task:"Write two lists headed 'I posted' and 'collected about me', with three items each, taken from your own last 24 hours. Then mark each item A (active) or P (passive)."},
+ {t:"5 tips to spot misinformation and prevent its spread", ch:"The Washington Post · recognising misinformation", url:"https://www.youtube.com/watch?v=GFXbLQvbSVw",
+  why:"Five habits for checking something before you share it. Set them beside the five checks on the fact-check bench and see how much they overlap.",
+  task:"Write each tip in five words or fewer. Then match each tip to one of the bench's five checks, and note any tip that matches none. That leftover is a sixth check."},
+ {t:"Creative Commons for Kids", ch:"Nancy Minicozzi · usage rights", url:"https://www.youtube.com/watch?v=GHmQ8euNwv8",
+  why:"What Creative Commons is for: a creator pre-approving reuse of their work on stated conditions. Aimed at younger children, which is the point; the idea is simple.",
+  task:"Write the credit line you would put under a Creative Commons photo in a school project: title, creator, source, licence. Then write one sentence on what a creator can ask for in return for reuse."},
+ {t:"Is it Cyberbullying?", ch:"StopBullying.gov · cyberbullying", url:"https://www.youtube.com/watch?v=vtfMzmkYp9E",
+  why:"From an official anti-bullying site: how to tell whether something is cyberbullying, and what to do about it. The four syllabus words come from lesson 4; this video is general.",
+  task:"Write the response steps on a card, in order, without looking at lesson 4. Then write catfishing, trolling, fraping and dissing on the back, each with a definition of ten words or fewer that does not use the word itself."},
+ {t:"What is Malware? Difference Between Viruses, Worms, Trojans, and More!", ch:"Computing & Coding · cybersecurity essentials", url:"https://www.youtube.com/watch?v=6g2D85WFDrg",
+  why:"The malware family in one sitting. Brute force is not malware, so it is not what this video is for; the brute-force bench below covers it.",
+  task:"Write one-line definitions of virus, spyware and ransomware, each with one thing it does that the other two do not. If a definition is missing from the video, take it from lesson 5."},
+ {t:"What is a firewall? Simple Explanation in under 7 minutes!", ch:"Habeeb Codes · network protection", url:"https://www.youtube.com/watch?v=dYEaifQuMIs",
+  why:"A firewall, slowly and in plain language. Antivirus and anti-spyware are in lesson 6, because that is where students mix the three jobs up.",
+  task:"Finish this sentence in your own words: 'A firewall checks ... against ... and blocks ...'. Then write one thing a firewall cannot do."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"Your footprint is a trail you mostly don't see", len:"5 min",
+  body:`<p>Every time you use a device online you leave data behind. That trail is your <strong>digital footprint</strong>, and it comes in two kinds:</p>
+        <ul>
+          <li><strong>Active footprint</strong>: data you <em>deliberately</em> share. A photo you post, a comment you write, a form you fill in, an account you sign up for.</li>
+          <li><strong>Passive footprint</strong>: data collected about you <em>without you deliberately sharing it</em>. The sites you visit, your IP address, your phone's location, cookies, and posts other people make about you or tag you in.</li>
+        </ul>
+        <p>The passive kind is the one students forget, and it is the one examiners like to ask about. A friend tags you in a photo: you did nothing, and it is still in your footprint.</p>
+        <p>Now the property that matters most: <strong>permanence</strong>. When you delete a post you delete <em>your</em> copy. A screenshot, a forward or a saved picture is a second copy that belongs to someone else, and you cannot reach it. Treat anything you post as something that can come back in years, in front of a university admissions officer or a stranger.</p>
+        <p>The trail also helps attackers. First school, pet's name, mother's maiden name: people post these for fun, and they are exactly the answers to security questions.</p>`,
+  demo:`<strong>Do this:</strong> search your own name, in quotation marks, in a private window. List the first five results and write <strong>A</strong> next to each one you chose to put there and <strong>P</strong> next to each one someone else did or that was collected. The ratio is the lesson.`,
+  cliff:`Your footprint is full of posts, yours and other people's. Some of them are simply false, and you have probably forwarded one. How do you tell which, in under two minutes? Lesson 2.`},
+
+ {t:"Checking before you believe", len:"6 min",
+  body:`<p><strong>Misinformation</strong> is false or misleading information. The person passing it on often believes it, or has not checked. When it is made up <em>on purpose</em>, to cheat or to steer people, it is called <strong>disinformation</strong>. The syllabus word is misinformation, so you never need to guess someone's motive to score the mark.</p>
+        <p>Five checks, in the order that is fastest:</p>
+        <ol>
+          <li><strong>Source.</strong> Is it named, and can you check who they are?</li>
+          <li><strong>Date.</strong> Is there one, and does it fit the event? An old photo with a new caption fails here.</li>
+          <li><strong>Evidence.</strong> Can you trace a link, the data, or the full quote?</li>
+          <li><strong>Emotion or hurry.</strong> Is it pushing you to react, or to forward to ten groups?</li>
+          <li><strong>Other outlets.</strong> Do other reliable, independent outlets report the same thing?</li>
+        </ol>
+        <p>It comes in four shapes, and the bench has all four: <strong>invented</strong> (a health 'cure', a fake giveaway), <strong>real but old</strong> (a true photo, wrong day), <strong>real but trimmed</strong> (a headline that keeps half a sentence), and <strong>satire</strong> (made up on purpose, and dangerous only when someone strips the label off and forwards it as news).</p>
+        <p>One honest warning. A check is <em>evidence</em>, not a verdict. A post can pass four checks and still mislead (post 10 does). And an alarming report is not the same as emotion-bait: bait asks you to forward it, whereas a genuine cyclone warning asks fishermen to act and tells you where to check. To check fast, search the first sentence in quotation marks with the words <em>fact check</em>, and for a photo use a reverse image search.</p>`,
+  demo:`<strong>Do this:</strong> the next forward you get, do not forward it. Search its first sentence in quotation marks plus the words <em>fact check</em>, and time yourself. If you cannot settle it in two minutes, the answer is <strong>unverified</strong>, not 'probably fine'.`,
+  cliff:`Say you have checked a photograph and it is genuine: real, current, credited to someone. Can you now drop it into your own school website or video? Lesson 3.`},
+
+ {t:"Whose is it? Usage rights", len:"5 min",
+  body:`<p>Anything creative (a photo, a song, a drawing, a video, a piece of writing) is protected by <strong>copyright</strong> the moment it is made. In nearly every country, India included, no symbol and no registration is needed. Being <em>findable</em> is not the same as being <em>free</em>.</p>
+        <p>To use someone's work you need one of two things: their <strong>permission</strong>, or a <strong>licence</strong> that already allows your use. A <strong>Creative Commons</strong> licence is the second kind: the creator pre-approves reuse, on conditions.</p>
+        <table class="data">
+          <tr><th>Tag</th><th>The condition</th></tr>
+          <tr><td>BY</td><td>Credit the creator</td></tr>
+          <tr><td>NC</td><td>Non-commercial use only</td></tr>
+          <tr><td>ND</td><td>No changes to the work</td></tr>
+          <tr><td>SA</td><td>Share your own version under the same licence</td></tr>
+        </table>
+        <p>Work whose copyright has ended is in the <strong>public domain</strong>, and anyone can use it. Otherwise, when you do reuse something, write the credit line: <strong>title, creator, source, licence</strong>. If you cannot fill all four, you cannot yet use it.</p>
+        <p>The trap: <strong>crediting someone is not permission</strong>. It satisfies one licence condition (BY) and does nothing for a work that has no licence. The same applies to software and films: copying a paid game or downloading a film from a pirate site is infringement too, whoever else is doing it.</p>`,
+  demo:`<strong>Do this:</strong> open an image library that lets you filter by licence (Wikimedia Commons does). Pick one photograph and write its credit line: title, creator, source, licence. If one of the four is missing, pick another.`,
+  cliff:`Copying a photograph harms its creator. Some online behaviour harms a person directly, and the person is in your class. The syllabus has four words for it. Lesson 4.`},
+
+ {t:"Cyberbullying: four words, four acts", len:"6 min",
+  body:`<p><strong>Cyberbullying</strong> is deliberately hurting, threatening or humiliating someone using devices or online platforms, usually more than once. It is worse than the playground version in three ways: it follows you home, the audience can be huge, and copies persist (lesson 1 again).</p>
+        <p>The syllabus names four acts. Learn what the person <em>does</em>:</p>
+        <ul>
+          <li><strong>Catfishing</strong>: building a <em>fake identity</em> (stolen photos, an invented life) to deceive someone. <em>Example: 'Riya, 13' chats with you for two months; her photos belong to a stranger.</em></li>
+          <li><strong>Trolling</strong>: posting <em>deliberately provocative or offensive</em> messages to upset people or start arguments, often as a stranger. <em>Example: an anonymous account under a classmate's cooking video, writing 'quit, you're embarrassing yourself' every day.</em></li>
+          <li><strong>Fraping</strong>: using someone's <em>logged-in account</em> without permission and posting as them. <em>Example: you leave your account open on a friend's phone and they post a fake announcement as you.</em></li>
+          <li><strong>Dissing</strong>: spreading <em>hurtful information, photos or rumours</em> about someone to put them down in public. <em>Example: sending a classmate's embarrassing photo to a group chat of forty, with a mocking caption.</em></li>
+        </ul>
+        <p>What to do, in this order:</p>
+        <ol>
+          <li><strong>Do not retaliate.</strong> Hitting back escalates it and gives them more to screenshot.</li>
+          <li><strong>Save the evidence.</strong> Screenshots showing usernames, dates and times. Do not delete the messages.</li>
+          <li><strong>Block</strong> the person.</li>
+          <li><strong>Report</strong> it to the platform and to your school.</li>
+          <li><strong>Tell a trusted adult.</strong> A parent or a teacher.</li>
+        </ol>
+        <p>If you are only watching, do not like it, share it or add to the pile. The mark is for the action <em>and its reason</em>: 'save evidence so the school and platform can act' scores; 'save evidence' alone is thinner.</p>`,
+  demo:`<strong>Do this:</strong> write the four words on four cards. On the back of each, write what the person does in under ten words, without using the word itself. Test yourself tomorrow, not today.`,
+  cliff:`Fraping only works if someone gets into your account. How do they? One way is by guessing your password, thousands of guesses a second. That and three other threats are lesson 5.`},
+
+ {t:"Four ways in: virus, spyware, ransomware, brute force", len:"6 min",
+  body:`<p><strong>Malware</strong> is software built to damage, spy or lock. Three of the four threats below are malware. One is not.</p>
+        <ul>
+          <li><strong>Virus</strong>: attaches itself to a genuine file or program, and when you run that file it <em>copies itself</em> into others. It spreads through shared files, USB sticks and downloads, and can corrupt or delete what it reaches. It is the only one of the four that copies itself.</li>
+          <li><strong>Spyware</strong>: runs <em>hidden</em>, records what you do (keys pressed, sites visited, passwords) and sends it to someone. It gives no sign, so nothing looks broken.</li>
+          <li><strong>Ransomware</strong>: <em>encrypts your files</em> so you cannot open them, then demands payment for the key. Paying does not guarantee the key arrives. The defence that makes the demand pointless is a backup kept somewhere the malware cannot reach.</li>
+          <li><strong>Brute force attack</strong>: <em>not malware</em>. A program tries combinations systematically, every one in turn, until one works. The number of combinations is <span class="num">set size<sup>length</sup></span>, and the bench below counts it for you.</li>
+        </ul>
+        <p>At ten billion guesses a second, trying every combination takes:</p>
+        <table class="data">
+          <tr><th>Password</th><th>Set</th><th>Combinations</th><th>Time</th></tr>
+          <tr><td>8 lowercase</td><td>26</td><td>2.1 × 10<sup>11</sup></td><td>21 seconds</td></tr>
+          <tr><td>8 of every type</td><td>94</td><td>6.1 × 10<sup>15</sup></td><td>7.1 days</td></tr>
+          <tr><td>12 lowercase</td><td>26</td><td>9.5 × 10<sup>16</sup></td><td>110 days</td></tr>
+          <tr><td>14 lowercase</td><td>26</td><td>6.5 × 10<sup>19</sup></td><td>205 years</td></tr>
+        </table>
+        <p>Read the third row against the second. <strong>Twelve plain lowercase letters is about 15.7 times harder to brute-force than eight characters of every type.</strong> Length beats cleverness. And clever swaps such as <span class="num">p@ssw0rd</span> do not help, because attackers' word lists already contain them.</p>
+        <p>Three defences to name: a <strong>long, unique password</strong>, <strong>locking the account after a few wrong tries</strong>, and <strong>two-factor authentication</strong>.</p>`,
+  demo:`<strong>Do this:</strong> take a padlock with four number wheels (or picture one). Four digits give 10 × 10 × 10 × 10 = <span class="num">10,000</span> combinations, and at one try a second, trying them all takes 2 hours 47 minutes. Add one wheel and it is 100,000, which is more than a day. Say aloud: each extra wheel multiplies the work by ten.`,
+  cliff:`A virus, spyware, ransomware and a guessing program cannot be spotted by eye. What stands between the internet and your machine and does the spotting for you? Lesson 6.`},
+
+ {t:"Three guards, three different jobs", len:"6 min",
+  body:`<p>Network protection is three tools, and the exam rewards giving each one <em>its own</em> job.</p>
+        <ul>
+          <li><strong>Firewall</strong>: sits between your network (or computer) and the internet, checks traffic <em>against a set of rules</em>, and <strong>blocks</strong> whatever breaks them. It can be hardware or software and watches traffic going out as well as in.</li>
+          <li><strong>Antivirus</strong>: <strong>scans</strong> files and programs, compares them with a database of known malware, and watches for suspicious behaviour. It quarantines or deletes what it finds. New malware appears constantly, so it only works while it is <strong>kept updated</strong>.</li>
+          <li><strong>Anti-spyware</strong>: <strong>detects and removes</strong> spyware specifically, and can stop it installing. Many products bundle it with antivirus. The syllabus lists it separately, so you must too.</li>
+        </ul>
+        <table class="data">
+          <tr><th>Guard</th><th>Looks at</th><th>Cannot do</th></tr>
+          <tr><td>Firewall</td><td>network traffic</td><td>clean a file already on your disk</td></tr>
+          <tr><td>Antivirus</td><td>files and programs</td><td>stop a connection being opened</td></tr>
+          <tr><td>Anti-spyware</td><td>programs that watch you</td><td>replace a firewall</td></tr>
+        </table>
+        <p>Try the matcher. One of the six has an answer that is none of the three.</p>
+        <div id="matcherSlot"></div>
+        <p>No guard fixes a short password or a person who clicks the link. That is why the best defence is a mix: the three tools, <em>updated</em>, plus a long password and a backup.</p>`,
+  demo:`<strong>Do this:</strong> write 'block', 'scan' and 'detect and remove' on a card and put the right guard next to each, from memory. If you hesitate on any, that is your trap on the day.`,
+  cliff:`Dhruv runs a print shop in Mysuru. His firewall is switched on. His antivirus subscription expired eight months ago. Last month someone guessed an office password, installed a program that recorded every key pressed, and then locked every file and asked for &#8377;60,000. Which threat came first, which guard should have caught which, and why did it not? That is Q15. Go and lose to it, then come back tomorrow.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"Which of these is part of your <em>active</em> digital footprint?",
+  o:["Your IP address, recorded in a website's server log",
+     "A comment you type under a video",
+     "Your phone's location, collected while an app runs in the background",
+     "The pages a shop's cookie recorded you visiting"], a:1,
+  why:"'Active' means you deliberately shared it, and typing a comment is exactly that. The other three are collected without you posting anything: that is the passive footprint, which students forget exists and examiners do not."},
+ {n:2, lvl:"standard", q:"Meera finds a photograph with a search engine and wants it on her school's website. What must she check first?",
+  o:["How many people have shared it",
+     "Whether the photographer's name is visible, so she can copy it",
+     "Whether the picture is large enough",
+     "Whether the owner's permission or a licence allows her to use it"], a:3,
+  why:"Being findable is not being free. She needs permission or a licence that allows the use. Option B is the trap: crediting the photographer is manners, not permission, and it only helps if the licence says credited reuse is allowed."},
+ {n:3, lvl:"standard", q:"Karan leaves his social media logged in on a classmate's phone. The classmate posts 'I am quitting the football team' from Karan's account. This is:",
+  o:["catfishing","trolling","fraping","dissing"], a:2,
+  why:"Fraping is using someone's logged-in account without permission and posting as them. Catfishing is a fake identity, trolling is provocative posting to upset people, and dissing is spreading hurtful material about someone. The giveaway is the account, not the message."},
+ {n:4, lvl:"trap", q:"A message on screen says your files are locked and you must pay &#8377;40,000 to get a key. What is this?",
+  o:["ransomware","spyware","a virus","a brute force attack"], a:0,
+  why:"Ransomware locks (encrypts) your files and demands payment. A virus copies itself and damages files without a ransom note, spyware hides and watches, and a brute force attack guesses passwords and is not malware at all. 'Virus' is the lazy default, and it costs the mark."},
+ {n:5, lvl:"trap", q:"Which job does a firewall do?",
+  o:["It scans files for known viruses and deletes them",
+     "It checks network traffic against rules and blocks traffic that breaks them",
+     "It finds and removes programs that record what you type",
+     "It keeps a backup copy of your files"], a:1,
+  why:"A firewall filters traffic between a network and the internet. A is antivirus, C is anti-spyware and D is a backup. The common way to lose this mark is to give the firewall the antivirus's job."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"State the difference between an active and a passive digital footprint, and give one example of each.",
+  scheme:["<b>Active</b>: data you deliberately share, for example posting a photo, writing a comment or filling in a form. <span class='num'>[1]</span>",
+          "<b>Passive</b>: data collected about you without you deliberately sharing it, for example browsing history, your IP address, location data, or a friend tagging you. <span class='num'>[1]</span>"],
+  tip:"An example alone is not a definition. The word that earns the mark for active is 'deliberately'; for passive it is 'without you posting it'."},
+ {n:7, m:2, lvl:"standard", q:"Aarav receives a WhatsApp forward: 'Doctors hate this: one spoon of this powder cures the flu in a day. Forward to 10 people today!' Give two checks Aarav should make before believing it or forwarding it.",
+  scheme:["One valid check, saying what he would look at, for example the source: is the author named, qualified and traceable? <span class='num'>[1]</span>",
+          "A second, different valid check, for example whether other reliable outlets or a fact-checker report the same, or whether there is a date and evidence, or noticing that it pushes him to forward in a hurry. <span class='num'>[1]</span>"],
+  tip:"'Check if it is true' scores nothing: it is the question, not a check. Say what you would actually look at."},
+ {n:8, m:2, lvl:"trap", q:"Ishaan's photograph has 'Photo by Ishaan' printed under it. Explain why this does not, on its own, make it legal for you to copy it into your project.",
+  scheme:["Ishaan owns the copyright automatically, so only he (or a licence he has chosen) can give permission to copy it. <span class='num'>[1]</span>",
+          "Crediting him acknowledges who made it but is not permission; you need his permission or a licence that allows this use, and may then also have to follow its conditions, such as giving credit. <span class='num'>[1]</span>"],
+  tip:"Two ideas, two marks: who gives permission, and why a credit does not replace it. 'Because it is illegal' on its own scores nothing."},
+ {n:9, m:2, lvl:"standard", q:"Priya is sent cruel messages by several classmates in a group chat every evening. Describe two things she should do.",
+  scheme:["One sensible action with a reason, for example save the evidence (screenshots showing usernames, dates and times) so the school or platform can act. <span class='num'>[1]</span>",
+          "A second, different action with a reason, for example block the senders, report to the platform or school, or tell a trusted adult. 'Do not retaliate' also scores, with its reason. <span class='num'>[1]</span>"],
+  tip:"'Ignore it' on its own is not an answer: it does not stop it and the evidence is lost. 'Fight back' loses the mark."},
+ {n:10, m:2, lvl:"standard", q:"Explain how a brute force attack works, and give one way to defend against it.",
+  scheme:["Software tries possible passwords or combinations one after another, systematically, until one works. <span class='num'>[1]</span>",
+          "Any one defence with its reason, for example a longer password (many more combinations), locking the account after a few wrong tries, or two-factor authentication. <span class='num'>[1]</span>"],
+  tip:"'A hacker guesses your password' is too vague. The marking words are 'tries many combinations in turn' and a defence with a reason."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"standard", q:"Six years from now Rohan applies for a university place. An admissions officer searches his name and finds a rude comment he posted at 13, which he deleted two days later. A classmate had taken a screenshot and posted it on a meme page.<br><br><strong>(a)</strong> State whether the original comment is part of Rohan's active or passive footprint, and why. <span class='num'>[1]</span><br><strong>(b)</strong> Explain why deleting the comment did not remove it from the internet. <span class='num'>[1]</span><br><strong>(c)</strong> Give one step Rohan could take now to reduce the harm. <span class='num'>[1]</span>",
+  hints:["For (a), ask who chose to put the comment there.",
+         "For (b), deleting acts on one copy. How many copies exist, and whose are they?",
+         "For (c), the other copy is on a page someone else runs. What can you ask that person or the platform to do?"],
+  sol:["(a) <strong>Active</strong>, because Rohan deliberately posted it himself.",
+       "(b) Deleting removes only his copy. The classmate's screenshot, and the meme page's post, are separate copies that he does not control.",
+       "(c) Ask the meme page's owner to take the screenshot down, or report the post to the platform and ask for it to be removed.",
+       "The meme page's post is also in Rohan's footprint, but he did not create it. That is the passive kind, and it is why 'I deleted it' never closes the question."]},
+
+ {n:12, m:3, lvl:"trap", q:"A local website runs the headline <strong>'THEFTS IN SHANTI COLONY UP 300% THIS MONTH!'</strong> The police figures are 1 theft last month and 4 this month.<br><br><strong>(a)</strong> Calculate the percentage increase. <span class='num'>[1]</span><br><strong>(b)</strong> The headline is arithmetically correct. Explain why it is still misleading. <span class='num'>[1]</span><br><strong>(c)</strong> State one question you would ask, or one check you would make, before sharing it. <span class='num'>[1]</span>",
+  hints:["Percentage increase = increase &divide; original &times; 100. The original is last month's figure.",
+         "'Up 300%' describes how fast the number moved. Does it tell you how many thefts there were?",
+         "Ask: 300% of what, and compared with which months?"],
+  sol:["(a) Increase = 4 &minus; 1 = 3, so 3 &divide; 1 &times; 100 = <strong>300%</strong>.",
+       "(b) The starting number is tiny: it is three extra thefts. A percentage hides how small the figures are and makes readers picture a crime wave.",
+       "(c) For example: ask for the actual numbers and for the previous months; check the police figures at the source; see whether other reliable outlets report it the same way.",
+       "Nothing in the headline is false. That is the shape that gets past the five checks: real numbers, framed to alarm."]},
+
+ {n:13, m:3, lvl:"standard", q:"Three students describe problems.<br><br><strong>(i)</strong> Anjali opened a 'free homework solver' from an unknown site. Two days later her photos and documents will not open, and a message demands &#8377;5,000 for a 'key'.<br><strong>(ii)</strong> Sunil's club game mod looked normal, but his bank password was later used from another city. He never saw a warning. The mod had been secretly recording what he typed.<br><strong>(iii)</strong> A USB stick in the computer lab holds a file that copied itself onto every computer it was plugged into and corrupted documents there.<br><br>For each, name the malware and give one defence that matches it. <span class='num'>[1 each: both the name and a matching defence]</span>",
+  hints:["Ignore how each one arrived. Ask what each program <em>does</em>: locks, watches, or copies itself.",
+         "Locks files for payment, watches and reports, copies itself into other files. Those are three words from lesson 5.",
+         "A matching defence is the one whose job is exactly that malware. For ransomware, think about what makes the demand pointless."],
+  sol:["(i) <strong>Ransomware.</strong> Defence: regular backups kept separately, or antivirus, or not running software from unknown sites.",
+       "(ii) <strong>Spyware.</strong> Defence: anti-spyware software, or only installing software from trusted sources.",
+       "(iii) <strong>Virus.</strong> Defence: antivirus, or scanning a USB stick before opening anything on it.",
+       "Each answer needs both halves. 'Ransomware, install a firewall' scores nothing, because a firewall does not clean files."]},
+
+ {n:14, m:3, lvl:"hard", q:"A website accepts passwords made only of lowercase letters and digits (36 possible characters). An attacker's program makes <span class='num'>1,000,000</span> guesses per second.<br><br><strong>(a)</strong> Calculate the number of different 4-character passwords. <span class='num'>[1]</span><br><strong>(b)</strong> Calculate how long it takes to try all of them, in seconds to 2 significant figures. <span class='num'>[1]</span><br><strong>(c)</strong> Mehul says: 'Going from 4 characters to 6 only makes it 1.5 times harder.' Show with a calculation that he is wrong, and give the new time in minutes to 2 significant figures. <span class='num'>[1]</span>",
+  hints:["Combinations = set size to the power of length. Not set size &times; length: 36 &times; 4 = 144 is the trap.",
+         "36 &times; 36 = 1,296, and 1,296 &times; 1,296 = 1,679,616. Divide by 1,000,000 for seconds.",
+         "Two extra characters multiply the combinations by 36 twice. Work out 36&sup2;, then the time for 6 characters, then divide by 60."],
+  sol:["(a) 36<sup>4</sup> = 36 &times; 36 &times; 36 &times; 36 = <strong>1,679,616</strong>.",
+       "(b) 1,679,616 &divide; 1,000,000 = <strong>1.7 seconds</strong> (2 s.f.).",
+       "(c) 6 &divide; 4 = 1.5 is the length ratio, but the work scales as 36<sup>6</sup> &divide; 36<sup>4</sup> = 36<sup>2</sup> = <strong>1,296 times</strong> harder. New time: 36<sup>6</sup> = 2,176,782,336, so 2,176.78 s &divide; 60 = <strong>36 minutes</strong> (2 s.f.).",
+       "Length does not add to the work, it multiplies it. Mehul counted characters; the attacker counts combinations."]},
+
+ {n:15, m:3, lvl:"hard", q:"Dhruv runs a print shop in Mysuru. His computer has a firewall switched on. His antivirus subscription expired eight months ago. Last month: <strong>(i)</strong> software tried many passwords against the office login until it guessed a worker's short password; <strong>(ii)</strong> the attacker then installed a program that secretly recorded every key pressed and sent it to a stranger; <strong>(iii)</strong> finally every file was encrypted and &#8377;60,000 was demanded.<br><br><strong>(a)</strong> Name the attack in (i), the malware in (ii) and the malware in (iii). <span class='num'>[1]</span><br><strong>(b)</strong> Explain why the firewall did not stop the attack in (i). <span class='num'>[1]</span><br><strong>(c)</strong> Explain why Dhruv's expired antivirus mattered, in terms of how antivirus works. <span class='num'>[1]</span>",
+  hints:["Name the three events separately: one is a guessing attack, two are malware. Which malware watches, and which locks?",
+         "For (b): a firewall judges traffic by rules. Does a login attempt look different from the owner logging in?",
+         "For (c): antivirus recognises malware by comparing files with something that has to be kept up to date. What happens to that something after eight months?"],
+  sol:["(a) (i) <strong>brute force attack</strong>; (ii) <strong>spyware</strong> (a keylogger); (iii) <strong>ransomware</strong>.",
+       "(b) The guesses arrived as ordinary login attempts to a service that is meant to be reachable, so they broke none of the firewall's rules. The weakness was a short, guessable password with no limit on wrong tries; a firewall cannot tell a guess from the owner.",
+       "(c) Antivirus recognises malware by comparing files with a database of known malware, and new malware appears all the time. With no updates for eight months, it could not recognise newer programs, so the spyware and the ransomware were not detected.",
+       "Count the gaps: a weak password (no tool fixes that), no anti-spyware, an out-of-date antivirus. The firewall was on and did nothing, because none of this was its job."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*12.5)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the fact-check bench ---------------- */
+/*FC-START*/
+const VERDICT_LABEL = { real:'Real report', fake:'Fake or invented', misleading:'Real but misleading', satire:'Satire' };
+const CHECK_NAME = ['A named, checkable source','A date that fits the event','Evidence you can trace','Pushes you to react or forward','Other reliable outlets report it'];
+/* c = the bench's answer to each of the five checks, 1 = yes, 0 = no; v = the true ruling */
+const FC = {
+ 1:{c:[0,0,0,1,0], v:'fake', tell:'No hospital, doctor, date or study, and it begs you to forward it. Dengue has no home cure.',
+    why:'Nothing in it can be checked: no named hospital or doctor, no date, no study. The two pushes (<em>doctors do not want you to know</em> and <em>forward to 10 groups</em>) are bait. When you cannot even begin to check, that is the finding.'},
+ 2:{c:[0,1,0,1,0], v:'fake', tell:'A scam that asks for your OTP. It has a date, but a date is one check, not a verdict.',
+    why:'It has a date, which is exactly why a date is only one check. The brand is named but the link is a different, new site, and a real offer would never need your OTP. Never give an OTP to anyone: it is the key to your account.'},
+ 3:{c:[0,0,0,1,0], v:'misleading', tell:'A real photograph from 2019, captioned as today. Real image, wrong day.',
+    why:'The photograph is real, but it is from August 2019 and from another city. The caption makes it false. That is <em>real but misleading</em>: the lie is in the date, not in the picture.'},
+ 4:{c:[1,1,0,0,0], v:'satire', tell:'Made up on purpose, and its own About page says so.',
+    why:'A named source and a date, and still not news. A named source is not a trustworthy one until you read its About page. Satire is harmless until someone removes the label and forwards it as fact.'},
+ 5:{c:[1,1,1,0,1], v:'real', tell:'Named reporter, dated, scorecard on the association site, matching reports elsewhere.',
+    why:'Every check that can pass does. The two scores differ by 182 &minus; 168 = 14, which matches the headline, and the association and two other outlets agree.'},
+ 6:{c:[1,1,1,0,0], v:'real', tell:'A primary source: the Corporation&rsquo;s own notice, with a number you can look up.',
+    why:'No other outlet has picked it up yet, and it is still real. When the organisation doing the thing publishes it, that is a primary source, and it beats a pile of reposts. One missing check is not a verdict.'},
+ 7:{c:[1,1,1,0,1], v:'real', tell:'Alarming, but it asks fishermen to act and points you to the bulletin. That is not bait.',
+    why:'It is frightening and it is true. Emotion-bait asks you to <em>forward</em>; a genuine warning asks people to <em>act</em> and tells you where to verify. Do not confuse alarming with fake.'},
+ 8:{c:[0,0,0,1,0], v:'fake', tell:'No study, no expert, no date, and a fear aimed at parents. Unsupported.',
+    why:'<em>Study proves</em> and <em>experts say</em> with no study or expert named. The claim can only be traced to copies of itself, and the post exists to frighten you into sharing.'},
+ 9:{c:[0,1,0,1,0], v:'fake', tell:'A lookalike account two days old, a screenshot with no link, and &lsquo;RT before they delete this&rsquo;.',
+    why:'The timestamp looks convincing, but a screenshot proves only that someone made a screenshot. The handle has a stray underscore, the account is two days old, and the club says he is training. <em>Before they delete this</em> is bait.'},
+ 10:{c:[1,1,1,1,0], v:'misleading', tell:'The real statement says schools close only if the warning is upgraded.',
+    why:'Named paper, dated, and the statement exists, so most checks pass. But the headline kept half a sentence and dropped the <em>only if</em>. Compare the headline with the source itself, and notice that no other outlet says schools are closing.'}
+};
+function fcRule(id, answers, verdict){
+  const P = FC[id];
+  const matches = P.c.map((x,i)=> answers[i]===x);
+  return { verdictOK: verdict===P.v, matches, nMatch: matches.filter(Boolean).length, truth:P };
+}
+const FC_REAL = [5,6,7];
+const FC_FAKE = [1,2,3,4,8,9,10];
+function fcPuzzleSet(rand){
+  const r = FC_REAL[Math.floor(rand()*FC_REAL.length)];
+  const n = FC_FAKE[Math.floor(rand()*FC_FAKE.length)];
+  const hidden = [r,n];
+  const shown = Object.keys(FC).map(Number).filter(id=>!hidden.includes(id));
+  return { hidden, shown, reals: shown.filter(id=>FC[id].v==='real') };
+}
+function fcPuzzleCheck(set, picked){
+  const a = [...picked].sort((x,y)=>x-y).join(','), b = [...set.reals].sort((x,y)=>x-y).join(',');
+  return a===b;
+}
+/*FC-END*/
+
+let fcCur = 1;
+function draftFor(id){
+  if(!S.bench[id]) S.bench[id] = { a:[null,null,null,null,null], v:null, done:false };
+  return S.bench[id];
+}
+function fcTab(id){ return document.querySelector(`.tab[data-post="${id}"]`); }
+function fcRefreshTabs(){
+  let ruled = 0, agreed = 0;
+  Object.keys(FC).forEach(k=>{
+    const id = +k, d = S.bench[id], t = fcTab(id), st = t.querySelector('.st');
+    if(d && d.done){
+      ruled++;
+      const ok = d.v===FC[id].v; if(ok) agreed++;
+      st.textContent = ok ? '✓' : '✗';
+      t.setAttribute('aria-label', `Post ${id}, ruled, ${ok?'bench agreed':'bench disagreed'}`);
+    }else{
+      st.textContent = '·';
+      t.setAttribute('aria-label', `Post ${id}, not yet ruled`);
+    }
+  });
+  document.getElementById('tally').textContent = `Ruled ${ruled} of 10 · rulings the bench agreed with: ${agreed}`;
+}
+function fcShow(id){
+  fcCur = id;
+  document.querySelectorAll('.post').forEach(p=>{ p.hidden = (+p.dataset.id!==id); });
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected', String(+t.dataset.post===id)));
+  const d = draftFor(id);
+  document.querySelectorAll('#checks .ynb').forEach(b=>{
+    b.setAttribute('aria-pressed', String(d.a[+b.dataset.c]===+b.dataset.v));
+    b.disabled = d.done;
+  });
+  document.querySelectorAll('#verdicts .vb').forEach(b=>{
+    b.setAttribute('aria-pressed', String(d.v===b.dataset.verdict));
+    b.disabled = d.done;
+  });
+  document.getElementById('ruleBtn').disabled = d.done;
+  const box = document.getElementById('ruling');
+  if(d.done) fcShowRuling(id); else { box.className='ruling'; box.innerHTML=''; }
+}
+function fcShowRuling(id){
+  const d = S.bench[id], R = fcRule(id, d.a, d.v), box = document.getElementById('ruling');
+  const yn = x => x===1?'Yes':'No';
+  const lines = R.matches.map((m,i)=> m
+    ? `<li>✓ <strong>${CHECK_NAME[i]}:</strong> you said ${yn(d.a[i])}. Agreed.</li>`
+    : `<li>✗ <strong>${CHECK_NAME[i]}:</strong> you said ${yn(d.a[i])}; the bench says ${yn(R.truth.c[i])}.</li>`).join('');
+  box.className = 'ruling on ' + (R.verdictOK?'good':'bad');
+  box.innerHTML = `<strong>${R.verdictOK?'The bench agrees.':'The bench disagrees.'}</strong> You ruled <em>${VERDICT_LABEL[d.v]}</em>; the bench rules <em>${VERDICT_LABEL[R.truth.v]}</em>. Checks matched: ${R.nMatch} of 5.
+    <ul>${lines}</ul><p style="margin:9px 0 0">${R.truth.why}</p>`;
+}
+function initBench(){
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click', ()=>fcShow(+t.dataset.post));
+    t.addEventListener('keydown', e=>{
+      if(e.key!=='ArrowRight' && e.key!=='ArrowLeft') return;
+      e.preventDefault();
+      const id = +t.dataset.post, nx = e.key==='ArrowRight' ? (id%10)+1 : ((id+8)%10)+1;
+      fcShow(nx); fcTab(nx).focus();
+    });
+  });
+  document.querySelectorAll('.lookup').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const box = document.getElementById('look'+b.dataset.look);
+      box.hidden = !box.hidden;
+      b.setAttribute('aria-expanded', String(!box.hidden));
+      b.textContent = box.hidden ? 'Search for it' : 'Hide the search';
+    });
+  });
+  document.getElementById('checks').addEventListener('click', e=>{
+    const b = e.target.closest('.ynb'); if(!b || b.disabled) return;
+    const d = draftFor(fcCur); d.a[+b.dataset.c] = +b.dataset.v;
+    document.querySelectorAll(`#checks .ynb[data-c="${b.dataset.c}"]`).forEach(x=>x.setAttribute('aria-pressed', String(+x.dataset.v===d.a[+b.dataset.c])));
+    save();
+  });
+  document.getElementById('verdicts').addEventListener('click', e=>{
+    const b = e.target.closest('.vb'); if(!b || b.disabled) return;
+    const d = draftFor(fcCur); d.v = b.dataset.verdict;
+    document.querySelectorAll('#verdicts .vb').forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.verdict===d.v)));
+    save();
+  });
+  document.getElementById('ruleBtn').addEventListener('click', ()=>{
+    const d = draftFor(fcCur), box = document.getElementById('ruling');
+    if(d.done) return;
+    if(d.a.some(x=>x===null) || !d.v){
+      box.className = 'ruling on';
+      box.textContent = 'Answer all five checks and pick a ruling first. The bench will not rule on half an investigation.';
+      return;
+    }
+    d.done = true; save();
+    fcShow(fcCur); fcRefreshTabs();
+  });
+
+  /* the puzzle: pick the two real posts out of eight */
+  let pz = null;
+  const quiz = document.getElementById('fcQuiz'), res = document.getElementById('fcPzResult'), lock = document.getElementById('fcLock');
+  document.getElementById('fcNew').addEventListener('click', ()=>{
+    pz = fcPuzzleSet(Math.random);
+    quiz.classList.add('on');
+    res.innerHTML = ''; lock.disabled = false; pz.finished = false;
+    quiz.querySelectorAll('.pzitem').forEach(l=>{
+      const id = +l.dataset.pz; l.hidden = pz.hidden.includes(id);
+      l.querySelector('input').checked = false;
+    });
+    document.getElementById('fcPill').textContent = 'Puzzle set';
+    document.getElementById('fcPill').className = 'pill mid';
+    document.getElementById('fcText').textContent = 'Two real posts are among the eight shown. Tick them and lock in.';
+  });
+  lock.addEventListener('click', ()=>{
+    if(!pz || pz.finished) return;
+    const picked = [...quiz.querySelectorAll('.pzitem')].filter(l=>!l.hidden && l.querySelector('input').checked).map(l=>+l.dataset.pz);
+    if(picked.length!==2){ res.innerHTML = `<strong>Tick exactly two.</strong> You have ticked ${picked.length}.`; return; }
+    pz.finished = true; lock.disabled = true;
+    if(fcPuzzleCheck(pz, picked)){
+      S.puzzles = (S.puzzles||0)+1; save(); refresh();
+      res.innerHTML = `<strong>Right.</strong> The real ones were #${pz.reals.join(' and #')}. ${pz.reals.map(id=>`#${id}: ${FC[id].tell}`).join(' ')} Press <em>Set me a puzzle</em> for another.`;
+    }else{
+      const wrong = picked.filter(id=>FC[id].v!=='real');
+      res.innerHTML = `<strong>Not quite.</strong> The real ones were #${pz.reals.join(' and #')}. ${wrong.map(id=>`#${id} is ${VERDICT_LABEL[FC[id].v].toLowerCase()}: ${FC[id].tell}`).join(' ')} Press <em>Set me a puzzle</em> to try again.`;
+    }
+  });
+  fcShow(1); fcRefreshTabs();
+}
+
+/* ---------------- the brute-force bench ---------------- */
+/*BF-START*/
+const BF_RATE = 1e10;
+const YEAR = 365*86400;
+const BF_COMMON = ['password','123456','12345678','123456789','1234567890','qwerty','qwertyuiop','abc123','letmein','welcome','iloveyou','admin','monkey','dragon','sunshine','football','cricket','india','india123','krishna','master','login','princess','shadow','superman','baseball','trustno1','111111','000000','1q2w3e','test','guest','dhruv','ganesh','abcd1234','changeme'];
+const LEET = {'@':'a','4':'a','3':'e','1':'i','!':'i','0':'o','$':'s','5':'s','7':'t'};
+function bfNormal(pw){
+  const s = pw.toLowerCase().replace(/[^a-z]+$/,'');
+  return s.split('').map(ch=>LEET[ch]||ch).join('');
+}
+function bfListed(pw){
+  if(!pw) return false;
+  if(BF_COMMON.includes(pw.toLowerCase())) return true;
+  const n = bfNormal(pw);
+  return n.length>0 && BF_COMMON.includes(n);
+}
+function bfModel(pw){
+  const c = { lower:/[a-z]/.test(pw), upper:/[A-Z]/.test(pw), digit:/[0-9]/.test(pw), sym:/[^a-zA-Z0-9]/.test(pw) };
+  const set = (c.lower?26:0)+(c.upper?26:0)+(c.digit?10:0)+(c.sym?32:0);
+  const len = [...pw].length;
+  const keyspace = (len && set) ? Math.pow(set,len) : 0;
+  const worst = keyspace/BF_RATE;
+  return { len, set, classes:c, nClasses:[c.lower,c.upper,c.digit,c.sym].filter(Boolean).length, keyspace, worst, avg:worst/2, listed:bfListed(pw) };
+}
+function bfSup(n){ return String(n).split('').map(d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[+d]).join(''); }
+function bfSci(x){
+  if(x<1e6) return Math.round(x).toLocaleString('en-GB');
+  let e = Math.floor(Math.log10(x)), m = x/Math.pow(10,e);
+  m = Math.round(m*10)/10;
+  if(m>=10){ m = 1; e += 1; }
+  return m.toFixed(1)+' × 10'+bfSup(e);
+}
+function bfTime(s){
+  const num = v => { const r = v<10 ? v.toFixed(1) : String(Math.round(v)); return r==='1.0' ? '1' : r; };
+  const out = (v,unit) => { const n = num(v); return n+' '+unit+(n==='1'?'':'s'); };
+  if(s<1) return 'under a second';
+  if(s<59.5) return out(s,'second');
+  const m = s/60; if(m<59.5) return out(m,'minute');
+  const h = s/3600; if(h<23.5) return out(h,'hour');
+  const d = s/86400; if(d<364.5) return out(d,'day');
+  const y = s/YEAR;
+  if(y<1000) return out(y,'year');
+  if(y<1e6) return Math.round(y).toLocaleString('en-GB')+' years';
+  if(y<1e9) return num(y/1e6)+' million years';
+  if(y<1e12) return num(y/1e9)+' billion years';
+  return bfSci(y)+' years';
+}
+function bfBand(m){
+  if(!m.len) return { key:'none', label:'Nothing typed' };
+  if(m.listed) return { key:'warn', label:'On the common list' };
+  if(m.worst<86400) return { key:'warn', label:'Weak: falls within a day' };
+  if(m.worst<YEAR) return { key:'mid', label:'Fair: holds for weeks or months' };
+  if(m.worst<100*YEAR) return { key:'mid', label:'Good: holds for years' };
+  return { key:'good', label:'Strong: more than a century' };
+}
+function bfPos(m){
+  if(!m.len || m.listed || m.worst<=1) return 0;
+  return Math.max(0, Math.min(1, Math.log10(m.worst)/14))*100;
+}
+const BF_PUZ = [
+ { id:'century', text:'Make a password that takes <strong>more than 100 years</strong> to try in full. Any characters are allowed.',
+   test:m=>!m.listed && m.worst>100*YEAR,
+   win:'Past a century. Notice how you got there: length did most of the work.' },
+ { id:'lowyear', text:'Using <strong>lowercase letters only</strong>, make a password that takes <strong>more than a year</strong>.',
+   test:m=>!m.listed && m.len>0 && m.set===26 && m.worst>YEAR,
+   win:'No capitals, digits or symbols, and still over a year. That is 26 to the power of a bigger number.' },
+ { id:'eight', text:'Using <strong>at most 8 characters</strong>, make a password that takes <strong>more than a day</strong>. Letters and digits alone will not manage it.',
+   test:m=>!m.listed && m.len>0 && m.len<=8 && m.worst>86400,
+   win:'It took capitals, lowercase and symbols together, which is a set of 84 or 94. Short passwords can only be rescued by a big set, and the best they get is days.' },
+ { id:'beat', text:'Using <strong>lowercase letters only</strong>, beat <strong>8 characters of every type</strong> (about 7 days). Length against cleverness.',
+   test:m=>!m.listed && m.len>0 && m.set===26 && m.worst>Math.pow(94,8)/BF_RATE,
+   win:'Twelve plain lowercase letters is the shortest that wins. Length beats cleverness.' },
+ { id:'listed', text:'Prove that a clever swap does not help. Type a password that <strong>looks clever</strong> (at least three character types) but that <strong>the bench puts on the common list</strong>.',
+   test:m=>m.listed && m.nClasses>=3,
+   win:'The maths says it is sturdy; the attacker\'s list says it is not. Swapping a letter for a symbol, and adding 123, is exactly what the list expects.' }
+];
+/*BF-END*/
+
+function initBF(){
+  const pw = document.getElementById('pw');
+  let cur = null;       // current puzzle object, if any
+  function render(){
+    const m = bfModel(pw.value), band = bfBand(m);
+    document.getElementById('ch-lower').className = 'chip2' + (m.classes.lower?' on':'');
+    document.getElementById('ch-upper').className = 'chip2' + (m.classes.upper?' on':'');
+    document.getElementById('ch-digit').className = 'chip2' + (m.classes.digit?' on':'');
+    document.getElementById('ch-sym').className   = 'chip2' + (m.classes.sym?' on':'');
+    const mark = (id,on,txt)=>{ document.getElementById(id).textContent = (on?'✓ ':'– ')+txt; };
+    mark('ch-lower',m.classes.lower,'a–z · 26'); mark('ch-upper',m.classes.upper,'A–Z · 26');
+    mark('ch-digit',m.classes.digit,'0–9 · 10'); mark('ch-sym',m.classes.sym,'symbols · 32');
+    document.getElementById('b-len').textContent = m.len + (m.len===1?' character':' characters');
+    document.getElementById('b-set').textContent = String(m.set);
+    document.getElementById('b-key').textContent = m.keyspace ? bfSci(m.keyspace) : '—';
+    const worst = document.getElementById('b-worst'), avg = document.getElementById('b-avg');
+    if(!m.len){ worst.textContent = '—'; avg.textContent = '—'; }
+    else if(m.listed){ worst.textContent = 'under a second'; avg.textContent = 'under a second'; }
+    else{
+      worst.textContent = bfTime(m.worst); avg.textContent = bfTime(m.avg);
+      if(m.worst/YEAR > 1.38e10) worst.textContent += ' (longer than the universe has existed)';
+    }
+    const pill = document.getElementById('b-pill');
+    pill.textContent = band.label;
+    pill.className = 'pill ' + (band.key==='none'?'hold':band.key);
+    const txt = document.getElementById('b-text');
+    if(!m.len) txt.textContent = 'Type a practice password above.';
+    else if(m.listed) txt.textContent = 'Attackers try lists of common passwords before any sums, so this falls in under a second whatever the combinations below say.';
+    else txt.innerHTML = `${m.set} possible characters, ${m.len} long: ${m.set}<sup>${m.len}</sup> combinations. One more character multiplies the work by ${m.set}.`;
+    const pos = bfPos(m), fill = document.getElementById('b-fill');
+    fill.style.width = Math.max(2,pos)+'%';
+    fill.className = band.key==='good' ? 'good' : (band.key==='mid' ? 'mid' : '');
+    document.getElementById('b-track').setAttribute('aria-label',
+      !m.len ? 'Log-scale bar of time to crack: nothing typed'
+      : `Log-scale bar of time to try every combination: ${m.listed?'under a second, it is on the common list':bfTime(m.worst)}. The scale runs from 1 second to over a million years.`);
+  }
+  pw.addEventListener('input', render);
+  document.querySelectorAll('[data-pre]').forEach(b=>b.addEventListener('click', ()=>{ pw.value = b.dataset.pre; render(); }));
+
+  const quiz = document.getElementById('bfQuiz');
+  let last = -1;
+  document.getElementById('bfNew').addEventListener('click', ()=>{
+    let i = Math.floor(Math.random()*BF_PUZ.length);
+    if(i===last) i = (i+1)%BF_PUZ.length;
+    last = i; cur = { P:BF_PUZ[i], done:false };
+    pw.value = ''; render();
+    quiz.classList.add('on');
+    quiz.innerHTML = `<strong>Puzzle.</strong> ${cur.P.text} I have cleared the box for you. Type, watch the bench, then check.
+      <div class="qrow"><button class="btn small" type="button" id="bfCheck">Check my password</button></div>
+      <div id="bfRes" role="status" aria-live="polite" style="margin-top:9px"></div>`;
+    document.getElementById('bfCheck').addEventListener('click', ()=>{
+      if(!cur || cur.done) return;
+      const m = bfModel(pw.value), res = document.getElementById('bfRes');
+      if(!m.len){ res.textContent = 'The box is empty. Type something first.'; return; }
+      if(cur.P.test(m)){
+        cur.done = true;
+        S.puzzles = (S.puzzles||0)+1; save(); refresh();
+        res.innerHTML = `<strong>Solved.</strong> Yours: ${m.listed?'on the common list, so the attacker skips the sums':`${m.set} possible characters, length ${m.len}, ${bfTime(m.worst)}`}. ${cur.P.win} Press <em>Set me a puzzle</em> for another.`;
+      }else{
+        res.innerHTML = `<strong>Not yet.</strong> Yours: ${m.listed?'it is on the common list':`${m.set} possible characters, length ${m.len}, ${bfTime(m.worst)}`}. Keep going: change it and check again.`;
+      }
+    });
+  });
+  render();
+}
+
+/* ---------------- lesson 6 matcher ---------------- */
+const MATCH = [
+ { a:'fw',   why:'Firewall. Filtering unauthorised connection attempts against a set of rules is exactly its job.' },
+ { a:'av',   why:'Antivirus. It scans the file against known malware before it runs.' },
+ { a:'as',   why:'Anti-spyware. Detecting and removing programs that watch you is its specific job. Many antivirus products bundle it, but the syllabus lists it separately.' },
+ { a:'none', why:'None of the three. Guesses at a login look like ordinary logins. The defences are a long password, locking the account after a few wrong tries, and two-factor authentication.' },
+ { a:'av',   why:'Antivirus. Ransomware is malware, and scanning for known malware is antivirus\'s job.' },
+ { a:'fw',   why:'Firewall. It checks connections against rules, a blocklist included, for everyone on the network.' }
+];
+const DEF_NAME = { fw:'Firewall', av:'Antivirus', as:'Anti-spyware', none:'None of the three' };
+function initMatcher(){
+  const src = document.getElementById('matcher'), slot = document.getElementById('matcherSlot');
+  if(!src || !slot) return;
+  slot.appendChild(src);
+  const hold = document.getElementById('matcherSrc'); if(hold) hold.remove();
+  let answered = 0, right = 0;
+  src.addEventListener('click', e=>{
+    const b = e.target.closest('[data-d]'); if(!b || b.disabled) return;
+    const row = b.closest('.mrow'), i = +row.dataset.m, ok = b.dataset.d===MATCH[i].a;
+    row.querySelectorAll('[data-d]').forEach(x=>{ x.disabled = true; x.setAttribute('aria-pressed', String(x===b)); });
+    b.style.background = 'var(--ink)'; b.style.color = '#fff';
+    const fb = row.querySelector('.mfb');
+    fb.className = 'mfb on';
+    fb.innerHTML = `<strong>${ok?'Right.':'Not quite. You said '+DEF_NAME[b.dataset.d]+'.'}</strong> ${MATCH[i].why}`;
+    answered++; if(ok) right++;
+    document.getElementById('mscore').textContent = `Answered ${answered} of 6 · correct ${right}`;
+  });
+}
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  initMatcher();
+  initBench();
+  initBF();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='digital', SUBJECT='computing', TITLE='Our Digital World', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # State and roadmap
 
-Last updated: 18 September 2026.
+Last updated: 3 October 2026.
 
 ## Done
 
@@ -27,6 +27,11 @@ Last updated: 18 September 2026.
 | Tenses and pronouns (काल और सर्वनाम) | Hindi | `tenses.html` | tense forge, pronoun switchboard | **none yet** |
 | Essay writing (निबंध) | Hindi | `essay.html` | outline builder, sentence upgrader | **none yet** |
 | Words and spelling (शब्द और वर्तनी) | Hindi | `wordbank.html` | agreement machine, spelling doctor | **none yet** |
+| Our digital world (Unit 1) | Computing | `digital.html` | fact-check bench, brute-force bench | **none yet** |
+| Data handling in Google Sheets (Unit 2) | Computing | `spreadsheets.html` | formula bench, data gate | **none yet** |
+| Logic gates (Unit 3) | Computing | `logicgates.html` | gate lab, circuit builder | **none yet** |
+| Designing with the double diamond (Unit 4a) | Computing | `uxdesign.html` | double-diamond sorter, wireframe studio | **none yet** |
+| HTML and CSS (Unit 4b) | Computing | `htmlcss.html` | code-and-see editor, box-model explorer | **none yet** |
 | Pure substances and mixtures | Chemistry | `mixtures.html` | particle builder, melting-point test | A–D + scheme |
 | Separating mixtures | Chemistry | `separating.html` | separation bench, chromatogram | A–D + scheme |
 | Solutions and solubility | Chemistry | `solutions.html` | dissolving tank, solubility curves | A–D + scheme |
@@ -226,3 +231,27 @@ Four more Hindi pages, built from `hindi.html`'s engine and registered with `reg
 - `tools/build_page.py` is not in the repo: pages were assembled by a scratch builder in `$HOME/hb/`. Fix any further page by editing the `.html` directly.
 - No papers: still blocked on a Devanagari font in `paper_lib.py`.
 - Still wanted from the tutor: the school's real Hindi reference paper or syllabus, to calibrate all five pages.
+
+## Computing — a seventh subject
+
+Added 3 October 2026 from the school's Computer Science unit list (Units 1–4). Three small edits made
+it possible, as with Hindi: `--computing` / `--computing-t` in `index.html`, one row in `SUBJECTS`, and
+`'computing'` in the allowlist in `tools/register_topic.py`.
+
+Departures, recorded so they are not "fixed" back:
+
+- **Unit 4 is two pages, not one.** The syllabus lists the double diamond, Figma, UI/UX elements,
+  wireframing, HTML tags, text, lists, links, images, CSS colour/text and the box model. That is two
+  sessions of work. `uxdesign.html` takes the design half (ends on wireframing a 3-page site);
+  `htmlcss.html` takes the build half (ends on linking three pages). Each cliffhangs into the other.
+- **A Problem Lab on three pages.** `spreadsheets.html`, `uxdesign.html` and `htmlcss.html` each carry
+  a `<section id="problems">` of extra problems (26 / 23 / 27) on top of the standard 15 questions,
+  at the tutor's request. They are **outside the 30 marks**, are tracked by a separate `#s-lab` stat
+  that the hub does not read, and persist in `S.lab`. The 30-mark rule (CLAUDE.md #5) is untouched.
+- **Spreadsheet work is Google Sheets**, because that is what the student uses. `spreadsheets.html`
+  carries its own formula evaluator (no `eval`) for the formula bench and the formula-type lab
+  problems, and each lab dataset has a "Copy for Google Sheets" button (tab-separated).
+- **No papers yet.** None of the five pages has a `#papers` section or a `papers` key in its manifest.
+  Per `ADDING-A-TOPIC.md` step 6, add both once the PDFs exist.
+- **Video durations are unchecked.** Every URL was confirmed to exist via YouTube oEmbed, but nobody
+  has watched them; skim all 30 before the student does.

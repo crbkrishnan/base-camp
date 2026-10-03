@@ -21,6 +21,7 @@
   --chemistry:#B4560B; --chemistry-t:#FBEFE3;
   --english:#9B2C3F; --english-t:#F8E9EC;
   --hindi:#3B4CA8;   --hindi-t:#ECEEF9;
+  --computing:#7A6200; --computing-t:#F6F0D6;
   --ok:#1B7F4B;  --ok-t:#E6F3EC;
   --no:#98241B;  --no-t:#FBEAE8;
   --steel:#9A968D;
@@ -355,6 +356,26 @@ let S = { puzzles:{}, filter:'all', pIdx:null };
    The printed papers live on each topic page, in its #papers section — set papers
    to how many that page links, and this hub signposts them.                      */
 const TOPICS = [
+ {id:'htmlcss', file:'htmlcss.html', subject:'computing', status:'ready',
+  title:'Skeleton, Skin and Box', sub:'Computing · HTML and CSS',
+  blurb:'Type HTML and CSS into a live editor that draws the page and flags unclosed tags, then stretch a box-model diagram until the arithmetic works. A 27-problem lab marks your code with a real parser.',
+  meta:['30 marks', '6 lessons', 'Code & see editor', '27 lab problems']},
+ {id:'uxdesign', file:'uxdesign.html', subject:'computing', status:'ready',
+  title:'Design Before You Build', sub:'Computing · designing with the double diamond',
+  blurb:'The double diamond, UI versus UX, a first hour in Figma, and a three-page site planned as a sitemap and wireframes. A diamond sorter and a wireframe checker mark you as you go, and a 23-problem lab sits outside the 30 marks.',
+  meta:['30 marks', '6 lessons', 'Wireframe studio', '23 lab problems']},
+ {id:'logicgates', file:'logicgates.html', subject:'computing', status:'ready',
+  title:'Logic Gates: Switches That Decide', sub:'Computing · logic gates',
+  blurb:'Flip switches on a live gate until its truth table fills itself in, then wire a three-input circuit that must match a real scenario such as a car buzzer or a school bell. The machine marks every circuit and table against all the input combinations.',
+  meta:['30 marks', '6 lessons', 'Gate lab + circuit builder']},
+ {id:'spreadsheets', file:'spreadsheets.html', subject:'computing', status:'ready',
+  title:'Let the Sheet Do the Work', sub:'Computing · data handling in Google Sheets',
+  blurb:'A mini sheet that runs real Google Sheets formulas, a sort, filter and validation lab, and a Problem Lab of 26 extra questions on four Indian datasets you paste straight into your own Sheet.',
+  meta:['30 marks', '6 lessons', 'Formula bench + data gate', '26 lab problems']},
+ {id:'digital', file:'digital.html', subject:'computing', status:'ready',
+  title:'Our Digital World', sub:'Computing · our digital world',
+  blurb:'Triage ten realistic posts on a fact-check bench, then type practice passwords into a brute-force bench that works out honestly how long each would survive. Six lessons cover digital footprints, misinformation, usage rights, cyberbullying, malware and network protection.',
+  meta:['30 marks', '6 lessons', 'Fact-check bench']},
  {id:'wordbank', file:'wordbank.html', subject:'hindi', status:'ready',
   title:'Words and Spelling', sub:'Hindi · शब्द और वर्तनी',
   blurb:'Every Hindi noun is masculine or feminine, and the adjective has to match. Learn the ending clues and their exceptions on 178 nouns, set an adjective, noun, number and marker in the agreement machine and see who changes, then repair broken spellings tile by tile in the spelling doctor: matras, chandrabindu, nukta and conjuncts.',
@@ -509,7 +530,8 @@ const SUBJECTS = {
   biology:{label:'Biology', colour:'var(--biology)', tint:'var(--biology-t)'},
   chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'},
   english:{label:'English', colour:'var(--english)', tint:'var(--english-t)'},
-  hindi:{label:'Hindi', colour:'var(--hindi)', tint:'var(--hindi-t)'}
+  hindi:{label:'Hindi', colour:'var(--hindi)', tint:'var(--hindi-t)'},
+  computing:{label:'Computing', colour:'var(--computing)', tint:'var(--computing-t)'}
 };
 
 const BANDS = [
