@@ -56,7 +56,7 @@ mixtures.html           Chemistry · pure substances and mixtures
 separating.html         Chemistry · separating mixtures, Rf
 solutions.html          Chemistry · solutions and solubility
 reading.html            English   · reading comprehension (25-mark papers, not 30)
-storywriting.html       English   · story-genre tips (reference sheet: no marks, no storage, no hub bridge)
+storywriting.html       English   · story genres and writing forms, tips (reference sheet: no marks, no storage, no hub bridge)
 hindi.html              Hindi     · sentence construction (verb order, markers, agreement, ने, paragraphs)
 digital.html            Computing · digital footprint, misinformation, usage rights, cyberbullying, malware, network protection
 spreadsheets.html       Computing · Google Sheets: functions, IF/SUMIF/COUNTIF, sort/filter, validation (+ 26-problem lab)

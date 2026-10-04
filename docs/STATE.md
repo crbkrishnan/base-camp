@@ -187,7 +187,8 @@ one row in `SUBJECTS`, `'hindi'` in the `register_topic.py` allowlist).
 
 ## English story-writing tips
 
-Added 4 October 2026 at the tutor's request: `storywriting.html`, twelve genres (adventure, mystery, fantasy, science fiction, spooky and suspense, historical, everyday life, humour, fable, sport, dystopian, survival), each with 4–6 one-line tips and an expandable `<details>` paragraph (one paragraph, ending in a "Try it" task).
+Added 4 October 2026 at the tutor's request: `storywriting.html`. Part 1: twelve genres (adventure, mystery, fantasy, science fiction, spooky and suspense, historical, everyday life, humour, fable, sport, dystopian, survival), each with 4–6 one-line tips and an expandable `<details>` paragraph (one paragraph, ending in a "Try it" task).
 
 It is a **reference sheet, not a topic page**: no marks, no questions, no storage, no hub bridge, no papers. It is plain static HTML (no JavaScript at all) and is signposted from a hand-written `<section id="writing">` in `index.html`, deliberately outside `TOPICS` and `DRILLS` — the first has a 30-mark scale, the second reads a progress key, and this page has neither. Do not "fix" it into either array.
 
+The same day Part 2 added ten writing forms in the same format: narrative, personal experience, diary entry, descriptive writing, dialogue, openings and endings, point of view and tense, informal letter, news article, speech. The page is therefore "Ways In" (genres and forms), not "Twelve Ways In".
