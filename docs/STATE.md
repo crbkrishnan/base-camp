@@ -184,3 +184,10 @@ one row in `SUBJECTS`, `'hindi'` in the `register_topic.py` allowlist).
 - **Papers: A–D + scheme on all five**, in `tools/papers/computing_<page>.py` → `sheets/computing-<page>-paper-a..d.pdf` plus `-answers.pdf`. Each generator carries its own independent evaluator (spreadsheet formulas, truth tables, HTML/CSS checkers, WCAG contrast) and asserts 30 marks. They monkeypatch layout helpers inside the generator rather than editing `paper_lib.py` (keep-stem-with-first-part, taller grids, drawn gate symbols, code listings); folding those into `paper_lib.py` would be a tidy-up, but re-render every paper if you do.
 - **Video durations are unchecked.** Every URL was confirmed to exist via YouTube oEmbed, but nobody
   has watched them; skim all 30 before the student does.
+
+## English story-writing tips
+
+Added 4 October 2026 at the tutor's request: `storywriting.html`, twelve genres (adventure, mystery, fantasy, science fiction, spooky and suspense, historical, everyday life, humour, fable, sport, dystopian, survival), each with 4–6 one-line tips and an expandable `<details>` paragraph (one paragraph, ending in a "Try it" task).
+
+It is a **reference sheet, not a topic page**: no marks, no questions, no storage, no hub bridge, no papers. It is plain static HTML (no JavaScript at all) and is signposted from a hand-written `<section id="writing">` in `index.html`, deliberately outside `TOPICS` and `DRILLS` — the first has a 30-mark scale, the second reads a progress key, and this page has neither. Do not "fix" it into either array.
+
