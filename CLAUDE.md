@@ -2,7 +2,7 @@
 
 A static site of interactive study pages and printable test papers, built by a tutor for **one student**: Grade 7 IGCSE, scoring around **10 out of 15**, smart but lazy. Every design decision follows from that. The site's job is to make him *do* things rather than read things.
 
-Subjects: Maths, Physics, Biology, Chemistry, English, Hindi, Computing.
+Subjects: Maths, Physics, Biology, Chemistry, English, Hindi, Computing, Olympiad (IOQM).
 
 ## Read these before working
 
@@ -43,7 +43,7 @@ Subjects: Maths, Physics, Biology, Chemistry, English, Hindi, Computing.
 ```
 index.html              the hub — climb ladder, topic cards, paper signposts, weekly puzzle
 fdp.html                Maths     · fractions, decimals, percentages
-                        (plus ratio, indices, integers, expressions, equations, placevalue)
+                        (plus ratio, indices, integers, expressions, equations, placevalue, graphs)
 moments.html            Physics   · the turning effect
 speed.html              Physics   · speed, distance, time
 forces.html             Physics   · characteristics of forces
@@ -63,6 +63,7 @@ spreadsheets.html       Computing · Google Sheets: functions, IF/SUMIF/COUNTIF,
 logicgates.html         Computing · AND/OR/NOT/NAND/NOR, combining gates, real-time scenarios
 uxdesign.html           Computing · double diamond, UI vs UX, Figma, wireframing a 3-page site (+ 23-problem lab)
 htmlcss.html            Computing · HTML skeleton, text, lists/links, images, CSS colour/text, box model (+ 27-problem lab)
+ioqm-*.html             Olympiad  · eight IOQM prep pages (number theory, algebra, geometry, combinatorics) — see docs/STATE.md
 sheets/*.pdf            test papers + mark schemes (generated — never edit a PDF)
 .nojekyll               stops GitHub Pages hiding underscore paths
 tools/

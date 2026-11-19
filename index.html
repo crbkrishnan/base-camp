@@ -22,6 +22,7 @@
   --english:#9B2C3F; --english-t:#F8E9EC;
   --hindi:#3B4CA8;   --hindi-t:#ECEEF9;
   --computing:#7A6200; --computing-t:#F6F0D6;
+  --olympiad:#2F4858; --olympiad-t:#E5ECF0;
   --ok:#1B7F4B;  --ok-t:#E6F3EC;
   --no:#98241B;  --no-t:#FBEAE8;
   --steel:#9A968D;
@@ -376,6 +377,10 @@ let S = { puzzles:{}, filter:'all', pIdx:null };
    The printed papers live on each topic page, in its #papers section — set papers
    to how many that page links, and this hub signposts them.                      */
 const TOPICS = [
+ {id:'graphs', file:'graphs.html', subject:'maths', status:'ready', papers:4,
+  title:'Where It Starts, How Steep It Climbs', sub:'Functions, plotting, gradient and intercept, interpreting graphs',
+  blurb:'Two dials, m and c, drive a live line so y = mx + c is something you see before you read it; a two-stage function machine plots its own outputs and makes you build the machine behind a set of mappings. Pitched above textbook level, with a warm-up gate, a toolkit card and a 12-problem stretch lab.',
+  meta:['30 marks', '6 lessons', 'live line machine', '12-problem stretch lab']},
  {id:'htmlcss', file:'htmlcss.html', subject:'computing', status:'ready', papers:4,
   title:'Skeleton, Skin and Box', sub:'Computing · HTML and CSS',
   blurb:'Type HTML and CSS into a live editor that draws the page and flags unclosed tags, then stretch a box-model diagram until the arithmetic works. A 27-problem lab marks your code with a real parser.',
@@ -529,7 +534,39 @@ const TOPICS = [
  {id:'photosynthesis', subject:'biology', status:'planned',
   title:'Photosynthesis', sub:'The reaction, the leaf, the experiments'},
  {id:'reactions', subject:'chemistry', status:'planned',
-  title:'Chemical Reactions', sub:'Word equations and conservation of mass'}
+  title:'Chemical Reactions', sub:'Word equations and conservation of mass'},
+ {id:'ioqm-divisors', file:'ioqm-divisors.html', subject:'olympiad', status:'ready',
+  title:'What Divides What', sub:'IOQM · Number theory I: divisibility rules, counting divisors, Euclid',
+  blurb:'Prove the divisibility rules instead of memorising them, then count a number\'s divisors without listing a single one. Test any number on the rule bench and build numbers with exactly the divisor count a puzzle demands.',
+  meta:['30 marks', '6 lessons', 'divisor grid']},
+ {id:'ioqm-remainders', file:'ioqm-remainders.html', subject:'olympiad', status:'ready',
+  title:'Clock Arithmetic', sub:'IOQM · Number theory II: remainders, last digits, cycles',
+  blurb:'Huge numbers like 7²⁰²⁶ are answered by their remainders, and remainders live on a clock. Wrap numbers round a clock of any size, then watch powers fall into cycles that give away their last digit.',
+  meta:['30 marks', '6 lessons', 'remainder clock']},
+ {id:'ioqm-identities', file:'ioqm-identities.html', subject:'olympiad', status:'ready',
+  title:'Shapes Behind the Algebra', sub:'IOQM · Algebra I: identities, difference of squares, factoring tricks',
+  blurb:'Every identity Olympiad algebra leans on is a picture of areas. Pull a square apart into its pieces, cut a corner off and rearrange it into a rectangle, then use the same idea to solve equations that only have whole-number answers.',
+  meta:['30 marks', '6 lessons', 'area square']},
+ {id:'ioqm-sequences', file:'ioqm-sequences.html', subject:'olympiad', status:'ready',
+  title:'Pair Them Up', sub:'IOQM · Algebra II: sums, sequences, systems, AM–GM',
+  blurb:'Gauss\'s pairing trick, telescoping sums that collapse to two terms, and the one inequality every Olympiad uses. Build a staircase of numbers and fit its upside-down copy on top, then hunt for the biggest rectangle a fence can hold.',
+  meta:['30 marks', '6 lessons', 'Gauss staircase']},
+ {id:'ioqm-angles', file:'ioqm-angles.html', subject:'olympiad', status:'ready',
+  title:'Chase the Angle', sub:'IOQM · Geometry I: angle facts, triangles, polygons, circles',
+  blurb:'Olympiad geometry starts with angle chasing: label one angle, follow the facts round the figure, and let it come back to bite. Bend a triangle and watch the exterior angle keep up, then cut any polygon into triangles to see where (n − 2) × 180 comes from.',
+  meta:['30 marks', '6 lessons', 'triangle machine']},
+ {id:'ioqm-areas', file:'ioqm-areas.html', subject:'olympiad', status:'ready',
+  title:'Same Base, Same Height', sub:'IOQM · Geometry II: area chasing, Pythagoras, similar triangles',
+  blurb:'Slide a triangle\'s top corner along a parallel line and its area doesn\'t move — the fact behind most Olympiad area problems. Then build squares on the sides of a right triangle and hunt for the rare ones where every side is a whole number.',
+  meta:['30 marks', '6 lessons', 'sliding apex']},
+ {id:'ioqm-counting', file:'ioqm-counting.html', subject:'olympiad', status:'ready',
+  title:'Count Without Listing', sub:'IOQM · Combinatorics I: multiply, arrange, choose, complement',
+  blurb:'Counting questions are won by never writing the list. Fill a grid with path counts that add up like Pascal\'s triangle, block a corner and watch the numbers reroute, then join dots on a circle to see where n(n − 1) ÷ 2 comes from.',
+  meta:['30 marks', '6 lessons', 'path grid']},
+ {id:'ioqm-logic', file:'ioqm-logic.html', subject:'olympiad', status:'ready',
+  title:'It Can\'t Be Done', sub:'IOQM · Combinatorics II: pigeonhole, parity, colouring, invariants, logic',
+  blurb:'The cleverest Olympiad answers prove that something must happen, or that it never can. Find the worst case that forces the pigeonhole, then knock squares off a chessboard and learn why balanced colours still don\'t guarantee a tiling.',
+  meta:['30 marks', '6 lessons', 'domino board']}
 ];
 
 /* ---------------- the drills ----------------
@@ -551,7 +588,8 @@ const SUBJECTS = {
   chemistry:{label:'Chemistry', colour:'var(--chemistry)', tint:'var(--chemistry-t)'},
   english:{label:'English', colour:'var(--english)', tint:'var(--english-t)'},
   hindi:{label:'Hindi', colour:'var(--hindi)', tint:'var(--hindi-t)'},
-  computing:{label:'Computing', colour:'var(--computing)', tint:'var(--computing-t)'}
+  computing:{label:'Computing', colour:'var(--computing)', tint:'var(--computing-t)'},
+  olympiad:{label:'Olympiad (IOQM)', colour:'var(--olympiad)', tint:'var(--olympiad-t)'}
 };
 
 const BANDS = [

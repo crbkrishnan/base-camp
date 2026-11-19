@@ -1,6 +1,6 @@
 # State and roadmap
 
-Last updated: 3 October 2026.
+Last updated: 19 November 2026.
 
 ## Done
 
@@ -35,6 +35,7 @@ Last updated: 3 October 2026.
 | Pure substances and mixtures | Chemistry | `mixtures.html` | particle builder, melting-point test | A–D + scheme |
 | Separating mixtures | Chemistry | `separating.html` | separation bench, chromatogram | A–D + scheme |
 | Solutions and solubility | Chemistry | `solutions.html` | dissolving tank, solubility curves | A–D + scheme |
+| Functions and graphs | Maths | `graphs.html` | line machine, function machine | A–D + scheme |
 
 All topic pages above carry their four papers, and every paper is linked from the `#papers` section of the page that teaches it. The hub carries them all, a climb ladder, a six-puzzle weekly rotation, and a Practice sheets section that signposts each topic's papers rather than listing sixty PDFs.
 
@@ -192,3 +193,64 @@ Added 4 October 2026 at the tutor's request: `storywriting.html`. Part 1: twelve
 It is a **reference sheet, not a topic page**: no marks, no questions, no storage, no hub bridge, no papers. It is plain static HTML (no JavaScript at all) and is signposted from a hand-written `<section id="writing">` in `index.html`, deliberately outside `TOPICS` and `DRILLS` — the first has a 30-mark scale, the second reads a progress key, and this page has neither. Do not "fix" it into either array.
 
 The same day Part 2 added ten writing forms in the same format: narrative, personal experience, diary entry, descriptive writing, dialogue, openings and endings, point of view and tense, informal letter, news article, speech. The page is therefore "Ways In" (genres and forms), not "Twelve Ways In".
+
+## Maths — functions and graphs
+
+Added 19 November 2026 at the tutor's request: functions, plotting graphs, gradient and intercept, interpreting graphs.
+The brief was explicit that the existing pages are pitched **below** the school papers, so this page is deliberately
+harder than its siblings. Do not "level" it back down to match them.
+
+- **Page:** `graphs.html`, copied from `equations.html`. Progress key `graphs-progress-v1`, hub id `graphs`.
+  Tools: the **line machine** (m and c dials, gradient triangle, x-intercept, table; 8 state-checked puzzles) and the
+  **function machine** (two stages, plots its own mappings, shows the inverse; 6 puzzles that check every target pair).
+- **The 30 marks are unchanged** (5 MCQ + 5 short + 5 word), but Q11–Q15 are written at final-question level:
+  equation from two points, parallel line through a point, a piecewise tank graph, a two-tariff break-even, and the
+  area of a triangle bounded by two lines and an axis.
+- **Extra material that is not marks** (added on the tutor's second instruction, "additional material required to
+  understand and master the topic"): an 8-item self-checking prerequisite gate (`DRILL`, stored in `S.drill`), a
+  four-card toolkit (formulas, vocabulary, what the marker ticks when you draw a graph, the answer shape for
+  interpreting), a worked example inside every lesson, six traps instead of five, and a **12-problem stretch lab**
+  (`LAB`, ticks stored in `S.lab`) above the level of the 30 marks. None of these feed the strip or the hub, so the
+  hub bridge still reports `/30`, `/6` and puzzles exactly like every other page. The lab renders as `.labcard`, not
+  `.qcard`, so smoke still reports `qcards=15`.
+- **Question graphs are drawn by one helper, `gsvg()`,** at render time, so the numbers in a question and the line
+  in its picture come from the same data.
+- **Papers:** `tools/papers/maths_graphs.py` → `sheets/maths-graphs-paper-a..d.pdf` + `maths-graphs-answers.pdf`.
+  Like `computing_logicgates.py` it carries its own `build_paper2` (paper_lib cannot embed a drawing) and a `Graph`
+  flowable that draws printed graphs and blank plotting grids to scale. `_verify()` recomputes every answer with
+  Fractions, checks every drawn line passes through the points its scheme names, checks every value a student must
+  read off falls on a grid line, checks every blank grid is big enough for the line asked for, and asserts 30 marks,
+  three sections, one note per scheme entry, and that Paper D ends with the two-students diagnosis question.
+- **Overlap with `speed.html`:** distance–time graphs are taught there; this page links to it from Lesson 5 and
+  uses tanks, fares, tariffs and fuel instead, so the two do not duplicate questions.
+- **Videos:** all six URLs were confirmed via YouTube oEmbed (Math Antics, Cognito ×3, Khan Academy, Corbettmaths).
+  Video 6 is Corbettmaths' worked answers to its real-life-graphs sheet, linked alongside; it is only useful if the
+  sheet is done first, and the page says so. Nobody has watched them end to end — skim before the student does.
+
+## Olympiad (IOQM) — a seventh subject
+
+Added 19 November 2026. The student is preparing for the **IOQM** (Indian Olympiad Qualifier in Mathematics), which he can first sit in Class 8 (around September 2027). IOQM tests algebra, geometry, number theory and combinatorics through problem-solving rather than syllabus recall, so these pages sit beyond the Grade 7 maths pages above rather than replacing any of them.
+
+| Area | Page | Tools |
+|---|---|---|
+| Number theory I — divisibility rules, counting divisors, Euclid | `ioqm-divisors.html` | rule bench, divisor grid |
+| Number theory II — remainders, last digits, cycles | `ioqm-remainders.html` | remainder clock, cycle machine |
+| Algebra I — identities, difference of squares, Simon's factoring trick | `ioqm-identities.html` | area square, border trick |
+| Algebra II — arithmetic series, telescoping, systems, AM–GM | `ioqm-sequences.html` | Gauss staircase, fence machine |
+| Geometry I — angle facts, isosceles chains, polygons, circle angles | `ioqm-angles.html` | triangle machine, polygon machine |
+| Geometry II — area chasing, Pythagoras and triples, similar triangles | `ioqm-areas.html` | sliding apex, square builder |
+| Combinatorics I — multiply/add, arrangements, choosing, complements, grid paths | `ioqm-counting.html` | path grid, handshake circle |
+| Combinatorics II — pigeonhole, parity, colouring, invariants, logic | `ioqm-logic.html` | pigeonholes, domino board |
+
+All eight are standard topic pages: 30 marks (5 MCQ + 5 short + 5 word), six lessons, six videos, two tools with "Set me a puzzle". Progress keys are `<id>-progress-v1`. **No papers yet** — the pages carry no `#papers` section and no `papers` in their manifests, so the hub's Practice sheets row skips them (ADDING-A-TOPIC.md step 6/7).
+
+Notes for whoever touches these next:
+
+- **Subject.** `olympiad` was added the usual three-edit way: `--olympiad` / `--olympiad-t` in `index.html`, one row in `SUBJECTS` (label "Olympiad (IOQM)"), and `'olympiad'` in the `register_topic.py` allowlist.
+- **Hub order.** `register_topic.py` prepends new entries, which put the eight cards first and in reverse order. They were moved by hand to the end of `TOPICS`, in study order (divisors → logic). Re-running the script on any of them updates in place and keeps that order.
+- **Assembled by `tools/legacy/ioqm/build_page.py`** from `integers.html` plus one content module each in `tools/legacy/ioqm/pages/`. Like the rest of `tools/legacy/`, it ran once; the HTML is now the source of truth. Do not re-run it over a page that has since been edited by hand.
+- **Arithmetic.** `python3 tools/legacy/ioqm/verify.py` recomputes every number stated in the questions, lessons, video tasks and puzzle feedback (brute force where possible — divisor counts, remainders, calendar days with `datetime`, tilings, coin-flip reachability). It caught three real errors during the build: an unsolvable system in a lesson demo, an isosceles-area puzzle with a third answer the text didn't mention, and a slip in a long multiplication. Run it after editing any number on these pages.
+- **Tools.** `node tools/legacy/ioqm/test_tools.js` drives both machines on every page in jsdom: it poses each puzzle twelve times, solves it through the UI, and checks the puzzle counter rises. Every puzzle starts from a deliberately unsolved state (a slider reset), otherwise a previous answer could solve the next puzzle the instant it is posed.
+- **Videos.** URLs were taken from web-search results (Art of Problem Solving, Corbettmaths, Mathematical Visual Proofs, Cheenta and others). YouTube itself is not reachable from the build environment, so no link was opened. Skim all 48 before the student does — a few channel names are given generically as "YouTube lesson" because the search result didn't name the channel.
+- **Voice.** Same deal as every page (10/15 → 21 then 26), but the targets box says these are Olympiad questions and harder than school papers on purpose.
+
