@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where It Starts, How Steep It Climbs — Grade 7 IGCSE Maths</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "graphs",
+  "file": "graphs.html",
+  "subject": "maths",
+  "status": "ready",
+  "papers": 4,
+  "title": "Where It Starts, How Steep It Climbs",
+  "sub": "Functions, plotting, gradient and intercept, interpreting graphs",
+  "blurb": "Two dials, m and c, drive a live line so y = mx + c is something you see before you read it; a two-stage function machine plots its own outputs and makes you build the machine behind a set of mappings. Pitched above textbook level, with a warm-up gate, a toolkit card and a 12-problem stretch lab.",
+  "meta": ["30 marks", "6 lessons", "live line machine", "12-problem stretch lab"]
+}
+</script>
+
+<style>
+:root{
+  --ink:#1A211F;
+  --ink-soft:#4E5A56;
+  --paper:#ECEEF4;
+  --card:#FFFFFF;
+  --line:#D3D7E3;
+  --line-soft:#E1E4EE;
+  --ln:#2B5797;          /* the line itself — always blue */
+  --ln-tint:#E6ECF6;
+  --gd:#B4471F;          /* the gradient — always burnt orange */
+  --gd-tint:#FAEBE4;
+  --ic:#6E3F8C;          /* the intercept — always purple */
+  --ic-tint:#F2EAF6;
+  --fr:var(--ln); --fr-tint:var(--ln-tint);
+  --de:var(--gd); --de-tint:var(--gd-tint);
+  --pc:var(--ic); --pc-tint:var(--ic-tint);
+  --steel:#94A5A0;
+  --steel-dark:#63736E;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#98241B;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--fr)}
+:focus-visible{outline:3px solid var(--fr);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(34px,7.2vw,62px);font-weight:800;margin:12px 0 6px}
+.mast h1 i{font-style:normal;color:var(--fr)}
+.mast h1 em{font-style:normal;color:var(--de)}
+.mast h1 b{font-weight:800;color:var(--pc)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--fr);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(236,238,244,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--fr);color:var(--fr)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 160px;accent-color:var(--pc);min-width:130px}
+input[type=number]{font-family:var(--mono);font-size:15px;width:110px;padding:7px 9px;border:1px solid var(--line);
+  border-radius:9px;background:var(--paper);color:var(--ink)}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover:not([disabled]){background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn.on{background:var(--fr);border-color:var(--fr);color:#fff}
+.btn[disabled]{opacity:.35;cursor:default}
+.btn.step{font-family:var(--mono);font-size:12.5px;padding:7px 12px;border-color:var(--line);color:var(--ink);text-align:left}
+.btn.step:hover:not([disabled]){background:var(--pc);border-color:var(--pc);color:#fff}
+.steps{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 14px}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line-soft)}
+.rows.two{grid-template-columns:1fr 1fr}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--mono);font-weight:700;font-size:19px;margin-top:3px}
+.cell .sub{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+.cell.f .lab{color:var(--fr)} .cell.f .val{color:var(--fr)}
+.cell.d .lab{color:var(--de)} .cell.d .val{color:var(--de)}
+.cell.p .lab{color:var(--pc)} .cell.p .val{color:var(--pc)}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.pill.go{background:var(--fr-tint);color:var(--fr)}
+.pill.up{background:var(--pc-tint);color:var(--pc)}
+.pill.down{background:var(--no-tint);color:var(--no)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--fr-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+.transcript{font-family:var(--mono);font-size:13.5px;background:var(--paper);border-top:1px solid var(--line);
+  padding:12px 16px;min-height:52px}
+.transcript div{padding:1px 0}
+.transcript .op{color:var(--ink-soft);font-size:11.5px}
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--fr);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--fr-tint)}
+.vid h3 a:hover{border-bottom-color:var(--fr)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--pc);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--fr)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--de);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--pc);background:var(--pc-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.frtxt{color:var(--fr);font-weight:700}
+.detxt{color:var(--de);font-weight:700}
+.pctxt{color:var(--pc);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--pc-tint);color:var(--pc)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--de-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--pc)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows,.rows.two{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- graphs page additions ---------- */
+select{font-family:var(--mono);font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink)}
+svg.qfig{display:block;width:100%;max-width:470px;height:auto;margin:10px 0;background:var(--card);border:1px solid var(--line-soft);border-radius:10px}
+.fmwrap{border-top:1px solid var(--line)}
+.fmflow{padding:12px 16px 0;font-size:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.fmflow .box{border:2px solid var(--fr);color:var(--fr);border-radius:8px;padding:3px 10px;font-weight:700}
+.fmflow .arr{color:var(--ink-soft)}
+.drill{display:grid;gap:7px}
+.drow{display:grid;grid-template-columns:28px 1fr 130px 110px;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.drow .dn{font-weight:700;color:var(--ink-soft);font-size:13px}
+.drow input{font-family:var(--mono);font-size:15px;padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:var(--paper);width:100%}
+.drow input.ok{border-color:var(--ok);background:var(--ok-tint)}
+.drow input.no{border-color:var(--no);background:var(--no-tint)}
+.drow .dv{font-family:var(--mono);font-size:12.5px;font-weight:700}
+.drow .dv.ok{color:var(--ok)} .drow .dv.no{color:var(--no)}
+.refbox{margin-top:12px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--fr);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;font-size:15.5px}
+.refbox h4{margin:0 0 6px;font-size:16px}
+.refbox ul{margin:0;padding-left:20px} .refbox li{margin-bottom:5px}
+.kit{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.kitcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;font-size:15px}
+.kitcard h4{margin:0 0 8px;font-size:16.5px}
+.kitcard ol{margin:0;padding-left:20px} .kitcard li{margin-bottom:5px}
+.kitcard .eqline{font-size:13px;margin:6px 0}
+.worked{border:1px solid var(--line);border-radius:10px;margin:12px 0;overflow:hidden}
+.worked .wq{background:var(--fr-tint);padding:10px 13px;font-size:15.5px}
+.worked details{padding:0 13px}
+.worked summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:13.5px;padding:9px 0;color:var(--fr)}
+.worked ol{margin:0 0 10px;padding-left:20px}
+.labcard{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:16px 17px;margin-bottom:11px}
+.labscore{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--pc);background:var(--pc-tint);display:inline-block;padding:5px 12px;border-radius:99px;margin-bottom:12px}
+#ln-table{gap:16px}
+@media (max-width:600px){
+  .kit{grid-template-columns:1fr}
+  .drow{grid-template-columns:24px 1fr;}
+  .drow input{grid-column:2} .drow .dv{grid-column:2}
+}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IGCSE Mathematics · Grade 7 · Graphs</div>
+  <h1>Where It <i>Starts</i>,<br>How <em>Steep</em> It <b>Climbs</b></h1>
+  <p class="lede">Every straight line on every exam paper is described by two numbers: where it crosses the y-axis, and how much it rises for each step to the right. Get those two and you can draw it, name it, compare it, and say what it means when the axes are rupees and kilometres instead of x and y.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> You've been landing around <span class="num">10 out of 15</span>. This page is out of <span class="num">30</span>, so the honest target is <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Fair warning: this page is pitched <strong>above</strong> the textbook exercise, because the school papers are. Q11 onwards are written at the level of the hardest question on a real paper. If you only want the easy marks, do Q1–Q10 and stop. If you want the grade, the stretch lab at the bottom is where it is won.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#start">Before you start</a>
+  <a href="#liner">Line machine</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#fmachine">Function machine</a>
+  <a href="#toolkit">Toolkit</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+  <a href="#lab">Stretch lab</a>
+  <a href="#papers">Test papers</a>
+</nav>
+
+<!-- ============ PREREQUISITES ============ -->
+<section id="start">
+  <div class="shead"><h2>Before you start: the five-minute gate</h2><span class="tag">not marked · 8 items</span></div>
+  <p class="snote">Graphs questions are mostly lost on arithmetic with negative numbers, not on graphs. Type an answer and press Enter — the box checks itself. If you miss two or more, read the box underneath before going any further, because everything below assumes you can do these without thinking.</p>
+  <div class="drill" id="drillList"></div>
+  <div class="refbox">
+    <h4>If you missed any of those</h4>
+    <ul>
+      <li><strong>Coordinates are (across, up)</strong> — always x first. (−3, 2) is three left of the origin and two up. The four regions the axes make are called <em>quadrants</em>, and every one of them turns up on exam grids.</li>
+      <li><strong>Substitute in brackets.</strong> For y = 7 − 3x at x = −2, write 7 − 3(−2) = 7 + 6 = 13. Writing 7 − 3 × −2 without brackets is how the sign goes missing.</li>
+      <li><strong>Subtracting a negative adds.</strong> 7 − (−5) = 12. This is exactly the step inside the gradient formula, so it costs you marks in every lesson below if it is shaky.</li>
+      <li><strong>Dividing a whole equation divides every term.</strong> 2y = 4x + 10 becomes y = 2x + 5, not y = 2x + 10. Lesson 4 depends on this one.</li>
+      <li>The equation pages are your fallback: <a href="equations.html">Do It To Both Sides</a> for rearranging, <a href="integers.html">integers</a> for negatives.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ HERO 1: THE LINE MACHINE ============ -->
+<section id="liner">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The line machine</h2>
+      <p>Two dials: <span class="pctxt">c</span>, where the line crosses the y-axis, and <span class="detxt">m</span>, how far it climbs for every one step right. Turn <span class="pctxt">c</span> and the line slides up and down without changing its slope. Turn <span class="detxt">m</span> and it pivots about the point where it crosses the y-axis. That is the whole of <span class="num">y = mx + c</span>, and you can see it before you read a word about it.</p>
+    </div>
+
+    <svg class="stage" id="ln-svg" viewBox="0 0 700 420" role="img" aria-label="A coordinate grid showing the line y equals m x plus c"></svg>
+
+    <div class="ctrl">
+      <label for="ln-m" style="color:var(--de)">gradient m</label>
+      <button class="btn ghost small" type="button" data-ln="m-">&minus;</button>
+      <input type="range" id="ln-m" min="-4" max="4" step="0.5" value="1" aria-label="gradient">
+      <button class="btn ghost small" type="button" data-ln="m+">+</button>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="ln-c" style="color:var(--pc)">intercept c</label>
+      <button class="btn ghost small" type="button" data-ln="c-">&minus;</button>
+      <input type="range" id="ln-c" min="-6" max="6" step="1" value="2" aria-label="intercept">
+      <button class="btn ghost small" type="button" data-ln="c+">+</button>
+      <button class="btn ghost small" type="button" data-ln="reset">Start again</button>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">The line</div><div class="val" id="ln-eq">y = x + 2</div><div class="sub" id="ln-eqs">gradient 1, crosses at (0, 2)</div></div>
+      <div class="cell d"><div class="lab">Gradient triangle</div><div class="val" id="ln-tri">up 1, across 1</div><div class="sub" id="ln-tris">rise ÷ run = 1</div></div>
+      <div class="cell p"><div class="lab">Crosses the x-axis</div><div class="val" id="ln-xi">x = −2</div><div class="sub" id="ln-xis">where y = 0</div></div>
+      <div class="phasebar" style="font-family:var(--mono);font-size:13px;font-weight:400" id="ln-table"></div>
+      <div class="phasebar">
+        <span class="pill go" id="ln-pill">Explore</span>
+        <span id="ln-note">Set m to 0. The line goes flat — every x gives the same y. Now set m negative and watch it fall from left to right.</span>
+        <span class="push"><button class="btn ghost" type="button" id="lnPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="lnQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~55 min total</span></div>
+  <p class="snote">Each video comes with one written job. Do the job, or the video was a screensaver with maths on it. Videos 3 and 4 are GCSE-level — a year ahead of you on paper, and exactly the level your school papers pull from.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~60 min total</span></div>
+  <p class="snote">Each lesson has a worked example. Cover the working, try it, then uncover it line by line. Reading a worked example you have not attempted is the slowest way there is to learn maths.</p>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2: THE FUNCTION MACHINE ============ -->
+<section id="fmachine">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The function machine</h2>
+      <p>Two operations, in order. The machine feeds in six inputs, writes the outputs, and plots every pair as a point. Notice two things as you play: the points always land in a straight line, and the line's gradient is whatever the machine ends up multiplying by. A function machine and a straight-line graph are the same object written two ways.</p>
+    </div>
+
+    <div class="ctrl">
+      <label>Stage 1</label>
+      <select id="fm-op1" aria-label="stage 1 operation"><option>×</option><option>+</option><option>−</option><option>÷</option></select>
+      <select id="fm-n1" aria-label="stage 1 number"></select>
+      <label>then stage 2</label>
+      <select id="fm-op2" aria-label="stage 2 operation"><option>+</option><option>×</option><option>−</option><option>÷</option></select>
+      <select id="fm-n2" aria-label="stage 2 number"></select>
+    </div>
+
+    <div class="fmwrap">
+      <div class="fmflow num" id="fm-flow"></div>
+      <svg class="stage" id="fm-svg" viewBox="0 0 700 300" role="img" aria-label="Points plotted from the function machine's inputs and outputs"></svg>
+    </div>
+
+    <div class="rows">
+      <div class="cell f"><div class="lab">As an equation</div><div class="val" id="fm-eq">y = 2x + 3</div><div class="sub" id="fm-eqs">gradient 2, intercept 3</div></div>
+      <div class="cell d"><div class="lab">The inverse machine</div><div class="val" id="fm-inv">−3, then ÷2</div><div class="sub">reverse order, opposite operations</div></div>
+      <div class="cell p"><div class="lab">Mapping</div><div class="val" id="fm-map" style="font-size:14px">—</div><div class="sub">input → output</div></div>
+      <div class="phasebar">
+        <span class="pill go" id="fm-pill">Explore</span>
+        <span id="fm-note">Try “+ 2 then × 3” and then “× 3 then + 2”. Same two operations, different line. Order is not decoration.</span>
+        <span class="push"><button class="btn ghost" type="button" id="fmPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="fmQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLKIT ============ -->
+<section id="toolkit">
+  <div class="shead"><h2>The toolkit</h2><span class="tag">keep this open while you do the questions</span></div>
+  <p class="snote">Everything on one screen. The medium papers print the first two formulas for you; the hard papers do not, so by Paper C this box should be in your head, not on the page.</p>
+  <div class="kit">
+    <div class="kitcard">
+      <h4>The formulas</h4>
+      <div class="eqline">gradient m = rise ÷ run = (y₂ − y₁) ÷ (x₂ − x₁)</div>
+      <div class="eqline">straight line: y = mx + c &nbsp;·&nbsp; m = gradient, c = y-intercept, crosses at (0, c)</div>
+      <div class="eqline">find c: substitute a known point into y = mx + c and solve</div>
+      <div class="eqline">x-intercept: put y = 0 &nbsp;·&nbsp; y-intercept: put x = 0</div>
+      <div class="eqline">parallel lines ⇔ same gradient &nbsp;·&nbsp; meeting point satisfies both equations</div>
+      <div class="eqline">y = k is horizontal (m = 0) &nbsp;·&nbsp; x = k is vertical (no gradient)</div>
+    </div>
+    <div class="kitcard">
+      <h4>The words, exactly</h4>
+      <table class="data">
+        <tr><th>Word</th><th>Means</th></tr>
+        <tr><td>function</td><td>a rule giving exactly one output for each input</td></tr>
+        <tr><td>mapping</td><td>an input with its output, written 3 → 11</td></tr>
+        <tr><td>inverse</td><td>the machine that undoes it: reverse order, opposite operations</td></tr>
+        <tr><td>linear</td><td>its graph is a straight line; y changes by the same amount for each step in x</td></tr>
+        <tr><td>gradient</td><td>change in y for every +1 in x; in context, a <em>rate</em> with units</td></tr>
+        <tr><td>intercept</td><td>where the line crosses an axis; in context, the starting value</td></tr>
+        <tr><td>origin</td><td>(0, 0); a graph through it shows direct proportion</td></tr>
+      </table>
+    </div>
+    <div class="kitcard">
+      <h4>Drawing a graph: what the marker ticks</h4>
+      <ol>
+        <li>A table with at least <strong>three</strong> x values. Two fix the line; the third catches your arithmetic.</li>
+        <li>Each point plotted as a small cross, accurate to half a square.</li>
+        <li>A single <strong>ruled</strong> line through all of them, across the whole range asked for — not stopping at your last point, not running past it.</li>
+        <li>Axes labelled, and the scale read off the axis, not assumed to be one per square.</li>
+        <li>If one point is off the line, the point is wrong, not the line. Recalculate it.</li>
+      </ol>
+    </div>
+    <div class="kitcard">
+      <h4>Interpreting a graph: the answer shape</h4>
+      <ol>
+        <li><strong>Gradient</strong> → “a rate of ___ (y-units) per ___ (x-unit)”. ₹12 per km, 30 litres per minute.</li>
+        <li><strong>Intercept</strong> → “the value of y when x is zero” said in context: the fixed charge, the starting amount.</li>
+        <li><strong>Flat section</strong> → nothing is changing. Steeper → changing faster.</li>
+        <li><strong>Where two lines cross</strong> → the one value of x where both give the same y. Below it one wins; above it the other does.</li>
+        <li>Read values with dashed guide lines drawn to the axis. Examiners give a mark for the line.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No calculator. Q5 is built to catch the most common way of losing a gradient mark on a real paper.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26 — they are also the two most likely to appear, in some form, at the end of a school paper.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Six traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Reversing the operations but not the order</h4><p>The inverse of “× 3 then + 5” is “− 5 then ÷ 3”. Writing “÷ 3 then − 5” undoes the right operations in the wrong order: from 35 it gives 6⅔ instead of 10. Unwrap it the way you would undo a parcel — the last thing done is the first thing undone.</p></div>
+    <div class="trap"><h4>Counting squares when the scales differ</h4><p>If one square across is 2 units and one square up is 5, a line climbing 3 squares for every 2 squares across does <strong>not</strong> have gradient 1.5. It rises 15 for every 4, which is 3.75. Convert both sides of the triangle into the axis units before you divide. Read the numbers on the axes, never the squares.</p></div>
+    <div class="trap"><h4>Run over rise, or the sign dropped</h4><p>Gradient is change in <strong>y</strong> on top. And the subtraction has to go the same way top and bottom: from (−2, 7) to (4, −5) it is (−5 − 7) ÷ (4 − (−2)) = −12 ÷ 6 = −2. A line falling from left to right must come out negative — if yours didn't, a sign went missing.</p></div>
+    <div class="trap"><h4>Reading c before the equation is in y = mx + c form</h4><p>2y = 6x − 8 does not have gradient 6 and intercept −8. Divide <em>every</em> term by 2: y = 3x − 4. Likewise y = 5 − 2x has gradient −2, not 5 — the gradient is the number stuck to x, wherever it sits.</p></div>
+    <div class="trap"><h4>Answering about x when the question asked about the world</h4><p>“The gradient is 12” scores nothing if the question says <em>interpret</em> it. “The fare goes up by ₹12 for each extra kilometre” scores the mark. A gradient in context is a rate, so it needs both units: rupees <em>per</em> kilometre.</p></div>
+    <div class="trap"><h4>Stopping at x when the question wanted a point</h4><p>Where y = x + 2 meets y = −2x + 8, x = 2 is half the answer. The point is (2, 4). If a question says “coordinates”, “point” or “where do they meet”, it wants both numbers. Substitute back into <em>both</em> equations — if they disagree, you have found your error for free.</p></div>
+  </div>
+</section>
+
+<!-- ============ STRETCH LAB ============ -->
+<section id="lab">
+  <div class="shead"><h2>The stretch lab</h2><span class="tag">12 problems · not marked · exam level and above</span></div>
+  <p class="snote">These are harder than anything in the 30 marks above, deliberately. Each one is the shape of a final-question-on-the-paper problem. They count for nothing on the strip at the top, which means the only reason to do them is that they work. Tick a problem only if you got it <em>without</em> opening the solution.</p>
+  <div class="labscore" id="labScore">0 of 12 solved without the solution</div>
+  <div id="labList"></div>
+</section>
+
+<section id="papers">
+  <div class="shead"><h2>The four test papers</h2><span class="tag">Non-calculator · 30 marks each · bring a ruler</span></div>
+  <p class="snote">These are the printed papers that go with this page. Do them on paper, timed, with your phone in another room. Every paper has at least one grid to draw on — a pencil and a ruler are part of the answer. Medium ones first; only move to the hard papers once you're clearing 21 on a medium one.</p>
+  <div class="papers">
+    <a class="paper" href="sheets/maths-graphs-paper-a.pdf" download><span class="pn">A</span><span class="pt">Paper A — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">Function machines and their inverses, completing a table and plotting a line, gradient from a graph and from two points, reading y = mx + c, and a taxi-fare graph.</p></a>
+    <a class="paper" href="sheets/maths-graphs-paper-b.pdf" download><span class="pn">B</span><span class="pt">Paper B — Medium</span><span class="num" style="color:var(--ink-soft);font-size:13px">40 min</span>
+      <p class="pd">Same level, different questions. Mappings, plotting a line not written as y = …, parallel lines, the equation of a line read from a graph, and a conversion graph.</p></a>
+    <a class="paper" href="sheets/maths-graphs-paper-c.pdf" download><span class="pn hard">C</span><span class="pt">Paper C — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">Rearranging into y = mx + c, a line through two points, three points on one line, axes with different scales, a filling-and-draining tank graph, and a two-tariff comparison.</p></a>
+    <a class="paper" href="sheets/maths-graphs-paper-d.pdf" download><span class="pn hard">D</span><span class="pt">Paper D — Hard</span><span class="num" style="color:var(--ink-soft);font-size:13px">50 min</span>
+      <p class="pd">A function found from its outputs, where two lines meet, the area of a triangle bounded by two lines and an axis, a fuel-use rate, and two students' wrong working to diagnose.</p></a>
+  </div>
+</section>
+
+<footer>
+  <span>Your answers, marks, finished lessons and lab ticks are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'graphs-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, drill:{}, lab:{} };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+  S.drill = S.drill || {}; S.lab = S.lab || {};
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- shared: numbers and lines ---------------- */
+function fmt(v){
+  if(Math.abs(v - Math.round(v)) < 1e-9) v = Math.round(v);
+  else v = Math.round(v*100)/100;
+  return String(v).replace('-', '−');
+}
+function lineText(m, c){
+  let s = 'y = ';
+  if(m === 0) return s + fmt(c);
+  s += (m === 1 ? '' : m === -1 ? '−' : fmt(m)) + 'x';
+  if(c > 0) s += ' + ' + fmt(c);
+  if(c < 0) s += ' − ' + fmt(-c);
+  return s;
+}
+
+/* ---------------- shared: a graph drawn as SVG ----------------
+   o = {x0,x1,xs, y0,y1,ys, xl,yl (label every n squares), w,h, lines:[{pts,col,dash}],
+        pts:[{x,y,lab,col,ring}], segs:[{a,b,col,dash}], text:[{x,y,t,col,anchor}], xt, yt, alt}   */
+function gsvg(o){
+  const W = o.w||440, H = o.h||300, L = 48, R = 16, T = 14, B = 40;
+  const pw = W-L-R, ph = H-T-B;
+  const X = x => L + (x-o.x0)/(o.x1-o.x0)*pw;
+  const Y = y => T + ph - (y-o.y0)/(o.y1-o.y0)*ph;
+  const xl = o.xl||1, yl = o.yl||1;
+  const nx = Math.round((o.x1-o.x0)/o.xs), ny = Math.round((o.y1-o.y0)/o.ys);
+  let s = `<svg class="qfig" viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.alt||'a graph'}"><g font-family="JetBrains Mono, monospace" font-size="11">`;
+  for(let i=0;i<=nx;i++){ const v=o.x0+i*o.xs, x=X(v);
+    s += `<line x1="${x}" y1="${T}" x2="${x}" y2="${T+ph}" stroke="var(--line-soft)" stroke-width="1"/>`;
+    if(i%xl===0) s += `<text x="${x}" y="${T+ph+15}" text-anchor="middle" fill="var(--ink-soft)">${fmt(v)}</text>`; }
+  for(let j=0;j<=ny;j++){ const v=o.y0+j*o.ys, y=Y(v);
+    s += `<line x1="${L}" y1="${y}" x2="${L+pw}" y2="${y}" stroke="var(--line-soft)" stroke-width="1"/>`;
+    if(j%yl===0) s += `<text x="${L-6}" y="${y+4}" text-anchor="end" fill="var(--ink-soft)">${fmt(v)}</text>`; }
+  const ax = (o.x0<=0 && o.x1>=0) ? X(0) : L, ay = (o.y0<=0 && o.y1>=0) ? Y(0) : T+ph;
+  s += `<line x1="${L}" y1="${ay}" x2="${L+pw}" y2="${ay}" stroke="var(--ink)" stroke-width="1.4"/>`;
+  s += `<line x1="${ax}" y1="${T}" x2="${ax}" y2="${T+ph}" stroke="var(--ink)" stroke-width="1.4"/>`;
+  if(o.xt) s += `<text x="${L+pw}" y="${H-4}" text-anchor="end" fill="var(--ink)" font-family="Bricolage Grotesque, sans-serif" font-size="12">${o.xt}</text>`;
+  if(o.yt) s += `<text x="${L}" y="${T-2}" text-anchor="start" fill="var(--ink)" font-family="Bricolage Grotesque, sans-serif" font-size="12" dx="4" dy="10">${o.yt}</text>`;
+  s += `<clipPath id="cp${o.id||'g'}"><rect x="${L}" y="${T}" width="${pw}" height="${ph}"/></clipPath><g clip-path="url(#cp${o.id||'g'})">`;
+  (o.lines||[]).forEach(l=>{
+    s += `<polyline fill="none" stroke="${l.col||'var(--fr)'}" stroke-width="${l.wd||2.6}" ${l.dash?'stroke-dasharray="6 5"':''} stroke-linejoin="round" points="${l.pts.map(p=>X(p[0])+','+Y(p[1])).join(' ')}"/>`; });
+  (o.segs||[]).forEach(g=>{
+    s += `<line x1="${X(g.a[0])}" y1="${Y(g.a[1])}" x2="${X(g.b[0])}" y2="${Y(g.b[1])}" stroke="${g.col||'var(--de)'}" stroke-width="2" ${g.dash?'stroke-dasharray="5 4"':''}/>`; });
+  s += `</g>`;
+  (o.pts||[]).forEach(p=>{
+    s += p.ring ? `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="7" fill="none" stroke="${p.col||'var(--pc)'}" stroke-width="2.4"/>`
+                : `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="4.2" fill="${p.col||'var(--ink)'}"/>`;
+    if(p.lab) s += `<text x="${X(p.x)+8}" y="${Y(p.y)-8}" fill="var(--ink)">${p.lab}</text>`; });
+  (o.text||[]).forEach(t=>{
+    s += `<text x="${X(t.x)}" y="${Y(t.y)}" text-anchor="${t.anchor||'start'}" fill="${t.col||'var(--ink)'}" font-weight="700">${t.t}</text>`; });
+  return s + `</g></svg>`;
+}
+
+/* ---------------- prerequisites drill ---------------- */
+const DRILL = [
+ {q:"y = 2x − 5. Find y when x = −3.", a:-11},
+ {q:"y = 7 − 3x. Find y when x = −2.", a:13},
+ {q:"y = x/2 + 4. Find y when x = −6.", a:1},
+ {q:"Solve 3x − 6 = 0.", a:2},
+ {q:"2y = 4x + 10, so y = ?x + 5. What is ?", a:2},
+ {q:"Work out (−5) − (−9).", a:4},
+ {q:"Work out −12 ÷ −4.", a:3},
+ {q:"Work out (7 − (−5)) ÷ (4 − (−2)).", a:2}
+];
+function parseNum(s){
+  s = String(s).trim().replace(/−/g,'-').replace(/\s+/g,'');
+  if(!s) return NaN;
+  const f = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+  if(f) return parseFloat(f[1])/parseFloat(f[2]);
+  return Number(s);
+}
+const drillList = document.getElementById('drillList');
+DRILL.forEach((D,i)=>{
+  const r = document.createElement('div');
+  r.className = 'drow';
+  r.innerHTML = `<span class="dn num">${i+1}</span><span class="dq">${D.q}</span>
+    <input type="text" inputmode="decimal" data-drill="${i}" aria-label="Answer to warm-up ${i+1}"><span class="dv" id="dv${i}"></span>`;
+  drillList.appendChild(r);
+});
+function checkDrill(i){
+  const inp = document.querySelector(`[data-drill="${i}"]`), out = document.getElementById('dv'+i);
+  const v = parseNum(inp.value);
+  if(inp.value.trim()===''){ out.textContent=''; out.className='dv'; inp.className=''; return; }
+  const ok = Math.abs(v - DRILL[i].a) < 1e-9;
+  out.textContent = ok ? '✓' : '✗ try again';
+  out.className = 'dv ' + (ok?'ok':'no');
+  inp.className = ok ? 'ok' : 'no';
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"Algebra Basics: What Are Functions?", ch:"Math Antics", url:"https://www.youtube.com/watch?v=52tpYl2tTqk",
+  why:"The cleanest explanation there is of what a function actually is: a rule that gives one output for each input. The American notation f(x) appears near the end — you will meet it at IGCSE, so let it in now.",
+  task:"Draw a two-box function machine for y = 3x − 1. Work out the outputs for −1, 0 and 2 (answers −4, −1, 5). Then work backwards: which input gives 14? (5.) Write the inverse machine you used."},
+
+ {t:"How to Plot a Straight Line Using a Table of Coordinates", ch:"Cognito", url:"https://www.youtube.com/watch?v=VM3i6-gvKSA",
+  why:"Shows the whole routine, including the case most textbooks skip: an equation that is not already written as y = …, and plotting only between two given x values.",
+  task:"Make a table for y = 2x − 3 for x = −1 to 3 (y: −5, −3, −1, 1, 3). Then a table for x + 2y = 8 at x = 0, 2, 4 (y: 4, 3, 2). Plot both on one grid with a ruler. Where do they cross? (Read it off; Lesson 6 will make you prove it.)"},
+
+ {t:"How to Find the Gradient of a Straight Line", ch:"Cognito", url:"https://www.youtube.com/watch?v=zVSq5b3PPfY",
+  why:"Rise over run from a drawn line, then positive, negative and zero gradients. Watch for the moment it reads the scale off the axis — that is the habit that saves Q5.",
+  task:"Without the video, find the gradient between (1, 2) and (4, 11), then between (−3, 4) and (3, −2). Answers 3 and −1. If you got +1 for the second, find the sign you lost."},
+
+ {t:"What on Earth is y = mx + c", ch:"Cognito", url:"https://www.youtube.com/watch?v=nUk47WSiS30",
+  why:"Why every straight line can be written with just two numbers, and what to do when the equation arrives scrambled. This is the video to rewatch the night before a paper.",
+  task:"Write down m and c for: y = 4x − 7, y = 3 − x, and 2y = x + 8. Answers: (4, −7), (−1, 3), (½, 4). The third one is the exam question; the first two are the warm-up."},
+
+ {t:"Slope-intercept equation from two solutions example", ch:"Khan Academy", url:"https://www.youtube.com/watch?v=XMJ72mtMn4Y",
+  why:"Finding the equation of a line from two points, slowly. Khan says “slope” for gradient and writes y = mx + b instead of c — same thing, American letters. This is the method behind Q9, Q11 and Q12.",
+  task:"Find the equation of the line through (2, 1) and (6, 9). Gradient first (2), then substitute a point to get c (−3). Check your equation with the other point before you call it done."},
+
+ {t:"Real Life Graphs Answers", ch:"Corbettmaths", url:"https://www.youtube.com/watch?v=O2IArpYYmR4",
+  why:"This one is a mark scheme in video form, so it only works one way round. Do the questions first — <a href=\"https://corbettmaths.com/wp-content/uploads/2025/03/real-life-linear-graphs-practice-questions.pdf\" target=\"_blank\" rel=\"noopener\">the practice sheet is here</a> — then watch the solutions to the ones you got wrong.",
+  task:"Do the first three questions on the sheet on paper. For every gradient you find, write it as a sentence with “per” in it. Then watch only the solutions to questions you dropped marks on. If you are not going to do the sheet, skip this video — that is a legitimate choice."}
+];
+
+/* ---------------- lessons ---------------- */
+const FIG_L2 = gsvg({id:'l2', x0:-2, x1:3, xs:1, y0:-6, y1:6, ys:1, yl:2, w:440, h:300,
+  lines:[{pts:[[-2,-5],[3,5]]}], pts:[{x:-2,y:-5},{x:-1,y:-3},{x:0,y:-1},{x:1,y:1},{x:2,y:3},{x:3,y:5}],
+  xt:'x', yt:'y', alt:'The line y = 2x − 1 plotted from x = −2 to 3'});
+const FIG_L3 = gsvg({id:'l3', x0:0, x1:6, xs:1, y0:0, y1:9, ys:1, w:440, h:300,
+  lines:[{pts:[[0,-1],[6,11]]}], segs:[{a:[1,1],b:[4,1]},{a:[4,1],b:[4,7]}],
+  pts:[{x:1,y:1,lab:'(1, 1)'},{x:4,y:7,lab:'(4, 7)'}],
+  text:[{x:2.5,y:0.35,t:'run 3',col:'var(--de)',anchor:'middle'},{x:4.15,y:4,t:'rise 6',col:'var(--de)'}],
+  xt:'x', yt:'y', alt:'A gradient triangle under the line through (1, 1) and (4, 7)'});
+const FIG_L5 = gsvg({id:'l5', x0:0, x1:10, xs:1, y0:0, y1:200, ys:20, yl:2, w:440, h:300,
+  lines:[{pts:[[0,50],[10,170]]}], pts:[{x:0,y:50,lab:'fixed charge'},{x:5,y:110}],
+  segs:[{a:[5,0],b:[5,110],dash:true},{a:[0,110],b:[5,110],dash:true}],
+  xt:'distance (km)', yt:'fare (₹)', alt:'A taxi fare graph starting at ₹50 and rising ₹12 per km'});
+
+const LESSONS = [
+ {t:"Functions: a machine with a promise", len:"10 min",
+  body:`<p>A <strong>function</strong> is a rule that turns each input into exactly one output. Put 4 into “× 3 then + 2” and 14 comes out, every time, no exceptions. That “exactly one, every time” is the promise, and it is what makes a function drawable.</p>
+        <p>You can write the same function three ways, and exam papers switch between them without warning:</p>
+        <table class="data"><tr><th>As a machine</th><th>As a mapping</th><th>As an equation</th></tr>
+        <tr><td>x → [× 3] → [+ 2] → y</td><td>4 → 14, &nbsp;0 → 2, &nbsp;−1 → −1</td><td>y = 3x + 2</td></tr></table>
+        <p><strong>Order matters.</strong> “+ 2 then × 3” is a different machine: 4 → 18, because it is y = 3(x + 2) = 3x + 6. Same two operations, a different function. The bracket is how an equation remembers which went first.</p>
+        <p><strong>The inverse</strong> undoes the function: it takes an output back to its input. Reverse the <em>order</em> and swap each operation for its opposite. The inverse of “× 3 then + 2” is “− 2 then ÷ 3”. Check: 14 − 2 = 12, 12 ÷ 3 = 4 ✓.</p>
+        <div class="worked"><div class="wq"><strong>Worked example.</strong> A machine does “− 4 then × 3”. (a) Write it as an equation. (b) Which input gives an output of 21?</div>
+        <details><summary>Show the working</summary><ol>
+        <li>(a) Subtract 4 first, so the bracket goes round x − 4: <strong>y = 3(x − 4)</strong>, which expands to y = 3x − 12.</li>
+        <li>(b) Run the inverse: ÷ 3 first (21 ÷ 3 = 7), then + 4: <strong>x = 11</strong>.</li>
+        <li>Check forwards: 11 − 4 = 7, 7 × 3 = 21 ✓. The wrong-order inverse gives (21 + 4) ÷ 3 = 8⅓ — not even a whole number, which is the hint that something is off.</li></ol></details></div>`,
+  demo:`<strong>Do this:</strong> ask someone to think of a number, double it, add 7, and tell you only the answer. Work out their number in your head using the inverse. Do it three times. Then make them do “add 7, then double” and notice your inverse has to change.`,
+  cliff:`Every input gives one output, so the pairs can be plotted as points. Try plotting 0 → 2, 1 → 5, 2 → 8. What shape do the dots make — and is it always that shape?`},
+
+ {t:"Tables of values, and drawing the line properly", len:"10 min",
+  body:`<p>To draw a function, pick some x values, work out each y, and plot the pairs (x, y). For y = 2x − 1 from x = −2 to 3:</p>
+        <table class="data"><tr><th>x</th><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+        <tr><th>y</th><td>−5</td><td>−3</td><td>−1</td><td>1</td><td>3</td><td>5</td></tr></table>
+        ${FIG_L2}
+        <p>Look along the bottom row: it goes up by 2 every time x goes up by 1. Equal steps in y for equal steps in x is what <strong>linear</strong> means, and it is why the dots sit on a straight line. A table where the gaps are not equal has an arithmetic mistake in it — use that as a free check before you plot anything.</p>
+        <p><strong>When the equation isn't y = …</strong> For x + 2y = 8, substitute each x and solve for y: at x = 2, 2 + 2y = 8, so y = 3. A quicker route for this shape is the <em>cover-up</em>: put x = 0 to get y = 4, put y = 0 to get x = 8. That gives you the two points where the line crosses the axes. Then find a third point as a check.</p>
+        <p><strong>Lines you should draw without a table:</strong> y = 3 is horizontal (every point has y = 3, whatever x is). x = −2 is vertical. y = x goes diagonally through the origin; y = −x the other diagonal.</p>
+        <p><strong>What “for values of x from −2 to 3” means:</strong> the line starts at x = −2 and stops at x = 3. Not short of it, not beyond it. The mark scheme checks both ends.</p>`,
+  demo:`<strong>Do this:</strong> on squared paper, draw y = 6 − x and y = x + 2 from x = −1 to 5 on the same axes. Use a ruler. Read off where they cross. (You should get (2, 4).) If your crossing point is not on a grid intersection, one of your lines is wrong.`,
+  cliff:`y = 2x + 1 and y = 5x + 1 both pass through (0, 1). One is obviously steeper. By how much? “Steeper” is not an answer — you need a number.`},
+
+ {t:"Gradient: steepness as a number", len:"10 min",
+  body:`<p>The <strong>gradient</strong> is how much y goes up for every 1 step x goes right. Draw a right-angled triangle under any two points on the line and divide:</p>
+        <div class="eqline">gradient = rise ÷ run = change in y ÷ change in x</div>
+        ${FIG_L3}
+        <p>Here the line rises 6 while running 3, so the gradient is 6 ÷ 3 = <strong>2</strong>. Any two points on the same straight line give the same answer — that is what “straight” means.</p>
+        <p><strong>From two points, without a drawing:</strong> subtract the coordinates, y on top, in the same order top and bottom.</p>
+        <div class="eqline">(−2, 7) and (4, −5): &nbsp; m = (−5 − 7) ÷ (4 − (−2)) = −12 ÷ 6 = −2</div>
+        <ul>
+          <li>Uphill left to right → positive. Downhill → negative. Flat → 0. Vertical → no gradient at all (you would be dividing by zero).</li>
+          <li>A bigger number means steeper, whatever the sign: −4 is steeper than 3.</li>
+          <li><strong>Read the scales.</strong> If the axes go up in different steps, count in units, not squares. A triangle 2 squares across and 3 squares up, on an x-axis of 2 per square and a y-axis of 5 per square, is run 4 and rise 15: gradient 3.75, not 1.5.</li>
+        </ul>
+        <div class="worked"><div class="wq"><strong>Worked example.</strong> Do A(−2, 3), B(2, 5) and C(8, 8) lie on one straight line?</div>
+        <details><summary>Show the working</summary><ol>
+        <li>Gradient AB = (5 − 3) ÷ (2 − (−2)) = 2 ÷ 4 = ½.</li>
+        <li>Gradient BC = (8 − 5) ÷ (8 − 2) = 3 ÷ 6 = ½.</li>
+        <li>Same gradient <em>and</em> they share the point B, so <strong>yes, all three are on one line</strong>. Equal gradients alone would only prove AB and BC are parallel — the shared point is what makes it one line. That sentence is worth a mark.</li></ol></details></div>`,
+  demo:`<strong>Do this:</strong> find a ramp, a staircase or a sloping driveway. Measure (or pace) how far it goes across and how far it goes up. Divide. That is its gradient. A typical staircase is about 0.7; a wheelchair ramp is meant to be no more than about 0.08.`,
+  cliff:`You now have two numbers for any line: where it crosses the y-axis, and its gradient. Is that enough to name every straight line in one short equation?`},
+
+ {t:"y = mx + c: the name of a line", len:"12 min",
+  body:`<p>Yes. Every non-vertical straight line can be written <span class="num">y = mx + c</span>, where <span class="detxt">m</span> is the gradient and <span class="pctxt">c</span> is where it crosses the y-axis, at (0, c). You saw that in the line machine — <span class="pctxt">c</span> slides, <span class="detxt">m</span> tilts.</p>
+        <table class="data"><tr><th>Equation</th><th>Rearranged</th><th>m</th><th>c</th></tr>
+        <tr><td>y = 4x − 7</td><td>already done</td><td>4</td><td>−7</td></tr>
+        <tr><td>y = 5 − 2x</td><td>y = −2x + 5</td><td>−2</td><td>5</td></tr>
+        <tr><td>2y = 6x − 8</td><td>÷ 2 every term: y = 3x − 4</td><td>3</td><td>−4</td></tr>
+        <tr><td>3x + 2y = 12</td><td>2y = −3x + 12, so y = −1.5x + 6</td><td>−1.5</td><td>6</td></tr>
+        <tr><td>y = 3</td><td>y = 0x + 3</td><td>0</td><td>3</td></tr></table>
+        <p><strong>Parallel lines have the same gradient.</strong> y = 2x + 3 and y = 2x − 7 never meet. That is the whole test.</p>
+        <p><strong>Finding the equation from a point and a gradient:</strong> put the gradient in for m, the point in for x and y, and solve for c.</p>
+        <div class="worked"><div class="wq"><strong>Worked example.</strong> Find the equation of the line through (1, 4) and (5, 16). Does (10, 30) lie on it?</div>
+        <details><summary>Show the working</summary><ol>
+        <li>Gradient: (16 − 4) ÷ (5 − 1) = 12 ÷ 4 = 3, so y = 3x + c.</li>
+        <li>Substitute (1, 4): 4 = 3(1) + c, so c = 1. <strong>y = 3x + 1</strong>.</li>
+        <li>Check with the other point: 3(5) + 1 = 16 ✓. Never skip this — it is the only way to know c is right.</li>
+        <li>Test (10, 30): 3(10) + 1 = 31, not 30. <strong>No</strong> — it sits just below the line.</li></ol></details></div>`,
+  demo:`<strong>Do this:</strong> go to the line machine above and make y = −1.5x + 2 without looking at the readout — set the dials from the equation, then check the line passes through (−2, 5) and (4, −4). Then make a line parallel to it through the origin.`,
+  cliff:`So far x and y have been plain numbers. What happens when x is kilometres and y is rupees — what is the gradient then, and what does c mean?`},
+
+ {t:"Interpreting real graphs", len:"10 min",
+  body:`<p>On a real-life graph, the gradient and the intercept stop being abstract and start meaning something — and the exam asks you to say what.</p>
+        ${FIG_L5}
+        <ul>
+          <li><strong>The gradient is a rate.</strong> This line climbs from ₹50 to ₹170 over 10 km: (170 − 50) ÷ 10 = <strong>₹12 per km</strong>. Its units are y-units <em>per</em> x-unit, always.</li>
+          <li><strong>The intercept is the starting value.</strong> At 0 km you already pay ₹50: the fixed charge. So the fare is F = 12d + 50 — the same y = mx + c with new letters.</li>
+          <li><strong>Reading off:</strong> to find the fare for 5 km, go up from 5 to the line, then across. Draw the guide lines dashed; examiners give a mark for them.</li>
+          <li><strong>Conversion graphs</strong> (rupees to dollars, km to miles) go through the origin, because 0 of one is 0 of the other. That is <a href="ratio.html">direct proportion</a>.</li>
+          <li><strong>Graphs in pieces:</strong> a flat section means nothing is changing; a steeper section means faster change; a falling section means decreasing. On a distance–time graph the gradient is speed — <a href="speed.html">How Fast, How Far</a> does that one in depth.</li>
+          <li><strong>Don't extend a line past what it describes.</strong> A tank can't hold −50 litres; a taxi doesn't charge for −2 km.</li>
+        </ul>
+        <div class="worked"><div class="wq"><strong>Worked example.</strong> A tank fills from 0 to 300 litres in 10 minutes, stays full for 5 minutes, then drains steadily and is empty at 35 minutes. Find both rates, and the time it holds 150 litres on the way down.</div>
+        <details><summary>Show the working</summary><ol>
+        <li>Filling: 300 ÷ 10 = <strong>30 litres per minute</strong>.</li>
+        <li>Draining starts at 15 min and lasts 35 − 15 = 20 min: 300 ÷ 20 = <strong>15 litres per minute</strong>. (The graph's gradient is −15; the rate of draining is 15. Say which you mean.)</li>
+        <li>Losing 150 litres at 15 per minute takes 10 minutes, so <strong>25 minutes</strong> after the start — not 10 minutes; the clock was already at 15.</li></ol></details></div>`,
+  demo:`<strong>Do this:</strong> find your family's last electricity or phone bill. Most have a fixed charge plus a rate per unit. Write it as y = mx + c with real numbers, and say what m and c mean in one sentence each.`,
+  cliff:`Two phone plans: one cheap to join and expensive per GB, the other the reverse. Two lines that cross. What is special about the crossing point, and how do you find it without drawing?`},
+
+ {t:"Two lines at once", len:"10 min",
+  body:`<p>A point lies on a line when its coordinates make the equation true. So the point where two lines <strong>cross</strong> is the one point that makes <em>both</em> equations true at once. To find it, set the two expressions for y equal and solve.</p>
+        <div class="eqline">y = x + 2 and y = −2x + 8 &nbsp;→&nbsp; x + 2 = −2x + 8 &nbsp;→&nbsp; 3x = 6 &nbsp;→&nbsp; x = 2, y = 4. &nbsp;They meet at (2, 4).</div>
+        <p>Check in the <em>other</em> equation: −2(2) + 8 = 4 ✓. If the two disagree, your x is wrong.</p>
+        <p><strong>Where a line meets an axis.</strong> On the x-axis y = 0, so for y = −2x + 8, 0 = −2x + 8 gives x = 4. On the y-axis x = 0, which just gives c.</p>
+        <p>Those two facts together build the hardest graphs question you will see this year: <strong>the area of the shape between some lines and an axis</strong>. Find every corner (crossings and axis intercepts), then use base × height ÷ 2.</p>
+        <div class="worked"><div class="wq"><strong>Worked example.</strong> Plan A costs ₹200 plus ₹15 per GB. Plan B costs ₹50 plus ₹25 per GB. When do they cost the same, and which is cheaper for heavy users?</div>
+        <details><summary>Show the working</summary><ol>
+        <li>A: C = 15g + 200. B: C = 25g + 50.</li>
+        <li>Same cost: 15g + 200 = 25g + 50, so 150 = 10g, <strong>g = 15 GB</strong>, where both cost ₹425.</li>
+        <li>Beyond 15 GB, A is cheaper, because its gradient (₹15 per GB) is smaller: every extra GB adds less. At 20 GB: A ₹500, B ₹550.</li>
+        <li>The exam rewards the reason, not just the verdict. “A, because it has the smaller gradient, so after the lines cross at 15 GB it stays below B.”</li></ol></details></div>`,
+  demo:`<strong>Do this:</strong> on one grid draw y = 2x − 6 and y = −x + 6 from x = 0 to 6. Find where they cross by reading, then by algebra (you should get (4, 2)). Now shade the triangle they make with the y-axis and work out its area. (24.) This is lab problem 3 — you have just done it.`,
+  cliff:`That's the lessons. Now go and lose to Q14 and Q15 — then come back tomorrow and take them apart. After that, the stretch lab.`}
+];
+
+/* ---------------- questions ---------------- */
+const FIG_Q5 = gsvg({id:'q5', x0:0, x1:10, xs:2, y0:0, y1:30, ys:5, w:420, h:300,
+  lines:[{pts:[[0,-2.5],[10,35]]}], pts:[{x:2,y:5,lab:'P'},{x:6,y:20,lab:'Q'}], xt:'x', yt:'y',
+  alt:'A line through P and Q on axes where one square across is 2 and one square up is 5'});
+const FIG_Q10 = gsvg({id:'q10', x0:0, x1:10, xs:1, y0:0, y1:200, ys:20, yl:2, w:440, h:300,
+  lines:[{pts:[[0,50],[10,170]]}], xt:'distance (km)', yt:'fare (₹)', alt:'Taxi fare against distance, a straight line from (0, 50) to (10, 170)'});
+const FIG_Q13 = gsvg({id:'q13', x0:0, x1:40, xs:5, y0:0, y1:350, ys:50, w:460, h:300,
+  lines:[{pts:[[0,0],[10,300],[15,300],[35,0],[40,0]]}], xt:'time (minutes)', yt:'volume (litres)',
+  alt:'Volume of water in a tank: rising to 300 litres at 10 minutes, flat until 15, falling to 0 at 35'});
+
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"A function machine does <span class='num'>× 3</span> then <span class='num'>+ 5</span>. The output is <span class='num'>35</span>. What was the input?",
+  o:["10","6⅔","110","30"], a:0,
+  why:"Run the inverse: reverse the order and the operations. 35 − 5 = 30, then 30 ÷ 3 = 10. Option B undid the operations in the original order (35 ÷ 3 − 5). Option C ran the machine forwards on the output. Option D forgot the second step. Check: 10 × 3 + 5 = 35 ✓"},
+ {n:2, lvl:"standard", q:"What are the gradient and the y-intercept of the line <span class='num'>2y = 6x − 8</span>?",
+  o:["gradient 6, intercept −8","gradient 3, intercept −4","gradient 3, intercept −8","gradient 6, intercept −4"], a:1,
+  why:"It must be y = … before you read anything off. Divide every term by 2: y = 3x − 4. Option A read the numbers straight off the unrearranged equation. Options C and D divided only one of the two terms — dividing a side means dividing all of it."},
+ {n:3, lvl:"standard", q:"Find the gradient of the line through <span class='num'>(−2, 7)</span> and <span class='num'>(4, −5)</span>.",
+  o:["−2","2","−½","−6"], a:0,
+  why:"(−5 − 7) ÷ (4 − (−2)) = −12 ÷ 6 = −2. Option D wrote 4 + (−2) = 2 on the bottom instead of 4 − (−2) = 6. Option C put the x change on top. Option B lost the sign — and the line falls from left to right (y goes from 7 down to −5), so a positive answer can't be right."},
+ {n:4, lvl:"standard", q:"Which point lies on the line <span class='num'>y = 3x − 4</span>?",
+  o:["(−10, −2)","(0, 4)","(4, 16)","(−2, −10)"], a:3,
+  why:"Substitute the x and see whether you get the y. 3(−2) − 4 = −10 ✓. Option A has the coordinates the wrong way round. Option B flipped the sign of the intercept (the line crosses at (0, −4)). Option C did 3(4) + 4 instead of − 4."},
+ {n:5, lvl:"trap", q:`Points P and Q lie on the line below. Look carefully at the numbers on both axes. What is the gradient of the line?<br>${FIG_Q5}`,
+  o:["1.5","3.75","4/15","7.5"], a:1,
+  why:"From P(2, 5) to Q(6, 20): rise 15, run 4, gradient 15 ÷ 4 = 3.75. Counting squares gives 3 up and 2 across, which is 1.5 (option A) — but one square across is 2 units and one square up is 5. Option C is run over rise. Option D mixed units, 15 up over 2 squares. On every exam graph, read the axis numbers, not the squares."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"standard", q:"A function machine does <span class='num'>− 4</span> then <span class='num'>× 3</span>.<br><strong>(a)</strong> Write the function as an equation, y = … <span class='num'>[1]</span><br><strong>(b)</strong> Which input gives an output of <span class='num'>21</span>? <span class='num'>[1]</span>",
+  scheme:["(a) <strong>y = 3(x − 4)</strong>, or y = 3x − 12 <span class='num'>[1]</span>. y = 3x − 4 scores 0: the bracket is the whole point.",
+          "(b) Inverse: ÷ 3 then + 4. 21 ÷ 3 = 7, 7 + 4 = <strong>11</strong> <span class='num'>[1]</span>"],
+  tip:"The wrong-order inverse, (21 + 4) ÷ 3, gives 8⅓. When a tidy-looking question produces an untidy answer, suspect the order before you suspect the question."},
+ {n:7, m:2, lvl:"standard", q:"Complete the table of values for <span class='num'>y = 5 − 2x</span>.<table class='data' style='max-width:430px'><tr><th>x</th><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>y</th><td></td><td>7</td><td></td><td>3</td><td></td><td></td></tr></table>",
+  scheme:["Values: <strong>9, 5, 1, −1</strong> (for x = −2, 0, 2, 3)",
+          "All four correct <span class='num'>[2]</span>; two or three correct <span class='num'>[1]</span>"],
+  tip:"The row goes down by 2 every step: 9, 7, 5, 3, 1, −1. If your row doesn't have equal gaps, one value is wrong. The usual one is x = −2: 5 − 2(−2) = 5 + 4 = 9, not 1."},
+ {n:8, m:2, lvl:"hard", q:"The line L has equation <span class='num'>3x + 2y = 12</span>.<br><strong>(a)</strong> Write the equation in the form y = mx + c. <span class='num'>[1]</span><br><strong>(b)</strong> Write down the gradient of L and the coordinates of the point where it crosses the y-axis. <span class='num'>[1]</span>",
+  scheme:["(a) 2y = −3x + 12, so <strong>y = −1.5x + 6</strong> (or y = −3x/2 + 6) <span class='num'>[1]</span>",
+          "(b) Gradient <strong>−1.5</strong>; crosses at <strong>(0, 6)</strong>. Both needed <span class='num'>[1]</span>"],
+  tip:"Move the x term first (subtract 3x from both sides — it becomes −3x), then divide every term by 2. Gradient 3 or 1.5 means the sign went missing in the first move."},
+ {n:9, m:2, lvl:"standard", q:"Find the equation of the straight line through <span class='num'>(1, 4)</span> and <span class='num'>(5, 16)</span>.",
+  scheme:["Gradient = (16 − 4) ÷ (5 − 1) = 3 <span class='num'>[1]</span>",
+          "4 = 3(1) + c, so c = 1: <strong>y = 3x + 1</strong> <span class='num'>[1]</span>"],
+  tip:"Check with the point you didn't use: 3(5) + 1 = 16 ✓. Lesson 4 has this exact example worked; if you needed it, that's fine — now do lab problem 2 without it."},
+ {n:10, m:2, lvl:"standard", q:`The graph shows the fare for a taxi journey.<br>${FIG_Q10}<strong>(a)</strong> Work out the gradient and say what it means. <span class='num'>[1]</span><br><strong>(b)</strong> What does the point where the line meets the fare axis represent? <span class='num'>[1]</span>`,
+  scheme:["(a) (170 − 50) ÷ 10 = 12: the fare rises <strong>₹12 for every kilometre</strong> <span class='num'>[1]</span>. “12” alone scores 0.",
+          "(b) <strong>A fixed charge of ₹50</strong> you pay before travelling at all (the fare at 0 km) <span class='num'>[1]</span>"],
+  tip:"Reading 170 ÷ 10 = 17 forgets that the line didn't start at zero. Rise is the change in fare, 170 − 50."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"standard", q:"A straight line passes through <span class='num'>A(−1, −5)</span> and <span class='num'>B(3, 7)</span>.<br><br><strong>(a)</strong> Find its gradient. <span class='num'>[1]</span><br><strong>(b)</strong> Find its equation. <span class='num'>[1]</span><br><strong>(c)</strong> Does the point <span class='num'>(10, 27)</span> lie on the line? Show how you decide. <span class='num'>[1]</span>",
+  hints:["Gradient is change in y over change in x. Subtracting −1 is adding 1.",
+         "Put your gradient into y = mx + c, then substitute either point to find c.",
+         "For (c), put x = 10 into your equation and compare the y you get with 27."],
+  sol:["(a) (7 − (−5)) ÷ (3 − (−1)) = 12 ÷ 4 = <strong>3</strong>.",
+       "(b) 7 = 3(3) + c, so c = −2: <strong>y = 3x − 2</strong>. Check with A: 3(−1) − 2 = −5 ✓",
+       "(c) At x = 10, y = 3(10) − 2 = 28. 28 ≠ 27, so <strong>no</strong> — the point is 1 below the line.",
+       "“No” without the 28 scores nothing. The comparison is the mark, not the verdict."]},
+
+ {n:12, m:3, lvl:"standard", q:"Line P has equation <span class='num'>y = 2x + 3</span>. Line Q is parallel to P and passes through <span class='num'>(4, 1)</span>.<br><br><strong>(a)</strong> Write down the gradient of Q. <span class='num'>[1]</span><br><strong>(b)</strong> Find the equation of Q. <span class='num'>[1]</span><br><strong>(c)</strong> Find the coordinates of the point where Q crosses the x-axis. <span class='num'>[1]</span>",
+  hints:["Parallel lines have exactly one thing in common. That thing is (a).",
+         "Q is y = 2x + c with a different c. Substitute (4, 1).",
+         "On the x-axis, y is 0. Put y = 0 into Q's equation and solve."],
+  sol:["(a) Parallel, so the same gradient: <strong>2</strong>.",
+       "(b) 1 = 2(4) + c, so c = −7: <strong>y = 2x − 7</strong>.",
+       "(c) 0 = 2x − 7, so x = 3.5: the point is <strong>(3.5, 0)</strong>.",
+       "A common slip in (b) is c = 1 − 4 = −3, using x instead of 2x. Always check: 2(4) − 7 = 1 ✓"]},
+
+ {n:13, m:3, lvl:"trap", q:`The graph shows the volume of water in a tank.<br>${FIG_Q13}<strong>(a)</strong> Find the rate at which the tank fills during the first 10 minutes. <span class='num'>[1]</span><br><strong>(b)</strong> Describe what is happening between 10 and 15 minutes. <span class='num'>[1]</span><br><strong>(c)</strong> Find the rate at which it drains, and the time at which it holds 150 litres on the way down. <span class='num'>[1]</span>`,
+  hints:["(a) is a gradient with units. Litres per what?",
+         "(b): a flat line means a gradient of zero. What is not changing?",
+         "(c): it drains 300 litres between 15 and 35 minutes. Once you have the rate, the 150-litre time is measured from 15 minutes, not from 0."],
+  sol:["(a) 300 ÷ 10 = <strong>30 litres per minute</strong>.",
+       "(b) The volume stays at 300 litres: <strong>no water is going in or out</strong> (the tank is full and nothing is draining).",
+       "(c) 300 ÷ 20 = <strong>15 litres per minute</strong>. Losing 150 litres takes 150 ÷ 15 = 10 minutes, so at <strong>25 minutes</strong>.",
+       "The trap in (c) is answering 10 minutes. The graph's clock never restarts. Read the answer off the graph to check: at 25 minutes the line is at 150 ✓"]},
+
+ {n:14, m:3, lvl:"hard", q:"Two mobile data plans.<br><strong>Plan A:</strong> ₹200 a month, plus ₹15 per GB used.<br><strong>Plan B:</strong> ₹50 a month, plus ₹25 per GB used.<br><br><strong>(a)</strong> Write an equation for the monthly cost C of each plan, for g GB used. <span class='num'>[1]</span><br><strong>(b)</strong> Find the amount of data for which both plans cost the same, and that cost. <span class='num'>[1]</span><br><strong>(c)</strong> Priya uses 20 GB a month. Which plan should she choose? Explain using the gradients of the two lines. <span class='num'>[1]</span>",
+  hints:["Each plan is a fixed charge plus a rate. The rate is the gradient and the fixed charge is the intercept, so each is C = (rate)g + (fixed).",
+         "“Cost the same” means the two expressions for C are equal. Set them equal and solve for g, then substitute back for C.",
+         "Work out both costs at 20 GB. Then explain why: after the lines cross, which one is climbing more slowly?"],
+  sol:["(a) A: <strong>C = 15g + 200</strong>. B: <strong>C = 25g + 50</strong>.",
+       "(b) 15g + 200 = 25g + 50, so 150 = 10g, <strong>g = 15 GB</strong>, where both cost <strong>₹425</strong>.",
+       "(c) A costs 15(20) + 200 = ₹500; B costs 25(20) + 50 = ₹550. <strong>Plan A</strong>, because its gradient is smaller (₹15 per GB against ₹25), so beyond 15 GB where the lines cross, A's line stays below B's.",
+       "The question said “explain using the gradients”. Two costs and a verdict without the word gradient would lose the mark. This is the exact shape of the last question on a lot of papers — learn the sentence."]},
+
+ {n:15, m:3, lvl:"hard", q:"The lines <span class='num'>y = x + 2</span> and <span class='num'>y = −2x + 8</span> and the x-axis enclose a triangle.<br><br><strong>(a)</strong> Find the coordinates of the point where the two lines meet. <span class='num'>[1]</span><br><strong>(b)</strong> Find where each line crosses the x-axis. <span class='num'>[1]</span><br><strong>(c)</strong> Work out the area of the triangle. <span class='num'>[1]</span>",
+  hints:["Sketch it — two lines and the x-axis. A sketch tells you which three points are the corners.",
+         "Where the lines meet, their y values are equal: x + 2 = −2x + 8. On the x-axis, y = 0.",
+         "The base of the triangle lies along the x-axis between the two x-intercepts. The height is the y-coordinate of the top corner."],
+  sol:["(a) x + 2 = −2x + 8, so 3x = 6, x = 2 and y = 4: <strong>(2, 4)</strong>. Check: −2(2) + 8 = 4 ✓",
+       "(b) y = x + 2 crosses at <strong>(−2, 0)</strong>; y = −2x + 8 crosses at <strong>(4, 0)</strong>.",
+       "(c) Base = 4 − (−2) = 6, height = 4. Area = ½ × 6 × 4 = <strong>12 square units</strong>.",
+       "The base is 6, not 2: the distance from −2 to 4 crosses zero. Writing 4 − 2 is the error this question was built to catch. Lab problems 3 and 12 are the same idea, one notch harder."]}
+];
+
+/* ---------------- stretch lab ---------------- */
+const LAB = [
+ {t:"Through a point, both axes", q:"A line has gradient −3/2 and passes through (2, −1). Find the coordinates of the points where it crosses both axes.",
+  hints:["Find c first by substituting (2, −1) into y = −1.5x + c.","x-axis: y = 0. Dividing by −1.5 is the same as multiplying by −2/3."],
+  sol:["−1 = −1.5(2) + c, so c = 2: y = −1.5x + 2.","y-axis: <strong>(0, 2)</strong>. x-axis: 0 = −1.5x + 2, x = 2 ÷ 1.5 = 4/3: <strong>(4/3, 0)</strong>.","Leaving the answer as a fraction is better than 1.33 — it is exact."]},
+ {t:"Three in a row", q:"A(−2, 3), B(4, 6) and C(k, 9) lie on one straight line. Find k.",
+  hints:["The gradient from A to B must equal the gradient from B to C.","Gradient AB is ½. From B, y has to rise 3 more. How far across does that take?"],
+  sol:["Gradient AB = (6 − 3) ÷ (4 − (−2)) = 3/6 = ½.","From B to C, y rises 3, so x must rise 3 ÷ ½ = 6: <strong>k = 10</strong>.","Or: (9 − 6) ÷ (k − 4) = ½, so k − 4 = 6."]},
+ {t:"Triangle on the y-axis", q:"The lines y = 2x − 6 and y = −x + 6 meet at P. Together with the y-axis they enclose a triangle. Find its area.",
+  hints:["Find P by setting 2x − 6 = −x + 6.","This time the base lies on the y-axis, between the two y-intercepts. The height is P's x-coordinate."],
+  sol:["2x − 6 = −x + 6, so x = 4, y = 2: P = (4, 2).","y-intercepts −6 and 6: base 12. Height = 4 (P's distance from the y-axis).","Area = ½ × 12 × 4 = <strong>24 square units</strong>."]},
+ {t:"Run it backwards", q:"y = (2x − 3) ÷ 5. (a) Find x when y = 7. (b) Write the inverse function, x in terms of y.",
+  hints:["The machine is × 2, − 3, ÷ 5. Undo it last-first.","× 5, then + 3, then ÷ 2."],
+  sol:["(a) 7 × 5 = 35, + 3 = 38, ÷ 2 = <strong>19</strong>.","(b) <strong>x = (5y + 3) ÷ 2</strong>.","Check: (2 × 19 − 3) ÷ 5 = 35 ÷ 5 = 7 ✓"]},
+ {t:"The temperature that agrees", q:"Fahrenheit and Celsius are linked by F = 1.8C + 32. At what temperature do both scales show the same number?",
+  hints:["“The same number” means F = C. Replace F with C.","C = 1.8C + 32. Collect the C terms."],
+  sol:["C = 1.8C + 32, so −0.8C = 32, C = <strong>−40</strong>.","So −40 °C is −40 °F. On a graph of F against C, that is where the line meets y = x.","This is an intersection question in disguise."]},
+ {t:"Fuel per hundred", q:"A car's tank holds 45 litres at the start of a trip and 15 litres after 400 km, falling steadily. (a) Find the gradient of the fuel–distance graph, with units. (b) How much fuel does it use per 100 km? (c) How far could it go on the full 45 litres?",
+  hints:["Gradient = change in fuel ÷ change in distance. Fuel went down, so it is negative.","(c): at that rate, how many km does each litre last?"],
+  sol:["(a) (15 − 45) ÷ 400 = −30/400 = <strong>−0.075 litres per km</strong>.","(b) 0.075 × 100 = <strong>7.5 litres per 100 km</strong>.","(c) 45 ÷ 0.075 = <strong>600 km</strong>. Or: 30 litres did 400 km, so 45 litres does 600."]},
+ {t:"Parallel, rearranged first", q:"Find the equation of the line parallel to 3y = 2x + 9 that passes through (6, 1).",
+  hints:["Rearrange 3y = 2x + 9 to read its gradient. Divide every term by 3.","Gradient ⅔; substitute (6, 1)."],
+  sol:["3y = 2x + 9 → y = ⅔x + 3, so m = ⅔.","1 = ⅔(6) + c = 4 + c, so c = −3.","<strong>y = ⅔x − 3</strong>. Taking the gradient as 2 (not rearranging first) is the trap."]},
+ {t:"Spot the parallels", q:"Which of these lines are parallel to each other? y = 3x − 1, 2y = 6x + 5, y − 3x = 4, 3y = x + 2.",
+  hints:["Put each one into y = mx + c and list the four gradients.","3y = x + 2 has gradient ⅓, not 3."],
+  sol:["Gradients: 3, 3, 3 and ⅓.","So <strong>the first three are parallel</strong>; 3y = x + 2 is not.","Any of the first three could be the same line as another — check c: −1, 2.5 and 4. All different, so three distinct parallel lines."]},
+ {t:"Described in words", q:"On a straight line, every time x increases by 4, y decreases by 10. The line passes through (2, 7). Find its equation and where it crosses the x-axis.",
+  hints:["The gradient is rise over run, and a decrease is a negative rise.","m = −10/4 = −2.5. Then c from (2, 7)."],
+  sol:["m = −2.5; 7 = −2.5(2) + c, so c = 12: <strong>y = 12 − 2.5x</strong>.","x-axis: 0 = 12 − 2.5x, x = <strong>4.8</strong>, so (4.8, 0).","Check: 12 − 2.5(4.8) = 12 − 12 = 0 ✓"]},
+ {t:"The catch-up", q:"Arjun leaves home at noon and cycles at 12 km/h. At the same moment Meera is 30 km down the same road, cycling away from him at 6 km/h. When and where does Arjun catch her?",
+  hints:["Write each person's distance from Arjun's home after t hours. Arjun: d = 12t. Meera starts at 30.","Catching up means the same distance at the same time — set them equal."],
+  sol:["Arjun: d = 12t. Meera: d = 30 + 6t.","12t = 30 + 6t → 6t = 30 → t = 5. <strong>At 5 pm, 60 km from home</strong>.","On a distance–time graph that is where the two lines cross; the gradients are the speeds."]},
+ {t:"Find the machine", q:"A two-stage machine does × a then + b. It maps 2 → 11 and 5 → 20. Find a and b.",
+  hints:["The outputs went up by 9 when the inputs went up by 3. Which stage causes that?","That is a gradient. Then find b like c."],
+  sol:["Gradient = (20 − 11) ÷ (5 − 2) = 3, so <strong>a = 3</strong>.","11 = 3(2) + b, so <strong>b = 5</strong>.","× a then + b is y = ax + b — the machine is y = mx + c in disguise, which is why the function machine above always draws a straight line."]},
+ {t:"Built from an area", q:"A line passes through (0, −4) and crosses the positive x-axis. The triangle it makes with the two axes has area 12. Find the equation of the line.",
+  hints:["The triangle has a corner at the origin. One side is 4 long (down the y-axis). What must the other side be?","½ × 4 × k = 12 gives the x-intercept k. Then gradient from (0, −4) to (k, 0)."],
+  sol:["½ × 4 × k = 12, so k = 6: the line passes through (6, 0).","Gradient = (0 − (−4)) ÷ (6 − 0) = ⅔.","<strong>y = ⅔x − 4</strong>. Working backwards from an answer to a line is the skill a top-band question tests."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+/* ---------------- render stretch lab ---------------- */
+const labList = document.getElementById('labList');
+LAB.forEach((L,i)=>{
+  const c = document.createElement('div');
+  c.className = 'labcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">L${i+1}</span><span class="lvl hard">stretch</span><span class="mk">${L.t}</span></div>
+    <p class="qtext">${L.q}</p>
+    <textarea data-note="L${i}" placeholder="Your working…" aria-label="Your working for lab problem ${i+1}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-labhint="${i}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="ls${i}">Show solution</button>
+    </div>
+    <div id="lh${i}"></div>
+    <div class="solbox" id="ls${i}" style="display:none"><ol>${L.sol.map(s=>`<li>${s}</li>`).join('')}</ol></div>
+    <label class="done"><input type="checkbox" data-lab="${i}"> Solved it without opening the solution</label>`;
+  labList.appendChild(c);
+});
+function labScore(){
+  const n = Object.values(S.lab).filter(Boolean).length;
+  document.getElementById('labScore').textContent = n + ' of ' + LAB.length + ' solved without the solution';
+}
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+  const ln = e.target.closest('[data-ln]');
+  if(ln){ lineAction(ln.dataset.ln); return; }
+  const lh = e.target.closest('[data-labhint]');
+  if(lh){
+    const i = +lh.dataset.labhint, host = document.getElementById('lh'+i), shown = host.children.length;
+    if(shown < LAB[i].hints.length){
+      const d=document.createElement('div'); d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${LAB[i].hints[shown]}`; host.appendChild(d);
+      if(host.children.length===LAB[i].hints.length) lh.textContent='No hints left';
+    }
+    return;
+  }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+  if(e.target.dataset.lab!==undefined){
+    S.lab[e.target.dataset.lab] = e.target.checked;
+    save(); labScore();
+  }
+  if(e.target.dataset.drill!==undefined){ S.drill[e.target.dataset.drill] = e.target.value; checkDrill(+e.target.dataset.drill); save(); }
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && e.target.dataset.drill!==undefined){ S.drill[e.target.dataset.drill] = e.target.value; checkDrill(+e.target.dataset.drill); save(); }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0, drill:{}, lab:{} };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*10)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  Object.keys(S.lab).forEach(i=>{
+    const cb = document.querySelector(`[data-lab="${i}"]`);
+    if(cb) cb.checked = !!S.lab[i];
+  });
+  Object.keys(S.drill).forEach(i=>{
+    const inp = document.querySelector(`[data-drill="${i}"]`);
+    if(inp){ inp.value = S.drill[i]; checkDrill(+i); }
+  });
+  labScore();
+  refresh();
+}
+
+/* ---------------- the line machine ---------------- */
+const LN_START = {m:1, c:2};
+let ln = Object.assign({}, LN_START);
+let lnTarget = null, lnLast = -1;
+const LN_PUZZLES = [
+ {m:2,  c:3,  pts:[[0,3],[2,7]],   txt:"Make the line pass through both rings: (0, 3) and (2, 7)."},
+ {m:-1, c:-2, pts:[[0,-2]],        txt:"Make a line <strong>parallel</strong> to y = −x + 5 that crosses the y-axis at −2."},
+ {m:-1.5,c:2, pts:[[-2,5],[4,-4]], txt:"Make the line pass through (−2, 5) and (4, −4). Work out the gradient on paper first."},
+ {m:2,  c:-6, pts:[[3,0],[0,-6]],  txt:"Make the line that crosses the x-axis at 3 and the y-axis at −6."},
+ {m:0.5,c:3,  pts:[],              txt:"Make the line <span class='num'>2y = x + 6</span>. (It isn't in y = mx + c form yet — that's your job, not the machine's.)"},
+ {m:3,  c:-2, pts:[[1,1]],         txt:"Make a line that will <strong>never</strong> meet y = 3x + 1, and that passes through (1, 1)."},
+ {m:-2, c:5,  pts:[[0,5]],         txt:"Make the line that crosses the y-axis at 5 and on which y falls by 4 every time x goes 2 to the right."},
+ {m:1.5,c:2,  pts:[[-4,-4],[2,5]], txt:"Make the line through (−4, −4) and (2, 5)."}
+];
+const LX = x => 350 + x*24, LY = y => 210 - y*24;
+
+function drawLine(){
+  const svg = document.getElementById('ln-svg');
+  const m = ln.m, c = ln.c;
+  let s = '<g font-family="JetBrains Mono, monospace" font-size="10.5">';
+  for(let x=-13;x<=13;x++) s += `<line x1="${LX(x)}" y1="18" x2="${LX(x)}" y2="402" stroke="var(--line-soft)"/>`;
+  for(let y=-8;y<=8;y++) s += `<line x1="38" y1="${LY(y)}" x2="662" y2="${LY(y)}" stroke="var(--line-soft)"/>`;
+  s += `<line x1="38" y1="${LY(0)}" x2="662" y2="${LY(0)}" stroke="var(--ink)" stroke-width="1.4"/>`;
+  s += `<line x1="${LX(0)}" y1="18" x2="${LX(0)}" y2="402" stroke="var(--ink)" stroke-width="1.4"/>`;
+  for(let x=-12;x<=12;x+=2) if(x) s += `<text x="${LX(x)}" y="${LY(0)+14}" text-anchor="middle" fill="var(--ink-soft)">${fmt(x)}</text>`;
+  for(let y=-8;y<=8;y+=2) if(y) s += `<text x="${LX(0)-6}" y="${LY(y)+4}" text-anchor="end" fill="var(--ink-soft)">${fmt(y)}</text>`;
+  s += `<text x="652" y="${LY(0)-6}" fill="var(--ink)" font-weight="700">x</text><text x="${LX(0)+6}" y="28" fill="var(--ink)" font-weight="700">y</text>`;
+  s += '<clipPath id="lnclip"><rect x="38" y="18" width="624" height="384"/></clipPath><g clip-path="url(#lnclip)">';
+  if(lnTarget){
+    const t = LN_PUZZLES[lnTarget.i];
+    t.pts.forEach(p=>{ s += `<circle cx="${LX(p[0])}" cy="${LY(p[1])}" r="8" fill="none" stroke="var(--pc)" stroke-width="2.6"/>`; });
+    if(lnTarget.i===1) s += `<line x1="${LX(-13)}" y1="${LY(18)}" x2="${LX(13)}" y2="${LY(-8)}" stroke="var(--steel)" stroke-width="2" stroke-dasharray="6 5"/>`;
+    if(lnTarget.i===5) s += `<line x1="${LX(-3)}" y1="${LY(-8)}" x2="${LX(2.34)}" y2="${LY(8)}" stroke="var(--steel)" stroke-width="2" stroke-dasharray="6 5"/>`;
+  }
+  s += `<line x1="${LX(-13)}" y1="${LY(m*-13+c)}" x2="${LX(13)}" y2="${LY(m*13+c)}" stroke="var(--fr)" stroke-width="3"/>`;
+  // gradient triangle from the intercept
+  const run = (Math.abs(m*1 - Math.round(m)) > 1e-9) ? 2 : 1, rise = m*run;
+  if(m !== 0){
+    s += `<line x1="${LX(0)}" y1="${LY(c)}" x2="${LX(run)}" y2="${LY(c)}" stroke="var(--de)" stroke-width="2.4" stroke-dasharray="5 4"/>`;
+    s += `<line x1="${LX(run)}" y1="${LY(c)}" x2="${LX(run)}" y2="${LY(c+rise)}" stroke="var(--de)" stroke-width="2.4" stroke-dasharray="5 4"/>`;
+  }
+  s += `</g><circle cx="${LX(0)}" cy="${LY(c)}" r="6" fill="var(--pc)"/>`;
+  if(m !== 0) s += `<text x="${LX(run)+7}" y="${LY(c+rise/2)+4}" fill="var(--de)" font-weight="700">${rise>0?'up':'down'} ${fmt(Math.abs(rise))}</text>`;
+  svg.innerHTML = s + '</g>';
+
+  document.getElementById('ln-eq').textContent = lineText(m, c);
+  document.getElementById('ln-eqs').textContent = `gradient ${fmt(m)}, crosses the y-axis at (0, ${fmt(c)})`;
+  document.getElementById('ln-tri').textContent = m===0 ? 'flat' : `${rise>0?'up':'down'} ${fmt(Math.abs(rise))}, across ${run}`;
+  document.getElementById('ln-tris').textContent = m===0 ? 'no rise at all: gradient 0' : `rise ÷ run = ${fmt(rise)} ÷ ${run} = ${fmt(m)}`;
+  const xi = document.getElementById('ln-xi'), xis = document.getElementById('ln-xis');
+  if(m===0){ xi.textContent = c===0 ? 'everywhere' : 'never'; xis.textContent = c===0 ? 'the line is the x-axis' : 'a flat line off the axis never meets it'; }
+  else { xi.textContent = 'x = ' + fmt(-c/m); xis.textContent = `0 = ${fmt(m)}x ${c<0?'−':'+'} ${fmt(Math.abs(c))}`; }
+  let tb = '<span style="font-family:var(--display);font-weight:700">Table</span>';
+  for(let x=-2;x<=2;x++) tb += `<span>(${fmt(x)}, ${fmt(m*x+c)})</span>`;
+  document.getElementById('ln-table').innerHTML = tb;
+  document.getElementById('ln-m').value = m;
+  document.getElementById('ln-c').value = c;
+
+  const pill = document.getElementById('ln-pill'), note = document.getElementById('ln-note');
+  if(lnTarget){
+    const t = LN_PUZZLES[lnTarget.i];
+    if(Math.abs(m - t.m) < 1e-9 && c === t.c){
+      lnTarget = null;
+      S.puzzles = (S.puzzles||0)+1; save(); refresh();
+      const box = document.getElementById('lnQuiz');
+      box.innerHTML = `<strong>That's it: ${lineText(m,c)}.</strong> The machine checked the dials, not your guess. Puzzles solved: ${S.puzzles}.
+        <div class="qrow"><button class="btn ghost small" type="button" id="lnAgain">Another one</button></div>`;
+      document.getElementById('lnAgain').addEventListener('click', ()=>document.getElementById('lnPuzzle').click());
+      pill.className='pill bal'; pill.textContent='Solved';
+      note.textContent='Now say it aloud: the gradient is how far it climbs per step right, and c is where it crosses the y-axis.';
+      return;
+    }
+    pill.className='pill up'; pill.textContent='Puzzle running';
+    note.textContent = (c===t.c) ? 'The intercept is right. Now the gradient.' :
+      (Math.abs(m-t.m)<1e-9 ? 'The gradient is right — the slope matches. Slide c.' : 'Neither dial is right yet. Work out m on paper, then set it.');
+    return;
+  }
+  pill.className='pill go'; pill.textContent='Explore';
+  note.textContent = m===0 ? 'Gradient 0: a horizontal line, y = c for every x.' :
+    m<0 ? 'Negative gradient: the line falls from left to right. The triangle points down.' :
+    'Set m to 0. The line goes flat — every x gives the same y. Now set m negative and watch it fall from left to right.';
+}
+function lineAction(a){
+  if(a==='reset'){ ln = Object.assign({}, LN_START); }
+  if(a==='m+') ln.m = Math.min(4, ln.m+0.5);
+  if(a==='m-') ln.m = Math.max(-4, ln.m-0.5);
+  if(a==='c+') ln.c = Math.min(6, ln.c+1);
+  if(a==='c-') ln.c = Math.max(-6, ln.c-1);
+  drawLine();
+}
+document.getElementById('ln-m').addEventListener('input', e=>{ ln.m = parseFloat(e.target.value); drawLine(); });
+document.getElementById('ln-c').addEventListener('input', e=>{ ln.c = parseInt(e.target.value,10); drawLine(); });
+document.getElementById('lnPuzzle').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*LN_PUZZLES.length);
+  if(i===lnLast) i = (i+1) % LN_PUZZLES.length;
+  lnLast = i;
+  ln = {m:0, c:0};
+  lnTarget = {i};
+  const box = document.getElementById('lnQuiz');
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> ${LN_PUZZLES[i].txt} The dials have been set to zero. Work out m and c on paper <em>before</em> you touch them — sweeping the dials until the line looks right is not solving it.`;
+  drawLine();
+});
+
+/* ---------------- the function machine ---------------- */
+let fmTarget = null, fmLast = -1;
+const FM_PUZZLES = [
+ {pairs:[[1,5],[2,7],[4,11]],   txt:"Build a machine that maps 1 → 5, 2 → 7 and 4 → 11."},
+ {pairs:[[0,-4],[3,5],[5,11]],  txt:"Build a machine that maps 0 → −4, 3 → 5 and 5 → 11."},
+ {pairs:[[2,3],[6,5],[10,7]],   txt:"Build a machine that maps 2 → 3, 6 → 5 and 10 → 7. The outputs go up by less than the inputs do. What does that say about stage 1?"},
+ {pairs:[[1,12],[3,20],[4,24]], txt:"Build a machine that maps 1 → 12, 3 → 20 and 4 → 24 — with the multiplication <strong>second</strong>."},
+ {pairs:[[2,1],[4,7],[6,13]],   txt:"Build a machine that maps 2 → 1, 4 → 7 and 6 → 13."},
+ {pairs:[[7,2],[11,3],[-1,0]],  txt:"Build the <strong>inverse</strong> of “× 4 then − 1”. It must take 7 back to 2, 11 back to 3 and −1 back to 0."}
+];
+function ap(v, op, n){ return op==='×' ? v*n : op==='÷' ? v/n : op==='+' ? v+n : v-n; }
+function inv(op){ return {'×':'÷','÷':'×','+':'−','−':'+'}[op]; }
+function fmState(){
+  return { op1:document.getElementById('fm-op1').value, n1:+document.getElementById('fm-n1').value,
+           op2:document.getElementById('fm-op2').value, n2:+document.getElementById('fm-n2').value };
+}
+function fmF(st, x){ return ap(ap(x, st.op1, st.n1), st.op2, st.n2); }
+function niceStep(range){ const raw = range/10; for(const s of [1,2,5,10,20,50]) if(s>=raw) return s; return 100; }
+
+function drawFm(){
+  const st = fmState(), f = x => fmF(st, x);
+  const xs = [-2,-1,0,1,2,3];
+  const targ = fmTarget ? FM_PUZZLES[fmTarget.i].pairs : [];
+  const allx = xs.concat(targ.map(p=>p[0]));
+  const x0 = Math.min(...allx), x1 = Math.max(...allx);
+  const ys = allx.map(f).concat(targ.map(p=>p[1]), [0]);
+  const ys0 = Math.min(...ys), ys1 = Math.max(...ys);
+  const step = niceStep(ys1 - ys0 || 1);
+  const y0 = Math.floor(ys0/step)*step, y1 = Math.ceil(ys1/step)*step + (ys1%step===0?step:0);
+  const m = f(1) - f(0), c = f(0);
+  document.getElementById('fm-svg').outerHTML = gsvg({id:'fm', x0, x1, xs:1, y0, y1, ys:step, w:700, h:300,
+    lines:[{pts:[[x0,f(x0)],[x1,f(x1)]], col:'var(--steel)', dash:true, wd:1.6}],
+    pts: targ.map(p=>({x:p[0], y:p[1], ring:true})).concat(xs.map(x=>({x, y:f(x), col:'var(--fr)'}))),
+    xt:'input x', yt:'output y', alt:'Inputs and outputs of the function machine plotted as points'}).replace('class="qfig"','class="stage" id="fm-svg"');
+  document.getElementById('fm-flow').innerHTML =
+    `x <span class="arr">→</span> <span class="box">${st.op1} ${st.n1}</span> <span class="arr">→</span> <span class="box">${st.op2} ${st.n2}</span> <span class="arr">→</span> y`;
+  document.getElementById('fm-eq').textContent = lineText(Math.round(m*1000)/1000, Math.round(c*1000)/1000);
+  document.getElementById('fm-eqs').textContent = `gradient ${fmt(m)}, intercept ${fmt(c)}`;
+  document.getElementById('fm-inv').textContent = `${inv(st.op2)} ${st.n2}, then ${inv(st.op1)} ${st.n1}`;
+  document.getElementById('fm-map').textContent = xs.map(x=>`${fmt(x)} → ${fmt(f(x))}`).join(' · ');
+
+  const pill = document.getElementById('fm-pill'), note = document.getElementById('fm-note');
+  if(fmTarget){
+    const P = FM_PUZZLES[fmTarget.i];
+    const hits = P.pairs.filter(p=>Math.abs(f(p[0]) - p[1]) < 1e-9).length;
+    const orderOK = fmTarget.i!==3 || st.op2==='×';
+    if(hits===P.pairs.length && orderOK){
+      fmTarget = null;
+      S.puzzles = (S.puzzles||0)+1; save(); refresh();
+      const box = document.getElementById('fmQuiz');
+      box.innerHTML = `<strong>All mapped.</strong> ${st.op1} ${st.n1} then ${st.op2} ${st.n2} — that is ${lineText(m,c)}. Every ring has a dot in it. Puzzles solved: ${S.puzzles}.
+        <div class="qrow"><button class="btn ghost small" type="button" id="fmAgain">Another one</button></div>`;
+      document.getElementById('fmAgain').addEventListener('click', ()=>document.getElementById('fmPuzzle').click());
+      pill.className='pill bal'; pill.textContent='Solved';
+      note.textContent = 'The jump in output per +1 input is the gradient; the output for input 0 is the intercept. That is how you find a machine from its mappings without guessing.';
+      drawFm(); return;
+    }
+    pill.className='pill up'; pill.textContent = hits + ' of ' + P.pairs.length + ' mapped';
+    note.textContent = (hits===P.pairs.length && !orderOK) ? 'Right outputs, but this one asked for the multiplication second.' :
+      'Each ring is a target. Look at how much the output jumps between two targets, and divide by how much the input jumped.';
+    return;
+  }
+  pill.className='pill go'; pill.textContent='Explore';
+  note.textContent = 'Try “+ 2 then × 3” and then “× 3 then + 2”. Same two operations, different line. Order is not decoration.';
+}
+(function(){
+  const nums = [1,2,3,4,5,6,7,8,9].map(n=>`<option>${n}</option>`).join('');
+  document.getElementById('fm-n1').innerHTML = nums; document.getElementById('fm-n2').innerHTML = nums;
+  document.getElementById('fm-n1').value = '2'; document.getElementById('fm-n2').value = '3';
+  ['fm-op1','fm-n1','fm-op2','fm-n2'].forEach(id=>document.getElementById(id).addEventListener('change', drawFm));
+})();
+document.getElementById('fmPuzzle').addEventListener('click', ()=>{
+  let i = Math.floor(Math.random()*FM_PUZZLES.length);
+  if(i===fmLast) i = (i+1) % FM_PUZZLES.length;
+  fmLast = i; fmTarget = {i};
+  document.getElementById('fm-op1').value = '+'; document.getElementById('fm-n1').value = '1';
+  document.getElementById('fm-op2').value = '×'; document.getElementById('fm-n2').value = '1';
+  const box = document.getElementById('fmQuiz');
+  box.classList.add('on');
+  box.innerHTML = `<strong>Puzzle.</strong> ${FM_PUZZLES[i].txt} The targets are the rings on the graph. Get every ring filled. The machine has been reset to “+ 1 then × 1”, which does almost nothing.`;
+  drawFm();
+});
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  drawLine();
+  drawFm();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='graphs', SUBJECT='maths', TITLE='Where It Starts, How Steep It Climbs', HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>

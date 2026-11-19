@@ -43,7 +43,7 @@ Subjects: Maths, Physics, Biology, Chemistry, English, Hindi, Computing.
 ```
 index.html              the hub — climb ladder, topic cards, paper signposts, weekly puzzle
 fdp.html                Maths     · fractions, decimals, percentages
-                        (plus ratio, indices, integers, expressions, equations, placevalue)
+                        (plus ratio, indices, integers, expressions, equations, placevalue, graphs)
 moments.html            Physics   · the turning effect
 speed.html              Physics   · speed, distance, time
 forces.html             Physics   · characteristics of forces
