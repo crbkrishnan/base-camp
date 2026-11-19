@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Count Without Listing — IOQM Olympiad Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script type="application/json" id="hub-card">
+{
+  "id": "ioqm-counting",
+  "file": "ioqm-counting.html",
+  "subject": "olympiad",
+  "status": "ready",
+  "title": "Count Without Listing",
+  "sub": "IOQM · Combinatorics I: multiply, arrange, choose, complement",
+  "blurb": "Counting questions are won by never writing the list. Fill a grid with path counts that add up like Pascal's triangle, block a corner and watch the numbers reroute, then join dots on a circle to see where n(n − 1) ÷ 2 comes from.",
+  "meta": [
+    "30 marks",
+    "6 lessons",
+    "path grid"
+  ]
+}
+</script>
+
+<style>
+:root{
+  --ink:#1A1E22;
+  --ink-soft:#535B63;
+  --paper:#EBEDEF;
+  --card:#FFFFFF;
+  --line:#D3D8DD;
+  --line-soft:#E2E6EA;
+  --pm:#2E4C8C; --pm-tint:#E6ECF7;
+  --ng:#A2431A; --ng-tint:#F9EBE2;
+  --rt:#4E7A27; --rt-tint:#ECF3E4;
+  --fr:var(--pm); --fr-tint:var(--pm-tint);
+  --de:var(--ng); --de-tint:var(--ng-tint);
+  --pc:var(--rt); --pc-tint:var(--rt-tint);
+  --steel:#9AA2A9;
+  --steel-dark:#66707A;
+  --ok:#1B7F4B;
+  --ok-tint:#E6F3EC;
+  --no:#98241B;
+  --no-tint:#FBEAE8;
+  --display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3,h4,.ui{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.15}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--fr)}
+:focus-visible{outline:3px solid var(--fr);outline-offset:2px;border-radius:4px}
+
+/* ---------- masthead ---------- */
+.mast{padding:42px 0 22px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.mast h1{font-size:clamp(34px,7.2vw,62px);font-weight:800;margin:12px 0 6px}
+.mast h1 i{font-style:normal;color:var(--fr)}
+.mast h1 em{font-style:normal;color:var(--de)}
+.mast h1 b{font-weight:800;color:var(--pc)}
+.mast p.lede{font-size:19px;color:var(--ink-soft);max-width:58ch;margin:0}
+.target{margin:14px 0 0;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ok);
+  border-radius:0 var(--r) var(--r) 0;padding:12px 15px;font-size:15.5px}
+.target strong{font-family:var(--display)}
+
+.strip{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;margin:22px 0 10px}
+.stat{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.stat span{font-family:var(--display);font-size:12.5px;color:var(--ink-soft);letter-spacing:.02em}
+.bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;width:0;background:var(--fr);border-radius:99px;transition:width .45s ease}
+
+nav.jump{position:sticky;top:0;z-index:20;margin:18px -20px 0;padding:10px 20px;
+  background:rgba(235,237,239,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.jump a{flex:0 0 auto;font-family:var(--display);font-size:13.5px;font-weight:700;text-decoration:none;
+  color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 13px}
+nav.jump a:hover{border-color:var(--fr);color:var(--fr)}
+
+section{padding-top:46px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:20px}
+.shead h2{font-size:clamp(24px,4.4vw,32px);margin:0}
+.shead .tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;white-space:nowrap}
+.snote{margin-top:-8px;color:var(--ink-soft);font-size:15.5px}
+
+/* ---------- machine panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.panel-top{padding:16px 18px 6px}
+.panel-top h2{font-size:22px;margin:0 0 4px}
+.panel-top p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+svg.stage{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+.ctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line)}
+.ctrl label{font-family:var(--display);font-size:13px;color:var(--ink-soft);flex:0 0 auto}
+input[type=range]{flex:1 1 200px;accent-color:var(--pc);min-width:150px}
+input[type=number]{font-family:var(--mono);font-size:15px;width:110px;padding:7px 9px;border:1px solid var(--line);
+  border-radius:9px;background:var(--paper);color:var(--ink)}
+.btn{font-family:var(--display);font-weight:700;font-size:13.5px;cursor:pointer;border-radius:99px;
+  padding:8px 15px;border:1px solid var(--ink);background:var(--ink);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.small{font-size:12.5px;padding:6px 12px}
+.btn.on{background:var(--fr);border-color:var(--fr);color:#fff}
+
+.rows{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line-soft)}
+.rows.two{grid-template-columns:1fr 1fr}
+.cell{background:var(--card);padding:11px 15px}
+.cell .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.cell .val{font-family:var(--mono);font-weight:700;font-size:19px;margin-top:3px}
+.cell .sub{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+.cell.f .lab{color:var(--fr)} .cell.f .val{color:var(--fr)}
+.cell.d .lab{color:var(--de)} .cell.d .val{color:var(--de)}
+.cell.p .lab{color:var(--pc)} .cell.p .val{color:var(--pc)}
+.phasebar{grid-column:1/-1;background:var(--card);padding:12px 15px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  font-family:var(--display);font-weight:700;font-size:16px;border-top:1px solid var(--line-soft)}
+.pill{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px}
+.pill.bal{background:var(--ok-tint);color:var(--ok)}
+.pill.go{background:var(--fr-tint);color:var(--fr)}
+.pill.up{background:var(--pc-tint);color:var(--pc)}
+.pill.down{background:var(--de-tint);color:var(--de)}
+.push{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quizbox{grid-column:1/-1;background:var(--fr-tint);border-top:1px solid var(--line-soft);padding:12px 16px;font-size:15.5px;display:none}
+.quizbox.on{display:block}
+.quizbox .qrow{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+
+/* ---------- this page's two machines ---------- */
+
+.modebar{display:flex;gap:8px;padding:0 16px 12px;flex-wrap:wrap}
+#gStage circle.node{cursor:pointer}
+
+
+/* ---------- videos ---------- */
+.vid{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;
+  display:grid;grid-template-columns:auto 1fr;gap:14px}
+.vid .play{width:40px;height:40px;border-radius:11px;background:var(--fr);color:#fff;display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:700}
+.vid h3{margin:0 0 3px;font-size:17.5px}
+.vid h3 a{text-decoration:none;color:var(--ink);border-bottom:2px solid var(--fr-tint)}
+.vid h3 a:hover{border-bottom-color:var(--fr)}
+.vid .chan{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.vid p{margin:8px 0 0;font-size:15.5px}
+.vid .task{margin-top:9px;background:var(--paper);border-left:3px solid var(--pc);padding:9px 12px;border-radius:0 8px 8px 0;font-size:15px}
+
+/* ---------- lessons ---------- */
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.lesson > summary{list-style:none;cursor:pointer;padding:15px 17px;display:flex;gap:14px;align-items:center}
+.lesson > summary::-webkit-details-marker{display:none}
+.lesson .no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
+.lesson .ttl{font-family:var(--display);font-weight:700;font-size:17.5px;flex:1}
+.lesson .len{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 auto}
+.lesson[open] .no{background:var(--fr)}
+.lbody{padding:0 17px 17px;border-top:1px solid var(--line-soft);margin-top:2px;padding-top:14px}
+.lbody p{margin:0 0 11px}
+.lbody ol,.lbody ul{margin:0 0 11px;padding-left:20px}
+.lbody li{margin-bottom:5px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 5px}
+.demo{background:var(--paper);border-left:3px solid var(--de);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.cliff{border-left:3px solid var(--pc);background:var(--pc-tint);padding:11px 14px;border-radius:0 8px 8px 0;font-size:15.5px}
+.done{display:flex;align-items:center;gap:9px;margin-top:15px;font-family:var(--display);font-size:14px;cursor:pointer}
+.done input{width:18px;height:18px;accent-color:var(--ok)}
+.eqline{font-family:var(--mono);font-size:14.5px;background:var(--paper);padding:9px 12px;border-radius:8px;margin:10px 0;overflow-x:auto}
+.frtxt{color:var(--fr);font-weight:700}
+.detxt{color:var(--de);font-weight:700}
+.pctxt{color:var(--pc);font-weight:700}
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:10px 0}
+table.data th,table.data td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.data th{background:var(--paper);font-family:var(--display);font-size:13px}
+
+/* ---------- questions ---------- */
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 17px;margin-bottom:11px}
+.qhead{display:flex;gap:10px;align-items:baseline;margin-bottom:9px}
+.qhead .qn{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.qhead .lvl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--paper);color:var(--ink-soft)}
+.qhead .lvl.hard{background:var(--pc-tint);color:var(--pc)}
+.qhead .mk{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-left:auto;border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.qtext{margin:0 0 12px}
+.opts{display:grid;gap:7px}
+.opt{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;background:var(--paper);
+  border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;font-family:var(--body);font-size:16.5px;color:var(--ink)}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13.5px;flex:0 0 auto;padding-top:2px}
+.opt.right{background:var(--ok-tint);border-color:var(--ok)}
+.opt.wrong{background:var(--no-tint);border-color:var(--no)}
+.opt[disabled]{cursor:default;opacity:.85}
+.opt.right[disabled],.opt.wrong[disabled]{opacity:1}
+.fb{margin-top:11px;font-size:15.5px;padding:10px 13px;border-radius:9px;display:none}
+.fb.on{display:block}
+.fb.good{background:var(--ok-tint);color:#14512F}
+.fb.bad{background:var(--no-tint);color:#6E1D17}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.hintbox{background:var(--de-tint);border-radius:9px;padding:10px 13px;margin-top:9px;font-size:15.5px}
+.solbox{background:var(--paper);border-radius:9px;padding:12px 14px;margin-top:9px;font-size:15.5px;border:1px solid var(--line)}
+.solbox ol{margin:6px 0 0;padding-left:20px}
+.solbox li{margin-bottom:5px}
+.selfmark{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px;border-top:1px dashed var(--line);padding-top:11px}
+.selfmark .q{font-family:var(--display);font-size:13.5px;color:var(--ink-soft)}
+.mbtn{font-family:var(--mono);font-weight:700;font-size:13.5px;min-width:36px;height:32px;border-radius:8px;
+  border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink)}
+.mbtn:hover{border-color:var(--ink)}
+.mbtn.sel{background:var(--ok);border-color:var(--ok);color:#fff}
+textarea{width:100%;min-height:74px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--paper);resize:vertical}
+.tipline{font-size:14.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+
+.traps{display:grid;gap:11px}
+.trap{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:0 var(--r) var(--r) 0;padding:14px 16px}
+.trap h4{margin:0 0 5px;font-size:16.5px}
+.trap p{margin:0;font-size:15.5px;color:var(--ink-soft)}
+
+.papers{display:grid;gap:11px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;text-decoration:none;color:inherit}
+.paper:hover{border-color:var(--ink)}
+.paper .pn{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:var(--ink);padding:4px 9px;border-radius:7px}
+.paper .pn.hard{background:var(--pc)}
+.paper .pt{font-family:var(--display);font-weight:700;font-size:16.5px;flex:1 1 220px}
+.paper .pd{font-size:14.5px;color:var(--ink-soft);flex:1 1 100%;margin:0}
+
+footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--ink-soft)}
+
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .rows,.rows.two{grid-template-columns:1fr}
+  .vid{grid-template-columns:1fr}
+  .vid .play{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<script>
+/* ---- hub bridge (1/2): storage that works both inside Claude and on a plain web server ---- */
+(function(){
+  if(window.storage) return;
+  var mem = {};
+  var ls = null;
+  try{ ls = window.localStorage; ls.setItem('__t','1'); ls.removeItem('__t'); }catch(e){ ls = null; }
+  window.storage = {
+    get: function(k){ var v = ls ? ls.getItem(k) : (k in mem ? mem[k] : null);
+                      return Promise.resolve(v===null||v===undefined ? null : {key:k, value:v}); },
+    set: function(k,v){ try{ ls ? ls.setItem(k,v) : (mem[k]=v); }catch(e){}
+                        return Promise.resolve({key:k, value:v}); },
+    delete: function(k){ try{ ls ? ls.removeItem(k) : delete mem[k]; }catch(e){}
+                         return Promise.resolve({key:k, deleted:true}); },
+    list: function(p){ p = p||''; var keys=[];
+                       try{ var src = ls ? Object.keys(ls) : Object.keys(mem);
+                            keys = src.filter(function(k){ return k.indexOf(p)===0; }); }catch(e){}
+                       return Promise.resolve({keys:keys, prefix:p}); }
+  };
+})();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<a href="index.html" style="display:inline-block;margin:22px 0 -20px;font-family:var(--mono);font-size:12px;
+   letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+   border:1px solid var(--line);border-radius:99px;padding:6px 14px;background:var(--card)">&larr;&nbsp; Base camp</a>
+
+
+<header class="mast">
+  <div class="eyebrow">IOQM Olympiad Prep · Combinatorics I</div>
+  <h1>Count <i>Without</i><br><em>Listing</em></h1>
+  <p class="lede">"How many ways…" is the question smart students lose marks on, because they start listing and miss one. The fix is four ideas — multiply, arrange, choose, and count the opposite — and the discipline to decide which one before writing anything.</p>
+
+  <div class="target">
+    <strong>The deal.</strong> You've been landing around <span class="num">10 out of 15</span> at school. This page is out of <span class="num">30</span>; the targets are <span class="num">21</span> on the first pass and <span class="num">26</span> on the second. Before every question, say out loud: does order matter, and can things repeat? Half the wrong answers come from skipping that.
+  </div>
+
+  <div class="strip">
+    <div class="stat"><b class="num" id="s-marks">0<span style="font-size:15px;color:var(--ink-soft)">/30</span></b><span>marks banked</span><div class="bar"><i id="bar-marks"></i></div></div>
+    <div class="stat"><b class="num" id="s-lessons">0<span style="font-size:15px;color:var(--ink-soft)">/6</span></b><span>lessons finished</span><div class="bar"><i id="bar-lessons"></i></div></div>
+    <div class="stat"><b class="num" id="s-puzzles">0</b><span>machine puzzles solved</span><div class="bar"><i id="bar-puzzles"></i></div></div>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Sections">
+  <a href="#paths">Path grid</a>
+  <a href="#videos">6 videos</a>
+  <a href="#lessons">6 lessons</a>
+  <a href="#circle">Handshake circle</a>
+  <a href="#quick">Quick checks</a>
+  <a href="#short">Short answers</a>
+  <a href="#word">Word problems</a>
+  <a href="#traps">Exam traps</a>
+</nav>
+
+<!-- ============ HERO 1 ============ -->
+<section id="paths">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The path grid</h2>
+      <p>Walk from the bottom-left corner to the top-right, only ever moving right or up. The number at each crossing is how many ways there are to reach it — and it's always the number to its left plus the number below, because every route arrives from one of those two. <strong>Click a crossing</strong> to block it and watch every count beyond it change.</p>
+    </div>
+    <svg class="stage" viewBox="0 0 700 330" role="img" aria-label="A grid of streets with the number of shortest routes to each crossing"><g id="gStage"></g></svg>
+    <div class="ctrl">
+      <label for="gw">Blocks across</label><input id="gw" type="range" min="1" max="8" value="4" aria-label="Blocks across"><span class="num" id="gw-v">4</span>
+    </div>
+    <div class="ctrl" style="border-top:none;padding-top:0">
+      <label for="gh">Blocks up</label><input id="gh" type="range" min="1" max="6" value="3" aria-label="Blocks up"><span class="num" id="gh-v">3</span>
+      <button class="btn ghost small" type="button" id="gClear">Clear blocks</button>
+    </div>
+    <div class="rows">
+      <div class="cell f"><div class="lab">Routes to the corner</div><div class="val" id="g-n">—</div><div class="sub" id="g-ns"></div></div>
+      <div class="cell p"><div class="lab">As a choice</div><div class="val" id="g-c" style="font-size:16px">—</div><div class="sub">which of the moves are 'up'</div></div>
+      <div class="cell d"><div class="lab">Blocked</div><div class="val" id="g-b" style="font-size:16px">none</div><div class="sub">click a crossing to toggle</div></div>
+      <div class="phasebar">
+        <span class="pill go" id="g-pill">Adding</span>
+        <span id="g-note">Each number is the one to its left plus the one below. That's Pascal's triangle, tilted.</span>
+        <span class="push"><button class="btn ghost" type="button" id="gPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="gQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section id="videos">
+  <div class="shead"><h2>Watch these six, in this order</h2><span class="tag">~45 min total</span></div>
+  <p class="snote">Each video comes with one small written job. Do the job, or the video was a screensaver with maths on it. Pause and write as you go — don't tell yourself you'll rewind at the end, because you won't.</p>
+  <div id="videoList"></div>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons">
+  <div class="shead"><h2>Six lessons</h2><span class="tag">~40 min total</span></div>
+  <div id="lessonList"></div>
+</section>
+
+<!-- ============ HERO 2 ============ -->
+<section id="circle">
+  <div class="panel">
+    <div class="panel-top">
+      <h2>The handshake circle</h2>
+      <p>n people stand in a circle and every pair shakes hands once. Each person shakes n − 1 hands, but that counts every handshake twice — once from each end. In <strong>triangles</strong> mode the same idea counts groups of three, which overcounts by 3 × 2 × 1 = 6.</p>
+    </div>
+    <div class="modebar">
+      <button class="btn small on" type="button" id="cPairs">Pairs (handshakes)</button>
+      <button class="btn ghost small" type="button" id="cTrips">Triangles (groups of 3)</button>
+    </div>
+    <svg class="stage" viewBox="0 0 700 300" role="img" aria-label="Points on a circle joined in pairs"><g id="cStage"></g></svg>
+    <div class="ctrl">
+      <label for="cn">People n</label><input id="cn" type="range" min="2" max="12" value="6" aria-label="Number of people"><span class="num" id="cn-v">6</span>
+    </div>
+    <div class="rows">
+      <div class="cell f"><div class="lab" id="c-l1">Handshakes</div><div class="val" id="c-v1">—</div><div class="sub" id="c-s1"></div></div>
+      <div class="cell p"><div class="lab" id="c-l2">Ordered count</div><div class="val" id="c-v2">—</div><div class="sub" id="c-s2"></div></div>
+      <div class="cell d"><div class="lab">Diagonals of the n-gon</div><div class="val" id="c-v3">—</div><div class="sub">all pairs minus the n sides</div></div>
+      <div class="phasebar">
+        <span class="pill up" id="c-pill">Joining</span>
+        <span id="c-note">Count ordered, then divide by how many orders each group has.</span>
+        <span class="push"><button class="btn ghost" type="button" id="cPuzzle">Set me a puzzle</button></span>
+      </div>
+      <div class="quizbox" id="cQuiz"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section id="quick">
+  <div class="shead"><h2>Quick checks</h2><span class="tag">Q1–Q5 · 5 marks</span></div>
+  <p class="snote">One try each, and the feedback tells you why. No calculator, no notes. These are the five marks you should never drop.</p>
+  <div id="mcqList"></div>
+</section>
+
+<section id="short">
+  <div class="shead"><h2>Short answers</h2><span class="tag">Q6–Q10 · 10 marks</span></div>
+  <p class="snote">Write your answer first, <em>then</em> open the mark scheme and mark yourself honestly. Marking your own work is where the improvement actually happens.</p>
+  <div id="shortList"></div>
+</section>
+
+<section id="word">
+  <div class="shead"><h2>Word problems</h2><span class="tag">Q11–Q15 · 15 marks</span></div>
+  <p class="snote">Stuck? Take one hint, not the whole solution. A hint costs you nothing; reading the answer costs you the question. Q14 and Q15 are the two that separate a 21 from a 26.</p>
+  <div id="wordList"></div>
+</section>
+
+<section id="traps">
+  <div class="shead"><h2>Five traps</h2><span class="tag">Read before any test</span></div>
+  <div class="traps">
+    <div class="trap"><h4>Not deciding whether order matters</h4><p>Choosing 2 reps from 8 students is <strong>28</strong>. Choosing a captain and a vice-captain from 8 is <strong>56</strong>. The difference is whether swapping the two people gives a new answer. Decide that before you write a single number.</p></div>
+    <div class="trap"><h4>Letting a number start with 0</h4><p>There are 900 three-digit numbers, not 1000: the first digit has 9 choices (1–9), the others 10. Every digit question needs the first digit handled on its own, before the rest.</p></div>
+    <div class="trap"><h4>Counting 'at least one' by cases, and double-counting</h4><p>3-digit numbers with at least one 7: counting 'a 7 first' + 'a 7 second' + 'a 7 third' counts 777 three times. Count the opposite instead: 900 − (numbers with no 7 at all) = 900 − 648 = <strong>252</strong>.</p></div>
+    <div class="trap"><h4>Arranging repeated letters as if they were different</h4><p>LEVEL has 5 letters, but the two Ls and two Es are interchangeable, so 5! = 120 counts each arrangement 2 × 2 = 4 times. The answer is <strong>30</strong>. Divide by the factorial of each repeat count.</p></div>
+    <div class="trap"><h4>Adding when you should multiply</h4><p>A starter <strong>and</strong> a main and a dessert: multiply (3 × 4 × 2 = 24). A starter <strong>or</strong> a dessert: add (3 + 2 = 5). If your answer to a 'choose one of each' question is small, you probably added.</p></div>
+  </div>
+</section>
+
+<footer>
+  <span>Your answers, marks and finished lessons are saved on this device.</span>
+  <button class="btn ghost" type="button" id="resetBtn" style="margin-left:auto">Reset my progress</button>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- storage (safe wrapper) ---------------- */
+const KEY = 'ioqm-counting-progress-v1';
+let S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+let saveTimer = null;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) S = Object.assign(S, JSON.parse(r.value));
+  }catch(e){ /* first visit, or storage unavailable */ }
+}
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    try{ await window.storage.set(KEY, JSON.stringify(S)); }catch(e){}
+  }, 350);
+}
+
+/* ---------------- videos ---------------- */
+const VIDEOS = [
+ {t:"Counting is as Easy as 1, 2, 3", ch:"Art of Problem Solving", url:"https://www.youtube.com/watch?v=3u5wGmU6A1U",
+  why:"Counting how many numbers are in a list like 42, 43, …, 97 — the warm-up that catches out more people than it should. The fence-post idea again.",
+  task:"How many numbers from 42 to 97 inclusive? How many multiples of 7 between 100 and 300? (56 and 28.) Write the method next to each."},
+
+ {t:"Counting Permutations", ch:"Art of Problem Solving", url:"https://www.youtube.com/watch?v=ejbhqUi-7tY",
+  why:"Arranging things in order — the multiplication principle applied over and over. This is lesson 2.",
+  task:"How many ways can 6 runners finish first, second and third? (120.) And in how many orders can all 6 finish? (720.)"},
+
+ {t:"Counting with Combinations (Part 1)", ch:"Art of Problem Solving", url:"https://www.youtube.com/watch?v=T4dJ_GeKx1Y",
+  why:"Choosing when order doesn't matter: count ordered, divide by the overcount. The single most important idea on this page.",
+  task:"Choose 3 books from 7 to take on holiday. Count it as ordered first (210), then explain why you divide by 6. (35.)"},
+
+ {t:"Counting Pairs", ch:"Art of Problem Solving", url:"https://www.youtube.com/watch?v=wSyJrywDOXM",
+  why:"The handshake problem — the handshake circle below draws it. Short and exactly on point.",
+  task:"In a league of 12 teams, each pair plays twice (home and away). How many matches? (132.) Why is this one not divided by 2?"},
+
+ {t:"Complementary Counting (Part 1)", ch:"Art of Problem Solving", url:"https://www.youtube.com/watch?v=tb9jwxr0HyU",
+  why:"Count what you don't want and subtract. The way out of every 'at least one' question.",
+  task:"How many 3-digit numbers have at least one even digit? Count those with all digits odd first (5 × 5 × 5 = 125). Answer: 775."},
+
+ {t:"Counting Paths on a Grid", ch:"Art of Problem Solving", url:"https://www.youtube.com/watch?v=M8BYckxI8_U",
+  why:"The path grid tool, explained: add from the corner, or count as a choice of which moves are 'up'. Q9 and Q14 are this.",
+  task:"Count the routes across a 4 × 3 grid both ways — by adding numbers at crossings, and as a choice of 3 'ups' out of 7 moves. Both give 35."}
+];
+
+/* ---------------- lessons ---------------- */
+const LESSONS = [
+ {t:"AND multiplies, OR adds", len:"6 min",
+  body:`<p>A café has 3 starters, 4 mains and 2 desserts. A meal with one of each: for every starter there are 4 mains, and for each of those 2 desserts, so <strong>3 × 4 × 2 = 24</strong>. A choice that's this <em>and</em> that multiplies.</p>
+        <p>If you can have a starter <em>or</em> a dessert (not both), there are 3 + 2 = 5 options. A choice that's this <em>or</em> that, with no overlap, adds.</p>
+        <p><strong>Digits.</strong> A 4-digit PIN from 0–9: 10 × 10 × 10 × 10 = 10000. With no repeated digit: 10 × 9 × 8 × 7 = 5040 — each choice uses up a digit. A 3-digit <em>number</em> can't start with 0: 9 × 10 × 10 = 900.</p>
+        <p><strong>Always fill the most restricted place first.</strong> Even 3-digit numbers with different digits from 1–6: the last digit has 3 choices (2, 4, 6) — do it first — then 5 for the first place, then 4.</p>`,
+  demo:`<strong>Do this:</strong> how many 3-digit numbers have all digits odd? (5 × 5 × 5 = 125.) How many have all digits different? (9 × 9 × 8 = 648 — why is the second 9 not a 10?)`,
+  cliff:`If everything is different and you use all of it, the multiplying has a name and a shorthand.`},
+
+ {t:"Arrangements and n!", len:"6 min",
+  body:`<p>Arrange 5 different books on a shelf: 5 choices for the first place, 4 for the next, …, 1 for the last. That's 5 × 4 × 3 × 2 × 1, written <strong>5! = 120</strong> ("5 factorial").</p>
+        <p>Arrange only 3 of the 5 (first, second, third prize): 5 × 4 × 3 = 60 — stop multiplying after 3 places. As factorials: 5! ÷ 2!.</p>
+        <p><strong>Blocks.</strong> 5 friends in a row, two of them insist on sitting together. Glue them into one block: now 4 things to arrange (4! = 24), and the block can be either way round (× 2). <strong>48</strong>. And the arrangements where they're <em>not</em> together: 120 − 48 = 72.</p>
+        <p><strong>Repeats.</strong> LEVEL: 5! counts the two Ls as different, so each real arrangement is counted 2! times; same for the Es. 120 ÷ (2 × 2) = <strong>30</strong>.</p>`,
+  demo:`<strong>Do this:</strong> how many arrangements of BANANA? (6! ÷ (3! × 2!) = 60.) Of MISSISSIPPI? (11! ÷ (4! × 4! × 2!) = 34650.)`,
+  cliff:`Arranging cares about order. Choosing a team doesn't. How do you count without order?`},
+
+ {t:"Choosing: count ordered, then divide", len:"7 min",
+  body:`<p>Choose 3 people from 7 for a team. Pretend order matters: 7 × 6 × 5 = 210. But each team of 3 has been counted once for every order of its members — 3! = 6 times. So there are 210 ÷ 6 = <strong>35</strong> teams.</p>
+        <div class="eqline">choose r from n = n! ÷ (r! × (n − r)!) &nbsp;&nbsp; written C(n, r) or ⁿCᵣ</div>
+        <p>The two you need most:</p>
+        <ul><li>C(n, 2) = n(n − 1) ÷ 2 — <strong>handshakes</strong>, pairs, matches in a league, segments between points.</li>
+            <li>C(n, 3) = n(n − 1)(n − 2) ÷ 6 — triangles from points.</li></ul>
+        <p>Useful symmetry: C(n, r) = C(n, n − r). Choosing 3 to be in the team is the same as choosing 4 to leave out.</p>`,
+  demo:`<strong>Do this:</strong> on the handshake circle, set n = 10 and read the handshakes. (45.) Check: 10 × 9 ÷ 2. Then switch to triangles. (120.)`,
+  cliff:`'At least one girl on the committee.' Counting the cases one at a time is slow and easy to get wrong.`},
+
+ {t:"Count the opposite", len:"6 min",
+  body:`<p>Committees of 4 from 6 boys and 4 girls, with at least one girl. Cases (1 girl, 2 girls, 3, 4) work, but there's a faster way:</p>
+        <div class="eqline">at least one girl = all committees − committees with no girls<br>= C(10, 4) − C(6, 4) = 210 − 15 = 195</div>
+        <p>That's <strong>complementary counting</strong>. It wins whenever the thing you want is "at least one", "not all", or "some", and the opposite is "none" or "all".</p>
+        <p><strong>Digits again.</strong> 3-digit numbers with at least one 7: all 3-digit numbers (900) minus those with no 7 at all (8 × 9 × 9 = 648) = <strong>252</strong>. The first digit has 8 choices (1–9 except 7), the others 9 (0–9 except 7).</p>`,
+  demo:`<strong>Do this:</strong> how many 4-digit PINs contain at least one repeated digit? (10000 − 5040 = 4960.)`,
+  cliff:`Back to choices. Walking across a grid of streets is a choice too — of which moves go up.`},
+
+ {t:"Paths on a grid, and Pascal's triangle", len:"7 min",
+  body:`<p>From the bottom-left corner to the top-right of a 4 × 3 grid, moving only right or up, every route is 7 moves: 4 rights and 3 ups in some order. Choosing which 3 of the 7 moves are 'up' fixes the route:</p>
+        <div class="eqline">routes = C(7, 3) = 35</div>
+        <p>The path grid tool shows the other way to get it: each crossing's count is the sum of the one to its left and the one below. Those numbers <em>are</em> Pascal's triangle, tipped on its side.</p>
+        <p><strong>Through a point.</strong> Routes from (0, 0) to (4, 3) passing through (2, 1): routes to (2, 1) × routes from there on = C(3, 1) × C(4, 2) = 3 × 6 = 18. <strong>Avoiding</strong> a point: total − through it.</p>`,
+  demo:`<strong>Do this:</strong> on the path grid, make a 4 × 4 grid and block the centre crossing (2, 2). Predict the count first: 70 − 6 × 6 = 34.`,
+  cliff:`Grids, teams, letters, handshakes: it's all choosing and arranging. One last tool turns geometry into counting.`},
+
+ {t:"Counting shapes", len:"6 min",
+  body:`<p>12 points, no three in a line: every 3 of them make a triangle, so C(12, 3) = 220 triangles.</p>
+        <p>But put 5 of the points on one line L and the other 7 on a parallel line M. Now three points on the same line don't make a triangle. Count the opposite:</p>
+        <div class="eqline">triangles = C(12, 3) − C(5, 3) − C(7, 3) = 220 − 10 − 35 = 175</div>
+        <p>Quadrilaterals with two corners on each line: choose 2 from L <em>and</em> 2 from M: C(5, 2) × C(7, 2) = 10 × 21 = 210.</p>
+        <p><strong>Diagonals</strong> of an n-gon: every pair of corners is a side or a diagonal, so diagonals = C(n, 2) − n. For a decagon, 45 − 10 = 35 — the same answer as the angles page, by a completely different route.</p>`,
+  demo:`<strong>Do this:</strong> how many rectangles are there on a 3 × 3 grid of squares (any size)? Choose 2 of the 4 vertical lines and 2 of the 4 horizontal lines: 6 × 6 = 36.`,
+  cliff:`That's the lessons. Q14 is a 5 × 5 grid with a roadblock, and Q15 is triangles on two parallel lines. Go and lose to them, then take them apart.`}
+];
+
+/* ---------------- questions ---------------- */
+const MCQS = [
+ {n:1, lvl:"warm-up", q:"A café offers 3 starters, 4 mains and 2 desserts. How many different meals of one starter, one main and one dessert are there?",
+  o:["9","24","12","48"], a:1,
+  why:"Starter and main and dessert: multiply, 3 × 4 × 2 = 24. Option A added them — that counts choosing just one course."},
+ {n:2, lvl:"standard", q:"In how many orders can the letters of <span class='num'>MATHS</span> be arranged?",
+  o:["25","60","120","3125"], a:2,
+  why:"Five different letters: 5! = 120. Option D is 5⁵, which lets letters repeat; option B is 5 × 4 × 3."},
+ {n:3, lvl:"standard", q:"Ten people meet and every pair shakes hands once. How many handshakes are there?",
+  o:["20","45","90","100"], a:1,
+  why:"Each of 10 people shakes 9 hands: 90 — but that counts each handshake from both ends, so 45. Option C forgot to halve."},
+ {n:4, lvl:"standard", q:"How many three-digit whole numbers are there?",
+  o:["899","900","999","1000"], a:1,
+  why:"From 100 to 999 inclusive: 999 − 100 + 1 = 900. Or 9 × 10 × 10. Option A is the fence-post error."},
+ {n:5, lvl:"trap", q:"A class of 8 must choose 2 representatives (both with the same role). How many ways are there?",
+  o:["16","28","56","64"], a:1,
+  why:"Order doesn't matter: choosing Asha then Ravi is the same pair as Ravi then Asha. 8 × 7 ÷ 2 = 28. Option C is the answer if there were a captain and a vice-captain."}
+];
+
+const SHORTS = [
+ {n:6, m:2, lvl:"warm-up", q:"A PIN has 4 digits, each from 0 to 9.<br><strong>(a)</strong> How many PINs are possible? <span class='num'>[1]</span><br><strong>(b)</strong> How many have four different digits? <span class='num'>[1]</span>",
+  scheme:["(a) 10 × 10 × 10 × 10 = <strong>10000</strong> <span class='num'>[1]</span>",
+          "(b) 10 × 9 × 8 × 7 = <strong>5040</strong> <span class='num'>[1]</span>"],
+  tip:"A PIN can start with 0 — it's a code, not a number. That's the difference from Q4."},
+ {n:7, m:2, lvl:"standard", q:"How many three-digit numbers contain at least one digit 7?",
+  scheme:["Numbers with no 7: 8 × 9 × 9 = 648 <span class='num'>[1]</span>",
+          "900 − 648 = <strong>252</strong> <span class='num'>[1]</span>"],
+  tip:"The first digit can't be 0 or 7, so 8 choices; the others can't be 7, so 9 each. Counting the 7s directly almost always double-counts 77x, x77 and 777."},
+ {n:8, m:2, lvl:"standard", q:"In how many different orders can the letters of the word <span class='num'>LEVEL</span> be arranged?",
+  scheme:["5! = 120 if all letters were different <span class='num'>[1]</span>",
+          "Divide by 2! for the Ls and 2! for the Es: 120 ÷ 4 = <strong>30</strong> <span class='num'>[1]</span>"],
+  tip:"The V is the only letter on its own. Check one arrangement — say LEVEL itself — and see that swapping the two Ls gives the same word."},
+ {n:9, m:2, lvl:"standard", q:"Moving only right or up along grid lines, how many shortest routes are there from (0, 0) to (4, 3)?<br><strong>(a)</strong> in total <span class='num'>[1]</span> &nbsp; <strong>(b)</strong> passing through (2, 1) <span class='num'>[1]</span>",
+  scheme:["(a) 7 moves, 3 of them up: C(7, 3) = <strong>35</strong> <span class='num'>[1]</span>",
+          "(b) To (2, 1): C(3, 1) = 3. From (2, 1) to (4, 3): C(4, 2) = 6. 3 × 6 = <strong>18</strong> <span class='num'>[1]</span>"],
+  tip:"Check (a) on the path grid with 4 across and 3 up. For (b), 'through a point' splits the walk into two independent walks — multiply."},
+ {n:10, m:2, lvl:"hard", q:"Explain why the number of handshakes among n people, when every pair shakes hands once, is <span class='num'>n(n − 1) ÷ 2</span>.",
+  scheme:["Each of the n people shakes hands with the n − 1 others, giving n(n − 1) <span class='num'>[1]</span>",
+          "Every handshake involves two people, so it has been counted <strong>twice</strong>; divide by 2 <span class='num'>[1]</span>"],
+  tip:"The second mark is for saying <em>why</em> you divide by 2. 'Because of the formula' is not a reason."}
+];
+
+const WORDS = [
+ {n:11, m:3, lvl:"standard", q:"A committee of 4 is chosen from 6 boys and 4 girls.<br><br><strong>(a)</strong> How many different committees are possible? <span class='num'>[1]</span><br><strong>(b)</strong> How many have exactly 2 girls? <span class='num'>[1]</span><br><strong>(c)</strong> How many have at least one girl? <span class='num'>[1]</span>",
+  hints:["(a) is choosing 4 from 10, order not mattering.",
+         "(b): choose 2 girls from 4 and 2 boys from 6. AND means multiply.",
+         "(c): count the committees with no girls at all, and subtract."],
+  sol:["(a) C(10, 4) = 10 × 9 × 8 × 7 ÷ 24 = <strong>210</strong>.",
+       "(b) C(4, 2) × C(6, 2) = 6 × 15 = <strong>90</strong>.",
+       "(c) No girls: C(6, 4) = 15. So 210 − 15 = <strong>195</strong>.",
+       "Check (c) by cases: 1 girl 4 × 20 = 80, 2 girls 90, 3 girls 4 × 6 = 24, 4 girls 1. Total 195 ✓. Same answer — the complement was just faster."]},
+
+ {n:12, m:3, lvl:"standard", q:"Three-digit numbers are made from the digits 1, 2, 3, 4, 5, 6, with no digit used twice.<br><br><strong>(a)</strong> How many can be made? <span class='num'>[1]</span><br><strong>(b)</strong> How many are even? <span class='num'>[1]</span><br><strong>(c)</strong> How many are divisible by 5? <span class='num'>[1]</span>",
+  hints:["6 choices, then 5, then 4.",
+         "Fill the most restricted place first: the units digit must be 2, 4 or 6.",
+         "Divisible by 5 means the units digit is 5 (there's no 0)."],
+  sol:["(a) 6 × 5 × 4 = <strong>120</strong>.",
+       "(b) Units: 3 choices. Then 5 for hundreds and 4 for tens: 3 × 5 × 4 = <strong>60</strong>.",
+       "(c) Units must be 5: 1 choice, then 5 × 4: <strong>20</strong>.",
+       "Half the numbers are even because exactly half the digits are. That symmetry is a free check on (b)."]},
+
+ {n:13, m:3, lvl:"standard", q:"Five friends sit in a row of five chairs for a photo. Two of them, Anu and Bina, are sisters.<br><br><strong>(a)</strong> How many different seating orders are there? <span class='num'>[1]</span><br><strong>(b)</strong> In how many do the sisters sit next to each other? <span class='num'>[1]</span><br><strong>(c)</strong> In how many are they not next to each other? <span class='num'>[1]</span>",
+  hints:["5 people in 5 places.",
+         "Glue the sisters into one block. How many things are you now arranging? And which way round can the block go?",
+         "Count the opposite."],
+  sol:["(a) 5! = <strong>120</strong>.",
+       "(b) The block plus 3 others: 4! = 24 orders, and the sisters can swap inside the block: 24 × 2 = <strong>48</strong>.",
+       "(c) 120 − 48 = <strong>72</strong>.",
+       "Forgetting the × 2 in (b) is the usual slip — AB and BA are different photos."]},
+
+ {n:14, m:3, lvl:"hard", q:"A city is a 5 × 5 grid of streets. You walk from the south-west corner (0, 0) to the north-east corner (5, 5), always going east or north.<br><br><strong>(a)</strong> How many routes are there? <span class='num'>[1]</span><br><strong>(b)</strong> How many pass through the crossing (2, 2)? <span class='num'>[1]</span><br><strong>(c)</strong> The crossing (2, 2) is closed for roadworks. How many routes remain? <span class='num'>[1]</span>",
+  hints:["Every route is 10 moves, 5 of them north. Which 5?",
+         "Split the walk at (2, 2): routes to it, times routes from it to (5, 5).",
+         "Routes avoiding a point = all routes − routes through it."],
+  sol:["(a) C(10, 5) = <strong>252</strong>.",
+       "(b) To (2, 2): C(4, 2) = 6. From (2, 2) to (5, 5): C(6, 3) = 20. 6 × 20 = <strong>120</strong>.",
+       "(c) 252 − 120 = <strong>132</strong>.",
+       "Nearly half of all routes go through that one crossing — central points are on a lot of paths. Try it on the path grid with a 5 × 5 grid: you'll see 132 appear in the corner."]},
+
+ {n:15, m:3, lvl:"hard", q:"Five points are marked on a straight line L, and seven points on a different line M parallel to L.<br><br><strong>(a)</strong> How many line segments join a point of L to a point of M? <span class='num'>[1]</span><br><strong>(b)</strong> How many triangles have all three corners among the 12 points? <span class='num'>[1]</span><br><strong>(c)</strong> How many quadrilaterals have two corners on L and two on M? <span class='num'>[1]</span>",
+  hints:["One point from L and one from M.",
+         "Choose any 3 of the 12, then throw away the choices that are all on one line — they don't make a triangle.",
+         "Choose 2 from L and 2 from M."],
+  sol:["(a) 5 × 7 = <strong>35</strong>.",
+       "(b) C(12, 3) − C(5, 3) − C(7, 3) = 220 − 10 − 35 = <strong>175</strong>.",
+       "(c) C(5, 2) × C(7, 2) = 10 × 21 = <strong>210</strong>.",
+       "Check (b) by cases: 2 on L and 1 on M is 10 × 7 = 70, 1 on L and 2 on M is 5 × 21 = 105, total 175 ✓."]}
+];
+
+/* ---------------- render videos ---------------- */
+const videoList = document.getElementById('videoList');
+VIDEOS.forEach((V,i)=>{
+  const c = document.createElement('div');
+  c.className = 'vid';
+  c.innerHTML = `
+    <div class="play">${i+1}</div>
+    <div>
+      <h3><a href="${V.url}" target="_blank" rel="noopener">${V.t}</a></h3>
+      <div class="chan">${V.ch}</div>
+      <p>${V.why}</p>
+      <div class="task"><strong>Your job:</strong> ${V.task}</div>
+    </div>`;
+  videoList.appendChild(c);
+});
+
+/* ---------------- render lessons ---------------- */
+const lessonList = document.getElementById('lessonList');
+LESSONS.forEach((L,i)=>{
+  const d = document.createElement('details');
+  d.className = 'lesson';
+  d.innerHTML = `
+    <summary><span class="no">${i+1}</span><span class="ttl">${L.t}</span><span class="len">${L.len}</span></summary>
+    <div class="lbody">
+      ${L.body}
+      <div class="kicker">Do this away from the screen</div>
+      <div class="demo">${L.demo}</div>
+      <div class="kicker">Before you move on</div>
+      <div class="cliff">${L.cliff}</div>
+      <label class="done"><input type="checkbox" data-lesson="${i}"> I've worked through this lesson</label>
+    </div>`;
+  lessonList.appendChild(d);
+});
+
+/* ---------------- render MCQs ---------------- */
+const mcqList = document.getElementById('mcqList');
+MCQS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">1 mark</span></div>
+    <p class="qtext">${Q.q}</p>
+    <div class="opts" data-mcq="${Q.n}">
+      ${Q.o.map((o,j)=>`<button type="button" class="opt" data-i="${j}"><span class="k">${'ABCD'[j]}</span><span>${o}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb${Q.n}"></div>`;
+  mcqList.appendChild(c);
+});
+
+/* ---------------- render short answers ---------------- */
+const shortList = document.getElementById('shortList');
+SHORTS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your answer…" aria-label="Your answer to question ${Q.n}"></textarea>
+    <div class="row"><button class="btn ghost" type="button" data-reveal="s${Q.n}">Show mark scheme</button></div>
+    <div class="solbox" id="s${Q.n}" style="display:none">
+      <ol>${Q.scheme.map(s=>`<li>${s}</li>`).join('')}</ol>
+      <p class="tipline">${Q.tip}</p>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  shortList.appendChild(c);
+});
+
+/* ---------------- render word problems ---------------- */
+const wordList = document.getElementById('wordList');
+WORDS.forEach(Q=>{
+  const c = document.createElement('div');
+  c.className='qcard';
+  c.innerHTML = `
+    <div class="qhead"><span class="qn">Q${Q.n}</span><span class="lvl${Q.lvl==='hard'?' hard':''}">${Q.lvl}</span><span class="mk">${Q.m} marks</span></div>
+    <p class="qtext">${Q.q}</p>
+    <textarea data-note="${Q.n}" placeholder="Your working…" aria-label="Your working for question ${Q.n}"></textarea>
+    <div class="row">
+      <button class="btn ghost" type="button" data-hint="${Q.n}">Give me a hint</button>
+      <button class="btn ghost" type="button" data-reveal="w${Q.n}">Show full solution</button>
+    </div>
+    <div id="h${Q.n}"></div>
+    <div class="solbox" id="w${Q.n}" style="display:none">
+      <ol>${Q.sol.map(s=>`<li>${s}</li>`).join('')}</ol>
+    </div>
+    ${markRow(Q.n,Q.m)}`;
+  wordList.appendChild(c);
+});
+
+function markRow(n,m){
+  let b='';
+  for(let i=0;i<=m;i++) b += `<button class="mbtn" type="button" data-mark="${n}" data-v="${i}">${i}</button>`;
+  return `<div class="selfmark"><span class="q">I scored</span>${b}<span class="q">out of ${m}</span></div>`;
+}
+
+/* ---------------- interactions ---------------- */
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt && !opt.disabled){
+    const n = +opt.closest('.opts').dataset.mcq;
+    answerMcq(n, +opt.dataset.i);
+    save(); refresh(); return;
+  }
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){ document.getElementById(rev.dataset.reveal).style.display='block'; rev.remove(); return; }
+
+  const hb = e.target.closest('[data-hint]');
+  if(hb){
+    const n = +hb.dataset.hint;
+    const Q = WORDS.find(x=>x.n===n);
+    const host = document.getElementById('h'+n);
+    const shown = host.children.length;
+    if(shown < Q.hints.length){
+      const d=document.createElement('div');
+      d.className='hintbox';
+      d.innerHTML = `<strong>Hint ${shown+1}.</strong> ${Q.hints[shown]}`;
+      host.appendChild(d);
+      if(host.children.length===Q.hints.length) hb.textContent='No hints left';
+    }
+    return;
+  }
+  const mb = e.target.closest('[data-mark]');
+  if(mb){
+    const n = mb.dataset.mark, v = +mb.dataset.v;
+    S.marks[n] = v;
+    mb.parentElement.querySelectorAll('.mbtn').forEach(b=>b.classList.toggle('sel', +b.dataset.v===v));
+    save(); refresh(); return;
+  }
+});
+
+function answerMcq(n, choice){
+  const Q = MCQS.find(x=>x.n===n);
+  S.mcq[n] = choice;
+  const box = document.querySelector(`.opts[data-mcq="${n}"]`);
+  const fb  = document.getElementById('fb'+n);
+  box.querySelectorAll('.opt').forEach((b,j)=>{
+    b.disabled = true;
+    if(j===Q.a) b.classList.add('right');
+    else if(j===choice) b.classList.add('wrong');
+  });
+  const ok = choice===Q.a;
+  fb.className = 'fb on ' + (ok?'good':'bad');
+  fb.innerHTML = `<strong>${ok?'Correct.':'Not this time.'}</strong> ${Q.why}`;
+}
+
+document.addEventListener('change', e=>{
+  if(e.target.dataset.lesson!==undefined){
+    S.lessons[e.target.dataset.lesson] = e.target.checked;
+    save(); refresh();
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.dataset.note!==undefined){ S.notes[e.target.dataset.note] = e.target.value; save(); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', async ()=>{
+  if(!confirm('Clear every answer, mark and finished lesson on this page?')) return;
+  S = { lessons:{}, mcq:{}, marks:{}, notes:{}, puzzles:0 };
+  try{ await window.storage.delete(KEY); }catch(e){}
+  location.reload();
+});
+
+/* ---------------- progress ---------------- */
+function refresh(){
+  let marks = 0;
+  MCQS.forEach(Q=>{ if(S.mcq[Q.n]===Q.a) marks += 1; });
+  [...SHORTS,...WORDS].forEach(Q=>{ if(typeof S.marks[Q.n]==='number') marks += S.marks[Q.n]; });
+  const lessons = Object.values(S.lessons).filter(Boolean).length;
+  const small = 'font-size:15px;color:var(--ink-soft)';
+
+  document.getElementById('s-marks').innerHTML = marks + `<span style="${small}">/30</span>`;
+  document.getElementById('s-lessons').innerHTML = lessons + `<span style="${small}">/6</span>`;
+  document.getElementById('s-puzzles').textContent = S.puzzles||0;
+  document.getElementById('bar-marks').style.width = (marks/30*100)+'%';
+  document.getElementById('bar-lessons').style.width = (lessons/6*100)+'%';
+  document.getElementById('bar-puzzles').style.width = Math.min(100,(S.puzzles||0)*10)+'%';
+}
+
+function restore(){
+  Object.keys(S.lessons).forEach(i=>{
+    const cb = document.querySelector(`[data-lesson="${i}"]`);
+    if(cb) cb.checked = !!S.lessons[i];
+  });
+  Object.keys(S.mcq).forEach(n=>{ if(MCQS.find(x=>x.n==n)) answerMcq(+n, S.mcq[n]); });
+  Object.keys(S.marks).forEach(n=>{
+    const btn = document.querySelector(`[data-mark="${n}"][data-v="${S.marks[n]}"]`);
+    if(btn) btn.classList.add('sel');
+  });
+  Object.keys(S.notes).forEach(n=>{
+    const ta = document.querySelector(`[data-note="${n}"]`);
+    if(ta) ta.value = S.notes[n];
+  });
+  refresh();
+}
+
+/* ---------------- the path grid ---------------- */
+let gTarget=null, curGPuzzle=null, gBlocked=new Set();
+function C(n,r){ if(r<0||r>n) return 0; let v=1; for(let i=1;i<=r;i++) v=v*(n-r+i)/i; return Math.round(v); }
+function pathCounts(W,H,blocked){
+  const N=[]; for(let i=0;i<=W;i++){ N.push([]); for(let j=0;j<=H;j++){
+    if(blocked.has(i+','+j)) N[i][j]=0;
+    else if(i===0&&j===0) N[i][j]=1;
+    else N[i][j]=(i?N[i-1][j]:0)+(j?N[i][j-1]:0);
+  } }
+  return N;
+}
+function drawGrid(){
+  const W=+document.getElementById('gw').value, H=+document.getElementById('gh').value;
+  document.getElementById('gw-v').textContent=W; document.getElementById('gh-v').textContent=H;
+  [...gBlocked].forEach(k=>{ const [i,j]=k.split(',').map(Number); if(i>W||j>H||(i===0&&j===0)||(i===W&&j===H)) gBlocked.delete(k); });
+  const N=pathCounts(W,H,gBlocked);
+  const u=Math.min(600/Math.max(W,1), 280/Math.max(H,1), 80), ox=(700-W*u)/2, oy=20+H*u;
+  let g='';
+  for(let i=0;i<=W;i++) g+=`<line x1="${ox+i*u}" y1="${oy}" x2="${ox+i*u}" y2="${oy-H*u}" stroke="var(--line)" stroke-width="3"/>`;
+  for(let j=0;j<=H;j++) g+=`<line x1="${ox}" y1="${oy-j*u}" x2="${ox+W*u}" y2="${oy-j*u}" stroke="var(--line)" stroke-width="3"/>`;
+  for(let i=0;i<=W;i++) for(let j=0;j<=H;j++){
+    const x=ox+i*u, y=oy-j*u, bl=gBlocked.has(i+','+j), end=(i===W&&j===H), st=(i===0&&j===0);
+    const fill = bl ? 'var(--ng)' : end ? 'var(--pm)' : st ? 'var(--rt)' : 'var(--card)';
+    const col = (bl||end||st) ? '#fff' : 'var(--ink)';
+    g+=`<circle class="node" data-n="${i},${j}" cx="${x}" cy="${y}" r="16" fill="${fill}" stroke="var(--steel)" stroke-width="1.5"/>`;
+    g+=`<text x="${x}" y="${y+4.5}" text-anchor="middle" font-family="var(--mono)" font-size="${N[i][j]>999?9.5:12}" font-weight="700" fill="${col}" pointer-events="none">${bl?'×':N[i][j]}</text>`;
+  }
+  document.getElementById('gStage').innerHTML=g;
+  const total=N[W][H];
+  document.getElementById('g-n').textContent=total;
+  document.getElementById('g-ns').textContent=`${W} rights and ${H} ups`;
+  document.getElementById('g-c').textContent = gBlocked.size ? `C(${W+H}, ${H}) = ${C(W+H,H)} before blocks` : `C(${W+H}, ${H}) = ${C(W+H,H)}`;
+  document.getElementById('g-b').textContent = gBlocked.size ? [...gBlocked].map(k=>'('+k+')').join(' ') : 'none';
+  const pill=document.getElementById('g-pill'), note=document.getElementById('g-note');
+  if(gTarget){
+    const T=gTarget; pill.className='pill up'; pill.textContent='Puzzle running';
+    let ok;
+    if(T.grid){ ok = W===T.grid[0] && H===T.grid[1] && gBlocked.size===1 && total===T.count; if(W!==T.grid[0]||H!==T.grid[1]) { note.textContent=`Set the grid to ${T.grid[0]} × ${T.grid[1]} first.`; } else note.textContent=`${total} routes. You need ${T.count}, with exactly one crossing blocked.`; }
+    else { ok = gBlocked.size===0 && total===T.count; note.textContent = gBlocked.size ? 'This puzzle needs no blocks — clear them.' : `${total} routes. You need ${T.count}.`; }
+    if(ok){
+      gTarget=null; S.puzzles=(S.puzzles||0)+1; save(); refresh();
+      const box=document.getElementById('gQuiz'); box.classList.add('on');
+      box.innerHTML=`<strong>${total} routes.</strong> ${T.more} Puzzles solved: ${S.puzzles}.
+        <div class="qrow"><button class="btn ghost small" type="button" id="gAgain">Another one</button></div>`;
+      document.getElementById('gAgain').addEventListener('click', ()=>document.getElementById('gPuzzle').click());
+      pill.className='pill bal'; pill.textContent='Solved';
+      note.textContent='Routes = choose which moves are up. Blocked = total minus through.';
+    }
+  }else{
+    pill.className='pill go'; pill.textContent='Adding';
+    note.textContent='Each number is the one to its left plus the one below. That\'s Pascal\'s triangle, tilted.';
+  }
+}
+function toggleBlock(key){
+  const W=+document.getElementById('gw').value, H=+document.getElementById('gh').value;
+  if(key==='0,0' || key===W+','+H) return;
+  if(gBlocked.has(key)) gBlocked.delete(key); else gBlocked.add(key);
+  drawGrid();
+}
+document.getElementById('gStage').addEventListener('click', e=>{ const c=e.target.closest('[data-n]'); if(c) toggleBlock(c.dataset.n); });
+['gw','gh'].forEach(id=>document.getElementById(id).addEventListener('input', drawGrid));
+document.getElementById('gClear').addEventListener('click', ()=>{ gBlocked.clear(); drawGrid(); });
+const G_PUZZLES=[
+ {count:20, more:'C(6, 3) = 20: a 3 × 3 grid.'},
+ {count:35, more:'C(7, 3) = 35: 4 × 3 or 3 × 4.'},
+ {count:15, more:'C(6, 2) = 15: 4 × 2 or 2 × 4. (1 × 14 won\'t fit.)'},
+ {count:56, more:'C(8, 3) = 56: 5 × 3 or 3 × 5.'},
+ {grid:[3,3], count:10, more:'Block a crossing next to the start (or the end): 10 routes go through it, 20 − 10 = 10 remain.'},
+ {grid:[4,4], count:34, more:'The centre (2, 2) has 6 × 6 = 36 routes through it, and 70 − 36 = 34.'}
+];
+document.getElementById('gPuzzle').addEventListener('click', ()=>{
+  let i=Math.floor(Math.random()*G_PUZZLES.length);
+  if(curGPuzzle===i) i=(i+1)%G_PUZZLES.length;
+  curGPuzzle=i; gTarget=G_PUZZLES[i];
+  gBlocked.clear(); document.getElementById('gw').value=1; document.getElementById('gh').value=1;   /* start from an unsolved state */
+  const T=gTarget, box=document.getElementById('gQuiz'); box.classList.add('on');
+  box.innerHTML = T.grid
+    ? `<strong>Puzzle.</strong> On a ${T.grid[0]} × ${T.grid[1]} grid, block exactly <strong>one</strong> crossing so that exactly <span class="num" style="font-size:17px">${T.count}</span> routes remain. Work out how many routes each crossing carries first.`
+    : `<strong>Puzzle.</strong> Make a grid with no blocks that has exactly <span class="num" style="font-size:17px">${T.count}</span> routes to the corner. Which C(a + b, b) is it?`;
+  drawGrid();
+});
+
+/* ---------------- the handshake circle ---------------- */
+let cMode='pairs', cTarget=null, curCPuzzle=null;
+function drawCircle(){
+  const n=+document.getElementById('cn').value;
+  document.getElementById('cn-v').textContent=n;
+  const cx=350, cy=150, R=120, pts=[];
+  for(let k=0;k<n;k++){ const a=-Math.PI/2+2*Math.PI*k/n; pts.push([cx+R*Math.cos(a), cy+R*Math.sin(a)]); }
+  let g='';
+  if(cMode==='pairs'){
+    for(let i=0;i<n;i++) for(let j=i+1;j<n;j++){
+      const side = (j===i+1)||(i===0&&j===n-1);
+      g+=`<line x1="${pts[i][0].toFixed(1)}" y1="${pts[i][1].toFixed(1)}" x2="${pts[j][0].toFixed(1)}" y2="${pts[j][1].toFixed(1)}" stroke="${side?'var(--pm)':'var(--ng)'}" stroke-width="${side?2.5:1.3}" opacity="${side?1:.6}"/>`;
+    }
+  }else{
+    // draw one highlighted triangle and faint sides
+    for(let i=0;i<n;i++){ const j=(i+1)%n; g+=`<line x1="${pts[i][0].toFixed(1)}" y1="${pts[i][1].toFixed(1)}" x2="${pts[j][0].toFixed(1)}" y2="${pts[j][1].toFixed(1)}" stroke="var(--line)" stroke-width="1.5"/>`; }
+    if(n>=3) g+=`<polygon points="${[0,Math.floor(n/3),Math.floor(2*n/3)].map(k=>pts[k].map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="var(--rt-tint)" stroke="var(--rt)" stroke-width="2.5"/>`;
+  }
+  pts.forEach((p,k)=>{ g+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="2"/><text x="${p[0].toFixed(1)}" y="${(p[1]+4).toFixed(1)}" text-anchor="middle" font-family="var(--mono)" font-size="10.5" font-weight="700" fill="var(--ink)">${k+1}</text>`; });
+  document.getElementById('cStage').innerHTML=g;
+  const pairs=n*(n-1)/2, trips=n*(n-1)*(n-2)/6;
+  if(cMode==='pairs'){
+    document.getElementById('c-l1').textContent='Handshakes';
+    document.getElementById('c-v1').textContent=pairs;
+    document.getElementById('c-s1').textContent=`${n} × ${n-1} ÷ 2`;
+    document.getElementById('c-l2').textContent='Ordered pairs';
+    document.getElementById('c-v2').textContent=n*(n-1);
+    document.getElementById('c-s2').textContent='each handshake counted from both ends';
+  }else{
+    document.getElementById('c-l1').textContent='Triangles';
+    document.getElementById('c-v1').textContent=trips;
+    document.getElementById('c-s1').textContent=`${n} × ${n-1} × ${n-2} ÷ 6`;
+    document.getElementById('c-l2').textContent='Ordered triples';
+    document.getElementById('c-v2').textContent=n*(n-1)*(n-2);
+    document.getElementById('c-s2').textContent='each triangle counted 3! = 6 times';
+  }
+  document.getElementById('c-v3').textContent = n>=4 ? pairs-n : 0;
+  const pill=document.getElementById('c-pill'), note=document.getElementById('c-note');
+  if(cTarget){
+    const T=cTarget; pill.className='pill up'; pill.textContent='Puzzle running';
+    const val = T.kind==='pairs' ? pairs : T.kind==='trips' ? trips : pairs-n;
+    const modeOk = T.kind==='diag' || cMode===T.kind;
+    if(modeOk && val===T.v){
+      cTarget=null; S.puzzles=(S.puzzles||0)+1; save(); refresh();
+      const box=document.getElementById('cQuiz'); box.classList.add('on');
+      box.innerHTML=`<strong>n = ${n}.</strong> ${T.more} Puzzles solved: ${S.puzzles}.
+        <div class="qrow"><button class="btn ghost small" type="button" id="cAgain">Another one</button></div>`;
+      document.getElementById('cAgain').addEventListener('click', ()=>document.getElementById('cPuzzle').click());
+      pill.className='pill bal'; pill.textContent='Solved';
+      note.textContent='Count ordered, then divide by how many orders each group has.';
+    }else note.textContent = modeOk ? 'Not this n. Set up the equation and solve it first.' : `Switch to ${T.kind==='pairs'?'pairs':'triangles'} mode.`;
+  }else{
+    pill.className='pill up'; pill.textContent='Joining';
+    note.textContent='Count ordered, then divide by how many orders each group has.';
+  }
+}
+function setCMode(m){
+  cMode=m;
+  document.getElementById('cPairs').className='btn small '+(m==='pairs'?'on':'ghost');
+  document.getElementById('cTrips').className='btn small '+(m==='trips'?'on':'ghost');
+  drawCircle();
+}
+document.getElementById('cPairs').addEventListener('click', ()=>setCMode('pairs'));
+document.getElementById('cTrips').addEventListener('click', ()=>setCMode('trips'));
+document.getElementById('cn').addEventListener('input', drawCircle);
+const C_PUZZLES=[
+ {kind:'pairs', v:45, more:'n(n − 1) = 90 = 10 × 9.'},
+ {kind:'pairs', v:28, more:'n(n − 1) = 56 = 8 × 7.'},
+ {kind:'pairs', v:66, more:'n(n − 1) = 132 = 12 × 11.'},
+ {kind:'trips', v:20, more:'n(n − 1)(n − 2) = 120 = 6 × 5 × 4.'},
+ {kind:'trips', v:56, more:'n(n − 1)(n − 2) = 336 = 8 × 7 × 6.'},
+ {kind:'diag', v:27, more:'n(n − 3) ÷ 2 = 27 gives n(n − 3) = 54 = 9 × 6.'}
+];
+document.getElementById('cPuzzle').addEventListener('click', ()=>{
+  let i=Math.floor(Math.random()*C_PUZZLES.length);
+  if(curCPuzzle===i) i=(i+1)%C_PUZZLES.length;
+  curCPuzzle=i; cTarget=C_PUZZLES[i];
+  document.getElementById('cn').value=2;   /* start from an unsolved state */
+  const T=cTarget, what = T.kind==='pairs' ? `exactly <span class="num" style="font-size:17px">${T.v}</span> handshakes`
+    : T.kind==='trips' ? `exactly <span class="num" style="font-size:17px">${T.v}</span> triangles (in triangles mode)`
+    : `a polygon with exactly <span class="num" style="font-size:17px">${T.v}</span> diagonals`;
+  const box=document.getElementById('cQuiz'); box.classList.add('on');
+  box.innerHTML=`<strong>Puzzle.</strong> Find the n that gives ${what}. Solve it on paper, then set it.`;
+  drawCircle();
+});
+
+/* ---------------- boot ---------------- */
+(async ()=>{
+  await loadState();
+  restore();
+  drawGrid();
+  drawCircle();
+})();
+</script>
+
+<script>
+/* ---- hub bridge (2/2): mirror this page's progress strip into the hub ---- */
+(function(){
+  var ID='ioqm-counting', SUBJECT='olympiad', TITLE="Count Without Listing", HKEY='hub-progress-v1';
+  function num(id){ var el=document.getElementById(id); if(!el) return 0;
+                    var m=(el.textContent||'').match(/-?\d+/); return m?parseInt(m[0],10):0; }
+  var last='';
+  function report(){
+    var row = { marks:num('s-marks'), marksTotal:30,
+                lessons:num('s-lessons'), lessonsTotal:6,
+                puzzles:num('s-puzzles'), subject:SUBJECT, title:TITLE, seen:Date.now() };
+    var sig = row.marks+'|'+row.lessons+'|'+row.puzzles;
+    if(sig===last) return; last=sig;
+    window.storage.get(HKEY).then(function(r){
+      var all={}; try{ all = r&&r.value ? JSON.parse(r.value) : {}; }catch(e){}
+      all[ID]=row;
+      return window.storage.set(HKEY, JSON.stringify(all));
+    }).catch(function(){});
+  }
+  function start(){
+    var el=document.getElementById('s-marks');
+    if(!el){ return; }
+    try{ new MutationObserver(report).observe(document.querySelector('.strip')||el,
+          {childList:true, subtree:true, characterData:true}); }catch(e){}
+    setInterval(report, 4000);
+    window.addEventListener('pagehide', report);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) report(); });
+    setTimeout(report, 900);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+</body>
+</html>
